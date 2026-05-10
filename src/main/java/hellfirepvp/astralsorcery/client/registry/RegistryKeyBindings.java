@@ -17,7 +17,7 @@ import net.minecraft.client.util.InputMappings;
 import net.neoforged.neoforge.client.event.InputEvent;
 import net.neoforged.neoforge.client.settings.KeyConflictContext;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.fml.client.registry.ClientRegistry;
+import net.neoforged.client.renderer.entity.ItemEntityRenderer;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.HashSet;

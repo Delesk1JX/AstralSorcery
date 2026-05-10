@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.data.config.base;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.neoforged.neoforge.common.NeoForgeConfigSpec;
-import net.neoforged.neoforge.fml.config.ModConfig;
+import net.neoforged.fml.config.ModConfig;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;

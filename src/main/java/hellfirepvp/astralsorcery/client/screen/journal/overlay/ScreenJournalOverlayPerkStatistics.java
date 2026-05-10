@@ -34,7 +34,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextProperties;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import java.awt.*;
 import java.util.Comparator;

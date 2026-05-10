@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.base;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import net.minecraft.util.ResourceLocation;
 import net.neoforged.neoforge.fml.InterModComms;
-import net.neoforged.neoforge.fml.ModList;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.registries.IRegistryObject;
 import net.neoforged.neoforge.versions.forge.ForgeVersion;
 

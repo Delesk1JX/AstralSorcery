@@ -10,8 +10,8 @@ package hellfirepvp.astralsorcery.client.screen.journal.perk;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import hellfirepvp.astralsorcery.common.perk.AllocationStatus;
-import net.neoforged.neoforge.api.distmarker.Dist;
-import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.awt.*;

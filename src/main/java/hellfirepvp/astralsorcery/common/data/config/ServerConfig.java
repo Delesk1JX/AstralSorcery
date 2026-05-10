@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.data.config;
 
 import hellfirepvp.astralsorcery.common.data.config.base.BaseConfiguration;
-import net.neoforged.neoforge.fml.config.ModConfig;
+import net.neoforged.fml.config.ModConfig;
 
 /**
  * This class is part of the Astral Sorcery Mod
