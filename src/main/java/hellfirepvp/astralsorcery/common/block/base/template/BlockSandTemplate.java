@@ -14,8 +14,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.FallingBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
-import net.neoforged.neoforge.api.distmarker.Dist;
-import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.ToolType;
 
 import javax.annotation.Nullable;

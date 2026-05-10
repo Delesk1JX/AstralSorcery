@@ -21,7 +21,7 @@ import net.minecraft.loot.LootParameterSets;
 import net.minecraft.loot.LootParameters;
 import net.minecraft.util.ResourceLocation;
 import net.neoforged.neoforge.common.ForgeHooks;
-import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

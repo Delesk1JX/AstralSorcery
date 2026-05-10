@@ -10,8 +10,8 @@ package hellfirepvp.astralsorcery.client.util.obj;
 
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.neoforged.neoforge.api.distmarker.Dist;
-import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
 /**
  * HellFirePvP@Admin

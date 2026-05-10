@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.util;
 
-import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import java.util.Optional;
 

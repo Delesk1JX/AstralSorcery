@@ -18,9 +18,9 @@ import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
-import net.neoforged.neoforge.api.distmarker.Dist;
-import net.neoforged.neoforge.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.fml.client.registry.ClientRegistry;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.client.renderer.entity.ItemEntityRenderer;
 
 import static hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS.*;
 

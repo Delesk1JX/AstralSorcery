@@ -22,7 +22,7 @@ import net.minecraft.util.math.MathHelper;
 import net.neoforged.neoforge.event.entity.living.LivingHealEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
 import net.neoforged.neoforge.eventbus.api.IEventBus;
-import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -12,8 +12,8 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import hellfirepvp.astralsorcery.common.crafting.recipe.LiquidInteraction;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
-import net.neoforged.neoforge.api.distmarker.Dist;
-import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
 /**
  * This class is part of the Astral Sorcery Mod

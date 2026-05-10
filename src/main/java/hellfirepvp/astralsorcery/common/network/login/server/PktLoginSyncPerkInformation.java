@@ -15,9 +15,9 @@ import hellfirepvp.astralsorcery.common.perk.PerkTree;
 import hellfirepvp.astralsorcery.common.perk.data.PerkTreeData;
 import hellfirepvp.astralsorcery.common.perk.data.PerkTreeLoader;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
-import net.neoforged.neoforge.api.distmarker.Dist;
-import net.neoforged.neoforge.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.fml.network.NetworkEvent;
 
 import javax.annotation.Nonnull;

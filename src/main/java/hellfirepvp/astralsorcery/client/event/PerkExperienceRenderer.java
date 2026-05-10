@@ -29,7 +29,7 @@ import net.neoforged.neoforge.client.event.RenderGameOverlayEvent;
 import net.neoforged.neoforge.event.TickEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
 import net.neoforged.neoforge.eventbus.api.IEventBus;
-import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 import org.lwjgl.opengl.GL11;
 
 import java.util.EnumSet;

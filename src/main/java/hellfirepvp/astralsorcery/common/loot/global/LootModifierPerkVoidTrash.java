@@ -28,7 +28,7 @@ import net.minecraft.loot.conditions.ILootCondition;
 import net.minecraft.util.ResourceLocation;
 import net.neoforged.neoforge.common.loot.GlobalLootModifierSerializer;
 import net.neoforged.neoforge.common.loot.LootModifier;
-import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import java.util.List;

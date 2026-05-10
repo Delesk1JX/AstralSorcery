@@ -20,7 +20,7 @@ import net.minecraft.util.RegistryKey;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.common.util.Constants;
-import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import java.util.*;

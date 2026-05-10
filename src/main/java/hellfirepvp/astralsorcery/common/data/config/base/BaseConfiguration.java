@@ -12,7 +12,7 @@ import com.google.common.base.Splitter;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 import net.neoforged.neoforge.fml.ModContainer;
-import net.neoforged.neoforge.fml.config.ModConfig;
+import net.neoforged.fml.config.ModConfig;
 
 import java.util.ArrayList;
 import java.util.HashMap;

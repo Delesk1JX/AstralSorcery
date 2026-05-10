@@ -10,9 +10,9 @@ package hellfirepvp.astralsorcery.common.network.base;
 
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import net.minecraft.network.PacketBuffer;
-import net.neoforged.neoforge.api.distmarker.Dist;
-import net.neoforged.neoforge.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.fml.network.NetworkEvent;
 
 import javax.annotation.Nonnull;

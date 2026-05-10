@@ -11,10 +11,12 @@ package hellfirepvp.astralsorcery;
 import hellfirepvp.astralsorcery.client.ClientProxy;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import net.minecraft.resources.ResourceLocation;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.loading.ModList;
+import net.neoforged.fml.ModList;
+import net.neoforged.fml.util.thread.SidedThreadGroups;
 import net.neoforged.neoforge.common.NeoForge;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -42,8 +44,7 @@ public class AstralSorcery {
         instance = this;
         AstralSorcery.modContainer = modContainer;
 
-
-        this.proxy = DistExecutor.unsafeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
+        this.proxy = Thread.currentThread().getThreadGroup() == SidedThreadGroups.CLIENT_GROUP ? new ClientProxy() : new CommonProxy();
         this.proxy.initialize();
         this.proxy.attachLifecycle(modEventBus);
         this.proxy.attachEventHandlers(NeoForge.EVENT_BUS);
