@@ -1,79 +1,87 @@
 ```
-# Gradle
-.gradle/
-build/
-
-# Java
+# Compiled and build artifacts
 *.class
-*.jar
-*.war
-*.ear
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.a
+*.out
+build/
+target/
 
-# IDE
-.vscode/
+# Dependencies
+.gradle/
+lib/
+libs/
+
+# Logs and temp files
+*.log
+*.tmp
+
+# Editors
 .idea/
 *.swp
 *.swo
 
-# System
+# System files
 .DS_Store
 Thumbs.db
-
-# Logs
-*.log
-
-# Coverage
-coverage/
-htmlcov/
-.coverage
-
-# Temporary files
-*.tmp
-*.temp
 
 # Environment
 .env
 .env.local
 *.env.*
 
-# Python (if any Python files exist in the project)
+# Coverage
+coverage/
+htmlcov/
+.coverage
+
+# Python specific
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
 .Python
-pip-log.txt
-pip-delete-this-directory.txt
-.pytest_cache/
-.mypy_cache/
+*.so
+*.egg-info/
+.eggs/
 
-# Node.js (if any Node.js files exist in the project)
+# Java specific
+*.jar
+*.war
+*.ear
+hs_err_pid*
+
+# Node specific
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Compressed files
-*.zip
-*.gz
-*.tar
-*.tgz
-*.bz2
-*.xz
-*.7z
-*.rar
-*.zst
-*.lz4
-*.lzh
-*.cab
-*.arj
-*.rpm
-*.deb
-*.Z
-*.lz
-*.lzo
-*.tar.gz
-*.tar.bz2
-*.tar.xz
-*.tar.zst
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
 
+# Testing
+.pytest_cache/
+.mypy_cache/
+.tox/
+.nox/
+
+# Distribution / packaging
+*.tar.gz
+*.whl
+pip-log.txt
+pip-delete-this-directory.txt
+
+# IDE specific
+.vscode/
+.settings/
+.project
+.classpath
 ```

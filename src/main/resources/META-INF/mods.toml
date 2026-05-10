@@ -1,5 +1,5 @@
 modLoader="neoforge" #mandatory
-loaderVersion="[1,)" # NeoForge использует другую систему версий
+loaderVersion="[21,)" # NeoForge 1.21.1 требует версию 21+
 license="All rights reserved"
 issueTrackerURL="https://github.com/HellFirePvP/AstralSorcery/issues" #optional
 [[mods]]
@@ -34,6 +34,6 @@ config="assets/astralsorcery/astralsorcery.mixins.json"
 [[dependencies.astralsorcery]]
     modId="curios"
     mandatory=true
-    versionRange="[1.21.1-,)"
+    versionRange="[14.0.0,)"
     ordering="NONE"
     side="BOTH"
