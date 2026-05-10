@@ -1,5 +1,5 @@
-modLoader="javafml" #mandatory
-loaderVersion="[35,)"
+modLoader="neoforge" #mandatory
+loaderVersion="[1,)" # NeoForge использует другую систему версий
 license="All rights reserved"
 issueTrackerURL="https://github.com/HellFirePvP/AstralSorcery/issues" #optional
 [[mods]]
@@ -11,27 +11,29 @@ logoFile="logo.png"
 credits="HellFirePvP (code), wiiv (models & textures), VulpTheHorseDog (models & textures)"
 authors="HellFirePvP, wiiv, VulpTheHorseDog"
 description='''Magic mod that draws power from stars and their constellations'''
+[[mixins]]
+config="assets/astralsorcery/astralsorcery.mixins.json"
 [[dependencies.astralsorcery]]
-    modId="forge"
+    modId="neoforge"
     mandatory=true
-    versionRange="[35,)"
+    versionRange="[21.1,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.astralsorcery]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.4]"
+    versionRange="[1.21.1]"
     ordering="NONE"
     side="BOTH"
 [[dependencies.astralsorcery]]
     modId="observerlib"
     mandatory=true
-    versionRange="[1.16.4-1.5,]"
+    versionRange="[1.21.1-2.0,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.astralsorcery]]
     modId="curios"
     mandatory=true
-    versionRange="[FORGE-1.16.3-,)"
+    versionRange="[1.21.1-,)"
     ordering="NONE"
     side="BOTH"

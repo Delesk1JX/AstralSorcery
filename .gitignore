@@ -1,62 +1,39 @@
+```
+# Compiled and build artifacts
 *.class
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.a
+*.out
+build/
+target/
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+# Dependencies
+.gradle/
+libs/
 
-# Package Files #
-*.jar
-*.war
-*.ear
+# Logs and temp files
+*.log
+*.tmp
+*.swp
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+# Environment
+.env
+.env.local
+*.env.*
 
-# Eclipse stuff
-/.classpath
-/.project
-/.settings
-
-# netbeans
-/nbproject
-
-#gradle stuff
-/gradlew
-/gradlew.bat
-/gradle
-/.gradle
-
-# maven
-/build.xml
-/target
-
-# vim
-.*.sw[a-p]
-
-# various other potential build files
-/build
-/bin
-/dist
-/manifest.mf
-/run
-/libs
-/eclipse
-/classes
-/out
-/logs
-
-# Mac filesystem dust
-/.DS_Store
-
-# IntelliJ
-*.iml
-*.ipr
-*.iws
+# Editors
+.vscode/
 .idea/
 
-# For good measure...
-*.jks
-gradle.attributes
-gradle.properties
+# Coverage reports
+coverage/
+htmlcov/
+.coverage
 
-# Do not commit generated resources
-/src/generated/
+# Package manager
+node_modules/
+```
