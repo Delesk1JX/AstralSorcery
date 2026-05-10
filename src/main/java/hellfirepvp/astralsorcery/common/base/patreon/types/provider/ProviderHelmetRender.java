@@ -15,7 +15,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.neoforge.registries.BuiltInRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 import java.util.List;
 import java.util.UUID;

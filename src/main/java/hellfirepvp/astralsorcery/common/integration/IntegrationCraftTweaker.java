@@ -13,7 +13,7 @@ import com.blamejared.crafttweaker.impl.commands.CTCommandCollectionEvent;
 import hellfirepvp.astralsorcery.common.block.tile.altar.AltarType;
 import hellfirepvp.astralsorcery.common.constellation.*;
 import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
-import net.minecraft.util.text.*;
+import net.minecraft.network.chat.*;
 import net.neoforged.neoforge.eventbus.api.IEventBus;
 
 /**

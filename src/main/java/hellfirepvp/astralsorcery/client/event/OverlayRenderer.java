@@ -12,7 +12,7 @@ import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.common.item.base.client.ItemOverlayRender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.neoforged.neoforge.client.event.RenderGameOverlayEvent;
@@ -48,7 +48,7 @@ public class OverlayRenderer {
         }
 
         PoseStack renderStack = event.getMatrixStack();
-        for (EquipmentSlotType type : EquipmentSlotType.values()) {
+        for (EquipmentSlot type : EquipmentSlot.values()) {
             if (doHudRender(renderStack, player.getItemStackFromSlot(type), pTicks)) {
                 break;
             }

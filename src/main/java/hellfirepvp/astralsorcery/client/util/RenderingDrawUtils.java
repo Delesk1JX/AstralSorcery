@@ -30,9 +30,9 @@ import net.minecraft.util.vector.Matrix3f;
 import net.minecraft.util.vector.Matrix4f;
 import net.minecraft.util.vector.Vector3d;
 import net.minecraft.util.vector.Vector3f;
-import net.minecraft.util.text.ITextProperties;
-import net.minecraft.util.text.LanguageMap;
-import net.minecraft.util.text.Component.literal;
+import net.minecraft.network.chat.FormattedText;
+import net.minecraft.client.resources.language.LanguageManager;
+import static net.minecraft.network.chat.Component.literal;
 import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nullable;

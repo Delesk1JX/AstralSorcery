@@ -21,7 +21,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.event.world.BlockEvent;
 import net.neoforged.neoforge.eventbus.api.IEventBus;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import javax.annotation.Nonnull;
 

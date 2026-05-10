@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.common.util.item.ItemComparator;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.IInventory;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Tuple;
@@ -23,7 +23,7 @@ import net.minecraft.util.Util;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;
 import net.neoforged.neoforge.fml.common.thread.EffectiveSide;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
@@ -111,7 +111,7 @@ public class AmuletEnchantmentHelper {
 
         //Check if the player actually wears/carries the tool
         boolean foundTool = false;
-        for (EquipmentSlotType slot : EquipmentSlotType.values()) {
+        for (EquipmentSlot slot : EquipmentSlot.values()) {
             ItemStack stack = player.getItemStackFromSlot(slot);
             anyTool.setDamage(stack.getDamage()); //Make sure the damages are equal before comparing
             if (ItemComparator.compare(stack, anyTool, ItemComparator.Clause.Sets.ITEMSTACK_STRICT)) {

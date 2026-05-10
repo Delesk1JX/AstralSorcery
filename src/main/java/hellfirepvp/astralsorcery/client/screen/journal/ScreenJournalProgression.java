@@ -29,8 +29,8 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.Mth;
-import net.minecraft.util.text.Component.literal;
-import net.minecraft.util.text.Component.translatable;
+import static net.minecraft.network.chat.Component.literal;
+import static net.minecraft.network.chat.Component.translatable;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;

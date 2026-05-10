@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchManager;
 import hellfirepvp.astralsorcery.common.network.base.ASPacket;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.world.entity.player.Player;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import javax.annotation.Nonnull;
 

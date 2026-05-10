@@ -22,7 +22,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.registries.BuiltInRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 /**
  * This class is part of the Astral Sorcery Mod

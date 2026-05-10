@@ -14,7 +14,7 @@ import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.world.chunk.Chunk;
 import net.neoforged.neoforge.fml.network.NetworkDirection;
-import net.neoforged.neoforge.fml.network.NetworkEvent;
+import net.neoforged.neoforge.network.NetworkEvent;
 import net.neoforged.neoforge.fml.network.PacketDistributor;
 import net.neoforged.neoforge.fml.network.simple.SimpleChannel;
 

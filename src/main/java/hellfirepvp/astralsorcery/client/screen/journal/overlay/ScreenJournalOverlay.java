@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.client.screen.journal.ScreenJournal;
 import hellfirepvp.astralsorcery.client.screen.journal.ScreenJournalPerkTree;
 import hellfirepvp.astralsorcery.client.screen.journal.ScreenJournalProgression;
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.text.Component;
+import net.minecraft.network.chat.Component;
 
 /**
  * This class is part of the Astral Sorcery Mod

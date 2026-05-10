@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
 import hellfirepvp.astralsorcery.common.perk.node.KeyPerk;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -24,7 +24,7 @@ import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
 import net.neoforged.neoforge.eventbus.api.IEventBus;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -75,7 +75,7 @@ public class KeyDamageArmor extends KeyPerk {
 
                 int armorDmg = Mth.ceil(dmg * 1.3F);
                 for (ItemStack stack : player.getArmorInventoryList()) {
-                    stack.damageItem(armorDmg, player, (pl) -> pl.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+                    stack.damageItem(armorDmg, player, (pl) -> pl.sendBreakAnimation(EquipmentSlot.MAINHAND));
                 }
             }
         }

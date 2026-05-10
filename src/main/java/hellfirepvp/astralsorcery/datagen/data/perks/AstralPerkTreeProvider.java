@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.common.perk.data.builder.PerkDataBuilder;
 import hellfirepvp.astralsorcery.common.perk.data.builder.PerkDataProvider;
 import hellfirepvp.astralsorcery.common.perk.modifier.AttributeModifierPerk;
 import hellfirepvp.astralsorcery.common.perk.type.ModifierType;
-import net.minecraft.data.DataGenerator;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.resources.ResourceLocation;
 

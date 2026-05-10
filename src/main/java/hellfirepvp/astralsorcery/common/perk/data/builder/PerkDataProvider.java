@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.perk.data.builder;
 import com.google.gson.*;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
-import net.minecraft.data.DataGenerator;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
 import net.minecraft.resources.ResourceLocation;

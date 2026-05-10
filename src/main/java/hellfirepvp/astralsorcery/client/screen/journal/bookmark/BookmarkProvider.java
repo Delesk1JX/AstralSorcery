@@ -11,8 +11,8 @@ package hellfirepvp.astralsorcery.client.screen.journal.bookmark;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.Component.translatable;
+import net.minecraft.network.chat.MutableComponent;
+import static net.minecraft.network.chat.Component.translatable;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 

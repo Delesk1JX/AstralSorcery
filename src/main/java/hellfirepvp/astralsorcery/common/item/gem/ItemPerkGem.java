@@ -20,7 +20,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.util.List;

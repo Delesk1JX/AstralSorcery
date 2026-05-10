@@ -24,8 +24,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.world.entity.player.IInventory;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.text.Component;
-import net.neoforged.fml.LogicalSide;
+import net.minecraft.network.chat.Component;
+import net.neoforged.api.distmarker.LogicalSide;
 import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nullable;

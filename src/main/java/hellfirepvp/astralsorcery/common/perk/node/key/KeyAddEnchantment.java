@@ -23,8 +23,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.eventbus.api.IEventBus;
-import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.registries.BuiltInRegistries;
+import net.neoforged.api.distmarker.LogicalSide;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 import java.util.List;
 

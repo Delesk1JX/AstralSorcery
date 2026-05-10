@@ -24,10 +24,10 @@ import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.common.lib.SoundsAS;
 import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.ITextProperties;
-import net.minecraft.util.text.Component.translatable;
-import net.neoforged.fml.LogicalSide;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.FormattedText;
+import static net.minecraft.network.chat.Component.translatable;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import java.util.ArrayList;
 import java.util.Collections;

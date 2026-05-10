@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.datagen.data.recipes.AstralRecipeProvider;
 import hellfirepvp.astralsorcery.datagen.data.tags.AstralBlockTagsProvider;
 import hellfirepvp.astralsorcery.datagen.data.tags.AstralItemTagsProvider;
 import net.minecraft.data.BlockTagsProvider;
-import net.minecraft.data.DataGenerator;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.eventbus.api.SubscribeEvent;
 import net.neoforged.neoforge.fml.common.Mod;

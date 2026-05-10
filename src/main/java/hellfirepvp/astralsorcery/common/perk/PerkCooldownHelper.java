@@ -14,7 +14,7 @@ import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.event.TickEvent;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import java.util.UUID;
 import java.util.function.Consumer;

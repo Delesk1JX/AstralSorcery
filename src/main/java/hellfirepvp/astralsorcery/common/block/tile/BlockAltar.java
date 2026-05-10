@@ -34,7 +34,7 @@ import net.minecraft.util.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.common.ToolType;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import javax.annotation.Nullable;
 

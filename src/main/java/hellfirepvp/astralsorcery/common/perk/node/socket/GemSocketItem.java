@@ -13,8 +13,8 @@ import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
 import hellfirepvp.astralsorcery.common.perk.modifier.DynamicAttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.IFormattableTextComponent;
-import net.neoforged.fml.LogicalSide;
+import net.minecraft.network.chat.MutableComponent;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import java.util.ArrayList;
 import java.util.List;

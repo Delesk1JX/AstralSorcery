@@ -20,7 +20,7 @@ import hellfirepvp.astralsorcery.common.perk.source.AttributeConverterProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import java.awt.*;
 import java.util.Collection;

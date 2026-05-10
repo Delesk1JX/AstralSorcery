@@ -26,7 +26,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.util.Constants;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -32,8 +32,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.registries.IRegistryObject;
+import net.neoforged.api.distmarker.LogicalSide;
+import net.minecraft.core.Holder;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

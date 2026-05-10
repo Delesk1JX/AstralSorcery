@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.data.config.base.ConfigDataAdapter;
 import hellfirepvp.astralsorcery.common.data.config.registry.sets.AmuletEnchantmentEntry;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.enchantment.Enchantment;
-import net.neoforged.neoforge.registries.BuiltInRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 import javax.annotation.Nullable;
 import java.util.LinkedList;

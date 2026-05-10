@@ -14,7 +14,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.world.entity.player.IInventory;
 import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.text.Component;
+import net.minecraft.network.chat.Component;
 
 /**
  * This class is part of the Astral Sorcery Mod

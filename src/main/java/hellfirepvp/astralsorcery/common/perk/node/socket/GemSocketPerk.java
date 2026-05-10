@@ -19,13 +19,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.Component.literal;
+import net.minecraft.network.chat.MutableComponent;
+import static net.minecraft.network.chat.Component.literal;
 import net.minecraft.ChatFormatting;
-import net.minecraft.util.text.Component.translatable;
+import static net.minecraft.network.chat.Component.translatable;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;

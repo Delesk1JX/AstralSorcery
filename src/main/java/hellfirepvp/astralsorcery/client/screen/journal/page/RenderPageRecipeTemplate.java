@@ -39,12 +39,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.Util;
 import net.minecraft.util.Mth;
-import net.minecraft.util.text.ITextProperties;
-import net.minecraft.util.text.Component.literal;
+import net.minecraft.network.chat.FormattedText;
+import static net.minecraft.network.chat.Component.literal;
 import net.minecraft.ChatFormatting;
-import net.minecraft.util.text.Component.translatable;
+import static net.minecraft.network.chat.Component.translatable;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.awt.*;

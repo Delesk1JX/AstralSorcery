@@ -20,7 +20,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.neoforge.eventbus.api.IEventBus;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod

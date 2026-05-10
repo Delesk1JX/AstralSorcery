@@ -22,12 +22,12 @@ import net.minecraft.command.Commands;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRayTraceResult;
-import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.Component.literal;
-import net.minecraft.util.text.Style;
+import net.minecraft.network.chat.MutableComponent;
+import static net.minecraft.network.chat.Component.literal;
+import net.minecraft.network.chat.Style;
 import net.minecraft.ChatFormatting;
-import net.minecraft.util.text.event.ClickEvent;
-import net.minecraft.util.text.event.HoverEvent;
+import net.minecraft.network.chat.ClickEvent;
+import net.minecraft.network.chat.HoverEvent;
 
 /**
  * This class is part of the Astral Sorcery Mod

@@ -21,7 +21,7 @@ import net.minecraft.loot.*;
 import net.minecraft.loot.conditions.BlockStateProperty;
 import net.minecraft.loot.functions.ExplosionDecay;
 import net.minecraft.loot.functions.SetCount;
-import net.neoforged.neoforge.registries.BuiltInRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 import java.util.stream.Collectors;
 

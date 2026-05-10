@@ -8,9 +8,9 @@
 
 package hellfirepvp.astralsorcery.common.item.quality;
 
-import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.ChatFormatting;
-import net.minecraft.util.text.Component.translatable;
+import static net.minecraft.network.chat.Component.translatable;
 
 import java.util.Locale;
 

@@ -22,9 +22,9 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.Component.translatable;
-import net.neoforged.neoforge.registries.IRegistryObject;
+import net.minecraft.network.chat.MutableComponent;
+import static net.minecraft.network.chat.Component.translatable;
+import net.minecraft.core.Holder;
 
 import javax.annotation.Nullable;
 import java.awt.*;

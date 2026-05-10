@@ -32,7 +32,7 @@ import net.neoforged.neoforge.client.event.RenderPlayerEvent;
 import net.neoforged.neoforge.event.TickEvent;
 import net.neoforged.neoforge.eventbus.api.IEventBus;
 import net.neoforged.neoforge.eventbus.api.SubscribeEvent;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.awt.*;

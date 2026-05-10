@@ -39,12 +39,12 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.shapes.ISelectionContext;
 import net.minecraft.util.shapes.VoxelShapes;
-import net.minecraft.util.text.Component;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.util.Constants;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

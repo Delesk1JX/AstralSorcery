@@ -26,7 +26,7 @@ import net.minecraft.util.Tuple;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;
 import net.neoforged.neoforge.fml.common.thread.EffectiveSide;
 import org.apache.commons.lang3.ObjectUtils;

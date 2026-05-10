@@ -20,7 +20,7 @@ import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import javax.annotation.Nonnull;
 

@@ -10,8 +10,8 @@ package hellfirepvp.astralsorcery.common.data.research;
 
 import com.google.common.collect.Lists;
 import hellfirepvp.astralsorcery.AstralSorcery;
-import net.minecraft.util.text.Component;
-import net.minecraft.util.text.Component.translatable;
+import net.minecraft.network.chat.Component;
+import static net.minecraft.network.chat.Component.translatable;
 import net.neoforged.neoforge.common.IExtensibleEnum;
 
 import javax.annotation.Nonnull;

@@ -21,7 +21,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;
 
 import javax.annotation.Nonnull;

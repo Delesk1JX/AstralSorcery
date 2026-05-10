@@ -18,7 +18,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.server.level.ServerLevel;
-import net.neoforged.neoforge.registries.BuiltInRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 import java.util.Collections;
 import java.util.LinkedList;

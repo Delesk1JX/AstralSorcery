@@ -20,7 +20,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.state.Property;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.neoforge.registries.BuiltInRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;

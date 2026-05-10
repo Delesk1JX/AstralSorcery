@@ -14,10 +14,10 @@ import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.Component;
-import net.minecraft.util.text.Component.literal;
-import net.neoforged.fml.LogicalSide;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Component;
+import static net.minecraft.network.chat.Component.literal;
+import net.neoforged.api.distmarker.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;
 
 import javax.annotation.Nullable;

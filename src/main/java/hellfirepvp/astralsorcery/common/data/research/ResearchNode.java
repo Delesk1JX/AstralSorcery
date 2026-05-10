@@ -15,9 +15,9 @@ import hellfirepvp.astralsorcery.common.auxiliary.book.BookLookupRegistry;
 import hellfirepvp.astralsorcery.common.data.journal.JournalPage;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IItemProvider;
-import net.minecraft.util.text.Component;
-import net.minecraft.util.text.ITextProperties;
-import net.minecraft.util.text.Component.translatable;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.FormattedText;
+import static net.minecraft.network.chat.Component.translatable;
 
 import javax.annotation.Nullable;
 import java.awt.*;

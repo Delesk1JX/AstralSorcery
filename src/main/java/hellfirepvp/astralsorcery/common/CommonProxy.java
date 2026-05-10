@@ -83,7 +83,7 @@ import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
 import net.neoforged.neoforge.eventbus.api.IEventBus;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;
 import net.neoforged.neoforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.fml.event.lifecycle.InterModEnqueueEvent;

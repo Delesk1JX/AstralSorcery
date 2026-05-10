@@ -39,7 +39,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.common.util.Constants;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import java.util.LinkedList;
 import java.util.List;

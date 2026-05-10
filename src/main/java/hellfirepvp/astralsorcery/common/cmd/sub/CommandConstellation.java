@@ -21,10 +21,10 @@ import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.Util;
-import net.minecraft.util.text.Component;
-import net.minecraft.util.text.Component.literal;
+import net.minecraft.network.chat.Component;
+import static net.minecraft.network.chat.Component.literal;
 import net.minecraft.ChatFormatting;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import javax.annotation.Nullable;
 

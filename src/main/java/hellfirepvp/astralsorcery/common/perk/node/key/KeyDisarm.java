@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.perk.node.KeyPerk;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.resources.ResourceLocation;
@@ -26,7 +26,7 @@ import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
 import net.neoforged.neoforge.eventbus.api.IEventBus;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -62,7 +62,7 @@ public class KeyDisarm extends KeyPerk {
                 float chance = PerkAttributeHelper.getOrCreateMap(player, side)
                         .modifyValue(player, prog, PerkAttributeTypesAS.ATTR_TYPE_INC_PERK_EFFECT, CONFIG.dropChance.get().floatValue());
                 float currentChance = Mth.clamp(chance, 0F, 1F);
-                for (EquipmentSlotType slot : EquipmentSlotType.values()) {
+                for (EquipmentSlot slot : EquipmentSlot.values()) {
                     if (rand.nextFloat() >= currentChance) {
                         continue;
                     }

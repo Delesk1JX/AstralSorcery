@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
 import net.minecraft.data.BlockTagsProvider;
-import net.minecraft.data.DataGenerator;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.minecraft.data.ItemTagsProvider;
 import net.minecraft.data.TagsProvider;
 import net.minecraft.item.Item;

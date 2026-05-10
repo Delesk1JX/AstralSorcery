@@ -34,13 +34,13 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.*;
-import net.minecraft.util.text.Component;
+import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
-import net.minecraft.util.text.Component.translatable;
+import static net.minecraft.network.chat.Component.translatable;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;

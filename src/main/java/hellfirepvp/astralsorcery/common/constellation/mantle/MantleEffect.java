@@ -26,7 +26,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.ServerPlayer;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.neoforged.api.distmarker.Dist;
@@ -35,7 +35,7 @@ import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.TickEvent;
 import net.neoforged.neoforge.eventbus.api.IEventBus;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 import javax.annotation.Nonnull;
@@ -165,7 +165,7 @@ public abstract class MantleEffect extends DeferredHolder<MantleEffect> implemen
         if (entity == null) {
             return new CompoundTag();
         }
-        ItemStack stack = entity.getItemStackFromSlot(EquipmentSlotType.CHEST);
+        ItemStack stack = entity.getItemStackFromSlot(EquipmentSlot.CHEST);
         if (stack.isEmpty() || !(stack.getItem() instanceof ItemMantle)) {
             return new CompoundTag();
         }

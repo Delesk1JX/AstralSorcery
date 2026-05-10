@@ -12,8 +12,8 @@ import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import hellfirepvp.astralsorcery.common.tile.base.TileEntitySynchronized;
 import hellfirepvp.astralsorcery.common.util.tile.NamedInventoryTile;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.text.Component;
-import net.minecraft.util.text.Component.translatable;
+import net.minecraft.network.chat.Component;
+import static net.minecraft.network.chat.Component.translatable;
 
 /**
  * This class is part of the Astral Sorcery Mod

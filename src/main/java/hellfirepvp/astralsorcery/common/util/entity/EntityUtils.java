@@ -41,7 +41,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.ForgeHooks;
 import net.neoforged.neoforge.event.ForgeEventFactory;
 import net.neoforged.neoforge.eventbus.api.Event;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;
 
 import javax.annotation.Nonnull;

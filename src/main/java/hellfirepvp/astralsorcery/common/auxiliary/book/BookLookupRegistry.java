@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.common.util.item.ItemComparator;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IItemProvider;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;

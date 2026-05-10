@@ -12,7 +12,7 @@ import com.google.common.collect.Maps;
 import hellfirepvp.astralsorcery.client.data.config.entry.RenderingConfig;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

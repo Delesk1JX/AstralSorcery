@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.util.DiminishingMultiplier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.NeoForgeConfigSpec;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import javax.annotation.Nonnull;
 import java.util.HashMap;

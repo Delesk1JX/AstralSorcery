@@ -11,9 +11,9 @@ package hellfirepvp.astralsorcery.common.constellation;
 import hellfirepvp.astralsorcery.common.constellation.effect.ConstellationEffectProvider;
 import hellfirepvp.astralsorcery.common.constellation.mantle.MantleEffect;
 import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
-import net.minecraft.util.text.Component;
-import net.minecraft.util.text.ITextProperties;
-import net.minecraft.util.text.Component.translatable;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.FormattedText;
+import static net.minecraft.network.chat.Component.translatable;
 
 import javax.annotation.Nullable;
 

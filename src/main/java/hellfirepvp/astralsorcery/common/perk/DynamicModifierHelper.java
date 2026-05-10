@@ -21,14 +21,14 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.util.text.Component;
-import net.minecraft.util.text.Component.literal;
-import net.minecraft.util.text.Style;
+import net.minecraft.network.chat.Component;
+import static net.minecraft.network.chat.Component.literal;
+import net.minecraft.network.chat.Style;
 import net.minecraft.ChatFormatting;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.util.Constants;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import java.util.Collections;
 import java.util.List;

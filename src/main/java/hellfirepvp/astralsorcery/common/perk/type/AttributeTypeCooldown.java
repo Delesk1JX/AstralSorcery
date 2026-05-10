@@ -20,7 +20,7 @@ import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.eventbus.api.IEventBus;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod

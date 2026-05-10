@@ -39,7 +39,7 @@ import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.ISkyRenderHandler;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 import org.lwjgl.opengl.GL11;
 
 import java.util.LinkedList;

@@ -30,7 +30,7 @@ import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
 import net.neoforged.neoforge.eventbus.api.IEventBus;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import java.util.Random;
 

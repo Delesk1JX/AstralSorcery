@@ -32,17 +32,17 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.text.Component;
+import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -69,7 +69,7 @@ public class ItemMantle extends ArmorItem implements ItemDynamicColor, Constella
 
     public ItemMantle() {
         super(CommonProxy.ARMOR_MATERIAL_IMBUED_LEATHER,
-                EquipmentSlotType.CHEST,
+                EquipmentSlot.CHEST,
                 new Properties()
                     .maxStackSize(1)
                     .group(CommonProxy.ITEM_GROUP_AS)
@@ -141,7 +141,7 @@ public class ItemMantle extends ArmorItem implements ItemDynamicColor, Constella
     @Override
     @Nullable
     @OnlyIn(Dist.CLIENT)
-    public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
+    public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, A _default) {
         if (modelArmor == null) {
             modelArmor = new ModelArmorMantle();
         }
@@ -151,7 +151,7 @@ public class ItemMantle extends ArmorItem implements ItemDynamicColor, Constella
     @Override
     @Nullable
     @OnlyIn(Dist.CLIENT)
-    public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
+    public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
         return AstralSorcery.key("textures/model/armor/mantle.png").toString();
     }
 
@@ -165,7 +165,7 @@ public class ItemMantle extends ArmorItem implements ItemDynamicColor, Constella
         if (entity == null) {
             return null;
         }
-        ItemStack stack = entity.getItemStackFromSlot(EquipmentSlotType.CHEST);
+        ItemStack stack = entity.getItemStackFromSlot(EquipmentSlot.CHEST);
         if (stack.isEmpty() || !(stack.getItem() instanceof ItemMantle)) {
             return null;
         }

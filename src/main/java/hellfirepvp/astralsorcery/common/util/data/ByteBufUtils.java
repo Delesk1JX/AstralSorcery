@@ -26,10 +26,10 @@ import net.minecraft.state.Property;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Component;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.registries.BuiltInRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

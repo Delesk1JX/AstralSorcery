@@ -43,7 +43,7 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.world.WorldEvent;
 import net.neoforged.neoforge.eventbus.api.IEventBus;
 import net.neoforged.neoforge.eventbus.api.SubscribeEvent;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod

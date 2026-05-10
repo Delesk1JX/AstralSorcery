@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.item.armor;
 
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.item.crafting.Ingredient;
@@ -27,12 +27,12 @@ import net.neoforged.api.distmarker.OnlyIn;
 public class ArmorMaterialImbuedLeather implements ArmorMaterial {
 
     @Override
-    public int getDurability(EquipmentSlotType slot) {
+    public int getDurability(EquipmentSlot slot) {
         return 486;
     }
 
     @Override
-    public int getDamageReductionAmount(EquipmentSlotType slot) {
+    public int getDamageReductionAmount(EquipmentSlot slot) {
         switch (slot) {
             case CHEST:
                 return 7;

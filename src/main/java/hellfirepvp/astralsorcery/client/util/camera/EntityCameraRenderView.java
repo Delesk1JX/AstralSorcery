@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.client.util.camera;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayer;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.HandSide;
 import net.neoforged.api.distmarker.Dist;
@@ -97,12 +97,12 @@ public abstract class EntityCameraRenderView extends ClientPlayer {
 
     @Nonnull
     @Override
-    public ItemStack getItemStackFromSlot(EquipmentSlotType slotIn) {
+    public ItemStack getItemStackFromSlot(EquipmentSlot slotIn) {
         return ItemStack.EMPTY;
     }
 
     @Override
-    public void setItemStackToSlot(EquipmentSlotType slotIn, @Nullable ItemStack stack) {}
+    public void setItemStackToSlot(EquipmentSlot slotIn, @Nullable ItemStack stack) {}
 
     @Override
     public HandSide getPrimaryHand() {

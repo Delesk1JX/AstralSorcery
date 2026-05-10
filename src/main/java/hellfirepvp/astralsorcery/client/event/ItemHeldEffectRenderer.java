@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.client.event;
 import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.common.item.base.client.ItemHeldRender;
 import net.minecraft.client.Minecraft;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.neoforged.neoforge.client.event.RenderWorldLastEvent;
@@ -44,7 +44,7 @@ public class ItemHeldEffectRenderer {
         }
 
 
-        for (EquipmentSlotType type : EquipmentSlotType.values()) {
+        for (EquipmentSlot type : EquipmentSlot.values()) {
             if (doHeldRender(Minecraft.getInstance().player.getItemStackFromSlot(type), renderStack, pTicks)) {
                 break;
             }

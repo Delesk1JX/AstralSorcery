@@ -27,7 +27,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.Mth;
 import net.minecraft.util.vector.Matrix4f;
-import net.minecraft.util.text.ITextProperties;
+import net.minecraft.network.chat.FormattedText;
 import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nonnull;

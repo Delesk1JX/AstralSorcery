@@ -17,10 +17,10 @@ import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.Util;
 import net.minecraft.util.BlockPos;
 import net.minecraft.ChatFormatting;
-import net.minecraft.util.text.Component.translatable;
+import static net.minecraft.network.chat.Component.translatable;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.event.TickEvent;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;
 
 import javax.annotation.Nonnull;

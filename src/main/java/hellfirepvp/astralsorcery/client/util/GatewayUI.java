@@ -21,7 +21,7 @@ import net.minecraft.util.RegistryKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.util.*;
