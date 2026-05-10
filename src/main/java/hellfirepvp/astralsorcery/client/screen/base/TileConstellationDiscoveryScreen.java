@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.client.screen.base;
 
 import hellfirepvp.astralsorcery.common.util.tile.NamedInventoryTile;
 import net.minecraft.client.Minecraft;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.world.World;
 
 /**
@@ -20,7 +20,7 @@ import net.minecraft.world.World;
  * Created by HellFirePvP
  * Date: 15.02.2020 / 08:47
  */
-public abstract class TileConstellationDiscoveryScreen<T extends TileEntity & NamedInventoryTile, D extends ConstellationDiscoveryScreen.DrawArea> extends ConstellationDiscoveryScreen<D> {
+public abstract class TileConstellationDiscoveryScreen<T extends BlockEntity & NamedInventoryTile, D extends ConstellationDiscoveryScreen.DrawArea> extends ConstellationDiscoveryScreen<D> {
 
     private final T tile;
 

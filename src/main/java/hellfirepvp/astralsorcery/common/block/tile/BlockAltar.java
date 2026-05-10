@@ -26,7 +26,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathType;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.BlockPos;
@@ -130,7 +130,7 @@ public abstract class BlockAltar extends BlockStarlightNetwork implements Custom
 
     @Nullable
     @Override
-    public TileEntity createNewTileEntity(IBlockReader world) {
+    public BlockEntity createNewTileEntity(IBlockReader world) {
         return new TileAltar().updateType(this.type, true);
     }
 }

@@ -23,7 +23,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.JSONUtils;
@@ -114,14 +114,14 @@ public class NBTCopyRecipe extends SimpleAltarRecipe {
     }
 
     @Override
-    public void readRecipeSync(PacketBuffer buf) {
+    public void readRecipeSync(FriendlyByteBuf buf) {
         super.readRecipeSync(buf);
 
         this.searchIngredients = ByteBufUtils.readList(buf, Ingredient::read);
     }
 
     @Override
-    public void writeRecipeSync(PacketBuffer buf) {
+    public void writeRecipeSync(FriendlyByteBuf buf) {
         super.writeRecipeSync(buf);
 
         ByteBufUtils.writeCollection(buf, this.searchIngredients, (buffer, ingredient) -> ingredient.write(buffer));

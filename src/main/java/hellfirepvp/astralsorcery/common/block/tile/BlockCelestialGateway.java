@@ -32,7 +32,7 @@ import net.minecraft.item.DyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.pathfinding.PathType;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
@@ -242,7 +242,7 @@ public class BlockCelestialGateway extends ContainerBlock implements CustomItemB
 
     @Nullable
     @Override
-    public TileEntity createNewTileEntity(IBlockReader world) {
+    public BlockEntity createNewTileEntity(IBlockReader world) {
         return new TileCelestialGateway();
     }
 }

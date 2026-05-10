@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.screen.journal.page;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.common.data.journal.JournalPage;
 import net.minecraft.client.gui.FontRenderer;
@@ -51,7 +51,7 @@ public class RenderPageText extends RenderablePage {
     }
 
     @Override
-    public void render(MatrixStack renderStack, float x, float y, float z, float pTicks, float mouseX, float mouseY) {
+    public void render(PoseStack renderStack, float x, float y, float z, float pTicks, float mouseX, float mouseY) {
         renderStack.push();
         renderStack.translate(x, y, z);
         for (IReorderingProcessor text : this.localizedText) {

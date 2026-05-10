@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.screen.journal.page;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.render.IDrawRenderTypeBuffer;
@@ -76,7 +76,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage {
         this.thisFrameInfoStar = null;
     }
 
-    public void renderRecipeGrid(MatrixStack renderStack, float offsetX, float offsetY, float zLevel, AbstractRenderableTexture tex) {
+    public void renderRecipeGrid(PoseStack renderStack, float offsetX, float offsetY, float zLevel, AbstractRenderableTexture tex) {
         RenderSystem.enableBlend();
         Blending.DEFAULT.apply();
         tex.bindTexture();
@@ -84,7 +84,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage {
         RenderSystem.disableBlend();
     }
 
-    public void renderExpectedIngredientInput(MatrixStack renderStack, float offsetX, float offsetY, float zLevel, float scale, long tickOffset, Ingredient ingredient) {
+    public void renderExpectedIngredientInput(PoseStack renderStack, float offsetX, float offsetY, float zLevel, float scale, long tickOffset, Ingredient ingredient) {
         ItemStack expected = IngredientHelper.getRandomVisibleStack(ingredient, ClientScheduler.getClientTick() + tickOffset);
         if (!expected.isEmpty()) {
             BlockAtlasTexture.getInstance().bindTexture();
@@ -94,7 +94,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage {
         }
     }
 
-    public void renderExpectedIngredientInput(MatrixStack renderStack, float offsetX, float offsetY, float zLevel, float scale, long tickOffset, List<ItemStack> displayOptions) {
+    public void renderExpectedIngredientInput(PoseStack renderStack, float offsetX, float offsetY, float zLevel, float scale, long tickOffset, List<ItemStack> displayOptions) {
         int mod = (int) (((ClientScheduler.getClientTick() + tickOffset) / 20L) % displayOptions.size());
         ItemStack expected = displayOptions.get(Mth.clamp(mod, 0, displayOptions.size() - 1));
         if (!expected.isEmpty()) {
@@ -105,7 +105,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage {
         }
     }
 
-    public void renderExpectedRelayInputs(MatrixStack renderStack, float offsetX, float offsetY, float zLevel, SimpleAltarRecipe altarRecipe) {
+    public void renderExpectedRelayInputs(PoseStack renderStack, float offsetX, float offsetY, float zLevel, SimpleAltarRecipe altarRecipe) {
         float centerX = offsetX + 80;
         float centerY = offsetY + 128;
 
@@ -124,7 +124,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage {
         }
     }
 
-    public void renderExpectedItemStackOutput(MatrixStack renderStack, float offsetX, float offsetY, float zLevel, float scale, ItemStack stack) {
+    public void renderExpectedItemStackOutput(PoseStack renderStack, float offsetX, float offsetY, float zLevel, float scale, ItemStack stack) {
         if (!stack.isEmpty()) {
             BlockAtlasTexture.getInstance().bindTexture();
 
@@ -133,7 +133,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage {
         }
     }
 
-    protected void renderItemStack(MatrixStack renderStack, float offsetX, float offsetY, float zLevel, float scale, ItemStack stack) {
+    protected void renderItemStack(PoseStack renderStack, float offsetX, float offsetY, float zLevel, float scale, ItemStack stack) {
         RenderSystem.depthMask(true);
         RenderSystem.enableDepthTest();
         RenderHelper.enableStandardItemLighting();
@@ -188,7 +188,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage {
         return false;
     }
 
-    public void renderInfoStar(MatrixStack renderStack, float offsetX, float offsetY, float zLevel, float pTicks) {
+    public void renderInfoStar(PoseStack renderStack, float offsetX, float offsetY, float zLevel, float pTicks) {
         renderStack.push();
         renderStack.translate(offsetX + 140, offsetY + 20, zLevel);
         this.thisFrameInfoStar = RenderingDrawUtils.drawInfoStar(renderStack, IDrawRenderTypeBuffer.defaultBuffer(), 15F, pTicks);
@@ -196,7 +196,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage {
         renderStack.pop();
     }
 
-    public void renderRequiredConstellation(MatrixStack renderStack, float offsetX, float offsetY, float zLevel, @Nullable IConstellation constellation) {
+    public void renderRequiredConstellation(PoseStack renderStack, float offsetX, float offsetY, float zLevel, @Nullable IConstellation constellation) {
         if (constellation != null) {
             RenderSystem.enableBlend();
             Blending.DEFAULT.apply();
@@ -207,7 +207,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage {
         }
     }
 
-    public void renderInfoStarTooltips(MatrixStack renderStack, float offsetX, float offsetY, float zLevel, float mouseX, float mouseY, Consumer<List<ITextProperties>> tooltipProvider) {
+    public void renderInfoStarTooltips(PoseStack renderStack, float offsetX, float offsetY, float zLevel, float mouseX, float mouseY, Consumer<List<ITextProperties>> tooltipProvider) {
         if (this.thisFrameInfoStar == null) {
             return;
         }
@@ -223,7 +223,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage {
         }
     }
 
-    public void renderHoverTooltips(MatrixStack renderStack, float mouseX, float mouseY, float zLevel, ResourceLocation recipeName) {
+    public void renderHoverTooltips(PoseStack renderStack, float mouseX, float mouseY, float zLevel, ResourceLocation recipeName) {
         List<ITextProperties> toolTip = new LinkedList<>();
         addStackTooltip(mouseX, mouseY, recipeName, toolTip);
 

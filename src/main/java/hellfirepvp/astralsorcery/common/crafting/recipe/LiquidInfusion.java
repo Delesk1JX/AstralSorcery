@@ -24,7 +24,7 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
@@ -137,7 +137,7 @@ public class LiquidInfusion extends CustomMatcherRecipe implements GatedRecipe.P
         return copyNBTToOutputs;
     }
 
-    public static LiquidInfusion read(ResourceLocation recipeId, PacketBuffer buffer) {
+    public static LiquidInfusion read(ResourceLocation recipeId, FriendlyByteBuf buffer) {
         Fluid fluidIn = ByteBufUtils.readRegistryEntry(buffer);
         Ingredient itemIn = Ingredient.read(buffer);
         ItemStack output = ByteBufUtils.readItemStack(buffer);
@@ -149,7 +149,7 @@ public class LiquidInfusion extends CustomMatcherRecipe implements GatedRecipe.P
         return new LiquidInfusion(recipeId, duration, fluidIn, itemIn, output, consumptionChance, consumeMultiple, acceptChalice, copyNBTToOutputs);
     }
 
-    public final void write(PacketBuffer buffer) {
+    public final void write(FriendlyByteBuf buffer) {
         ByteBufUtils.writeRegistryEntry(buffer, this.getLiquidInput());
         this.getItemInput().write(buffer);
         ByteBufUtils.writeItemStack(buffer, this.output);

@@ -146,7 +146,7 @@ public class TransmissionNetworkHelper {
 
         IPrismTransmissionNode node = handler.getTransmissionNode(tileNetwork.getPos());
         if (node == null) {
-            AstralSorcery.log.warn("Tried to get a network node at a TileEntity, but didn't find one! At: dim=" + tileNetwork.getWorld().getDimensionKey().getLocation() + ", pos=" + tileNetwork.getPos());
+            AstralSorcery.log.warn("Tried to get a network node at a BlockEntity, but didn't find one! At: dim=" + tileNetwork.getWorld().getDimensionKey().getLocation() + ", pos=" + tileNetwork.getPos());
         } else {
             StarlightUpdateHandler.getInstance().removeNode(((IStarlightTransmission<?>) tileNetwork).getTrWorld(), node);
         }

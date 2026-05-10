@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.client.screen.journal;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import hellfirepvp.astralsorcery.client.screen.base.WidthHeightScreen;
@@ -73,7 +73,7 @@ public class ScreenJournal extends WidthHeightScreen {
         return LanguageMap.getInstance().func_241870_a(txt);
     }
 
-    protected void drawDefault(MatrixStack renderStack, AbstractRenderableTexture texture, int mouseX, int mouseY) {
+    protected void drawDefault(PoseStack renderStack, AbstractRenderableTexture texture, int mouseX, int mouseY) {
         this.setBlitOffset(100);
         RenderSystem.enableBlend();
         Blending.DEFAULT.apply();
@@ -84,7 +84,7 @@ public class ScreenJournal extends WidthHeightScreen {
         this.setBlitOffset(0);
     }
 
-    private void drawBookmarks(MatrixStack renderStack, int mouseX, int mouseY) {
+    private void drawBookmarks(PoseStack renderStack, int mouseX, int mouseY) {
         drawnBookmarks.clear();
 
         int bookmarkWidth  = 67;
@@ -111,7 +111,7 @@ public class ScreenJournal extends WidthHeightScreen {
         }
     }
 
-    private Rectangle drawBookmark(MatrixStack renderStack,
+    private Rectangle drawBookmark(PoseStack renderStack,
                                    float offsetX, float offsetY, int width, int height, int mouseOverWidth,
                                    float zLevel, IFormattableTextComponent title, int titleRGBColor, int mouseX, int mouseY,
                                    AbstractRenderableTexture texture, AbstractRenderableTexture textureStretched) {

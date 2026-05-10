@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.mixin.client;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.effect.handler.EffectHandler;
@@ -33,12 +33,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinParticleManager {
 
     @Inject(
-            method = "renderParticles(Lcom/mojang/blaze3d/matrix/MatrixStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer$Impl;Lnet/minecraft/client/renderer/LightTexture;Lnet/minecraft/client/renderer/ActiveRenderInfo;FLnet/minecraft/client/renderer/culling/ClippingHelper;)V",
+            method = "renderParticles(Lcom/mojang/blaze3d/matrix/PoseStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer$Impl;Lnet/minecraft/client/renderer/LightTexture;Lnet/minecraft/client/renderer/ActiveRenderInfo;FLnet/minecraft/client/renderer/culling/ClippingHelper;)V",
             at = @At("RETURN"),
             remap = false
     )
-    public void renderParticles(MatrixStack matrixStack, IRenderTypeBuffer.Impl buffer, LightTexture lightTexture, ActiveRenderInfo ari, float pTicks, ClippingHelper clippingHelper, CallbackInfo ci) {
-        EffectHandler.getInstance().render(matrixStack, pTicks);
+    public void renderParticles(PoseStack poseStack, IRenderTypeBuffer.Impl buffer, LightTexture lightTexture, ActiveRenderInfo ari, float pTicks, ClippingHelper clippingHelper, CallbackInfo ci) {
+        EffectHandler.getInstance().render(poseStack, pTicks);
 
         //Setup GL states again
         //Seriously, keep a clean GL state for once mojang.

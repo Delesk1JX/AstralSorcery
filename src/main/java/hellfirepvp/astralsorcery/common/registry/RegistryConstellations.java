@@ -472,7 +472,12 @@ public class RegistryConstellations {
     }
 
     private static void register(IConstellation cst) {
-        AstralSorcery.getProxy().getRegistryPrimer().register(cst);
+        register(cst);
     }
 }
 
+    private static <T extends IConstellation> T register(T constellation) {
+        return ASRegistries.CONSTELLATIONS.register(constellation.getIdentifier(), () -> constellation);
+    }
+
+}

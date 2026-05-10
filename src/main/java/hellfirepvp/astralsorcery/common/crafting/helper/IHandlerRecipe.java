@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.crafting.helper;
 
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.Recipe;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.items.IItemHandler;
 
@@ -20,7 +20,7 @@ import net.neoforged.neoforge.items.IItemHandler;
  * Created by HellFirePvP
  * Date: 30.06.2019 / 23:39
  */
-public interface IHandlerRecipe<I extends IItemHandler> extends IRecipe<IInventory> {
+public interface IHandlerRecipe<I extends IItemHandler> extends Recipe<IInventory> {
 
     boolean matches(I handler, World world);
 

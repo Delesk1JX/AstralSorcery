@@ -39,7 +39,7 @@ public class RegistryCrystalPropertyUsages {
     }
 
     private static <T extends PropertyUsage> T registerUsage(T usage) {
-        AstralSorcery.getProxy().getRegistryPrimer().register(usage);
+        register(usage);
         return usage;
     }
 

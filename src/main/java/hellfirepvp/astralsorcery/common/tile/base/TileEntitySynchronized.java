@@ -17,7 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
@@ -33,7 +33,7 @@ import java.util.Random;
  * Created by HellFirePvP
  * Date: 11.05.2016 / 18:17
  */
-public abstract class TileEntitySynchronized extends TileEntity implements ILocatable {
+public abstract class TileEntitySynchronized extends BlockEntity implements ILocatable {
 
     protected static final Random rand = new Random();
     protected static final AxisAlignedBB BOX = new AxisAlignedBB(0, 0, 0, 1, 1, 1);

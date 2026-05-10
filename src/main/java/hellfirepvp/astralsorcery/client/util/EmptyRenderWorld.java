@@ -13,7 +13,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.FluidState;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.BlockPos;
@@ -67,7 +67,7 @@ public class EmptyRenderWorld implements IBlockDisplayReader {
 
     @Nullable
     @Override
-    public TileEntity getTileEntity(BlockPos blockPos) {
+    public BlockEntity getTileEntity(BlockPos blockPos) {
         return null;
     }
 

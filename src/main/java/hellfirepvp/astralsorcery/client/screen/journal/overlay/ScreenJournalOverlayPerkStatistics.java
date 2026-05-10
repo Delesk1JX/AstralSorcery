@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.client.screen.journal.overlay;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import hellfirepvp.astralsorcery.client.screen.journal.ScreenJournal;
@@ -91,7 +91,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay {
     }
 
     @Override
-    public void render(MatrixStack renderStack, int mouseX, int mouseY, float pTicks) {
+    public void render(PoseStack renderStack, int mouseX, int mouseY, float pTicks) {
         super.render(renderStack, mouseX, mouseY, pTicks);
 
         float width = 275;
@@ -110,7 +110,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay {
         drawPageText(renderStack, mouseX, mouseY);
     }
 
-    private void drawHeader(MatrixStack renderStack) {
+    private void drawHeader(PoseStack renderStack) {
         ITextProperties title = new TranslationTextComponent("perk.reader.astralsorcery.gui");
         List<IReorderingProcessor> lines = font.trimStringToWidth(title, Mth.floor(HEADER_WIDTH / 1.4F));
         int step = 14;
@@ -132,7 +132,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay {
         renderStack.pop();
     }
 
-    private void drawPageText(MatrixStack renderStack, int mouseX, int mouseY) {
+    private void drawPageText(PoseStack renderStack, int mouseX, int mouseY) {
         if (nameStrWidth == -1 || valueStrWidth == -1 || suffixStrWidth == -1) {
             buildDisplayWidth();
         }
@@ -185,7 +185,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay {
         }
     }
 
-    private void drawCalculationDescription(MatrixStack renderStack, int x, int y, PerkStatistic stat) {
+    private void drawCalculationDescription(PoseStack renderStack, int x, int y, PerkStatistic stat) {
         PerkAttributeType type = stat.getType();
         PerkAttributeReader reader = type.getReader();
         if (reader == null) {

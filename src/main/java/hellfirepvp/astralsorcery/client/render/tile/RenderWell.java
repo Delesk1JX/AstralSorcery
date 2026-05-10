@@ -8,8 +8,8 @@
 
 package hellfirepvp.astralsorcery.client.render.tile;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
@@ -38,13 +38,13 @@ public class RenderWell extends CustomTileEntityRenderer<TileWell> {
     }
 
     @Override
-    public void render(TileWell tile, float pTicks, MatrixStack renderStack, IRenderTypeBuffer renderTypeBuffer, int combinedLight, int combinedOverlay) {
+    public void render(TileWell tile, float pTicks, PoseStack renderStack, IRenderTypeBuffer renderTypeBuffer, int combinedLight, int combinedOverlay) {
         PrecisionSingleFluidTank tank = tile.getTank();
         if (!tank.getFluid().isEmpty() && tank.getFluidAmount() > 0) {
             FluidStack contained = tank.getFluid();
             TextureAtlasSprite tas = RenderingUtils.getParticleTexture(contained);
             Color fluidColor = new Color(contained.getFluid().getAttributes().getColor(tile.getWorld(), tile.getPos()));
-            IVertexBuilder buf = renderTypeBuffer.getBuffer(RenderTypesAS.TER_WELL_LIQUID);
+            VertexConsumer buf = renderTypeBuffer.getBuffer(RenderTypesAS.TER_WELL_LIQUID);
 
             Vector3 offset = new Vector3(0.5D, 0.32D, 0.5D).addY(tank.getPercentageFilled() * 0.6);
 

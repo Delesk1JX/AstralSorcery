@@ -23,7 +23,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -45,7 +45,7 @@ public class SpectralToolBreakLogGoal extends SpectralToolGoal {
 
     private BlockPredicate breakableLogs() {
         return (world, pos, state) -> {
-            return MiscUtils.getTileAt(world, pos, TileEntity.class, false) == null &&
+            return MiscUtils.getTileAt(world, pos, BlockEntity.class, false) == null &&
                     pos.getY() >= this.getEntity().getStartPosition().getY() &&
                     !state.isAir(world, pos) &&
                     state.getBlockHardness(world, pos) != -1 &&

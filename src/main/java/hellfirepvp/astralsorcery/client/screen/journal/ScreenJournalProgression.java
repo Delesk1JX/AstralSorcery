@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.client.screen.journal;
 
 import com.google.common.collect.Maps;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
@@ -139,7 +139,7 @@ public class ScreenJournalProgression extends ScreenJournal {
     }
 
     @Override
-    public void render(MatrixStack renderStack, int mouseX, int mouseY, float pTicks) {
+    public void render(PoseStack renderStack, int mouseX, int mouseY, float pTicks) {
         super.render(renderStack, mouseX, mouseY, pTicks);
 
         this.searchPrevRct = null;
@@ -155,7 +155,7 @@ public class ScreenJournalProgression extends ScreenJournal {
         }
     }
 
-    private void renderSearchView(MatrixStack renderStack, int mouseX, int mouseY, float pTicks) {
+    private void renderSearchView(PoseStack renderStack, int mouseX, int mouseY, float pTicks) {
         this.drawDefault(renderStack, TexturesAS.TEX_GUI_BOOK_BLANK, mouseX, mouseY);
 
         this.setBlitOffset(300);
@@ -167,7 +167,7 @@ public class ScreenJournalProgression extends ScreenJournal {
         this.setBlitOffset(0);
     }
 
-    private void renderProgressView(MatrixStack renderStack, int mouseX, int mouseY, float pTicks) {
+    private void renderProgressView(PoseStack renderStack, int mouseX, int mouseY, float pTicks) {
         double guiFactor = Minecraft.getInstance().getMainWindow().getGuiScaleFactor();
         GL11.glEnable(GL11.GL_SCISSOR_TEST);
         GL11.glScissor(Mth.floor((guiLeft + 27) * guiFactor), Mth.floor((guiTop + 27) * guiFactor),
@@ -187,7 +187,7 @@ public class ScreenJournalProgression extends ScreenJournal {
         this.setBlitOffset(0);
     }
 
-    private void drawSearchResults(MatrixStack renderStack, int mouseX, int mouseY, float pTicks) {
+    private void drawSearchResults(PoseStack renderStack, int mouseX, int mouseY, float pTicks) {
         FontRenderer fr = Minecraft.getInstance().fontRenderer;
         int lineHeight = 12;
         int offsetX = this.getGuiLeft() + 35;
@@ -257,11 +257,11 @@ public class ScreenJournalProgression extends ScreenJournal {
         }
     }
 
-    private void drawMouseHighlight(MatrixStack renderStack, float zLevel, int mouseX, int mouseY) {
+    private void drawMouseHighlight(PoseStack renderStack, float zLevel, int mouseX, int mouseY) {
         progressionRenderer.drawMouseHighlight(renderStack, zLevel, mouseX, mouseY);
     }
 
-    private void drawSearchBox(MatrixStack renderStack) {
+    private void drawSearchBox(PoseStack renderStack) {
         TexturesAS.TEX_GUI_TEXT_FIELD.bindTexture();
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
@@ -292,7 +292,7 @@ public class ScreenJournalProgression extends ScreenJournal {
         renderStack.pop();
     }
 
-    private void drawSearchPageNavArrows(MatrixStack renderStack, int mouseX, int mouseY, float pTicks) {
+    private void drawSearchPageNavArrows(PoseStack renderStack, int mouseX, int mouseY, float pTicks) {
         if (this.searchPageOffset > 0) {
             int width = 30;
             int height = 15;

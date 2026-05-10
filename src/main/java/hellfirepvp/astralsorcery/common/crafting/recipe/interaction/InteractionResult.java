@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.crafting.recipe.LiquidInteraction;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
@@ -45,7 +45,7 @@ public abstract class InteractionResult {
 
     public abstract void write(JsonObject json);
 
-    public abstract void read(PacketBuffer buf);
+    public abstract void read(FriendlyByteBuf buf);
 
-    public abstract void write(PacketBuffer buf);
+    public abstract void write(FriendlyByteBuf buf);
 }

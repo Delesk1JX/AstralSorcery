@@ -20,7 +20,7 @@ import net.minecraft.loot.LootFunction;
 import net.minecraft.loot.LootFunctionType;
 import net.minecraft.loot.LootParameters;
 import net.minecraft.loot.conditions.ILootCondition;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -43,7 +43,7 @@ public class CopyCrystalProperties extends LootFunction {
     @Override
     protected ItemStack doApply(ItemStack stack, LootContext context) {
         if (context.has(LootParameters.BLOCK_ENTITY)) {
-            TileEntity tile = context.get(LootParameters.BLOCK_ENTITY);
+            BlockEntity tile = context.get(LootParameters.BLOCK_ENTITY);
             if (tile instanceof CrystalAttributeTile && stack.getItem() instanceof CrystalAttributeItem) {
                 CrystalAttributes attr = ((CrystalAttributeTile) tile).getAttributes();
                 if (attr == null) {

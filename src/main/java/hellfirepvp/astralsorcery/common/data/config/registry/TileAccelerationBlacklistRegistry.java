@@ -36,7 +36,7 @@ public class TileAccelerationBlacklistRegistry extends ConfigDataAdapter<TileAcc
 
     private TileAccelerationBlacklistRegistry() {}
 
-    public boolean canBeInfluenced(TileEntity tile) {
+    public boolean canBeInfluenced(BlockEntity tile) {
         if (!(tile instanceof ITickableTileEntity)) {
             return false;
         }
@@ -59,7 +59,7 @@ public class TileAccelerationBlacklistRegistry extends ConfigDataAdapter<TileAcc
         return true;
     }
 
-    public void addErrored(TileEntity tile) {
+    public void addErrored(BlockEntity tile) {
         if (tile != null && !this.erroredTiles.contains(tile.getClass())) {
             this.erroredTiles.add(tile.getClass());
         }

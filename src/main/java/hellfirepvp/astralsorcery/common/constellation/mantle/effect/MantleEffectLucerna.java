@@ -20,7 +20,7 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.tileentity.MobSpawnerTileEntity;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.neoforged.api.distmarker.Dist;
@@ -67,7 +67,7 @@ public class MantleEffectLucerna extends MantleEffect {
     }
 
     @OnlyIn(Dist.CLIENT)
-    private void playBlockHighlight(Player player, Color highlightColor, Predicate<TileEntity> test) {
+    private void playBlockHighlight(Player player, Color highlightColor, Predicate<BlockEntity> test) {
         float chance = 0.9F;
         Set<BlockPos> positions = BlockDiscoverer.searchForTileEntitiesAround(player.getEntityWorld(), player.getPosition(), CONFIG.range.get(), test);
         for (BlockPos pos : positions) {

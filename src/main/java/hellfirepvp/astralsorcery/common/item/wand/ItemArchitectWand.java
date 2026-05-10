@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.item.wand;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.resource.BlockAtlasTexture;
 import hellfirepvp.astralsorcery.client.util.Blending;
@@ -94,7 +94,7 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public boolean renderInHand(ItemStack stack, MatrixStack renderStack, float pTicks) {
+    public boolean renderInHand(ItemStack stack, PoseStack renderStack, float pTicks) {
         Player player = Minecraft.getInstance().player;
         Map<BlockPos, BlockState> placeStates = getPlayerPlaceableStates(player, stack);
         if (placeStates.isEmpty()) {
@@ -132,7 +132,7 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public boolean renderOverlay(MatrixStack renderStack, ItemStack stack, float pTicks) {
+    public boolean renderOverlay(PoseStack renderStack, ItemStack stack, float pTicks) {
         List<Tuple<ItemStack, Integer>> foundStacks = ItemBlockStorage.getInventoryMatchingItemStacks(Minecraft.getInstance().player, stack);
         RenderingOverlayUtils.renderDefaultItemDisplay(renderStack, foundStacks);
         return true;

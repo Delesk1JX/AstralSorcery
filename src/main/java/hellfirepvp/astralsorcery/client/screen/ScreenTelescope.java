@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.screen;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
@@ -107,7 +107,7 @@ public class ScreenTelescope extends TileConstellationDiscoveryScreen<TileTelesc
     }
 
     @Override
-    public void render(MatrixStack renderStack, int mouseX, int mouseY, float pTicks) {
+    public void render(PoseStack renderStack, int mouseX, int mouseY, float pTicks) {
         RenderSystem.enableDepthTest();
         super.render(renderStack, mouseX, mouseY, pTicks);
 
@@ -118,7 +118,7 @@ public class ScreenTelescope extends TileConstellationDiscoveryScreen<TileTelesc
         this.drawNavArrows(renderStack, mouseX, mouseY, pTicks);
     }
 
-    private void drawNavArrows(MatrixStack renderStack, int mouseX, int mouseY, float pTicks) {
+    private void drawNavArrows(PoseStack renderStack, int mouseX, int mouseY, float pTicks) {
         RenderSystem.enableBlend();
         Blending.DEFAULT.apply();
 
@@ -128,7 +128,7 @@ public class ScreenTelescope extends TileConstellationDiscoveryScreen<TileTelesc
         RenderSystem.disableBlend();
     }
 
-    private void drawConstellationCell(MatrixStack renderStack, float pTicks) {
+    private void drawConstellationCell(PoseStack renderStack, float pTicks) {
         boolean canSeeSky = this.canObserverSeeSky(this.getTile().getPos(), 1);
 
         RenderSystem.disableAlphaTest();
@@ -210,7 +210,7 @@ public class ScreenTelescope extends TileConstellationDiscoveryScreen<TileTelesc
         RenderSystem.enableAlphaTest();
     }
 
-    private void drawSkyBackground(MatrixStack renderStack, float pTicks, boolean canSeeSky) {
+    private void drawSkyBackground(PoseStack renderStack, float pTicks, boolean canSeeSky) {
         Tuple<Color, Color> rgbFromTo = SkyScreen.getSkyGradient(canSeeSky, 1F, pTicks);
         RenderingDrawUtils.drawGradientRect(renderStack, this.getGuiZLevel(),
                 this.guiLeft + 5, this.guiTop + 5,

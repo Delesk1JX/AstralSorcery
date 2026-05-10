@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.container;
 
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 
 import javax.annotation.Nullable;
 
@@ -21,7 +21,7 @@ import javax.annotation.Nullable;
  * Created by HellFirePvP
  * Date: 03.08.2019 / 16:10
  */
-public abstract class ContainerTileEntity<T extends TileEntity> extends Container {
+public abstract class ContainerTileEntity<T extends BlockEntity> extends Container {
 
     private final T te;
 

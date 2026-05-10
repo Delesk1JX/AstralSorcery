@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.crafting.recipe.interaction.jei;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.common.crafting.recipe.LiquidInteraction;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
@@ -31,6 +31,6 @@ public abstract class JEIInteractionResultHandler {
     public abstract void addToRecipeIngredients(LiquidInteraction recipe, IIngredients ingredients);
 
     @OnlyIn(Dist.CLIENT)
-    public abstract void drawRecipe(LiquidInteraction recipe, MatrixStack renderStack, double mouseX, double mouseY);
+    public abstract void drawRecipe(LiquidInteraction recipe, PoseStack renderStack, double mouseX, double mouseY);
 
 }

@@ -16,7 +16,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.Tuple;
@@ -39,7 +39,7 @@ public interface ItemBlockStorage {
     Random random = new Random();
 
     static boolean storeBlockState(ItemStack stack, World world, BlockPos pos) {
-        if (MiscUtils.getTileAt(world, pos, TileEntity.class, true) != null) {
+        if (MiscUtils.getTileAt(world, pos, BlockEntity.class, true) != null) {
             return false;
         }
         BlockState state = world.getBlockState(pos);

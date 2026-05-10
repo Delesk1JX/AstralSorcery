@@ -8,8 +8,8 @@
 
 package hellfirepvp.astralsorcery.client.model.builtin;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
 import net.minecraft.client.renderer.model.ModelRenderer;
 
@@ -127,9 +127,9 @@ public class ModelRefractionTable extends CustomModel {
     }
 
     @Override
-    public void render(MatrixStack matrixStackIn, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {}
+    public void render(PoseStack matrixStackIn, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {}
 
-    public void renderFrame(MatrixStack matrixStackIn, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha, boolean hasParchment) {
+    public void renderFrame(PoseStack matrixStackIn, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha, boolean hasParchment) {
         this.fitting_l.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
         this.fitting_r.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
         this.support_1.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
@@ -159,7 +159,7 @@ public class ModelRefractionTable extends CustomModel {
 
 
 
-    public void renderGlass(MatrixStack matrixStackIn, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
+    public void renderGlass(PoseStack matrixStackIn, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
         this.treated_glass.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
     }
 }

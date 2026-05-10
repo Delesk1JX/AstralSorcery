@@ -12,7 +12,7 @@ import com.google.common.collect.Lists;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.block.BlockState;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.Mth;
@@ -64,7 +64,7 @@ public class BlockDiscoverer {
         return out;
     }
 
-    public static Set<BlockPos> searchForTileEntitiesAround(World world, BlockPos origin, int distance, Predicate<TileEntity> match) {
+    public static Set<BlockPos> searchForTileEntitiesAround(World world, BlockPos origin, int distance, Predicate<BlockEntity> match) {
         Set<BlockPos> out = new HashSet<>();
 
         int minChX = (origin.getX() - distance) >> 4;
@@ -81,7 +81,7 @@ public class BlockDiscoverer {
                                     .stream()
                                     .filter(tile -> tile.getPos().withinDistance(origin, distance))
                                     .filter(match)
-                                    .map(TileEntity::getPos)
+                                    .map(BlockEntity::getPos)
                                     .collect(Collectors.toList())
                     );
                 }

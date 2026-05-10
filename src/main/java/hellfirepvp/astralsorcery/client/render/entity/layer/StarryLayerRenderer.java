@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.render.entity.layer;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.client.registry.RegistryRenderTypes;
 import hellfirepvp.astralsorcery.common.util.object.CacheReference;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -57,7 +57,7 @@ public class StarryLayerRenderer<E extends LivingEntity, M extends BipedModel<E>
     }
 
     @Override
-    public void render(MatrixStack renderStack, IRenderTypeBuffer buffer, int light, E entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void render(PoseStack renderStack, IRenderTypeBuffer buffer, int light, E entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
         if (!(entity instanceof Player)) {
             return;
         }
@@ -72,7 +72,7 @@ public class StarryLayerRenderer<E extends LivingEntity, M extends BipedModel<E>
         }
     }
 
-    private void renderArmorPart(MatrixStack renderStack, IRenderTypeBuffer buffer, EquipmentSlotType slotType, int light, BipedModel<E> model) {
+    private void renderArmorPart(PoseStack renderStack, IRenderTypeBuffer buffer, EquipmentSlotType slotType, int light, BipedModel<E> model) {
         this.getEntityModel().setModelAttributes(model);
         this.setModelSlotVisible(model, slotType);
         for (CacheReference<RenderType> renderType : RENDER_TYPES) {

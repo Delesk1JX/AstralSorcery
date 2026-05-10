@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.render.tile;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.common.tile.TileSpectralRelay;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -29,7 +29,7 @@ public class RenderSpectralRelay extends CustomTileEntityRenderer<TileSpectralRe
     }
 
     @Override
-    public void render(TileSpectralRelay tile, float pTicks, MatrixStack renderStack, IRenderTypeBuffer renderTypeBuffer, int combinedLight, int combinedOverlay) {
+    public void render(TileSpectralRelay tile, float pTicks, PoseStack renderStack, IRenderTypeBuffer renderTypeBuffer, int combinedLight, int combinedOverlay) {
         ItemStack stack = tile.getInventory().getStackInSlot(0);
         if (!stack.isEmpty()) {
             renderStack.push();

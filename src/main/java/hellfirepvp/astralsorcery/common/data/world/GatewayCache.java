@@ -22,7 +22,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.DyeColor;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.text.IFormattableTextComponent;
@@ -228,13 +228,13 @@ public class GatewayCache extends GlobalWorldData {
             });
         }
 
-        public void write(PacketBuffer buf) {
+        public void write(FriendlyByteBuf buf) {
             ByteBufUtils.writePos(buf, this.getPos());
             ByteBufUtils.writeOptional(buf, this.getDisplayName(), ByteBufUtils::writeTextComponent);
             ByteBufUtils.writeOptional(buf, this.getColor(), ByteBufUtils::writeEnumValue);
             buf.writeBoolean(this.isLocked());
             ByteBufUtils.writeOptional(buf, this.getOwner(), (buffer, ref) -> ref.write(buffer));
-            ByteBufUtils.writeMap(buf, this.getAllowedUsers(), PacketBuffer::writeInt, (buffer, ref) -> ref.write(buffer));
+            ByteBufUtils.writeMap(buf, this.getAllowedUsers(), FriendlyByteBuf::writeInt, (buffer, ref) -> ref.write(buffer));
         }
 
         public static GatewayNode read(CompoundTag tag) {
@@ -255,13 +255,13 @@ public class GatewayCache extends GlobalWorldData {
             return node;
         }
 
-        public static GatewayNode read(PacketBuffer buf) {
+        public static GatewayNode read(FriendlyByteBuf buf) {
             GatewayNode node = new GatewayNode(ByteBufUtils.readPos(buf));
             node.display = ByteBufUtils.readOptional(buf, ByteBufUtils::readTextComponent);
             node.color = ByteBufUtils.readOptional(buf, buffer -> ByteBufUtils.readEnumValue(buffer, DyeColor.class));
             node.locked = buf.readBoolean();
             node.owner = ByteBufUtils.readOptional(buf, PlayerReference::read);
-            node.allowedUsers = ByteBufUtils.readMap(buf, PacketBuffer::readInt, PlayerReference::read);
+            node.allowedUsers = ByteBufUtils.readMap(buf, FriendlyByteBuf::readInt, PlayerReference::read);
             return node;
         }
 

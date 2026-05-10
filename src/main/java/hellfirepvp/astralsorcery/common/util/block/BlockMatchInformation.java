@@ -18,7 +18,7 @@ import net.minecraft.block.AirBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.TagCollectionManager;
 import net.minecraft.resources.ResourceLocation;
@@ -138,7 +138,7 @@ public class BlockMatchInformation implements Predicate<BlockState> {
         return out;
     }
 
-    public static BlockMatchInformation read(PacketBuffer buf) {
+    public static BlockMatchInformation read(FriendlyByteBuf buf) {
         int type = buf.readInt();
         ItemStack display = ByteBufUtils.readItemStack(buf);
         switch (type) {
@@ -154,7 +154,7 @@ public class BlockMatchInformation implements Predicate<BlockState> {
         throw new IllegalArgumentException("Unknown block transmutation match type: " + type);
     }
 
-    public void serialize(PacketBuffer buf) {
+    public void serialize(FriendlyByteBuf buf) {
         int type = this.matchState != null ? 0 /*state*/ : 1 /*type*/;
         buf.writeInt(type);
         ByteBufUtils.writeItemStack(buf, this.display);

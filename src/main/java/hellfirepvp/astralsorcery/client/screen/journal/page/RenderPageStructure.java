@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.client.screen.journal.page;
 
 import com.google.common.collect.Lists;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import hellfirepvp.astralsorcery.client.render.IDrawRenderTypeBuffer;
@@ -80,7 +80,7 @@ public class RenderPageStructure extends RenderablePage {
     }
 
     @Override
-    public void render(MatrixStack renderStack, float x, float y, float z, float pTicks, float mouseX, float mouseY) {
+    public void render(PoseStack renderStack, float x, float y, float z, float pTicks, float mouseX, float mouseY) {
         this.totalRenderFrame++;
 
         this.renderStructure(renderStack, x, y, pTicks);
@@ -93,7 +93,7 @@ public class RenderPageStructure extends RenderablePage {
         this.renderSliceButtons(renderStack, x, y + 10, z, mouseX, mouseY);
     }
 
-    private void renderSliceButtons(MatrixStack renderStack, float offsetX, float offsetY, float zLevel, float mouseX, float mouseY) {
+    private void renderSliceButtons(PoseStack renderStack, float offsetX, float offsetY, float zLevel, float mouseX, float mouseY) {
         TexturesAS.TEX_GUI_BOOK_STRUCTURE_ICONS.bindTexture();
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
@@ -206,7 +206,7 @@ public class RenderPageStructure extends RenderablePage {
         return maxSlice;
     }
 
-    private void renderHeadline(MatrixStack renderStack, float offsetX, float offsetY, float zLevel, ITextProperties title) {
+    private void renderHeadline(PoseStack renderStack, float offsetX, float offsetY, float zLevel, ITextProperties title) {
         float scale = 1.3F;
         RenderSystem.disableDepthTest();
 
@@ -219,7 +219,7 @@ public class RenderPageStructure extends RenderablePage {
         RenderSystem.enableDepthTest();
     }
 
-    private float renderSizeDescription(MatrixStack renderStack, float offsetX, float offsetY, float zLevel) {
+    private float renderSizeDescription(PoseStack renderStack, float offsetX, float offsetY, float zLevel) {
         Vector3 size = new Vector3(this.structure.getMaximumOffset()).subtract(this.structure.getMinimumOffset()).add(1, 1, 1);
         FontRenderer fr = RenderablePage.getFontRenderer();
         float scale = 1.3F;
@@ -252,7 +252,7 @@ public class RenderPageStructure extends RenderablePage {
         return length + 8F;
     }
 
-    private void renderStructure(MatrixStack renderStack, float offsetX, float offsetY, float pTicks) {
+    private void renderStructure(PoseStack renderStack, float offsetX, float offsetY, float pTicks) {
         Point.Double renderOffset = renderOffset(offsetX + 8, offsetY);
         this.structureRenderer.setRenderWithRequiredAir(this.showAirBlocks);
         this.structureRenderer.render3DSliceGUI(renderStack, renderOffset.x + shift.getX(), renderOffset.y + shift.getY(), pTicks, drawSlice);
@@ -264,7 +264,7 @@ public class RenderPageStructure extends RenderablePage {
     }
 
     @Override
-    public void postRender(MatrixStack renderStack, float x, float y, float z, float pTicks, float mouseX, float mouseY) {
+    public void postRender(PoseStack renderStack, float x, float y, float z, float pTicks, float mouseX, float mouseY) {
         renderStack.push();
         renderStack.translate(x + 160, y + 10, z);
         Rectangle rect = RenderingDrawUtils.drawInfoStar(renderStack, IDrawRenderTypeBuffer.defaultBuffer(), 15, pTicks);

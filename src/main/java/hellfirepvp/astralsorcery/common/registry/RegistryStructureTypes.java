@@ -51,8 +51,14 @@ public class RegistryStructureTypes {
 
     private static StructureType register(ResourceLocation name, Supplier<BlockArray> structureSupplier) {
         StructureType type = new StructureType(name, structureSupplier);
-        AstralSorcery.getProxy().getRegistryPrimer().register(type);
+        register(type);
         return type;
+    }
+
+}
+
+    private static <T extends StructureType> T register(T type) {
+        return ASRegistries.STRUCTURE_TYPES.register(type.getIdentifier(), () -> type);
     }
 
 }

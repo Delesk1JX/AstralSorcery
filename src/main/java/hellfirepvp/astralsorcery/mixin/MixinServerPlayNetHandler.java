@@ -13,7 +13,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.network.play.ServerPlayNetHandler;
 import net.minecraft.network.play.client.CUseEntityPacket;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.server.ServerLevel;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -51,7 +51,7 @@ public class MixinServerPlayNetHandler {
             cancellable = true
     )
     public void allowInteractableEntity(CUseEntityPacket packet, CallbackInfo ci) {
-        ServerWorld world = this.player.getServerWorld();
+        ServerLevel world = this.player.getServerWorld();
         Entity interacted = packet.getEntityFromWorld(world);
         if (interacted instanceof InteractableEntity) {
             this.player.attackTargetEntityWithCurrentItem(interacted);

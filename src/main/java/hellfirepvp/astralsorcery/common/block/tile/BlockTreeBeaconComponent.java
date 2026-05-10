@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.tile.TileTreeBeaconComponent;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
@@ -46,7 +46,7 @@ public class BlockTreeBeaconComponent extends BlockFakedState {
 
     @Nullable
     @Override
-    public TileEntity createNewTileEntity(IBlockReader worldIn) {
+    public BlockEntity createNewTileEntity(IBlockReader worldIn) {
         return new TileTreeBeaconComponent();
     }
 }

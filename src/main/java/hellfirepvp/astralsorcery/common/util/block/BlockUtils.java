@@ -25,7 +25,7 @@ import net.minecraft.potion.EffectUtils;
 import net.minecraft.potion.Effects;
 import net.minecraft.state.Property;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.BlockPos;
@@ -71,7 +71,7 @@ public class BlockUtils {
                 .withParameter(LootParameters.field_237457_g_, Vector3d.copyCentered(pos))
                 .withParameter(LootParameters.BLOCK_STATE, state)
                 .withParameter(LootParameters.TOOL, tool)
-                .withNullableParameter(LootParameters.BLOCK_ENTITY, MiscUtils.getTileAt(world, pos, TileEntity.class, true))
+                .withNullableParameter(LootParameters.BLOCK_ENTITY, MiscUtils.getTileAt(world, pos, BlockEntity.class, true))
                 .withRandom(rand)
                 .withLuck(harvestFortune);
         return state.getDrops(builder);
@@ -296,7 +296,7 @@ public class BlockUtils {
 
         if (harvestable) {
             try {
-                TileEntity tileentity = MiscUtils.getTileAt(world, pos, TileEntity.class, true);
+                BlockEntity tileentity = MiscUtils.getTileAt(world, pos, BlockEntity.class, true);
                 ItemStack harvestStack = heldCopy.isEmpty() ? ItemStack.EMPTY : heldCopy.copy();
                 stateBroken.getBlock().harvestBlock(world, fakePlayer, pos, stateBroken, tileentity, harvestStack);
             } catch (Exception exc) {

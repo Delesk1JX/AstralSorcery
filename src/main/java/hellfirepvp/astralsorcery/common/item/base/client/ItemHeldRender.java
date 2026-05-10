@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.item.base.client;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import net.minecraft.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -23,6 +23,6 @@ import net.neoforged.api.distmarker.OnlyIn;
 public interface ItemHeldRender {
 
     @OnlyIn(Dist.CLIENT)
-    boolean renderInHand(ItemStack stack, MatrixStack renderStack, float pTicks);
+    boolean renderInHand(ItemStack stack, PoseStack renderStack, float pTicks);
 
 }

@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.item.base.client;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import net.minecraft.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -23,6 +23,6 @@ import net.neoforged.api.distmarker.OnlyIn;
 public interface ItemOverlayRender {
 
     @OnlyIn(Dist.CLIENT)
-    boolean renderOverlay(MatrixStack renderStack, ItemStack stack, float pTicks);
+    boolean renderOverlay(PoseStack renderStack, ItemStack stack, float pTicks);
 
 }

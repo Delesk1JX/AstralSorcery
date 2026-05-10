@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.perk.source.ModifierManager;
 import hellfirepvp.astralsorcery.common.perk.source.ModifierSourceProvider;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.world.entity.player.ServerPlayer;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.fml.LogicalSide;
 
@@ -38,12 +38,12 @@ public class PerkSourceProvider extends ModifierSourceProvider<AbstractPerk> {
     protected void removeModifiers(ServerPlayer playerEntity) {}
 
     @Override
-    public void serialize(AbstractPerk source, PacketBuffer buf) {
+    public void serialize(AbstractPerk source, FriendlyByteBuf buf) {
         ByteBufUtils.writeResourceLocation(buf, source.getRegistryName());
     }
 
     @Override
-    public AbstractPerk deserialize(PacketBuffer buf) {
+    public AbstractPerk deserialize(FriendlyByteBuf buf) {
         ResourceLocation perkKey = ByteBufUtils.readResourceLocation(buf);
         return PerkTree.PERK_TREE.getPerk(LogicalSide.CLIENT, perkKey).orElse(null);
     }

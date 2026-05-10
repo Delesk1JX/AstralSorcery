@@ -8,10 +8,10 @@
 
 package hellfirepvp.astralsorcery.common.util.data;
 
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChunkPos;
@@ -78,7 +78,7 @@ public class Vector3 {
         this(vec.x, vec.y, vec.z);
     }
 
-    public Vector3(TileEntity te) {
+    public Vector3(BlockEntity te) {
         this(te.getPos().getX(), te.getPos().getY(), te.getPos().getZ());
     }
 
@@ -505,13 +505,13 @@ public class Vector3 {
 
     @Deprecated
     @OnlyIn(Dist.CLIENT)
-    public IVertexBuilder drawPos(IVertexBuilder buf) {
+    public VertexConsumer drawPos(VertexConsumer buf) {
         buf.pos((float) this.x, (float) this.y, (float) this.z);
         return buf;
     }
 
     @OnlyIn(Dist.CLIENT)
-    public IVertexBuilder drawPos(Matrix4f renderMatrix, IVertexBuilder buf) {
+    public VertexConsumer drawPos(Matrix4f renderMatrix, VertexConsumer buf) {
         buf.pos(renderMatrix, (float) this.x, (float) this.y, (float) this.z);
         return buf;
     }

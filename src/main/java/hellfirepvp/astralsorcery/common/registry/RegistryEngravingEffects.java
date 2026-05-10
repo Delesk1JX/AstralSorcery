@@ -234,9 +234,8 @@ public class RegistryEngravingEffects {
         return register(new EngravingEffect(cst));
     }
 
-    private static <T extends EngravingEffect> T register(T effect) {
-        AstralSorcery.getProxy().getRegistryPrimer().register(effect);
-        return effect;
+        private static <T extends EngravingEffect> T register(T obj) {
+        return ASRegistries.ENGRAVING_EFFECTS.register(obj.getIdentifier(), () -> obj);
     }
 
 }

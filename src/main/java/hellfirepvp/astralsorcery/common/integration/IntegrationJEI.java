@@ -31,7 +31,7 @@ import mezz.jei.api.registration.*;
 import mezz.jei.api.runtime.IJeiRuntime;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.Recipe;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.*;
@@ -101,7 +101,7 @@ public class IntegrationJEI implements IModPlugin {
     @Override
     public void registerRecipes(IRecipeRegistration registry) {
         CATEGORIES.forEach(category -> {
-            List<? extends IRecipe<?>> recipes = category.getRecipes();
+            List<? extends Recipe<?>> recipes = category.getRecipes();
             recipes.sort(Comparator.comparing(recipe -> recipe.getId().toString()));
             registry.addRecipes(recipes, category.getUid());
         });

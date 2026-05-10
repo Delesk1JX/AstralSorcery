@@ -34,7 +34,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -220,11 +220,11 @@ public class SimpleAltarRecipe extends CustomMatcherRecipe implements GatedRecip
 
     public void serializeAdditionalJson(JsonObject recipeObject) {}
 
-    public void writeRecipeSync(PacketBuffer buf) {}
+    public void writeRecipeSync(FriendlyByteBuf buf) {}
 
-    public void readRecipeSync(PacketBuffer buf) {}
+    public void readRecipeSync(FriendlyByteBuf buf) {}
 
-    public static SimpleAltarRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
+    public static SimpleAltarRecipe read(ResourceLocation recipeId, FriendlyByteBuf buffer) {
         AltarType type = ByteBufUtils.readEnumValue(buffer, AltarType.class);
         int duration = buffer.readInt();
         int starlight = buffer.readInt();
@@ -248,7 +248,7 @@ public class SimpleAltarRecipe extends CustomMatcherRecipe implements GatedRecip
         return recipe;
     }
 
-    public final void write(PacketBuffer buffer) {
+    public final void write(FriendlyByteBuf buffer) {
         ByteBufUtils.writeEnumValue(buffer, this.getAltarType());
         buffer.writeInt(this.getDuration());
         buffer.writeInt(this.getStarlightRequirement());

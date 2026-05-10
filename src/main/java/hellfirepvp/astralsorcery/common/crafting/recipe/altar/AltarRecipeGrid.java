@@ -20,7 +20,7 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.IItemProvider;
@@ -206,7 +206,7 @@ public class AltarRecipeGrid {
     }
     */
 
-    public void write(PacketBuffer buffer) {
+    public void write(FriendlyByteBuf buffer) {
         buffer.writeInt(this.width);
         buffer.writeInt(this.height);
         buffer.writeInt(this.gridParts.size());
@@ -216,7 +216,7 @@ public class AltarRecipeGrid {
         });
     }
 
-    public static AltarRecipeGrid read(PacketBuffer buffer) {
+    public static AltarRecipeGrid read(FriendlyByteBuf buffer) {
         int width = buffer.readInt();
         int height = buffer.readInt();
         int gridParts = buffer.readInt();

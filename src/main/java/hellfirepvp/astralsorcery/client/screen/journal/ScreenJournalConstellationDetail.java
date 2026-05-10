@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.screen.journal;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
@@ -221,7 +221,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
     }
 
     @Override
-    public void render(MatrixStack renderStack, int mouseX, int mouseY, float pTicks) {
+    public void render(PoseStack renderStack, int mouseX, int mouseY, float pTicks) {
         this.lastFramePage = null;
 
         if (this.doublePageID == 0) {
@@ -258,7 +258,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
         this.setBlitOffset(0);
     }
 
-    private void drawRefractionTableInformation(MatrixStack renderStack, int mouseX, int mouseY, float pTicks) {
+    private void drawRefractionTableInformation(PoseStack renderStack, int mouseX, int mouseY, float pTicks) {
         for (int i = 0; i < locTextRitual.size(); i++) {
             IReorderingProcessor line = locTextRitual.get(i);
             renderStack.push();
@@ -275,7 +275,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
         }
     }
 
-    private void drawCapeInformationPages(MatrixStack renderStack, int mouseX, int mouseY, float partialTicks) {
+    private void drawCapeInformationPages(PoseStack renderStack, int mouseX, int mouseY, float partialTicks) {
         for (int i = 0; i < locTextMantle.size(); i++) {
             IReorderingProcessor line = locTextMantle.get(i);
             renderStack.push();
@@ -297,7 +297,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
         }
     }
 
-    private void drawConstellationPaperRecipePage(MatrixStack renderStack, int mouseX, int mouseY, float partialTicks) {
+    private void drawConstellationPaperRecipePage(PoseStack renderStack, int mouseX, int mouseY, float partialTicks) {
         if (ResearchHelper.getClientProgress().getTierReached().isThisLaterOrEqual(ProgressionTier.TRAIT_CRAFT)) {
             SimpleAltarRecipe recipe = RecipeHelper.findAltarRecipeResult(stack ->
                     stack.getItem() instanceof ItemConstellationPaper &&
@@ -311,7 +311,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
         }
     }
 
-    private void drawPageExtendedInformation(MatrixStack renderStack) {
+    private void drawPageExtendedInformation(PoseStack renderStack) {
         ITextProperties info = this.getConstellation().getConstellationTag();
         if (!detailed) {
             info = new TranslationTextComponent("astralsorcery.journal.constellation.unknown");
@@ -336,7 +336,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
         }
     }
 
-    private void drawPagePhaseInformation(MatrixStack renderStack) {
+    private void drawPagePhaseInformation(PoseStack renderStack) {
         if (this.activePhases == null) {
             this.testActivePhases();
             if (this.activePhases == null) {
@@ -393,7 +393,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
         }
     }
 
-    private void drawPageConstellation(MatrixStack renderStack, float partial) {
+    private void drawPageConstellation(PoseStack renderStack, float partial) {
         ITextProperties cstName = this.constellation.getConstellationName();
         int width = font.getStringPropertyWidth(cstName);
 
@@ -427,7 +427,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
         RenderSystem.disableBlend();
     }
 
-    private void drawNavArrows(MatrixStack renderStack, float partialTicks, int mouseX, int mouseY) {
+    private void drawNavArrows(PoseStack renderStack, float partialTicks, int mouseX, int mouseY) {
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
 
@@ -446,7 +446,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
         RenderSystem.disableBlend();
     }
 
-    private void drawCstBackground(MatrixStack renderStack) {
+    private void drawCstBackground(PoseStack renderStack) {
         TexturesAS.TEX_BLACK.bindTexture();
         RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
             Matrix4f offset = renderStack.getLast().getMatrix();

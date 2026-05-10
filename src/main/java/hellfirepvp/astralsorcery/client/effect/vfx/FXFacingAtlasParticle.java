@@ -8,8 +8,8 @@
 
 package hellfirepvp.astralsorcery.client.effect.vfx;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.effect.EntityVisualFX;
 import hellfirepvp.astralsorcery.client.effect.context.base.BatchRenderContext;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
@@ -55,7 +55,7 @@ public class FXFacingAtlasParticle extends EntityVisualFX {
     }
 
     @Override
-    public <T extends EntityVisualFX> void render(BatchRenderContext<T> ctx, MatrixStack renderStack, IVertexBuilder vb, float pTicks) {
+    public <T extends EntityVisualFX> void render(BatchRenderContext<T> ctx, PoseStack renderStack, VertexConsumer vb, float pTicks) {
         if (this.sprite == null) {
             return;
         }

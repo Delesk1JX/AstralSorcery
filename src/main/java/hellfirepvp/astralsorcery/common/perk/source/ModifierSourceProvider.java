@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.network.play.server.PktSyncModifierSource;
 import hellfirepvp.astralsorcery.common.perk.PerkEffectHelper;
 import net.minecraft.world.entity.player.ServerPlayer;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.fml.LogicalSide;
 
@@ -42,9 +42,9 @@ public abstract class ModifierSourceProvider<T extends ModifierSource> {
 
     protected abstract void removeModifiers(ServerPlayer playerEntity);
 
-    public abstract void serialize(T source, PacketBuffer buf);
+    public abstract void serialize(T source, FriendlyByteBuf buf);
 
-    public abstract T deserialize(PacketBuffer buf);
+    public abstract T deserialize(FriendlyByteBuf buf);
 
     @Nullable
     private T getModifier(ServerPlayer player, ResourceLocation identifier) {

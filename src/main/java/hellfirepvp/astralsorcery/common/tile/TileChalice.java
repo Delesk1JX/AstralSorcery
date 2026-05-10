@@ -39,7 +39,7 @@ import hellfirepvp.astralsorcery.common.util.tile.FluidTankAccess;
 import hellfirepvp.astralsorcery.common.util.tile.SimpleSingleFluidTank;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.Direction;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.Mth;
@@ -253,7 +253,7 @@ public class TileChalice extends TileEntityTick {
 
     @OnlyIn(Dist.CLIENT)
     public static void drawLiquidLine(PktPlayEffect pktPlayEffect) {
-        PacketBuffer buf = pktPlayEffect.getExtraData();
+        FriendlyByteBuf buf = pktPlayEffect.getExtraData();
         while (buf.isReadable()) {
             Vector3 from = ByteBufUtils.readVector(pktPlayEffect.getExtraData());
             Vector3 to = ByteBufUtils.readVector(pktPlayEffect.getExtraData());

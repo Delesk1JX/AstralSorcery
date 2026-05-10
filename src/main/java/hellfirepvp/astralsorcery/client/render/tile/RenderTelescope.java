@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.render.tile;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.client.model.builtin.ModelTelescope;
 import hellfirepvp.astralsorcery.common.tile.TileTelescope;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -31,7 +31,7 @@ public class RenderTelescope extends CustomTileEntityRenderer<TileTelescope> {
     }
 
     @Override
-    public void render(TileTelescope tile, float pTicks, MatrixStack renderStack, IRenderTypeBuffer renderTypeBuffer, int combinedLight, int combinedOverlay) {
+    public void render(TileTelescope tile, float pTicks, PoseStack renderStack, IRenderTypeBuffer renderTypeBuffer, int combinedLight, int combinedOverlay) {
         renderStack.push();
         renderStack.translate(0.5F, 1.5F, 0.5F);
         renderStack.rotate(Vector3f.XP.rotationDegrees(180F));

@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.render;
 
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Tessellator;
@@ -27,7 +27,7 @@ public interface IDrawRenderTypeBuffer extends IRenderTypeBuffer {
     public void draw(RenderType type);
 
     public static IDrawRenderTypeBuffer defaultBuffer() {
-        return of(IRenderTypeBuffer.getImpl(Tessellator.getInstance().getBuffer()));
+        return of(IRenderTypeBuffer.getImpl(buffer));
     }
 
     public static IDrawRenderTypeBuffer of(IRenderTypeBuffer.Impl drawBuffer) {
@@ -43,7 +43,7 @@ public interface IDrawRenderTypeBuffer extends IRenderTypeBuffer {
             }
 
             @Override
-            public IVertexBuilder getBuffer(RenderType renderType) {
+            public VertexConsumer getBuffer(RenderType renderType) {
                 return drawBuffer.getBuffer(renderType);
             }
         };

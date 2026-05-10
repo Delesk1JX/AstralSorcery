@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.tile.TileRitualLink;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ContainerBlock;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.shapes.ISelectionContext;
 import net.minecraft.util.shapes.VoxelShape;
@@ -52,7 +52,7 @@ public class BlockRitualLink extends ContainerBlock implements CustomItemBlock {
 
     @Nullable
     @Override
-    public TileEntity createNewTileEntity(IBlockReader worldIn) {
+    public BlockEntity createNewTileEntity(IBlockReader worldIn) {
         return new TileRitualLink();
     }
 }

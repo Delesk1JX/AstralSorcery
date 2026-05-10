@@ -18,7 +18,7 @@ import hellfirepvp.astralsorcery.common.lib.LootAS;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootFunctionType;
 import net.minecraft.loot.LootParameters;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootFunction;
 import net.minecraft.loot.conditions.ILootCondition;
@@ -44,7 +44,7 @@ public class CopyConstellation extends LootFunction {
     @Override
     protected ItemStack doApply(ItemStack stack, LootContext context) {
         if (context.has(LootParameters.BLOCK_ENTITY)) {
-            TileEntity tile = context.get(LootParameters.BLOCK_ENTITY);
+            BlockEntity tile = context.get(LootParameters.BLOCK_ENTITY);
             if (tile instanceof ConstellationTile && stack.getItem() instanceof ConstellationItem) {
                 IWeakConstellation main = ((ConstellationTile) tile).getAttunedConstellation();
                 IMinorConstellation trait = ((ConstellationTile) tile).getTraitConstellation();

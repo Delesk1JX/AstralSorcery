@@ -26,7 +26,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.vector.Vector3d;
@@ -158,7 +158,7 @@ public class BlockCelestialCrystalCluster extends BlockCrystalContainer implemen
 
     @Nullable
     @Override
-    public TileEntity createNewTileEntity(IBlockReader world) {
+    public BlockEntity createNewTileEntity(IBlockReader world) {
         return new TileCelestialCrystals();
     }
 }

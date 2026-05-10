@@ -25,11 +25,11 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ThrowableEntity;
 import net.minecraft.network.IPacket;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.*;
 import net.minecraft.util.vector.Vector3d;
@@ -242,7 +242,7 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
     }
 
     @Override
-    public void writeSpawnData(PacketBuffer buffer) {
+    public void writeSpawnData(FriendlyByteBuf buffer) {
         int id = -1;
         if(this.throwingEntity != null) {
             id = this.throwingEntity.getEntityId();
@@ -251,7 +251,7 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
     }
 
     @Override
-    public void readSpawnData(PacketBuffer additionalData) {
+    public void readSpawnData(FriendlyByteBuf additionalData) {
         int id = additionalData.readInt();
         try {
             if (id > 0) {
@@ -273,7 +273,7 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
 
     @Override
     public AxisAlignedBB getRenderBoundingBox() {
-        return TileEntity.INFINITE_EXTENT_AABB;
+        return BlockEntity.INFINITE_EXTENT_AABB;
     }
 
     public List<Vector3> buildLine(float partial) {

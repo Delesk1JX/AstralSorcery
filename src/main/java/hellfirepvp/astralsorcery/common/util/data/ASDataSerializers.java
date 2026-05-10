@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.util.data;
 
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.IDataSerializer;
 import net.neoforged.neoforge.fluids.FluidStack;
@@ -24,12 +24,12 @@ public class ASDataSerializers {
 
     public static IDataSerializer<Long> LONG = new IDataSerializer<Long>() {
         @Override
-        public void write(PacketBuffer buf, Long value) {
+        public void write(FriendlyByteBuf buf, Long value) {
             buf.writeLongLE(value);
         }
 
         @Override
-        public Long read(PacketBuffer buf) {
+        public Long read(FriendlyByteBuf buf) {
             return buf.readLongLE();
         }
 
@@ -46,14 +46,14 @@ public class ASDataSerializers {
 
     public static IDataSerializer<Vector3> VECTOR = new IDataSerializer<Vector3>() {
         @Override
-        public void write(PacketBuffer buf, Vector3 value) {
+        public void write(FriendlyByteBuf buf, Vector3 value) {
             buf.writeDouble(value.getX());
             buf.writeDouble(value.getY());
             buf.writeDouble(value.getZ());
         }
 
         @Override
-        public Vector3 read(PacketBuffer buf) {
+        public Vector3 read(FriendlyByteBuf buf) {
             return new Vector3(buf.readDouble(), buf.readDouble(), buf.readDouble());
         }
 
@@ -70,12 +70,12 @@ public class ASDataSerializers {
 
     public static IDataSerializer<FluidStack> FLUID = new IDataSerializer<FluidStack>() {
         @Override
-        public void write(PacketBuffer buf, FluidStack value) {
+        public void write(FriendlyByteBuf buf, FluidStack value) {
             ByteBufUtils.writeFluidStack(buf, value);
         }
 
         @Override
-        public FluidStack read(PacketBuffer buf) {
+        public FluidStack read(FriendlyByteBuf buf) {
             return ByteBufUtils.readFluidStack(buf);
         }
 

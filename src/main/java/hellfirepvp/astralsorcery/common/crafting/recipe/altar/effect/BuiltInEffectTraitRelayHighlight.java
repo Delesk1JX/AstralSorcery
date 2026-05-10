@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.crafting.recipe.altar.effect;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.client.effect.function.VFXAlphaFunction;
 import hellfirepvp.astralsorcery.client.effect.function.VFXColorFunction;
 import hellfirepvp.astralsorcery.client.effect.handler.EffectHelper;
@@ -117,7 +117,7 @@ public class BuiltInEffectTraitRelayHighlight extends AltarRecipeEffect {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void onTESR(TileAltar altar, ActiveSimpleAltarRecipe.CraftingState state, MatrixStack renderStack, IRenderTypeBuffer buffer, float pTicks, int combinedLight) {
+    public void onTESR(TileAltar altar, ActiveSimpleAltarRecipe.CraftingState state, PoseStack renderStack, IRenderTypeBuffer buffer, float pTicks, int combinedLight) {
         ActiveSimpleAltarRecipe activeRecipe = altar.getActiveRecipe();
         if (activeRecipe != null) {
             List<WrappedIngredient> additionalIngredients = activeRecipe.getRecipeToCraft().getRelayInputs();

@@ -20,7 +20,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
@@ -304,7 +304,7 @@ public class PlayerPerkData {
         tag.put("perks", perks);
     }
 
-    public void write(PacketBuffer buf) {
+    public void write(FriendlyByteBuf buf) {
         buf.writeDouble(this.perkExp);
         ByteBufUtils.writeCollection(buf, this.freePointTokens, ByteBufUtils::writeResourceLocation);
         ByteBufUtils.writeCollection(buf, this.perks.values(), (buffer, perk) -> {
@@ -313,7 +313,7 @@ public class PlayerPerkData {
         });
     }
 
-    public static PlayerPerkData read(PacketBuffer buf, LogicalSide side) {
+    public static PlayerPerkData read(FriendlyByteBuf buf, LogicalSide side) {
         PlayerPerkData data = new PlayerPerkData();
         data.perkExp = buf.readDouble();
         data.freePointTokens = ByteBufUtils.readSet(buf, ByteBufUtils::readResourceLocation);
@@ -593,13 +593,13 @@ public class PlayerPerkData {
                     });
         }
 
-        private void write(PacketBuffer buf) {
+        private void write(FriendlyByteBuf buf) {
             ByteBufUtils.writeNBTTag(buf, this.perkData);
             ByteBufUtils.writeNBTTag(buf, this.applicationData);
             ByteBufUtils.writeCollection(buf, this.applicationTypes, ByteBufUtils::writeEnumValue);
         }
 
-        private void read(PacketBuffer buf) {
+        private void read(FriendlyByteBuf buf) {
             this.perkData = ByteBufUtils.readNBTTag(buf);
             this.applicationData = ByteBufUtils.readNBTTag(buf);
             this.applicationTypes = ByteBufUtils.readSet(buf, buffer -> ByteBufUtils.readEnumValue(buffer, PerkAllocationType.class));

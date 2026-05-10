@@ -12,7 +12,7 @@ import com.google.common.collect.Lists;
 import net.minecraft.block.BlockState;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.Util;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.text.Style;
@@ -30,7 +30,7 @@ import java.util.List;
  * Created by HellFirePvP
  * Date: 30.06.2019 / 20:57
  */
-//Interface for linking a TileEntity, which should implement this interface, to any other block for whatever reason.
+//Interface for linking a BlockEntity, which should implement this interface, to any other block for whatever reason.
 public interface LinkableTileEntity {
 
     /**
@@ -38,20 +38,20 @@ public interface LinkableTileEntity {
      * Links can only be created in the same world as this tile is in.
      */
     default public World getLinkWorld() {
-        if (this instanceof TileEntity) {
-            return ((TileEntity) this).getWorld();
+        if (this instanceof BlockEntity) {
+            return ((BlockEntity) this).getWorld();
         }
-        throw new IllegalStateException("LinkableTileEntity not implemented on TileEntity: " + this.getClass());
+        throw new IllegalStateException("LinkableTileEntity not implemented on BlockEntity: " + this.getClass());
     }
 
     /**
      * This tile's position
      */
     default public BlockPos getLinkPos() {
-        if (this instanceof TileEntity) {
-            return ((TileEntity) this).getPos();
+        if (this instanceof BlockEntity) {
+            return ((BlockEntity) this).getPos();
         }
-        throw new IllegalStateException("LinkableTileEntity not implemented on TileEntity: " + this.getClass());
+        throw new IllegalStateException("LinkableTileEntity not implemented on BlockEntity: " + this.getClass());
     }
 
     /**
@@ -60,11 +60,11 @@ public interface LinkableTileEntity {
      */
     @Nullable
     default public String getUnLocalizedDisplayName() {
-        if (this instanceof TileEntity) {
-            BlockState state = ((TileEntity) this).getBlockState();
+        if (this instanceof BlockEntity) {
+            BlockState state = ((BlockEntity) this).getBlockState();
             return state.getBlock().getTranslationKey();
         }
-        throw new IllegalStateException("LinkableTileEntity not implemented on TileEntity: " + this.getClass());
+        throw new IllegalStateException("LinkableTileEntity not implemented on BlockEntity: " + this.getClass());
     }
 
     /**

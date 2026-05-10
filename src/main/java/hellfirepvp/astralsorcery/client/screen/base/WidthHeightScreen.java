@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.screen.base;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import hellfirepvp.astralsorcery.client.util.Blending;
@@ -76,7 +76,7 @@ public class WidthHeightScreen extends InputScreen {
         guiTop = height / 2 - guiHeight / 2;
     }
 
-    protected void drawWHRect(MatrixStack renderStack, AbstractRenderableTexture resource) {
+    protected void drawWHRect(PoseStack renderStack, AbstractRenderableTexture resource) {
         //Whoever disables blending on GUI overlays, your states bleed into following GUIs
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();

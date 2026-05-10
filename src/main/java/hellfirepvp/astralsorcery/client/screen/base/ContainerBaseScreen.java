@@ -8,12 +8,12 @@
 
 package hellfirepvp.astralsorcery.client.screen.base;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.common.container.ContainerTileEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.world.entity.player.IInventory;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.text.ITextComponent;
 
 /**
@@ -23,14 +23,14 @@ import net.minecraft.util.text.ITextComponent;
  * Created by HellFirePvP
  * Date: 03.08.2019 / 16:08
  */
-public abstract class ContainerBaseScreen<T extends TileEntity, C extends ContainerTileEntity<T>> extends ContainerScreen<C> {
+public abstract class ContainerBaseScreen<T extends BlockEntity, C extends ContainerTileEntity<T>> extends ContainerScreen<C> {
 
     public ContainerBaseScreen(C screenContainer, IInventory inv, ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);
     }
 
     @Override
-    public void render(MatrixStack renderStack, int mouseX, int mouseY, float pTicks) {
+    public void render(PoseStack renderStack, int mouseX, int mouseY, float pTicks) {
         this.renderBackground(renderStack);
         super.render(renderStack, mouseX, mouseY, pTicks);
         this.renderHoveredTooltip(renderStack, mouseX, mouseY);
@@ -40,7 +40,7 @@ public abstract class ContainerBaseScreen<T extends TileEntity, C extends Contai
     public void tick() {
         super.tick();
 
-        TileEntity te = this.container.getTileEntity();
+        BlockEntity te = this.container.getTileEntity();
         if (te.isRemoved() || !this.container.canInteractWith(Minecraft.getInstance().player)) {
             this.closeScreen();
         }

@@ -8,8 +8,8 @@
 
 package hellfirepvp.astralsorcery.client.model.builtin;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
 import net.minecraft.client.renderer.model.ModelRenderer;
 
@@ -51,14 +51,14 @@ public class ModelLensColored extends CustomModel {
     }
 
     @Override
-    public void render(MatrixStack matrixStackIn, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
+    public void render(PoseStack matrixStackIn, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
         this.fitting1.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
         this.detail1_1.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
         this.fitting2.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
         this.detail1.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
     }
 
-    public void renderGlass(MatrixStack matrixStackIn, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
+    public void renderGlass(PoseStack matrixStackIn, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
         this.glass.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
     }
 }

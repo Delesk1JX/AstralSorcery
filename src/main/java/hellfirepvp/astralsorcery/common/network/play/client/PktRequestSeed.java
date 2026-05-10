@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.network.base.ASPacket;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.util.world.WorldSeedCache;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.resources.ResourceLocation;
@@ -58,8 +58,8 @@ public class PktRequestSeed extends ASPacket<PktRequestSeed> {
     public Encoder<PktRequestSeed> encoder() {
         return (packet, buffer) -> {
             ByteBufUtils.writeOptional(buffer, packet.dim, ByteBufUtils::writeVanillaRegistryEntry);
-            ByteBufUtils.writeOptional(buffer, packet.session, PacketBuffer::writeInt);
-            ByteBufUtils.writeOptional(buffer, packet.seed, PacketBuffer::writeLong);
+            ByteBufUtils.writeOptional(buffer, packet.session, FriendlyByteBuf::writeInt);
+            ByteBufUtils.writeOptional(buffer, packet.seed, FriendlyByteBuf::writeLong);
         };
     }
 
@@ -70,8 +70,8 @@ public class PktRequestSeed extends ASPacket<PktRequestSeed> {
             PktRequestSeed pkt = new PktRequestSeed();
 
             pkt.dim = ByteBufUtils.readOptional(buffer, ByteBufUtils::readVanillaRegistryEntry);
-            pkt.session = ByteBufUtils.readOptional(buffer, PacketBuffer::readInt);
-            pkt.seed = ByteBufUtils.readOptional(buffer, PacketBuffer::readLong);
+            pkt.session = ByteBufUtils.readOptional(buffer, FriendlyByteBuf::readInt);
+            pkt.seed = ByteBufUtils.readOptional(buffer, FriendlyByteBuf::readLong);
 
             return pkt;
         };

@@ -68,8 +68,7 @@ public class RegistryPerkAttributeTypes {
         PerkAttributeLimiter.limit(ATTR_TYPE_COOLDOWN_REDUCTION, () -> 0.0, () -> 0.8);
     }
 
-    private static <T extends PerkAttributeType> T register(T type) {
-        AstralSorcery.getProxy().getRegistryPrimer().register(type);
-        return type;
+        private static <T extends PerkAttributeType> T register(T obj) {
+        return ASRegistries.PERK_ATTRIBUTE_TYPES.register(obj.getIdentifier(), () -> obj);
     }
 }

@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.crafting.recipe.altar.effect;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.common.crafting.recipe.altar.ActiveSimpleAltarRecipe;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
@@ -39,7 +39,7 @@ public class EffectUpgradeAltar extends AltarRecipeEffect {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void onTESR(TileAltar altar, ActiveSimpleAltarRecipe.CraftingState state, MatrixStack renderStack, IRenderTypeBuffer buffer, float pTicks, int combinedLight) {}
+    public void onTESR(TileAltar altar, ActiveSimpleAltarRecipe.CraftingState state, PoseStack renderStack, IRenderTypeBuffer buffer, float pTicks, int combinedLight) {}
 
     @Override
     @OnlyIn(Dist.CLIENT)

@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.util;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.VertexBuffer;
@@ -39,7 +39,7 @@ public class BatchedVertexList {
             return;
         }
 
-        BufferBuilder buf = Tessellator.getInstance().getBuffer();
+        BufferBuilder buf = buffer;
         this.vbo = new VertexBuffer(this.vFormat);
         batchFn.accept(buf);
         buf.finishDrawing();
@@ -48,7 +48,7 @@ public class BatchedVertexList {
         this.initialized = true;
     }
 
-    public void render(MatrixStack renderStack) {
+    public void render(PoseStack renderStack) {
         if (!this.initialized) {
             return;
         }

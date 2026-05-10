@@ -42,7 +42,7 @@ import hellfirepvp.astralsorcery.common.util.world.SkyCollectionHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.Recipe;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.util.Direction;
@@ -184,7 +184,7 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
 
         TileAltar thisAltar = MiscUtils.getTileAt(world, at, TileAltar.class, false);
         if (thisAltar != null) {
-            IRecipe<?> recipe = world.getRecipeManager().getRecipes(RecipeTypesAS.TYPE_ALTAR.getType()).get(recipeName);
+            Recipe<?> recipe = world.getRecipeManager().getRecipes(RecipeTypesAS.TYPE_ALTAR.getType()).get(recipeName);
             if (recipe instanceof SimpleAltarRecipe) {
                 ((SimpleAltarRecipe) recipe).getCraftingEffects().forEach(effect -> {
                     effect.onCraftingFinish(thisAltar, isChaining);

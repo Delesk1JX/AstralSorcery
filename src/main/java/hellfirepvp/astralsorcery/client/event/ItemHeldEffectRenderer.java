@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.event;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.common.item.base.client.ItemHeldRender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -37,7 +37,7 @@ public class ItemHeldEffectRenderer {
 
     private void onHeldRender(RenderWorldLastEvent event) {
         float pTicks = event.getPartialTicks();
-        MatrixStack renderStack = event.getMatrixStack();
+        PoseStack renderStack = event.getMatrixStack();
 
         if (Minecraft.getInstance().player == null || Minecraft.getInstance().world == null) {
             return;
@@ -51,7 +51,7 @@ public class ItemHeldEffectRenderer {
         }
     }
 
-    private boolean doHeldRender(ItemStack heldItem, MatrixStack renderStack, float pTicks) {
+    private boolean doHeldRender(ItemStack heldItem, PoseStack renderStack, float pTicks) {
         if (heldItem.isEmpty()) {
             return false;
         }

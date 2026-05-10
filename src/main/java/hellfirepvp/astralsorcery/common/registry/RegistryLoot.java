@@ -49,7 +49,7 @@ public class RegistryLoot {
 
     private static <T extends IGlobalLootModifier> void registerGlobalModifier(GlobalLootModifierSerializer<T> modifier, ResourceLocation key) {
         modifier.setRegistryName(key);
-        AstralSorcery.getProxy().getRegistryPrimer().register(modifier);
+        register(modifier);
     }
 
 }

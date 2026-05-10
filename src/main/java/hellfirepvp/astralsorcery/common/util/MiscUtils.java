@@ -27,7 +27,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.*;
 import net.minecraft.util.vector.Vector3d;
@@ -74,7 +74,7 @@ public class MiscUtils {
                 return null;
             }
         }
-        TileEntity te = world.getTileEntity(pos);
+        BlockEntity te = world.getTileEntity(pos);
         if (te == null) return null;
         if (tileClass.isInstance(te)) return (T) te;
         return null;

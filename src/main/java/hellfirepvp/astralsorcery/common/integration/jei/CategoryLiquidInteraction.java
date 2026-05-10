@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.integration.jei;
 
 import com.google.common.collect.ImmutableList;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.crafting.recipe.LiquidInteraction;
 import hellfirepvp.astralsorcery.common.crafting.recipe.LiquidInteractionContext;
@@ -76,7 +76,7 @@ public class CategoryLiquidInteraction extends JEICategory<LiquidInteraction> {
     }
 
     @Override
-    public void draw(LiquidInteraction recipe, MatrixStack renderStack, double mouseX, double mouseY) {
+    public void draw(LiquidInteraction recipe, PoseStack renderStack, double mouseX, double mouseY) {
         this.icon.draw(renderStack, 3, 36);
         this.icon.draw(renderStack, 93, 36);
 

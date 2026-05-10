@@ -18,7 +18,7 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.crafting.CraftingHelper;
@@ -57,7 +57,7 @@ public class LiquidInfusionSerializer extends CustomRecipeSerializer<LiquidInfus
     }
 
     @Override
-    public LiquidInfusion read(ResourceLocation recipeId, PacketBuffer buffer) {
+    public LiquidInfusion read(ResourceLocation recipeId, FriendlyByteBuf buffer) {
         return LiquidInfusion.read(recipeId, buffer);
     }
 
@@ -67,7 +67,7 @@ public class LiquidInfusionSerializer extends CustomRecipeSerializer<LiquidInfus
     }
 
     @Override
-    public void write(PacketBuffer buffer, LiquidInfusion recipe) {
+    public void write(FriendlyByteBuf buffer, LiquidInfusion recipe) {
         recipe.write(buffer);
     }
 }

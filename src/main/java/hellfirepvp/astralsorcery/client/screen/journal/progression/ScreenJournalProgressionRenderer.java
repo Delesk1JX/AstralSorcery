@@ -8,9 +8,9 @@
 
 package hellfirepvp.astralsorcery.client.screen.journal.progression;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import hellfirepvp.astralsorcery.client.screen.helper.ScalingPoint;
@@ -166,7 +166,7 @@ public class ScreenJournalProgressionRenderer {
         return false;
     }
 
-    public void drawMouseHighlight(MatrixStack renderStack, float zLevel, int mouseX, int mouseY) {
+    public void drawMouseHighlight(PoseStack renderStack, float zLevel, int mouseX, int mouseY) {
         if (clusterRenderer != null && sizeHandler.getScalingFactor() > 6) {
             clusterRenderer.drawMouseHighlight(renderStack, zLevel, mouseX, mouseY);
         }
@@ -252,7 +252,7 @@ public class ScreenJournalProgressionRenderer {
         updateMouseState();
     }
 
-    public void drawProgressionPart(MatrixStack renderStack, float zLevel, int mouseX, int mouseY) {
+    public void drawProgressionPart(PoseStack renderStack, float zLevel, int mouseX, int mouseY) {
         drawBackground(renderStack, zLevel);
 
         drawClusters(renderStack, zLevel);
@@ -312,7 +312,7 @@ public class ScreenJournalProgressionRenderer {
         return null;
     }
 
-    private void drawClusters(MatrixStack renderStack, float zLevel) {
+    private void drawClusters(PoseStack renderStack, float zLevel) {
         clusterRectMap.clear();
         if (sizeHandler.getScalingFactor() >= 8.01) return;
 
@@ -322,7 +322,7 @@ public class ScreenJournalProgressionRenderer {
         }
     }
 
-    private void renderCluster(MatrixStack renderStack, ResearchProgression p, JournalCluster cluster, float zLevel) {
+    private void renderCluster(PoseStack renderStack, ResearchProgression p, JournalCluster cluster, float zLevel) {
         Point.Float pCluster = this.sizeHandler.scalePointToGui(this.parentGui, this.mousePointScaled, new Point.Float(cluster.x, cluster.y));
         float width  = this.sizeHandler.scaledDistanceX(cluster.x, cluster.maxX);
         float height = this.sizeHandler.scaledDistanceY(cluster.y, cluster.maxY);
@@ -356,7 +356,7 @@ public class ScreenJournalProgressionRenderer {
         RenderSystem.disableBlend();
     }
 
-    private void drawClusterBackground(MatrixStack renderStack, AbstractRenderableTexture tex, float zLevel) {
+    private void drawClusterBackground(PoseStack renderStack, AbstractRenderableTexture tex, float zLevel) {
         float scale = sizeHandler.getScalingFactor();
         float br;
         if (scale > 8.01F) {
@@ -383,7 +383,7 @@ public class ScreenJournalProgressionRenderer {
         RenderSystem.disableBlend();
     }
 
-    private void drawBackground(MatrixStack renderStack, float zLevel) {
+    private void drawBackground(PoseStack renderStack, float zLevel) {
         float br = 0.35F;
         TexturesAS.TEX_GUI_BACKGROUND_DEFAULT.bindTexture();
         RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
@@ -395,7 +395,7 @@ public class ScreenJournalProgressionRenderer {
         });
     }
 
-    private void drawStarParallaxLayers(MatrixStack renderStack, float scalePosX, float scalePosY, float zLevel) {
+    private void drawStarParallaxLayers(PoseStack renderStack, float scalePosX, float scalePosY, float zLevel) {
         TexturesAS.TEX_GUI_STARFIELD_OVERLAY.bindTexture();
         RenderSystem.enableBlend();
         Blending.OVERLAYDARK.apply();
@@ -416,7 +416,7 @@ public class ScreenJournalProgressionRenderer {
         RenderSystem.disableBlend();
     }
 
-    private void drawStarOverlay(IVertexBuilder buf, MatrixStack renderStack, float zLevel, float scalePosX, float scalePosY, float scaleFactor) {
+    private void drawStarOverlay(VertexConsumer buf, PoseStack renderStack, float zLevel, float scalePosX, float scalePosY, float scaleFactor) {
         float scale = this.sizeHandler.getScalingFactor() / 40F;
 
         float x      = this.parentGui.getGuiLeft();

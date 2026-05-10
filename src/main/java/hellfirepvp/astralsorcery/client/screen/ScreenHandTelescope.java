@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.client.screen;
 
 import com.google.common.collect.Lists;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
@@ -87,7 +87,7 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<Constellat
     }
 
     @Override
-    public void render(MatrixStack renderStack, int mouseX, int mouseY, float pTicks) {
+    public void render(PoseStack renderStack, int mouseX, int mouseY, float pTicks) {
         RenderSystem.enableDepthTest();
         super.render(renderStack, mouseX, mouseY, pTicks);
 
@@ -96,7 +96,7 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<Constellat
         this.drawTelescopeCell(renderStack, pTicks);
     }
 
-    private void drawTelescopeCell(MatrixStack renderStack, float pTicks) {
+    private void drawTelescopeCell(PoseStack renderStack, float pTicks) {
         boolean canSeeSky = this.canObserverSeeSky(Minecraft.getInstance().player.getPosition(), 1);
         float pitch = Minecraft.getInstance().player.getPitch(pTicks);
         float angleOpacity = 0F;
@@ -247,7 +247,7 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<Constellat
         }
     }
 
-    private void drawSkyBackground(MatrixStack renderStack, float pTicks, boolean canSeeSky, float angleOpacity) {
+    private void drawSkyBackground(PoseStack renderStack, float pTicks, boolean canSeeSky, float angleOpacity) {
         Tuple<Color, Color> rgbFromTo = SkyScreen.getSkyGradient(canSeeSky, angleOpacity, pTicks);
         RenderingDrawUtils.drawGradientRect(renderStack, this.getGuiZLevel(),
                 this.guiLeft + 4, this.guiTop + 4,

@@ -18,7 +18,7 @@ import net.minecraft.world.entity.boss.dragon.phase.IPhase;
 import net.minecraft.world.entity.boss.dragon.phase.PhaseType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.util.vector.Vector3d;
@@ -48,7 +48,7 @@ public class TimeStopZone {
 
     private boolean active = true;
 
-    private final List<TileEntity> cachedTiles = new LinkedList<>();
+    private final List<BlockEntity> cachedTiles = new LinkedList<>();
 
     TimeStopZone(EntityTargetController ctrl, float range, BlockPos offset, World world, int tickLivespan) {
         this.targetController = ctrl;
@@ -71,9 +71,9 @@ public class TimeStopZone {
             for (int zz = minZ; zz <= maxZ; ++zz) {
                 Chunk ch = world.getChunk(xx, zz);
                 if (!ch.isEmpty()) {
-                    Map<BlockPos, TileEntity> map = ch.getTileEntityMap();
-                    for (Map.Entry<BlockPos, TileEntity> teEntry : map.entrySet()) {
-                        TileEntity te = teEntry.getValue();
+                    Map<BlockPos, BlockEntity> map = ch.getTileEntityMap();
+                    for (Map.Entry<BlockPos, BlockEntity> teEntry : map.entrySet()) {
+                        BlockEntity te = teEntry.getValue();
                         if (TileAccelerationBlacklistRegistry.INSTANCE.canBeInfluenced(te) &&
                                 te.getPos().withinDistance(offset, range) &&
                                 world.tickableTileEntities.contains(te)) {
@@ -86,10 +86,10 @@ public class TimeStopZone {
         }
     }
 
-    private void safeCacheTile(TileEntity te) {
+    private void safeCacheTile(BlockEntity te) {
         if (te == null) return;
 
-        for (TileEntity tile : cachedTiles) {
+        for (BlockEntity tile : cachedTiles) {
             if (tile.getPos().equals(te.getPos())) {
                 return;
             }
@@ -102,10 +102,10 @@ public class TimeStopZone {
     }
 
     void stopEffect() {
-        for (TileEntity cached : cachedTiles) {
+        for (BlockEntity cached : cachedTiles) {
             BlockState state = world.getBlockState(cached.getPos());
             if (state.getBlock().hasTileEntity(state)) {
-                TileEntity te = state.getBlock().createTileEntity(state, world);
+                BlockEntity te = state.getBlock().createTileEntity(state, world);
                 if (te != null && te.getClass().isAssignableFrom(cached.getClass())) {
                     world.tickableTileEntities.add(cached);
                 }

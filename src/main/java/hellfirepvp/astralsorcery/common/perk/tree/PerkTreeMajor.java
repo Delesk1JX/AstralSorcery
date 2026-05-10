@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.perk.tree;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.client.resource.SpriteSheetResource;
 import hellfirepvp.astralsorcery.client.screen.journal.perk.BatchPerkContext;
 import hellfirepvp.astralsorcery.client.screen.journal.perk.PerkRenderGroup;
@@ -49,7 +49,7 @@ public class PerkTreeMajor<T extends MajorPerk> extends PerkTreePoint<T> {
     @Nullable
     @Override
     @OnlyIn(Dist.CLIENT)
-    public Rectangle.Float renderPerkAtBatch(BatchPerkContext drawCtx, MatrixStack renderStack,
+    public Rectangle.Float renderPerkAtBatch(BatchPerkContext drawCtx, PoseStack renderStack,
                                              AllocationStatus status, long spriteOffsetTick, float pTicks,
                                               float x, float y, float zLevel, float scale) {
         SpriteSheetResource tex = status.getPerkTreeHaloSprite();
