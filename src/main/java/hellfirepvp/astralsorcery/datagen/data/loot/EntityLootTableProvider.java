@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.datagen.data.loot;
 import hellfirepvp.astralsorcery.common.base.Mods;
 import net.minecraft.data.loot.EntityLootTables;
 import net.minecraft.world.entity.EntityType;
-import net.neoforged.neoforge.registries.RegistryManager;
+import net.neoforged.neoforge.registries.BuiltInRegistries;
 
 import java.util.stream.Collectors;
 
@@ -31,7 +31,7 @@ public class EntityLootTableProvider extends EntityLootTables {
 
     @Override
     protected Iterable<EntityType<?>> getKnownEntities() {
-        return RegistryManager.ENTITIES.getValues().stream()
+        return BuiltInRegistries.ENTITY_TYPE.gets().stream()
                 .filter(Mods.ASTRAL_SORCERY::owns)
                 .collect(Collectors.toList());
     }

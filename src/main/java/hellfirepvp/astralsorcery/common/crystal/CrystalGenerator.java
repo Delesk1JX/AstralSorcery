@@ -79,7 +79,7 @@ public class CrystalGenerator {
         CrystalAttributes.Builder builder = CrystalAttributes.Builder.newBuilder(false);
         builder.addAll(attr);
         for (int i = 0; i < generate; i++) {
-            Collection<CrystalProperty> remaining = new ArrayList<>(RegistriesAS.REGISTRY_CRYSTAL_PROPERTIES.getValues());
+            Collection<CrystalProperty> remaining = new ArrayList<>(RegistriesAS.REGISTRY_CRYSTAL_PROPERTIES.toList());
             while (!addRandomProperty(builder, remaining, random)) {}
         }
 
@@ -100,7 +100,7 @@ public class CrystalGenerator {
             return MiscUtils.getRandomEntry(USAGE_PROPERTIES, random);
         }
 
-        Collection<CrystalProperty> remaining = new ArrayList<>(RegistriesAS.REGISTRY_CRYSTAL_PROPERTIES.getValues());
+        Collection<CrystalProperty> remaining = new ArrayList<>(RegistriesAS.REGISTRY_CRYSTAL_PROPERTIES.toList());
         remaining.removeAll(USAGE_PROPERTIES);
         remaining.removeAll(PHYSICAL_PROPERTIES);
         return MiscUtils.getRandomEntry(remaining, random);
@@ -139,7 +139,7 @@ public class CrystalGenerator {
             }
         }
 
-        Collection<CrystalProperty> remaining = new ArrayList<>(RegistriesAS.REGISTRY_CRYSTAL_PROPERTIES.getValues());
+        Collection<CrystalProperty> remaining = new ArrayList<>(RegistriesAS.REGISTRY_CRYSTAL_PROPERTIES.toList());
         remaining.removeAll(USAGE_PROPERTIES);
         remaining.removeAll(PHYSICAL_PROPERTIES);
         while (totalAdded < toGenerate) {

@@ -16,7 +16,7 @@ import net.minecraft.item.crafting.CookingRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.neoforge.registries.RegistryManager;
+import net.neoforged.neoforge.registries.BuiltInRegistries;
 
 import javax.annotation.Nullable;
 import java.util.function.Consumer;
@@ -58,11 +58,11 @@ public class ResultCookingRecipeBuilder {
     }
 
     public void build(Consumer<IFinishedRecipe> consumerIn) {
-        this.build(consumerIn, RegistryManager.ITEMS.getKey(this.result.getItem()));
+        this.build(consumerIn, BuiltInRegistries.ITEM.getKey(this.result.getItem()));
     }
 
     public void build(Consumer<IFinishedRecipe> consumerIn, String save) {
-        ResourceLocation itemKey = RegistryManager.ITEMS.getKey(this.result.getItem());
+        ResourceLocation itemKey = BuiltInRegistries.ITEM.getKey(this.result.getItem());
         ResourceLocation saveNameKey = new ResourceLocation(save);
         if (saveNameKey.equals(itemKey)) {
             throw new IllegalStateException("Recipe " + saveNameKey + " should remove its 'save' argument");

@@ -20,7 +20,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.neoforge.registries.RegistryManager;
+import net.neoforged.neoforge.registries.BuiltInRegistries;
 
 import java.awt.*;
 
@@ -41,7 +41,7 @@ public class WellRecipeSerializer extends CustomRecipeSerializer<WellLiquefactio
     public WellLiquefaction read(ResourceLocation recipeId, JsonObject json) {
         Ingredient input = Ingredient.deserialize(JSONUtils.getJsonObject(json, "input"));
         String fluidKey = JSONUtils.getString(json, "output");
-        Fluid fluid = RegistryManager.FLUIDS.getValue(new ResourceLocation(fluidKey));
+        Fluid fluid = BuiltInRegistries.FLUID.get(new ResourceLocation(fluidKey));
         if (fluid == null) {
             throw new JsonSyntaxException("Unknown fluid: " + fluidKey);
         }

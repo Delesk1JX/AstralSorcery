@@ -27,7 +27,7 @@ public class PerkAttributeTypeHelper {
 
     @Nullable
     public static PerkAttributeType findVanillaType(Attribute attribute) {
-        return RegistriesAS.REGISTRY_PERK_ATTRIBUTE_TYPES.getValues().stream()
+        return RegistriesAS.REGISTRY_PERK_ATTRIBUTE_TYPES.toList().stream()
                 .filter(type -> type instanceof VanillaPerkAttributeType)
                 .map(type -> (VanillaPerkAttributeType) type)
                 .filter(type -> type.getAttribute().equals(attribute))

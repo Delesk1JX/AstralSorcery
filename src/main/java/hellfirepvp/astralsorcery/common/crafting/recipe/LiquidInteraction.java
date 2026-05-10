@@ -32,7 +32,7 @@ import net.minecraft.util.JSONUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
-import net.neoforged.neoforge.registries.RegistryManager;
+import net.neoforged.neoforge.registries.BuiltInRegistries;
 
 import javax.annotation.Nullable;
 import java.util.Collection;
@@ -130,7 +130,7 @@ public class LiquidInteraction extends CustomMatcherRecipe {
 
     public static LiquidInteraction read(ResourceLocation recipeId, JsonObject json) {
         String fluidKey1 = JSONUtils.getString(json, "reactant1");
-        Fluid reactant1 = RegistryManager.FLUIDS.getValue(new ResourceLocation(fluidKey1));
+        Fluid reactant1 = BuiltInRegistries.FLUID.get(new ResourceLocation(fluidKey1));
         if (reactant1 == null) {
             throw new JsonSyntaxException("Unknown fluid: " + fluidKey1);
         }
@@ -147,7 +147,7 @@ public class LiquidInteraction extends CustomMatcherRecipe {
         FluidStack r1 = new FluidStack(reactant1, amount1, tag1);
 
         String fluidKey2 = JSONUtils.getString(json, "reactant2");
-        Fluid reactant2 = RegistryManager.FLUIDS.getValue(new ResourceLocation(fluidKey2));
+        Fluid reactant2 = BuiltInRegistries.FLUID.get(new ResourceLocation(fluidKey2));
         if (reactant2 == null) {
             throw new JsonSyntaxException("Unknown fluid: " + fluidKey2);
         }

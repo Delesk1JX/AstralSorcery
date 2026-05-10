@@ -466,7 +466,7 @@ public class TileAttunementAltar extends TileEntityTick {
         }
         ConstellationHandler cstHandler = ctx.getConstellationHandler();
         IConstellation match = null;
-        for (IConstellation cst : RegistriesAS.REGISTRY_CONSTELLATIONS.getValues()) {
+        for (IConstellation cst : RegistriesAS.REGISTRY_CONSTELLATIONS.toList()) {
             boolean isValid = true;
             for (BlockPos expectedRelayPos : getConstellationPositions(cst)) {
                 if (expectedRelayPos.equals(this.getPos())) {

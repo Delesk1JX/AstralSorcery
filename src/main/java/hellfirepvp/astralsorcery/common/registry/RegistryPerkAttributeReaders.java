@@ -19,7 +19,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.RegistryManager;
+import net.neoforged.neoforge.registries.BuiltInRegistries;
 
 import static hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS.*;
 
@@ -38,11 +38,11 @@ public class RegistryPerkAttributeReaders {
         register(new ReaderVanillaAttribute(ATTR_TYPE_MELEE_DAMAGE, ref("generic.attack_damage")).formatAsDecimal());
         register(new ReaderVanillaAttribute(ATTR_TYPE_HEALTH, ref("generic.max_health")));
         register(new ReaderVanillaAttribute(ATTR_TYPE_MOVESPEED, ref("generic.movement_speed")).formatAsDecimal());
-        register(new ReaderVanillaAttribute(ATTR_TYPE_SWIMSPEED, NeoNeoForgeMod.SWIM_SPEED).formatAsDecimal());
+        register(new ReaderVanillaAttribute(ATTR_TYPE_SWIMSPEED, NeoForgeMod.SWIM_SPEED).formatAsDecimal());
         register(new ReaderVanillaAttribute(ATTR_TYPE_ARMOR, ref("generic.armor")));
         register(new ReaderVanillaAttribute(ATTR_TYPE_ARMOR_TOUGHNESS, ref("generic.armor_toughness")));
         register(new ReaderVanillaAttribute(ATTR_TYPE_ATTACK_SPEED, ref("generic.attack_speed")).formatAsDecimal());
-        register(new ReaderVanillaAttribute(ATTR_TYPE_REACH, NeoNeoForgeMod.REACH_DISTANCE).formatAsDecimal());
+        register(new ReaderVanillaAttribute(ATTR_TYPE_REACH, NeoForgeMod.REACH_DISTANCE).formatAsDecimal());
         register(new ReaderVanillaAttribute(ATTR_TYPE_LUCK, ref("generic.luck")).formatAsDecimal());
         register(new ReaderFlatAttribute(ATTR_TYPE_ALIGNMENT_CHARGE_MAXIMUM, 1000F)).formatAsDecimal();
         register(new ReaderFlatAttribute(ATTR_TYPE_MINING_SIZE, 0F));
@@ -67,7 +67,7 @@ public class RegistryPerkAttributeReaders {
     }
 
     private static DeferredHolder<Attribute, ? extends Attribute> ref(String key) {
-        return DeferredHolder.create(RegistryManager.ACTIVE.getRegistry(Attribute.class), ResourceLocation.fromNamespaceAndPath("", key));
+        return DeferredHolder.create(BuiltInRegistries.ATTRIBUTE, ResourceLocation.fromNamespaceAndPath("", key));
     }
 
     private static PerkAttributeReader registerDefaultReader(PerkAttributeType type) {

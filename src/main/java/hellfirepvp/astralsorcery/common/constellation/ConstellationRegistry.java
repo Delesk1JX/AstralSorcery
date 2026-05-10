@@ -69,7 +69,7 @@ public class ConstellationRegistry {
     }
 
     public static Collection<IConstellation> getAllConstellations() {
-        List<IConstellation> all = new ArrayList<>(RegistriesAS.REGISTRY_CONSTELLATIONS.getValues());
+        List<IConstellation> all = new ArrayList<>(RegistriesAS.REGISTRY_CONSTELLATIONS.toList());
         Collections.sort(all);
         return all;
     }

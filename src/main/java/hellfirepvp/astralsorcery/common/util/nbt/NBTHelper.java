@@ -23,10 +23,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.neoforged.neoforge.common.util.Constants;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.registries.RegistryManager;
-import net.neoforged.neoforge.registries.Registry;
-import net.neoforged.neoforge.registries.IRegistryObject;
-import net.neoforged.neoforge.registries.RegistryManager;
+import net.neoforged.neoforge.registries.BuiltInRegistries;
 import org.apache.commons.lang3.ObjectUtils;
 
 import javax.annotation.Nonnull;
@@ -315,9 +312,9 @@ public class NBTHelper {
     @Nullable
     public static <T extends Comparable<T>> BlockState getBlockStateFromTag(CompoundTag cmp, BlockState _default) {
         ResourceLocation key = new ResourceLocation(cmp.getString("registryName"));
-        Block block = RegistryManager.BLOCKS.getValue(key);
+        Block block = BuiltInRegistries.BLOCK.get(key);
         if (block == null || block == Blocks.AIR) return _default;
-        BlockState state = block.getDefaultState();
+        BlockState state = block.defaultBlockState();
         Collection<Property<?>> properties = state.getProperties();
         ListTag list = cmp.getList("properties", Constants.NBT.TAG_COMPOUND);
         for (int i = 0; i < list.size(); i++) {
@@ -329,7 +326,7 @@ public class NBTHelper {
                 try {
                     Optional<T> opt = match.parseValue(valueStr);
                     if (opt.isPresent()) {
-                        state = state.with(match, opt.get());
+                        state = state.setValue(match, opt.get());
                     }
                 } catch (Throwable tr) {} // Thanks Exu2
             }
@@ -351,21 +348,24 @@ public class NBTHelper {
         return null;
     }
 
-    public static <T extends IRegistryObject<T>> void setRegistryEntry(CompoundTag compoundNBT, String tag, T entry) {
-        setResourceLocation(compoundNBT, tag + "_registry", RegistryManager.ACTIVE.getRegistry(entry.getRegistryType()).getRegistryName());
-        setResourceLocation(compoundNBT, tag, entry.getRegistryName());
+    public static <T> void setRegistryEntry(CompoundTag compoundNBT, String tag, T entry, net.minecraft.core.Registry<T> registry) {
+        ResourceLocation registryKey = BuiltInRegistries.REGISTRY_REGISTRY.getResourceKey(registry).map(ResourceLocation::new).orElse(null);
+        if (registryKey != null) {
+            setResourceLocation(compoundNBT, tag + "_registry", registryKey);
+        }
+        ResourceLocation entryKey = registry.getResourceKey(entry).map(ResourceLocation::new).orElse(null);
+        if (entryKey != null) {
+            setResourceLocation(compoundNBT, tag, entryKey);
+        }
     }
 
     @Nullable
-    public static <T extends IRegistryObject<T>> T getRegistryEntry(CompoundTag compoundNBT, String tag) {
+    public static <T> T getRegistryEntry(CompoundTag compoundNBT, String tag, net.minecraft.core.Registry<T> registry) {
         ResourceLocation registryName = getResourceLocation(compoundNBT, tag + "_registry");
         if (registryName != null) {
-            Registry<T> registry = RegistryManager.ACTIVE.getRegistry(registryName);
-            if (registry != null) {
-                ResourceLocation key = getResourceLocation(compoundNBT, tag);
-                if (key != null) {
-                    return registry.getValue(key);
-                }
+            ResourceLocation key = getResourceLocation(compoundNBT, tag);
+            if (key != null) {
+                return registry.get(key);
             }
         }
         return null;

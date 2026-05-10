@@ -19,7 +19,7 @@ import net.minecraft.util.text.LanguageMap;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.registries.RegistryManager;
+import net.neoforged.neoforge.registries.BuiltInRegistries;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -82,7 +82,7 @@ public class AmuletEnchantment extends DynamicEnchantment {
         int level = Math.max(0, cmp.getInt("level"));
         if (type.isEnchantmentSpecific()) {
             ResourceLocation res = new ResourceLocation(cmp.getString("ench"));
-            Enchantment e = RegistryManager.ENCHANTMENTS.getValue(res);
+            Enchantment e = BuiltInRegistries.ENCHANTMENT.get(res);
             if (e != null) {
                 return new AmuletEnchantment(type, e, level);
             }

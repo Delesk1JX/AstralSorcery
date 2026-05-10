@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.data.config.registry.sets;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigDataSet;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.neoforge.registries.RegistryManager;
+import net.neoforged.neoforge.registries.BuiltInRegistries;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -41,7 +41,7 @@ public class FluidRarityEntry implements ConfigDataSet {
     }
 
     public Fluid getFluid() {
-        return RegistryManager.FLUIDS.getValue(this.fluidName);
+        return BuiltInRegistries.FLUID.get(this.fluidName);
     }
 
     public int getRarity() {
@@ -65,7 +65,7 @@ public class FluidRarityEntry implements ConfigDataSet {
             return null;
         }
         ResourceLocation fluidName = new ResourceLocation(split[0]);
-        if (RegistryManager.FLUIDS.getValue(fluidName) == null) {
+        if (BuiltInRegistries.FLUID.get(fluidName) == null) {
             throw new IllegalArgumentException("Unknown Fluid: " + fluidName);
         }
         String strGAmount = split[1];

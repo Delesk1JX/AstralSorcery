@@ -80,7 +80,7 @@ public class ItemMantle extends ArmorItem implements ItemDynamicColor, Constella
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
         if (this.isInGroup(group)) {
             items.add(new ItemStack(this));
-            for (IConstellation cst : RegistriesAS.REGISTRY_CONSTELLATIONS.getValues()) {
+            for (IConstellation cst : RegistriesAS.REGISTRY_CONSTELLATIONS.toList()) {
                 if (!(cst instanceof IWeakConstellation)) {
                     continue;
                 }

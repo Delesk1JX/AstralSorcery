@@ -15,7 +15,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.neoforge.registries.RegistryManager;
+import net.neoforged.neoforge.registries.BuiltInRegistries;
 
 import java.util.List;
 import java.util.UUID;
@@ -38,7 +38,7 @@ public class ProviderHelmetRender implements PatreonEffectProvider<TypeHelmetRen
         }
 
         String[] itemInfo = effectParameters.get(1).split(";");
-        Item item = RegistryManager.ITEMS.getValue(new ResourceLocation(itemInfo[0]));
+        Item item = BuiltInRegistries.ITEM.get(new ResourceLocation(itemInfo[0]));
         if (item == null || item == Items.AIR) {
             throw new IllegalArgumentException("Unknown item: " + itemInfo[0]);
         }

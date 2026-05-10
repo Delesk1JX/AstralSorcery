@@ -16,7 +16,7 @@ import net.minecraft.util.Mth;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.IFluidTank;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
-import net.neoforged.neoforge.registries.RegistryManager;
+import net.neoforged.neoforge.registries.BuiltInRegistries;
 
 import javax.annotation.Nonnull;
 
@@ -207,7 +207,7 @@ public class PrecisionSingleFluidTank implements IFluidTank {
         this.maxCapacity = tag.getInt("capacity");
         this.allowInput = tag.getBoolean("aIn");
         this.allowOutput = tag.getBoolean("aOut");
-        this.fluid = RegistryManager.FLUIDS.getValue(new ResourceLocation(tag.getString("fluid")));
+        this.fluid = BuiltInRegistries.FLUID.get(new ResourceLocation(tag.getString("fluid")));
     }
 
     public static PrecisionSingleFluidTank deserialize(CompoundTag tag) {

@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.neoforge.registries.RegistryManager;
+import net.neoforged.neoforge.registries.BuiltInRegistries;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -65,7 +65,7 @@ public class StorageKey {
     @Nullable
     public static StorageKey deserialize(CompoundTag nbt) {
         ResourceLocation rl = new ResourceLocation(nbt.getString("name"));
-        Item i = RegistryManager.ITEMS.getValue(rl);
+        Item i = BuiltInRegistries.ITEM.get(rl);
         if (i == null || i == Items.AIR) {
             return null;
         }

@@ -21,7 +21,7 @@ import net.minecraft.loot.*;
 import net.minecraft.loot.conditions.BlockStateProperty;
 import net.minecraft.loot.functions.ExplosionDecay;
 import net.minecraft.loot.functions.SetCount;
-import net.neoforged.neoforge.registries.RegistryManager;
+import net.neoforged.neoforge.registries.BuiltInRegistries;
 
 import java.util.stream.Collectors;
 
@@ -211,7 +211,7 @@ public class BlockLootTableProvider extends BlockLootTables {
 
     @Override
     protected Iterable<Block> getKnownBlocks() {
-        return RegistryManager.BLOCKS.getValues().stream()
+        return BuiltInRegistries.BLOCK.gets().stream()
                 .filter(Mods.ASTRAL_SORCERY::owns)
                 .collect(Collectors.toList());
     }
