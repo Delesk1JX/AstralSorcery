@@ -14,9 +14,9 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.*;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootContext;
@@ -26,9 +26,9 @@ import net.minecraft.loot.LootTable;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.Biome;
@@ -63,12 +63,12 @@ public class EntityUtils {
     private static final Random rand = new Random();
 
     @Nullable
-    public static PlayerEntity getPlayer(UUID playerUUID, LogicalSide side) {
+    public static Player getPlayer(UUID playerUUID, LogicalSide side) {
         return side.isClient() ? getPlayerClient(playerUUID) : getPlayerServer(playerUUID);
     }
 
     @Nullable
-    public static PlayerEntity getPlayerServer(UUID playerUUID) {
+    public static Player getPlayerServer(UUID playerUUID) {
         MinecraftServer server = LogicalSidedProvider.INSTANCE.get(LogicalSide.SERVER);
         if (server == null) {
             return null;
@@ -78,7 +78,7 @@ public class EntityUtils {
 
     @Nullable
     @OnlyIn(Dist.CLIENT)
-    public static PlayerEntity getPlayerClient(UUID playerUUID) {
+    public static Player getPlayerClient(UUID playerUUID) {
         ClientWorld clWorld = Minecraft.getInstance().world;
         if (clWorld == null) {
             return null;
@@ -231,9 +231,9 @@ public class EntityUtils {
                 .withNullableParameter(LootParameters.KILLER_ENTITY, srcDeath.getTrueSource())
                 .withNullableParameter(LootParameters.DIRECT_KILLER_ENTITY, srcDeath.getImmediateSource());
         if (lastAttacker != null) {
-            if (lastAttacker instanceof PlayerEntity) {
-                builder.withParameter(LootParameters.LAST_DAMAGE_PLAYER, (PlayerEntity) lastAttacker)
-                        .withLuck(((PlayerEntity) lastAttacker).getLuck());
+            if (lastAttacker instanceof Player) {
+                builder.withParameter(LootParameters.LAST_DAMAGE_PLAYER, (Player) lastAttacker)
+                        .withLuck(((Player) lastAttacker).getLuck());
             }
         }
 

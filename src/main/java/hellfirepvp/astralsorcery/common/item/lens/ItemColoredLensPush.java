@@ -16,11 +16,11 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.PartialEffectExecutor;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.vector.Vector3d;
 import net.minecraft.world.World;
 
 /**
@@ -51,7 +51,7 @@ public class ItemColoredLensPush extends ItemColoredLens {
 
         @Override
         public void entityInBeam(World world, Vector3 origin, Vector3 target, Entity entity, PartialEffectExecutor executor) {
-            if (entity instanceof PlayerEntity && !GeneralConfig.CONFIG.doColoredLensesAffectPlayers.get() && executor.canExecute()) {
+            if (entity instanceof Player && !GeneralConfig.CONFIG.doColoredLensesAffectPlayers.get() && executor.canExecute()) {
                 return;
             }
             Vector3 dir = target.clone().subtract(origin).normalize().multiply(0.4F);

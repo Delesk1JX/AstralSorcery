@@ -8,14 +8,14 @@
 
 package hellfirepvp.astralsorcery.common.container.factory;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.IInventory;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.neoforged.neoforge.fml.network.NetworkHooks;
@@ -45,11 +45,11 @@ public abstract class CustomContainerProvider<C extends Container> implements IN
 
     @Nonnull
     @Override
-    public abstract C createMenu(int id, PlayerInventory plInventory, PlayerEntity player);
+    public abstract C createMenu(int id, IInventory plInventory, Player player);
 
     protected abstract void writeExtraData(PacketBuffer buf);
 
-    public void openFor(ServerPlayerEntity player) {
+    public void openFor(ServerPlayer player) {
         NetworkHooks.openGui(player, this, this::writeExtraData);
     }
 }

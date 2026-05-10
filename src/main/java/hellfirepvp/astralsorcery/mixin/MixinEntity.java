@@ -9,12 +9,12 @@
 package hellfirepvp.astralsorcery.mixin;
 
 import hellfirepvp.astralsorcery.common.util.collision.CollisionHelper;
-import net.minecraft.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.util.ReuseableStream;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.shapes.ISelectionContext;
+import net.minecraft.util.shapes.VoxelShape;
+import net.minecraft.util.vector.Vector3d;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

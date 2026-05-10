@@ -41,16 +41,16 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.RayTraceContext;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.BlockRayTraceResult;
+import net.minecraft.util.RayTraceContext;
 import net.minecraft.util.text.*;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
@@ -93,7 +93,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
     }
 
     @Override
-    public int getHarvestLevel(ItemStack stack, ToolType tool, @Nullable PlayerEntity player, @Nullable BlockState blockState) {
+    public int getHarvestLevel(ItemStack stack, ToolType tool, @Nullable Player player, @Nullable BlockState blockState) {
         return 3;
     }
 
@@ -113,7 +113,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
     }
 
     @Override
-    public float getAlignmentChargeCost(PlayerEntity player, ItemStack stack) {
+    public float getAlignmentChargeCost(Player player, ItemStack stack) {
         BlockRayTraceResult hitResult = MiscUtils.rayTraceLookBlock(player, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.NONE);
         if (hitResult == null) {
             return 0F;
@@ -176,9 +176,9 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
     public ActionResultType onItemUse(ItemUseContext context) {
         World world = context.getWorld();
         ItemStack stack = context.getItem();
-        PlayerEntity player = context.getPlayer();
+        Player player = context.getPlayer();
         BlockPos pos = context.getPos();
-        if (world.isRemote() || !(player instanceof ServerPlayerEntity) || stack.isEmpty()) {
+        if (world.isRemote() || !(player instanceof ServerPlayer) || stack.isEmpty()) {
             return ActionResultType.SUCCESS;
         }
         if (player.isSneaking()) {
@@ -202,7 +202,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
             ItemStack extractable = ItemUtils.copyStackWithSize(availableStack.getA(), 1);
             boolean canExtract = player.isCreative();
             if (!canExtract) {
-                if (ItemUtils.consumeFromPlayerInventory(player, stack, extractable, true)) {
+                if (ItemUtils.consumeFromIInventory(player, stack, extractable, true)) {
                     canExtract = true;
                 }
             }
@@ -211,11 +211,11 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
             }
 
             BlockState prevState = world.getBlockState(placePos);
-            if ((player.isCreative() || ItemUtils.consumeFromPlayerInventory(player, stack, extractable, true)) &&
+            if ((player.isCreative() || ItemUtils.consumeFromIInventory(player, stack, extractable, true)) &&
                     AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, COST_PER_EXCHANGE, false) &&
-                    ((ServerPlayerEntity) player).interactionManager.tryHarvestBlock(placePos) &&
+                    ((ServerPlayer) player).interactionManager.tryHarvestBlock(placePos) &&
                     MiscUtils.canPlayerPlaceBlockPos(player, stateToPlace, placePos, Direction.UP) &&
-                    (player.isCreative() || ItemUtils.consumeFromPlayerInventory(player, stack, extractable, false)) &&
+                    (player.isCreative() || ItemUtils.consumeFromIInventory(player, stack, extractable, false)) &&
                     world.setBlockState(placePos, stateToPlace)) {
                 PktPlayEffect ev = new PktPlayEffect(PktPlayEffect.Type.BLOCK_EFFECT)
                         .addData(buf -> {
@@ -230,7 +230,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, Player playerIn, Hand handIn) {
         ItemStack held = playerIn.getHeldItem(handIn);
         if (playerIn.isSneaking()) {
             SizeMode nextMode = getSizeMode(held).next();
@@ -241,7 +241,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
     }
 
     @Nonnull
-    private Map<BlockPos, BlockState> getPlaceStates(PlayerEntity placer, World world, BlockPos origin, ItemStack refStack) {
+    private Map<BlockPos, BlockState> getPlaceStates(Player placer, World world, BlockPos origin, ItemStack refStack) {
         Map<BlockState, Tuple<ItemStack, Integer>> tplStates = ItemBlockStorage.getInventoryMatching(placer, refStack);
         BlockState atState = world.getBlockState(origin);
         SizeMode mode = getSizeMode(refStack);

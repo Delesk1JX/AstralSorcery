@@ -23,7 +23,7 @@ import hellfirepvp.observerlib.common.util.RegistryUtil;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.player.ClientPlayerEntity;
+import net.minecraft.client.entity.player.ClientPlayer;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.particle.DiggingParticle;
 import net.minecraft.client.particle.ParticleManager;
@@ -36,21 +36,21 @@ import net.minecraft.client.renderer.texture.*;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.item.CompassItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IReorderingProcessor;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.util.math.vector.Matrix4f;
-import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.util.shapes.VoxelShape;
+import net.minecraft.util.shapes.VoxelShapes;
+import net.minecraft.util.vector.Matrix4f;
+import net.minecraft.util.vector.Vector3f;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.ITextProperties;
 import net.minecraft.util.text.LanguageMap;
@@ -149,9 +149,9 @@ public class RenderingUtils {
             double xDist = Math.min(1, maxX - minX);
             double yDist = Math.min(1, maxY - minY);
             double zDist = Math.min(1, maxZ - minZ);
-            double i = Math.max(2, MathHelper.ceil(xDist / 0.25D));
-            double j = Math.max(2, MathHelper.ceil(yDist / 0.25D));
-            double k = Math.max(2, MathHelper.ceil(zDist / 0.25D));
+            double i = Math.max(2, Mth.ceil(xDist / 0.25D));
+            double j = Math.max(2, Mth.ceil(yDist / 0.25D));
+            double k = Math.max(2, Mth.ceil(zDist / 0.25D));
 
             for (int xx = 0; xx < i; ++xx) {
                 for (int yy = 0; yy < j; ++yy) {
@@ -187,16 +187,16 @@ public class RenderingUtils {
         int g = ((rgb >> 8)  & 0xFF);
         int b = ((rgb >> 0)  & 0xFF);
         return new Color(
-                MathHelper.clamp((int) (((float) r) * mul), 0, 255),
-                MathHelper.clamp((int) (((float) g) * mul), 0, 255),
-                MathHelper.clamp((int) (((float) b) * mul), 0, 255));
+                Mth.clamp((int) (((float) r) * mul), 0, 255),
+                Mth.clamp((int) (((float) g) * mul), 0, 255),
+                Mth.clamp((int) (((float) b) * mul), 0, 255));
     }
 
     public static Color clampToColor(int r, int g, int b) {
         return new Color(
-                MathHelper.clamp((int) (((float) r)), 0, 255),
-                MathHelper.clamp((int) (((float) g)), 0, 255),
-                MathHelper.clamp((int) (((float) b)), 0, 255));
+                Mth.clamp((int) (((float) r)), 0, 255),
+                Mth.clamp((int) (((float) g)), 0, 255),
+                Mth.clamp((int) (((float) b)), 0, 255));
     }
 
     public static boolean canEffectExist(EntityComplexFX fx) {
@@ -271,7 +271,7 @@ public class RenderingUtils {
             if (le == null) {
                 le = Minecraft.getInstance().player;
             }
-            float iYaw = RenderingVectorUtils.interpolate(MathHelper.wrapDegrees(le.prevRotationYaw), MathHelper.wrapDegrees(le.rotationYaw), pTicks);
+            float iYaw = RenderingVectorUtils.interpolate(Mth.wrapDegrees(le.prevRotationYaw), Mth.wrapDegrees(le.rotationYaw), pTicks);
             renderStack.rotate(Vector3f.YP.rotationDegrees(-iYaw + 180F));
         }
 
@@ -315,7 +315,7 @@ public class RenderingUtils {
         renderStack.push();
 
         // EntityItemRenderer entity bobbing
-        float sinBobY = MathHelper.sin((ClientScheduler.getClientTick() + pTicks) / 10.0F) * 0.1F + 0.1F;
+        float sinBobY = Mth.sin((ClientScheduler.getClientTick() + pTicks) / 10.0F) * 0.1F + 0.1F;
         renderStack.translate(0, sinBobY, 0);
         float ageRotate = ((ClientScheduler.getClientTick() + pTicks) / 20.0F);
         renderStack.rotate(Vector3f.YP.rotation(ageRotate));
@@ -371,7 +371,7 @@ public class RenderingUtils {
 
         IRenderTypeBuffer.Impl buffer = Minecraft.getInstance().getRenderTypeBuffers().getBufferSource();
         renderItemModelWithColor(stack, ItemCameraTransforms.TransformType.GUI, bakedModel, renderStack, buffer,
-                LightmapUtil.getPackedFullbrightCoords(), OverlayTexture.NO_OVERLAY, overlayColor, MathHelper.clamp(alpha, 0, 255));
+                LightmapUtil.getPackedFullbrightCoords(), OverlayTexture.NO_OVERLAY, overlayColor, Mth.clamp(alpha, 0, 255));
         buffer.finish();
 
         if (!isSideLit) {
@@ -432,7 +432,7 @@ public class RenderingUtils {
             RenderSystem.enableDepthTest();
         }
 
-        ClientPlayerEntity player = Minecraft.getInstance().player;
+        ClientPlayer player = Minecraft.getInstance().player;
         float cooldownPercent = player == null ? 0F : player.getCooldownTracker().getCooldown(stack.getItem(), pTicks);
         if (cooldownPercent > 0F) {
             RenderSystem.disableDepthTest();

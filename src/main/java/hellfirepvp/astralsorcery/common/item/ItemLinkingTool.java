@@ -11,13 +11,13 @@ package hellfirepvp.astralsorcery.common.item;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import hellfirepvp.astralsorcery.common.auxiliary.link.IItemLinkingTool;
 import hellfirepvp.astralsorcery.common.auxiliary.link.LinkHandler;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.Item;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.neoforged.fml.LogicalSide;
 
@@ -37,17 +37,17 @@ public class ItemLinkingTool extends Item implements IItemLinkingTool {
     }
 
     @Override
-    public boolean shouldInterceptBlockInteract(LogicalSide side, PlayerEntity player, Hand hand, BlockPos pos, Direction face) {
+    public boolean shouldInterceptBlockInteract(LogicalSide side, Player player, Hand hand, BlockPos pos, Direction face) {
         return true;
     }
 
     @Override
-    public boolean shouldInterceptEntityInteract(LogicalSide side, PlayerEntity player, Hand hand, Entity interacted) {
-        return interacted instanceof PlayerEntity;
+    public boolean shouldInterceptEntityInteract(LogicalSide side, Player player, Hand hand, Entity interacted) {
+        return interacted instanceof Player;
     }
 
     @Override
-    public boolean doBlockInteract(LogicalSide side, PlayerEntity player, Hand hand, BlockPos pos, Direction face) {
+    public boolean doBlockInteract(LogicalSide side, Player player, Hand hand, BlockPos pos, Direction face) {
         World world = player.getEntityWorld();
         if (!world.isRemote()) {
             LinkHandler.LinkSession session = LinkHandler.getActiveSession(player);
@@ -69,7 +69,7 @@ public class ItemLinkingTool extends Item implements IItemLinkingTool {
     }
 
     @Override
-    public boolean doEntityInteract(LogicalSide side, PlayerEntity player, Hand hand, Entity interacted) {
+    public boolean doEntityInteract(LogicalSide side, Player player, Hand hand, Entity interacted) {
         if (!(interacted instanceof LivingEntity)) {
             return false;
         }

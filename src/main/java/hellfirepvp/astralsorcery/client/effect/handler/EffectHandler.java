@@ -25,7 +25,7 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.order.DependencySorter;
 import hellfirepvp.observerlib.common.util.AlternatingSet;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
+import net.minecraft.world.entity.Entity;
 
 import java.io.IOException;
 import java.util.*;

@@ -25,17 +25,17 @@ import hellfirepvp.astralsorcery.common.util.block.WorldBlockPos;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
 import hellfirepvp.astralsorcery.common.util.tick.TickTokenMap;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Mth;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -93,7 +93,7 @@ public class CEffectArmara extends ConstellationEffectEntityCollect<LivingEntity
                     if (e instanceof ProjectileEntity) {
                         double xRatio = (pos.getX() + 0.5) - e.getPosX();
                         double zRatio = (pos.getZ() + 0.5) - e.getPosZ();
-                        float f = MathHelper.sqrt(xRatio * xRatio + zRatio * zRatio);
+                        float f = Mth.sqrt(xRatio * xRatio + zRatio * zRatio);
                         Vector3 motion = new Vector3(e.getMotion());
                         motion.multiply(new Vector3(0.5, 1, 0.5));
                         motion.subtract(xRatio / f * 0.4, 0, zRatio / f * 0.4);
@@ -129,7 +129,7 @@ public class CEffectArmara extends ConstellationEffectEntityCollect<LivingEntity
                         if (e instanceof ProjectileEntity) {
                             double xRatio = (pos.getX() + 0.5) - e.getPosX();
                             double zRatio = (pos.getZ() + 0.5) - e.getPosZ();
-                            float f = MathHelper.sqrt(xRatio * xRatio + zRatio * zRatio);
+                            float f = Mth.sqrt(xRatio * xRatio + zRatio * zRatio);
                             Vector3 motion = new Vector3(e.getMotion());
                             motion.multiply(new Vector3(0.5, 1, 0.5));
                             motion.subtract(xRatio / f * 0.4, 0, zRatio / f * 0.4);
@@ -145,9 +145,9 @@ public class CEffectArmara extends ConstellationEffectEntityCollect<LivingEntity
         int potionAmplifier = CONFIG.potionAmplifier.get();
         List<LivingEntity> entities = this.collectEntities(world, pos, properties);
         for (LivingEntity entity : entities) {
-            if (entity.isAlive() && (entity instanceof MobEntity || entity instanceof PlayerEntity)) {
+            if (entity.isAlive() && (entity instanceof MobEntity || entity instanceof Player)) {
                 if (properties.isCorrupted()) {
-                    if (entity instanceof PlayerEntity) {
+                    if (entity instanceof Player) {
                         continue;
                     }
 
@@ -160,12 +160,12 @@ public class CEffectArmara extends ConstellationEffectEntityCollect<LivingEntity
                     EntityUtils.applyPotionEffectAtHalf(entity, new EffectInstance(EffectsAS.EFFECT_DROP_MODIFIER, 100, 5));
                 } else {
                     EntityUtils.applyPotionEffectAtHalf(entity, new EffectInstance(Effects.RESISTANCE, 30, Math.min(potionAmplifier, 3), true, true));
-                    if (entity instanceof PlayerEntity) {
+                    if (entity instanceof Player) {
                         EntityUtils.applyPotionEffectAtHalf(entity, new EffectInstance(Effects.ABSORPTION, 30, potionAmplifier, true, false));
                     }
                 }
-                if (entity instanceof PlayerEntity) {
-                    markPlayerAffected((PlayerEntity) entity);
+                if (entity instanceof Player) {
+                    markPlayerAffected((Player) entity);
                 }
             }
         }

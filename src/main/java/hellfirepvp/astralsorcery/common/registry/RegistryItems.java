@@ -37,12 +37,12 @@ import hellfirepvp.astralsorcery.common.util.NameUtil;
 import hellfirepvp.astralsorcery.common.util.dispenser.FluidContainerDispenseBehavior;
 import net.minecraft.block.Block;
 import net.minecraft.block.DispenserBlock;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemModelsProperties;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.ColorHandlerEvent;
@@ -151,10 +151,10 @@ public class RegistryItems {
             return ItemKnowledgeShare.isCreative(stack) || ItemKnowledgeShare.getKnowledge(stack) != null ? 1 : 0;
         });
         ItemModelsProperties.registerProperty(RESONATOR, new ResourceLocation("upgrade"), (stack, world, entity) -> {
-            if (!(entity instanceof PlayerEntity)) {
+            if (!(entity instanceof Player)) {
                 return ItemResonator.ResonatorUpgrade.STARLIGHT.ordinal() / (float) ItemResonator.ResonatorUpgrade.values().length;
             }
-            ItemResonator.ResonatorUpgrade current = ItemResonator.getCurrentUpgrade((PlayerEntity) entity, stack);
+            ItemResonator.ResonatorUpgrade current = ItemResonator.getCurrentUpgrade((Player) entity, stack);
             return current.ordinal() / (float) ItemResonator.ResonatorUpgrade.values().length;
         });
         ItemModelsProperties.registerProperty(Item.getItemFromBlock(BlocksAS.CELESTIAL_CRYSTAL_CLUSTER), new ResourceLocation("stage"), (stack, world, entity) -> {

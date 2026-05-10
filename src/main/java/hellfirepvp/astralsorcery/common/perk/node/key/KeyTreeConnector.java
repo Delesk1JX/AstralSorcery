@@ -14,11 +14,11 @@ import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
 import hellfirepvp.astralsorcery.common.perk.PerkTree;
 import hellfirepvp.astralsorcery.common.perk.node.MajorPerk;
 import hellfirepvp.astralsorcery.common.perk.tree.PerkTreePoint;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.util.Constants;
 import net.neoforged.fml.LogicalSide;
 
@@ -39,7 +39,7 @@ public class KeyTreeConnector extends MajorPerk {
     }
 
     @Override
-    public boolean mayUnlockPerk(PlayerProgress progress, PlayerEntity player) {
+    public boolean mayUnlockPerk(PlayerProgress progress, Player player) {
         if (!progress.getPerkData().hasFreeAllocationPoint(player, getSide(player)) ||
                 !canSee(player, progress)) return false;
         PlayerPerkData perkData = progress.getPerkData();
@@ -63,7 +63,7 @@ public class KeyTreeConnector extends MajorPerk {
     }
 
     @Override
-    public void onUnlockPerkServer(@Nullable PlayerEntity player, PerkAllocationType allocationType, PlayerProgress progress, CompoundTag dataStorage) {
+    public void onUnlockPerkServer(@Nullable Player player, PerkAllocationType allocationType, PlayerProgress progress, CompoundTag dataStorage) {
         super.onUnlockPerkServer(player, allocationType, progress, dataStorage);
 
         if (allocationType == PerkAllocationType.UNLOCKED) {
@@ -81,7 +81,7 @@ public class KeyTreeConnector extends MajorPerk {
     }
 
     @Override
-    public void onRemovePerkServer(PlayerEntity player, PerkAllocationType allocationType, PlayerProgress progress, CompoundTag dataStorage) {
+    public void onRemovePerkServer(Player player, PerkAllocationType allocationType, PlayerProgress progress, CompoundTag dataStorage) {
         super.onRemovePerkServer(player, allocationType, progress, dataStorage);
 
         if (allocationType == PerkAllocationType.UNLOCKED) {

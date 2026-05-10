@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.starlight.transmission;
 
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 
 import javax.annotation.Nullable;
 

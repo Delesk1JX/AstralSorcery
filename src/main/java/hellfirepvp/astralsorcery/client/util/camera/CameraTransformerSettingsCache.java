@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.GameSettings;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.PointOfView;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -38,7 +38,7 @@ public abstract class CameraTransformerSettingsCache implements ICameraTransform
         this.viewBobbing = mc.gameSettings.viewBobbing;
         this.hideGui = mc.gameSettings.hideGUI;
         this.thirdPersonView = mc.gameSettings.getPointOfView();
-        PlayerEntity player = mc.player;
+        Player player = mc.player;
         this.flying = player.abilities.isFlying;
         this.startPosition = new Vector3(player.getPosX(), player.getPosY(), player.getPosZ());
         this.startYaw = player.rotationYaw;
@@ -54,7 +54,7 @@ public abstract class CameraTransformerSettingsCache implements ICameraTransform
             settings.viewBobbing = viewBobbing;
             settings.hideGUI = hideGui;
             settings.setPointOfView(thirdPersonView);
-            PlayerEntity player = Minecraft.getInstance().player;
+            Player player = Minecraft.getInstance().player;
             player.abilities.isFlying = flying;
             player.setPositionAndRotation(startPosition.getX(), startPosition.getY(), startPosition.getZ(), startYaw, startPitch);
             player.setVelocity(0, 0, 0);

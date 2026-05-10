@@ -9,8 +9,8 @@
 package hellfirepvp.astralsorcery.client.util.camera;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
-import net.minecraft.entity.player.PlayerModelPart;
+import net.minecraft.client.entity.player.AbstractClientPlayer;
+import net.minecraft.world.entity.player.PlayerModelPart;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -21,7 +21,7 @@ import net.neoforged.api.distmarker.OnlyIn;
  * Created by HellFirePvP
  * Date: 02.12.2019 / 20:13
  */
-public class EntityClientReplacement extends AbstractClientPlayerEntity {
+public class EntityClientReplacement extends AbstractClientPlayer {
 
     public EntityClientReplacement() {
         super(Minecraft.getInstance().world, Minecraft.getInstance().player.getGameProfile());

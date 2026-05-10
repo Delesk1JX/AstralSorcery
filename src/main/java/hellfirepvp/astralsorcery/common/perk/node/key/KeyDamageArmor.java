@@ -14,12 +14,12 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
 import hellfirepvp.astralsorcery.common.perk.node.KeyPerk;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
@@ -52,8 +52,8 @@ public class KeyDamageArmor extends KeyPerk {
 
     private void onDamage(LivingHurtEvent event) {
         LivingEntity attacked = event.getEntityLiving();
-        if (attacked instanceof PlayerEntity) {
-            PlayerEntity player = (PlayerEntity) attacked;
+        if (attacked instanceof Player) {
+            Player player = (Player) attacked;
             LogicalSide side = this.getSide(player);
             PlayerProgress prog = ResearchHelper.getProgress(player, side);
             if (prog.getPerkData().hasPerkEffect(this)) {
@@ -73,7 +73,7 @@ public class KeyDamageArmor extends KeyPerk {
                         .getModifier(player, prog, PerkAttributeTypesAS.ATTR_TYPE_INC_PERK_EFFECT));
                 event.setAmount(Math.max(event.getAmount() - dmg, 0));
 
-                int armorDmg = MathHelper.ceil(dmg * 1.3F);
+                int armorDmg = Mth.ceil(dmg * 1.3F);
                 for (ItemStack stack : player.getArmorInventoryList()) {
                     stack.damageItem(armorDmg, player, (pl) -> pl.sendBreakAnimation(EquipmentSlotType.MAINHAND));
                 }

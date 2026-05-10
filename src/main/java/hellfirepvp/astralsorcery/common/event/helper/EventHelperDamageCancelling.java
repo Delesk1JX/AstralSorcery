@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.event.helper;
 
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.DamageSource;
 import net.neoforged.neoforge.event.TickEvent;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
@@ -29,7 +29,7 @@ public class EventHelperDamageCancelling {
 
     private EventHelperDamageCancelling() {}
 
-    public static void markInvulnerableToNextDamage(PlayerEntity player, DamageSource source) {
+    public static void markInvulnerableToNextDamage(Player player, DamageSource source) {
         if (player.getEntityWorld().isRemote()) {
             return;
         }
@@ -42,7 +42,7 @@ public class EventHelperDamageCancelling {
     }
 
     private static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-        PlayerEntity player = event.player;
+        Player player = event.player;
         if (event.phase == TickEvent.Phase.END && !player.getEntityWorld().isRemote()) {
             if (player.isOnGround()) {
                 Set<DamageSource> sources = invulnerableTypes.getOrDefault(event.player.getUniqueID(), Collections.emptySet());
@@ -52,10 +52,10 @@ public class EventHelperDamageCancelling {
     }
 
     private static void onLivingDamage(LivingHurtEvent event) {
-        if (!(event.getEntityLiving() instanceof PlayerEntity)) {
+        if (!(event.getEntityLiving() instanceof Player)) {
             return;
         }
-        PlayerEntity player = (PlayerEntity) event.getEntityLiving();
+        Player player = (Player) event.getEntityLiving();
         Set<DamageSource> sources = invulnerableTypes.getOrDefault(player.getUniqueID(), Collections.emptySet());
         if (sources.remove(event.getSource())) {
             if (sources.isEmpty()) {

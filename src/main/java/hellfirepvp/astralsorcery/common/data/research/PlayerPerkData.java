@@ -16,13 +16,13 @@ import hellfirepvp.astralsorcery.common.perk.PerkTree;
 import hellfirepvp.astralsorcery.common.util.MapStream;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.util.Constants;
@@ -206,13 +206,13 @@ public class PlayerPerkData {
         return Collections.unmodifiableCollection(this.freePointTokens);
     }
 
-    public int getAvailablePerkPoints(PlayerEntity player, LogicalSide side) {
+    public int getAvailablePerkPoints(Player player, LogicalSide side) {
         int allocatedPerks = (int) this.perks.values().stream().filter(perk -> perk.isAllocated(PerkAllocationType.UNLOCKED)).count() - 1;
         int allocationLevels = PerkLevelManager.getLevel(getPerkExp(), player, side);
         return (allocationLevels + this.freePointTokens.size()) - allocatedPerks;
     }
 
-    public boolean hasFreeAllocationPoint(PlayerEntity player, LogicalSide side) {
+    public boolean hasFreeAllocationPoint(Player player, LogicalSide side) {
         return getAvailablePerkPoints(player, side) > 0;
     }
 
@@ -220,22 +220,22 @@ public class PlayerPerkData {
         return perkExp;
     }
 
-    public int getPerkLevel(PlayerEntity player, LogicalSide side) {
+    public int getPerkLevel(Player player, LogicalSide side) {
         return PerkLevelManager.getLevel(getPerkExp(), player, side);
     }
 
-    public float getPercentToNextLevel(PlayerEntity player, LogicalSide side) {
+    public float getPercentToNextLevel(Player player, LogicalSide side) {
         return PerkLevelManager.getNextLevelPercent(getPerkExp(), player, side);
     }
 
-    protected void modifyExp(double exp, PlayerEntity player) {
+    protected void modifyExp(double exp, Player player) {
         int currLevel = PerkLevelManager.getLevel(getPerkExp(), player, LogicalSide.SERVER);
         if (exp >= 0 && currLevel >= PerkLevelManager.getLevelCap(LogicalSide.SERVER, player)) {
             return;
         }
         long expThisLevel = PerkLevelManager.getExpForLevel(currLevel, player, LogicalSide.SERVER);
         long expNextLevel = PerkLevelManager.getExpForLevel(currLevel + 1, player, LogicalSide.SERVER);
-        long cap = MathHelper.lfloor(((float) (expNextLevel - expThisLevel)) * 0.08F);
+        long cap = Mth.lfloor(((float) (expNextLevel - expThisLevel)) * 0.08F);
         if (exp > cap) {
             exp = cap;
         }

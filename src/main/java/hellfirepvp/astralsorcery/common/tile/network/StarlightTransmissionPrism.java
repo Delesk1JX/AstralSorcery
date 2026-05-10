@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.starlight.transmission.base.crystal.Crys
 import hellfirepvp.astralsorcery.common.starlight.transmission.registry.TransmissionProvider;
 import hellfirepvp.astralsorcery.common.tile.TilePrism;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 
 /**
  * This class is part of the Astral Sorcery Mod

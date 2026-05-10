@@ -17,12 +17,12 @@ import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
 import hellfirepvp.astralsorcery.common.util.block.BlockDiscoverer;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.tileentity.MobSpawnerTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.NeoForgeConfigSpec;
@@ -50,7 +50,7 @@ public class MantleEffectLucerna extends MantleEffect {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    protected void tickClient(PlayerEntity player) {
+    protected void tickClient(Player player) {
         super.tickClient(player);
 
         this.playCapeSparkles(player, 0.15F);
@@ -67,7 +67,7 @@ public class MantleEffectLucerna extends MantleEffect {
     }
 
     @OnlyIn(Dist.CLIENT)
-    private void playBlockHighlight(PlayerEntity player, Color highlightColor, Predicate<TileEntity> test) {
+    private void playBlockHighlight(Player player, Color highlightColor, Predicate<TileEntity> test) {
         float chance = 0.9F;
         Set<BlockPos> positions = BlockDiscoverer.searchForTileEntitiesAround(player.getEntityWorld(), player.getPosition(), CONFIG.range.get(), test);
         for (BlockPos pos : positions) {
@@ -102,7 +102,7 @@ public class MantleEffectLucerna extends MantleEffect {
     }
 
     @OnlyIn(Dist.CLIENT)
-    private void playEntityHighlight(PlayerEntity player) {
+    private void playEntityHighlight(Player player) {
         AxisAlignedBB box = new AxisAlignedBB(0, 0, 0, 0, 0, 0)
                 .grow(CONFIG.range.get())
                 .offset(player.getPosition());

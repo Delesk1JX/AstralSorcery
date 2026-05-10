@@ -16,9 +16,9 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.block.BlockUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.ToolType;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.eventbus.api.IEventBus;
@@ -50,7 +50,7 @@ public class KeyDigTypes extends KeyPerk {
             return;
         }
 
-        PlayerEntity player = event.getPlayer();
+        Player player = event.getPlayer();
         LogicalSide side = this.getSide(player);
         PlayerProgress prog = ResearchHelper.getProgress(player, side);
         if (prog.getPerkData().hasPerkEffect(this)) {
@@ -65,7 +65,7 @@ public class KeyDigTypes extends KeyPerk {
     }
 
     private void onHarvestSpeed(PlayerEvent.BreakSpeed event) {
-        PlayerEntity player = event.getPlayer();
+        Player player = event.getPlayer();
         LogicalSide side = this.getSide(player);
         PlayerProgress prog = ResearchHelper.getProgress(player, side);
         if (prog.getPerkData().hasPerkEffect(this)) {

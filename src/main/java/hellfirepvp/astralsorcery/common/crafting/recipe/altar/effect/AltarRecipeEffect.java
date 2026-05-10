@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.Objects;
 import java.util.Random;
@@ -29,7 +29,7 @@ import java.util.Random;
  * Created by HellFirePvP
  * Date: 23.09.2019 / 17:46
  */
-public abstract class AltarRecipeEffect extends RegistryObject<AltarRecipeEffect> {
+public abstract class AltarRecipeEffect extends DeferredHolder<AltarRecipeEffect> {
 
     protected static final int INDEX_NOISE_PLANE_LAYER1 = 0;
     protected static final int INDEX_NOISE_PLANE_LAYER2 = 1;

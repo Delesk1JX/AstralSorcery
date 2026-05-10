@@ -19,10 +19,10 @@ import hellfirepvp.astralsorcery.common.perk.node.KeyPerk;
 import hellfirepvp.astralsorcery.common.perk.tick.PlayerTickPerk;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.block.Block;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 import net.neoforged.neoforge.common.util.Constants;
@@ -48,7 +48,7 @@ public class KeyStoneEnrichment extends KeyPerk implements PlayerTickPerk {
     }
 
     @Override
-    public void onPlayerTick(PlayerEntity player, LogicalSide side) {
+    public void onPlayerTick(Player player, LogicalSide side) {
         if (side.isServer()) {
             PlayerProgress prog = ResearchHelper.getProgress(player, side);
             float modChance = (float) CONFIG.chanceToEnrich.get();

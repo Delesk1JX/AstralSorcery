@@ -16,10 +16,10 @@ import hellfirepvp.astralsorcery.common.util.PlayerReference;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.object.ObjectReference;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.RegistryKey;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.neoforged.fml.LogicalSide;
 
@@ -74,7 +74,7 @@ public class GatewayUI {
         }
         RegistryKey<World> dimType = world.getDimensionKey();
         GatewayUI ui = new GatewayUI(dimType, tilePos, renderPos, sphereRadius);
-        PlayerEntity thisPlayer = Minecraft.getInstance().player;
+        Player thisPlayer = Minecraft.getInstance().player;
 
         for (GatewayCache.GatewayNode node : CelestialGatewayHandler.INSTANCE.getGatewaysForWorld(world, LogicalSide.CLIENT)) {
             if (!node.hasAccess(thisPlayer)) {

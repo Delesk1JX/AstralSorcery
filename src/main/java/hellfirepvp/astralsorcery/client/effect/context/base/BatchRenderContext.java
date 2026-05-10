@@ -24,7 +24,7 @@ import hellfirepvp.astralsorcery.common.util.order.OrderSortable;
 import hellfirepvp.observerlib.client.util.RenderTypeDecorator;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.vector.Vector3d;
 import org.lwjgl.opengl.GL11;
 
 import java.util.List;

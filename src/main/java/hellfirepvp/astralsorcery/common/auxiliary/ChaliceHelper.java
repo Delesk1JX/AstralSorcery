@@ -15,8 +15,8 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.RaytraceAssist;
 import hellfirepvp.astralsorcery.common.util.block.BlockDiscoverer;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Mth;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
@@ -40,7 +40,7 @@ public class ChaliceHelper {
     public static List<BlockPos> findNearbyChalices(World world, BlockPos origin, int distance) {
         Vector3 thisVector = new Vector3(origin).add(0.5, 1.5, 0.5);
 
-        List<BlockPos> foundChalices = BlockDiscoverer.searchForBlocksAround(world, origin, MathHelper.clamp(distance, 0, 16),
+        List<BlockPos> foundChalices = BlockDiscoverer.searchForBlocksAround(world, origin, Mth.clamp(distance, 0, 16),
                 (w, pos, state) -> !pos.equals(origin) &&
                         state.getBlock() instanceof BlockChalice &&
                         !w.isBlockPowered(pos) &&

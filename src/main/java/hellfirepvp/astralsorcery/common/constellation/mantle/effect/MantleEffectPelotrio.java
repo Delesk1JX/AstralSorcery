@@ -15,10 +15,10 @@ import hellfirepvp.astralsorcery.common.item.armor.ItemMantle;
 import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -61,11 +61,11 @@ public class MantleEffectPelotrio extends MantleEffect {
 
         LivingEntity attacked = event.getEntityLiving();
         Entity attacker = event.getSource().getTrueSource();
-        if (attacker instanceof PlayerEntity) {
-            if (attacked instanceof ServerPlayerEntity && MiscUtils.isPlayerFakeMP((ServerPlayerEntity) attacked)) {
+        if (attacker instanceof Player) {
+            if (attacked instanceof ServerPlayer && MiscUtils.isPlayerFakeMP((ServerPlayer) attacked)) {
                 return;
             }
-            PlayerEntity player = (PlayerEntity) attacker;
+            Player player = (Player) attacker;
 
             if (ItemMantle.getEffect(player, ConstellationsAS.pelotrio) != null && rand.nextFloat() < CONFIG.chanceSpawnSword.get()) {
                 if (AlignmentChargeHandler.INSTANCE.hasCharge(player, LogicalSide.SERVER, CONFIG.chargeCostPerSword.get())) {
@@ -83,8 +83,8 @@ public class MantleEffectPelotrio extends MantleEffect {
             return;
         }
 
-        PlayerEntity player = event.getPlayer();
-        if ((!(player instanceof ServerPlayerEntity) || !MiscUtils.isPlayerFakeMP((ServerPlayerEntity) player)) &&
+        Player player = event.getPlayer();
+        if ((!(player instanceof ServerPlayer) || !MiscUtils.isPlayerFakeMP((ServerPlayer) player)) &&
                 ItemMantle.getEffect(player, ConstellationsAS.pelotrio) != null) {
 
             BlockState state = event.getState();
@@ -120,7 +120,7 @@ public class MantleEffectPelotrio extends MantleEffect {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    protected void tickClient(PlayerEntity player) {
+    protected void tickClient(Player player) {
         super.tickClient(player);
 
         this.playCapeSparkles(player, 0.15F);

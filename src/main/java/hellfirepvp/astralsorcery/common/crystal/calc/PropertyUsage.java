@@ -8,11 +8,11 @@
 
 package hellfirepvp.astralsorcery.common.crystal.calc;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.neoforged.neoforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.Objects;
 
@@ -23,7 +23,7 @@ import java.util.Objects;
  * Created by HellFirePvP
  * Date: 30.01.2019 / 08:14
  */
-public class PropertyUsage extends RegistryObject<PropertyUsage> {
+public class PropertyUsage extends DeferredHolder<PropertyUsage> {
 
     public PropertyUsage(ResourceLocation registryName) {
         setRegistryName(registryName);

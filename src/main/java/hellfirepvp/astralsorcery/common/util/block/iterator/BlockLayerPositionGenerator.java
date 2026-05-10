@@ -12,8 +12,8 @@ import hellfirepvp.astralsorcery.common.util.block.BlockGeometry;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Mth;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -35,7 +35,7 @@ public class BlockLayerPositionGenerator extends BlockPositionGenerator {
 
     @Override
     protected BlockPos genNext(Vector3 offset, double radius) {
-        int size = MathHelper.floor(radius);
+        int size = Mth.floor(radius);
 
         while (currentPositions.isEmpty()) {
             generatePositions(size);

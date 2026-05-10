@@ -14,12 +14,12 @@ import com.google.gson.JsonObject;
 import hellfirepvp.astralsorcery.common.lib.LootAS;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.*;
 import net.minecraft.potion.Effects;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.loot.conditions.ILootCondition;
 
 import java.util.Random;
@@ -54,8 +54,8 @@ public class LinearLuckBonus extends LootFunction {
         if (tool != null) {
             int luck = 0;
             Entity e = lootContext.get(LootParameters.THIS_ENTITY);
-            if (e instanceof PlayerEntity && ((PlayerEntity) e).isPotionActive(Effects.LUCK)) {
-                luck += ((PlayerEntity) e).getActivePotionEffect(Effects.LUCK).getAmplifier() + 1;
+            if (e instanceof Player && ((Player) e).isPotionActive(Effects.LUCK)) {
+                luck += ((Player) e).getActivePotionEffect(Effects.LUCK).getAmplifier() + 1;
             }
             luck += EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, tool);
             luck += EnchantmentHelper.getEnchantmentLevel(Enchantments.LOOTING, tool);

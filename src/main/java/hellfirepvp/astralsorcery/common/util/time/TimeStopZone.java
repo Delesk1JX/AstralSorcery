@@ -11,17 +11,17 @@ package hellfirepvp.astralsorcery.common.util.time;
 import hellfirepvp.astralsorcery.common.data.config.registry.TileAccelerationBlacklistRegistry;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.boss.dragon.EnderDragonEntity;
-import net.minecraft.entity.boss.dragon.phase.IPhase;
-import net.minecraft.entity.boss.dragon.phase.PhaseType;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.boss.dragon.EnderDragonEntity;
+import net.minecraft.world.entity.boss.dragon.phase.IPhase;
+import net.minecraft.world.entity.boss.dragon.phase.PhaseType;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.util.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 
@@ -62,10 +62,10 @@ public class TimeStopZone {
         if (!active) return;
         this.ticksToLive--;
 
-        int minX = MathHelper.floor((offset.getX() - range) / 16.0D);
-        int maxX = MathHelper.floor((offset.getX() + range) / 16.0D);
-        int minZ = MathHelper.floor((offset.getZ() - range) / 16.0D);
-        int maxZ = MathHelper.floor((offset.getZ() + range) / 16.0D);
+        int minX = Mth.floor((offset.getX() - range) / 16.0D);
+        int maxX = Mth.floor((offset.getX() + range) / 16.0D);
+        int minZ = Mth.floor((offset.getZ() - range) / 16.0D);
+        int maxZ = Mth.floor((offset.getZ() + range) / 16.0D);
 
         for (int xx = minX; xx <= maxX; ++xx) {
             for (int zz = minZ; zz <= maxZ; ++zz) {
@@ -177,7 +177,7 @@ public class TimeStopZone {
             if (hasOwner && e.getEntityId() == ownerId) {
                 return false;
             }
-            return targetPlayers || !(e instanceof PlayerEntity);
+            return targetPlayers || !(e instanceof Player);
         }
 
         public static EntityTargetController allExcept(Entity entity) {

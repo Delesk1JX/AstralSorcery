@@ -25,13 +25,13 @@ import hellfirepvp.astralsorcery.common.lib.ItemsAS;
 import hellfirepvp.astralsorcery.common.tile.TileCelestialCrystals;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Mth;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -88,7 +88,7 @@ public class FormCelestialCrystalClusterRecipe extends LiquidStarlightRecipe {
 
     @Override
     public void doServerCraftTick(ItemEntity trigger, World world, BlockPos at) {
-        Random r = new Random(MathHelper.getPositionRandom(at));
+        Random r = new Random(Mth.getPositionRandom(at));
         if (!world.isRemote() && getAndIncrementCraftingTick(trigger) > 50 + r.nextInt(20)) {
             ItemStack crystalFound;
             if (consumeItemEntityInBlock(world, at, ItemsAS.STARDUST) != null &&

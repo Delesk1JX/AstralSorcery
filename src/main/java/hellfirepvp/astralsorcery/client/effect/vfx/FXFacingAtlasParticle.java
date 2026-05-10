@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.client.effect.context.base.BatchRenderContext;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 
 import java.awt.*;
 
@@ -46,7 +46,7 @@ public class FXFacingAtlasParticle extends EntityVisualFX {
     }
 
     public <T extends FXFacingAtlasParticle> T selectFraction(float percentage) {
-        percentage = MathHelper.clamp(percentage, 0F, 1F);
+        percentage = Mth.clamp(percentage, 0F, 1F);
         this.minU += this.uLength * (1F - percentage) * rand.nextFloat();
         this.minV += this.vLength * (1F - percentage) * rand.nextFloat();
         this.uLength *= percentage;

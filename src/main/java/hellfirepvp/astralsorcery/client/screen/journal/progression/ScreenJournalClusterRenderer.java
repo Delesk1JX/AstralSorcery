@@ -29,8 +29,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Matrix4f;
+import net.minecraft.util.Mth;
+import net.minecraft.util.vector.Matrix4f;
 import net.minecraft.util.text.ITextProperties;
 import org.lwjgl.opengl.GL11;
 
@@ -174,7 +174,7 @@ public class ScreenJournalClusterRenderer {
         alpha = progressionSizeHandler.getScalingFactor(); //between 0.25F and ~1F
         alpha -= 0.25F;
         alpha /= 0.75F;
-        alpha = MathHelper.clamp(alpha, 0F, 1F);
+        alpha = Mth.clamp(alpha, 0F, 1F);
 
         Map<ResearchNode, Point.Float> displayPositions = new HashMap<>();
         for (ResearchNode node : progression.getResearchNodes()) {
@@ -199,7 +199,7 @@ public class ScreenJournalClusterRenderer {
 
         node.getBackgroundTexture().resolve().bindTexture();
         if (progressionSizeHandler.getScalingFactor() >= 0.7) {
-            clickableNodes.put(new Rectangle(MathHelper.floor(offsetX), MathHelper.floor(offsetY), MathHelper.floor(zoomedWH), MathHelper.floor(zoomedWH)), node);
+            clickableNodes.put(new Rectangle(Mth.floor(offsetX), Mth.floor(offsetY), Mth.floor(zoomedWH), Mth.floor(zoomedWH)), node);
         }
         drawResearchItemBackground(zoomedWH, offsetX, offsetY, zLevel);
 
@@ -215,7 +215,7 @@ public class ScreenJournalClusterRenderer {
 
                 RenderHelper.enableStandardItemLighting();
                 RenderingUtils.renderTranslucentItemStackModelGUI(node.getRenderItemStack(ClientScheduler.getClientTick()),
-                        renderStack, Color.WHITE, Blending.DEFAULT, MathHelper.clamp((int) (alpha * 255F), 0, 255));
+                        renderStack, Color.WHITE, Blending.DEFAULT, Mth.clamp((int) (alpha * 255F), 0, 255));
                 RenderHelper.disableStandardItemLighting();
 
                 renderStack.pop();

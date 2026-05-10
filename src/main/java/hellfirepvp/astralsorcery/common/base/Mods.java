@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.base;
 
 import hellfirepvp.astralsorcery.AstralSorcery;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.fml.InterModComms;
 import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.registries.IRegistryObject;
@@ -108,14 +108,14 @@ public enum Mods {
         //    case GALACTICRAFT_CORE:
         //        if (gcPlayerClass == null) {
         //            try {
-        //                gcPlayerClass = Class.forName("micdoodle8.mods.galacticraft.core.entities.player.GCServerPlayerEntity");
+        //                gcPlayerClass = Class.forName("micdoodle8.mods.galacticraft.core.entities.player.GCServerPlayer");
         //            } catch (Exception ignored) {}
         //        }
         //        return gcPlayerClass;
         //    case UNIVERSALREMOTE:
         //        if (urPlayerClass == null) {
         //            try {
-        //                urPlayerClass = Class.forName("clayborn.universalremote.hooks.entity.HookedServerPlayerEntity");
+        //                urPlayerClass = Class.forName("clayborn.universalremote.hooks.entity.HookedServerPlayer");
         //            } catch (Exception ignored) {}
         //        }
         //        return urPlayerClass;

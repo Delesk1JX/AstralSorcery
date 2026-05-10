@@ -18,15 +18,15 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.fml.network.NetworkHooks;
 
@@ -67,8 +67,8 @@ public class EntityCrystal extends EntityItemExplosionResistant implements Inter
 
     @Override
     public boolean hitByEntity(Entity entity) {
-        if (!this.getEntityWorld().isRemote() && entity instanceof ServerPlayerEntity) {
-            ItemStack held = ((ServerPlayerEntity) entity).getHeldItem(Hand.MAIN_HAND);
+        if (!this.getEntityWorld().isRemote() && entity instanceof ServerPlayer) {
+            ItemStack held = ((ServerPlayer) entity).getHeldItem(Hand.MAIN_HAND);
             if (!held.isEmpty() && held.getItem() instanceof ItemChisel) {
 
                 ItemStack thisStack = this.getItem();
@@ -84,7 +84,7 @@ public class EntityCrystal extends EntityItemExplosionResistant implements Inter
                             doDamage = this.splitCrystal(thisAttributes, fortuneLevel);
                         }
                         if (doDamage || rand.nextFloat() < 0.35F) {
-                            held.damageItem(1, (PlayerEntity) entity, (player) -> player.sendBreakAnimation(Hand.MAIN_HAND));
+                            held.damageItem(1, (Player) entity, (player) -> player.sendBreakAnimation(Hand.MAIN_HAND));
                         }
                     }
                 }
@@ -102,7 +102,7 @@ public class EntityCrystal extends EntityItemExplosionResistant implements Inter
         if (created.isEmpty()) {
             return false;
         }
-        int maxSplit = MathHelper.ceil(thisAttributes.getTotalTierLevel() / 2F);
+        int maxSplit = Mth.ceil(thisAttributes.getTotalTierLevel() / 2F);
         if (maxSplit >= thisAttributes.getTotalTierLevel()) {
             return false;
         }

@@ -15,8 +15,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
-import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.neoforged.neoforge.registries.RegistryManager;
 
 import javax.annotation.Nullable;
 import java.util.function.Consumer;
@@ -49,7 +49,7 @@ public class StoneCuttingRecipeBuilder {
     }
 
     public void build(Consumer<IFinishedRecipe> consumerIn) {
-        this.build(consumerIn, ForgeRegistries.ITEMS.getKey(this.output.asItem()));
+        this.build(consumerIn, RegistryManager.ITEMS.getKey(this.output.asItem()));
     }
 
     public void build(Consumer<IFinishedRecipe> consumerIn, ResourceLocation id) {
@@ -74,7 +74,7 @@ public class StoneCuttingRecipeBuilder {
         @Override
         public void serialize(JsonObject jsonObject) {
             jsonObject.add("ingredient", this.ingredient.serialize());
-            jsonObject.addProperty("result", ForgeRegistries.ITEMS.getKey(this.result).toString());
+            jsonObject.addProperty("result", RegistryManager.ITEMS.getKey(this.result).toString());
             jsonObject.addProperty("count", this.count);
         }
 

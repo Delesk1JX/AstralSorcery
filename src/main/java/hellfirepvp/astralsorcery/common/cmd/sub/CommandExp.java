@@ -18,7 +18,7 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.command.arguments.EntitySelector;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 
@@ -45,7 +45,7 @@ public class CommandExp implements Command<CommandSource> {
 
     @Override
     public int run(CommandContext<CommandSource> context) throws CommandSyntaxException {
-        PlayerEntity player = (PlayerEntity) context.getArgument("player", EntitySelector.class).selectOne(context.getSource());
+        Player player = (Player) context.getArgument("player", EntitySelector.class).selectOne(context.getSource());
         long exp = LongArgumentType.getLong(context, "exp");
 
         if (ResearchManager.setExp(player, exp)) {

@@ -28,12 +28,12 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
@@ -80,8 +80,8 @@ public class KeyLightningArc extends KeyPerk {
         }
 
         DamageSource source = event.getSource();
-        if (source.getTrueSource() != null && source.getTrueSource() instanceof PlayerEntity) {
-            PlayerEntity player = (PlayerEntity) source.getTrueSource();
+        if (source.getTrueSource() != null && source.getTrueSource() instanceof Player) {
+            Player player = (Player) source.getTrueSource();
             LogicalSide side = this.getSide(player);
             PlayerProgress prog = ResearchHelper.getProgress(player, side);
             if (side.isServer() && prog.getPerkData().hasPerkEffect(this) && prog.doPerkAbilities()) {
@@ -140,14 +140,14 @@ public class KeyLightningArc extends KeyPerk {
     static class RepetitiveArcEffect {
 
         private final World world;
-        private final PlayerEntity player;
+        private final Player player;
         private final int entityStartId;
         private final float damage;
         private final double distance;
 
         private int count;
 
-        public RepetitiveArcEffect(World world, PlayerEntity player, int count, int entityStartId, float damage, double distance) {
+        public RepetitiveArcEffect(World world, Player player, int count, int entityStartId, float damage, double distance) {
             this.world = world;
             this.player = player;
             this.count = count;

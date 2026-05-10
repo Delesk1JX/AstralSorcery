@@ -14,9 +14,9 @@ import hellfirepvp.astralsorcery.common.perk.PerkEffectHelper;
 import hellfirepvp.astralsorcery.common.perk.PerkTree;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
@@ -103,7 +103,7 @@ public class PktSyncPerkActivity extends ASPacket<PktSyncPerkActivity> {
             @OnlyIn(Dist.CLIENT)
             public void handleClient(PktSyncPerkActivity packet, NetworkEvent.Context context) {
                 context.enqueueWork(() -> {
-                    PlayerEntity player = Minecraft.getInstance().player;
+                    Player player = Minecraft.getInstance().player;
                     if (player == null) {
                         return;
                     }

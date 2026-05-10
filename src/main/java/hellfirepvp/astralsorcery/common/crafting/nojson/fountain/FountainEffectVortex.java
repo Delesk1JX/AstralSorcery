@@ -26,13 +26,13 @@ import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.common.tile.TileFountain;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.boss.dragon.EnderDragonEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.boss.dragon.EnderDragonEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.util.vector.Vector3d;
 import net.minecraft.world.GameRules;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -89,7 +89,7 @@ public class FountainEffectVortex extends FountainEffect<VortexContext> {
         float density = 0;
         List<LivingEntity> captured = fountain.getWorld().getEntitiesWithinAABB(LivingEntity.class, captureBox);
         for (LivingEntity le : captured) {
-            if (le == null || !le.isAlive() || le instanceof PlayerEntity || !TechnicalEntityRegistry.INSTANCE.canAffect(le)) {
+            if (le == null || !le.isAlive() || le instanceof Player || !TechnicalEntityRegistry.INSTANCE.canAffect(le)) {
                 continue;
             }
             float entitySize = le.getHeight() * le.getWidth() * le.getWidth();
@@ -116,13 +116,13 @@ public class FountainEffectVortex extends FountainEffect<VortexContext> {
         }
 
         float upkeep = Math.max(0, density / boxCapacity);
-        fountain.consumeLiquidStarlight(MathHelper.ceil(upkeep / 3F));
+        fountain.consumeLiquidStarlight(Mth.ceil(upkeep / 3F));
 
 
         List<LivingEntity> pulling = fountain.getWorld().getEntitiesWithinAABB(LivingEntity.class, pullBox);
         pulling.removeAll(captured);
         for (LivingEntity le : pulling) {
-            if (le == null || !le.isAlive() || le instanceof PlayerEntity || !TechnicalEntityRegistry.INSTANCE.canAffect(le)) {
+            if (le == null || !le.isAlive() || le instanceof Player || !TechnicalEntityRegistry.INSTANCE.canAffect(le)) {
                 continue;
             }
             EventHelperEntityFreeze.freeze(le);

@@ -12,8 +12,8 @@ import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesMisc;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Mth;
 import net.minecraft.world.IWorldReader;
 import net.neoforged.neoforge.common.ToolType;
 
@@ -34,6 +34,6 @@ public class BlockRockCrystalOre extends Block implements CustomItemBlock {
 
     @Override
     public int getExpDrop(BlockState state, IWorldReader world, BlockPos pos, int fortune, int silktouch) {
-        return fortune * MathHelper.nextInt(RANDOM, 8, 14);
+        return fortune * Mth.nextInt(RANDOM, 8, 14);
     }
 }

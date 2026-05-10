@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
 import hellfirepvp.astralsorcery.common.util.time.TimeStopController;
 import hellfirepvp.astralsorcery.common.util.time.TimeStopZone;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.NeoForgeConfigSpec;
@@ -51,7 +51,7 @@ public class MantleEffectHorologium extends MantleEffect {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    protected void tickClient(PlayerEntity player) {
+    protected void tickClient(Player player) {
         super.tickClient(player);
 
         if (!player.getCooldownTracker().hasCooldown(ItemsAS.MANTLE)) {
@@ -63,10 +63,10 @@ public class MantleEffectHorologium extends MantleEffect {
 
     private void onHurt(LivingHurtEvent event) {
         if (ItemMantle.getEffect(event.getEntityLiving(), ConstellationsAS.horologium) != null &&
-                event.getEntityLiving() instanceof PlayerEntity &&
+                event.getEntityLiving() instanceof Player &&
                 !event.getEntityLiving().getEntityWorld().isRemote() &&
                 !event.getSource().isFireDamage()) {
-            PlayerEntity player = (PlayerEntity) event.getEntityLiving();
+            Player player = (Player) event.getEntityLiving();
 
             if (!player.getCooldownTracker().hasCooldown(ItemsAS.MANTLE) &&
                     AlignmentChargeHandler.INSTANCE.hasCharge(player, LogicalSide.SERVER, CONFIG.chargeCostPerFreeze.get())) {

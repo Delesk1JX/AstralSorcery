@@ -19,7 +19,7 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchManager;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -46,7 +46,7 @@ public class CommandConstellation {
                         .then(Commands.argument("constellation", ArgumentTypeConstellation.any())
                                 .then(Commands.argument("player", EntityArgument.player())
                                         .executes(ctx -> {
-                                            PlayerEntity target = EntityArgument.getPlayer(ctx, "player");
+                                            Player target = EntityArgument.getPlayer(ctx, "player");
                                             IConstellation cst = ctx.getArgument("constellation", IConstellation.class);
                                             return markConstellationMemorized(ctx.getSource(), target, cst);
                                         }))
@@ -58,7 +58,7 @@ public class CommandConstellation {
                         .then(Commands.argument("constellation", ArgumentTypeConstellation.any())
                                 .then(Commands.argument("player", EntityArgument.player())
                                         .executes(ctx -> {
-                                            PlayerEntity target = EntityArgument.getPlayer(ctx, "player");
+                                            Player target = EntityArgument.getPlayer(ctx, "player");
                                             IConstellation cst = ctx.getArgument("constellation", IConstellation.class);
                                             return discoverConstellation(ctx.getSource(), target, cst);
                                         }))
@@ -68,8 +68,8 @@ public class CommandConstellation {
                                 })));
     }
 
-    private static int markConstellationMemorized(CommandSource src, @Nullable PlayerEntity target, IConstellation cst) throws CommandSyntaxException {
-        PlayerEntity source = src.asPlayer();
+    private static int markConstellationMemorized(CommandSource src, @Nullable Player target, IConstellation cst) throws CommandSyntaxException {
+        Player source = src.asPlayer();
         target = target != null ? target : source;
         ITextComponent targetName = target.getDisplayName();
         PlayerProgress progress = ResearchHelper.getProgress(target, LogicalSide.SERVER);
@@ -89,8 +89,8 @@ public class CommandConstellation {
         }
     }
 
-    private static int discoverConstellation(CommandSource src, @Nullable PlayerEntity target, IConstellation cst) throws CommandSyntaxException {
-        PlayerEntity source = src.asPlayer();
+    private static int discoverConstellation(CommandSource src, @Nullable Player target, IConstellation cst) throws CommandSyntaxException {
+        Player source = src.asPlayer();
         target = target != null ? target : source;
         ITextComponent targetName = target.getDisplayName();
         PlayerProgress progress = ResearchHelper.getProgress(target, LogicalSide.SERVER);

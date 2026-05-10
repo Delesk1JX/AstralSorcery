@@ -18,7 +18,7 @@ import hellfirepvp.astralsorcery.common.perk.modifier.AttributeModifierPerk;
 import hellfirepvp.astralsorcery.common.perk.type.ModifierType;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.enchantment.Enchantments;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.function.Consumer;
 

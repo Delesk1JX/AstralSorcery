@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.CommonProxy;
 import hellfirepvp.astralsorcery.common.auxiliary.charge.AlignmentChargeHandler;
 import hellfirepvp.astralsorcery.common.entity.technical.EntityGrapplingHook;
 import hellfirepvp.astralsorcery.common.item.base.AlignmentChargeConsumer;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -39,12 +39,12 @@ public class ItemGrappleWand extends Item implements AlignmentChargeConsumer {
     }
 
     @Override
-    public float getAlignmentChargeCost(PlayerEntity player, ItemStack stack) {
+    public float getAlignmentChargeCost(Player player, ItemStack stack) {
         return player.getCooldownTracker().hasCooldown(this) ? 0 : COST_PER_GRAPPLE;
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, Player playerIn, Hand handIn) {
         ItemStack held = playerIn.getHeldItem(handIn);
         if (worldIn.isRemote() || held.isEmpty()) {
             return new ActionResult<>(ActionResultType.SUCCESS, held);

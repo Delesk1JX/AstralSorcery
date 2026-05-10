@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.perk.source.provider.equipment;
 
 import hellfirepvp.astralsorcery.common.perk.modifier.PerkAttributeModifier;
 import hellfirepvp.astralsorcery.common.perk.source.AttributeModifierProvider;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.neoforged.fml.LogicalSide;
 
@@ -28,10 +28,10 @@ import java.util.Collections;
 public interface EquipmentAttributeModifierProvider extends AttributeModifierProvider {
 
     @Override
-    default Collection<PerkAttributeModifier> getModifiers(PlayerEntity player, LogicalSide side, boolean ignoreRequirements) {
+    default Collection<PerkAttributeModifier> getModifiers(Player player, LogicalSide side, boolean ignoreRequirements) {
         return Collections.emptyList();
     }
 
-    Collection<PerkAttributeModifier> getModifiers(ItemStack stack, PlayerEntity player, LogicalSide side, boolean ignoreRequirements);
+    Collection<PerkAttributeModifier> getModifiers(ItemStack stack, Player player, LogicalSide side, boolean ignoreRequirements);
 
 }

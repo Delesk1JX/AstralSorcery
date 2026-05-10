@@ -18,10 +18,10 @@ import hellfirepvp.astralsorcery.common.perk.modifier.AttributeModifierThorns;
 import hellfirepvp.astralsorcery.common.perk.modifier.PerkAttributeModifier;
 import hellfirepvp.astralsorcery.common.util.DamageUtil;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.neoforge.eventbus.api.IEventBus;
 import net.neoforged.fml.LogicalSide;
@@ -54,10 +54,10 @@ public class AttributeTypeThorns extends PerkAttributeType {
     }
 
     private void onThronsReflect(LivingHurtEvent event) {
-        if (!(event.getEntityLiving() instanceof PlayerEntity)) {
+        if (!(event.getEntityLiving() instanceof Player)) {
             return;
         }
-        PlayerEntity player = (PlayerEntity) event.getEntityLiving();
+        Player player = (Player) event.getEntityLiving();
         LogicalSide side = this.getSide(player);
         if (!hasTypeApplied(player, side)) {
             return;
@@ -72,7 +72,7 @@ public class AttributeTypeThorns extends PerkAttributeType {
         if (reflectAmount <= 0) {
             return;
         }
-        reflectAmount = MathHelper.clamp(reflectAmount, 0F, 1F);
+        reflectAmount = Mth.clamp(reflectAmount, 0F, 1F);
 
         DamageSource source = event.getSource();
         LivingEntity reflectTarget = null;

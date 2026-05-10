@@ -15,11 +15,11 @@ import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.crafting.IIngredientSerializer;
 import net.neoforged.neoforge.fluids.FluidAttributes;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.RegistryManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,21 +46,21 @@ public class FluidIngredientSerializer implements IIngredientSerializer<FluidIng
                 if (e.isJsonObject()) {
                     JsonObject object = e.getAsJsonObject();
                     ResourceLocation key = new ResourceLocation(JSONUtils.getString(object, "fluid"));
-                    if (!ForgeRegistries.FLUIDS.containsKey(key)) {
+                    if (!RegistryManager.FLUIDS.containsKey(key)) {
                         throw new JsonSyntaxException("Unknown fluid '" + key + "'");
                     }
                     int amount = FluidAttributes.BUCKET_VOLUME;
                     if (object.has("amount")) {
                         amount = JSONUtils.getInt(object, "amount");
                     }
-                    Fluid fluid = ForgeRegistries.FLUIDS.getValue(key);
+                    Fluid fluid = RegistryManager.FLUIDS.getValue(key);
                     foundFluids.add(new FluidStack(fluid, amount));
                 } else if (e.isJsonPrimitive()) {
                     ResourceLocation key = new ResourceLocation(JSONUtils.getString(element, "fluid"));
-                    if (!ForgeRegistries.FLUIDS.containsKey(key)) {
+                    if (!RegistryManager.FLUIDS.containsKey(key)) {
                         throw new JsonSyntaxException("Unknown fluid '" + key + "'");
                     }
-                    Fluid fluid = ForgeRegistries.FLUIDS.getValue(key);
+                    Fluid fluid = RegistryManager.FLUIDS.getValue(key);
                     foundFluids.add(new FluidStack(fluid, FluidAttributes.BUCKET_VOLUME));
                 } else {
                     throw new JsonSyntaxException("Value at key 'fluid' has to be a fluid name or an array of fluid names or objects containing 'fluid'.");
@@ -68,14 +68,14 @@ public class FluidIngredientSerializer implements IIngredientSerializer<FluidIng
             });
         } else if (element.isJsonPrimitive()) {
             ResourceLocation key = new ResourceLocation(JSONUtils.getString(element, "fluid"));
-            if (!ForgeRegistries.FLUIDS.containsKey(key)) {
+            if (!RegistryManager.FLUIDS.containsKey(key)) {
                 throw new JsonSyntaxException("Unknown fluid '" + key + "'");
             }
             int amount = FluidAttributes.BUCKET_VOLUME;
             if (json.has("amount")) {
                 amount = JSONUtils.getInt(json, "amount");
             }
-            Fluid fluid = ForgeRegistries.FLUIDS.getValue(key);
+            Fluid fluid = RegistryManager.FLUIDS.getValue(key);
             foundFluids.add(new FluidStack(fluid, amount));
         } else {
             throw new JsonSyntaxException("Value at key 'fluid' has to be a fluid name or an array of fluid names or objects containing 'fluid'.");

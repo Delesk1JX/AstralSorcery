@@ -18,11 +18,11 @@ import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
 import hellfirepvp.astralsorcery.common.perk.node.RootPerk;
 import hellfirepvp.astralsorcery.common.perk.tick.PlayerTickPerk;
 import hellfirepvp.astralsorcery.common.util.DiminishingMultiplier;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.stats.StatisticsManager;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
@@ -54,7 +54,7 @@ public class RootVicio extends RootPerk implements PlayerTickPerk {
     }
 
     @Override
-    public void removePerkLogic(PlayerEntity player, LogicalSide side) {
+    public void removePerkLogic(Player player, LogicalSide side) {
         super.removePerkLogic(player, side);
 
         if (side.isServer()) {
@@ -76,13 +76,13 @@ public class RootVicio extends RootPerk implements PlayerTickPerk {
     }
 
     @Override
-    public void onPlayerTick(PlayerEntity player, LogicalSide side) {
-        if (!side.isServer() || !(player instanceof ServerPlayerEntity)) {
+    public void onPlayerTick(Player player, LogicalSide side) {
+        if (!side.isServer() || !(player instanceof ServerPlayer)) {
             return;
         }
 
         UUID uuid = player.getUniqueID();
-        ServerPlayerEntity sPlayer = (ServerPlayerEntity) player;
+        ServerPlayer sPlayer = (ServerPlayer) player;
         PlayerProgress prog = ResearchHelper.getProgress(player, side);
 
         StatisticsManager mgr = sPlayer.getStats();

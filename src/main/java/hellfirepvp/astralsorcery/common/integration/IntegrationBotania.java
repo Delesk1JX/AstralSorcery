@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.integration;
 
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraft.block.Block;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -30,7 +30,7 @@ import java.util.*;
  */
 public class IntegrationBotania {
     
-    public static Collection<ItemStack> findProvidersProvidingItems(PlayerEntity player, ItemStack match) {
+    public static Collection<ItemStack> findProvidersProvidingItems(Player player, ItemStack match) {
         List<ItemStack> stacksOut = new LinkedList<>();
 
         // Botania can only supply blocks, so let's filter that out first.
@@ -58,7 +58,7 @@ public class IntegrationBotania {
         return stacksOut;
     }
     
-    public static boolean consumeFromPlayerInventory(PlayerEntity player, ItemStack requestingItemStack, ItemStack toConsume, boolean simulate) {
+    public static boolean consumeFromIInventory(Player player, ItemStack requestingItemStack, ItemStack toConsume, boolean simulate) {
         // Botania can only supply blocks, so let's filter that out first.
         if (!(toConsume.getItem() instanceof BlockItem)) {
             return false;

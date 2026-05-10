@@ -16,7 +16,7 @@ import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.VineBlock;
 import net.minecraft.block.trees.Tree;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.neoforged.neoforge.common.util.BlockSnapshot;

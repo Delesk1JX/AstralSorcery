@@ -11,8 +11,8 @@ package hellfirepvp.astralsorcery.common.data.config.registry.sets;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigDataSet;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.util.ResourceLocation;
-import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.neoforged.neoforge.registries.RegistryManager;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -69,7 +69,7 @@ public class AmuletEnchantmentEntry implements ConfigDataSet, Comparable<AmuletE
             return null;
         }
 
-        Enchantment ench = ForgeRegistries.ENCHANTMENTS.getValue(registryName);
+        Enchantment ench = RegistryManager.ENCHANTMENTS.getValue(registryName);
         if (ench == null) {
             AstralSorcery.log.info("Ignoring whitelist entry " + str + " for amulet enchantments - Enchantment does not exist!");
             return null;

@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.lib.SoundsAS;
 import hellfirepvp.astralsorcery.common.tile.TileLens;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
@@ -45,7 +45,7 @@ public abstract class ItemColoredLens extends Item implements ItemDynamicColor {
 
     @Override
     public ActionResultType onItemUse(ItemUseContext ctx) {
-        PlayerEntity player = ctx.getPlayer();
+        Player player = ctx.getPlayer();
         World world = ctx.getWorld();
         if (!world.isRemote() && player != null) {
             TileLens lens = MiscUtils.getTileAt(world, ctx.getPos(), TileLens.class, false);

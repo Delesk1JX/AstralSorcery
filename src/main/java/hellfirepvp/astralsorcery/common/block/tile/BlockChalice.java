@@ -15,18 +15,18 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ContainerBlock;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.BlockRayTraceResult;
+import net.minecraft.util.Mth;
+import net.minecraft.util.shapes.ISelectionContext;
+import net.minecraft.util.shapes.VoxelShape;
+import net.minecraft.util.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.common.ToolType;
@@ -61,7 +61,7 @@ public class BlockChalice extends ContainerBlock implements CustomItemBlock {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult brtr) {
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, Player player, Hand hand, BlockRayTraceResult brtr) {
         ItemStack interact = player.getHeldItem(hand);
         TileChalice tc = MiscUtils.getTileAt(world, pos, TileChalice.class, true);
         if (tc != null) {
@@ -106,7 +106,7 @@ public class BlockChalice extends ContainerBlock implements CustomItemBlock {
     public int getComparatorInputOverride(BlockState state, World world, BlockPos pos) {
         TileChalice tc = MiscUtils.getTileAt(world, pos, TileChalice.class, false);
         if (tc != null) {
-            return MathHelper.ceil(tc.getTank().getPercentageFilled() * 15F);
+            return Mth.ceil(tc.getTank().getPercentageFilled() * 15F);
         }
         return 0;
     }

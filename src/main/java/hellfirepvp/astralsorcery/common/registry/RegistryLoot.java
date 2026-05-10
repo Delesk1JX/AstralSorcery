@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.common.loot.global.LootModifierScorchingHeat;
 import net.minecraft.loot.LootFunction;
 import net.minecraft.loot.LootFunctionType;
 import net.minecraft.loot.functions.LootFunctionManager;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.loot.GlobalLootModifierSerializer;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 

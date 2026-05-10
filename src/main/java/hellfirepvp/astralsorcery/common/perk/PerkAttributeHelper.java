@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.perk;
 
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
@@ -33,7 +33,7 @@ public class PerkAttributeHelper {
     private PerkAttributeHelper() {}
 
     @Nonnull
-    public static PerkAttributeMap getOrCreateMap(PlayerEntity player, LogicalSide dist) {
+    public static PerkAttributeMap getOrCreateMap(Player player, LogicalSide dist) {
         if (dist.isClient()) {
             return playerPerkAttributesClient.computeIfAbsent(player.getUniqueID(), (uuid) -> new PerkAttributeMap(dist));
         } else {

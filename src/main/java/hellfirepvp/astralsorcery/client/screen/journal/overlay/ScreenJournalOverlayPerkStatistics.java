@@ -28,9 +28,9 @@ import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import hellfirepvp.astralsorcery.common.perk.type.vanilla.VanillaPerkAttributeType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.IReorderingProcessor;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.minecraft.util.text.ITextProperties;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -70,7 +70,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay {
 
         statistics.clear();
 
-        PlayerEntity player = Minecraft.getInstance().player;
+        Player player = Minecraft.getInstance().player;
         PerkAttributeInterpreter interpreter = PerkAttributeInterpreter.defaultInterpreter(player);
 
         RegistriesAS.REGISTRY_PERK_ATTRIBUTE_TYPES.getValues()
@@ -112,7 +112,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay {
 
     private void drawHeader(MatrixStack renderStack) {
         ITextProperties title = new TranslationTextComponent("perk.reader.astralsorcery.gui");
-        List<IReorderingProcessor> lines = font.trimStringToWidth(title, MathHelper.floor(HEADER_WIDTH / 1.4F));
+        List<IReorderingProcessor> lines = font.trimStringToWidth(title, Mth.floor(HEADER_WIDTH / 1.4F));
         int step = 14;
         float offsetTop = guiTop + 15 - (lines.size() * step) / 2F;
 
@@ -143,7 +143,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay {
         int line = 0;
         for (PerkStatistic stat : statistics) {
             ITextProperties statName = new TranslationTextComponent(stat.getUnlocPerkTypeName());
-            List<IReorderingProcessor> statistics = font.trimStringToWidth(statName, MathHelper.floor(HEADER_WIDTH / 1.5F));
+            List<IReorderingProcessor> statistics = font.trimStringToWidth(statName, Mth.floor(HEADER_WIDTH / 1.5F));
             for (int i = 0; i < statistics.size(); i++) {
                 IReorderingProcessor statistic = statistics.get(i);
 
@@ -192,7 +192,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay {
             return;
         }
 
-        PlayerEntity player = Minecraft.getInstance().player;
+        Player player = Minecraft.getInstance().player;
         PerkAttributeMap attrMap = PerkAttributeHelper.getOrCreateMap(player, LogicalSide.CLIENT);
 
         List<ITextProperties> information = Lists.newArrayList();

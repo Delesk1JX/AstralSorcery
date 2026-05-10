@@ -8,8 +8,8 @@
 
 package hellfirepvp.astralsorcery.common.util;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.server.ServerWorld;
 

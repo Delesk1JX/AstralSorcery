@@ -12,10 +12,10 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.event.AttributeEvent;
 import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.neoforged.neoforge.event.entity.living.PotionEvent;
 import net.neoforged.neoforge.eventbus.api.IEventBus;
 import net.neoforged.fml.LogicalSide;
@@ -40,20 +40,20 @@ public class AttributeTypePotionDuration extends PerkAttributeType {
     }
 
     private void onEffect(PotionEvent.PotionAddedEvent event) {
-        if (event.getEntityLiving() instanceof PlayerEntity) {
+        if (event.getEntityLiving() instanceof Player) {
             if (event.getOldPotionEffect() == null) {
                 //New effect
-                modifyPotionDuration((PlayerEntity) event.getEntityLiving(), event.getPotionEffect(), event.getPotionEffect());
+                modifyPotionDuration((Player) event.getEntityLiving(), event.getPotionEffect(), event.getPotionEffect());
             } else {
                 //Existing effect
                 if (new EffectInstance(event.getOldPotionEffect()).combine(event.getPotionEffect())) {
-                    modifyPotionDuration((PlayerEntity) event.getEntityLiving(), event.getPotionEffect(), event.getOldPotionEffect());
+                    modifyPotionDuration((Player) event.getEntityLiving(), event.getPotionEffect(), event.getOldPotionEffect());
                 }
             }
         }
     }
 
-    private void modifyPotionDuration(PlayerEntity player, EffectInstance newSetEffect, EffectInstance existingEffect) {
+    private void modifyPotionDuration(Player player, EffectInstance newSetEffect, EffectInstance existingEffect) {
         if (player.getEntityWorld().isRemote() ||
                 newSetEffect.getPotion().getEffectType().equals(EffectType.HARMFUL) ||
                 existingEffect.getAmplifier() < newSetEffect.getAmplifier()) {
@@ -66,7 +66,7 @@ public class AttributeTypePotionDuration extends PerkAttributeType {
         newDuration = AttributeEvent.postProcessModded(player, this, newDuration);
 
         if (newSetEffect.getDuration() < newDuration) {
-            newSetEffect.duration = MathHelper.floor(newDuration);
+            newSetEffect.duration = Mth.floor(newDuration);
         }
     }
 

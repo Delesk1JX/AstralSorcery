@@ -30,17 +30,17 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.monster.PhantomEntity;
-import net.minecraft.entity.passive.BatEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.monster.PhantomEntity;
+import net.minecraft.world.entity.passive.BatEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.vector.Vector3d;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
@@ -271,14 +271,14 @@ public class EntityFlare extends FlyingEntity {
 
     @Override
     public void applyEntityCollision(Entity entityIn) {
-        if(!(entityIn instanceof PlayerEntity)) {
+        if(!(entityIn instanceof Player)) {
             super.applyEntityCollision(entityIn);
         }
     }
 
     @Override
     protected void collideWithEntity(Entity entityIn) {
-        if(!(entityIn instanceof PlayerEntity)) {
+        if(!(entityIn instanceof Player)) {
             super.applyEntityCollision(entityIn);
         }
     }

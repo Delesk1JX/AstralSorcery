@@ -19,11 +19,11 @@ import hellfirepvp.astralsorcery.common.event.helper.EventHelperDamageCancelling
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ThrowableEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.ThrowableEntity;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.datasync.DataParameter;
@@ -31,8 +31,8 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.*;
+import net.minecraft.util.vector.Vector3d;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -110,7 +110,7 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
     public float despawnPercentage(float partial) {
         float p = despawning - (1 - partial);
         p /= 10;
-        return MathHelper.clamp(p, 0, 1);
+        return Mth.clamp(p, 0, 1);
     }
 
     public boolean isDespawning() {
@@ -201,8 +201,8 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
                     }
                     thrower.setMotion(motion);
 
-                    if (thrower instanceof PlayerEntity) {
-                        EventHelperDamageCancelling.markInvulnerableToNextDamage((PlayerEntity) thrower, DamageSource.FALL);
+                    if (thrower instanceof Player) {
+                        EventHelperDamageCancelling.markInvulnerableToNextDamage((Player) thrower, DamageSource.FALL);
                     }
 
                     int roughDst = (int) (dist / 2.5D);
@@ -292,9 +292,9 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
         int iter = (int) lineLength;
         for (int xx = 1; xx < iter - 1; xx++) {
             float dist = xx * (lineLength / iter);
-            double dx = (interpThrower.getX() - interpHook.getX())                            / iter * xx + MathHelper.sin(dist / 10.0F) * pullFactor;
-            double dy = (interpThrower.getY() - interpHook.getY() + thrower.getHeight() / 2F) / iter * xx + MathHelper.sin(dist / 7.0F)  * pullFactor;
-            double dz = (interpThrower.getZ() - interpHook.getZ())                            / iter * xx + MathHelper.sin(dist / 2.0F)  * pullFactor;
+            double dx = (interpThrower.getX() - interpHook.getX())                            / iter * xx + Mth.sin(dist / 10.0F) * pullFactor;
+            double dy = (interpThrower.getY() - interpHook.getY() + thrower.getHeight() / 2F) / iter * xx + Mth.sin(dist / 7.0F)  * pullFactor;
+            double dz = (interpThrower.getZ() - interpHook.getZ())                            / iter * xx + Mth.sin(dist / 2.0F)  * pullFactor;
             list.add(new Vector3(dx, dy, dz));
         }
         list.add(to.clone());

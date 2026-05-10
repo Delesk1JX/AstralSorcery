@@ -13,10 +13,10 @@ import hellfirepvp.astralsorcery.common.lib.ContainerTypesAS;
 import hellfirepvp.astralsorcery.common.tile.TileObservatory;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.IInventory;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.neoforged.neoforge.fml.network.IContainerFactory;
 
 import javax.annotation.Nonnull;
@@ -44,13 +44,13 @@ public class ContainerObservatoryProvider extends CustomContainerProvider<Contai
 
     @Nonnull
     @Override
-    public ContainerObservatory createMenu(int windowId, PlayerInventory plInventory, PlayerEntity player) {
+    public ContainerObservatory createMenu(int windowId, IInventory plInventory, Player player) {
         return new ContainerObservatory(this.observatory, windowId);
     }
 
-    private static ContainerObservatory createFromPacket(int windowId, PlayerInventory plInventory, PacketBuffer data) {
+    private static ContainerObservatory createFromPacket(int windowId, IInventory plInventory, PacketBuffer data) {
         BlockPos at = ByteBufUtils.readPos(data);
-        PlayerEntity player = plInventory.player;
+        Player player = plInventory.player;
         TileObservatory observatory = MiscUtils.getTileAt(player.getEntityWorld(), at, TileObservatory.class, true);
         return new ContainerObservatory(observatory, windowId);
     }
@@ -58,7 +58,7 @@ public class ContainerObservatoryProvider extends CustomContainerProvider<Contai
     public static class Factory implements IContainerFactory<ContainerObservatory> {
 
         @Override
-        public ContainerObservatory create(int windowId, PlayerInventory inv, PacketBuffer data) {
+        public ContainerObservatory create(int windowId, IInventory inv, PacketBuffer data) {
             return ContainerObservatoryProvider.createFromPacket(windowId, inv, data);
         }
     }

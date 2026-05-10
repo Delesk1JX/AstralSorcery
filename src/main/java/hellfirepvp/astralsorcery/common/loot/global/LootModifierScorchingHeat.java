@@ -13,18 +13,18 @@ import hellfirepvp.astralsorcery.common.util.RecipeHelper;
 import hellfirepvp.astralsorcery.common.util.loot.LootUtil;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.ExperienceOrbEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.ExperienceOrbEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootParameterSets;
 import net.minecraft.loot.LootParameters;
 import net.minecraft.loot.conditions.ILootCondition;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.vector.Vector3d;
 import net.minecraft.world.server.ServerWorld;
 import net.neoforged.neoforge.common.loot.GlobalLootModifierSerializer;
 import net.neoforged.neoforge.common.loot.LootModifier;
@@ -60,8 +60,8 @@ public class LootModifierScorchingHeat extends LootModifier {
                     Optional<Tuple<ItemStack, Float>> furnaceResult = RecipeHelper.findSmeltingResult(context.getWorld(), stack);
                     if (context.has(LootParameters.THIS_ENTITY)) {
                         Entity e = context.get(LootParameters.THIS_ENTITY);
-                        if (e instanceof PlayerEntity) {
-                            furnaceResult.ifPresent(result -> BasicEventHooks.firePlayerSmeltedEvent((PlayerEntity) e, result.getA()));
+                        if (e instanceof Player) {
+                            furnaceResult.ifPresent(result -> BasicEventHooks.firePlayerSmeltedEvent((Player) e, result.getA()));
                         }
                     }
                     furnaceResult.ifPresent(result -> {

@@ -11,11 +11,11 @@ package hellfirepvp.astralsorcery.common.perk.reader;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeMap;
 import hellfirepvp.astralsorcery.common.perk.type.ModifierType;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.text.DecimalFormat;
 
@@ -26,7 +26,7 @@ import java.text.DecimalFormat;
  * Created by HellFirePvP
  * Date: 09.08.2019 / 07:47
  */
-public abstract class PerkAttributeReader extends RegistryObject<PerkAttributeReader> {
+public abstract class PerkAttributeReader extends DeferredHolder<PerkAttributeReader> {
 
     private static final DecimalFormat percentageFormat = new DecimalFormat("0.00");
 
@@ -62,7 +62,7 @@ public abstract class PerkAttributeReader extends RegistryObject<PerkAttributeRe
      * @return A string representation of the attribute's value
      */
     @OnlyIn(Dist.CLIENT)
-    public abstract PerkStatistic getStatistics(PerkAttributeMap statMap, PlayerEntity player);
+    public abstract PerkStatistic getStatistics(PerkAttributeMap statMap, Player player);
 
     /**
      * Return the default value the perks or other things scale off of.
@@ -72,7 +72,7 @@ public abstract class PerkAttributeReader extends RegistryObject<PerkAttributeRe
      * @param side The current side
      * @return The default value as it would be without any modifiers.
      */
-    public abstract double getDefaultValue(PerkAttributeMap statMap, PlayerEntity player, LogicalSide side);
+    public abstract double getDefaultValue(PerkAttributeMap statMap, Player player, LogicalSide side);
 
     /**
      * Return the modifier (multiplier or addition) for the given mode.
@@ -83,7 +83,7 @@ public abstract class PerkAttributeReader extends RegistryObject<PerkAttributeRe
      * @param mode The mode to get the modifier for
      * @return The currently applying modifier value for the given mode.
      */
-    public abstract double getModifierValueForMode(PerkAttributeMap statMap, PlayerEntity player, LogicalSide side,
+    public abstract double getModifierValueForMode(PerkAttributeMap statMap, Player player, LogicalSide side,
                                                    ModifierType mode);
 
     public static String formatDecimal(double decimal) {

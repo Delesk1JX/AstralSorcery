@@ -20,10 +20,10 @@ import hellfirepvp.astralsorcery.common.perk.source.ModifierSource;
 import hellfirepvp.astralsorcery.common.perk.tree.PerkTreePoint;
 import hellfirepvp.astralsorcery.common.util.CacheEventBus;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -122,30 +122,30 @@ public class AbstractPerk implements ModifierSource {
     }
 
     @Override
-    public boolean canApplySource(PlayerEntity player, LogicalSide dist) {
+    public boolean canApplySource(Player player, LogicalSide dist) {
         return !ResearchHelper.getProgress(player, dist).getPerkData().isPerkSealed(this);
     }
 
     @Override
-    public final void onApply(PlayerEntity player, LogicalSide dist) {
+    public final void onApply(Player player, LogicalSide dist) {
         this.applyPerkLogic(player, dist);
     }
 
     @Override
-    public final void onRemove(PlayerEntity player, LogicalSide dist) {
+    public final void onRemove(Player player, LogicalSide dist) {
         this.removePerkLogic(player, dist);
     }
 
-    protected void applyPerkLogic(PlayerEntity player, LogicalSide dist) {}
+    protected void applyPerkLogic(Player player, LogicalSide dist) {}
 
-    protected void removePerkLogic(PlayerEntity player, LogicalSide dist) {}
+    protected void removePerkLogic(Player player, LogicalSide dist) {}
 
     protected LogicalSide getSide(Entity entity) {
         return entity.getEntityWorld().isRemote() ? LogicalSide.CLIENT : LogicalSide.SERVER;
     }
 
     @Nullable
-    public CompoundTag getPerkData(PlayerEntity player, LogicalSide dist) {
+    public CompoundTag getPerkData(Player player, LogicalSide dist) {
         return ResearchHelper.getProgress(player, dist).getPerkData().getData(this);
     }
 
@@ -154,14 +154,14 @@ public class AbstractPerk implements ModifierSource {
      * You may use the CompoundTag to save data to remove it again later
      * The player might be null for root perks on occasion.
      */
-    public void onUnlockPerkServer(@Nullable PlayerEntity player, PerkAllocationType allocationType, PlayerProgress progress, CompoundTag dataStorage) {}
+    public void onUnlockPerkServer(@Nullable Player player, PerkAllocationType allocationType, PlayerProgress progress, CompoundTag dataStorage) {}
 
     /**
      * Clean up and remove the perk from that single player.
      * Data in the dataStorage is filled with the data set in onUnlockPerkServer
      * Called after the perk is already removed from the player, but still in the player's perkData
      */
-    public void onRemovePerkServer(PlayerEntity player, PerkAllocationType allocationType, PlayerProgress progress, CompoundTag dataStorage) {}
+    public void onRemovePerkServer(Player player, PerkAllocationType allocationType, PlayerProgress progress, CompoundTag dataStorage) {}
 
     public <T extends AbstractPerk> T setName(String name) {
         this.unlocalizedKey = name;
@@ -173,7 +173,7 @@ public class AbstractPerk implements ModifierSource {
         return category;
     }
 
-    public AllocationStatus getPerkStatus(@Nullable PlayerEntity player, LogicalSide side) {
+    public AllocationStatus getPerkStatus(@Nullable Player player, LogicalSide side) {
         if (player == null) {
             return AllocationStatus.UNALLOCATED;
         }
@@ -192,7 +192,7 @@ public class AbstractPerk implements ModifierSource {
         return mayUnlockPerk(progress, player) ? AllocationStatus.UNLOCKABLE : AllocationStatus.UNALLOCATED;
     }
 
-    public boolean mayUnlockPerk(PlayerProgress progress, PlayerEntity player) {
+    public boolean mayUnlockPerk(PlayerProgress progress, Player player) {
         PlayerPerkData perkData = progress.getPerkData();
         if (!perkData.hasFreeAllocationPoint(player, getSide(player))) return false;
 
@@ -205,7 +205,7 @@ public class AbstractPerk implements ModifierSource {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public boolean isVisible(PlayerProgress progress, PlayerEntity player) {
+    public boolean isVisible(PlayerProgress progress, Player player) {
         return !this.hiddenUnlessAllocated || progress.getPerkData().hasPerkAllocation(this);
     }
 

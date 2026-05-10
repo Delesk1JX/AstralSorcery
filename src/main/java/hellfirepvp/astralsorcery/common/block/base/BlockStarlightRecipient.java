@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.block.base;
 
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.Random;

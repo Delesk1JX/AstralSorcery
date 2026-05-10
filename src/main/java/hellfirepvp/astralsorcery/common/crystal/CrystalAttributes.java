@@ -18,8 +18,8 @@ import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.util.text.*;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -195,7 +195,7 @@ public final class CrystalAttributes {
     public CrystalAttributes modifyLevel(CrystalProperty prop, int change, boolean ignoreTierMax) {
         Attribute existing = getAttribute(prop);
         if (existing != null && change != 0) {
-            int newTier = MathHelper.clamp(existing.getTier() + change, 0,
+            int newTier = Mth.clamp(existing.getTier() + change, 0,
                     ignoreTierMax ? Integer.MAX_VALUE : prop.getMaxTier());
             if (newTier <= 0) {
                 return transform(Function.identity(), Lists.newArrayList(), Lists.newArrayList(prop));
@@ -209,7 +209,7 @@ public final class CrystalAttributes {
             }
         } else if (change > 0) {
             return transform(Function.identity(),
-                    Lists.newArrayList(new Attribute(prop, MathHelper.clamp(change, 0, prop.getMaxTier()))),
+                    Lists.newArrayList(new Attribute(prop, Mth.clamp(change, 0, prop.getMaxTier()))),
                     Lists.newArrayList());
         }
         return this;
@@ -246,7 +246,7 @@ public final class CrystalAttributes {
     public CrystalAttributes clampMaxTier() {
         CrystalAttributes attributes = this.copy();
         for (Attribute attr : attributes.crystalAttributes) {
-            attr.tier = MathHelper.clamp(attr.getTier(), 0, attr.getProperty().getMaxTier());
+            attr.tier = Mth.clamp(attr.getTier(), 0, attr.getProperty().getMaxTier());
         }
         return attributes;
     }
@@ -349,7 +349,7 @@ public final class CrystalAttributes {
             for (Attribute attr : other.getCrystalAttributes()) {
                 CrystalProperty property = attr.getProperty();
                 int cTier = this.properties.getOrDefault(property, 0);
-                cTier = MathHelper.clamp(cTier + attr.getTier(),
+                cTier = Mth.clamp(cTier + attr.getTier(),
                         0, this.ignoreTierCap ? Integer.MAX_VALUE : property.getMaxTier());
                 this.properties.put(property, cTier);
             }
@@ -358,7 +358,7 @@ public final class CrystalAttributes {
 
         public Builder addProperty(CrystalProperty property, int tier) {
             int cTier = this.properties.getOrDefault(property, 0);
-            cTier = MathHelper.clamp(cTier + tier,
+            cTier = Mth.clamp(cTier + tier,
                     0, this.ignoreTierCap ? Integer.MAX_VALUE : property.getMaxTier());
             this.properties.remove(property);
             if (cTier > 0) {
@@ -379,7 +379,7 @@ public final class CrystalAttributes {
         public CrystalAttributes buildAverage(int count) {
             Map<CrystalProperty, Integer> average = new HashMap<>();
             for (CrystalProperty prop : this.properties.keySet()) {
-                int newLevel = MathHelper.ceil(this.properties.getOrDefault(prop, 0) / (float) count);
+                int newLevel = Mth.ceil(this.properties.getOrDefault(prop, 0) / (float) count);
                 if (newLevel > 0) {
                     average.put(prop, newLevel);
                 }

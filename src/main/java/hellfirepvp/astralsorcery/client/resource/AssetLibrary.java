@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.client.sky.astral.AstralSkyRenderer;
 import hellfirepvp.astralsorcery.common.util.object.CacheReference;
 import net.minecraft.resources.IResourceManager;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.resource.IResourceType;
 import net.neoforged.neoforge.resource.ISelectiveResourceReloadListener;
 import net.neoforged.neoforge.resource.VanillaResourceType;

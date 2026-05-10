@@ -8,9 +8,9 @@
 
 package hellfirepvp.astralsorcery.common.util;
 
-import net.minecraft.util.math.shapes.IBooleanFunction;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.util.shapes.IBooleanFunction;
+import net.minecraft.util.shapes.VoxelShape;
+import net.minecraft.util.shapes.VoxelShapes;
 
 import java.util.Arrays;
 import java.util.List;

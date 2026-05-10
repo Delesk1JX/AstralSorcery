@@ -10,8 +10,8 @@ package hellfirepvp.astralsorcery.common.util.world;
 
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.util.RegistryKey;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Mth;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
@@ -68,7 +68,7 @@ public class SkyCollectionHelper {
     }
 
     private static float cosInterpolate(float l, float h, float partial) {
-        float t2 = (1F - MathHelper.cos((float) (partial * Math.PI))) / 2F;
+        float t2 = (1F - Mth.cos((float) (partial * Math.PI))) / 2F;
         return (l * (1F - t2) + h * t2);
     }
 

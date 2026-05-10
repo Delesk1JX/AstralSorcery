@@ -14,9 +14,9 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
 import hellfirepvp.astralsorcery.common.perk.node.KeyPerk;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
@@ -51,8 +51,8 @@ public class KeyLastBreath extends KeyPerk {
 
     private void onAttack(LivingHurtEvent event) {
         DamageSource source = event.getSource();
-        if (source.getTrueSource() != null && source.getTrueSource() instanceof PlayerEntity) {
-            PlayerEntity player = (PlayerEntity) source.getTrueSource();
+        if (source.getTrueSource() != null && source.getTrueSource() instanceof Player) {
+            Player player = (Player) source.getTrueSource();
             LogicalSide side = this.getSide(player);
             PlayerProgress prog = ResearchHelper.getProgress(player, side);
             if (prog.getPerkData().hasPerkEffect(this)) {
@@ -65,7 +65,7 @@ public class KeyLastBreath extends KeyPerk {
     }
 
     private void onBreakSpeed(PlayerEvent.BreakSpeed event) {
-        PlayerEntity player = event.getPlayer();
+        Player player = event.getPlayer();
         LogicalSide side = this.getSide(player);
         PlayerProgress prog = ResearchHelper.getProgress(player, side);
         if (prog.getPerkData().hasPerkEffect(this)) {

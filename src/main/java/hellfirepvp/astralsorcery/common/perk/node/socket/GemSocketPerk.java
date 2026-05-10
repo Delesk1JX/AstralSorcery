@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.text.IFormattableTextComponent;
@@ -43,19 +43,19 @@ public interface GemSocketPerk {
 
     public static final String SOCKET_DATA_KEY = "socketedItem";
 
-    default public boolean hasItem(PlayerEntity player, LogicalSide side) {
+    default public boolean hasItem(Player player, LogicalSide side) {
         return hasItem(player, side, null);
     }
 
-    default public boolean hasItem(PlayerEntity player, LogicalSide side, @Nullable CompoundTag data) {
+    default public boolean hasItem(Player player, LogicalSide side, @Nullable CompoundTag data) {
         return !getContainedItem(player, side, data).isEmpty();
     }
 
-    default public ItemStack getContainedItem(PlayerEntity player, LogicalSide side) {
+    default public ItemStack getContainedItem(Player player, LogicalSide side) {
         return getContainedItem(player, side, null);
     }
 
-    default public ItemStack getContainedItem(PlayerEntity player, LogicalSide side, @Nullable CompoundTag dataOvr) {
+    default public ItemStack getContainedItem(Player player, LogicalSide side, @Nullable CompoundTag dataOvr) {
         if (!(this instanceof AbstractPerk)) {
             throw new UnsupportedOperationException("Cannot do perk-specific socketing logic on something that's not a perk!");
         }
@@ -68,11 +68,11 @@ public interface GemSocketPerk {
         return stack != null ? stack : ItemStack.EMPTY;
     }
 
-    default public boolean setContainedItem(PlayerEntity player, LogicalSide side, ItemStack stack) {
+    default public boolean setContainedItem(Player player, LogicalSide side, ItemStack stack) {
         return setContainedItem(player, side, null, stack);
     }
 
-    default public <T extends AbstractPerk & GemSocketPerk> boolean setContainedItem(PlayerEntity player, LogicalSide side, @Nullable CompoundTag dataOvr, ItemStack stack) {
+    default public <T extends AbstractPerk & GemSocketPerk> boolean setContainedItem(Player player, LogicalSide side, @Nullable CompoundTag dataOvr, ItemStack stack) {
         if (!(this instanceof AbstractPerk)) {
             throw new UnsupportedOperationException("Cannot do perk-specific socketing logic on something that's not a perk!");
         }
@@ -111,11 +111,11 @@ public interface GemSocketPerk {
         return true;
     }
 
-    default public void dropItemToPlayer(PlayerEntity player) {
+    default public void dropItemToPlayer(Player player) {
         dropItemToPlayer(player, null);
     }
 
-    default public void dropItemToPlayer(PlayerEntity player, @Nullable CompoundTag data) {
+    default public void dropItemToPlayer(Player player, @Nullable CompoundTag data) {
         if (!(this instanceof AbstractPerk)) {
             throw new UnsupportedOperationException("Cannot do perk-specific socketing logic on something that's not a perk!");
         }
@@ -164,7 +164,7 @@ public interface GemSocketPerk {
             if (perkData.hasPerkEffect(thisPerk)) {
                 tooltip.add(new TranslationTextComponent("perk.info.astralsorcery.gem.content.empty").mergeStyle(TextFormatting.GRAY));
 
-                boolean has = !ItemUtils.findItemsIndexedInPlayerInventory(Minecraft.getInstance().player, stack -> {
+                boolean has = !ItemUtils.findItemsIndexedInIInventory(Minecraft.getInstance().player, stack -> {
                     if (stack.isEmpty() || !(stack.getItem() instanceof GemSocketItem)) {
                         return false;
                     }

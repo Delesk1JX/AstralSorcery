@@ -23,8 +23,8 @@ import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Matrix4f;
+import net.minecraft.util.Mth;
+import net.minecraft.util.vector.Matrix4f;
 import net.minecraft.util.text.ITextProperties;
 import net.minecraft.util.text.TranslationTextComponent;
 import org.lwjgl.opengl.GL11;
@@ -119,7 +119,7 @@ public class ScreenJournalConstellationOverview extends ScreenJournal implements
     }
 
     private Rectangle drawConstellation(MatrixStack renderStack, IConstellation display, double offsetX, double offsetY, float zLevel, float partial, int mouseX, int mouseY) {
-        Rectangle rect = new Rectangle(MathHelper.floor(offsetX), MathHelper.floor(offsetY), width, height);
+        Rectangle rect = new Rectangle(Mth.floor(offsetX), Mth.floor(offsetY), width, height);
 
         renderStack.push();
         renderStack.translate(offsetX + (width / 2F), offsetY + (width / 2F), zLevel);

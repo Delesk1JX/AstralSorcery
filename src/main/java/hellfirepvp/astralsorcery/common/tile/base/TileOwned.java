@@ -9,8 +9,8 @@
 package hellfirepvp.astralsorcery.common.tile.base;
 
 import hellfirepvp.astralsorcery.common.util.PlayerReference;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;
@@ -34,7 +34,7 @@ public interface TileOwned {
      * @return the previous player reference
      */
     @Nullable
-    default public PlayerReference setOwner(@Nullable PlayerEntity player) {
+    default public PlayerReference setOwner(@Nullable Player player) {
         return this.setOwner(player == null ? null : PlayerReference.of(player));
     }
 

@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.datagen.data.loot;
 
 import net.minecraft.data.loot.GiftLootTables;
 import net.minecraft.loot.LootTable;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.function.BiConsumer;
 

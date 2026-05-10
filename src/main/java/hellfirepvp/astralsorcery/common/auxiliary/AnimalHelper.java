@@ -10,9 +10,9 @@ package hellfirepvp.astralsorcery.common.auxiliary;
 
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.SquidEntity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.passive.AnimalEntity;
+import net.minecraft.world.entity.passive.SquidEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 

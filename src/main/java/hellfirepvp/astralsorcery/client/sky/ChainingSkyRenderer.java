@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.event.EventFlags;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.DimensionRenderInfo;
 import net.minecraft.util.RegistryKey;
-import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.util.vector.Vector3f;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.client.ISkyRenderHandler;

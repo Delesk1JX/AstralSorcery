@@ -11,8 +11,8 @@ package hellfirepvp.astralsorcery.common.container.factory;
 import hellfirepvp.astralsorcery.common.container.ContainerTome;
 import hellfirepvp.astralsorcery.common.lib.ContainerTypesAS;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.neoforged.neoforge.fml.network.IContainerFactory;
@@ -45,11 +45,11 @@ public class ContainerTomeProvider extends CustomContainerProvider<ContainerTome
 
     @Nonnull
     @Override
-    public ContainerTome createMenu(int id, PlayerInventory plInventory, PlayerEntity player) {
+    public ContainerTome createMenu(int id, IInventory plInventory, Player player) {
         return new ContainerTome(id, plInventory, player, this.stackTome, this.slotTome);
     }
 
-    private static ContainerTome createFromPacket(int id, PlayerInventory plInventory, PacketBuffer data) {
+    private static ContainerTome createFromPacket(int id, IInventory plInventory, PacketBuffer data) {
         ItemStack tome = ByteBufUtils.readItemStack(data);
         int slot = data.readInt();
         return new ContainerTome(id, plInventory, plInventory.player, tome, slot);
@@ -58,7 +58,7 @@ public class ContainerTomeProvider extends CustomContainerProvider<ContainerTome
     public static class Factory implements IContainerFactory<ContainerTome> {
 
         @Override
-        public ContainerTome create(int windowId, PlayerInventory inv, PacketBuffer data) {
+        public ContainerTome create(int windowId, IInventory inv, PacketBuffer data) {
             return ContainerTomeProvider.createFromPacket(windowId, inv, data);
         }
     }

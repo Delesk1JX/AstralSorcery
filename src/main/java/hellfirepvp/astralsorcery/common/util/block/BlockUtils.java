@@ -14,8 +14,8 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
@@ -28,8 +28,8 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -107,7 +107,7 @@ public class BlockUtils {
         return state.isReplaceable(ctx);
     }
 
-    //Same as PlayerEntity#getDigSpeed, but without firing an event and not position-based
+    //Same as Player#getDigSpeed, but without firing an event and not position-based
     public static float getSimpleBreakSpeed(LivingEntity entity, ItemStack tool, BlockState state) {
         float breakSpeed = tool.getDestroySpeed(state);
         if (breakSpeed > 1.0F) {
@@ -215,7 +215,7 @@ public class BlockUtils {
         return toolLevel >= state.getHarvestLevel();
     }
 
-    public static boolean breakBlockWithPlayer(BlockPos pos, ServerPlayerEntity playerMP) {
+    public static boolean breakBlockWithPlayer(BlockPos pos, ServerPlayer playerMP) {
         return playerMP.interactionManager.tryHarvestBlock(pos);
     }
 

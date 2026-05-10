@@ -22,7 +22,7 @@ import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.tileentity.TileEntity;
@@ -30,12 +30,12 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.shapes.IBooleanFunction;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.BlockRayTraceResult;
+import net.minecraft.util.Mth;
+import net.minecraft.util.shapes.IBooleanFunction;
+import net.minecraft.util.shapes.ISelectionContext;
+import net.minecraft.util.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.common.ToolType;
@@ -85,7 +85,7 @@ public class BlockWell extends BlockStarlightNetwork implements CustomItemBlock 
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, Player player, Hand hand, BlockRayTraceResult hit) {
         if (!world.isRemote()) {
             ItemStack heldItem = player.getHeldItem(hand);
             if (!heldItem.isEmpty()) {
@@ -154,7 +154,7 @@ public class BlockWell extends BlockStarlightNetwork implements CustomItemBlock 
     public int getComparatorInputOverride(BlockState state, World world, BlockPos pos) {
         TileWell tw = MiscUtils.getTileAt(world, pos, TileWell.class, false);
         if (tw != null) {
-            int fluidPart = MathHelper.ceil(tw.getTank().getPercentageFilled() * 8F);
+            int fluidPart = Mth.ceil(tw.getTank().getPercentageFilled() * 8F);
             return tw.getCatalyst().isEmpty() ? fluidPart : fluidPart + 7;
         }
         return 0;

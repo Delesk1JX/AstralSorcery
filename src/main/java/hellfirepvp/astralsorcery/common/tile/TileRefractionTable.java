@@ -34,7 +34,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.neoforged.api.distmarker.Dist;
@@ -122,7 +122,7 @@ public class TileRefractionTable extends TileEntityTick implements NamedInventor
                     .setNoRotation(0)
                     .setScaleMultiplier(0.8F)
                     .setAlphaMultiplier(0.8F)
-                    .alpha(((fx, alpha, pTicks) -> MathHelper.clamp(alpha * getRunProgress(), 0F, 1F)))
+                    .alpha(((fx, alpha, pTicks) -> Mth.clamp(alpha * getRunProgress(), 0F, 1F)))
                     .refresh(RefreshFunction.tileExistsAnd(this, (thisTile, fx) -> thisTile.getRunProgress() > 0));
         }
 
@@ -261,7 +261,7 @@ public class TileRefractionTable extends TileEntityTick implements NamedInventor
     }
 
     public float getRunProgress() {
-        return MathHelper.clamp(this.runTick / RUN_TIME, 0F, 1F);
+        return Mth.clamp(this.runTick / RUN_TIME, 0F, 1F);
     }
 
     public void dropContents() {

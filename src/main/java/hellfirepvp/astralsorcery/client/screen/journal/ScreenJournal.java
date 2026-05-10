@@ -23,7 +23,7 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.IReorderingProcessor;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.ITextProperties;
@@ -117,13 +117,13 @@ public class ScreenJournal extends WidthHeightScreen {
                                    AbstractRenderableTexture texture, AbstractRenderableTexture textureStretched) {
         texture.bindTexture();
 
-        Rectangle r = new Rectangle(MathHelper.floor(offsetX), MathHelper.floor(offsetY), MathHelper.floor(width), MathHelper.floor(height));
+        Rectangle r = new Rectangle(Mth.floor(offsetX), Mth.floor(offsetY), Mth.floor(width), Mth.floor(height));
         if (r.contains(mouseX, mouseY)) {
             if (mouseOverWidth > width) {
                 textureStretched.bindTexture();
             }
             width = mouseOverWidth;
-            r = new Rectangle(MathHelper.floor(offsetX), MathHelper.floor(offsetY), MathHelper.floor(width), MathHelper.floor(height));
+            r = new Rectangle(Mth.floor(offsetX), Mth.floor(offsetY), Mth.floor(width), Mth.floor(height));
         }
 
         RenderSystem.enableBlend();

@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.world.placement.config;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 
 import java.util.Random;
@@ -33,7 +33,7 @@ public class ChanceConfig implements IPlacementConfig {
     private final float chance;
 
     public ChanceConfig(float chance) {
-        this.chance = MathHelper.clamp(chance, 0F, 1F);
+        this.chance = Mth.clamp(chance, 0F, 1F);
     }
 
     public boolean test(Random rand) {

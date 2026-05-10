@@ -16,9 +16,9 @@ import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
 import hellfirepvp.astralsorcery.common.perk.PerkConverter;
 import hellfirepvp.astralsorcery.common.perk.type.ModifierType;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -87,7 +87,7 @@ public class DynamicAttributeModifier extends PerkAttributeModifier {
     }
 
     @Override
-    public float getValue(PlayerEntity player, PlayerProgress progress) {
+    public float getValue(Player player, PlayerProgress progress) {
         if (!resolveModifier()) {
             return super.getValue(player, progress);
         }
@@ -96,7 +96,7 @@ public class DynamicAttributeModifier extends PerkAttributeModifier {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public float getValueForDisplay(PlayerEntity player, PlayerProgress progress) {
+    public float getValueForDisplay(Player player, PlayerProgress progress) {
         if (!resolveModifier()) {
             return super.getValueForDisplay(player, progress);
         }

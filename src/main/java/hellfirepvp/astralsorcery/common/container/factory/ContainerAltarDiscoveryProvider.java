@@ -13,10 +13,10 @@ import hellfirepvp.astralsorcery.common.lib.ContainerTypesAS;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.IInventory;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.neoforged.neoforge.fml.network.IContainerFactory;
 
 import javax.annotation.Nonnull;
@@ -44,13 +44,13 @@ public class ContainerAltarDiscoveryProvider extends CustomContainerProvider<Con
 
     @Nonnull
     @Override
-    public ContainerAltarDiscovery createMenu(int id, PlayerInventory plInventory, PlayerEntity player) {
+    public ContainerAltarDiscovery createMenu(int id, IInventory plInventory, Player player) {
         return new ContainerAltarDiscovery(ta, plInventory, id);
     }
 
-    private static ContainerAltarDiscovery createFromPacket(int id, PlayerInventory plInventory, PacketBuffer data) {
+    private static ContainerAltarDiscovery createFromPacket(int id, IInventory plInventory, PacketBuffer data) {
         BlockPos at = ByteBufUtils.readPos(data);
-        PlayerEntity player = plInventory.player;
+        Player player = plInventory.player;
         TileAltar ta = MiscUtils.getTileAt(player.getEntityWorld(), at, TileAltar.class, true);
         return new ContainerAltarDiscovery(ta, plInventory, id);
     }
@@ -58,7 +58,7 @@ public class ContainerAltarDiscoveryProvider extends CustomContainerProvider<Con
     public static class Factory implements IContainerFactory<ContainerAltarDiscovery> {
 
         @Override
-        public ContainerAltarDiscovery create(int windowId, PlayerInventory inv, PacketBuffer data) {
+        public ContainerAltarDiscovery create(int windowId, IInventory inv, PacketBuffer data) {
             return ContainerAltarDiscoveryProvider.createFromPacket(windowId, inv, data);
         }
     }

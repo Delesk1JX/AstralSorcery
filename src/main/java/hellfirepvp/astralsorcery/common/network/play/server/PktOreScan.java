@@ -14,8 +14,8 @@ import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.util.BlockPos;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
@@ -66,7 +66,7 @@ public class PktOreScan extends ASPacket<PktOreScan> {
             @OnlyIn(Dist.CLIENT)
             public void handleClient(PktOreScan packet, NetworkEvent.Context context) {
                 context.enqueueWork(() -> {
-                    PlayerEntity player = Minecraft.getInstance().player;
+                    Player player = Minecraft.getInstance().player;
                     if (player == null) {
                         return;
                     }

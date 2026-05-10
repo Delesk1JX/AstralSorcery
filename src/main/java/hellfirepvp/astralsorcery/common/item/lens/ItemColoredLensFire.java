@@ -24,14 +24,14 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.neoforged.api.distmarker.Dist;
@@ -105,7 +105,7 @@ public class ItemColoredLensFire extends ItemColoredLens {
                     return;
                 }
             } else if (entity instanceof LivingEntity) {
-                if (entity instanceof PlayerEntity) {
+                if (entity instanceof Player) {
                     if (!GeneralConfig.CONFIG.doColoredLensesAffectPlayers.get() ||
                             entity.getServer() == null ||
                             !entity.getServer().isPVPEnabled()) {

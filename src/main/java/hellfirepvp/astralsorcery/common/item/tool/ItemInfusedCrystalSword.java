@@ -19,9 +19,9 @@ import hellfirepvp.astralsorcery.common.util.CelestialStrike;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.object.CacheReference;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.neoforged.fml.LogicalSide;
@@ -44,9 +44,9 @@ public class ItemInfusedCrystalSword extends ItemCrystalSword implements Equipme
             new CacheReference<>(() -> new DynamicAttributeModifier(MODIFIER_ID, PerkAttributeTypesAS.ATTR_TYPE_INC_CRIT_CHANCE, ModifierType.ADDITION, 5F));
 
     @Override
-    public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
-        if (!player.getEntityWorld().isRemote() && player instanceof ServerPlayerEntity) {
-            ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
+    public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
+        if (!player.getEntityWorld().isRemote() && player instanceof ServerPlayer) {
+            ServerPlayer serverPlayer = (ServerPlayer) player;
             ItemStack sword = serverPlayer.getHeldItem(Hand.MAIN_HAND);
             if (!MiscUtils.isPlayerFakeMP(serverPlayer) &&
                     !sword.isEmpty() &&
@@ -65,7 +65,7 @@ public class ItemInfusedCrystalSword extends ItemCrystalSword implements Equipme
     }
 
     @Override
-    public Collection<PerkAttributeModifier> getModifiers(ItemStack stack, PlayerEntity player, LogicalSide side, boolean ignoreRequirements) {
+    public Collection<PerkAttributeModifier> getModifiers(ItemStack stack, Player player, LogicalSide side, boolean ignoreRequirements) {
         return Collections.singletonList(BASECRIT_MODIFIER.get());
     }
 }

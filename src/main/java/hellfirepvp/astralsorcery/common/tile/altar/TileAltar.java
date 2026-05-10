@@ -40,17 +40,17 @@ import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import hellfirepvp.astralsorcery.common.util.tile.TileInventoryFiltered;
 import hellfirepvp.astralsorcery.common.util.world.SkyCollectionHelper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Mth;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
@@ -248,12 +248,12 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
         markForUpdate();
     }
 
-    protected SimpleAltarRecipe findRecipe(PlayerEntity crafter) {
+    protected SimpleAltarRecipe findRecipe(Player crafter) {
         return RecipeTypesAS.TYPE_ALTAR.findRecipe(new SimpleAltarRecipeContext(crafter, LogicalSide.SERVER, this)
                 .setIgnoreStarlightRequirement(false));
     }
 
-    protected boolean startCrafting(SimpleAltarRecipe recipe, PlayerEntity crafter) {
+    protected boolean startCrafting(SimpleAltarRecipe recipe, Player crafter) {
         if (this.getActiveRecipe() != null) {
             return false;
         }
@@ -268,7 +268,7 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
     }
 
     @Override
-    public boolean onInteract(World world, BlockPos pos, PlayerEntity player, Direction side, boolean sneak) {
+    public boolean onInteract(World world, BlockPos pos, Player player, Direction side, boolean sneak) {
         if (!world.isRemote() && this.hasMultiblock()) {
             if (this.getActiveRecipe() != null) {
                 if (this.getActiveRecipe().matches(this, false, false)) {
@@ -301,7 +301,7 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
         if (this.doesSeeSky()) {
             int altarTier = this.getAltarType().ordinal() + 1;
 
-            float heightAmount = MathHelper.clamp((float) Math.pow(getPos().getY() / 7F, 1.5F) / 65F, 0F, 1F);
+            float heightAmount = Mth.clamp((float) Math.pow(getPos().getY() / 7F, 1.5F) / 65F, 0F, 1F);
             heightAmount *= DayTimeHelper.getCurrentDaytimeDistribution(getWorld());
             this.collectStarlight(heightAmount * altarTier * 60F, AltarCollectionCategory.HEIGHT);
 
@@ -312,7 +312,7 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
                     posDistribution = 0.3F;
                 }
             }
-            float fieldAmount = MathHelper.sqrt(posDistribution);
+            float fieldAmount = Mth.sqrt(posDistribution);
             fieldAmount *= DayTimeHelper.getCurrentDaytimeDistribution(getWorld());
             this.collectStarlight(fieldAmount * altarTier * 65F, AltarCollectionCategory.FOSIC_FIELD);
         }
@@ -321,8 +321,8 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
     }
 
     public void collectStarlight(float percent, AltarCollectionCategory category) {
-        int collectable = MathHelper.floor(Math.min(percent, getRemainingCollectionCapacity(category)));
-        this.starlightNextTick = MathHelper.clamp(this.starlightNextTick + collectable, 0, this.getAltarType().getStarlightCapacity());
+        int collectable = Mth.floor(Math.min(percent, getRemainingCollectionCapacity(category)));
+        this.starlightNextTick = Mth.clamp(this.starlightNextTick + collectable, 0, this.getAltarType().getStarlightCapacity());
         this.tickStarlightCollectionMap.computeIfPresent(category, (cat, remaining) -> Math.max(remaining - collectable, 0));
         this.markForUpdate();
         this.preventNetworkSync();

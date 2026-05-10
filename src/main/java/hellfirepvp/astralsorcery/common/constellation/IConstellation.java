@@ -14,14 +14,14 @@ import hellfirepvp.astralsorcery.common.constellation.star.StarLocation;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.neoforged.neoforge.registries.IRegistryObject;
@@ -130,7 +130,7 @@ public interface IConstellation extends IRegistryObject<IConstellation>, Compara
         return ColorsAS.CONSTELLATION_TYPE_WEAK;
     }
 
-    boolean canDiscover(PlayerEntity player, PlayerProgress progress);
+    boolean canDiscover(Player player, PlayerProgress progress);
 
     default public void writeToNBT(CompoundTag compound) {
         writeToNBT(compound, getDefaultSaveKey());

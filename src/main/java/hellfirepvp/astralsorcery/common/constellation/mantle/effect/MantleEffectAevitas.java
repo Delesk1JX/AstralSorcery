@@ -22,13 +22,13 @@ import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
 import hellfirepvp.astralsorcery.common.util.collision.CustomCollisionHandler;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.Pose;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.FoodStats;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -58,7 +58,7 @@ public class MantleEffectAevitas extends MantleEffect {
     }
 
     @Override
-    protected void tickServer(PlayerEntity player) {
+    protected void tickServer(Player player) {
         super.tickServer(player);
 
         if (isStandingOnAir(player)) {
@@ -83,7 +83,7 @@ public class MantleEffectAevitas extends MantleEffect {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    protected void tickClient(PlayerEntity player) {
+    protected void tickClient(Player player) {
         super.tickClient(player);
 
         this.playCapeSparkles(player, 0.1F);
@@ -114,7 +114,7 @@ public class MantleEffectAevitas extends MantleEffect {
         return CONFIG;
     }
 
-    public static boolean canSupportEffect(PlayerEntity player) {
+    public static boolean canSupportEffect(Player player) {
         LogicalSide side = player.getEntityWorld().isRemote() ? LogicalSide.CLIENT : LogicalSide.SERVER;
         PlayerProgress progress = ResearchHelper.getProgress(player, side);
         return progress.doPerkAbilities() &&
@@ -197,11 +197,11 @@ public class MantleEffectAevitas extends MantleEffect {
 
         @Override
         public boolean shouldAddCollisionFor(Entity entity) {
-            if (!(entity instanceof PlayerEntity) || ((PlayerEntity) entity).abilities.isFlying) {
+            if (!(entity instanceof Player) || ((Player) entity).abilities.isFlying) {
                 return false;
             }
             return ItemMantle.getEffect((LivingEntity) entity, ConstellationsAS.aevitas) != null &&
-                    canSupportEffect((PlayerEntity) entity);
+                    canSupportEffect((Player) entity);
         }
 
         @Override

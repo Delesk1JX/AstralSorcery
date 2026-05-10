@@ -25,7 +25,7 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.world.entity.player.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 import org.lwjgl.opengl.GL11;
@@ -43,7 +43,7 @@ public class ScreenContainerAltarRadiance extends ScreenContainerAltar<Container
 
     private static final Random rand = new Random();
 
-    public ScreenContainerAltarRadiance(ContainerAltarTrait screenContainer, PlayerInventory inv, ITextComponent name) {
+    public ScreenContainerAltarRadiance(ContainerAltarTrait screenContainer, IInventory inv, ITextComponent name) {
         super(screenContainer, inv, name, 255, 202);
     }
 

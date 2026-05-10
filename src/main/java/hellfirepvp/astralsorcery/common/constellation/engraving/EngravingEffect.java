@@ -26,7 +26,7 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.neoforged.neoforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import javax.annotation.Nonnull;
 import java.util.*;
@@ -40,7 +40,7 @@ import java.util.stream.Collectors;
  * Created by HellFirePvP
  * Date: 01.05.2020 / 11:37
  */
-public class EngravingEffect extends RegistryObject<EngravingEffect> {
+public class EngravingEffect extends DeferredHolder<EngravingEffect> {
 
     private final List<ApplicableEffect> effects = new ArrayList<>();
 

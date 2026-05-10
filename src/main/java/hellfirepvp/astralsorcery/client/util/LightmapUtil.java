@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.client.util;
 
 import net.minecraft.client.renderer.WorldRenderer;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.IBlockDisplayReader;
 
 /**

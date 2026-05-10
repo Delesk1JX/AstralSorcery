@@ -13,8 +13,8 @@ import hellfirepvp.astralsorcery.common.integration.IntegrationCurios;
 import hellfirepvp.astralsorcery.common.item.ItemEnchantmentAmulet;
 import hellfirepvp.astralsorcery.common.util.item.ItemComparator;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.IInventory;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
@@ -44,8 +44,8 @@ public class AmuletEnchantmentHelper {
 
     public static final String KEY_AS_OWNER = "AS_Amulet_Holder";
 
-    public static void removeAmuletTagsAndCleanup(PlayerEntity player, boolean keepEquipped) {
-        PlayerInventory inv = player.inventory;
+    public static void removeAmuletTagsAndCleanup(Player player, boolean keepEquipped) {
+        IInventory inv = player.inventory;
         for (int i = 0; i < inv.mainInventory.size(); i++) {
             if (i == inv.currentItem && keepEquipped) {
                 continue;
@@ -71,7 +71,7 @@ public class AmuletEnchantmentHelper {
         return Util.DUMMY_UUID;
     }
 
-    public static void applyAmuletOwner(ItemStack tool, PlayerEntity wearer) {
+    public static void applyAmuletOwner(ItemStack tool, Player wearer) {
         if (DynamicEnchantmentHelper.canHaveDynamicEnchantment(tool)) {
             tool.getOrCreateTag().putUniqueId(KEY_AS_OWNER, wearer.getUniqueID());
         }
@@ -88,12 +88,12 @@ public class AmuletEnchantmentHelper {
     }
 
     @Nullable
-    public static PlayerEntity getPlayerHavingTool(ItemStack anyTool) {
+    public static Player getPlayerHavingTool(ItemStack anyTool) {
         UUID plUUID = getWornPlayerUUID(anyTool);
         if (plUUID.getLeastSignificantBits() == 0 && plUUID.getMostSignificantBits() == 0) {
             return null;
         }
-        PlayerEntity player;
+        Player player;
         if (EffectiveSide.get() == LogicalSide.CLIENT) {
             player = resolvePlayerClient(plUUID);
         } else {
@@ -126,8 +126,8 @@ public class AmuletEnchantmentHelper {
     }
 
     @Nullable
-    static Tuple<ItemStack, PlayerEntity> getWornAmulet(ItemStack anyTool) {
-        PlayerEntity player = getPlayerHavingTool(anyTool);
+    static Tuple<ItemStack, Player> getWornAmulet(ItemStack anyTool) {
+        Player player = getPlayerHavingTool(anyTool);
         if (player == null) return null;
 
         Optional<ImmutableTriple<String, Integer, ItemStack>> curios =
@@ -136,7 +136,7 @@ public class AmuletEnchantmentHelper {
     }
 
     @OnlyIn(Dist.CLIENT)
-    private static PlayerEntity resolvePlayerClient(UUID plUUID) {
+    private static Player resolvePlayerClient(UUID plUUID) {
         Optional<World> w = LogicalSidedProvider.CLIENTWORLD.get(LogicalSide.CLIENT);
         return w.map(world -> world.getPlayerByUuid(plUUID)).orElse(null);
     }

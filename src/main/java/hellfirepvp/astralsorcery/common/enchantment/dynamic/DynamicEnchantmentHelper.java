@@ -17,16 +17,16 @@ import hellfirepvp.astralsorcery.common.event.EventFlags;
 import hellfirepvp.astralsorcery.common.util.object.ObjectReference;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.QuickChargeEnchantment;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.BookItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.RegistryManager;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -41,11 +41,11 @@ import java.util.*;
 public class DynamicEnchantmentHelper {
 
     private static int getNewEnchantmentLevel(int current, String enchStr, ItemStack item, @Nullable List<DynamicEnchantment> context) {
-        Enchantment enchantment = ForgeRegistries.ENCHANTMENTS.getValue(new ResourceLocation(enchStr));
+        Enchantment enchantment = RegistryManager.ENCHANTMENTS.getValue(new ResourceLocation(enchStr));
         if (enchantment != null) {
             current = getNewEnchantmentLevel(current, enchantment, item, context);
             if (enchantment instanceof QuickChargeEnchantment) {
-                current = MathHelper.clamp(current, 0, 5);
+                current = Mth.clamp(current, 0, 5);
             }
         }
         return current;
@@ -83,7 +83,7 @@ public class DynamicEnchantmentHelper {
             }
         }
         if (enchantment instanceof QuickChargeEnchantment) {
-            current = MathHelper.clamp(current, 0, 5);
+            current = Mth.clamp(current, 0, 5);
         }
         return current;
     }
@@ -201,7 +201,7 @@ public class DynamicEnchantmentHelper {
 
     //This is more or less just a map to say whatever we add upon.
     private static List<DynamicEnchantment> fireEnchantmentGatheringEvent(ItemStack tool) {
-        PlayerEntity foundEntity = AmuletEnchantmentHelper.getPlayerHavingTool(tool);
+        Player foundEntity = AmuletEnchantmentHelper.getPlayerHavingTool(tool);
         if (foundEntity == null) {
             return new ArrayList<>();
         }

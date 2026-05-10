@@ -14,9 +14,9 @@ import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ArrowEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.ArrowEntity;
 import net.neoforged.neoforge.event.entity.EntityJoinWorldEvent;
 import net.neoforged.neoforge.eventbus.api.IEventBus;
 import net.neoforged.fml.LogicalSide;
@@ -44,8 +44,8 @@ public class AttributeTypeArrowSpeed extends PerkAttributeType {
         if (event.getEntity() instanceof ArrowEntity) {
             ArrowEntity arrow = (ArrowEntity) event.getEntity();
             Entity shooter = arrow.func_234616_v_();
-            if (shooter instanceof PlayerEntity) {
-                PlayerEntity player = (PlayerEntity) shooter;
+            if (shooter instanceof Player) {
+                Player player = (Player) shooter;
                 LogicalSide side = this.getSide(player);
                 if (!hasTypeApplied(player, side)) {
                     return;

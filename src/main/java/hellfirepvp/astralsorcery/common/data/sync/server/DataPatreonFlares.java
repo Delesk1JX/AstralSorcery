@@ -14,11 +14,11 @@ import hellfirepvp.astralsorcery.common.data.sync.base.AbstractData;
 import hellfirepvp.astralsorcery.common.data.sync.base.AbstractDataProvider;
 import hellfirepvp.astralsorcery.common.data.sync.base.ClientDataReader;
 import hellfirepvp.astralsorcery.common.data.sync.client.ClientPatreonFlares;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.util.RegistryKey;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 
@@ -46,7 +46,7 @@ public class DataPatreonFlares extends AbstractData {
 
     //Only actually called when there's an entity to be provided.
     @Nullable
-    public PatreonPartialEntity createEntity(PlayerEntity player, PatreonEffect value) {
+    public PatreonPartialEntity createEntity(Player player, PatreonEffect value) {
         UUID owner = player.getUniqueID();
         PatreonPartialEntity entity = value.createEntity(owner);
         if (entity == null) {

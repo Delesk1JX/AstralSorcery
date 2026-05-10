@@ -10,12 +10,12 @@ package hellfirepvp.astralsorcery.common.auxiliary.link;
 
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Util;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
@@ -47,19 +47,19 @@ public class LinkHandler implements ITickHandler {
     }
 
     @Nullable
-    public static LinkSession getActiveSession(PlayerEntity player) {
+    public static LinkSession getActiveSession(Player player) {
         return players.get(player.getUniqueID());
     }
 
     @Nonnull
-    public static RightClickResult onInteractEntity(PlayerEntity clicked, LivingEntity entity) {
+    public static RightClickResult onInteractEntity(Player clicked, LivingEntity entity) {
         LinkSession session = LinkSession.entity(entity);
         players.put(clicked.getUniqueID(), session);
         return new RightClickResult(RightClickResultType.SELECT_START, session);
     }
 
     @Nonnull
-    public static RightClickResult onInteractBlock(PlayerEntity clicked, World world, BlockPos pos, boolean sneak) {
+    public static RightClickResult onInteractBlock(Player clicked, World world, BlockPos pos, boolean sneak) {
         UUID playerUUID = clicked.getUniqueID();
         if (!players.containsKey(playerUUID)) {
             LinkableTileEntity tile = MiscUtils.getTileAt(world, pos, LinkableTileEntity.class, true);
@@ -89,7 +89,7 @@ public class LinkHandler implements ITickHandler {
         }
     }
 
-    public static void processInteraction(RightClickResult result, PlayerEntity playerIn, World world, BlockPos pos) {
+    public static void processInteraction(RightClickResult result, Player playerIn, World world, BlockPos pos) {
         LinkSession session = result.getLinkingSession();
         LinkableTileEntity tile = session.getSelectedTile();
         String linkedToName;
@@ -176,7 +176,7 @@ public class LinkHandler implements ITickHandler {
         while (iterator.hasNext()) {
             UUID uuid = iterator.next();
             LinkSession session = players.get(uuid);
-            PlayerEntity player = server.getPlayerList().getPlayerByUUID(uuid);
+            Player player = server.getPlayerList().getPlayerByUUID(uuid);
             if (player == null) {
                 iterator.remove();
                 continue;

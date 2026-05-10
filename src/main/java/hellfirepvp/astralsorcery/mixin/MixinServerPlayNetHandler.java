@@ -9,8 +9,8 @@
 package hellfirepvp.astralsorcery.mixin;
 
 import hellfirepvp.astralsorcery.common.entity.InteractableEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.network.play.ServerPlayNetHandler;
 import net.minecraft.network.play.client.CUseEntityPacket;
 import net.minecraft.world.server.ServerWorld;
@@ -30,13 +30,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ServerPlayNetHandler.class)
 public class MixinServerPlayNetHandler {
 
-    @Shadow public ServerPlayerEntity player;
+    @Shadow public ServerPlayer player;
 
     //Due to compatibility, this will not be used. see reach_set_server_entity_interact.js
     /*@ModifyConstant(method = "processUseEntity", constant = @Constant(doubleValue = 36.0, ordinal = 1), require = 1)
     public double overrideEntityInteractDistanceLimit(double distance) {
         ServerPlayNetHandler playNetHandler = (ServerPlayNetHandler)(Object) this;
-        PlayerEntity player = playNetHandler.player;
+        Player player = playNetHandler.player;
 
         PlayerProgress prog = ResearchHelper.getProgress(player, player.getEntityWorld().isRemote() ? LogicalSide.CLIENT : LogicalSide.SERVER);
         if (prog.isValid() && prog.getPerkData().hasPerkEffect(perk -> perk instanceof KeyEntityReach)) {

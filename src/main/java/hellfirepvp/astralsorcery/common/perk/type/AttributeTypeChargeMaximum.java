@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.auxiliary.charge.AlignmentChargeHandler;
 import hellfirepvp.astralsorcery.common.event.AttributeEvent;
 import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;
 import hellfirepvp.astralsorcery.common.perk.source.ModifierSource;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.eventbus.api.IEventBus;
 import net.neoforged.fml.LogicalSide;
 
@@ -36,13 +36,13 @@ public class AttributeTypeChargeMaximum extends PerkAttributeType {
     }
 
     @Override
-    public void onApply(PlayerEntity player, LogicalSide side, ModifierSource source) {
+    public void onApply(Player player, LogicalSide side, ModifierSource source) {
         super.onApply(player, side, source);
         AlignmentChargeHandler.INSTANCE.updateMaximum(player, side);
     }
 
     @Override
-    public void onRemove(PlayerEntity player, LogicalSide side, boolean removedCompletely, ModifierSource source) {
+    public void onRemove(Player player, LogicalSide side, boolean removedCompletely, ModifierSource source) {
         super.onRemove(player, side, removedCompletely, source);
         AlignmentChargeHandler.INSTANCE.updateMaximum(player, side);
     }

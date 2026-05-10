@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.perk.type.ModifierType;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -60,7 +60,7 @@ public class DynamicModifierHelper {
         tag.put(KEY_MODIFIERS, modifierList);
     }
 
-    public static List<PerkAttributeModifier> getDynamicModifiers(ItemStack stack, PlayerEntity player, LogicalSide side, boolean ignoreRequirements) {
+    public static List<PerkAttributeModifier> getDynamicModifiers(ItemStack stack, Player player, LogicalSide side, boolean ignoreRequirements) {
         List<PerkAttributeModifier> modifiers = Lists.newArrayList();
         if (stack.getItem() instanceof AttributeModifierProvider) {
             modifiers.addAll(((AttributeModifierProvider) stack.getItem()).getModifiers(player, side, ignoreRequirements));
@@ -86,7 +86,7 @@ public class DynamicModifierHelper {
     }
     @OnlyIn(Dist.CLIENT)
     public static void addModifierTooltip(ItemStack stack, List<ITextComponent> tooltip) {
-        PlayerEntity clientPlayer = Minecraft.getInstance().player;
+        Player clientPlayer = Minecraft.getInstance().player;
         if (clientPlayer == null) {
             return;
         }

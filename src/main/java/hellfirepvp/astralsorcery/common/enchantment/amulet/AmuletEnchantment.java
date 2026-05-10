@@ -13,13 +13,13 @@ import hellfirepvp.astralsorcery.common.enchantment.dynamic.DynamicEnchantmentTy
 import net.minecraft.client.resources.I18n;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.LanguageMap;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.RegistryManager;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -82,7 +82,7 @@ public class AmuletEnchantment extends DynamicEnchantment {
         int level = Math.max(0, cmp.getInt("level"));
         if (type.isEnchantmentSpecific()) {
             ResourceLocation res = new ResourceLocation(cmp.getString("ench"));
-            Enchantment e = ForgeRegistries.ENCHANTMENTS.getValue(res);
+            Enchantment e = RegistryManager.ENCHANTMENTS.getValue(res);
             if (e != null) {
                 return new AmuletEnchantment(type, e, level);
             }

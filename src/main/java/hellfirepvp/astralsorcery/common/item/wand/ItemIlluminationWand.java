@@ -26,7 +26,7 @@ import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -36,9 +36,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.shapes.ISelectionContext;
+import net.minecraft.util.shapes.VoxelShapes;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
@@ -78,7 +78,7 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
     }
 
     @Override
-    public float getAlignmentChargeCost(PlayerEntity player, ItemStack stack) {
+    public float getAlignmentChargeCost(Player player, ItemStack stack) {
         if (player.isSneaking()) {
             return COST_PER_ILLUMINATION;
         } else {
@@ -91,7 +91,7 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
         World world = context.getWorld();
         Direction dir = context.getFace();
         BlockPos pos = context.getPos();
-        PlayerEntity player = context.getPlayer();
+        Player player = context.getPlayer();
         ItemStack stack = context.getItem();
 
         if (world.isRemote() || player == null || stack.isEmpty() || !(stack.getItem() instanceof ItemIlluminationWand)) {

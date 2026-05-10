@@ -14,10 +14,10 @@ import hellfirepvp.astralsorcery.common.entity.EntitySpectralTool;
 import hellfirepvp.astralsorcery.common.util.DamageUtil;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
-import net.minecraft.entity.EntityClassification;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.controller.MovementController;
-import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.world.entity.EntityClassification;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.controller.MovementController;
+import net.minecraft.util.AxisAlignedBB;
 
 import java.util.List;
 

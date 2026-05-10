@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.crafting.nojson.attunement;
 import hellfirepvp.astralsorcery.common.crafting.nojson.CustomRecipe;
 import hellfirepvp.astralsorcery.common.tile.TileAttunementAltar;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;

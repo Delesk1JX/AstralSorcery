@@ -14,10 +14,10 @@ import hellfirepvp.astralsorcery.client.screen.container.*;
 import hellfirepvp.astralsorcery.common.container.ContainerObservatory;
 import hellfirepvp.astralsorcery.common.container.factory.*;
 import net.minecraft.client.gui.ScreenManager;
-import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.world.entity.player.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -51,7 +51,7 @@ public class RegistryContainerTypes {
         ScreenManager.registerFactory(TOME, ScreenContainerTome::new);
         ScreenManager.registerFactory(OBSERVATORY, new ScreenManager.IScreenFactory<ContainerObservatory, ScreenObservatory>() {
             @Override
-            public ScreenObservatory create(ContainerObservatory observatory, PlayerInventory playerInventory, ITextComponent name) {
+            public ScreenObservatory create(ContainerObservatory observatory, IInventory playerInventory, ITextComponent name) {
                 return new ScreenObservatory(observatory);
             }
         });

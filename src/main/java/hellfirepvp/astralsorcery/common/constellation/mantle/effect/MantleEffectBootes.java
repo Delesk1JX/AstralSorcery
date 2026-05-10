@@ -16,9 +16,9 @@ import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
 import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.IntTag;
@@ -63,7 +63,7 @@ public class MantleEffectBootes extends MantleEffect {
     }
 
     @Override
-    protected void tickServer(PlayerEntity player) {
+    protected void tickServer(Player player) {
         super.tickServer(player);
 
         ItemStack mantle = player.getItemStackFromSlot(EquipmentSlotType.CHEST);
@@ -97,7 +97,7 @@ public class MantleEffectBootes extends MantleEffect {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    protected void tickClient(PlayerEntity player) {
+    protected void tickClient(Player player) {
         super.tickClient(player);
 
         this.playCapeSparkles(player, 0.15F);
@@ -109,7 +109,7 @@ public class MantleEffectBootes extends MantleEffect {
         if (!attacked.getEntityWorld().isRemote() && src.getTrueSource() instanceof LivingEntity) {
             LivingEntity attacker = (LivingEntity) src.getTrueSource();
             if (ItemMantle.getEffect(attacker, ConstellationsAS.bootes) != null && attacked.isAlive()) {
-                if (attacked instanceof PlayerEntity && !MiscUtils.canPlayerAttackServer(attacker, attacked)) {
+                if (attacked instanceof Player && !MiscUtils.canPlayerAttackServer(attacker, attacked)) {
                     return;
                 }
                 this.forEachFlare(attacker, flare -> flare.setAttackTarget(attacked));

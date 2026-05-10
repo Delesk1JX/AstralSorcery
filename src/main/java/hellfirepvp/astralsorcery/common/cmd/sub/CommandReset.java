@@ -17,7 +17,7 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.command.arguments.EntitySelector;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 
@@ -43,7 +43,7 @@ public class CommandReset implements Command<CommandSource> {
 
     @Override
     public int run(CommandContext<CommandSource> context) throws CommandSyntaxException {
-        ServerPlayerEntity player = (ServerPlayerEntity) context.getArgument("player", EntitySelector.class).selectOne(context.getSource());
+        ServerPlayer player = (ServerPlayer) context.getArgument("player", EntitySelector.class).selectOne(context.getSource());
         ResearchHelper.wipeKnowledge(player);
 
         String name = player.getGameProfile().getName();

@@ -28,7 +28,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.IReorderingProcessor;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import org.lwjgl.opengl.GL11;
@@ -170,8 +170,8 @@ public class ScreenJournalProgression extends ScreenJournal {
     private void renderProgressView(MatrixStack renderStack, int mouseX, int mouseY, float pTicks) {
         double guiFactor = Minecraft.getInstance().getMainWindow().getGuiScaleFactor();
         GL11.glEnable(GL11.GL_SCISSOR_TEST);
-        GL11.glScissor(MathHelper.floor((guiLeft + 27) * guiFactor), MathHelper.floor((guiTop + 27) * guiFactor),
-                MathHelper.floor((guiWidth - 54) * guiFactor), MathHelper.floor((guiHeight - 54) * guiFactor));
+        GL11.glScissor(Mth.floor((guiLeft + 27) * guiFactor), Mth.floor((guiTop + 27) * guiFactor),
+                Mth.floor((guiWidth - 54) * guiFactor), Mth.floor((guiHeight - 54) * guiFactor));
         progressionRenderer.drawProgressionPart(renderStack, this.getGuiZLevel(), mouseX, mouseY);
         GL11.glDisable(GL11.GL_SCISSOR_TEST);
 

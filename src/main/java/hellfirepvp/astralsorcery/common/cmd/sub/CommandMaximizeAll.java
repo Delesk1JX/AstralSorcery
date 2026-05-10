@@ -17,7 +17,7 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.command.arguments.EntitySelector;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 
@@ -39,7 +39,7 @@ public class CommandMaximizeAll implements Command<CommandSource> {
                 .requires(cs -> cs.hasPermissionLevel(2))
                 .then(Commands.argument("player", EntityArgument.player())
                         .executes(ctx -> {
-                            PlayerEntity target = (PlayerEntity) ctx.getArgument("player", EntitySelector.class).selectOne(ctx.getSource());
+                            Player target = (Player) ctx.getArgument("player", EntitySelector.class).selectOne(ctx.getSource());
                             ctx.getSource().sendFeedback(new StringTextComponent("Success!").mergeStyle(TextFormatting.GREEN), true);
                             maximizeAll(target);
                             return 0;
@@ -54,7 +54,7 @@ public class CommandMaximizeAll implements Command<CommandSource> {
         return 0;
     }
 
-    private static boolean maximizeAll(PlayerEntity entity) {
+    private static boolean maximizeAll(Player entity) {
         return ResearchManager.forceMaximizeAll(entity);
     }
 }

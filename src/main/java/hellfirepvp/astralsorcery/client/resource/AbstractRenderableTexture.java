@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.client.resource;
 
 import net.minecraft.client.renderer.RenderState;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
 
 import java.util.Objects;

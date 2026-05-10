@@ -22,9 +22,9 @@ import hellfirepvp.astralsorcery.common.item.base.PerkExperienceRevealer;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.UseAction;
@@ -32,7 +32,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.Util;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -73,15 +73,15 @@ public class ItemShiftingStar extends Item implements PerkExperienceRevealer {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, Player playerIn, Hand handIn) {
         playerIn.setActiveHand(handIn);
         return super.onItemRightClick(worldIn, playerIn, handIn);
     }
 
     @Override
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
-        if (!worldIn.isRemote() && entityLiving instanceof ServerPlayerEntity) {
-            ServerPlayerEntity player = (ServerPlayerEntity) entityLiving;
+        if (!worldIn.isRemote() && entityLiving instanceof ServerPlayer) {
+            ServerPlayer player = (ServerPlayer) entityLiving;
             IMajorConstellation cst = this.getBaseConstellation();
             if (cst != null) {
                 PlayerProgress prog = ResearchHelper.getProgress(player, LogicalSide.SERVER);
@@ -91,7 +91,7 @@ public class ItemShiftingStar extends Item implements PerkExperienceRevealer {
 
                 double perkExp = prog.getPerkData().getPerkExp();
                 if (ResearchManager.setAttunedConstellation(player, cst)) {
-                    ResearchManager.setExp(player, MathHelper.lfloor(perkExp));
+                    ResearchManager.setExp(player, Mth.lfloor(perkExp));
                     player.sendMessage(new TranslationTextComponent("astralsorcery.progress.switch.attunement").mergeStyle(TextFormatting.BLUE), Util.DUMMY_UUID);
                     SoundHelper.playSoundAround(SoundEvents.BLOCK_GLASS_BREAK, worldIn, entityLiving.getPosition(), 1F, 1F);
                     return ItemStack.EMPTY;
@@ -131,7 +131,7 @@ public class ItemShiftingStar extends Item implements PerkExperienceRevealer {
                 Vector3 center = Vector3.atEntityCorner(player).addY(player.getHeight() / 2);
                 Vector3 v = Vector3.RotAxis.X_AXIS.clone();
                 float originalAngle = (((float) i) / ((float) parts)) * 360F;
-                double angle = originalAngle + (MathHelper.sin(percCycle) * angleSwirl);
+                double angle = originalAngle + (Mth.sin(percCycle) * angleSwirl);
                 v.rotate(-Math.toRadians(angle), Vector3.RotAxis.Y_AXIS).normalize().multiply(4);
                 Vector3 pos = center.clone().add(v);
                 Vector3 mot = center.clone().subtract(pos).normalize().multiply(0.1);

@@ -12,8 +12,8 @@ import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.Mth;
+import net.minecraft.util.vector.Vector3d;
 import net.neoforged.neoforge.event.TickEvent;
 
 import javax.annotation.Nullable;
@@ -53,11 +53,11 @@ public class RenderInfo implements ITickHandler {
     public void tick(TickEvent.Type type, Object... context) {
         ActiveRenderInfo info = this.getARI();
         if (info != null) {
-            this.rotationX = MathHelper.cos(info.getYaw() * ((float)Math.PI / 180F));
-            this.rotationZ = MathHelper.sin(info.getYaw() * ((float)Math.PI / 180F));
-            this.rotationYZ = -this.rotationZ * MathHelper.sin(info.getPitch() * ((float)Math.PI / 180F));
-            this.rotationXY = this.rotationX * MathHelper.sin(info.getPitch() * ((float)Math.PI / 180F));
-            this.rotationXZ = MathHelper.cos(info.getPitch() * ((float)Math.PI / 180F));
+            this.rotationX = Mth.cos(info.getYaw() * ((float)Math.PI / 180F));
+            this.rotationZ = Mth.sin(info.getYaw() * ((float)Math.PI / 180F));
+            this.rotationYZ = -this.rotationZ * Mth.sin(info.getPitch() * ((float)Math.PI / 180F));
+            this.rotationXY = this.rotationX * Mth.sin(info.getPitch() * ((float)Math.PI / 180F));
+            this.rotationXZ = Mth.cos(info.getPitch() * ((float)Math.PI / 180F));
         }
     }
 

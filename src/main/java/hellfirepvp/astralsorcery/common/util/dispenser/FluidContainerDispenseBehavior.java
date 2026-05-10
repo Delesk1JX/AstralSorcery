@@ -13,12 +13,12 @@ import net.minecraft.block.DispenserBlock;
 import net.minecraft.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.dispenser.IDispenseItemBehavior;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.DispenserTileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.neoforged.neoforge.common.util.LazyOptional;
@@ -97,7 +97,7 @@ public class FluidContainerDispenseBehavior extends DefaultDispenseItemBehavior 
                 .orElse(FluidStack.EMPTY);
         Direction dispenserFacing = source.getBlockState().get(DispenserBlock.FACING);
         BlockPos pos = source.getBlockPos().offset(dispenserFacing);
-        PlayerEntity player = AstralSorcery.getProxy().getASFakePlayerServer((ServerWorld) world);
+        Player player = AstralSorcery.getProxy().getASFakePlayerServer((ServerWorld) world);
         FluidActionResult result = FluidUtil.tryPlaceFluid(player, source.getWorld(), Hand.MAIN_HAND, pos, stack, drained);
 
         if (result.isSuccess()) {

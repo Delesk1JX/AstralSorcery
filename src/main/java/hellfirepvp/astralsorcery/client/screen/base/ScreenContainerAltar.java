@@ -22,7 +22,7 @@ import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.world.entity.player.IInventory;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.text.ITextComponent;
 import net.neoforged.fml.LogicalSide;
@@ -40,7 +40,7 @@ import java.awt.*;
  */
 public abstract class ScreenContainerAltar<T extends ContainerAltarBase> extends ScreenCustomContainer<T> {
 
-    public ScreenContainerAltar(T screenContainer, PlayerInventory inv, ITextComponent name, int width, int height) {
+    public ScreenContainerAltar(T screenContainer, IInventory inv, ITextComponent name, int width, int height) {
         super(screenContainer, inv, name, width, height);
     }
 

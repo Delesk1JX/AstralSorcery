@@ -14,8 +14,8 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.block.BlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Mth;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 
@@ -220,7 +220,7 @@ public class BlockDiscoverer {
     }
 
     private static int getCubeDistance(BlockPos p1, BlockPos p2) {
-        return (int) MathHelper.absMax(MathHelper.absMax(p1.getX() - p2.getX(), p1.getY() - p2.getY()), p1.getZ() - p2.getZ());
+        return (int) Mth.absMax(Mth.absMax(p1.getX() - p2.getX(), p1.getY() - p2.getY()), p1.getZ() - p2.getZ());
     }
 
     private static boolean isExposedToAir(World world, BlockPos pos) {

@@ -22,17 +22,17 @@ import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
 import hellfirepvp.astralsorcery.common.util.DamageUtil;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.controller.FlyingMovementController;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.controller.FlyingMovementController;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -93,7 +93,7 @@ public class EntitySpectralTool extends FlyingEntity {
 
     @Override
     public boolean canCollide(Entity entity) {
-        return !(entity instanceof PlayerEntity);
+        return !(entity instanceof Player);
     }
 
     @Override
@@ -179,14 +179,14 @@ public class EntitySpectralTool extends FlyingEntity {
 
     @Override
     public void applyEntityCollision(Entity entityIn) {
-        if (!(entityIn instanceof PlayerEntity || entityIn instanceof EntitySpectralTool)) {
+        if (!(entityIn instanceof Player || entityIn instanceof EntitySpectralTool)) {
             super.applyEntityCollision(entityIn);
         }
     }
 
     @Override
     protected void collideWithEntity(Entity entityIn) {
-        if (!(entityIn instanceof PlayerEntity || entityIn instanceof EntitySpectralTool)) {
+        if (!(entityIn instanceof Player || entityIn instanceof EntitySpectralTool)) {
             super.applyEntityCollision(entityIn);
         }
     }

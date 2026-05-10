@@ -13,11 +13,11 @@ import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.common.util.block.BlockUtils;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.dispenser.IBlockSource;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.common.util.BlockSnapshot;
 import net.neoforged.neoforge.event.ForgeEventFactory;
@@ -41,7 +41,7 @@ public class ItemIlluminationPowder extends ItemUsableDust {
     }
 
     @Override
-    boolean rightClickAir(World world, PlayerEntity player, ItemStack dust) {
+    boolean rightClickAir(World world, Player player, ItemStack dust) {
         return world.addEntity(new EntityIlluminationSpark(player, world));
     }
 
@@ -49,7 +49,7 @@ public class ItemIlluminationPowder extends ItemUsableDust {
     boolean rightClickBlock(ItemUseContext ctx) {
         World world = ctx.getWorld();
         BlockPos pos = ctx.getPos();
-        PlayerEntity player = ctx.getPlayer();
+        Player player = ctx.getPlayer();
         if (player == null) {
             return false;
         }

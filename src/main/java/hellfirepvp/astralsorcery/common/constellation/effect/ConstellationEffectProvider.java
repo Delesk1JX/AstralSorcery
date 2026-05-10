@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.constellation.effect;
 
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 import hellfirepvp.astralsorcery.common.util.block.ILocatable;
-import net.neoforged.neoforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.IRegistryObject;
 
 import javax.annotation.Nonnull;
@@ -23,7 +23,7 @@ import javax.annotation.Nullable;
  * Created by HellFirePvP
  * Date: 11.06.2019 / 19:34
  */
-public abstract class ConstellationEffectProvider extends RegistryObject<ConstellationEffectProvider> implements IRegistryObject<ConstellationEffectProvider> {
+public abstract class ConstellationEffectProvider extends DeferredHolder<ConstellationEffectProvider> implements IRegistryObject<ConstellationEffectProvider> {
 
     private final IWeakConstellation cst;
 

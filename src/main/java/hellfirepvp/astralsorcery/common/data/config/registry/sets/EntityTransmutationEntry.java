@@ -9,10 +9,10 @@
 package hellfirepvp.astralsorcery.common.data.config.registry.sets;
 
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigDataSet;
-import net.minecraft.entity.EntityClassification;
-import net.minecraft.entity.EntityType;
-import net.minecraft.util.ResourceLocation;
-import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.minecraft.world.entity.EntityClassification;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.resources.ResourceLocation;
+import net.neoforged.neoforge.registries.RegistryManager;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -55,12 +55,12 @@ public class EntityTransmutationEntry implements ConfigDataSet {
             return null;
         }
         ResourceLocation fromKey = new ResourceLocation(split[0]);
-        EntityType<?> fromType = ForgeRegistries.ENTITIES.getValue(fromKey);
+        EntityType<?> fromType = RegistryManager.ENTITIES.getValue(fromKey);
         if (fromType == null) {
             throw new IllegalArgumentException(split[0] + " is not a known EntityType.");
         }
         ResourceLocation toKey = new ResourceLocation(split[1]);
-        EntityType<?> toType = ForgeRegistries.ENTITIES.getValue(toKey);
+        EntityType<?> toType = RegistryManager.ENTITIES.getValue(toKey);
         if (toType == null) {
             throw new IllegalArgumentException(split[0] + " is not a known EntityType.");
         }

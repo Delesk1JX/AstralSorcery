@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.client.effect.EntityComplexFX;
 import hellfirepvp.astralsorcery.common.util.NameUtil;
 import net.minecraft.client.renderer.RenderState;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -94,7 +94,7 @@ public class SpriteSheetResource extends AbstractRenderableTexture {
     public Tuple<Float, Float> getUVOffset(EntityComplexFX fx, float pTicks, float spriteDisplayFactor) {
         float agePart = fx.getAge() * spriteDisplayFactor + pTicks;
         float perc = agePart / fx.getMaxAge();
-        long timer = MathHelper.floor(this.getFrameCount() * perc);
+        long timer = Mth.floor(this.getFrameCount() * perc);
         return getUVOffset(timer);
     }
 

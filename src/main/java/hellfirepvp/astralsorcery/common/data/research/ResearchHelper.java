@@ -16,8 +16,8 @@ import hellfirepvp.astralsorcery.common.network.play.server.PktProgressionUpdate
 import hellfirepvp.astralsorcery.common.network.play.server.PktSyncKnowledge;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.command.ICommandSource;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.server.MinecraftServer;
@@ -52,11 +52,11 @@ public class ResearchHelper {
     private static final Map<UUID, PlayerProgress> playerProgressServer = new HashMap<>();
 
     @Nonnull
-    public static PlayerProgress getProgress(@Nullable PlayerEntity player, LogicalSide side) {
+    public static PlayerProgress getProgress(@Nullable Player player, LogicalSide side) {
         if (side.isClient()) {
             return getClientProgress();
-        } else if (player instanceof ServerPlayerEntity) {
-            return getProgressServer((ServerPlayerEntity) player);
+        } else if (player instanceof ServerPlayer) {
+            return getProgressServer((ServerPlayer) player);
         } else {
             return new PlayerProgressTestAccess();
         }
@@ -68,7 +68,7 @@ public class ResearchHelper {
     }
 
     @Nonnull
-    private static PlayerProgress getProgressServer(ServerPlayerEntity player) {
+    private static PlayerProgress getProgressServer(ServerPlayer player) {
         if (MiscUtils.isPlayerFakeMP(player)) {
             return new PlayerProgressTestAccess();
         }
@@ -96,7 +96,7 @@ public class ResearchHelper {
         }
     }
 
-    public static void loadPlayerKnowledge(ServerPlayerEntity p) {
+    public static void loadPlayerKnowledge(ServerPlayer p) {
         if (!MiscUtils.isPlayerFakeMP(p)) {
             loadPlayerKnowledge(p.getUniqueID());
         }
@@ -161,13 +161,13 @@ public class ResearchHelper {
     private static void informPlayersAboutProgressionLoss(UUID pUUID) {
         MinecraftServer server = LogicalSidedProvider.INSTANCE.get(LogicalSide.SERVER);
         if (server != null) {
-            ServerPlayerEntity player = server.getPlayerList().getPlayerByUUID(pUUID);
+            ServerPlayer player = server.getPlayerList().getPlayerByUUID(pUUID);
             if (player != null) {
                 player.sendMessage(new StringTextComponent("AstralSorcery: Your progression could not be loaded and can't be recovered from backup. Please contact an administrator to lookup what went wrong and/or potentially recover your data from a backup.").mergeStyle(TextFormatting.RED), Util.DUMMY_UUID);
             }
             String resolvedName = player != null ? player.getGameProfile().getName() : pUUID.toString() + " (Not online)";
             for (String opName : server.getPlayerList().getOppedPlayerNames()) {
-                PlayerEntity pl = server.getPlayerList().getPlayerByUsername(opName);
+                Player pl = server.getPlayerList().getPlayerByUsername(opName);
                 if (pl != null) {
                     pl.sendMessage(new StringTextComponent("AstralSorcery: The progression of " + resolvedName + " could not be loaded and can't be recovered from backup. Error files might be created from the unloadable progression files, check the console for additional information!").mergeStyle(TextFormatting.RED), Util.DUMMY_UUID);
                 }
@@ -196,7 +196,7 @@ public class ResearchHelper {
         }
     }
 
-    public static boolean mergeApplyPlayerprogress(PlayerProgress toMergeFrom, PlayerEntity player) {
+    public static boolean mergeApplyPlayerprogress(PlayerProgress toMergeFrom, Player player) {
         PlayerProgress progress = ResearchHelper.getProgress(player, LogicalSide.SERVER);
         if (!progress.isValid()) return false;
 
@@ -207,7 +207,7 @@ public class ResearchHelper {
         return true;
     }
 
-    public static void wipeKnowledge(ServerPlayerEntity p) {
+    public static void wipeKnowledge(ServerPlayer p) {
         ResearchManager.resetPerks(p);
         wipeFile(p);
         playerProgressServer.remove(p.getUniqueID());
@@ -219,13 +219,13 @@ public class ResearchHelper {
         ResearchSyncHelper.pushProgressToClientUnsafe(getProgressServer(p), p);
     }
 
-    private static void wipeFile(ServerPlayerEntity player) {
+    private static void wipeFile(ServerPlayer player) {
         getPlayerFile(player).delete();
         ResearchIOThread.cancelSave(player.getUniqueID());
     }
 
-    public static void savePlayerKnowledge(PlayerEntity p) {
-        if (p instanceof ServerPlayerEntity && !MiscUtils.isPlayerFakeMP((ServerPlayerEntity) p)) {
+    public static void savePlayerKnowledge(Player p) {
+        if (p instanceof ServerPlayer && !MiscUtils.isPlayerFakeMP((ServerPlayer) p)) {
             savePlayerKnowledge(p.getUniqueID(), false);
         }
     }
@@ -244,7 +244,7 @@ public class ResearchHelper {
         playerProgressServer.clear();
     }
 
-    public static File getPlayerFile(PlayerEntity player) {
+    public static File getPlayerFile(Player player) {
         return getPlayerFile(player.getUniqueID());
     }
 
@@ -258,11 +258,11 @@ public class ResearchHelper {
         return f;
     }
 
-    public static boolean doesPlayerFileExist(PlayerEntity player) {
+    public static boolean doesPlayerFileExist(Player player) {
         return new File(getPlayerDirectory(), player.getUniqueID().toString() + ".astral").exists();
     }
 
-    public static File getPlayerBackupFile(PlayerEntity player) {
+    public static File getPlayerBackupFile(Player player) {
         return getPlayerBackupFile(player.getUniqueID());
     }
 

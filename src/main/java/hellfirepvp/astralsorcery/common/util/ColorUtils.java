@@ -15,7 +15,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -41,7 +41,7 @@ public class ColorUtils {
     }
 
     public static int blendColors(int color1, int color2, float color1Ratio) {
-        float ratio1 = MathHelper.clamp(color1Ratio, 0F, 1F);
+        float ratio1 = Mth.clamp(color1Ratio, 0F, 1F);
         float ratio2 = 1F - ratio1;
 
         int a1 = (color1 & 0xFF000000) >> 24;
@@ -54,10 +54,10 @@ public class ColorUtils {
         int g2 = (color2 & 0x0000FF00) >>  8;
         int b2 = (color2 & 0x000000FF);
 
-        int a = MathHelper.clamp(Math.round(a1 * ratio1 + a2 * ratio2), 0, 255);
-        int r = MathHelper.clamp(Math.round(r1 * ratio1 + r2 * ratio2), 0, 255);
-        int g = MathHelper.clamp(Math.round(g1 * ratio1 + g2 * ratio2), 0, 255);
-        int b = MathHelper.clamp(Math.round(b1 * ratio1 + b2 * ratio2), 0, 255);
+        int a = Mth.clamp(Math.round(a1 * ratio1 + a2 * ratio2), 0, 255);
+        int r = Mth.clamp(Math.round(r1 * ratio1 + r2 * ratio2), 0, 255);
+        int g = Mth.clamp(Math.round(g1 * ratio1 + g2 * ratio2), 0, 255);
+        int b = Mth.clamp(Math.round(b1 * ratio1 + b2 * ratio2), 0, 255);
 
         return a << 24 | r << 16 | g << 8 | b;
     }

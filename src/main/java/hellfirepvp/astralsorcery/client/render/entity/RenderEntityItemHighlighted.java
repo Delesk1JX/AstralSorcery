@@ -16,7 +16,7 @@ import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.ItemRenderer;
-import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.neoforged.neoforge.fml.client.registry.IRenderFactory;
 
 /**

@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.integration;
 
 import hellfirepvp.astralsorcery.common.base.Mods;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.neoforged.neoforge.fml.InterModComms;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
@@ -34,7 +34,7 @@ public class IntegrationCurios {
                 () -> SlotTypePreset.NECKLACE.getMessageBuilder().build());
     }
 
-    public static Optional<ImmutableTriple<String, Integer, ItemStack>> getCurio(PlayerEntity player, Predicate<ItemStack> match) {
+    public static Optional<ImmutableTriple<String, Integer, ItemStack>> getCurio(Player player, Predicate<ItemStack> match) {
         return CuriosApi.getCuriosHelper().findEquippedCurio(match, player);
     }
 

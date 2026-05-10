@@ -10,8 +10,8 @@ package hellfirepvp.astralsorcery.client.model.armor;
 
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.item.ArmorStandEntity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ArmorStandEntity;
 
 /**
  * This class is part of the Astral Sorcery Mod

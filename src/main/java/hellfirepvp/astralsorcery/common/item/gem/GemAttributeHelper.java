@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.common.perk.type.ModifierType;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -113,7 +113,7 @@ public class GemAttributeHelper {
             } else {
                 float exp = 1F / gemType.amplifierModifier;
                 float multiplierScale = (float) Math.pow(random.nextFloat(), exp);
-                value = lower + (MathHelper.clamp(multiplierScale, 0F, 1F) * (higher - lower));
+                value = lower + (Mth.clamp(multiplierScale, 0F, 1F) * (higher - lower));
             }
 
             ModifierType mode = isMultiplicative ? ModifierType.STACKING_MULTIPLY : ModifierType.ADDED_MULTIPLY;

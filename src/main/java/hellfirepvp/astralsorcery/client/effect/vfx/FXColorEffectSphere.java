@@ -17,9 +17,9 @@ import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import hellfirepvp.astralsorcery.client.util.SphereBuilder;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Matrix4f;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.util.Mth;
+import net.minecraft.util.vector.Matrix4f;
 
 import java.awt.*;
 import java.util.LinkedList;
@@ -51,8 +51,8 @@ public class FXColorEffectSphere extends EntityVisualFX {
         this.setScaleMultiplier(scale);
 
         Vector3 actAxis = axis.clone().normalize().multiply(scale);
-        fractionsSplit = MathHelper.clamp(fractionsSplit, 2, Integer.MAX_VALUE);
-        fractionsCircle = MathHelper.clamp(fractionsCircle, 3, Integer.MAX_VALUE);
+        fractionsSplit = Mth.clamp(fractionsSplit, 2, Integer.MAX_VALUE);
+        fractionsCircle = Mth.clamp(fractionsCircle, 3, Integer.MAX_VALUE);
         this.sphereFaces = SphereBuilder.buildFaces(actAxis, fractionsSplit, fractionsCircle);
         return this;
     }
@@ -69,7 +69,7 @@ public class FXColorEffectSphere extends EntityVisualFX {
                 double dst = plVec.distance(getRenderPosition(pTicks)) - 1.2;
 
                 alpha *= 1D - (dst / this.alphaFadeMaxDist);
-                alpha = MathHelper.clamp(alpha, 0, 1);
+                alpha = Mth.clamp(alpha, 0, 1);
                 return alpha;
             });
         } else {

@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import net.minecraft.client.gui.IHasContainer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.world.entity.player.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.util.text.ITextComponent;
 import org.lwjgl.opengl.GL11;
@@ -32,7 +32,7 @@ public abstract class ScreenCustomContainer<T extends Container> extends Contain
 
     private final int sWidth, sHeight;
 
-    public ScreenCustomContainer(T screenContainer, PlayerInventory inv, ITextComponent name, int width, int height) {
+    public ScreenCustomContainer(T screenContainer, IInventory inv, ITextComponent name, int width, int height) {
         super(screenContainer, inv, name);
         this.sWidth = width;
         this.sHeight = height;

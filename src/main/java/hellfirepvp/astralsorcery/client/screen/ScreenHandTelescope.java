@@ -28,7 +28,7 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.neoforged.fml.LogicalSide;
 import org.lwjgl.opengl.GL11;
@@ -172,24 +172,24 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<Constellat
                             Math.abs(diffPitch) <= maxDistance) {
 
                         float rainBr = 1F - Minecraft.getInstance().world.getRainStrength(pTicks);
-                        int wPart = MathHelper.floor(this.getGuiWidth() * 0.1F);
-                        int hPart = MathHelper.floor(this.getGuiHeight() * 0.1F);
+                        int wPart = Mth.floor(this.getGuiWidth() * 0.1F);
+                        int hPart = Mth.floor(this.getGuiHeight() * 0.1F);
                         float xFactor = diffYaw   / 8F;
                         float yFactor = diffPitch / 8F;
 
                         GL11.glEnable(GL11.GL_SCISSOR_TEST);
-                        GL11.glScissor(MathHelper.floor((this.getGuiLeft() + 5) * guiFactor),
-                                MathHelper.floor((this.getGuiTop() + 5) * guiFactor),
-                                MathHelper.floor((this.getGuiWidth() - 10) * guiFactor),
-                                MathHelper.floor((this.getGuiHeight() - 10) * guiFactor));
+                        GL11.glScissor(Mth.floor((this.getGuiLeft() + 5) * guiFactor),
+                                Mth.floor((this.getGuiTop() + 5) * guiFactor),
+                                Mth.floor((this.getGuiWidth() - 10) * guiFactor),
+                                Mth.floor((this.getGuiHeight() - 10) * guiFactor));
 
                         Map<StarLocation, Rectangle.Float> cstRenderInfo = RenderingConstellationUtils.renderConstellationIntoGUI(
                                 cst.getTierRenderColor(), cst, renderStack,
-                                this.getGuiLeft() + wPart + MathHelper.floor((xFactor / guiFactor) * this.getGuiWidth()),
-                                this.getGuiTop() + hPart + MathHelper.floor((yFactor / guiFactor) * this.getGuiHeight()),
+                                this.getGuiLeft() + wPart + Mth.floor((xFactor / guiFactor) * this.getGuiWidth()),
+                                this.getGuiTop() + hPart + Mth.floor((yFactor / guiFactor) * this.getGuiHeight()),
                                 this.getGuiZLevel(),
-                                this.getGuiWidth() - MathHelper.floor(wPart * 1.5F),
-                                this.getGuiHeight() - MathHelper.floor(hPart * 1.5F),
+                                this.getGuiWidth() - Mth.floor(wPart * 1.5F),
+                                this.getGuiHeight() - Mth.floor(hPart * 1.5F),
                                 2F,
                                 () -> (0.3F + 0.7F * RenderingConstellationUtils.conCFlicker(ClientScheduler.getClientTick(), pTicks, 5 + gen.nextInt(15))) * rainBr * brMultiplier,
                                 ResearchHelper.getClientProgress().hasConstellationDiscovered(cst),

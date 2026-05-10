@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.client.effect.function;
 
 import hellfirepvp.astralsorcery.client.effect.EntityVisualFX;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 
 import javax.annotation.Nonnull;
 
@@ -32,7 +32,7 @@ public interface VFXScaleFunction<T extends EntityVisualFX> {
     };
 
     VFXScaleFunction<EntityVisualFX> SHRINK_EXP = (fx, scaleIn, pTicks) -> {
-        return MathHelper.sqrt(SHRINK.getScale(fx, scaleIn, pTicks));
+        return Mth.sqrt(SHRINK.getScale(fx, scaleIn, pTicks));
     };
 
     public float getScale(@Nonnull T fx, float scaleIn, float pTicks);

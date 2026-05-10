@@ -15,8 +15,8 @@ import hellfirepvp.astralsorcery.common.item.armor.ItemMantle;
 import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -53,7 +53,7 @@ public class MantleEffectOctans extends MantleEffect {
     }
 
     @Override
-    protected void tickServer(PlayerEntity player) {
+    protected void tickServer(Player player) {
         super.tickServer(player);
 
         if (player.areEyesInFluid(FluidTags.WATER)) {
@@ -67,7 +67,7 @@ public class MantleEffectOctans extends MantleEffect {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    protected void tickClient(PlayerEntity player) {
+    protected void tickClient(Player player) {
         super.tickClient(player);
 
         float chance = 0.1F;
@@ -78,7 +78,7 @@ public class MantleEffectOctans extends MantleEffect {
     }
 
     private void handleUnderwaterBreakSpeed(PlayerEvent.BreakSpeed event) {
-        PlayerEntity player = event.getPlayer();
+        Player player = event.getPlayer();
         if (player.areEyesInFluid(FluidTags.WATER) && !EnchantmentHelper.hasAquaAffinity(player)) {
             LogicalSide side = player.getEntityWorld().isRemote() ? LogicalSide.CLIENT : LogicalSide.SERVER;
             MantleEffectOctans octans = ItemMantle.getEffect(player, ConstellationsAS.octans);

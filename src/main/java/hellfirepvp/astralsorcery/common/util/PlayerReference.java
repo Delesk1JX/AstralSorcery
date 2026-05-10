@@ -9,8 +9,8 @@
 package hellfirepvp.astralsorcery.common.util;
 
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.server.MinecraftServer;
@@ -41,7 +41,7 @@ public class PlayerReference {
         this.playerName = playerName;
     }
 
-    public static PlayerReference of(PlayerEntity player) {
+    public static PlayerReference of(Player player) {
         ITextComponent txt = player.getDisplayName();
         if (txt instanceof IFormattableTextComponent) {
             return new PlayerReference(player.getUniqueID(), (IFormattableTextComponent) txt);
@@ -49,7 +49,7 @@ public class PlayerReference {
         return new PlayerReference(player.getUniqueID(), new StringTextComponent("").append(txt));
     }
 
-    public boolean isPlayer(PlayerEntity player) {
+    public boolean isPlayer(Player player) {
         return this.getPlayerUUID().equals(player.getUniqueID());
     }
 
@@ -75,7 +75,7 @@ public class PlayerReference {
     }
 
     @Nullable
-    public ServerPlayerEntity getOnlinePlayer() {
+    public ServerPlayer getOnlinePlayer() {
         MinecraftServer server = LogicalSidedProvider.INSTANCE.get(LogicalSide.SERVER);
         if (server == null) {
             throw new IllegalArgumentException("Called getOnlinePlayer on clientside or while no server is running!");

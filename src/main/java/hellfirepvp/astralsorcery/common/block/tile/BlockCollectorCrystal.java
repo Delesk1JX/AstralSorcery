@@ -32,15 +32,15 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.shapes.ISelectionContext;
+import net.minecraft.util.shapes.VoxelShape;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextFormatting;
@@ -132,7 +132,7 @@ public abstract class BlockCollectorCrystal extends BlockStarlightNetwork implem
     }
 
     @Override
-    public float getPlayerRelativeBlockHardness(BlockState state, PlayerEntity player, IBlockReader world, BlockPos pos) {
+    public float getPlayerRelativeBlockHardness(BlockState state, Player player, IBlockReader world, BlockPos pos) {
         TileCollectorCrystal crystal = MiscUtils.getTileAt(world, pos, TileCollectorCrystal.class, false);
         if (crystal != null && crystal.isPlayerMade()) {
             int i = ForgeHooks.canHarvestBlock(state, player, world, pos) ? 30 : 100;
@@ -148,7 +148,7 @@ public abstract class BlockCollectorCrystal extends BlockStarlightNetwork implem
         if (tcc != null && i instanceof ItemBlockCollectorCrystal) {
             ItemBlockCollectorCrystal ibcc = (ItemBlockCollectorCrystal) i;
             UUID playerUUID = null;
-            if (entity instanceof PlayerEntity) {
+            if (entity instanceof Player) {
                 playerUUID = entity.getUniqueID();
             }
 

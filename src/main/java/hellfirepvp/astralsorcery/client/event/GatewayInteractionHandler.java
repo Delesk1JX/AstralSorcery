@@ -26,12 +26,12 @@ import hellfirepvp.astralsorcery.common.util.MapStream;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.DyeColor;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Mth;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.event.TickEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
@@ -66,7 +66,7 @@ public class GatewayInteractionHandler {
     }
 
     private static void onAccessRevoke(PlayerInteractEvent.RightClickBlock event) {
-        PlayerEntity player = event.getPlayer();
+        Player player = event.getPlayer();
         World world = event.getWorld();
         if (player == null || world == null || !world.isRemote() || event.getHand() != Hand.MAIN_HAND) {
             return;
@@ -99,7 +99,7 @@ public class GatewayInteractionHandler {
     }
 
     private static void clientTick(TickEvent.ClientTickEvent event) {
-        PlayerEntity player = Minecraft.getInstance().player;
+        Player player = Minecraft.getInstance().player;
         World world = Minecraft.getInstance().world;
         if (player == null || world == null) {
             focusingEntry = null;
@@ -122,7 +122,7 @@ public class GatewayInteractionHandler {
         }
 
         GatewayUI.GatewayEntry entry = GatewayUIRenderHandler.getInstance().
-                findMatchingEntry(MathHelper.wrapDegrees(player.rotationYaw), MathHelper.wrapDegrees(player.rotationPitch));
+                findMatchingEntry(Mth.wrapDegrees(player.rotationYaw), Mth.wrapDegrees(player.rotationPitch));
         if (entry == null) {
             focusingEntry = null;
             focusTicks = 0;

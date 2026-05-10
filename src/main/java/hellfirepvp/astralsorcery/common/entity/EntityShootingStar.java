@@ -20,14 +20,14 @@ import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
 import hellfirepvp.astralsorcery.common.util.data.ASDataSerializers;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ThrowableEntity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.ThrowableEntity;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.Mth;
+import net.minecraft.util.vector.Vector3d;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -92,7 +92,7 @@ public class EntityShootingStar extends ThrowableEntity {
         float maxRenderPosDist = 96F;
 
         VFXRenderOffsetFunction<FXFacingParticle> renderFn = (fx, iPos, pTicks) -> {
-            PlayerEntity pl = Minecraft.getInstance().player;
+            Player pl = Minecraft.getInstance().player;
             if (pl == null) {
                 return iPos;
             }
@@ -103,7 +103,7 @@ public class EntityShootingStar extends ThrowableEntity {
             return Vector3.atEntityCorner(pl).add(v.normalize().multiply(maxRenderPosDist));
         };
         VFXScaleFunction<EntityVisualFX> scaleFn = (fx, scaleIn, pTicks) -> {
-            PlayerEntity pl = Minecraft.getInstance().player;
+            Player pl = Minecraft.getInstance().player;
             if (pl == null) {
                 return scaleIn;
             }
@@ -155,10 +155,10 @@ public class EntityShootingStar extends ThrowableEntity {
 
     @Override
     public void setPosition(double x, double y, double z) {
-        int chunkX = MathHelper.floor(this.getPosX() / 16.0D);
-        int chunkZ = MathHelper.floor(this.getPosZ() / 16.0D);
-        int newChunkX = MathHelper.floor(x / 16.0D);
-        int newChunkZ = MathHelper.floor(z / 16.0D);
+        int chunkX = Mth.floor(this.getPosX() / 16.0D);
+        int chunkZ = Mth.floor(this.getPosZ() / 16.0D);
+        int newChunkX = Mth.floor(x / 16.0D);
+        int newChunkZ = Mth.floor(z / 16.0D);
         if (chunkX != newChunkX || chunkZ != newChunkZ) {
             if (!this.getEntityWorld().chunkExists(newChunkX, newChunkZ)) {
                 this.remove();

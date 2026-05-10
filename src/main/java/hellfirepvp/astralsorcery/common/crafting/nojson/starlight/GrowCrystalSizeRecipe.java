@@ -24,12 +24,12 @@ import hellfirepvp.astralsorcery.common.lib.CrystalPropertiesAS;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Mth;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -80,7 +80,7 @@ public class GrowCrystalSizeRecipe extends LiquidStarlightRecipe {
 
     @Override
     public void doServerCraftTick(ItemEntity trigger, World world, BlockPos at) {
-        Random r = new Random(MathHelper.getPositionRandom(at));
+        Random r = new Random(Mth.getPositionRandom(at));
         if (!world.isRemote() && getAndIncrementCraftingTick(trigger) > 80 + r.nextInt(40)) {
             ItemStack stack = trigger.getItem();
             CrystalAttributes attr = ((ItemCrystalBase) stack.getItem()).getAttributes(stack);

@@ -17,11 +17,11 @@ import hellfirepvp.astralsorcery.common.util.DamageUtil;
 import hellfirepvp.astralsorcery.common.util.PartialEffectExecutor;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
 /**
@@ -55,7 +55,7 @@ public class ItemColoredLensRegeneration extends ItemColoredLens {
             if (world.isRemote() || !(entity instanceof LivingEntity) || !entity.isAlive()) {
                 return;
             }
-            if (entity instanceof PlayerEntity && !GeneralConfig.CONFIG.doColoredLensesAffectPlayers.get()) {
+            if (entity instanceof Player && !GeneralConfig.CONFIG.doColoredLensesAffectPlayers.get()) {
                 return;
             }
             LivingEntity le = (LivingEntity) entity;

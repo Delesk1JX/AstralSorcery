@@ -32,9 +32,9 @@ import hellfirepvp.astralsorcery.common.util.tile.TileInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.util.vector.Vector3d;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -201,7 +201,7 @@ public class TileSpectralRelay extends TileEntityTick {
 
     private void provideStarlight(TileAltar ta) {
         if (this.doesSeeSky()) {
-            float heightAmount = MathHelper.clamp((float) Math.pow(getPos().getY() / 7F, 1.5F) / 60F, 0F, 1F);
+            float heightAmount = Mth.clamp((float) Math.pow(getPos().getY() / 7F, 1.5F) / 60F, 0F, 1F);
             heightAmount = 0.7F + heightAmount * 0.3F;
             heightAmount *= DayTimeHelper.getCurrentDaytimeDistribution(getWorld());
             heightAmount *= this.proximityMultiplier;
@@ -262,7 +262,7 @@ public class TileSpectralRelay extends TileEntityTick {
         if (this.closestRelayPos == null) {
             this.proximityMultiplier = 1F;
         } else {
-            this.proximityMultiplier = MathHelper.clamp((float) new Vector3(this.getPos()).distance(this.closestRelayPos) / 8F, 0F, 1F);
+            this.proximityMultiplier = Mth.clamp((float) new Vector3(this.getPos()).distance(this.closestRelayPos) / 8F, 0F, 1F);
         }
     }
 

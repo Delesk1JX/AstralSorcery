@@ -16,9 +16,9 @@ import hellfirepvp.astralsorcery.common.lib.EffectsAS;
 import hellfirepvp.astralsorcery.common.perk.CooldownPerk;
 import hellfirepvp.astralsorcery.common.perk.PerkCooldownHelper;
 import hellfirepvp.astralsorcery.common.perk.node.KeyPerk;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
@@ -52,8 +52,8 @@ public class KeyCheatDeath extends KeyPerk implements CooldownPerk {
     }
 
     private void onDeath(LivingDeathEvent event) {
-        if (event.getEntityLiving() instanceof PlayerEntity) {
-            PlayerEntity player = (PlayerEntity) event.getEntityLiving();
+        if (event.getEntityLiving() instanceof Player) {
+            Player player = (Player) event.getEntityLiving();
             LogicalSide side = this.getSide(player);
             PlayerProgress progress = ResearchHelper.getProgress(player, side);
             if (side.isServer() && progress.getPerkData().hasPerkEffect(this)) {
@@ -70,7 +70,7 @@ public class KeyCheatDeath extends KeyPerk implements CooldownPerk {
     }
 
     @Override
-    public void onCooldownTimeout(PlayerEntity player) {}
+    public void onCooldownTimeout(Player player) {}
 
     private static class Config extends ConfigEntry {
 

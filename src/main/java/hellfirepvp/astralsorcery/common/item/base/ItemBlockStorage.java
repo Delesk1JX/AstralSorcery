@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -20,7 +20,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.common.util.Constants;
 
@@ -55,7 +55,7 @@ public interface ItemBlockStorage {
         return true;
     }
 
-    static void clearContainerFor(PlayerEntity player) {
+    static void clearContainerFor(Player player) {
         Tuple<Hand, ItemStack> held = MiscUtils.getMainOrOffHand(player, stack -> stack.getItem() instanceof ItemBlockStorage);
         if (held != null) {
             NBTHelper.getPersistentData(held.getB()).remove("storedStates");
@@ -63,7 +63,7 @@ public interface ItemBlockStorage {
     }
 
     @Nonnull
-    static List<Tuple<ItemStack, Integer>> getInventoryMatchingItemStacks(PlayerEntity player, ItemStack referenceContainer) {
+    static List<Tuple<ItemStack, Integer>> getInventoryMatchingItemStacks(Player player, ItemStack referenceContainer) {
         Map<BlockState, Tuple<ItemStack, Integer>> storedStates = getInventoryMatching(player, referenceContainer);
         List<Tuple<ItemStack, Integer>> foundStacks = new ArrayList<>(storedStates.values());
         foundStacks.sort(Comparator.comparing(tpl -> tpl.getA().getItem().getRegistryName()));
@@ -71,14 +71,14 @@ public interface ItemBlockStorage {
     }
 
     @Nonnull
-    static Map<BlockState, Tuple<ItemStack, Integer>> getInventoryMatching(PlayerEntity player, ItemStack referenceContainer) {
+    static Map<BlockState, Tuple<ItemStack, Integer>> getInventoryMatching(Player player, ItemStack referenceContainer) {
         Map<BlockState, ItemStack> mappedStacks = ItemBlockStorage.getMappedStoredStates(referenceContainer);
         Map<BlockState, Tuple<ItemStack, Integer>> foundContents = new HashMap<>();
         for (BlockState state : mappedStacks.keySet()) {
             ItemStack stored = mappedStacks.get(state);
 
             int countDisplay = 0;
-            Collection<ItemStack> stacks = ItemUtils.findItemsInPlayerInventory(player, stored, true);
+            Collection<ItemStack> stacks = ItemUtils.findItemsInIInventory(player, stored, true);
             for (ItemStack found : stacks) {
                 countDisplay += found.getCount();
             }

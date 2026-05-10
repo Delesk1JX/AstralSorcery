@@ -10,11 +10,11 @@ package hellfirepvp.astralsorcery.common.auxiliary.link;
 
 import com.google.common.collect.Lists;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Util;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -86,7 +86,7 @@ public interface LinkableTileEntity {
      * @param player the player that created the link.
      * @param other the new location linked to.
      */
-    public void onBlockLinkCreate(PlayerEntity player, BlockPos other);
+    public void onBlockLinkCreate(Player player, BlockPos other);
 
     /**
      * Informs of a successful link creation.
@@ -95,7 +95,7 @@ public interface LinkableTileEntity {
      * @param player the player that created the link.
      * @param linked the new entity linked to.
      */
-    public void onEntityLinkCreate(PlayerEntity player, LivingEntity linked);
+    public void onEntityLinkCreate(Player player, LivingEntity linked);
 
     /**
      * Informs that a player right-clicked the tile to start the linking process.
@@ -104,7 +104,7 @@ public interface LinkableTileEntity {
      *
      * @return boolean true if the select actually selected it, false for any other selection modification
      */
-    default public boolean onSelect(PlayerEntity player) {
+    default public boolean onSelect(Player player) {
         if (player.isSneaking()) {
             for (BlockPos linkTo : Lists.newArrayList(getLinkedPositions())) {
                 tryUnlink(player, linkTo);
@@ -122,7 +122,7 @@ public interface LinkableTileEntity {
      * @param other the other block this tile is supposed to link to.
      * @return true, if and only if a allowed/correct link can be created, false otherwise
      */
-    public boolean tryLinkBlock(PlayerEntity player, BlockPos other);
+    public boolean tryLinkBlock(Player player, BlockPos other);
 
     /**
      * Called when a player right-clicks any entity and then right-clicks this tile,
@@ -132,7 +132,7 @@ public interface LinkableTileEntity {
      * @param other the other entity to link to this block tile.
      * @return true, if and only if a allowed/correct link can be created, false otherwise
      */
-    public boolean tryLinkEntity(PlayerEntity player, LivingEntity other);
+    public boolean tryLinkEntity(Player player, LivingEntity other);
 
     /**
      * Called when a player shift-right-clicks a block that is linked to this tile.
@@ -141,7 +141,7 @@ public interface LinkableTileEntity {
      * @param other the other block this tile has a link to.
      * @return true, if the link got removed, which, in case this is actually linked to the given block, should always happen
      */
-    public boolean tryUnlink(PlayerEntity player, BlockPos other);
+    public boolean tryUnlink(Player player, BlockPos other);
 
     /**
      * Get the block positions this tile is currently linked to.

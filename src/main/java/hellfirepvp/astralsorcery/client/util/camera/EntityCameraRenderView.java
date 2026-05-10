@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.client.util.camera;
 
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.player.ClientPlayerEntity;
+import net.minecraft.client.entity.player.ClientPlayer;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.HandSide;
@@ -28,7 +28,7 @@ import java.util.Collections;
  * Created by HellFirePvP
  * Date: 02.12.2019 / 20:10
  */
-public abstract class EntityCameraRenderView extends ClientPlayerEntity {
+public abstract class EntityCameraRenderView extends ClientPlayer {
 
     private Vector3 cameraFocus = null;
 

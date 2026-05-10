@@ -20,10 +20,10 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.block.BlockPredicate;
 import hellfirepvp.astralsorcery.common.util.block.BlockUtils;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.util.Direction;
-import net.minecraft.util.math.*;
+import net.minecraft.util.*;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.common.NeoForgeConfigSpec;
@@ -55,14 +55,14 @@ public class AttributeTypeMiningSize extends PerkAttributeType {
 
     private void onBreak(BlockEvent.BreakEvent event) {
         IWorld world = event.getWorld();
-        PlayerEntity player = event.getPlayer();
+        Player player = event.getPlayer();
 
         if (!(world instanceof World) || world.isRemote()) {
             return;
         }
-        if (player instanceof ServerPlayerEntity) {
+        if (player instanceof ServerPlayer) {
             PlayerProgress prog = ResearchHelper.getProgress(player, LogicalSide.SERVER);
-            if (!prog.doPerkAbilities() || MiscUtils.isPlayerFakeMP((ServerPlayerEntity) player)) {
+            if (!prog.doPerkAbilities() || MiscUtils.isPlayerFakeMP((ServerPlayer) player)) {
                 return;
             }
             EventFlags.MINING_SIZE_BREAK.executeWithFlag(() -> {
@@ -79,9 +79,9 @@ public class AttributeTypeMiningSize extends PerkAttributeType {
                                         stateIn.getBlockHardness(worldIn, posIn) <= hardnessBroken;
                         Direction dir = brtr.getFace();
                         if (dir.getAxis() == Direction.Axis.Y) {
-                            this.breakBlocksPlaneHorizontal((ServerPlayerEntity) player, dir, (World) world, event.getPos(), miningTest, MathHelper.floor(size));
+                            this.breakBlocksPlaneHorizontal((ServerPlayer) player, dir, (World) world, event.getPos(), miningTest, Mth.floor(size));
                         } else {
-                            this.breakBlocksPlaneVertical((ServerPlayerEntity) player, dir, (World) world, event.getPos(), miningTest, MathHelper.floor(size));
+                            this.breakBlocksPlaneVertical((ServerPlayer) player, dir, (World) world, event.getPos(), miningTest, Mth.floor(size));
                         }
                     }
                 }
@@ -89,7 +89,7 @@ public class AttributeTypeMiningSize extends PerkAttributeType {
         }
     }
 
-    private void breakBlocksPlaneVertical(ServerPlayerEntity player, Direction sideBroken, World world, BlockPos at, BlockPredicate miningTest, int size) {
+    private void breakBlocksPlaneVertical(ServerPlayer player, Direction sideBroken, World world, BlockPos at, BlockPredicate miningTest, int size) {
         if (size <= 0) {
             return;
         }
@@ -120,7 +120,7 @@ public class AttributeTypeMiningSize extends PerkAttributeType {
         }
     }
 
-    private void breakBlocksPlaneHorizontal(ServerPlayerEntity player, Direction sideBroken, World world, BlockPos at, BlockPredicate miningTest, int size) {
+    private void breakBlocksPlaneHorizontal(ServerPlayer player, Direction sideBroken, World world, BlockPos at, BlockPredicate miningTest, int size) {
         if (size <= 0) {
             return;
         }

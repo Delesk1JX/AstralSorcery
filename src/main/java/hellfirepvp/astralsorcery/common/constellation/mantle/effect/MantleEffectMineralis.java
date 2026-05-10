@@ -19,9 +19,9 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraft.block.AirBlock;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.NeoForgeConfigSpec;
@@ -54,7 +54,7 @@ public class MantleEffectMineralis extends MantleEffect {
     }
 
     private void onBreak(BlockEvent.BreakEvent event) {
-        PlayerEntity player = event.getPlayer();
+        Player player = event.getPlayer();
         if (ItemMantle.getEffect(player, ConstellationsAS.mineralis) != null) {
             LogicalSide side = player.getEntityWorld().isRemote() ? LogicalSide.CLIENT : LogicalSide.SERVER;
             if (side.isServer()) {
@@ -66,7 +66,7 @@ public class MantleEffectMineralis extends MantleEffect {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    protected void tickClient(PlayerEntity player) {
+    protected void tickClient(Player player) {
         super.tickClient(player);
 
         this.playCapeSparkles(player, 0.15F);
@@ -77,7 +77,7 @@ public class MantleEffectMineralis extends MantleEffect {
     }
 
     @OnlyIn(Dist.CLIENT)
-    private void playBlockHighlight(PlayerEntity player) {
+    private void playBlockHighlight(Player player) {
         BlockState state = null;
         if (!player.getHeldItem(Hand.MAIN_HAND).isEmpty()) {
             state = ItemUtils.createBlockState(player.getHeldItem(Hand.MAIN_HAND));

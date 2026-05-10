@@ -23,8 +23,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.util.BlockPos;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.RenderPlayerEvent;
@@ -88,7 +88,7 @@ public class TypeBlockRing extends PatreonEffect {
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
     public void onRenderLast(RenderWorldLastEvent event) {
-        PlayerEntity pl = Minecraft.getInstance().player;
+        Player pl = Minecraft.getInstance().player;
         if (Minecraft.getInstance().gameSettings.getPointOfView().func_243192_a() && //First person
                 pl != null && pl.getUniqueID().equals(playerUUID)) {
             MatrixStack renderStack = event.getMatrixStack();
@@ -113,7 +113,7 @@ public class TypeBlockRing extends PatreonEffect {
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
     public void onRenderPost(RenderPlayerEvent.Post ev) {
-        PlayerEntity player = ev.getPlayer();
+        Player player = ev.getPlayer();
         if (!player.getUniqueID().equals(playerUUID)) {
             return;
         }
@@ -122,7 +122,7 @@ public class TypeBlockRing extends PatreonEffect {
     }
 
     @OnlyIn(Dist.CLIENT)
-    private void renderRingAt(MatrixStack renderStack, PlayerEntity player, int alphaMultiplier, float pTicks) {
+    private void renderRingAt(MatrixStack renderStack, Player player, int alphaMultiplier, float pTicks) {
         float addedRotationAngle = 0;
 
         if (rotationSpeed > 1) {

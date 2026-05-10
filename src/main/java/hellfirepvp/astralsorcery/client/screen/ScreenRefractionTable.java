@@ -33,8 +33,8 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Matrix4f;
+import net.minecraft.util.Mth;
+import net.minecraft.util.vector.Matrix4f;
 import net.minecraft.util.text.ITextProperties;
 import net.minecraft.world.World;
 import net.neoforged.fml.LogicalSide;
@@ -321,7 +321,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         float r = c.getRed() / 255F;
         float g = c.getGreen() / 255F;
         float b = c.getBlue() / 255F;
-        Supplier<Float> alpha = () -> 0.1F + 0.4F * ((MathHelper.sin(rand.nextInt(200) + ClientScheduler.getClientTick() / 20F) + 1F) / 2F);
+        Supplier<Float> alpha = () -> 0.1F + 0.4F * ((Mth.sin(rand.nextInt(200) + ClientScheduler.getClientTick() / 20F) + 1F) / 2F);
 
         RenderSystem.enableBlend();
         Blending.DEFAULT.apply();

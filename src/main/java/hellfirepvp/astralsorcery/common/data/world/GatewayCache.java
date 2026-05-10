@@ -18,13 +18,13 @@ import hellfirepvp.astralsorcery.common.util.log.LogUtil;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import hellfirepvp.observerlib.common.data.WorldCacheDomain;
 import hellfirepvp.observerlib.common.data.base.GlobalWorldData;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.DyeColor;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -201,7 +201,7 @@ public class GatewayCache extends GlobalWorldData {
             return Collections.unmodifiableMap(this.allowedUsers);
         }
 
-        public boolean hasAccess(PlayerEntity player) {
+        public boolean hasAccess(Player player) {
             PlayerReference owner = this.getOwner();
             if (owner == null || !this.isLocked()) {
                 return true;

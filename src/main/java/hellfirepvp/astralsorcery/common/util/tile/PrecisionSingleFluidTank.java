@@ -11,12 +11,12 @@ package hellfirepvp.astralsorcery.common.util.tile;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.IFluidTank;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
-import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.RegistryManager;
 
 import javax.annotation.Nonnull;
 
@@ -121,7 +121,7 @@ public class PrecisionSingleFluidTank implements IFluidTank {
 
     @Override
     public int getFluidAmount() {
-        return MathHelper.floor(amount);
+        return Mth.floor(amount);
     }
 
     @Override
@@ -160,7 +160,7 @@ public class PrecisionSingleFluidTank implements IFluidTank {
             return 0;
         }
         int maxAdded = resource.getAmount();
-        int addable = MathHelper.floor(getMaxAddable(maxAdded));
+        int addable = Mth.floor(getMaxAddable(maxAdded));
         if (action.execute()) {
             if (addable > 0 && this.fluid == Fluids.EMPTY) {
                 setFluid(resource.getFluid());
@@ -207,7 +207,7 @@ public class PrecisionSingleFluidTank implements IFluidTank {
         this.maxCapacity = tag.getInt("capacity");
         this.allowInput = tag.getBoolean("aIn");
         this.allowOutput = tag.getBoolean("aOut");
-        this.fluid = ForgeRegistries.FLUIDS.getValue(new ResourceLocation(tag.getString("fluid")));
+        this.fluid = RegistryManager.FLUIDS.getValue(new ResourceLocation(tag.getString("fluid")));
     }
 
     public static PrecisionSingleFluidTank deserialize(CompoundTag tag) {

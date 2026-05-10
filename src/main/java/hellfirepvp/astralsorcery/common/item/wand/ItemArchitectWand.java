@@ -40,17 +40,17 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.RayTraceContext;
-import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.BlockRayTraceResult;
+import net.minecraft.util.RayTraceContext;
+import net.minecraft.util.RayTraceResult;
 import net.minecraft.util.text.*;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
@@ -87,7 +87,7 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
     }
 
     @Override
-    public float getAlignmentChargeCost(PlayerEntity player, ItemStack stack) {
+    public float getAlignmentChargeCost(Player player, ItemStack stack) {
         PlaceMode mode = getPlaceMode(stack);
         return getPlayerPlaceableStates(player, stack).size() * COST_PER_PLACEMENT * mode.getPlaceCostMulitplier();
     }
@@ -95,7 +95,7 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
     @Override
     @OnlyIn(Dist.CLIENT)
     public boolean renderInHand(ItemStack stack, MatrixStack renderStack, float pTicks) {
-        PlayerEntity player = Minecraft.getInstance().player;
+        Player player = Minecraft.getInstance().player;
         Map<BlockPos, BlockState> placeStates = getPlayerPlaceableStates(player, stack);
         if (placeStates.isEmpty()) {
             return true;
@@ -141,10 +141,10 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
         World world = context.getWorld();
-        PlayerEntity player = context.getPlayer();
+        Player player = context.getPlayer();
         ItemStack held = player.getHeldItem(context.getHand());
         BlockPos pos = context.getPos();
-        if (world.isRemote() || !(player instanceof ServerPlayerEntity) || held.isEmpty()) {
+        if (world.isRemote() || !(player instanceof ServerPlayer) || held.isEmpty()) {
             return ActionResultType.SUCCESS;
         }
         if (player.isSneaking()) {
@@ -156,7 +156,7 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, Player player, Hand hand) {
         ItemStack held = player.getHeldItem(hand);
         PlaceMode mode = getPlaceMode(held);
         if (player.isSneaking()) {
@@ -171,7 +171,7 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
         return attemptPlaceBlocks(world, player, held);
     }
 
-    private ActionResult<ItemStack> attemptPlaceBlocks(World world, PlayerEntity player, ItemStack held) {
+    private ActionResult<ItemStack> attemptPlaceBlocks(World world, Player player, ItemStack held) {
         Map<BlockPos, BlockState> placeStates = getPlayerPlaceableStates(player, held);
         if (placeStates.isEmpty()) {
             return ActionResult.resultFail(held);
@@ -192,7 +192,7 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
             ItemStack extractable = ItemUtils.copyStackWithSize(availableStack.getA(), 1);
             boolean canExtract = player.isCreative();
             if (!canExtract) {
-                if (ItemUtils.consumeFromPlayerInventory(player, held, extractable, true)) {
+                if (ItemUtils.consumeFromIInventory(player, held, extractable, true)) {
                     canExtract = true;
                 }
             }
@@ -201,9 +201,9 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
             }
 
             if (AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, COST_PER_PLACEMENT, true) &&
-                    (player.isCreative() || ItemUtils.consumeFromPlayerInventory(player, held, extractable, true)) &&
+                    (player.isCreative() || ItemUtils.consumeFromIInventory(player, held, extractable, true)) &&
                     MiscUtils.canPlayerPlaceBlockPos(player, stateToPlace, placePos, Direction.UP) &&
-                    (player.isCreative() || ItemUtils.consumeFromPlayerInventory(player, held, extractable, false)) &&
+                    (player.isCreative() || ItemUtils.consumeFromIInventory(player, held, extractable, false)) &&
                     AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, COST_PER_PLACEMENT, false) &&
                     world.setBlockState(placePos, stateToPlace)) {
                 PktPlayEffect ev = new PktPlayEffect(PktPlayEffect.Type.BLOCK_EFFECT)
@@ -218,7 +218,7 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
     }
 
     @Nonnull
-    private Map<BlockPos, BlockState> getPlayerPlaceableStates(PlayerEntity player, ItemStack stack) {
+    private Map<BlockPos, BlockState> getPlayerPlaceableStates(Player player, ItemStack stack) {
         PlaceMode mode = getPlaceMode(stack);
         World world = player.getEntityWorld();
 
@@ -239,7 +239,7 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
     }
 
     @Nonnull
-    private Map<BlockPos, BlockState> getPlaceStates(PlayerEntity placer, World world, @Nullable BlockPos origin, @Nullable Direction placingAgainst, ItemStack refStack) {
+    private Map<BlockPos, BlockState> getPlaceStates(Player placer, World world, @Nullable BlockPos origin, @Nullable Direction placingAgainst, ItemStack refStack) {
         Map<BlockState, Tuple<ItemStack, Integer>> tplStates = ItemBlockStorage.getInventoryMatching(placer, refStack);
         PlaceMode placeMode = getPlaceMode(refStack);
         Map<BlockPos, BlockState> placeables = Maps.newHashMap();
@@ -316,7 +316,7 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
 
         TOWARDS_PLAYER("towards", true, 3F) {
             @Override
-            public List<BlockPos> generatePlacementPositions(World world, PlayerEntity player, Direction placedAgainst, BlockPos center) {
+            public List<BlockPos> generatePlacementPositions(World world, Player player, Direction placedAgainst, BlockPos center) {
                 List<BlockPos> blocks = new ArrayList<>();
                 double cmpFrom, cmpTo;
                 switch (placedAgainst.getAxis()) {
@@ -348,7 +348,7 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
         },
         FROM_PLAYER("line", false) {
             @Override
-            public List<BlockPos> generatePlacementPositions(World world, PlayerEntity player, Direction placedAgainst, BlockPos center) {
+            public List<BlockPos> generatePlacementPositions(World world, Player player, Direction placedAgainst, BlockPos center) {
                 BlockPos origin = player.getPosition().down();
                 RayTraceResult result = player.pick(60F, 1F, false);
                 BlockPos hit;
@@ -373,25 +373,25 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
         },
         H_PLANE("plane", true) {
             @Override
-            public List<BlockPos> generatePlacementPositions(World world, PlayerEntity player, Direction placedAgainst, BlockPos center) {
+            public List<BlockPos> generatePlacementPositions(World world, Player player, Direction placedAgainst, BlockPos center) {
                 return MiscUtils.transformList(BlockGeometry.getPlane(Direction.UP, 5), at -> at.add(center));
             }
         },
         V_PLANE("wall", true) {
             @Override
-            public List<BlockPos> generatePlacementPositions(World world, PlayerEntity player, Direction placedAgainst, BlockPos center) {
+            public List<BlockPos> generatePlacementPositions(World world, Player player, Direction placedAgainst, BlockPos center) {
                 return MiscUtils.transformList(BlockGeometry.getPlane(player.getHorizontalFacing(), 5), at -> at.add(center));
             }
         },
         SPHERE("sphere", true, 0.2F) {
             @Override
-            public List<BlockPos> generatePlacementPositions(World world, PlayerEntity player, Direction placedAgainst, BlockPos center) {
+            public List<BlockPos> generatePlacementPositions(World world, Player player, Direction placedAgainst, BlockPos center) {
                 return MiscUtils.transformList(BlockGeometry.getSphere(5), at -> at.add(center));
             }
         },
         SPHERE_HOLLOW("sphere_hollow", true, 0.5F) {
             @Override
-            public List<BlockPos> generatePlacementPositions(World world, PlayerEntity player, Direction placedAgainst, BlockPos center) {
+            public List<BlockPos> generatePlacementPositions(World world, Player player, Direction placedAgainst, BlockPos center) {
                 return MiscUtils.transformList(BlockGeometry.getHollowSphere(5, 4), at -> at.add(center));
             }
         };
@@ -426,7 +426,7 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
             return needsOffset;
         }
 
-        public abstract List<BlockPos> generatePlacementPositions(World world, PlayerEntity player, Direction placedAgainst, BlockPos center);
+        public abstract List<BlockPos> generatePlacementPositions(World world, Player player, Direction placedAgainst, BlockPos center);
 
         @Nonnull
         private PlaceMode next() {
