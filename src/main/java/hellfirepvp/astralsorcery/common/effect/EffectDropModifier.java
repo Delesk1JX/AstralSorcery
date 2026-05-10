@@ -20,9 +20,9 @@ import net.minecraft.potion.EffectType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.event.entity.living.LivingDropsEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
+import net.neoforged.neoforge.eventbus.api.EventPriority;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
 
 import java.util.ArrayList;
 import java.util.List;

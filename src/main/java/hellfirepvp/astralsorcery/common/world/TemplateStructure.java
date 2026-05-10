@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.world;
 
 import hellfirepvp.astralsorcery.common.world.marker.MarkerManagerAS;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -44,7 +44,7 @@ public abstract class TemplateStructure extends TemplateStructurePiece {
         this.loadTemplate(mgr);
     }
 
-    public TemplateStructure(IStructurePieceType structurePieceTypeIn, TemplateManager mgr, CompoundNBT nbt) {
+    public TemplateStructure(IStructurePieceType structurePieceTypeIn, TemplateManager mgr, CompoundTag nbt) {
         super(structurePieceTypeIn, nbt);
         this.loadTemplate(mgr);
     }

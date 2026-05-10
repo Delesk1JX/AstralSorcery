@@ -26,7 +26,7 @@ import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
+import net.neoforged.neoforge.fml.client.registry.IRenderFactory;
 import org.lwjgl.opengl.GL11;
 
 import java.util.List;

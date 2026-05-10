@@ -15,7 +15,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.ListNBT;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -63,8 +63,8 @@ public class MixinItemStack {
         tooltip.addAll(addition);
     }
 
-    @Redirect(method = "getTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getEnchantmentTagList()Lnet/minecraft/nbt/ListNBT;"))
-    public ListNBT enhanceEnchantmentTooltip(ItemStack stack) {
+    @Redirect(method = "getTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getEnchantmentTagList()Lnet/minecraft/nbt/ListTag;"))
+    public ListTag enhanceEnchantmentTooltip(ItemStack stack) {
         return DynamicEnchantmentHelper.modifyEnchantmentTags(stack.getEnchantmentTagList(), stack);
     }
 }

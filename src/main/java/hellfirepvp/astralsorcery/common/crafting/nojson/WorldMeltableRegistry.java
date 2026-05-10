@@ -15,7 +15,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.Tags;
+import net.neoforged.neoforge.common.Tags;
 
 import javax.annotation.Nullable;
 

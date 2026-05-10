@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.network.channel;
 
-import net.minecraftforge.fml.network.simple.SimpleChannel;
+import net.neoforged.neoforge.fml.network.simple.SimpleChannel;
 
 /**
  * This class is part of the Astral Sorcery Mod

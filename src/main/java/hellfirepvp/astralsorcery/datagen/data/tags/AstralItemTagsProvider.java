@@ -18,8 +18,8 @@ import net.minecraft.data.TagsProvider;
 import net.minecraft.item.Item;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import static hellfirepvp.astralsorcery.common.lib.TagsAS.Items.*;
 

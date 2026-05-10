@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.util.block.BlockStateList;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -27,10 +27,10 @@ import java.util.function.Predicate;
  */
 public class ConfiguredBlockStateList implements BlockPredicate, Predicate<BlockState> {
 
-    private final ForgeConfigSpec.ConfigValue<List<String>> configList;
+    private final NeoForgeConfigSpec.ConfigValue<List<String>> configList;
     private BlockStateList resolvedConfiguration = null;
 
-    public ConfiguredBlockStateList(ForgeConfigSpec.ConfigValue<List<String>> configList) {
+    public ConfiguredBlockStateList(NeoForgeConfigSpec.ConfigValue<List<String>> configList) {
         this.configList = configList;
     }
 

@@ -20,11 +20,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.event.world.WorldEvent;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.fml.LogicalSidedProvider;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.event.world.WorldEvent;
+import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.neoforge.fml.LogicalSidedProvider;
 
 import javax.annotation.Nullable;
 import java.util.*;

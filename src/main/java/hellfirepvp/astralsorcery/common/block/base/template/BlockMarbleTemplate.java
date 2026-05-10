@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesMarble;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraftforge.common.ToolType;
+import net.neoforged.neoforge.common.ToolType;
 
 import javax.annotation.Nullable;
 

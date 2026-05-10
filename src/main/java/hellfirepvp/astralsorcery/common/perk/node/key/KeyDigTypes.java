@@ -19,10 +19,10 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.ToolType;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.common.ToolType;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod

@@ -25,7 +25,7 @@ import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+import net.neoforged.neoforge.registries.RegistryObject;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -155,7 +155,7 @@ public class SimpleAltarRecipeBuilder<T extends SimpleAltarRecipe> extends Custo
             this.type = type;
         }
 
-        public SimpleAltarRecipeBuilder<T> createRecipe(ForgeRegistryEntry<?> nameProvider, AltarType altarType) {
+        public SimpleAltarRecipeBuilder<T> createRecipe(RegistryObject<?> nameProvider, AltarType altarType) {
             return this.createRecipe(AstralSorcery.key(nameProvider.getRegistryName().getPath()), altarType);
         }
 

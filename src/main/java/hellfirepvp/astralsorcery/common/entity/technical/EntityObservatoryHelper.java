@@ -19,7 +19,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -27,7 +27,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.neoforged.neoforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
@@ -181,10 +181,10 @@ public class EntityObservatoryHelper extends Entity {
     }
 
     @Override
-    protected void readAdditional(CompoundNBT compound) {}
+    protected void readAdditional(CompoundTag compound) {}
 
     @Override
-    protected void writeAdditional(CompoundNBT compound) {}
+    protected void writeAdditional(CompoundTag compound) {}
 
     @Override
     public IPacket<?> createSpawnPacket() {

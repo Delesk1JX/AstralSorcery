@@ -18,7 +18,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.neoforged.neoforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nonnull;
 

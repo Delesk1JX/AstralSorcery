@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;
 import hellfirepvp.astralsorcery.common.perk.modifier.PerkAttributeModifier;
 import hellfirepvp.astralsorcery.common.perk.type.ModifierType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import static hellfirepvp.astralsorcery.common.lib.PerkCustomModifiersAS.*;
 

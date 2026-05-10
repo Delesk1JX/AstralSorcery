@@ -38,7 +38,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ToolType;
+import net.neoforged.neoforge.common.ToolType;
 
 import javax.annotation.Nullable;
 

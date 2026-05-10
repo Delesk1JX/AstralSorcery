@@ -10,15 +10,15 @@ package hellfirepvp.astralsorcery.common.data.sync.client;
 
 import hellfirepvp.astralsorcery.common.data.sync.base.ClientData;
 import hellfirepvp.astralsorcery.common.data.sync.base.ClientDataReader;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.INBT;
-import net.minecraft.nbt.ListNBT;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.Constants;
+import net.neoforged.neoforge.common.util.Constants;
 
 import javax.annotation.Nonnull;
 import java.util.HashMap;
@@ -55,16 +55,16 @@ public class ClientLightConnections extends ClientData<ClientLightConnections> {
     public static class Reader extends ClientDataReader<ClientLightConnections> {
 
         @Override
-        public void readFromIncomingFullSync(ClientLightConnections cl, CompoundNBT compound) {
+        public void readFromIncomingFullSync(ClientLightConnections cl, CompoundTag compound) {
             cl.clientPosBuffer.clear();
 
             for (String dimKey : compound.keySet()) {
                 RegistryKey<World> dim = RegistryKey.getOrCreateKey(Registry.WORLD_KEY, new ResourceLocation(dimKey));
 
                 Map<BlockPos, Set<BlockPos>> posMap = new HashMap<>();
-                ListNBT list = compound.getList(dimKey, Constants.NBT.TAG_COMPOUND);
+                ListTag list = compound.getList(dimKey, Constants.NBT.TAG_COMPOUND);
                 for (INBT iTag : list) {
-                    CompoundNBT tag = (CompoundNBT) iTag;
+                    CompoundTag tag = (CompoundTag) iTag;
 
                     BlockPos start = BlockPos.fromLong(tag.getLong("start"));
                     BlockPos end   = BlockPos.fromLong(tag.getLong("end"));
@@ -77,7 +77,7 @@ public class ClientLightConnections extends ClientData<ClientLightConnections> {
         }
 
         @Override
-        public void readFromIncomingDiff(ClientLightConnections cl, CompoundNBT compound) {
+        public void readFromIncomingDiff(ClientLightConnections cl, CompoundTag compound) {
             Set<String> clearedDimensions = new HashSet<>();
             for (INBT dimKeyNBT : compound.getList("clear", Constants.NBT.TAG_STRING)) {
                 String dimKey = dimKeyNBT.getString();
@@ -95,9 +95,9 @@ public class ClientLightConnections extends ClientData<ClientLightConnections> {
 
                 Map<BlockPos, Set<BlockPos>> posMap = cl.clientPosBuffer.computeIfAbsent(dim, d -> new HashMap<>());
 
-                ListNBT list = compound.getList(dimKey, Constants.NBT.TAG_COMPOUND);
+                ListTag list = compound.getList(dimKey, Constants.NBT.TAG_COMPOUND);
                 for (INBT iTag : list) {
-                    CompoundNBT tag = (CompoundNBT) iTag;
+                    CompoundTag tag = (CompoundTag) iTag;
 
                     BlockPos start = BlockPos.fromLong(tag.getLong("start"));
                     BlockPos end = BlockPos.fromLong(tag.getLong("end"));

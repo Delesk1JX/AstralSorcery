@@ -19,7 +19,7 @@ import io.netty.buffer.ByteBufOutputStream;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.state.Property;
@@ -28,9 +28,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.registries.IForgeRegistryEntry;
-import net.minecraftforge.registries.RegistryManager;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.registries.IRegistryObject;
+import net.neoforged.neoforge.registries.RegistryManager;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -162,7 +162,7 @@ public class ByteBufUtils {
         return new String(strBytes, StandardCharsets.UTF_8);
     }
 
-    public static <T> void writeRegistryEntry(PacketBuffer buf, IForgeRegistryEntry<T> entry) {
+    public static <T> void writeRegistryEntry(PacketBuffer buf, IRegistryObject<T> entry) {
         writeResourceLocation(buf, entry.getRegistryName());
         writeResourceLocation(buf, RegistryManager.ACTIVE.getRegistry(entry.getRegistryType()).getRegistryName());
     }
@@ -260,7 +260,7 @@ public class ByteBufUtils {
         boolean defined = !stack.isEmpty();
         byteBuf.writeBoolean(defined);
         if (defined) {
-            CompoundNBT tag = new CompoundNBT();
+            CompoundTag tag = new CompoundTag();
             stack.write(tag);
             writeNBTTag(byteBuf, tag);
         }
@@ -315,14 +315,14 @@ public class ByteBufUtils {
         return FluidStack.readFromPacket(byteBuf);
     }
 
-    public static void writeNBTTag(PacketBuffer byteBuf, @Nonnull CompoundNBT tag) {
+    public static void writeNBTTag(PacketBuffer byteBuf, @Nonnull CompoundTag tag) {
         try (DataOutputStream dos = new DataOutputStream(new ByteBufOutputStream(byteBuf))) {
             CompressedStreamTools.write(tag, dos);
         } catch (Exception exc) {}
     }
 
     @Nonnull
-    public static CompoundNBT readNBTTag(PacketBuffer byteBuf) {
+    public static CompoundTag readNBTTag(PacketBuffer byteBuf) {
         try (DataInputStream dis = new DataInputStream(new ByteBufInputStream(byteBuf))) {
             return CompressedStreamTools.read(dis);
         } catch (Exception exc) {}

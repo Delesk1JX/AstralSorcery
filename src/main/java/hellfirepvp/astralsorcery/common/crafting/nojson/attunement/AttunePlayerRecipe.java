@@ -21,12 +21,12 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -66,7 +66,7 @@ public class AttunePlayerRecipe extends AttunementRecipe<ActivePlayerAttunementR
     @Override
     @Nonnull
     @OnlyIn(Dist.CLIENT)
-    public ActivePlayerAttunementRecipe deserialize(TileAttunementAltar altar, CompoundNBT nbt, @Nullable ActivePlayerAttunementRecipe previousInstance) {
+    public ActivePlayerAttunementRecipe deserialize(TileAttunementAltar altar, CompoundTag nbt, @Nullable ActivePlayerAttunementRecipe previousInstance) {
         ActivePlayerAttunementRecipe recipe = new ActivePlayerAttunementRecipe(this, nbt);
         if (previousInstance != null) {
             recipe.cameraHack = previousInstance.cameraHack;

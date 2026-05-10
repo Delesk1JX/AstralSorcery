@@ -41,22 +41,22 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.StringNBT;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.StringTag;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.Constants;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.fluids.FluidAttributes;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.ForgeHooks;
+import net.neoforged.neoforge.common.capabilities.Capability;
+import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.util.LazyOptional;
+import net.neoforged.neoforge.fluids.FluidAttributes;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -317,7 +317,7 @@ public class TileInfuser extends TileEntityTick implements WandInteractable {
     }
 
     @Override
-    public void readCustomNBT(CompoundNBT compound) {
+    public void readCustomNBT(CompoundTag compound) {
         super.readCustomNBT(compound);
 
         this.inventory = this.inventory.deserialize(compound.getCompound("inventory"));
@@ -334,11 +334,11 @@ public class TileInfuser extends TileEntityTick implements WandInteractable {
     }
 
     @Override
-    public void writeCustomNBT(CompoundNBT compound) {
+    public void writeCustomNBT(CompoundTag compound) {
         super.writeCustomNBT(compound);
 
         compound.put("inventory", this.inventory.serialize());
-        NBTHelper.writeList(compound, "knownRecipes", this.knownRecipes, key -> StringNBT.valueOf(key.toString()));
+        NBTHelper.writeList(compound, "knownRecipes", this.knownRecipes, key -> StringTag.valueOf(key.toString()));
 
         if (this.activeRecipe != null) {
             compound.put("activeRecipe", this.activeRecipe.serialize());

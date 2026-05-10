@@ -18,7 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
-import net.minecraftforge.registries.IForgeRegistryEntry;
+import net.neoforged.neoforge.registries.IRegistryObject;
 
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
@@ -30,7 +30,7 @@ import java.util.function.Supplier;
  * Created by HellFirePvP
  * Date: 30.05.2019 / 15:07
  */
-public class StructureType implements IForgeRegistryEntry<StructureType> {
+public class StructureType implements IRegistryObject<StructureType> {
 
     private final ResourceLocation name;
     private final Supplier<BlockArray> structureSupplier;

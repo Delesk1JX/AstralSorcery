@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.world.structure;
 
 import hellfirepvp.astralsorcery.common.lib.WorldGenerationAS;
 import hellfirepvp.astralsorcery.common.world.TemplateStructure;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.feature.template.TemplateManager;
@@ -29,7 +29,7 @@ public class DesertShrineStructure extends TemplateStructure {
         this.setYOffset(-11);
     }
 
-    public DesertShrineStructure(TemplateManager mgr, CompoundNBT nbt) {
+    public DesertShrineStructure(TemplateManager mgr, CompoundTag nbt) {
         super(WorldGenerationAS.Structures.DESERT_SHRINE_PIECE, mgr, nbt);
         this.setYOffset(-11);
     }

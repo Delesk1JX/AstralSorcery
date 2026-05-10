@@ -15,7 +15,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IWorldReader;
-import net.minecraftforge.common.ToolType;
+import net.neoforged.neoforge.common.ToolType;
 
 /**
  * This class is part of the Astral Sorcery Mod

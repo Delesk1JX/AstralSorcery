@@ -14,7 +14,7 @@ import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraftforge.event.TickEvent;
+import net.neoforged.neoforge.event.TickEvent;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;

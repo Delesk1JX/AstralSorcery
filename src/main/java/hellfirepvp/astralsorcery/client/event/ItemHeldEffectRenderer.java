@@ -14,9 +14,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.client.event.RenderWorldLastEvent;
+import net.neoforged.neoforge.eventbus.api.EventPriority;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
 
 /**
  * This class is part of the Astral Sorcery Mod

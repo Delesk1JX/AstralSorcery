@@ -21,9 +21,9 @@ import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.Tuple;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;

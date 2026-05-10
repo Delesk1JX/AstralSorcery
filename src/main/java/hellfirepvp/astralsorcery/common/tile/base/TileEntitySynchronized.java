@@ -14,15 +14,15 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
 
 import java.util.Random;
 
@@ -48,23 +48,23 @@ public abstract class TileEntitySynchronized extends TileEntity implements ILoca
     }
 
     @Override
-    public void read(BlockState state, CompoundNBT nbt) {
+    public void read(BlockState state, CompoundTag nbt) {
         super.read(state, nbt);
         readCustomNBT(nbt);
         readSaveNBT(nbt);
     }
 
     //Both Network & Chunk-saving
-    public void readCustomNBT(CompoundNBT compound) {}
+    public void readCustomNBT(CompoundTag compound) {}
 
     //Only Network-read
-    public void readNetNBT(CompoundNBT compound) {}
+    public void readNetNBT(CompoundTag compound) {}
 
     //Only Chunk-read
-    public void readSaveNBT(CompoundNBT compound) {}
+    public void readSaveNBT(CompoundTag compound) {}
 
     @Override
-    public final CompoundNBT write(CompoundNBT compound) {
+    public final CompoundTag write(CompoundTag compound) {
         compound = super.write(compound);
         writeCustomNBT(compound);
         writeSaveNBT(compound);
@@ -72,17 +72,17 @@ public abstract class TileEntitySynchronized extends TileEntity implements ILoca
     }
 
     //Both Network & Chunk-saving
-    public void writeCustomNBT(CompoundNBT compound) {}
+    public void writeCustomNBT(CompoundTag compound) {}
 
     //Only Network-write
-    public void writeNetNBT(CompoundNBT compound) {}
+    public void writeNetNBT(CompoundTag compound) {}
 
     //Only Chunk-write
-    public void writeSaveNBT(CompoundNBT compound) {}
+    public void writeSaveNBT(CompoundTag compound) {}
 
     @Override
     public final SUpdateTileEntityPacket getUpdatePacket() {
-        CompoundNBT compound = new CompoundNBT();
+        CompoundTag compound = new CompoundTag();
         super.write(compound);
         writeCustomNBT(compound);
         writeNetNBT(compound);
@@ -90,8 +90,8 @@ public abstract class TileEntitySynchronized extends TileEntity implements ILoca
     }
 
     @Override
-    public CompoundNBT getUpdateTag() {
-        CompoundNBT compound = new CompoundNBT();
+    public CompoundTag getUpdateTag() {
+        CompoundTag compound = new CompoundTag();
         super.write(compound);
         writeCustomNBT(compound);
         return compound;

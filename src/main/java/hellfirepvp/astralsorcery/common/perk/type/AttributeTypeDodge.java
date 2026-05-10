@@ -17,11 +17,11 @@ import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
 import hellfirepvp.astralsorcery.common.perk.modifier.AttributeModifierDodge;
 import hellfirepvp.astralsorcery.common.perk.modifier.PerkAttributeModifier;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+import net.neoforged.neoforge.eventbus.api.EventPriority;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 
@@ -72,14 +72,14 @@ public class AttributeTypeDodge extends PerkAttributeType {
 
     private static class Config extends ConfigEntry {
 
-        private ForgeConfigSpec.IntValue chargeCost;
+        private NeoForgeConfigSpec.IntValue chargeCost;
 
         private Config(String section) {
             super(section);
         }
 
         @Override
-        public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
             this.chargeCost = cfgBuilder
                     .comment("Defines the amount of starlight charge consumed per dodged damage.")
                     .translation(translationKey("chargeCost"))

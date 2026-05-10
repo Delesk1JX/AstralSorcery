@@ -22,9 +22,9 @@ import hellfirepvp.astralsorcery.common.perk.reader.PerkAttributeReader;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeTypeHelper;
 import hellfirepvp.astralsorcery.common.structure.types.StructureType;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.registries.IForgeRegistry;
-import net.minecraftforge.registries.RegistryBuilder;
+import net.neoforged.neoforge.event.RegistryEvent;
+import net.neoforged.neoforge.registries.Registry;
+import net.neoforged.neoforge.registries.RegistryBuilder;
 
 import static hellfirepvp.astralsorcery.common.lib.RegistriesAS.*;
 
@@ -44,7 +44,7 @@ public class RegistryRegistries {
         REGISTRY_CONSTELLATIONS = new RegistryBuilder<IConstellation>()
                 .setName(REGISTRY_NAME_CONSTELLATIONS)
                 .setType(IConstellation.class)
-                .add((IForgeRegistry.AddCallback<IConstellation>) (owner, stage, id, obj, oldObj) ->
+                .add((Registry.AddCallback<IConstellation>) (owner, stage, id, obj, oldObj) ->
                         ConstellationRegistry.addConstellation(obj))
                 .disableSaving()
                 .disableOverrides()

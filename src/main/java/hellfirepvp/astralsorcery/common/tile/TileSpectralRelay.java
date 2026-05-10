@@ -30,16 +30,16 @@ import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import hellfirepvp.astralsorcery.common.util.tile.TileInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.LazyOptional;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.capabilities.Capability;
+import net.neoforged.neoforge.common.util.LazyOptional;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -276,7 +276,7 @@ public class TileSpectralRelay extends TileEntityTick {
     }
 
     @Override
-    public void readCustomNBT(CompoundNBT compound) {
+    public void readCustomNBT(CompoundTag compound) {
         super.readCustomNBT(compound);
 
         this.inventory = this.inventory.deserialize(compound.getCompound("inventory"));
@@ -293,15 +293,15 @@ public class TileSpectralRelay extends TileEntityTick {
     }
 
     @Override
-    public void writeCustomNBT(CompoundNBT compound) {
+    public void writeCustomNBT(CompoundTag compound) {
         super.writeCustomNBT(compound);
 
         compound.put("inventory", this.inventory.serialize());
         if (this.altarPos != null) {
-            compound.put("altarPos", NBTHelper.writeBlockPosToNBT(this.altarPos, new CompoundNBT()));
+            compound.put("altarPos", NBTHelper.writeBlockPosToNBT(this.altarPos, new CompoundTag()));
         }
         if (this.closestRelayPos != null) {
-            compound.put("closestRelayPos", NBTHelper.writeBlockPosToNBT(this.closestRelayPos, new CompoundNBT()));
+            compound.put("closestRelayPos", NBTHelper.writeBlockPosToNBT(this.closestRelayPos, new CompoundTag()));
         }
     }
 

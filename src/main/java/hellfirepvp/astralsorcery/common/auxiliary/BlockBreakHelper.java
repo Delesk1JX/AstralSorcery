@@ -20,15 +20,15 @@ import hellfirepvp.observerlib.common.util.tick.TickManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.event.TickEvent;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.event.TickEvent;
 
 import javax.annotation.Nonnull;
 import java.util.HashMap;
@@ -132,14 +132,14 @@ public class BlockBreakHelper {
         }
 
         @Override
-        public void readFromNBT(CompoundNBT nbt) {
+        public void readFromNBT(CompoundTag nbt) {
             this.breakProgress = nbt.getFloat("breakProgress");
             this.pos = NBTHelper.readBlockPosFromNBT(nbt);
             this.expected = Block.getStateById(nbt.getInt("expectedStateId"));
         }
 
         @Override
-        public void writeToNBT(CompoundNBT nbt) {
+        public void writeToNBT(CompoundTag nbt) {
             nbt.putFloat("breakProgress", this.breakProgress);
             NBTHelper.writeBlockPosToNBT(this.pos, nbt);
             nbt.putInt("expectedStateId", Block.getStateId(this.expected));

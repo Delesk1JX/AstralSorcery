@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.starlight;
 
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 import hellfirepvp.astralsorcery.common.starlight.transmission.registry.SourceClassRegistry;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
@@ -55,8 +55,8 @@ public interface IIndependentStarlightSource {
 
     public SourceClassRegistry.SourceProvider getProvider();
 
-    public void readFromNBT(CompoundNBT compound);
+    public void readFromNBT(CompoundTag compound);
 
-    public void writeToNBT(CompoundNBT compound);
+    public void writeToNBT(CompoundTag compound);
 
 }

@@ -31,7 +31,7 @@ import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
@@ -41,10 +41,10 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.util.Constants;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -184,7 +184,7 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
 
     @Nonnull
     public static DyeColor getConfiguredColor(ItemStack stack) {
-        CompoundNBT tag = NBTHelper.getPersistentData(stack);
+        CompoundTag tag = NBTHelper.getPersistentData(stack);
         if (tag.contains("color")) {
             return DyeColor.byId(tag.getInt("color"));
         }

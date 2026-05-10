@@ -27,11 +27,11 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.GameType;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.client.event.RenderGameOverlayEvent;
+import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.neoforge.eventbus.api.EventPriority;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.fml.LogicalSide;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;

@@ -14,7 +14,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod

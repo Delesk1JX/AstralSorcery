@@ -36,15 +36,15 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.monster.PhantomEntity;
 import net.minecraft.entity.passive.BatEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -360,7 +360,7 @@ public class EntityFlare extends FlyingEntity {
     }
 
     @Override
-    public void writeAdditional(CompoundNBT compound) {
+    public void writeAdditional(CompoundTag compound) {
         super.writeAdditional(compound);
 
         compound.putInt("AS_entityAge", this.entityAge);
@@ -368,7 +368,7 @@ public class EntityFlare extends FlyingEntity {
     }
 
     @Override
-    public void readAdditional(CompoundNBT compound) {
+    public void readAdditional(CompoundTag compound) {
         super.readAdditional(compound);
 
         this.entityAge = compound.getInt("AS_entityAge");

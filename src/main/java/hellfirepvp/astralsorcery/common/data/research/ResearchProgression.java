@@ -12,7 +12,7 @@ import com.google.common.collect.Lists;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.common.IExtensibleEnum;
+import net.neoforged.neoforge.common.IExtensibleEnum;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

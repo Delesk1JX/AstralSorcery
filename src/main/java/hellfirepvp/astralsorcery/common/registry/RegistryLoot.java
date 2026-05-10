@@ -16,8 +16,8 @@ import net.minecraft.loot.LootFunction;
 import net.minecraft.loot.LootFunctionType;
 import net.minecraft.loot.functions.LootFunctionManager;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
-import net.minecraftforge.common.loot.IGlobalLootModifier;
+import net.neoforged.neoforge.common.loot.GlobalLootModifierSerializer;
+import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 
 import static hellfirepvp.astralsorcery.common.lib.LootAS.*;
 

@@ -13,9 +13,9 @@ import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeMap;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.util.Map;

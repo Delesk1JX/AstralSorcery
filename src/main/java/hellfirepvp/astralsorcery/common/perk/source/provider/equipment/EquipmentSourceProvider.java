@@ -17,10 +17,10 @@ import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import java.util.Collection;
 import java.util.UUID;
@@ -55,7 +55,7 @@ public class EquipmentSourceProvider extends ModifierSourceProvider<EquipmentMod
             if (!stack.isEmpty()) {
                 Collection<PerkAttributeModifier> modifiers = slotSource.getModifiers(playerEntity, LogicalSide.SERVER, false);
                 if (!modifiers.isEmpty()) {
-                    CompoundNBT nbt = NBTHelper.getPersistentData(stack);
+                    CompoundTag nbt = NBTHelper.getPersistentData(stack);
                     if (!nbt.hasUniqueId(KEY_MOD_IDENTIFIER)) {
                         nbt.putUniqueId(KEY_MOD_IDENTIFIER, UUID.randomUUID());
                     }

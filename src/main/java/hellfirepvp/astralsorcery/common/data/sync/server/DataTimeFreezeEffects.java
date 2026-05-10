@@ -14,8 +14,8 @@ import hellfirepvp.astralsorcery.common.data.sync.base.ClientDataReader;
 import hellfirepvp.astralsorcery.common.data.sync.client.ClientTimeFreezeEffects;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.time.TimeStopEffectHelper;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
@@ -71,10 +71,10 @@ public class DataTimeFreezeEffects extends AbstractData {
     }
 
     @Override
-    public void writeAllDataToPacket(CompoundNBT compound) {
-        CompoundNBT dimTag = new CompoundNBT();
+    public void writeAllDataToPacket(CompoundTag compound) {
+        CompoundTag dimTag = new CompoundTag();
         for (RegistryKey<World> dim : this.serverActiveFreezeZones.keySet()) {
-            ListNBT tagList = new ListNBT();
+            ListTag tagList = new ListTag();
             for (TimeStopEffectHelper effect : this.serverActiveFreezeZones.get(dim)) {
                 tagList.add(effect.serializeNBT());
             }
@@ -84,8 +84,8 @@ public class DataTimeFreezeEffects extends AbstractData {
     }
 
     @Override
-    public void writeDiffDataToPacket(CompoundNBT compound) {
-        ListNBT changes = new ListNBT();
+    public void writeDiffDataToPacket(CompoundTag compound) {
+        ListTag changes = new ListTag();
         for (ServerSyncAction action : this.scheduledServerSyncChanges) {
             changes.add(action.serializeNBT());
         }
@@ -107,8 +107,8 @@ public class DataTimeFreezeEffects extends AbstractData {
             this.involvedEffect = involvedEffect;
         }
 
-        private CompoundNBT serializeNBT() {
-            CompoundNBT out = new CompoundNBT();
+        private CompoundTag serializeNBT() {
+            CompoundTag out = new CompoundTag();
             out.putInt("type", type.ordinal());
             out.putString("dimType", this.dim.getLocation().toString());
             switch (type) {
@@ -120,7 +120,7 @@ public class DataTimeFreezeEffects extends AbstractData {
             return out;
         }
 
-        public static ServerSyncAction deserializeNBT(CompoundNBT cmp) {
+        public static ServerSyncAction deserializeNBT(CompoundTag cmp) {
             ActionType type = MiscUtils.getEnumEntry(ActionType.class, cmp.getInt("type"));
             String dimKey = cmp.getString("dimType");
             RegistryKey<World> dim = RegistryKey.getOrCreateKey(Registry.WORLD_KEY, new ResourceLocation(dimKey));

@@ -12,9 +12,9 @@ import hellfirepvp.astralsorcery.common.enchantment.EnchantmentPlayerTick;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import java.util.Collection;
 import java.util.EnumSet;

@@ -36,7 +36,7 @@ import net.minecraft.client.settings.PointOfView;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.DyeColor;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.INameable;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.Util;
@@ -45,9 +45,9 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.util.Constants;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.util.Constants;
 
 import javax.annotation.Nullable;
 import java.awt.*;
@@ -390,7 +390,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
     }
 
     @Override
-    public void readCustomNBT(CompoundNBT compound) {
+    public void readCustomNBT(CompoundTag compound) {
         super.readCustomNBT(compound);
 
         this.networkRegistered = compound.getBoolean("networkRegistered");
@@ -401,13 +401,13 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
         this.owner = NBTHelper.readOptional(compound, "owningPlayer", PlayerReference::deserialize);
         this.allowedUsers.clear();
         NBTHelper.readList(compound, "allowedUsers", Constants.NBT.TAG_COMPOUND, nbt -> {
-            CompoundNBT tag = (CompoundNBT) nbt;
+            CompoundTag tag = (CompoundTag) nbt;
             return new Tuple<>(tag.getInt("index"), PlayerReference.deserialize(tag.getCompound("player")));
         }).forEach(tpl -> this.allowedUsers.put(tpl.getA(), tpl.getB()));
     }
 
     @Override
-    public void writeCustomNBT(CompoundNBT compound) {
+    public void writeCustomNBT(CompoundTag compound) {
         super.writeCustomNBT(compound);
 
         compound.putBoolean("networkRegistered", this.networkRegistered);
@@ -421,7 +421,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
         compound.putBoolean("locked", this.locked);
         NBTHelper.writeOptional(compound, "owningPlayer", this.owner, (tag, playerRef) -> playerRef.writeToNBT(tag));
         NBTHelper.writeList(compound, "allowedUsers", this.allowedUsers.entrySet(), entry -> {
-            CompoundNBT tag = new CompoundNBT();
+            CompoundTag tag = new CompoundTag();
             tag.putInt("index", entry.getKey());
             tag.put("player", entry.getValue().serialize());
             return tag;

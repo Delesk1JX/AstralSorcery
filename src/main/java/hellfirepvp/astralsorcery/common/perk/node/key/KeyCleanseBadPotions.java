@@ -19,10 +19,10 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.event.entity.living.LivingHealEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.event.entity.living.LivingHealEvent;
+import net.neoforged.neoforge.eventbus.api.EventPriority;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import java.util.List;
 import java.util.stream.Collectors;

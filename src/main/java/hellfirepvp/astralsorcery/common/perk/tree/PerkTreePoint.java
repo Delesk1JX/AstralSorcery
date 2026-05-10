@@ -19,8 +19,8 @@ import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
 import hellfirepvp.astralsorcery.common.perk.AllocationStatus;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.util.Tuple;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.awt.*;

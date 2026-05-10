@@ -18,8 +18,8 @@ import hellfirepvp.astralsorcery.common.perk.tick.PlayerTickPerk;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -61,15 +61,15 @@ public class KeyMending extends KeyPerk implements PlayerTickPerk {
 
     public static class Config extends ConfigEntry {
 
-        private ForgeConfigSpec.IntValue chanceToRepair;
-        private ForgeConfigSpec.IntValue chargeCost;
+        private NeoForgeConfigSpec.IntValue chanceToRepair;
+        private NeoForgeConfigSpec.IntValue chargeCost;
 
         private Config(String section) {
             super(section);
         }
 
         @Override
-        public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
             this.chanceToRepair = cfgBuilder
                     .comment("Sets the chance (Random.nextInt(chance) == 0) to try to see if a piece of armor on the player that is damageable and damaged can be repaired; the lower the more likely.")
                     .translation(translationKey("chanceToRepair"))

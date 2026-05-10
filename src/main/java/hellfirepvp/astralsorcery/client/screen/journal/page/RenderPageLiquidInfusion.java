@@ -23,8 +23,8 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.fluids.FluidAttributes;
-import net.minecraftforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidAttributes;
+import net.neoforged.neoforge.fluids.FluidStack;
 import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nullable;

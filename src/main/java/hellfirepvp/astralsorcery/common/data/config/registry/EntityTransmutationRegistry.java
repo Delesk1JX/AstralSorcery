@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
@@ -66,7 +66,7 @@ public class EntityTransmutationRegistry extends ConfigDataAdapter<EntityTransmu
     public LivingEntity transmuteEntity(ServerWorld world, LivingEntity entity) {
         EntityType<?> transmute = getEntityTransmuteTo(entity.getType());
         if (transmute != null) {
-            CompoundNBT tag = new CompoundNBT();
+            CompoundTag tag = new CompoundTag();
             entity.writeWithoutTypeId(tag);
             world.removeEntity(entity);
             NBTHelper.removeUUID(tag, "UUID");

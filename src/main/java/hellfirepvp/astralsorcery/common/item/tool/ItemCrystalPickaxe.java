@@ -17,7 +17,7 @@ import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-import net.minecraftforge.common.ToolType;
+import net.neoforged.neoforge.common.ToolType;
 
 /**
  * This class is part of the Astral Sorcery Mod

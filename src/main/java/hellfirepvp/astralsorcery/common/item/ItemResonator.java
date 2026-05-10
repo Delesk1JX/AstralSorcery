@@ -39,9 +39,9 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.IntNBT;
-import net.minecraft.nbt.ListNBT;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.IntTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
@@ -55,14 +55,14 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.Heightmap;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.util.Constants;
-import net.minecraftforge.common.util.TriPredicate;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.fml.common.thread.EffectiveSide;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.util.TriPredicate;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.neoforge.fml.common.thread.EffectiveSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -286,7 +286,7 @@ public class ItemResonator extends Item implements OverrideInteractItem {
         if (stack.isEmpty() || !(stack.getItem() instanceof ItemResonator)) {
             return ResonatorUpgrade.STARLIGHT; //Fallback
         }
-        CompoundNBT cmp = NBTHelper.getPersistentData(stack);
+        CompoundTag cmp = NBTHelper.getPersistentData(stack);
         int current = cmp.getInt("selected_upgrade");
         ResonatorUpgrade upgrade = ResonatorUpgrade.values()[MathHelper.clamp(current, 0, ResonatorUpgrade.values().length - 1)];
         if (viewing != null) {
@@ -363,9 +363,9 @@ public class ItemResonator extends Item implements OverrideInteractItem {
 
         public boolean hasUpgrade(ItemStack stack) {
             int id = ordinal();
-            CompoundNBT cmp = NBTHelper.getPersistentData(stack);
+            CompoundTag cmp = NBTHelper.getPersistentData(stack);
             if (cmp.contains("upgrades", Constants.NBT.TAG_LIST)) {
-                ListNBT list = cmp.getList("upgrades", Constants.NBT.TAG_INT);
+                ListTag list = cmp.getList("upgrades", Constants.NBT.TAG_INT);
                 for (int i = 0; i < list.size(); i++) {
                     if (list.getInt(i) == id) {
                         return true;
@@ -382,12 +382,12 @@ public class ItemResonator extends Item implements OverrideInteractItem {
         public void applyUpgrade(ItemStack stack) {
             if (hasUpgrade(stack)) return;
 
-            CompoundNBT cmp = NBTHelper.getPersistentData(stack);
+            CompoundTag cmp = NBTHelper.getPersistentData(stack);
             if (!cmp.contains("upgrades", Constants.NBT.TAG_LIST)) {
-                cmp.put("upgrades", new ListNBT());
+                cmp.put("upgrades", new ListTag());
             }
-            ListNBT list = cmp.getList("upgrades", Constants.NBT.TAG_INT);
-            list.add(IntNBT.valueOf(ordinal()));
+            ListTag list = cmp.getList("upgrades", Constants.NBT.TAG_INT);
+            list.add(IntTag.valueOf(ordinal()));
         }
     }
 }

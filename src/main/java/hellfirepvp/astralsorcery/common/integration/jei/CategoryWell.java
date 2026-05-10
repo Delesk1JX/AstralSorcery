@@ -23,8 +23,8 @@ import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidAttributes;
-import net.minecraftforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidAttributes;
+import net.neoforged.neoforge.fluids.FluidStack;
 
 import java.util.Collection;
 import java.util.Collections;

@@ -32,12 +32,12 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -78,7 +78,7 @@ public class CEffectMineralis extends CEffectAbstractList<ListEntries.PosEntry> 
 
     @Nullable
     @Override
-    public ListEntries.PosEntry recreateElement(CompoundNBT tag, BlockPos pos) {
+    public ListEntries.PosEntry recreateElement(CompoundTag tag, BlockPos pos) {
         return new ListEntries.PosEntry(pos);
     }
 
@@ -167,7 +167,7 @@ public class CEffectMineralis extends CEffectAbstractList<ListEntries.PosEntry> 
         }
 
         @Override
-        public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.replaceableStates = this.defaultReplaceableStates.getAsConfig(

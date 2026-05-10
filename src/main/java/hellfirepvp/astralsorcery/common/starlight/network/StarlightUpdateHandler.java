@@ -13,7 +13,7 @@ import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.event.TickEvent;
+import net.neoforged.neoforge.event.TickEvent;
 
 import java.util.*;
 

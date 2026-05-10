@@ -22,7 +22,7 @@ import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.IItemProvider;
@@ -96,7 +96,7 @@ public class NBTCopyRecipe extends SimpleAltarRecipe {
     public List<ItemStack> getOutputs(TileAltar altar) {
         List<ItemStack> outputs = super.getOutputs(altar);
 
-        List<CompoundNBT> foundTags = Lists.newArrayList();
+        List<CompoundTag> foundTags = Lists.newArrayList();
         for (ItemStack existing : altar.getInventory()) {
             for (Ingredient match : this.searchIngredients) {
                 if (match.test(existing) && existing.hasTag()) {
@@ -105,8 +105,8 @@ public class NBTCopyRecipe extends SimpleAltarRecipe {
             }
         }
         for (ItemStack output : outputs) {
-            CompoundNBT tag = output.getOrCreateTag();
-            for (CompoundNBT foundTag : foundTags) {
+            CompoundTag tag = output.getOrCreateTag();
+            for (CompoundTag foundTag : foundTags) {
                 NBTHelper.deepMerge(tag, foundTag, true);
             }
         }

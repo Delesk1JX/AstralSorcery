@@ -10,9 +10,9 @@ package hellfirepvp.astralsorcery.common.event.helper;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.DamageSource;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
 
 import java.util.*;
 

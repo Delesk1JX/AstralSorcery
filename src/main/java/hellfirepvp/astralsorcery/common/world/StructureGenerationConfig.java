@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.world;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -23,8 +23,8 @@ public class StructureGenerationConfig extends FeatureGenerationConfig {
 
     private final int defaultSpacing, defaultSeparation;
 
-    private ForgeConfigSpec.IntValue spacing;
-    private ForgeConfigSpec.IntValue separation;
+    private NeoForgeConfigSpec.IntValue spacing;
+    private NeoForgeConfigSpec.IntValue separation;
 
     public StructureGenerationConfig(ResourceLocation featureName, int spacing, int separation) {
         this(featureName.getPath(), spacing, separation);
@@ -37,7 +37,7 @@ public class StructureGenerationConfig extends FeatureGenerationConfig {
     }
 
     @Override
-    public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+    public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
         super.createEntries(cfgBuilder);
 
         this.spacing = cfgBuilder

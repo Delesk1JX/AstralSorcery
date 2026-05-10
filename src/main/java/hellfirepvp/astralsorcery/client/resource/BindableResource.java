@@ -16,8 +16,8 @@ import net.minecraft.client.renderer.texture.SimpleTexture;
 import net.minecraft.client.renderer.texture.Texture;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
 
 /**
  * This class is part of the Astral Sorcery Mod

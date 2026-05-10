@@ -13,14 +13,14 @@ import hellfirepvp.astralsorcery.common.base.patreon.PatreonEffectHelper;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.Objects;
@@ -151,7 +151,7 @@ public class PatreonPartialEntity {
         return world.getPlayerByUuid(this.ownerUUID);
     }
 
-    public void readFromNBT(CompoundNBT cmp) {
+    public void readFromNBT(CompoundTag cmp) {
         if (cmp.contains("lastTickedDimension")) {
             ResourceLocation worldKey = new ResourceLocation(cmp.getString("lastTickedDimension"));
             this.lastTickedDimension = RegistryKey.getOrCreateKey(Registry.WORLD_KEY, worldKey);
@@ -164,7 +164,7 @@ public class PatreonPartialEntity {
         }
     }
 
-    public void writeToNBT(CompoundNBT cmp) {
+    public void writeToNBT(CompoundTag cmp) {
         if (this.lastTickedDimension != null) {
             cmp.putString("lastTickedDimension", this.lastTickedDimension.getLocation().toString());
         }

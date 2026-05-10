@@ -17,7 +17,7 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.entity.item.ItemEntity;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
+import net.neoforged.neoforge.fml.client.registry.IRenderFactory;
 
 /**
  * This class is part of the Astral Sorcery Mod

@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
 import hellfirepvp.astralsorcery.common.perk.source.ModifierSource;
 import hellfirepvp.astralsorcery.common.perk.type.vanilla.VanillaAttributeType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod

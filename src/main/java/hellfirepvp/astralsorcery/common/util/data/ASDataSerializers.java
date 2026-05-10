@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.util.data;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.IDataSerializer;
-import net.minecraftforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidStack;
 
 /**
  * This class is part of the Astral Sorcery Mod

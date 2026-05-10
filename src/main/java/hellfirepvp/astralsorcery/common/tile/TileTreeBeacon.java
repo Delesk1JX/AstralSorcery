@@ -37,21 +37,21 @@ import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.util.Constants;
-import net.minecraftforge.event.world.SaplingGrowTreeEvent;
-import net.minecraftforge.eventbus.api.Event;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.event.world.SaplingGrowTreeEvent;
+import net.neoforged.neoforge.eventbus.api.Event;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -356,13 +356,13 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
     }
 
     @Override
-    public void readCustomNBT(CompoundNBT compound) {
+    public void readCustomNBT(CompoundTag compound) {
         super.readCustomNBT(compound);
 
         this.treeComponents.clear();
-        ListNBT componentList = compound.getList("components", Constants.NBT.TAG_COMPOUND);
+        ListTag componentList = compound.getList("components", Constants.NBT.TAG_COMPOUND);
         for (int i = 0; i < componentList.size(); i++) {
-            CompoundNBT tag = componentList.getCompound(i);
+            CompoundTag tag = componentList.getCompound(i);
             this.treeComponents.put(NBTHelper.readBlockPosFromNBT(tag), tag.getInt("weight"));
         }
 
@@ -372,12 +372,12 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
     }
 
     @Override
-    public void writeCustomNBT(CompoundNBT compound) {
+    public void writeCustomNBT(CompoundTag compound) {
         super.writeCustomNBT(compound);
 
-        ListNBT componentList = new ListNBT();
+        ListTag componentList = new ListTag();
         MapStream.forEach(this.treeComponents, (pos, weight) -> {
-            CompoundNBT tag = new CompoundNBT();
+            CompoundTag tag = new CompoundTag();
             NBTHelper.writeBlockPosToNBT(pos, tag);
             tag.putInt("weight", weight);
             componentList.add(tag);
@@ -402,19 +402,19 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
         private static final int    defaultLogWeight    = 2;
         private static final int    defaultLeafWeight   = 1;
 
-        public ForgeConfigSpec.DoubleValue range;
-        public ForgeConfigSpec.IntValue    maxCount;
-        public ForgeConfigSpec.DoubleValue dropChance;
-        public ForgeConfigSpec.IntValue    breakChance;
-        public ForgeConfigSpec.IntValue    logWeight;
-        public ForgeConfigSpec.IntValue    leafWeight;
+        public NeoForgeConfigSpec.DoubleValue range;
+        public NeoForgeConfigSpec.IntValue    maxCount;
+        public NeoForgeConfigSpec.DoubleValue dropChance;
+        public NeoForgeConfigSpec.IntValue    breakChance;
+        public NeoForgeConfigSpec.IntValue    logWeight;
+        public NeoForgeConfigSpec.IntValue    leafWeight;
 
         private Config() {
             super("tree_beacon");
         }
 
         @Override
-        public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
             this.range = cfgBuilder
                     .comment("Set the radius of the tree beacon.")
                     .translation(translationKey("range"))

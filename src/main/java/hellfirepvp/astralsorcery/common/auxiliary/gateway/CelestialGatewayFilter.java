@@ -9,15 +9,15 @@
 package hellfirepvp.astralsorcery.common.auxiliary.gateway;
 
 import hellfirepvp.astralsorcery.AstralSorcery;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.CompressedStreamTools;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.nbt.StringNBT;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.StringTag;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.Constants;
+import net.neoforged.neoforge.common.util.Constants;
 
 import java.io.File;
 import java.io.IOException;
@@ -72,8 +72,8 @@ public class CelestialGatewayFilter {
 
     private void loadCache() {
         try {
-            CompoundNBT tag = CompressedStreamTools.read(this.gatewayFilter);
-            ListNBT list = tag.getList("list", Constants.NBT.TAG_STRING);
+            CompoundTag tag = CompressedStreamTools.read(this.gatewayFilter);
+            ListTag list = tag.getList("list", Constants.NBT.TAG_STRING);
             this.cache = new HashSet<>();
             for (int i = 0; i < list.size(); i++) {
                 ResourceLocation location = new ResourceLocation(list.getString(i));
@@ -86,11 +86,11 @@ public class CelestialGatewayFilter {
 
     private void saveCache() {
         try {
-            ListNBT list = new ListNBT();
+            ListTag list = new ListTag();
             for (RegistryKey<World> dimType : cache) {
-                list.add(StringNBT.valueOf(dimType.getLocation().toString()));
+                list.add(StringTag.valueOf(dimType.getLocation().toString()));
             }
-            CompoundNBT cmp = new CompoundNBT();
+            CompoundTag cmp = new CompoundTag();
             cmp.put("list", list);
             CompressedStreamTools.write(cmp, this.gatewayFilter);
         } catch (IOException ignored) {}

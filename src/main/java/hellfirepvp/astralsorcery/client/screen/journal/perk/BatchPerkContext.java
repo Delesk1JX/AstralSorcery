@@ -13,8 +13,8 @@ import hellfirepvp.astralsorcery.client.util.draw.BufferBatchHelper;
 import hellfirepvp.astralsorcery.client.util.draw.BufferContext;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
 import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nonnull;

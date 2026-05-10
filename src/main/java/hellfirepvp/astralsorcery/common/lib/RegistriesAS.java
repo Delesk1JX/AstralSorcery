@@ -22,7 +22,7 @@ import hellfirepvp.astralsorcery.common.perk.reader.PerkAttributeReader;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import hellfirepvp.astralsorcery.common.structure.types.StructureType;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.registries.IForgeRegistry;
+import net.neoforged.neoforge.registries.Registry;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -48,17 +48,17 @@ public class RegistriesAS {
     public static final ResourceLocation REGISTRY_NAME_CRYSTAL_USAGES = AstralSorcery.key("attribute_crystal_usages");
     public static final ResourceLocation REGISTRY_NAME_ALTAR_EFFECTS = AstralSorcery.key("altar_recipe_effects");
 
-    public static IForgeRegistry<IConstellation> REGISTRY_CONSTELLATIONS;
-    public static IForgeRegistry<ConstellationEffectProvider> REGISTRY_CONSTELLATION_EFFECT;
-    public static IForgeRegistry<MantleEffect> REGISTRY_MANTLE_EFFECT;
-    public static IForgeRegistry<EngravingEffect> REGISTRY_ENGRAVING_EFFECT;
-    public static IForgeRegistry<StructureType> REGISTRY_STRUCTURE_TYPES;
-    public static IForgeRegistry<PerkAttributeType> REGISTRY_PERK_ATTRIBUTE_TYPES;
-    public static IForgeRegistry<PerkConverter> REGISTRY_PERK_ATTRIBUTE_CONVERTERS;
-    public static IForgeRegistry<PerkAttributeModifier> REGISTRY_PERK_CUSTOM_MODIFIERS;
-    public static IForgeRegistry<PerkAttributeReader> REGISTRY_PERK_ATTRIBUTE_READERS;
-    public static IForgeRegistry<CrystalProperty> REGISTRY_CRYSTAL_PROPERTIES;
-    public static IForgeRegistry<PropertyUsage> REGISTRY_CRYSTAL_USAGES;
-    public static IForgeRegistry<AltarRecipeEffect> REGISTRY_ALTAR_EFFECTS;
+    public static Registry<IConstellation> REGISTRY_CONSTELLATIONS;
+    public static Registry<ConstellationEffectProvider> REGISTRY_CONSTELLATION_EFFECT;
+    public static Registry<MantleEffect> REGISTRY_MANTLE_EFFECT;
+    public static Registry<EngravingEffect> REGISTRY_ENGRAVING_EFFECT;
+    public static Registry<StructureType> REGISTRY_STRUCTURE_TYPES;
+    public static Registry<PerkAttributeType> REGISTRY_PERK_ATTRIBUTE_TYPES;
+    public static Registry<PerkConverter> REGISTRY_PERK_ATTRIBUTE_CONVERTERS;
+    public static Registry<PerkAttributeModifier> REGISTRY_PERK_CUSTOM_MODIFIERS;
+    public static Registry<PerkAttributeReader> REGISTRY_PERK_ATTRIBUTE_READERS;
+    public static Registry<CrystalProperty> REGISTRY_CRYSTAL_PROPERTIES;
+    public static Registry<PropertyUsage> REGISTRY_CRYSTAL_USAGES;
+    public static Registry<AltarRecipeEffect> REGISTRY_ALTAR_EFFECTS;
 
 }

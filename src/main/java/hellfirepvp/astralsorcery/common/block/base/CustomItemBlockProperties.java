@@ -12,7 +12,7 @@ import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Rarity;
-import net.minecraftforge.common.ToolType;
+import net.neoforged.neoforge.common.ToolType;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

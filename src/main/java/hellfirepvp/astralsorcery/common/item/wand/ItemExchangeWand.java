@@ -46,17 +46,17 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.text.*;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ToolType;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.ToolType;
+import net.neoforged.neoforge.fml.LogicalSide;
 import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nonnull;
@@ -305,7 +305,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
         if (stack.isEmpty() || !(stack.getItem() instanceof ItemExchangeWand)) {
             return;
         }
-        CompoundNBT nbt = NBTHelper.getPersistentData(stack);
+        CompoundTag nbt = NBTHelper.getPersistentData(stack);
         nbt.putInt("sizeMode", mode.ordinal());
     }
 
@@ -314,7 +314,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
         if (stack.isEmpty() || !(stack.getItem() instanceof ItemExchangeWand)) {
             return SizeMode.RANGE_2;
         }
-        CompoundNBT nbt = NBTHelper.getPersistentData(stack);
+        CompoundTag nbt = NBTHelper.getPersistentData(stack);
         return MiscUtils.getEnumEntry(SizeMode.class, nbt.getInt("sizeMode"));
     }
 

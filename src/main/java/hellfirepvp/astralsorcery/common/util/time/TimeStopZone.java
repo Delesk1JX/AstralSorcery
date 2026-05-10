@@ -17,7 +17,7 @@ import net.minecraft.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.entity.boss.dragon.phase.IPhase;
 import net.minecraft.entity.boss.dragon.phase.PhaseType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -189,8 +189,8 @@ public class TimeStopZone {
         }
 
         @Nonnull
-        public CompoundNBT serializeNBT() {
-            CompoundNBT out = new CompoundNBT();
+        public CompoundTag serializeNBT() {
+            CompoundTag out = new CompoundTag();
             out.putBoolean("targetPlayers", this.targetPlayers);
             out.putBoolean("hasOwner", this.hasOwner);
             out.putInt("ownerEntityId", this.ownerId);
@@ -198,7 +198,7 @@ public class TimeStopZone {
         }
 
         @Nonnull
-        public static EntityTargetController deserializeNBT(CompoundNBT cmp) {
+        public static EntityTargetController deserializeNBT(CompoundTag cmp) {
             boolean targetPlayers = cmp.getBoolean("targetPlayers");
             boolean hasOwner = cmp.getBoolean("hasOwner");
             int ownerId = cmp.getInt("ownerEntityId");

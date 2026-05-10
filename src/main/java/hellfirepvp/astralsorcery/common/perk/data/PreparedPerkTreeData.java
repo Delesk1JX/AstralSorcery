@@ -16,9 +16,9 @@ import hellfirepvp.astralsorcery.common.perk.node.RootPerk;
 import hellfirepvp.astralsorcery.common.perk.tree.PerkTreePoint;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Tuple;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.util.*;

@@ -72,27 +72,27 @@ import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Rarity;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.FolderName;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.util.FakePlayer;
-import net.minecraftforge.common.util.FakePlayerFactory;
-import net.minecraftforge.event.AddReloadListenerEvent;
-import net.minecraftforge.event.RegisterCommandsEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.fml.LogicalSidedProvider;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
-import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
-import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
-import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.common.util.FakePlayer;
+import net.neoforged.neoforge.common.util.FakePlayerFactory;
+import net.neoforged.neoforge.event.AddReloadListenerEvent;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
+import net.neoforged.neoforge.eventbus.api.EventPriority;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.neoforge.fml.LogicalSidedProvider;
+import net.neoforged.neoforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.fml.event.lifecycle.InterModEnqueueEvent;
+import net.neoforged.neoforge.fml.event.server.FMLServerStartedEvent;
+import net.neoforged.neoforge.fml.event.server.FMLServerStartingEvent;
+import net.neoforged.neoforge.fml.event.server.FMLServerStoppedEvent;
+import net.neoforged.neoforge.fml.event.server.FMLServerStoppingEvent;
 
 import java.io.File;
 import java.util.List;
@@ -337,7 +337,7 @@ public class CommonProxy {
 
     // GUI stuff
 
-    public void openGuiClient(GuiType type, CompoundNBT data) {
+    public void openGuiClient(GuiType type, CompoundTag data) {
         //No-Op
     }
 
@@ -353,7 +353,7 @@ public class CommonProxy {
     private void onCommonSetup(FMLCommonSetupEvent event) {
         this.serverConfig.buildConfiguration();
 
-        RegistryCapabilities.init(MinecraftForge.EVENT_BUS);
+        RegistryCapabilities.init(NeoForge.EVENT_BUS);
         StarlightNetworkRegistry.setupRegistry();
         CollisionManager.init();
 

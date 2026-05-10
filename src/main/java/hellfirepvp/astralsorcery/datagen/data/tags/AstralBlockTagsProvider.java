@@ -16,7 +16,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.TagsProvider;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import static hellfirepvp.astralsorcery.common.lib.TagsAS.Blocks.MARBLE;
 import static hellfirepvp.astralsorcery.common.lib.TagsAS.Blocks.ORES;

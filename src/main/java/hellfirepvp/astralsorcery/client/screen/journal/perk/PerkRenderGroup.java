@@ -12,8 +12,8 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.List;

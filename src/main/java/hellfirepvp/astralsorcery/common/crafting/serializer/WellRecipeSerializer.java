@@ -20,7 +20,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import java.awt.*;
 

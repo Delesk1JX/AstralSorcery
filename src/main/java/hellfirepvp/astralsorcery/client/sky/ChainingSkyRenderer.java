@@ -20,7 +20,7 @@ import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.world.World;
-import net.minecraftforge.client.ISkyRenderHandler;
+import net.neoforged.neoforge.client.ISkyRenderHandler;
 
 /**
  * This class is part of the Astral Sorcery Mod

@@ -13,12 +13,12 @@ import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.util.Constants;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.util.Constants;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -49,7 +49,7 @@ public class ItemDazzlingFrame extends Item {
         if (stack.isEmpty() || !(stack.getItem() instanceof ItemDazzlingGem)) {
             return false;
         }
-        CompoundNBT tag = NBTHelper.getPersistentData(stack);
+        CompoundTag tag = NBTHelper.getPersistentData(stack);
         tag.putInt("quality", quality.ordinal());
         return true;
     }
@@ -58,7 +58,7 @@ public class ItemDazzlingFrame extends Item {
         if (stack.isEmpty() || !(stack.getItem() instanceof ItemDazzlingGem)) {
             return Optional.empty();
         }
-        CompoundNBT tag = NBTHelper.getPersistentData(stack);
+        CompoundTag tag = NBTHelper.getPersistentData(stack);
         if (!tag.contains("quality", Constants.NBT.TAG_INT)) {
             return Optional.empty();
         }

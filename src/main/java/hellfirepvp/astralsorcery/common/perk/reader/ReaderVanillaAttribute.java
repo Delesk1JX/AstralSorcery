@@ -20,11 +20,11 @@ import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.neoforge.fml.RegistryObject;
+import net.neoforged.neoforge.registries.ForgeRegistries;
 import org.apache.commons.lang3.tuple.Pair;
 
 /**

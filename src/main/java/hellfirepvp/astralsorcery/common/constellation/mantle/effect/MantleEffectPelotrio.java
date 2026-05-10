@@ -22,14 +22,14 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ToolType;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.common.ToolType;
+import net.neoforged.neoforge.event.entity.living.LivingAttackEvent;
+import net.neoforged.neoforge.event.world.BlockEvent;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -160,34 +160,34 @@ public class MantleEffectPelotrio extends MantleEffect {
         private final int defaultChargeCostPerPickaxe = 250;
         private final int defaultChargeCostPerAxe = 250;
 
-        public ForgeConfigSpec.DoubleValue chanceSpawnSword;
-        public ForgeConfigSpec.DoubleValue chanceSpawnPickaxe;
-        public ForgeConfigSpec.DoubleValue chanceSpawnAxe;
+        public NeoForgeConfigSpec.DoubleValue chanceSpawnSword;
+        public NeoForgeConfigSpec.DoubleValue chanceSpawnPickaxe;
+        public NeoForgeConfigSpec.DoubleValue chanceSpawnAxe;
 
-        public ForgeConfigSpec.DoubleValue speedSword;
-        public ForgeConfigSpec.DoubleValue speedPickaxe;
-        public ForgeConfigSpec.DoubleValue speedAxe;
+        public NeoForgeConfigSpec.DoubleValue speedSword;
+        public NeoForgeConfigSpec.DoubleValue speedPickaxe;
+        public NeoForgeConfigSpec.DoubleValue speedAxe;
 
-        public ForgeConfigSpec.DoubleValue swordDamage;
+        public NeoForgeConfigSpec.DoubleValue swordDamage;
 
-        public ForgeConfigSpec.IntValue durationSword;
-        public ForgeConfigSpec.IntValue durationPickaxe;
-        public ForgeConfigSpec.IntValue durationAxe;
+        public NeoForgeConfigSpec.IntValue durationSword;
+        public NeoForgeConfigSpec.IntValue durationPickaxe;
+        public NeoForgeConfigSpec.IntValue durationAxe;
 
-        public ForgeConfigSpec.IntValue ticksPerSwordAttack;
-        public ForgeConfigSpec.IntValue ticksPerPickaxeBlockBreak;
-        public ForgeConfigSpec.IntValue ticksPerAxeLogBreak;
+        public NeoForgeConfigSpec.IntValue ticksPerSwordAttack;
+        public NeoForgeConfigSpec.IntValue ticksPerPickaxeBlockBreak;
+        public NeoForgeConfigSpec.IntValue ticksPerAxeLogBreak;
 
-        public ForgeConfigSpec.IntValue chargeCostPerSword;
-        public ForgeConfigSpec.IntValue chargeCostPerPickaxe;
-        public ForgeConfigSpec.IntValue chargeCostPerAxe;
+        public NeoForgeConfigSpec.IntValue chargeCostPerSword;
+        public NeoForgeConfigSpec.IntValue chargeCostPerPickaxe;
+        public NeoForgeConfigSpec.IntValue chargeCostPerAxe;
 
         public PelotrioConfig() {
             super("pelotrio");
         }
 
         @Override
-        public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.chanceSpawnSword = cfgBuilder

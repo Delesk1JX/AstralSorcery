@@ -18,8 +18,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.EffectType;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.fml.LogicalSidedProvider;
+import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.neoforge.fml.LogicalSidedProvider;
 
 /**
  * This class is part of the Astral Sorcery Mod

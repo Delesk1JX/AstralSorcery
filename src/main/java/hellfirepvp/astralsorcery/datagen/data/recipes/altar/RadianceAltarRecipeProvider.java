@@ -28,7 +28,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraftforge.common.Tags;
+import net.neoforged.neoforge.common.Tags;
 
 import java.util.List;
 import java.util.function.Consumer;

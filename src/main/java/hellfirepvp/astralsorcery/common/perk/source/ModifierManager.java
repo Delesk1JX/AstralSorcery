@@ -16,11 +16,11 @@ import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -56,7 +56,7 @@ public class ModifierManager implements ITickHandler {
 
             sourceProviders.put(EQUIPMENT_PROVIDER_KEY, new EquipmentSourceProvider());
 
-            MinecraftForge.EVENT_BUS.post(new ASRegistryEvents.ModifierSourceRegister(sourceProvider -> {
+            NeoForge.EVENT_BUS.post(new ASRegistryEvents.ModifierSourceRegister(sourceProvider -> {
                 sourceProviders.put(sourceProvider.getKey(), sourceProvider);
             }));
         }

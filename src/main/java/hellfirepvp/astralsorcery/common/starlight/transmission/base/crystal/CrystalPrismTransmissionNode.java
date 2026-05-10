@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.starlight.transmission.base.SimplePrismT
 import hellfirepvp.astralsorcery.common.starlight.transmission.registry.TransmissionProvider;
 import hellfirepvp.astralsorcery.common.tile.TilePrism;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -74,7 +74,7 @@ public class CrystalPrismTransmissionNode extends SimplePrismTransmissionNode {
     }
 
     @Override
-    public void readFromNBT(CompoundNBT compound) {
+    public void readFromNBT(CompoundTag compound) {
         super.readFromNBT(compound);
 
         this.attributes = CrystalAttributes.getCrystalAttributes(compound);
@@ -82,7 +82,7 @@ public class CrystalPrismTransmissionNode extends SimplePrismTransmissionNode {
     }
 
     @Override
-    public void writeToNBT(CompoundNBT compound) {
+    public void writeToNBT(CompoundTag compound) {
         super.writeToNBT(compound);
 
         if (this.attributes != null) {

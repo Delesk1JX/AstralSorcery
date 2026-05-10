@@ -20,8 +20,8 @@ import net.minecraft.util.Util;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.server.command.EnumArgument;
+import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.neoforge.server.command.EnumArgument;
 
 /**
  * This class is part of the Astral Sorcery Mod

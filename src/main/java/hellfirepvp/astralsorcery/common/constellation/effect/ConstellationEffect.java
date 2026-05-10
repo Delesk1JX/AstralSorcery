@@ -27,14 +27,14 @@ import hellfirepvp.astralsorcery.common.util.block.ILocatable;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -112,9 +112,9 @@ public abstract class ConstellationEffect {
 
     public void clearCache() {}
 
-    public void readFromNBT(CompoundNBT cmp) {}
+    public void readFromNBT(CompoundTag cmp) {}
 
-    public void writeToNBT(CompoundNBT cmp) {}
+    public void writeToNBT(CompoundTag cmp) {}
 
     @Nullable
     public PlayerEntity getOwningPlayerInWorld(World world, BlockPos pos) {
@@ -167,9 +167,9 @@ public abstract class ConstellationEffect {
         private final double  defaultRange;
         private final double  defaultRangePerLens;
 
-        public ForgeConfigSpec.BooleanValue enabled;
-        public ForgeConfigSpec.DoubleValue  range;
-        public ForgeConfigSpec.DoubleValue  rangePerLens;
+        public NeoForgeConfigSpec.BooleanValue enabled;
+        public NeoForgeConfigSpec.DoubleValue  range;
+        public NeoForgeConfigSpec.DoubleValue  rangePerLens;
 
         public Config(String constellationName, double defaultRange, double defaultRangePerLens) {
             super(String.format("constellation.effect.%s", constellationName));
@@ -178,7 +178,7 @@ public abstract class ConstellationEffect {
         }
 
         @Override
-        public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
             this.enabled = cfgBuilder
                     .comment("Set this to false to disable this ritual effect")
                     .translation(translationKey("enabled"))

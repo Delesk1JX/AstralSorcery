@@ -17,10 +17,10 @@ import hellfirepvp.astralsorcery.common.perk.PerkConverter;
 import hellfirepvp.astralsorcery.common.perk.type.ModifierType;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -162,8 +162,8 @@ public class DynamicAttributeModifier extends PerkAttributeModifier {
         return uuid;
     }
 
-    public CompoundNBT serialize() {
-        CompoundNBT tag = new CompoundNBT();
+    public CompoundTag serialize() {
+        CompoundTag tag = new CompoundTag();
         tag.putUniqueId("id", getUniqueId());
         tag.putString("type", getAttributeType().getRegistryName().toString());
         tag.putInt("mode", getMode().ordinal());
@@ -172,7 +172,7 @@ public class DynamicAttributeModifier extends PerkAttributeModifier {
     }
 
     @Nullable
-    public static DynamicAttributeModifier deserialize(CompoundNBT tag) {
+    public static DynamicAttributeModifier deserialize(CompoundTag tag) {
         PerkAttributeType attrType = RegistriesAS.REGISTRY_PERK_ATTRIBUTE_TYPES.getValue(new ResourceLocation(tag.getString("type")));
         if (attrType == null) {
             return null;

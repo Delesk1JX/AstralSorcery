@@ -19,7 +19,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.util.BlockSnapshot;
+import net.neoforged.neoforge.common.util.BlockSnapshot;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;

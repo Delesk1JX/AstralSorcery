@@ -29,7 +29,7 @@ import net.minecraft.network.IPacket;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.neoforged.neoforge.fml.network.NetworkHooks;
 
 /**
  * This class is part of the Astral Sorcery Mod

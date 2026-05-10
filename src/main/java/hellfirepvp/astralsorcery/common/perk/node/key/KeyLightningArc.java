@@ -35,12 +35,12 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.fml.network.PacketDistributor;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
+import net.neoforged.neoforge.eventbus.api.EventPriority;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.neoforge.fml.network.PacketDistributor;
 
 import java.util.List;
 
@@ -103,19 +103,19 @@ public class KeyLightningArc extends KeyPerk {
 
     public static class Config extends ConfigEntry {
 
-        private ForgeConfigSpec.DoubleValue arcChance;
-        private ForgeConfigSpec.DoubleValue arcPercent;
-        private ForgeConfigSpec.DoubleValue arcDistance;
-        private ForgeConfigSpec.IntValue arcTicks;
+        private NeoForgeConfigSpec.DoubleValue arcChance;
+        private NeoForgeConfigSpec.DoubleValue arcPercent;
+        private NeoForgeConfigSpec.DoubleValue arcDistance;
+        private NeoForgeConfigSpec.IntValue arcTicks;
 
-        private ForgeConfigSpec.IntValue chargeCost;
+        private NeoForgeConfigSpec.IntValue chargeCost;
 
         public Config(String section) {
             super(section);
         }
 
         @Override
-        public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
             this.arcChance = cfgBuilder
                     .comment("Sets the chance to spawn a damage-arc effect when an enemy is hit (value is in percent).")
                     .translation(translationKey("arcChance"))

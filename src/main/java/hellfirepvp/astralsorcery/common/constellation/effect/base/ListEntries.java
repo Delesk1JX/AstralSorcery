@@ -12,13 +12,13 @@ import hellfirepvp.astralsorcery.common.constellation.effect.ConstellationEffect
 import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
 import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
 import net.minecraft.entity.*;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -47,14 +47,14 @@ public class ListEntries {
         }
 
         @Override
-        public void readFromNBT(CompoundNBT nbt) {
+        public void readFromNBT(CompoundTag nbt) {
             super.readFromNBT(nbt);
 
             this.type = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(nbt.getString("entity")));
         }
 
         @Override
-        public void writeToNBT(CompoundNBT nbt) {
+        public void writeToNBT(CompoundTag nbt) {
             super.writeToNBT(nbt);
 
             nbt.putString("entity", this.type.getRegistryName().toString());
@@ -132,14 +132,14 @@ public class ListEntries {
         }
 
         @Override
-        public void writeToNBT(CompoundNBT nbt) {
+        public void writeToNBT(CompoundTag nbt) {
             super.writeToNBT(nbt);
 
             nbt.putInt("maxCount", this.maxCount);
         }
 
         @Override
-        public void readFromNBT(CompoundNBT nbt) {
+        public void readFromNBT(CompoundTag nbt) {
             super.readFromNBT(nbt);
 
             this.maxCount = nbt.getInt("maxCount");
@@ -163,14 +163,14 @@ public class ListEntries {
         }
 
         @Override
-        public void writeToNBT(CompoundNBT nbt) {
+        public void writeToNBT(CompoundTag nbt) {
             super.writeToNBT(nbt);
 
             nbt.putInt("counter", this.counter);
         }
 
         @Override
-        public void readFromNBT(CompoundNBT nbt) {
+        public void readFromNBT(CompoundTag nbt) {
             super.readFromNBT(nbt);
 
             this.counter = nbt.getInt("counter");
@@ -191,10 +191,10 @@ public class ListEntries {
         }
 
         @Override
-        public void writeToNBT(CompoundNBT nbt) {}
+        public void writeToNBT(CompoundTag nbt) {}
 
         @Override
-        public void readFromNBT(CompoundNBT nbt) {}
+        public void readFromNBT(CompoundTag nbt) {}
 
     }
 }

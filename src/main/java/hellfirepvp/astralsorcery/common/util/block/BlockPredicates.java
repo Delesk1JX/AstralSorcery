@@ -19,8 +19,8 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.fml.LogicalSidedProvider;
+import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.neoforge.fml.LogicalSidedProvider;
 
 import java.util.Arrays;
 import java.util.HashSet;

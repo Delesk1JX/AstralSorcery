@@ -19,8 +19,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.fml.LogicalSidedProvider;
+import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.neoforge.fml.LogicalSidedProvider;
 
 import javax.annotation.Nonnull;
 import java.awt.*;

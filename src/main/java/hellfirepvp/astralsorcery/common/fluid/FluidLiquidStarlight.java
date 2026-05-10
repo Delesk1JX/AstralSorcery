@@ -12,8 +12,8 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.Rarity;
 import net.minecraft.state.StateContainer;
-import net.minecraftforge.fluids.FluidAttributes;
-import net.minecraftforge.fluids.ForgeFlowingFluid;
+import net.neoforged.neoforge.fluids.FluidAttributes;
+import net.neoforged.neoforge.fluids.ForgeFlowingFluid;
 
 /**
  * This class is part of the Astral Sorcery Mod

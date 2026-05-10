@@ -21,8 +21,8 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.PlantType;
+import net.neoforged.neoforge.common.IPlantable;
+import net.neoforged.neoforge.common.PlantType;
 
 import javax.annotation.Nonnull;
 

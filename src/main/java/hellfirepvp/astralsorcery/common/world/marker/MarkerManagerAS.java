@@ -23,7 +23,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
-import net.minecraftforge.common.util.Constants;
+import net.neoforged.neoforge.common.util.Constants;
 
 import java.util.Random;
 

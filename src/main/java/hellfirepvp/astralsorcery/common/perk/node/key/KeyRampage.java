@@ -19,11 +19,11 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
+import net.neoforged.neoforge.eventbus.api.EventPriority;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -79,15 +79,15 @@ public class KeyRampage extends KeyPerk {
 
     public static class Config extends ConfigEntry {
 
-        private ForgeConfigSpec.DoubleValue rampageChance;
-        private ForgeConfigSpec.IntValue rampageDuration;
+        private NeoForgeConfigSpec.DoubleValue rampageChance;
+        private NeoForgeConfigSpec.IntValue rampageDuration;
 
         private Config(String section) {
             super(section);
         }
 
         @Override
-        public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
             this.rampageChance = cfgBuilder
                     .comment("Defines the chance to gain rampage buffs when killing a mob")
                     .translation(translationKey("rampageChance"))

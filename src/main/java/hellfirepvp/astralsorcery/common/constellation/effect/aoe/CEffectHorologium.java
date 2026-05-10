@@ -29,13 +29,13 @@ import hellfirepvp.astralsorcery.common.util.block.iterator.BlockRandomProximity
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.time.TimeStopController;
 import hellfirepvp.astralsorcery.common.util.time.TimeStopZone;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -65,7 +65,7 @@ public class CEffectHorologium extends CEffectAbstractList<ListEntries.PosEntry>
 
     @Nullable
     @Override
-    public ListEntries.PosEntry recreateElement(CompoundNBT tag, BlockPos pos) {
+    public ListEntries.PosEntry recreateElement(CompoundTag tag, BlockPos pos) {
         return new ListEntries.PosEntry(pos);
     }
 

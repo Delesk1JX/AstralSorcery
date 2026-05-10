@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.base.Mods;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigDataSet;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

@@ -19,16 +19,16 @@ import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.util.Constants;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import java.util.Collections;
 import java.util.List;
@@ -54,8 +54,8 @@ public class DynamicModifierHelper {
     }
 
     public static void addModifiers(ItemStack stack, Iterable<DynamicAttributeModifier> modifiers) {
-        CompoundNBT tag = NBTHelper.getPersistentData(stack);
-        ListNBT modifierList = tag.getList(KEY_MODIFIERS, Constants.NBT.TAG_COMPOUND);
+        CompoundTag tag = NBTHelper.getPersistentData(stack);
+        ListTag modifierList = tag.getList(KEY_MODIFIERS, Constants.NBT.TAG_COMPOUND);
         modifiers.forEach(modifier -> modifierList.add(modifier.serialize()));
         tag.put(KEY_MODIFIERS, modifierList);
     }
@@ -75,10 +75,10 @@ public class DynamicModifierHelper {
     public static List<DynamicAttributeModifier> getStaticModifiers(ItemStack stack) {
         List<DynamicAttributeModifier> modifiers = Lists.newArrayList();
         if (NBTHelper.hasPersistentData(stack)) {
-            CompoundNBT tag = NBTHelper.getPersistentData(stack);
-            ListNBT modifierList = tag.getList(KEY_MODIFIERS, Constants.NBT.TAG_COMPOUND);
+            CompoundTag tag = NBTHelper.getPersistentData(stack);
+            ListTag modifierList = tag.getList(KEY_MODIFIERS, Constants.NBT.TAG_COMPOUND);
             for (int i = 0; i < modifierList.size(); i++) {
-                CompoundNBT modifierTag = modifierList.getCompound(i);
+                CompoundTag modifierTag = modifierList.getCompound(i);
                 modifiers.add(DynamicAttributeModifier.deserialize(modifierTag));
             }
         }

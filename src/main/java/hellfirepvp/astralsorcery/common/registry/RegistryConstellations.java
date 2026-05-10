@@ -22,7 +22,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.World;
-import net.minecraftforge.common.Tags;
+import net.neoforged.neoforge.common.Tags;
 
 import static hellfirepvp.astralsorcery.common.lib.ColorsAS.*;
 import static hellfirepvp.astralsorcery.common.lib.ConstellationsAS.*;

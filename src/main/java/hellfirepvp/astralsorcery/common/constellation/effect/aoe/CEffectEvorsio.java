@@ -31,14 +31,14 @@ import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.util.Constants;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.util.Constants;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -71,7 +71,7 @@ public class CEffectEvorsio extends CEffectAbstractList<ListEntries.PosEntry> {
 
     @Nullable
     @Override
-    public ListEntries.PosEntry recreateElement(CompoundNBT tag, BlockPos pos) {
+    public ListEntries.PosEntry recreateElement(CompoundTag tag, BlockPos pos) {
         return new ListEntries.PosEntry(pos);
     }
 

@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.mixin;
 import hellfirepvp.astralsorcery.common.event.CooldownSetEvent;
 import net.minecraft.util.CooldownTracker;
 import net.minecraft.util.ServerCooldownTracker;
-import net.minecraftforge.common.MinecraftForge;
+import net.neoforged.neoforge.common.NeoForge;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
@@ -31,7 +31,7 @@ public class MixinCooldownTracker {
         CooldownTracker tracker = (CooldownTracker)(Object) this;
         if (tracker instanceof ServerCooldownTracker) {
             CooldownSetEvent event = new CooldownSetEvent(((ServerCooldownTracker) tracker).player, cooldownTicks);
-            MinecraftForge.EVENT_BUS.post(event);
+            NeoForge.EVENT_BUS.post(event);
             cooldownTicks = Math.max(event.getResultCooldown(), 1);
         }
         return cooldownTicks;

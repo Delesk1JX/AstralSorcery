@@ -17,8 +17,8 @@ import net.minecraft.entity.ai.attributes.AttributeModifierManager;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.Event;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.eventbus.api.Event;
 
 import javax.annotation.Nullable;
 
@@ -106,7 +106,7 @@ public class AttributeEvent {
 
     public static double postProcessModded(PlayerEntity player, PerkAttributeType type, double value) {
         PostProcessModded ev = new PostProcessModded(value, type, player);
-        MinecraftForge.EVENT_BUS.post(ev);
+        NeoForge.EVENT_BUS.post(ev);
         return ev.getValue();
     }
 
@@ -128,7 +128,7 @@ public class AttributeEvent {
 
     public static double postProcessVanilla(double value, ModifiableAttributeInstance attribute) {
         AttributeEvent.PostProcessVanilla event = new AttributeEvent.PostProcessVanilla(attribute, value);
-        MinecraftForge.EVENT_BUS.post(event);
+        NeoForge.EVENT_BUS.post(event);
         return event.getAttribute().clampValue(event.getValue());
     }
 

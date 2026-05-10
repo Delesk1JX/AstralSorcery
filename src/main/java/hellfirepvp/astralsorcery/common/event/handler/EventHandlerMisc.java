@@ -25,12 +25,12 @@ import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunk;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.item.ItemTossEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
-import net.minecraftforge.event.world.ChunkEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.event.entity.EntityJoinWorldEvent;
+import net.neoforged.neoforge.event.entity.item.ItemTossEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerSleepInBedEvent;
+import net.neoforged.neoforge.event.world.ChunkEvent;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
 
 /**
  * This class is part of the Astral Sorcery Mod

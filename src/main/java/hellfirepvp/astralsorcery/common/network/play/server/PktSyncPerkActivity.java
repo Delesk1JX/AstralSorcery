@@ -15,12 +15,12 @@ import hellfirepvp.astralsorcery.common.perk.PerkTree;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.fml.network.NetworkEvent;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.neoforge.fml.network.NetworkEvent;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -40,7 +40,7 @@ public class PktSyncPerkActivity extends ASPacket<PktSyncPerkActivity> {
 
     private Type type = null;
     private ResourceLocation perkKey = null;
-    private CompoundNBT newData = null, oldData = null;
+    private CompoundTag newData = null, oldData = null;
     private List<ResourceLocation> perkKeys = new ArrayList<>();
 
     public PktSyncPerkActivity() {}
@@ -52,7 +52,7 @@ public class PktSyncPerkActivity extends ASPacket<PktSyncPerkActivity> {
         this.type = type;
     }
 
-    public PktSyncPerkActivity(AbstractPerk perk, CompoundNBT oldData, CompoundNBT newData) {
+    public PktSyncPerkActivity(AbstractPerk perk, CompoundTag oldData, CompoundTag newData) {
         this.type = Type.DATACHANGE;
         this.perkKey = perk.getRegistryName();
         this.oldData = oldData;

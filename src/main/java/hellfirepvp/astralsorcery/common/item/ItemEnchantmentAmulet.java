@@ -19,13 +19,13 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.util.text.*;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.util.Constants;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.util.Constants;
 
 import javax.annotation.Nullable;
 import java.awt.Color;
@@ -95,7 +95,7 @@ public class ItemEnchantmentAmulet extends Item implements ItemDynamicColor {
         if (stack.isEmpty() || !(stack.getItem() instanceof ItemEnchantmentAmulet)) {
             return Optional.empty();
         }
-        CompoundNBT tag = NBTHelper.getPersistentData(stack);
+        CompoundTag tag = NBTHelper.getPersistentData(stack);
         if (!tag.contains("amuletColor")) {
             return Optional.empty();
         }
@@ -106,7 +106,7 @@ public class ItemEnchantmentAmulet extends Item implements ItemDynamicColor {
         if (stack.isEmpty() || !(stack.getItem() instanceof ItemEnchantmentAmulet)) {
             return;
         }
-        CompoundNBT tag = NBTHelper.getPersistentData(stack);
+        CompoundTag tag = NBTHelper.getPersistentData(stack);
         if (tag.contains("amuletColor")) {
             return;
         }
@@ -122,11 +122,11 @@ public class ItemEnchantmentAmulet extends Item implements ItemDynamicColor {
             return Lists.newArrayList();
         }
 
-        CompoundNBT tag = NBTHelper.getPersistentData(stack);
+        CompoundTag tag = NBTHelper.getPersistentData(stack);
         if (!tag.contains("amuletEnchantments")) {
             return Lists.newArrayList();
         }
-        ListNBT enchants = tag.getList("amuletEnchantments", Constants.NBT.TAG_COMPOUND);
+        ListTag enchants = tag.getList("amuletEnchantments", Constants.NBT.TAG_COMPOUND);
         List<AmuletEnchantment> enchantments = new ArrayList<>(enchants.size());
         for (int i = 0; i < enchants.size(); i++) {
             AmuletEnchantment ench = AmuletEnchantment.deserialize(enchants.getCompound(i));
@@ -144,8 +144,8 @@ public class ItemEnchantmentAmulet extends Item implements ItemDynamicColor {
         }
         enchantments.sort(Comparator.comparing(AmuletEnchantment::getType));
 
-        CompoundNBT tag = NBTHelper.getPersistentData(stack);
-        ListNBT enchants = new ListNBT();
+        CompoundTag tag = NBTHelper.getPersistentData(stack);
+        ListTag enchants = new ListTag();
         for (AmuletEnchantment enchant : enchantments) {
             enchants.add(enchant.serialize());
         }

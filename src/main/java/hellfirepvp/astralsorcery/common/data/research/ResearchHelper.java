@@ -18,17 +18,17 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.command.ICommandSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.fml.LogicalSidedProvider;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.neoforge.fml.LogicalSidedProvider;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -144,11 +144,11 @@ public class ResearchHelper {
     }
 
     private static void load_unsafe(UUID pUUID, File playerFile) throws Exception {
-        CompoundNBT compound = CompressedStreamTools.read(playerFile); //IO-Exc thrown only here.
+        CompoundTag compound = CompressedStreamTools.read(playerFile); //IO-Exc thrown only here.
         load_unsafeFromNBT(pUUID, compound);
     }
 
-    private static void load_unsafeFromNBT(UUID pUUID, @Nullable CompoundNBT compound) {
+    private static void load_unsafeFromNBT(UUID pUUID, @Nullable CompoundTag compound) {
         PlayerProgress progress = new PlayerProgress();
         if (compound != null && !compound.isEmpty()) {
             progress.load(compound);
@@ -252,7 +252,7 @@ public class ResearchHelper {
         File f = new File(getPlayerDirectory(), pUUID.toString() + ".astral");
         if (!f.exists()) {
             try {
-                CompressedStreamTools.write(new CompoundNBT(), f);
+                CompressedStreamTools.write(new CompoundTag(), f);
             } catch (IOException ignored) {} //Will be created later anyway... just as fail-safe.
         }
         return f;
@@ -270,7 +270,7 @@ public class ResearchHelper {
         File f = new File(getPlayerDirectory(), pUUID.toString() + ".astralback");
         if (!f.exists()) {
             try {
-                CompressedStreamTools.write(new CompoundNBT(), f);
+                CompressedStreamTools.write(new CompoundTag(), f);
             } catch (IOException ignored) {} //Will be created later anyway... just as fail-safe.
         }
         return f;

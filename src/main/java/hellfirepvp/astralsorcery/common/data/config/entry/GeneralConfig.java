@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.data.config.entry;
 
 import com.google.common.base.Predicates;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigEntry;
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,20 +26,20 @@ public class GeneralConfig extends ConfigEntry {
 
     public static final GeneralConfig CONFIG = new GeneralConfig();
 
-    public ForgeConfigSpec.IntValue dayLength;
+    public NeoForgeConfigSpec.IntValue dayLength;
 
-    public ForgeConfigSpec.BooleanValue giveJournalOnJoin;
-    public ForgeConfigSpec.BooleanValue mobSpawningDenyAllTypes;
-    public ForgeConfigSpec.ConfigValue<List<? extends String>> modidOreBlacklist;
+    public NeoForgeConfigSpec.BooleanValue giveJournalOnJoin;
+    public NeoForgeConfigSpec.BooleanValue mobSpawningDenyAllTypes;
+    public NeoForgeConfigSpec.ConfigValue<List<? extends String>> modidOreBlacklist;
 
-    public ForgeConfigSpec.BooleanValue doColoredLensesAffectPlayers;
+    public NeoForgeConfigSpec.BooleanValue doColoredLensesAffectPlayers;
 
     private GeneralConfig() {
         super("general");
     }
 
     @Override
-    public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+    public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
         dayLength = cfgBuilder
                 .comment("Defines the length of a day (both daytime & nighttime obviously) for the mod's internal logic. NOTE: This does NOT CHANGE HOW LONG A DAY IN MC IS! It is only to provide potential compatibility for mods that do provide such functionality.")
                 .translation(translationKey("dayLength"))

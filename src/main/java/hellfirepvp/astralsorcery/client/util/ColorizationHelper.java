@@ -17,9 +17,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.resources.IFutureReloadListener;
 import net.minecraft.util.Unit;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.resource.SelectiveReloadStateHandler;
-import net.minecraftforge.resource.VanillaResourceType;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.resource.SelectiveReloadStateHandler;
+import net.neoforged.neoforge.resource.VanillaResourceType;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

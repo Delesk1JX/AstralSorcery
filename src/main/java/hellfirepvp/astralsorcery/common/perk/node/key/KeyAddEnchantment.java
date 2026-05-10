@@ -22,9 +22,9 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import java.util.List;
 

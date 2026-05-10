@@ -21,12 +21,12 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BookItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -88,7 +88,7 @@ public class DynamicEnchantmentHelper {
         return current;
     }
 
-    public static ListNBT modifyEnchantmentTags(ListNBT existingEnchantments, ItemStack stack) {
+    public static ListTag modifyEnchantmentTags(ListTag existingEnchantments, ItemStack stack) {
         if (!canHaveDynamicEnchantment(stack)) {
             return existingEnchantments;
         }
@@ -98,15 +98,15 @@ public class DynamicEnchantmentHelper {
             return existingEnchantments;
         }
 
-        ListNBT returnNew = new ListNBT();
+        ListTag returnNew = new ListTag();
         Set<String> enchantments = new HashSet<>(existingEnchantments.size());
         for (int i = 0; i < existingEnchantments.size(); i++) {
-            CompoundNBT cmp = existingEnchantments.getCompound(i);
+            CompoundTag cmp = existingEnchantments.getCompound(i);
             String enchKey = cmp.getString("id");
             int lvl = cmp.getInt("lvl");
             int newLvl = getNewEnchantmentLevel(lvl, enchKey, stack, context);
 
-            CompoundNBT newEnchTag = new CompoundNBT();
+            CompoundTag newEnchTag = new CompoundTag();
             newEnchTag.putString("id", enchKey);
             newEnchTag.putInt("lvl", newLvl);
             returnNew.add(newEnchTag);
@@ -126,7 +126,7 @@ public class DynamicEnchantmentHelper {
                 }
                 String enchName = ench.getRegistryName().toString();
                 if (!enchantments.contains(enchName)) { //Means we didn't add the levels on the other iteration
-                    CompoundNBT newEnchTag = new CompoundNBT();
+                    CompoundTag newEnchTag = new CompoundTag();
                     newEnchTag.putString("id", enchName);
                     newEnchTag.putInt("lvl", getNewEnchantmentLevel(0, ench, stack, context));
                     returnNew.add(newEnchTag);
@@ -206,11 +206,11 @@ public class DynamicEnchantmentHelper {
             return new ArrayList<>();
         }
         DynamicEnchantmentEvent.Add addEvent = new DynamicEnchantmentEvent.Add(tool, foundEntity);
-        if (MinecraftForge.EVENT_BUS.post(addEvent)) {
+        if (NeoForge.EVENT_BUS.post(addEvent)) {
             return new ArrayList<>();
         }
         DynamicEnchantmentEvent.Modify modifyEvent = new DynamicEnchantmentEvent.Modify(tool, addEvent.getEnchantmentsToApply(), foundEntity);
-        if (MinecraftForge.EVENT_BUS.post(modifyEvent)) {
+        if (NeoForge.EVENT_BUS.post(modifyEvent)) {
             return new ArrayList<>();
         }
         return modifyEvent.getEnchantmentsToApply();

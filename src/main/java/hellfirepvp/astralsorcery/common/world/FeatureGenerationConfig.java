@@ -15,7 +15,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,11 +35,11 @@ public class FeatureGenerationConfig extends ConfigEntry {
     private List<RegistryKey<World>> worlds = new ArrayList<>();
     private boolean defaultEveryBiome = false, defaultEveryWorld = false;
 
-    private ForgeConfigSpec.BooleanValue enabled;
-    private ForgeConfigSpec.BooleanValue everyBiome;
-    private ForgeConfigSpec.BooleanValue everyWorld;
-    private ForgeConfigSpec.ConfigValue<List<String>> biomeCategoryNames;
-    private ForgeConfigSpec.ConfigValue<List<String>> worldNames;
+    private NeoForgeConfigSpec.BooleanValue enabled;
+    private NeoForgeConfigSpec.BooleanValue everyBiome;
+    private NeoForgeConfigSpec.BooleanValue everyWorld;
+    private NeoForgeConfigSpec.ConfigValue<List<String>> biomeCategoryNames;
+    private NeoForgeConfigSpec.ConfigValue<List<String>> worldNames;
 
     public FeatureGenerationConfig(ResourceLocation featureName) {
         this(featureName.getPath());
@@ -70,7 +70,7 @@ public class FeatureGenerationConfig extends ConfigEntry {
     }
 
     @Override
-    public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+    public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
         this.enabled = cfgBuilder
                 .comment("Set this to false to disable this worldgen feature.")
                 .translation(translationKey("enabled"))

@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.data.sync.base;
 
 import hellfirepvp.astralsorcery.common.data.sync.SyncDataHolder;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
@@ -38,8 +38,8 @@ public abstract class AbstractData {
 
     public abstract void clearServer();
 
-    public abstract void writeAllDataToPacket(CompoundNBT compound);
+    public abstract void writeAllDataToPacket(CompoundTag compound);
 
-    public abstract void writeDiffDataToPacket(CompoundNBT compound);
+    public abstract void writeDiffDataToPacket(CompoundTag compound);
 
 }

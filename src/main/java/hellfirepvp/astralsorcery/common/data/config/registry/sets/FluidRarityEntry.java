@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.data.config.registry.sets;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigDataSet;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

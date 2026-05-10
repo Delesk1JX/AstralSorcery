@@ -16,7 +16,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraftforge.common.Tags;
+import net.neoforged.neoforge.common.Tags;
 
 import java.util.function.Consumer;
 

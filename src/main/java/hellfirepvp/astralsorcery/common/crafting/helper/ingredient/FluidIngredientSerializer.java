@@ -16,10 +16,10 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.crafting.IIngredientSerializer;
-import net.minecraftforge.fluids.FluidAttributes;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.common.crafting.IIngredientSerializer;
+import net.neoforged.neoforge.fluids.FluidAttributes;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.List;

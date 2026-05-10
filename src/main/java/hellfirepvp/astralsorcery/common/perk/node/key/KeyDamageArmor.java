@@ -20,11 +20,11 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
+import net.neoforged.neoforge.eventbus.api.EventPriority;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -83,14 +83,14 @@ public class KeyDamageArmor extends KeyPerk {
 
     public static class Config extends ConfigEntry {
 
-        private ForgeConfigSpec.DoubleValue damagePerArmor;
+        private NeoForgeConfigSpec.DoubleValue damagePerArmor;
 
         private Config(String section) {
             super(section);
         }
 
         @Override
-        public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
             this.damagePerArmor = cfgBuilder
                     .comment("Defines how much damage is dealt additionally to armor. This value gets multiplied by the amount of armorpieces the entity you're attacking wears.")
                     .translation(translationKey("damagePerArmor"))

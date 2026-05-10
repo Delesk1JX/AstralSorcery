@@ -24,16 +24,16 @@ import hellfirepvp.astralsorcery.common.util.block.ILocatable;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -65,7 +65,7 @@ public class CEffectPelotrio extends CEffectAbstractList<ListEntries.EntitySpawn
 
     @Nullable
     @Override
-    public ListEntries.EntitySpawnEntry recreateElement(CompoundNBT tag, BlockPos pos) {
+    public ListEntries.EntitySpawnEntry recreateElement(CompoundTag tag, BlockPos pos) {
         return null;
     }
 
@@ -159,15 +159,15 @@ public class CEffectPelotrio extends CEffectAbstractList<ListEntries.EntitySpawn
         private final double defaultSpawnChance = 0.05D;
         private final int defaultProximityAmount = 24;
 
-        public ForgeConfigSpec.DoubleValue spawnChance;
-        public ForgeConfigSpec.IntValue proximityAmount;
+        public NeoForgeConfigSpec.DoubleValue spawnChance;
+        public NeoForgeConfigSpec.IntValue proximityAmount;
 
         public PelotrioConfig() {
             super("pelotrio", 12D, 0D, 5);
         }
 
         @Override
-        public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.spawnChance = cfgBuilder

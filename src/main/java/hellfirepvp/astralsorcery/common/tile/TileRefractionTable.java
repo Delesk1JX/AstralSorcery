@@ -31,14 +31,14 @@ import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import hellfirepvp.astralsorcery.common.util.tile.NamedInventoryTile;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nonnull;
 import java.awt.*;
@@ -283,7 +283,7 @@ public class TileRefractionTable extends TileEntityTick implements NamedInventor
     }
 
     @Override
-    public void readCustomNBT(CompoundNBT compound) {
+    public void readCustomNBT(CompoundTag compound) {
         super.readCustomNBT(compound);
 
         this.runTick = compound.getInt("runTick");
@@ -294,7 +294,7 @@ public class TileRefractionTable extends TileEntityTick implements NamedInventor
     }
 
     @Override
-    public void writeCustomNBT(CompoundNBT compound) {
+    public void writeCustomNBT(CompoundTag compound) {
         super.writeCustomNBT(compound);
 
         compound.putInt("runTick", this.runTick);

@@ -15,7 +15,7 @@ import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
+import net.neoforged.neoforge.fml.client.registry.IRenderFactory;
 
 /**
  * This class is part of the Astral Sorcery Mod

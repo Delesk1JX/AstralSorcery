@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.crafting.nojson.freezing;
 
 import hellfirepvp.astralsorcery.AstralSorcery;
 import net.minecraft.block.Blocks;
-import net.minecraftforge.fluids.FluidAttributes;
+import net.neoforged.neoforge.fluids.FluidAttributes;
 
 /**
  * This class is part of the Astral Sorcery Mod

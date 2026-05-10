@@ -11,8 +11,8 @@ package hellfirepvp.astralsorcery.common.lib;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.capability.ChunkFluidEntry;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.CapabilityInject;
+import net.neoforged.neoforge.common.capabilities.Capability;
+import net.neoforged.neoforge.common.capabilities.CapabilityInject;
 
 /**
  * This class is part of the Astral Sorcery Mod

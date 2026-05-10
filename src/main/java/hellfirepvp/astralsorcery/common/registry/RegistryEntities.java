@@ -28,10 +28,10 @@ import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
+import net.neoforged.neoforge.fml.client.registry.RenderingRegistry;
 
 import static hellfirepvp.astralsorcery.common.lib.EntityTypesAS.*;
 

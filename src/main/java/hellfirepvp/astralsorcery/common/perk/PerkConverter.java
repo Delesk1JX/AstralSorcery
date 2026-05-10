@@ -16,8 +16,8 @@ import hellfirepvp.astralsorcery.common.perk.type.ModifierType;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.neoforge.registries.RegistryObject;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -33,7 +33,7 @@ import java.util.Objects;
  * Created by HellFirePvP
  * Date: 08.08.2019 / 17:28
  */
-public abstract class PerkConverter extends ForgeRegistryEntry<PerkConverter> {
+public abstract class PerkConverter extends RegistryObject<PerkConverter> {
 
     public PerkConverter(ResourceLocation id) {
         this.setRegistryName(id);

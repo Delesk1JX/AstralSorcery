@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.util;
 
-import net.minecraftforge.eventbus.api.*;
+import net.neoforged.neoforge.eventbus.api.*;
 
 import java.util.ArrayList;
 import java.util.List;

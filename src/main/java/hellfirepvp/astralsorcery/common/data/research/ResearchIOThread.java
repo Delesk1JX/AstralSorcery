@@ -12,7 +12,7 @@ import com.google.common.collect.Maps;
 import com.google.common.io.Files;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.util.ServerLifecycleListener;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.CompressedStreamTools;
 
 import java.io.File;
@@ -140,7 +140,7 @@ public class ResearchIOThread implements ServerLifecycleListener {
             exc.printStackTrace();
         }
         try {
-            CompoundNBT cmp = new CompoundNBT();
+            CompoundTag cmp = new CompoundTag();
             progress.store(cmp);
             CompressedStreamTools.write(cmp, playerFile);
         } catch (IOException ignored) {}

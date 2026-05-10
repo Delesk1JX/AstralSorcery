@@ -20,7 +20,7 @@ import net.minecraft.tags.Tag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.Constants;
+import net.neoforged.neoforge.common.util.Constants;
 
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
