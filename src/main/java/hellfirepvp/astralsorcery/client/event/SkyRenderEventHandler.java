@@ -18,7 +18,7 @@ import net.minecraft.client.world.DimensionRenderInfo;
 import net.neoforged.neoforge.client.ISkyRenderHandler;
 import net.neoforged.neoforge.client.event.EntityViewRenderEvent;
 import net.neoforged.neoforge.client.event.RenderWorldLastEvent;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod

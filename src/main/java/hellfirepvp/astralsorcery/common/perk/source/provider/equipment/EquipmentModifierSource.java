@@ -15,11 +15,11 @@ import hellfirepvp.astralsorcery.common.perk.source.ModifierManager;
 import hellfirepvp.astralsorcery.common.perk.source.ModifierSource;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Util;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -34,10 +34,10 @@ import java.util.Objects;
  */
 public class EquipmentModifierSource implements ModifierSource, AttributeModifierProvider {
 
-    final EquipmentSlotType slot;
+    final EquipmentSlot slot;
     final ItemStack itemStack;
 
-    EquipmentModifierSource(EquipmentSlotType slot, ItemStack itemStack) {
+    EquipmentModifierSource(EquipmentSlot slot, ItemStack itemStack) {
         this.slot = slot;
         this.itemStack = itemStack;
     }

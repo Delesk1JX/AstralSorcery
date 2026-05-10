@@ -31,10 +31,10 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.Mth;
-import net.minecraft.util.text.ITextProperties;
-import net.minecraft.util.text.Component.literal;
-import net.minecraft.util.text.Component.translatable;
-import net.neoforged.fml.LogicalSide;
+import net.minecraft.network.chat.FormattedText;
+import static net.minecraft.network.chat.Component.literal;
+import static net.minecraft.network.chat.Component.translatable;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import java.awt.*;
 import java.util.Comparator;

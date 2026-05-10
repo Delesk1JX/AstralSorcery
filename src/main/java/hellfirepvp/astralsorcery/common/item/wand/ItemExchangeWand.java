@@ -51,12 +51,12 @@ import net.minecraft.util.*;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.BlockRayTraceResult;
 import net.minecraft.util.RayTraceContext;
-import net.minecraft.util.text.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.ToolType;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nonnull;

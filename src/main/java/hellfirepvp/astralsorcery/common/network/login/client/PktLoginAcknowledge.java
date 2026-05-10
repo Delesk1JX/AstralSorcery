@@ -11,8 +11,8 @@ package hellfirepvp.astralsorcery.common.network.login.client;
 import hellfirepvp.astralsorcery.common.network.base.ASLoginPacket;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.fml.network.NetworkEvent;
+import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.neoforge.network.NetworkEvent;
 
 import javax.annotation.Nonnull;
 

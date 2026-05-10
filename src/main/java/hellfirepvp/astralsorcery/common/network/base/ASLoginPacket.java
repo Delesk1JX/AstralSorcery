@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.network.base;
 
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.network.login.client.PktLoginAcknowledge;
-import net.neoforged.neoforge.fml.network.NetworkEvent;
+import net.neoforged.neoforge.network.NetworkEvent;
 
 import java.util.function.IntSupplier;
 

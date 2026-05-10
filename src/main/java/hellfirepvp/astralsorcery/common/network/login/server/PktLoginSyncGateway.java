@@ -18,8 +18,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.fml.network.NetworkEvent;
+import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.neoforge.network.NetworkEvent;
 
 import javax.annotation.Nonnull;
 import java.util.*;

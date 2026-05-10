@@ -17,7 +17,7 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.text.Component;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;

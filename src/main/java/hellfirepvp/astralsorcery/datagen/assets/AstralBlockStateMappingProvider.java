@@ -20,13 +20,13 @@ import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import net.minecraft.block.Block;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.StairsBlock;
-import net.minecraft.data.DataGenerator;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.minecraft.state.Property;
 import net.minecraft.util.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.client.model.generators.*;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import net.neoforged.neoforge.registries.IRegistryObject;
+import net.minecraft.core.Holder;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.Collection;

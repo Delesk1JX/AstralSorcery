@@ -20,8 +20,8 @@ import net.minecraft.block.Block;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.text.Component;
-import net.minecraft.util.text.Component.translatable;
+import net.minecraft.network.chat.Component;
+import static net.minecraft.network.chat.Component.translatable;
 
 import javax.annotation.Nullable;
 

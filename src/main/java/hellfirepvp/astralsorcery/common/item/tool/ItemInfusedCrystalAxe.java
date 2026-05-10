@@ -28,7 +28,7 @@ import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import java.util.Collection;
 import java.util.Collections;

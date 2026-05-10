@@ -29,8 +29,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.Mth;
-import net.minecraft.util.text.Component.translatable;
-import net.neoforged.fml.LogicalSide;
+import static net.minecraft.network.chat.Component.translatable;
+import net.neoforged.api.distmarker.LogicalSide;
 import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nonnull;

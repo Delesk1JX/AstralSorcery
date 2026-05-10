@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.datagen.data.recipes.interaction.InteractionRec
 import hellfirepvp.astralsorcery.datagen.data.recipes.transmutation.BlockTransmutationRecipeProvider;
 import hellfirepvp.astralsorcery.datagen.data.recipes.vanilla.VanillaTypedRecipeProvider;
 import hellfirepvp.astralsorcery.datagen.data.recipes.well.LightwellRecipeProvider;
-import net.minecraft.data.DataGenerator;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.RecipeProvider;
 

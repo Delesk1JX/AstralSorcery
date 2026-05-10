@@ -17,7 +17,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
@@ -115,8 +115,8 @@ public class ItemUtils {
     }
 
     public static boolean isEquippableArmor(Entity entity, ItemStack stack) {
-        for (EquipmentSlotType type : EquipmentSlotType.values()) {
-            if (type.getSlotType() == EquipmentSlotType.Group.ARMOR) {
+        for (EquipmentSlot type : EquipmentSlot.values()) {
+            if (type.getSlotType() == EquipmentSlot.Group.ARMOR) {
                 if (stack.canEquip(type, entity)) {
                     return true;
                 }

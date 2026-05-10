@@ -10,11 +10,11 @@ package hellfirepvp.astralsorcery.common.enchantment;
 
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -26,7 +26,7 @@ import net.neoforged.fml.LogicalSide;
 public class EnchantmentNightVision extends EnchantmentPlayerTick {
 
     public EnchantmentNightVision() {
-        super(Rarity.VERY_RARE, EnchantmentType.ARMOR_HEAD, new EquipmentSlotType[] { EquipmentSlotType.HEAD });
+        super(Rarity.VERY_RARE, EnchantmentType.ARMOR_HEAD, new EquipmentSlot[] { EquipmentSlot.HEAD });
     }
 
     @Override

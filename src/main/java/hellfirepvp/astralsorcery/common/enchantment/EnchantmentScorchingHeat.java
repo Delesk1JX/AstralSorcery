@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.enchantment;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.enchantment.Enchantments;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -24,7 +24,7 @@ import net.minecraft.item.ItemStack;
 public class EnchantmentScorchingHeat extends Enchantment {
 
     public EnchantmentScorchingHeat() {
-        super(Enchantment.Rarity.VERY_RARE, EnchantmentType.DIGGER, new EquipmentSlotType[] { EquipmentSlotType.MAINHAND });
+        super(Enchantment.Rarity.VERY_RARE, EnchantmentType.DIGGER, new EquipmentSlot[] { EquipmentSlot.MAINHAND });
     }
 
     @Override

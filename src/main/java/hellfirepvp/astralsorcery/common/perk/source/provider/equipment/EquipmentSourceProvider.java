@@ -15,12 +15,12 @@ import hellfirepvp.astralsorcery.common.perk.source.ModifierSourceProvider;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.world.entity.player.ServerPlayer;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import java.util.Collection;
 import java.util.UUID;
@@ -42,9 +42,9 @@ public class EquipmentSourceProvider extends ModifierSourceProvider<EquipmentMod
 
     @Override
     protected void update(ServerPlayer playerEntity) {
-        for (EquipmentSlotType slot : EquipmentSlotType.values()) {
+        for (EquipmentSlot slot : EquipmentSlot.values()) {
             //Items held in offhand will not provide modifers.
-            if (slot == EquipmentSlotType.OFFHAND) {
+            if (slot == EquipmentSlot.OFFHAND) {
                 continue;
             }
 
@@ -71,8 +71,8 @@ public class EquipmentSourceProvider extends ModifierSourceProvider<EquipmentMod
 
     @Override
     protected void removeModifiers(ServerPlayer playerEntity) {
-        for (EquipmentSlotType slot : EquipmentSlotType.values()) {
-            if (slot == EquipmentSlotType.OFFHAND) {
+        for (EquipmentSlot slot : EquipmentSlot.values()) {
+            if (slot == EquipmentSlot.OFFHAND) {
                 continue;
             }
 
@@ -89,7 +89,7 @@ public class EquipmentSourceProvider extends ModifierSourceProvider<EquipmentMod
 
     @Override
     public EquipmentModifierSource deserialize(FriendlyByteBuf buf) {
-        EquipmentSlotType type = ByteBufUtils.readEnumValue(buf, EquipmentSlotType.class);
+        EquipmentSlot type = ByteBufUtils.readEnumValue(buf, EquipmentSlot.class);
         ItemStack stack = ByteBufUtils.readItemStack(buf);
         return new EquipmentModifierSource(type, stack);
     }

@@ -17,7 +17,7 @@ import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.loot.ConditionArraySerializer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod

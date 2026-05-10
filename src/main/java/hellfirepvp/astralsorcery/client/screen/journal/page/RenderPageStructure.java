@@ -33,9 +33,9 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.vector.Vector3f;
-import net.minecraft.util.text.ITextProperties;
-import net.minecraft.util.text.Component.literal;
-import net.minecraft.util.text.Component.translatable;
+import net.minecraft.network.chat.FormattedText;
+import static net.minecraft.network.chat.Component.literal;
+import static net.minecraft.network.chat.Component.translatable;
 import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nonnull;

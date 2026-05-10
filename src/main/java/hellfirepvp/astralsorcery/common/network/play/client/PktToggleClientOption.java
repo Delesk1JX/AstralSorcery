@@ -15,13 +15,13 @@ import hellfirepvp.astralsorcery.common.network.base.ASPacket;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.util.Util;
-import net.minecraft.util.text.Component;
+import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
-import net.minecraft.util.text.Component.translatable;
+import static net.minecraft.network.chat.Component.translatable;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.fml.network.NetworkEvent;
+import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.neoforge.network.NetworkEvent;
 
 import javax.annotation.Nonnull;
 

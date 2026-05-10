@@ -15,10 +15,10 @@ import hellfirepvp.observerlib.common.change.ChangeObserverStructure;
 import hellfirepvp.observerlib.common.change.ObserverProviderStructure;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.text.Component;
-import net.minecraft.util.text.Component.translatable;
+import net.minecraft.network.chat.Component;
+import static net.minecraft.network.chat.Component.translatable;
 import net.minecraft.world.World;
-import net.neoforged.neoforge.registries.IRegistryObject;
+import net.minecraft.core.Holder;
 
 import javax.annotation.Nullable;
 import java.util.function.Supplier;

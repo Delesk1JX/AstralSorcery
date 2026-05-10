@@ -20,7 +20,7 @@ import net.minecraft.client.renderer.entity.model.PlayerModel;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.entity.EquipmentSlot;
 
 import java.util.List;
 import java.util.function.BiPredicate;
@@ -43,7 +43,7 @@ public class StarryLayerRenderer<E extends LivingEntity, M extends BipedModel<E>
     private static final BipedModel MODEL_ARMOR = new PlayerModel<>(0F, false);
     private static final BipedModel MODEL_ARMOR_SMALL = new PlayerModel<>(0F, true);
 
-    private static BiPredicate<Player, EquipmentSlotType> renderTest = (p, type) -> false;
+    private static BiPredicate<Player, EquipmentSlot> renderTest = (p, type) -> false;
 
     private final boolean slimRender;
 
@@ -52,7 +52,7 @@ public class StarryLayerRenderer<E extends LivingEntity, M extends BipedModel<E>
         this.slimRender = slimRender;
     }
 
-    public static void addRender(BiPredicate<Player, EquipmentSlotType> render) {
+    public static void addRender(BiPredicate<Player, EquipmentSlot> render) {
         renderTest = renderTest.or(render);
     }
 
@@ -62,17 +62,17 @@ public class StarryLayerRenderer<E extends LivingEntity, M extends BipedModel<E>
             return;
         }
 
-        for (EquipmentSlotType slotType : EquipmentSlotType.values()) {
-            if (slotType.getSlotType() == EquipmentSlotType.Group.ARMOR) {
+        for (EquipmentSlot slotType : EquipmentSlot.values()) {
+            if (slotType.getSlotType() == EquipmentSlot.Group.ARMOR) {
                 if (renderTest.test((Player) entity, slotType)) {
-                    BipedModel<E> model = slotType == EquipmentSlotType.HEAD ? MODEL_HEAD : this.slimRender ? MODEL_ARMOR_SMALL : MODEL_ARMOR;
+                    BipedModel<E> model = slotType == EquipmentSlot.HEAD ? MODEL_HEAD : this.slimRender ? MODEL_ARMOR_SMALL : MODEL_ARMOR;
                     this.renderArmorPart(renderStack, buffer, slotType, light, model);
                 }
             }
         }
     }
 
-    private void renderArmorPart(PoseStack renderStack, IRenderTypeBuffer buffer, EquipmentSlotType slotType, int light, BipedModel<E> model) {
+    private void renderArmorPart(PoseStack renderStack, IRenderTypeBuffer buffer, EquipmentSlot slotType, int light, BipedModel<E> model) {
         this.getEntityModel().setModelAttributes(model);
         this.setModelSlotVisible(model, slotType);
         for (CacheReference<RenderType> renderType : RENDER_TYPES) {

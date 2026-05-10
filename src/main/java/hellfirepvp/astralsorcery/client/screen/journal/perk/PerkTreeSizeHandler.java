@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.client.screen.journal.perk;
 import hellfirepvp.astralsorcery.client.screen.helper.SizeHandler;
 import hellfirepvp.astralsorcery.common.perk.PerkTree;
 import hellfirepvp.astralsorcery.common.perk.tree.PerkTreePoint;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.awt.*;

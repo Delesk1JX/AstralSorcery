@@ -24,10 +24,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.Mth;
-import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.Component;
-import net.minecraft.util.text.ITextProperties;
-import net.minecraft.util.text.LanguageMap;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.FormattedText;
+import net.minecraft.client.resources.language.LanguageManager;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;

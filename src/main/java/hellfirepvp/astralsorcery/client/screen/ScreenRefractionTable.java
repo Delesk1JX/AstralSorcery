@@ -35,9 +35,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.Mth;
 import net.minecraft.util.vector.Matrix4f;
-import net.minecraft.util.text.ITextProperties;
+import net.minecraft.network.chat.FormattedText;
 import net.minecraft.world.World;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;

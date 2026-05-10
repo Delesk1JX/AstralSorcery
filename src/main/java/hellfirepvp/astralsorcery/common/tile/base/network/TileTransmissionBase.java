@@ -22,9 +22,9 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Util;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.text.Style;
+import net.minecraft.network.chat.Style;
 import net.minecraft.ChatFormatting;
-import net.minecraft.util.text.Component.translatable;
+import static net.minecraft.network.chat.Component.translatable;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.common.util.Constants;
 

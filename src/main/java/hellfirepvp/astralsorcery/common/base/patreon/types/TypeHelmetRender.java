@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.base.patreon.FlareColor;
 import hellfirepvp.astralsorcery.common.base.patreon.PatreonEffect;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -54,8 +54,8 @@ public class TypeHelmetRender extends PatreonEffect {
     @SubscribeEvent
     public void renderPre(RenderPlayerEvent.Pre event) {
         Player player = event.getPlayer();
-        if (player.getUniqueID().equals(playerUUID) && player.getItemStackFromSlot(EquipmentSlotType.HEAD).isEmpty()) {
-            player.inventory.armorInventory.set(EquipmentSlotType.HEAD.getIndex(), ItemUtils.copyStackWithSize(helmetStack, 1));
+        if (player.getUniqueID().equals(playerUUID) && player.getItemStackFromSlot(EquipmentSlot.HEAD).isEmpty()) {
+            player.inventory.armorInventory.set(EquipmentSlot.HEAD.getIndex(), ItemUtils.copyStackWithSize(helmetStack, 1));
             addedHelmet = true;
         }
     }
@@ -65,7 +65,7 @@ public class TypeHelmetRender extends PatreonEffect {
     public void renderPost(RenderPlayerEvent.Post event) {
         Player player = event.getPlayer();
         if (player.getUniqueID().equals(playerUUID) && addedHelmet) {
-            player.inventory.armorInventory.set(EquipmentSlotType.HEAD.getIndex(), ItemStack.EMPTY);
+            player.inventory.armorInventory.set(EquipmentSlot.HEAD.getIndex(), ItemStack.EMPTY);
             addedHelmet = false;
         }
     }

@@ -41,7 +41,7 @@ import net.minecraft.util.vector.Vector3d;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.common.util.Constants;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.util.*;

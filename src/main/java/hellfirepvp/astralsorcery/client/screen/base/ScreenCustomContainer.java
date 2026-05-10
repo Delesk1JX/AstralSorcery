@@ -18,7 +18,7 @@ import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.world.entity.player.IInventory;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.util.text.Component;
+import net.minecraft.network.chat.Component;
 import org.lwjgl.opengl.GL11;
 
 /**

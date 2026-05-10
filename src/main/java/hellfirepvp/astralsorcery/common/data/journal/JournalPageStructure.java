@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.client.screen.journal.page.RenderablePage;
 import hellfirepvp.astralsorcery.common.data.research.ResearchNode;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.observerlib.api.util.BlockArray;
-import net.minecraft.util.text.Component;
+import net.minecraft.network.chat.Component;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 

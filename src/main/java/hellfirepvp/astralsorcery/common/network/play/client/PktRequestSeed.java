@@ -21,9 +21,9 @@ import net.minecraft.world.World;
 import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;
-import net.neoforged.neoforge.fml.network.NetworkEvent;
+import net.neoforged.neoforge.network.NetworkEvent;
 
 import javax.annotation.Nonnull;
 

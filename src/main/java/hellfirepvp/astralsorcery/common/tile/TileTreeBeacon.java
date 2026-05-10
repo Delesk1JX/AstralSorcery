@@ -51,7 +51,7 @@ import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 import net.neoforged.neoforge.common.util.Constants;
 import net.neoforged.neoforge.event.world.SaplingGrowTreeEvent;
 import net.neoforged.neoforge.eventbus.api.Event;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

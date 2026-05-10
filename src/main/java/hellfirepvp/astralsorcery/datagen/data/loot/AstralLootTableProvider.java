@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.datagen.data.loot;
 
 import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.data.DataGenerator;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.minecraft.data.LootTableProvider;
 import net.minecraft.loot.*;
 import net.minecraft.resources.ResourceLocation;

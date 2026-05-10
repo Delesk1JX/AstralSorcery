@@ -19,7 +19,7 @@ import hellfirepvp.astralsorcery.common.crafting.recipe.SimpleAltarRecipe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.Component;
+import net.minecraft.network.chat.Component;
 
 /**
  * This class is part of the Astral Sorcery Mod

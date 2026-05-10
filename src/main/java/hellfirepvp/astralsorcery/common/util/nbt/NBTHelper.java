@@ -23,7 +23,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.neoforged.neoforge.common.util.Constants;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.registries.BuiltInRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
 import org.apache.commons.lang3.ObjectUtils;
 
 import javax.annotation.Nonnull;

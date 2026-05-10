@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.common.data.journal.JournalPage;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.util.IReorderingProcessor;
-import net.minecraft.util.text.*;
+import net.minecraft.network.chat.*;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -23,7 +23,7 @@ import net.minecraft.client.MainWindow;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.GameType;
@@ -31,7 +31,7 @@ import net.neoforged.neoforge.client.event.RenderGameOverlayEvent;
 import net.neoforged.neoforge.event.TickEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
 import net.neoforged.neoforge.eventbus.api.IEventBus;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
@@ -85,7 +85,7 @@ public class AlignmentChargeRenderer implements ITickHandler {
 
         boolean hasEnoughCharge = true;
         float usagePerc = 0F;
-        for (EquipmentSlotType type : EquipmentSlotType.values()) {
+        for (EquipmentSlot type : EquipmentSlot.values()) {
             ItemStack equipped = player.getItemStackFromSlot(type);
             if (!equipped.isEmpty() && equipped.getItem() instanceof AlignmentChargeConsumer) {
                 float chargeRequired = ((AlignmentChargeConsumer) equipped.getItem()).getAlignmentChargeCost(player, equipped);
@@ -137,7 +137,7 @@ public class AlignmentChargeRenderer implements ITickHandler {
                 revealCharge(20);
             }
 
-            for (EquipmentSlotType slot : EquipmentSlotType.values()) {
+            for (EquipmentSlot slot : EquipmentSlot.values()) {
                 ItemStack stack = player.getItemStackFromSlot(slot);
                 if (!stack.isEmpty() && stack.getItem() instanceof AlignmentChargeRevealer &&
                         ((AlignmentChargeRevealer) stack.getItem()).shouldReveal(stack)) {

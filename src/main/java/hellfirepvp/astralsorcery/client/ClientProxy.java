@@ -50,7 +50,7 @@ import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraft.util.Unit;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
 import net.neoforged.neoforge.eventbus.api.IEventBus;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.resource.SelectiveReloadStateHandler;
 import net.neoforged.neoforge.resource.VanillaResourceType;

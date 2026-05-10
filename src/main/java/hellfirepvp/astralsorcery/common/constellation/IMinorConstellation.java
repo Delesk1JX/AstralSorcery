@@ -10,8 +10,8 @@ package hellfirepvp.astralsorcery.common.constellation;
 
 import hellfirepvp.astralsorcery.common.base.MoonPhase;
 import hellfirepvp.astralsorcery.common.constellation.effect.ConstellationEffectProperties;
-import net.minecraft.util.text.Component;
-import net.minecraft.util.text.Component.translatable;
+import net.minecraft.network.chat.Component;
+import static net.minecraft.network.chat.Component.translatable;
 
 import java.util.List;
 

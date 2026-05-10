@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.AstralSorcery;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.fml.InterModComms;
 import net.neoforged.fml.ModList;
-import net.neoforged.neoforge.registries.IRegistryObject;
+import net.minecraft.core.Holder;
 import net.neoforged.neoforge.versions.forge.ForgeVersion;
 
 import javax.annotation.Nonnull;

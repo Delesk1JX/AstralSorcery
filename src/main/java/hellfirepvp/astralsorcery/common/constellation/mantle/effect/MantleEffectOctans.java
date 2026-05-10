@@ -17,7 +17,7 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.tags.FluidTags;
@@ -27,7 +27,7 @@ import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 import net.neoforged.neoforge.event.entity.living.LivingKnockBackEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.eventbus.api.IEventBus;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -84,12 +84,12 @@ public class MantleEffectOctans extends MantleEffect {
             MantleEffectOctans octans = ItemMantle.getEffect(player, ConstellationsAS.octans);
             if (octans != null && AlignmentChargeHandler.INSTANCE.hasCharge(player, side, CONFIG.chargeCostPerBreakSpeed.get())) {
                 //Grab helmet
-                ItemStack existing = player.getItemStackFromSlot(EquipmentSlotType.HEAD);
+                ItemStack existing = player.getItemStackFromSlot(EquipmentSlot.HEAD);
 
                 //Set aqua affinity
                 ItemStack st = new ItemStack(Items.LEATHER_HELMET);
                 st.addEnchantment(Enchantments.AQUA_AFFINITY, 1);
-                player.inventory.armorInventory.set(EquipmentSlotType.HEAD.getIndex(), st);
+                player.inventory.armorInventory.set(EquipmentSlot.HEAD.getIndex(), st);
 
                 //Recalc breakspeed
                 EventFlags.CHECK_UNDERWATER_BREAK_SPEED.executeWithFlag(() -> {
@@ -98,7 +98,7 @@ public class MantleEffectOctans extends MantleEffect {
                 });
 
                 //Reset helmet
-                player.inventory.armorInventory.set(EquipmentSlotType.HEAD.getIndex(), existing);
+                player.inventory.armorInventory.set(EquipmentSlot.HEAD.getIndex(), existing);
             }
         }
     }

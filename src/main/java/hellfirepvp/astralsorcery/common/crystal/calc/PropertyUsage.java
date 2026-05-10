@@ -9,9 +9,9 @@
 package hellfirepvp.astralsorcery.common.crystal.calc;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.Component;
-import net.minecraft.util.text.Component.translatable;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Component;
+import static net.minecraft.network.chat.Component.translatable;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.Objects;

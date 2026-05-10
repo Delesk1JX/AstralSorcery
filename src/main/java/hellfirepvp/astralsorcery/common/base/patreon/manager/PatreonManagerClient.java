@@ -21,7 +21,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.event.TickEvent;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.api.distmarker.LogicalSide;
 
 import java.util.Collection;
 import java.util.EnumSet;

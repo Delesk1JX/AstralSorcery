@@ -37,11 +37,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.vector.Matrix4f;
-import net.minecraft.util.text.Component;
-import net.minecraft.util.text.ITextProperties;
-import net.minecraft.util.text.Component.literal;
-import net.minecraft.util.text.Component.translatable;
-import net.neoforged.fml.LogicalSide;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.FormattedText;
+import static net.minecraft.network.chat.Component.literal;
+import static net.minecraft.network.chat.Component.translatable;
+import net.neoforged.api.distmarker.LogicalSide;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;

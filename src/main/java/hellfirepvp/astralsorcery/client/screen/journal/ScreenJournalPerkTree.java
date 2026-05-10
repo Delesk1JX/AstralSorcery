@@ -63,8 +63,8 @@ import net.minecraft.util.Tuple;
 import net.minecraft.util.Util;
 import net.minecraft.util.Mth;
 import net.minecraft.util.vector.Matrix4f;
-import net.minecraft.util.text.*;
-import net.neoforged.fml.LogicalSide;
+import net.minecraft.network.chat.*;
+import net.neoforged.api.distmarker.LogicalSide;
 import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nullable;

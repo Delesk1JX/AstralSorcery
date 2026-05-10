@@ -29,7 +29,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.BlockRayTraceResult;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RayTraceResult;
-import net.minecraft.util.text.Component;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.client.event.RenderWorldLastEvent;
 import net.neoforged.neoforge.event.TickEvent;

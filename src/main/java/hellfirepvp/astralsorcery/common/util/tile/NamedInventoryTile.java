@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.util.tile;
 
-import net.minecraft.util.text.Component;
+import net.minecraft.network.chat.Component;
 
 /**
  * This class is part of the Astral Sorcery Mod

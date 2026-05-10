@@ -13,8 +13,8 @@ import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.event.TickEvent;
-import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.registries.BuiltInRegistries;
+import net.neoforged.api.distmarker.LogicalSide;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 import java.util.Collection;
 import java.util.EnumSet;
