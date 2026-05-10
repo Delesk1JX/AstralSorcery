@@ -11,14 +11,14 @@ package hellfirepvp.astralsorcery.common.util;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.fml.LogicalSidedProvider;
+import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.neoforge.fml.LogicalSidedProvider;
 
 import javax.annotation.Nullable;
 import java.util.Objects;
@@ -83,13 +83,13 @@ public class PlayerReference {
         return server.getPlayerList().getPlayerByUUID(this.playerUUID);
     }
 
-    public CompoundNBT serialize() {
-        CompoundNBT tag = new CompoundNBT();
+    public CompoundTag serialize() {
+        CompoundTag tag = new CompoundTag();
         this.writeToNBT(tag);
         return tag;
     }
 
-    public void writeToNBT(CompoundNBT tag) {
+    public void writeToNBT(CompoundTag tag) {
         tag.putUniqueId("playerUUID", this.playerUUID);
         tag.putString("playerName", ITextComponent.Serializer.toJson(this.playerName));
     }
@@ -99,7 +99,7 @@ public class PlayerReference {
         ByteBufUtils.writeTextComponent(buf, this.playerName);
     }
 
-    public static PlayerReference deserialize(CompoundNBT tag) {
+    public static PlayerReference deserialize(CompoundTag tag) {
         return new PlayerReference(tag.getUniqueId("playerUUID"), ITextComponent.Serializer.getComponentFromJson(tag.getString("playerName")));
     }
 

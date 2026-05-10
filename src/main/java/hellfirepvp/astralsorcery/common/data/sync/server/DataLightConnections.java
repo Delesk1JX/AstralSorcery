@@ -13,9 +13,9 @@ import hellfirepvp.astralsorcery.common.data.sync.base.AbstractDataProvider;
 import hellfirepvp.astralsorcery.common.data.sync.base.ClientDataReader;
 import hellfirepvp.astralsorcery.common.data.sync.client.ClientLightConnections;
 import hellfirepvp.astralsorcery.common.starlight.network.TransmissionChain;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.nbt.StringNBT;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.StringTag;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Tuple;
@@ -108,10 +108,10 @@ public class DataLightConnections extends AbstractData {
     }
 
     @Override
-    public void writeAllDataToPacket(CompoundNBT compound) {
+    public void writeAllDataToPacket(CompoundTag compound) {
         for (RegistryKey<World> dim : serverPosBuffer.keySet()) {
             Map<BlockPos, Set<BlockPos>> dat = serverPosBuffer.get(dim);
-            ListNBT dataList = new ListNBT();
+            ListTag dataList = new ListTag();
             for (BlockPos start : dat.keySet()) {
                 Set<BlockPos> endPositions = dat.get(start);
                 if (endPositions == null) {
@@ -119,7 +119,7 @@ public class DataLightConnections extends AbstractData {
                 }
 
                 for (BlockPos end : endPositions) {
-                    CompoundNBT cmp = new CompoundNBT();
+                    CompoundTag cmp = new CompoundTag();
                     cmp.putLong("start", start.toLong());
                     cmp.putLong("end",   end.toLong());
                     dataList.add(cmp);
@@ -131,10 +131,10 @@ public class DataLightConnections extends AbstractData {
     }
 
     @Override
-    public void writeDiffDataToPacket(CompoundNBT compound) {
-        ListNBT clearList = new ListNBT();
+    public void writeDiffDataToPacket(CompoundTag compound) {
+        ListTag clearList = new ListTag();
         for (RegistryKey<World> dim : this.dimensionClearBuffer) {
-            clearList.add(StringNBT.valueOf(dim.getLocation().toString()));
+            clearList.add(StringTag.valueOf(dim.getLocation().toString()));
         }
         compound.put("clear", clearList);
 
@@ -145,9 +145,9 @@ public class DataLightConnections extends AbstractData {
 
             LinkedList<Tuple<TransmissionChain.LightConnection, Boolean>> changes = serverChangeBuffer.get(dim);
             if (!changes.isEmpty()) {
-                ListNBT list = new ListNBT();
+                ListTag list = new ListTag();
                 for (Tuple<TransmissionChain.LightConnection, Boolean> tuple : changes) {
-                    CompoundNBT connection = new CompoundNBT();
+                    CompoundTag connection = new CompoundTag();
                     connection.putLong("start", tuple.getA().getStart().toLong());
                     connection.putLong("end",   tuple.getA().getEnd().toLong());
                     connection.putBoolean("connect", tuple.getB());

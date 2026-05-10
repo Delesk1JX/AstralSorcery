@@ -24,13 +24,13 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
+import net.neoforged.neoforge.eventbus.api.EventPriority;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import java.util.Random;
 
@@ -196,17 +196,17 @@ public class MantleEffectArmara extends MantleEffect {
 
         private final int defaultChargeCostPerStack = 750;
 
-        public ForgeConfigSpec.IntValue immunityStacks;
-        public ForgeConfigSpec.IntValue immunityRechargeTicks;
+        public NeoForgeConfigSpec.IntValue immunityStacks;
+        public NeoForgeConfigSpec.IntValue immunityRechargeTicks;
 
-        public ForgeConfigSpec.IntValue chargeCostPerStack;
+        public NeoForgeConfigSpec.IntValue chargeCostPerStack;
 
         public ArmaraConfig() {
             super("armara");
         }
 
         @Override
-        public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.immunityStacks = cfgBuilder

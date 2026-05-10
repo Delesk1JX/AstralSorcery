@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.lib.DataAS;
 import hellfirepvp.astralsorcery.common.starlight.WorldNetworkHandler;
 import hellfirepvp.astralsorcery.common.starlight.transmission.registry.TransmissionProvider;
 import hellfirepvp.astralsorcery.common.util.block.ILocatable;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
@@ -130,9 +130,9 @@ public interface IPrismTransmissionNode extends ILocatable {
     public TransmissionProvider getProvider();
 
     //Should recreate the exact state from when it was written.
-    public void readFromNBT(CompoundNBT compound);
+    public void readFromNBT(CompoundTag compound);
 
     //Should save all data that's needed to recreate the state accordingly.
-    public void writeToNBT(CompoundNBT compound);
+    public void writeToNBT(CompoundTag compound);
 
 }

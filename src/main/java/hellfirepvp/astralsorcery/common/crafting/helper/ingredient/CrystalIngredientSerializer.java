@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.crafting.helper.ingredient;
 import com.google.gson.JsonObject;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
-import net.minecraftforge.common.crafting.IIngredientSerializer;
+import net.neoforged.neoforge.common.crafting.IIngredientSerializer;
 
 /**
  * This class is part of the Astral Sorcery Mod

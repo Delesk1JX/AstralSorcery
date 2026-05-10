@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.lib;
 
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.network.datasync.IDataSerializer;
-import net.minecraftforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidStack;
 
 /**
  * This class is part of the Astral Sorcery Mod

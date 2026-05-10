@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.crafting.nojson.fountain;
 
 import hellfirepvp.astralsorcery.common.util.block.BlockGeometry;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.math.BlockPos;
 
 import java.util.List;
@@ -47,8 +47,8 @@ public class LiquidContext extends FountainEffect.EffectContext {
     }
 
     @Override
-    public void readFromNBT(CompoundNBT compound) {}
+    public void readFromNBT(CompoundTag compound) {}
 
     @Override
-    public void writeToNBT(CompoundNBT compound) {}
+    public void writeToNBT(CompoundTag compound) {}
 }

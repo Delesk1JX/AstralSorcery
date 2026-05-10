@@ -22,11 +22,11 @@ import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.util.Constants;
-import net.minecraftforge.fml.LogicalSide;
+import net.minecraft.nbt.CompoundTag;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -46,7 +46,7 @@ public class PerkEffectHelper {
         modifyAllPerks(player, LogicalSide.SERVER, Action.ADD);
 
         //Restore current overscaled health
-        CompoundNBT asData = NBTHelper.getPersistentData(player);
+        CompoundTag asData = NBTHelper.getPersistentData(player);
         if (asData.contains("health", Constants.NBT.TAG_FLOAT)) {
             player.setHealth(asData.getFloat("health"));
         }
@@ -74,7 +74,7 @@ public class PerkEffectHelper {
      **************************************************************************************************** */
 
     @OnlyIn(Dist.CLIENT)
-    public static void clientChangePerkData(AbstractPerk perk, CompoundNBT oldData, CompoundNBT newData) {
+    public static void clientChangePerkData(AbstractPerk perk, CompoundTag oldData, CompoundTag newData) {
         PlayerEntity player = Minecraft.getInstance().player;
         if (player == null) {
             return;

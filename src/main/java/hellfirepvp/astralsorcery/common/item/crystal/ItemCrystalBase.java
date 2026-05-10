@@ -19,11 +19,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.awt.*;
@@ -93,7 +93,7 @@ public abstract class ItemCrystalBase extends Item implements CrystalAttributeGe
     @Override
     public Entity createEntity(World world, Entity location, ItemStack itemstack) {
         EntityCrystal res = new EntityCrystal(EntityTypesAS.ITEM_CRYSTAL, world, location.getPosX(), location.getPosY(), location.getPosZ(), itemstack);
-        res.read(location.writeWithoutTypeId(new CompoundNBT()));
+        res.read(location.writeWithoutTypeId(new CompoundTag()));
         res.applyColor(this.getItemEntityColor(itemstack));
         if (location instanceof ItemEntity) {
             res.setReplacedEntity((ItemEntity) location);

@@ -28,15 +28,15 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+import net.minecraft.nbt.CompoundTag;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.neoforge.registries.RegistryObject;
 
 import javax.annotation.Nonnull;
 import java.awt.*;
@@ -51,7 +51,7 @@ import java.util.function.Consumer;
  * Created by HellFirePvP
  * Date: 17.02.2020 / 20:13
  */
-public abstract class MantleEffect extends ForgeRegistryEntry<MantleEffect> implements ITickHandler {
+public abstract class MantleEffect extends RegistryObject<MantleEffect> implements ITickHandler {
 
     protected static final Random rand = new Random();
 
@@ -63,7 +63,7 @@ public abstract class MantleEffect extends ForgeRegistryEntry<MantleEffect> impl
         this.setRegistryName(this.constellation.getRegistryName());
         this.playerAffectionFlag = new PlayerAffectionFlags.NoOpAffectionFlag(AstralSorcery.key("mantle_effect_" + constellation.getSimpleName()));
 
-        this.attachEventListeners(MinecraftForge.EVENT_BUS);
+        this.attachEventListeners(NeoForge.EVENT_BUS);
         this.attachTickHandlers(AstralSorcery.getProxy().getTickManager()::register);
     }
 
@@ -161,13 +161,13 @@ public abstract class MantleEffect extends ForgeRegistryEntry<MantleEffect> impl
     }
 
     @Nonnull
-    protected CompoundNBT getData(LivingEntity entity) {
+    protected CompoundTag getData(LivingEntity entity) {
         if (entity == null) {
-            return new CompoundNBT();
+            return new CompoundTag();
         }
         ItemStack stack = entity.getItemStackFromSlot(EquipmentSlotType.CHEST);
         if (stack.isEmpty() || !(stack.getItem() instanceof ItemMantle)) {
-            return new CompoundNBT();
+            return new CompoundTag();
         }
         return NBTHelper.getPersistentData(stack);
     }
@@ -191,14 +191,14 @@ public abstract class MantleEffect extends ForgeRegistryEntry<MantleEffect> impl
 
         private final boolean defaultEnabled = true;
 
-        public ForgeConfigSpec.BooleanValue enabled;
+        public NeoForgeConfigSpec.BooleanValue enabled;
 
         public Config(String constellationName) {
             super(String.format("constellation.mantle.%s", constellationName));
         }
 
         @Override
-        public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
             this.enabled = cfgBuilder
                     .comment("Set this to false to disable this mantle effect")
                     .translation(translationKey("enabled"))

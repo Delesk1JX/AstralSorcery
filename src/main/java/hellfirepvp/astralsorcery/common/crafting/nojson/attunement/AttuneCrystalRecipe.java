@@ -21,7 +21,7 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
@@ -62,7 +62,7 @@ public class AttuneCrystalRecipe extends AttunementRecipe<ActiveCrystalAttunemen
 
     @Nonnull
     @Override
-    public ActiveCrystalAttunementRecipe deserialize(TileAttunementAltar altar, CompoundNBT nbt, @Nullable ActiveCrystalAttunementRecipe previousInstance) {
+    public ActiveCrystalAttunementRecipe deserialize(TileAttunementAltar altar, CompoundTag nbt, @Nullable ActiveCrystalAttunementRecipe previousInstance) {
         return new ActiveCrystalAttunementRecipe(this, nbt);
     }
 

@@ -21,7 +21,7 @@ import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
+import net.neoforged.neoforge.fml.client.registry.IRenderFactory;
 
 /**
  * This class is part of the Astral Sorcery Mod

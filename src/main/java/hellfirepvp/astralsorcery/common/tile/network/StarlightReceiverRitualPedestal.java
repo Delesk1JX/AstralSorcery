@@ -32,16 +32,16 @@ import hellfirepvp.astralsorcery.common.util.RaytraceAssist;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import hellfirepvp.astralsorcery.common.util.world.SkyCollectionHelper;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.INBT;
-import net.minecraft.nbt.ListNBT;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.Constants;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -375,7 +375,7 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
     }
 
     @Override
-    public void readFromNBT(CompoundNBT compound) {
+    public void readFromNBT(CompoundTag compound) {
         super.readFromNBT(compound);
 
         this.doesSeeSky = compound.getBoolean("doesSeeSky");
@@ -404,9 +404,9 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
         }
 
         this.offsetMirrors.clear();
-        ListNBT tagList = compound.getList("mirrors", Constants.NBT.TAG_COMPOUND);
+        ListTag tagList = compound.getList("mirrors", Constants.NBT.TAG_COMPOUND);
         for (INBT nbt : tagList) {
-            CompoundNBT tag = (CompoundNBT) nbt;
+            CompoundTag tag = (CompoundTag) nbt;
             this.offsetMirrors.put(NBTHelper.readBlockPosFromNBT(tag), tag.getBoolean("connect"));
         }
 
@@ -420,7 +420,7 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
     }
 
     @Override
-    public void writeToNBT(CompoundNBT compound) {
+    public void writeToNBT(CompoundTag compound) {
         super.writeToNBT(compound);
 
         compound.putBoolean("doesSeeSky", this.doesSeeSky);
@@ -439,12 +439,12 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
             attributes.store(compound);
         }
         if (this.ritualLinkPos != null) {
-            compound.put("ritualLinkPos", NBTHelper.writeBlockPosToNBT(this.ritualLinkPos, new CompoundNBT()));
+            compound.put("ritualLinkPos", NBTHelper.writeBlockPosToNBT(this.ritualLinkPos, new CompoundTag()));
         }
 
-        ListNBT listPositions = new ListNBT();
+        ListTag listPositions = new ListTag();
         for (Map.Entry<BlockPos, Boolean> posEntry : this.offsetMirrors.entrySet()) {
-            CompoundNBT cmp = new CompoundNBT();
+            CompoundTag cmp = new CompoundTag();
             NBTHelper.writeBlockPosToNBT(posEntry.getKey(), cmp);
             cmp.putBoolean("connect", posEntry.getValue());
             listPositions.add(cmp);

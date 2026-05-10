@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.util.tile;
 import hellfirepvp.astralsorcery.common.tile.base.TileEntitySynchronized;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Direction;
 
 import javax.annotation.Nonnull;
@@ -75,7 +75,7 @@ public class TileInventoryFiltered extends TileInventory {
 
     @Nonnull
     @Override
-    public TileInventoryFiltered deserialize(CompoundNBT tag) {
+    public TileInventoryFiltered deserialize(CompoundTag tag) {
         return (TileInventoryFiltered) super.deserialize(tag);
     }
 

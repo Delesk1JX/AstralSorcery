@@ -30,10 +30,10 @@ import net.minecraft.util.FoodStats;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import java.util.List;
 
@@ -142,21 +142,21 @@ public class MantleEffectAevitas extends MantleEffect {
         private final int defaultChargeCostPerHeal = 100;
         private final int defaultChargeCostPerFood = 100;
 
-        public ForgeConfigSpec.IntValue healChance;
-        public ForgeConfigSpec.IntValue feedChance;
-        public ForgeConfigSpec.DoubleValue healthPerCycle;
-        public ForgeConfigSpec.DoubleValue foodPerCycle;
+        public NeoForgeConfigSpec.IntValue healChance;
+        public NeoForgeConfigSpec.IntValue feedChance;
+        public NeoForgeConfigSpec.DoubleValue healthPerCycle;
+        public NeoForgeConfigSpec.DoubleValue foodPerCycle;
 
-        public ForgeConfigSpec.DoubleValue chargeCostPerTravelTick;
-        public ForgeConfigSpec.IntValue chargeCostPerHeal;
-        public ForgeConfigSpec.IntValue chargeCostPerFood;
+        public NeoForgeConfigSpec.DoubleValue chargeCostPerTravelTick;
+        public NeoForgeConfigSpec.IntValue chargeCostPerHeal;
+        public NeoForgeConfigSpec.IntValue chargeCostPerFood;
 
         public AevitasConfig() {
             super("aevitas");
         }
 
         @Override
-        public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.healChance = cfgBuilder

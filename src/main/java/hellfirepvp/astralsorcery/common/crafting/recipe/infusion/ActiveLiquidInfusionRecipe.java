@@ -34,20 +34,20 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.RecipeManager;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.util.Constants;
-import net.minecraftforge.fluids.FluidAttributes;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.fml.LogicalSidedProvider;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.fluids.FluidAttributes;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.neoforge.fml.LogicalSidedProvider;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -74,7 +74,7 @@ public class ActiveLiquidInfusionRecipe {
 
     private int ticksCrafting = 0;
     private final Set<BlockPos> supportingChalices = new HashSet<>();
-    private CompoundNBT craftingData = new CompoundNBT();
+    private CompoundTag craftingData = new CompoundTag();
 
     private Object orbitalLiquid = null;
 
@@ -301,7 +301,7 @@ public class ActiveLiquidInfusionRecipe {
         return fixTime + chaliceTime;
     }
 
-    public CompoundNBT getCraftingData() {
+    public CompoundTag getCraftingData() {
         return craftingData;
     }
 
@@ -328,7 +328,7 @@ public class ActiveLiquidInfusionRecipe {
     }
 
     @Nullable
-    public static ActiveLiquidInfusionRecipe deserialize(CompoundNBT compound, @Nullable ActiveLiquidInfusionRecipe prev) {
+    public static ActiveLiquidInfusionRecipe deserialize(CompoundTag compound, @Nullable ActiveLiquidInfusionRecipe prev) {
         RecipeManager mgr = RecipeHelper.getRecipeManager();
         if (mgr == null) {
             return null;
@@ -344,11 +344,11 @@ public class ActiveLiquidInfusionRecipe {
 
         UUID uuidCraft = compound.getUniqueId("playerCraftingUUID");
         int tick = compound.getInt("ticksCrafting");
-        ListNBT chalices = compound.getList("supportingChalices", Constants.NBT.TAG_COMPOUND);
+        ListTag chalices = compound.getList("supportingChalices", Constants.NBT.TAG_COMPOUND);
 
         Set<BlockPos> chalicePositions = new HashSet<>();
         for (int i = 0; i < chalices.size(); i++) {
-            CompoundNBT tag = chalices.getCompound(i);
+            CompoundTag tag = chalices.getCompound(i);
             chalicePositions.add(NBTHelper.readBlockPosFromNBT(tag));
         }
 
@@ -364,11 +364,11 @@ public class ActiveLiquidInfusionRecipe {
     }
 
     @Nonnull
-    public CompoundNBT serialize() {
-        ListNBT chalicePositions = new ListNBT();
-        this.supportingChalices.forEach(pos -> chalicePositions.add(NBTHelper.writeBlockPosToNBT(pos, new CompoundNBT())));
+    public CompoundTag serialize() {
+        ListTag chalicePositions = new ListTag();
+        this.supportingChalices.forEach(pos -> chalicePositions.add(NBTHelper.writeBlockPosToNBT(pos, new CompoundTag())));
 
-        CompoundNBT compound = new CompoundNBT();
+        CompoundTag compound = new CompoundTag();
         compound.putString("recipeToCraft", getRecipeToCraft().getId().toString());
         compound.putUniqueId("playerCraftingUUID", getPlayerCraftingUUID());
         compound.putInt("ticksCrafting", getTicksCrafting());

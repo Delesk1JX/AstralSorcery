@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.enchantment.dynamic.DynamicEnchantmentHe
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.ListNBT;
+import net.minecraft.nbt.ListTag;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -38,9 +38,9 @@ public class MixinEnchantmentHelper {
 
     @Redirect(
             method = "applyEnchantmentModifier",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getEnchantmentTagList()Lnet/minecraft/nbt/ListNBT;")
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getEnchantmentTagList()Lnet/minecraft/nbt/ListTag;")
     )
-    private static ListNBT applyEnhancedEnchantmentsTag(ItemStack stack) {
+    private static ListTag applyEnhancedEnchantmentsTag(ItemStack stack) {
         return DynamicEnchantmentHelper.modifyEnchantmentTags(stack.getEnchantmentTagList(), stack);
     }
 

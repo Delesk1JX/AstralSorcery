@@ -33,11 +33,11 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.ToolType;
-import net.minecraftforge.common.util.BlockSnapshot;
-import net.minecraftforge.common.util.FakePlayer;
-import net.minecraftforge.event.world.BlockEvent;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.common.ToolType;
+import net.neoforged.neoforge.common.util.BlockSnapshot;
+import net.neoforged.neoforge.common.util.FakePlayer;
+import net.neoforged.neoforge.event.world.BlockEvent;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -241,7 +241,7 @@ public class BlockUtils {
             }
             BlockEvent.BreakEvent event = new BlockEvent.BreakEvent(world, pos, stateBroken, fakePlayer);
             event.setCanceled(preCancelEvent);
-            MinecraftForge.EVENT_BUS.post(event);
+            NeoForge.EVENT_BUS.post(event);
 
             if (event.isCanceled()) {
                 return false;

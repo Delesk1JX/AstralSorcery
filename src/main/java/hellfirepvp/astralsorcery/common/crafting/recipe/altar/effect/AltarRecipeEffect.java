@@ -15,9 +15,9 @@ import hellfirepvp.astralsorcery.common.crafting.recipe.altar.ActiveSimpleAltarR
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.registries.RegistryObject;
 
 import java.util.Objects;
 import java.util.Random;
@@ -29,7 +29,7 @@ import java.util.Random;
  * Created by HellFirePvP
  * Date: 23.09.2019 / 17:46
  */
-public abstract class AltarRecipeEffect extends ForgeRegistryEntry<AltarRecipeEffect> {
+public abstract class AltarRecipeEffect extends RegistryObject<AltarRecipeEffect> {
 
     protected static final int INDEX_NOISE_PLANE_LAYER1 = 0;
     protected static final int INDEX_NOISE_PLANE_LAYER2 = 1;

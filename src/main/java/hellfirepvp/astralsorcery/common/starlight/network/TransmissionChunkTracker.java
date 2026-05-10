@@ -10,9 +10,9 @@ package hellfirepvp.astralsorcery.common.starlight.network;
 
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraftforge.event.world.ChunkEvent;
-import net.minecraftforge.event.world.WorldEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.event.world.ChunkEvent;
+import net.neoforged.neoforge.event.world.WorldEvent;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
 
 /**
  * This class is part of the Astral Sorcery Mod

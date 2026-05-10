@@ -34,10 +34,10 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.fml.common.registry.IEntityAdditionalSpawnData;
+import net.neoforged.neoforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.util.Collections;

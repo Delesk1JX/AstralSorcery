@@ -24,9 +24,9 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.state.Property;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.generators.*;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.IForgeRegistryEntry;
+import net.neoforged.neoforge.client.model.generators.*;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.IRegistryObject;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.Collection;
@@ -234,7 +234,7 @@ public class AstralBlockStateMappingProvider extends BlockStateProvider {
         return model(AstralSorcery.key(name));
     }
 
-    private ModelFile model(IForgeRegistryEntry<?> entry) {
+    private ModelFile model(IRegistryObject<?> entry) {
         return model(entry.getRegistryName());
     }
 

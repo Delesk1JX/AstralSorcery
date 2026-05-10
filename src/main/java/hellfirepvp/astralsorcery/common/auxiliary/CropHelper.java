@@ -13,15 +13,15 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.block.BlockUtils;
 import net.minecraft.block.*;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.util.Constants;
+import net.neoforged.neoforge.common.IPlantable;
+import net.neoforged.neoforge.common.util.Constants;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -57,7 +57,7 @@ public class CropHelper {
     };
 
     @Nullable
-    public static GrowablePlant fromNBT(CompoundNBT nbt, BlockPos pos) {
+    public static GrowablePlant fromNBT(CompoundTag nbt, BlockPos pos) {
         return growableFactoryWrapper.getOrDefault(nbt.getString("identifier"), (p) -> null).apply(pos);
     }
 
@@ -132,10 +132,10 @@ public class CropHelper {
         public boolean tryGrow(IWorld world, Random rand);
 
         @Override
-        default void readFromNBT(CompoundNBT nbt) {}
+        default void readFromNBT(CompoundTag nbt) {}
 
         @Override
-        default void writeToNBT(CompoundNBT nbt) {
+        default void writeToNBT(CompoundTag nbt) {
             nbt.putString("identifier", this.getIdentifier());
         }
     }

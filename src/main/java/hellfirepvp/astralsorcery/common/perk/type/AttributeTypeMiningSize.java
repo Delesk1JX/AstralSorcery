@@ -26,10 +26,10 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.*;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.event.world.BlockEvent;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -150,14 +150,14 @@ public class AttributeTypeMiningSize extends PerkAttributeType {
 
     private static class Config extends ConfigEntry {
 
-        private ForgeConfigSpec.IntValue chargeCostPerBreak;
+        private NeoForgeConfigSpec.IntValue chargeCostPerBreak;
 
         private Config(String section) {
             super(section);
         }
 
         @Override
-        public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
             chargeCostPerBreak = cfgBuilder
                     .comment("Defines the amount of starlight charge consumed per additional block break through this attribute.")
                     .translation(translationKey("chargeCostPerBreak"))

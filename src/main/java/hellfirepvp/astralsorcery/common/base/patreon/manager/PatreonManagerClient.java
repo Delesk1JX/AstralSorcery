@@ -20,8 +20,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.world.World;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import java.util.Collection;
 import java.util.EnumSet;

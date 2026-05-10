@@ -11,9 +11,9 @@ package hellfirepvp.astralsorcery.client.resource;
 import hellfirepvp.astralsorcery.client.registry.*;
 import hellfirepvp.astralsorcery.client.screen.journal.ScreenJournalPerkTree;
 import net.minecraft.resources.IResourceManager;
-import net.minecraftforge.resource.IResourceType;
-import net.minecraftforge.resource.ISelectiveResourceReloadListener;
-import net.minecraftforge.resource.VanillaResourceType;
+import net.neoforged.neoforge.resource.IResourceType;
+import net.neoforged.neoforge.resource.ISelectiveResourceReloadListener;
+import net.neoforged.neoforge.resource.VanillaResourceType;
 
 import java.util.function.Predicate;
 

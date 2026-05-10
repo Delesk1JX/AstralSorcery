@@ -21,7 +21,7 @@ import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
-import net.minecraftforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidStack;
 
 import java.awt.*;
 

@@ -32,16 +32,16 @@ import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -150,7 +150,7 @@ public class CEffectAevitas extends CEffectAbstractList<CropHelper.GrowablePlant
 
     @Nullable
     @Override
-    public CropHelper.GrowablePlant recreateElement(CompoundNBT tag, BlockPos pos) {
+    public CropHelper.GrowablePlant recreateElement(CompoundTag tag, BlockPos pos) {
         return CropHelper.fromNBT(tag, pos);
     }
 
@@ -186,14 +186,14 @@ public class CEffectAevitas extends CEffectAbstractList<CropHelper.GrowablePlant
 
         private final int defaultPotionAmplifier = 1;
 
-        public ForgeConfigSpec.IntValue potionAmplifier;
+        public NeoForgeConfigSpec.IntValue potionAmplifier;
 
         public AevitasConfig() {
             super("aevitas", 10D, 4D, 200);
         }
 
         @Override
-        public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.potionAmplifier = cfgBuilder

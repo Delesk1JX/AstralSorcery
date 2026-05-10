@@ -14,9 +14,9 @@ import hellfirepvp.astralsorcery.common.lib.IngredientSerializersAS;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraftforge.common.crafting.CraftingHelper;
-import net.minecraftforge.common.crafting.IIngredientSerializer;
-import net.minecraftforge.common.crafting.StackList;
+import net.neoforged.neoforge.common.crafting.CraftingHelper;
+import net.neoforged.neoforge.common.crafting.IIngredientSerializer;
+import net.neoforged.neoforge.common.crafting.StackList;
 
 import java.util.ArrayList;
 import java.util.List;

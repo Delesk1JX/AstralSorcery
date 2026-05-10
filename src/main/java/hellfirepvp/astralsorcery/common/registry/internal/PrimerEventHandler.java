@@ -38,12 +38,12 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.placement.Placement;
-import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DataSerializerEntry;
-import net.minecraftforge.registries.IForgeRegistry;
-import net.minecraftforge.registries.IForgeRegistryEntry;
+import net.neoforged.neoforge.common.loot.GlobalLootModifierSerializer;
+import net.neoforged.neoforge.event.RegistryEvent;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.registries.DataSerializerEntry;
+import net.neoforged.neoforge.registries.Registry;
+import net.neoforged.neoforge.registries.IRegistryObject;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -264,7 +264,7 @@ public class PrimerEventHandler {
         fillRegistry(event.getRegistry().getRegistrySuperType(), event.getRegistry());
     }
 
-    private <T extends IForgeRegistryEntry<T>> void fillRegistry(Class<T> registrySuperType, IForgeRegistry<T> forgeRegistry) {
+    private <T extends IRegistryObject<T>> void fillRegistry(Class<T> registrySuperType, Registry<T> forgeRegistry) {
         registry.getEntries(registrySuperType).forEach(e -> forgeRegistry.register((T) e));
     }
 

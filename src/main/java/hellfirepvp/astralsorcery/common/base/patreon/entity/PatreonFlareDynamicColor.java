@@ -15,8 +15,8 @@ import hellfirepvp.astralsorcery.client.resource.AssetLoader;
 import hellfirepvp.astralsorcery.client.resource.query.SpriteQuery;
 import hellfirepvp.astralsorcery.common.base.patreon.PatreonEffect;
 import hellfirepvp.astralsorcery.common.base.patreon.types.TypeFlareColor;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.awt.*;

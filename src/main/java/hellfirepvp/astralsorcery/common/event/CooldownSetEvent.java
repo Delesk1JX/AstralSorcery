@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.event;
 
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraftforge.eventbus.api.Event;
+import net.neoforged.neoforge.eventbus.api.Event;
 
 /**
  * This class is part of the Astral Sorcery Mod

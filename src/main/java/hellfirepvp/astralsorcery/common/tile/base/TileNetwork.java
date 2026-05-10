@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.tile.base;
 import hellfirepvp.astralsorcery.common.starlight.WorldNetworkHandler;
 import hellfirepvp.astralsorcery.common.starlight.transmission.IPrismTransmissionNode;
 import hellfirepvp.astralsorcery.common.starlight.transmission.TransmissionNetworkHelper;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tileentity.TileEntityType;
 
 import javax.annotation.Nullable;
@@ -113,14 +113,14 @@ public abstract class TileNetwork<T extends IPrismTransmissionNode> extends Tile
     }
 
     @Override
-    public void writeSaveNBT(CompoundNBT compound) {
+    public void writeSaveNBT(CompoundTag compound) {
         super.writeSaveNBT(compound);
 
         compound.putBoolean("needsNetworkSync", this.needsNetworkSync);
     }
 
     @Override
-    public void readSaveNBT(CompoundNBT compound) {
+    public void readSaveNBT(CompoundTag compound) {
         super.readSaveNBT(compound);
 
         this.needsNetworkSync = compound.getBoolean("needsNetworkSync");

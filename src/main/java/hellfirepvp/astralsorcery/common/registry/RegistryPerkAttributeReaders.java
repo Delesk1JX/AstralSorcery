@@ -17,9 +17,9 @@ import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.ForgeMod;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.common.ForgeMod;
+import net.neoforged.neoforge.fml.RegistryObject;
+import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import static hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS.*;
 

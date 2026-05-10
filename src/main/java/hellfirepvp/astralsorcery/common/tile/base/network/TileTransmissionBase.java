@@ -17,8 +17,8 @@ import hellfirepvp.astralsorcery.common.tile.base.TileNetwork;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
@@ -26,7 +26,7 @@ import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.Constants;
+import net.neoforged.neoforge.common.util.Constants;
 
 import javax.annotation.Nonnull;
 import java.util.LinkedList;
@@ -62,12 +62,12 @@ public abstract class TileTransmissionBase<T extends IPrismTransmissionNode> ext
     public abstract boolean isSingleLink();
 
     @Override
-    public void writeCustomNBT(CompoundNBT compound) {
+    public void writeCustomNBT(CompoundTag compound) {
         super.writeCustomNBT(compound);
 
-        ListNBT list = new ListNBT();
+        ListTag list = new ListTag();
         for (BlockPos pos : positions) {
-            CompoundNBT tag = new CompoundNBT();
+            CompoundTag tag = new CompoundTag();
             NBTHelper.writeBlockPosToNBT(pos, tag);
             list.add(tag);
         }
@@ -75,14 +75,14 @@ public abstract class TileTransmissionBase<T extends IPrismTransmissionNode> ext
     }
 
     @Override
-    public void readCustomNBT(CompoundNBT compound) {
+    public void readCustomNBT(CompoundTag compound) {
         super.readCustomNBT(compound);
         positions.clear();
 
         if (compound.contains("linked")) {
-            ListNBT list = compound.getList("linked", Constants.NBT.TAG_COMPOUND);
+            ListTag list = compound.getList("linked", Constants.NBT.TAG_COMPOUND);
             for (int i = 0; i < list.size(); i++) {
-                CompoundNBT tag = list.getCompound(i);
+                CompoundTag tag = list.getCompound(i);
                 positions.add(NBTHelper.readBlockPosFromNBT(tag));
             }
         }

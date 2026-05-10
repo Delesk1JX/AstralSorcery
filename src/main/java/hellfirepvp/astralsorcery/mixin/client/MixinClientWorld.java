@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.constellation.SkyHandler;
 import hellfirepvp.astralsorcery.common.constellation.world.WorldContext;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.fml.LogicalSide;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

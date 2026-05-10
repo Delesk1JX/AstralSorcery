@@ -25,9 +25,9 @@ import net.minecraft.tags.ITag;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.JSONUtils;
-import net.minecraftforge.fluids.FluidAttributes;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.items.IItemHandlerModifiable;
+import net.neoforged.neoforge.fluids.FluidAttributes;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.items.IItemHandlerModifiable;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;

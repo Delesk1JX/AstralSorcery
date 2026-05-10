@@ -16,12 +16,12 @@ import hellfirepvp.astralsorcery.common.lib.ItemsAS;
 import hellfirepvp.astralsorcery.common.util.time.TimeStopController;
 import hellfirepvp.astralsorcery.common.util.time.TimeStopZone;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -95,11 +95,11 @@ public class MantleEffectHorologium extends MantleEffect {
 
         private final int defaultChargeCostPerFreeze = 400;
 
-        public ForgeConfigSpec.DoubleValue effectRange;
-        public ForgeConfigSpec.IntValue effectDuration;
-        public ForgeConfigSpec.IntValue cooldown;
+        public NeoForgeConfigSpec.DoubleValue effectRange;
+        public NeoForgeConfigSpec.IntValue effectDuration;
+        public NeoForgeConfigSpec.IntValue cooldown;
 
-        public ForgeConfigSpec.IntValue chargeCostPerFreeze;
+        public NeoForgeConfigSpec.IntValue chargeCostPerFreeze;
 
 
         public HorologiumConfig() {
@@ -107,7 +107,7 @@ public class MantleEffectHorologium extends MantleEffect {
         }
 
         @Override
-        public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.effectRange = cfgBuilder

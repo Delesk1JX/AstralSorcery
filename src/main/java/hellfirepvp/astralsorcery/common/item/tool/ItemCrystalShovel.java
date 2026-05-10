@@ -26,7 +26,7 @@ import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ToolType;
+import net.neoforged.neoforge.common.ToolType;
 
 import java.util.Map;
 

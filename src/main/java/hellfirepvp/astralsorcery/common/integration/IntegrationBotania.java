@@ -14,8 +14,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
+import net.neoforged.neoforge.items.CapabilityItemHandler;
+import net.neoforged.neoforge.items.IItemHandler;
 
 import vazkii.botania.api.item.IBlockProvider;
 

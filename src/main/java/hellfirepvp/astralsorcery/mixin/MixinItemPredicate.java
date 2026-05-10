@@ -34,7 +34,7 @@ public class MixinItemPredicate {
             method = "test",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/enchantment/EnchantmentHelper;deserializeEnchantments(Lnet/minecraft/nbt/ListNBT;)Ljava/util/Map;",
+                    target = "Lnet/minecraft/enchantment/EnchantmentHelper;deserializeEnchantments(Lnet/minecraft/nbt/ListTag;)Ljava/util/Map;",
                     ordinal = 0,
                     shift = At.Shift.BY,
                     by = 2),

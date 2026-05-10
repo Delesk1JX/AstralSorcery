@@ -14,15 +14,15 @@ import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.Constants;
+import net.neoforged.neoforge.common.util.Constants;
 
 import javax.annotation.Nonnull;
 import java.util.*;
@@ -48,8 +48,8 @@ public interface ItemBlockStorage {
                 ItemUtils.createBlockStack(state).isEmpty()) {
             return false;
         }
-        CompoundNBT persistent = NBTHelper.getPersistentData(stack);
-        ListNBT stored = persistent.getList("storedStates", Constants.NBT.TAG_COMPOUND);
+        CompoundTag persistent = NBTHelper.getPersistentData(stack);
+        ListTag stored = persistent.getList("storedStates", Constants.NBT.TAG_COMPOUND);
         stored.add(NBTHelper.getBlockStateNBTTag(state));
         persistent.put("storedStates", stored);
         return true;
@@ -104,8 +104,8 @@ public interface ItemBlockStorage {
     static NonNullList<BlockState> getStoredStates(ItemStack referenceContainer) {
         NonNullList<BlockState> states = NonNullList.create();
         if (!referenceContainer.isEmpty() && referenceContainer.getItem() instanceof ItemBlockStorage) {
-            CompoundNBT persistent = NBTHelper.getPersistentData(referenceContainer);
-            ListNBT stored = persistent.getList("storedStates", Constants.NBT.TAG_COMPOUND);
+            CompoundTag persistent = NBTHelper.getPersistentData(referenceContainer);
+            ListTag stored = persistent.getList("storedStates", Constants.NBT.TAG_COMPOUND);
             for (int i = 0; i < stored.size(); i++) {
                 BlockState state = NBTHelper.getBlockStateFromTag(stored.getCompound(i));
                 if (state != null) {

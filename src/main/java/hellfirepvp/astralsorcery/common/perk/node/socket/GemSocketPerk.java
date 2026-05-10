@@ -18,14 +18,14 @@ import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -47,7 +47,7 @@ public interface GemSocketPerk {
         return hasItem(player, side, null);
     }
 
-    default public boolean hasItem(PlayerEntity player, LogicalSide side, @Nullable CompoundNBT data) {
+    default public boolean hasItem(PlayerEntity player, LogicalSide side, @Nullable CompoundTag data) {
         return !getContainedItem(player, side, data).isEmpty();
     }
 
@@ -55,11 +55,11 @@ public interface GemSocketPerk {
         return getContainedItem(player, side, null);
     }
 
-    default public ItemStack getContainedItem(PlayerEntity player, LogicalSide side, @Nullable CompoundNBT dataOvr) {
+    default public ItemStack getContainedItem(PlayerEntity player, LogicalSide side, @Nullable CompoundTag dataOvr) {
         if (!(this instanceof AbstractPerk)) {
             throw new UnsupportedOperationException("Cannot do perk-specific socketing logic on something that's not a perk!");
         }
-        CompoundNBT data = dataOvr != null ? dataOvr : ((AbstractPerk) this).getPerkData(player, side);
+        CompoundTag data = dataOvr != null ? dataOvr : ((AbstractPerk) this).getPerkData(player, side);
         if (data == null) {
             return ItemStack.EMPTY;
         }
@@ -72,7 +72,7 @@ public interface GemSocketPerk {
         return setContainedItem(player, side, null, stack);
     }
 
-    default public <T extends AbstractPerk & GemSocketPerk> boolean setContainedItem(PlayerEntity player, LogicalSide side, @Nullable CompoundNBT dataOvr, ItemStack stack) {
+    default public <T extends AbstractPerk & GemSocketPerk> boolean setContainedItem(PlayerEntity player, LogicalSide side, @Nullable CompoundTag dataOvr, ItemStack stack) {
         if (!(this instanceof AbstractPerk)) {
             throw new UnsupportedOperationException("Cannot do perk-specific socketing logic on something that's not a perk!");
         }
@@ -83,14 +83,14 @@ public interface GemSocketPerk {
         }
         //a given data override signifies that that override should be used, but not written.
         boolean useLiveData = dataOvr == null;
-        CompoundNBT data = dataOvr;
+        CompoundTag data = dataOvr;
         if (useLiveData) {
             data = ((AbstractPerk) this).getPerkData(player, side);
         }
         if (data == null) {
             return false;
         }
-        CompoundNBT prev = data.copy();
+        CompoundTag prev = data.copy();
 
         if (stack.isEmpty()) {
             ItemStack existing = NBTHelper.getStack(data, SOCKET_DATA_KEY);
@@ -115,7 +115,7 @@ public interface GemSocketPerk {
         dropItemToPlayer(player, null);
     }
 
-    default public void dropItemToPlayer(PlayerEntity player, @Nullable CompoundNBT data) {
+    default public void dropItemToPlayer(PlayerEntity player, @Nullable CompoundTag data) {
         if (!(this instanceof AbstractPerk)) {
             throw new UnsupportedOperationException("Cannot do perk-specific socketing logic on something that's not a perk!");
         }
@@ -131,7 +131,7 @@ public interface GemSocketPerk {
         if (data == null) {
             return;
         }
-        CompoundNBT prev = data.copy();
+        CompoundTag prev = data.copy();
 
         ItemStack contained = getContainedItem(player, LogicalSide.SERVER, data);
         if (!contained.isEmpty()) {

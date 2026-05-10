@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+import net.neoforged.neoforge.registries.RegistryObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ import java.util.function.Predicate;
  * Created by HellFirePvP
  * Date: 29.01.2019 / 21:23
  */
-public abstract class CrystalProperty extends ForgeRegistryEntry<CrystalProperty> implements Comparable<CrystalProperty> {
+public abstract class CrystalProperty extends RegistryObject<CrystalProperty> implements Comparable<CrystalProperty> {
 
     private static int counter = 0;
     private final int sortingId;

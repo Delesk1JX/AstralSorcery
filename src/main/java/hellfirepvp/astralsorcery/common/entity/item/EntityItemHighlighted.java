@@ -20,7 +20,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.neoforged.neoforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.awt.*;

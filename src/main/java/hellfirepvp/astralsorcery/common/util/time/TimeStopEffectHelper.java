@@ -20,7 +20,7 @@ import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -28,8 +28,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -164,8 +164,8 @@ public class TimeStopEffectHelper {
     }
 
     @Nonnull
-    public CompoundNBT serializeNBT() {
-        CompoundNBT out = new CompoundNBT();
+    public CompoundTag serializeNBT() {
+        CompoundTag out = new CompoundTag();
         NBTHelper.writeBlockPosToNBT(this.position, out);
         out.putFloat("range", this.range);
         out.put("targetController", this.targetController.serializeNBT());
@@ -173,7 +173,7 @@ public class TimeStopEffectHelper {
     }
 
     @Nonnull
-    public static TimeStopEffectHelper deserializeNBT(CompoundNBT cmp) {
+    public static TimeStopEffectHelper deserializeNBT(CompoundTag cmp) {
         BlockPos at = NBTHelper.readBlockPosFromNBT(cmp);
         float range = cmp.getFloat("range");
         return new TimeStopEffectHelper(at, range, TimeStopZone.EntityTargetController.deserializeNBT(cmp.getCompound("targetController")));

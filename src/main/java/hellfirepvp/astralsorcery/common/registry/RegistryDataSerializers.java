@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.registry;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.util.data.ASDataSerializers;
 import net.minecraft.network.datasync.IDataSerializer;
-import net.minecraftforge.registries.DataSerializerEntry;
+import net.neoforged.neoforge.registries.DataSerializerEntry;
 
 import java.util.Locale;
 

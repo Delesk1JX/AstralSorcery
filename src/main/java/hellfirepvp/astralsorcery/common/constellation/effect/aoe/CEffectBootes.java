@@ -33,9 +33,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -151,15 +151,15 @@ public class CEffectBootes extends ConstellationEffectEntityCollect<LivingEntity
         private final double defaultHerdingChance = 0.05;
         private final double defaultHerdingLootChance = 0.01;
 
-        public ForgeConfigSpec.DoubleValue herdingChance;
-        public ForgeConfigSpec.DoubleValue herdingLootChance;
+        public NeoForgeConfigSpec.DoubleValue herdingChance;
+        public NeoForgeConfigSpec.DoubleValue herdingLootChance;
 
         public BootesConfig() {
             super("bootes", 12D, 4D);
         }
 
         @Override
-        public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.herdingChance = cfgBuilder

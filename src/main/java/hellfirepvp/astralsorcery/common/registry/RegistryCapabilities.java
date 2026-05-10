@@ -9,17 +9,17 @@
 package hellfirepvp.astralsorcery.common.registry;
 
 import hellfirepvp.astralsorcery.common.capability.ChunkFluidEntry;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.INBT;
 import net.minecraft.util.Direction;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.common.capabilities.ICapabilitySerializable;
-import net.minecraftforge.common.util.INBTSerializable;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.common.capabilities.Capability;
+import net.neoforged.neoforge.common.capabilities.CapabilityManager;
+import net.neoforged.neoforge.common.capabilities.ICapabilitySerializable;
+import net.neoforged.neoforge.common.util.INBTSerializable;
+import net.neoforged.neoforge.common.util.LazyOptional;
+import net.neoforged.neoforge.event.AttachCapabilitiesEvent;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -49,7 +49,7 @@ public class RegistryCapabilities {
         chunkEvent.addCapability(CHUNK_FLUID_KEY, serializeableProvider(CHUNK_FLUID.getDefaultInstance()));
     }
 
-    private static <T extends INBTSerializable<CompoundNBT>> void registerDefault(Class<T> capabilityClass, Supplier<T> capProvider) {
+    private static <T extends INBTSerializable<CompoundTag>> void registerDefault(Class<T> capabilityClass, Supplier<T> capProvider) {
         register(capabilityClass, serializeableStorage(), capProvider);
     }
 
@@ -57,8 +57,8 @@ public class RegistryCapabilities {
         CapabilityManager.INSTANCE.register(capabilityClass, capStorage, capProvider::get);
     }
 
-    private static <E extends INBTSerializable<CompoundNBT>> ICapabilitySerializable<CompoundNBT> serializeableProvider(E defaultInstance) {
-        return new ICapabilitySerializable<CompoundNBT>() {
+    private static <E extends INBTSerializable<CompoundTag>> ICapabilitySerializable<CompoundTag> serializeableProvider(E defaultInstance) {
+        return new ICapabilitySerializable<CompoundTag>() {
             @Nonnull
             @Override
             public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
@@ -69,18 +69,18 @@ public class RegistryCapabilities {
             }
 
             @Override
-            public CompoundNBT serializeNBT() {
+            public CompoundTag serializeNBT() {
                 return defaultInstance.serializeNBT();
             }
 
             @Override
-            public void deserializeNBT(CompoundNBT nbt) {
+            public void deserializeNBT(CompoundTag nbt) {
                 defaultInstance.deserializeNBT(nbt);
             }
         };
     }
 
-    private static <T extends INBTSerializable<CompoundNBT>> Capability.IStorage<T> serializeableStorage() {
+    private static <T extends INBTSerializable<CompoundTag>> Capability.IStorage<T> serializeableStorage() {
         return new Capability.IStorage<T>() {
             @Nullable
             @Override
@@ -90,7 +90,7 @@ public class RegistryCapabilities {
 
             @Override
             public void readNBT(Capability<T> capability, T instance, Direction side, INBT nbt) {
-                instance.deserializeNBT((CompoundNBT) nbt);
+                instance.deserializeNBT((CompoundTag) nbt);
             }
         };
     }

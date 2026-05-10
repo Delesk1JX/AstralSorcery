@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+import net.neoforged.neoforge.registries.RegistryObject;
 
 import java.util.Objects;
 
@@ -23,7 +23,7 @@ import java.util.Objects;
  * Created by HellFirePvP
  * Date: 30.01.2019 / 08:14
  */
-public class PropertyUsage extends ForgeRegistryEntry<PropertyUsage> {
+public class PropertyUsage extends RegistryObject<PropertyUsage> {
 
     public PropertyUsage(ResourceLocation registryName) {
         setRegistryName(registryName);

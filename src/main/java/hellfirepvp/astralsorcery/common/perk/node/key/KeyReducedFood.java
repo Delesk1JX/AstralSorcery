@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.perk.tick.PlayerTickPerk;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.FoodStats;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod

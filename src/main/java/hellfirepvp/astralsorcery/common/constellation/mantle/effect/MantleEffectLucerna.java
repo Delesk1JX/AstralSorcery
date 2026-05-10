@@ -23,10 +23,10 @@ import net.minecraft.tileentity.MobSpawnerTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.items.CapabilityItemHandler;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.items.CapabilityItemHandler;
 
 import java.awt.*;
 import java.util.List;
@@ -154,16 +154,16 @@ public class MantleEffectLucerna extends MantleEffect {
         private final boolean defaultFindSpawners = true;
         private final boolean defaultFindChests = true;
 
-        public ForgeConfigSpec.IntValue range;
-        public ForgeConfigSpec.BooleanValue findSpawners;
-        public ForgeConfigSpec.BooleanValue findChests;
+        public NeoForgeConfigSpec.IntValue range;
+        public NeoForgeConfigSpec.BooleanValue findSpawners;
+        public NeoForgeConfigSpec.BooleanValue findChests;
 
         public LucernaConfig() {
             super("lucerna");
         }
 
         @Override
-        public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.range = cfgBuilder

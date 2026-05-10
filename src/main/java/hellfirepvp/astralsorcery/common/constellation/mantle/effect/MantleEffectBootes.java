@@ -21,19 +21,19 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.IntNBT;
-import net.minecraft.nbt.ListNBT;
+import net.minecraft.nbt.IntTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.util.Constants;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.event.entity.living.LivingAttackEvent;
+import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
+import net.neoforged.neoforge.eventbus.api.EventPriority;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -148,14 +148,14 @@ public class MantleEffectBootes extends MantleEffect {
     }
 
     protected void setEntityIds(ItemStack mantleStack, List<Integer> ids) {
-        ListNBT list = new ListNBT();
-        ids.forEach(i -> list.add(IntNBT.valueOf(i)));
+        ListTag list = new ListTag();
+        ids.forEach(i -> list.add(IntTag.valueOf(i)));
         NBTHelper.getPersistentData(mantleStack).put("flareIds", list);
     }
 
     protected List<Integer> getEntityIds(ItemStack mantleStack) {
         List<Integer> ids = new ArrayList<>();
-        ListNBT nbtIds = NBTHelper.getPersistentData(mantleStack).getList("flareIds", Constants.NBT.TAG_INT);
+        ListTag nbtIds = NBTHelper.getPersistentData(mantleStack).getList("flareIds", Constants.NBT.TAG_INT);
         for (int i = 0; i < nbtIds.size(); i++) {
             ids.add(nbtIds.getInt(i));
         }
@@ -178,16 +178,16 @@ public class MantleEffectBootes extends MantleEffect {
 
         private final int defaultChargeCostPerFlare = 400;
 
-        public ForgeConfigSpec.IntValue maxFlareCount;
+        public NeoForgeConfigSpec.IntValue maxFlareCount;
 
-        public ForgeConfigSpec.IntValue chargeCostPerFlare;
+        public NeoForgeConfigSpec.IntValue chargeCostPerFlare;
 
         public BootesConfig() {
             super("bootes");
         }
 
         @Override
-        public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.maxFlareCount = cfgBuilder

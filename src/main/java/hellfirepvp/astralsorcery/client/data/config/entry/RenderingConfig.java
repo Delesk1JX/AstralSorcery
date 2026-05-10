@@ -12,7 +12,7 @@ import com.google.common.base.Predicates;
 import com.google.common.collect.Lists;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigEntry;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 
 import java.util.List;
 import java.util.Random;
@@ -28,20 +28,20 @@ public class RenderingConfig extends ConfigEntry {
 
     public static final RenderingConfig CONFIG = new RenderingConfig();
 
-    public ForgeConfigSpec.DoubleValue maxEffectRenderDistance;
-    public ForgeConfigSpec.EnumValue<ParticleAmount> particleAmount;
-    public ForgeConfigSpec.BooleanValue patreonEffects;
-    public ForgeConfigSpec.IntValue minYFosicDisplay;
+    public NeoForgeConfigSpec.DoubleValue maxEffectRenderDistance;
+    public NeoForgeConfigSpec.EnumValue<ParticleAmount> particleAmount;
+    public NeoForgeConfigSpec.BooleanValue patreonEffects;
+    public NeoForgeConfigSpec.IntValue minYFosicDisplay;
 
-    public ForgeConfigSpec.ConfigValue<List<? extends String>> dimensionsWithSkyRendering;
-    public ForgeConfigSpec.ConfigValue<List<? extends String>> dimensionsWithOnlyConstellationRendering;
+    public NeoForgeConfigSpec.ConfigValue<List<? extends String>> dimensionsWithSkyRendering;
+    public NeoForgeConfigSpec.ConfigValue<List<? extends String>> dimensionsWithOnlyConstellationRendering;
 
     private RenderingConfig() {
         super("rendering");
     }
 
     @Override
-    public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+    public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
         maxEffectRenderDistance = cfgBuilder
                 .comment("Defines how close to the position of a particle/floating texture you have to be in order for it to render.")
                 .translation(translationKey("maxEffectRenderDistance"))

@@ -17,12 +17,12 @@ import hellfirepvp.astralsorcery.common.starlight.transmission.NodeConnection;
 import hellfirepvp.astralsorcery.common.starlight.transmission.registry.TransmissionProvider;
 import hellfirepvp.astralsorcery.common.util.RaytraceAssist;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.Constants;
+import net.neoforged.neoforge.common.util.Constants;
 
 import java.util.*;
 
@@ -144,18 +144,18 @@ public class SimpleTransmissionNode implements ITransmissionNode {
     }
 
     @Override
-    public void readFromNBT(CompoundNBT compound) {
+    public void readFromNBT(CompoundTag compound) {
         this.thisPos = NBTHelper.readBlockPosFromNBT(compound);
         this.sourcesToThis.clear();
         this.ignoreBlockCollision = compound.getBoolean("ignoreBlockCollision");
 
-        ListNBT list = compound.getList("sources", Constants.NBT.TAG_COMPOUND);
+        ListTag list = compound.getList("sources", Constants.NBT.TAG_COMPOUND);
         for (int i = 0; i < list.size(); i++) {
             sourcesToThis.add(NBTHelper.readBlockPosFromNBT(list.getCompound(i)));
         }
 
         if (compound.contains("nextPos")) {
-            CompoundNBT tag = compound.getCompound("nextPos");
+            CompoundTag tag = compound.getCompound("nextPos");
             BlockPos next = NBTHelper.readBlockPosFromNBT(tag);
             boolean oldRay = tag.getBoolean("rayState");
             addLink(null, next, false, oldRay);
@@ -163,20 +163,20 @@ public class SimpleTransmissionNode implements ITransmissionNode {
     }
 
     @Override
-    public void writeToNBT(CompoundNBT compound) {
+    public void writeToNBT(CompoundTag compound) {
         NBTHelper.writeBlockPosToNBT(thisPos, compound);
         compound.putBoolean("ignoreBlockCollision", this.ignoreBlockCollision);
 
-        ListNBT sources = new ListNBT();
+        ListTag sources = new ListTag();
         for (BlockPos source : sourcesToThis) {
-            CompoundNBT comp = new CompoundNBT();
+            CompoundTag comp = new CompoundTag();
             NBTHelper.writeBlockPosToNBT(source, comp);
             sources.add(comp);
         }
         compound.put("sources", sources);
 
         if (nextPos != null) {
-            CompoundNBT pos = new CompoundNBT();
+            CompoundTag pos = new CompoundTag();
             NBTHelper.writeBlockPosToNBT(nextPos, pos);
             pos.putBoolean("rayState", nextReachable);
             compound.put("nextPos", pos);

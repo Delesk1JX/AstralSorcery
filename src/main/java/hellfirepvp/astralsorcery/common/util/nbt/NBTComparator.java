@@ -8,9 +8,9 @@
 
 package hellfirepvp.astralsorcery.common.util.nbt;
 
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.INBT;
-import net.minecraft.nbt.ListNBT;
+import net.minecraft.nbt.ListTag;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ import java.util.List;
  */
 public class NBTComparator {
 
-    public static boolean contains(@Nonnull CompoundNBT thisCompound, @Nonnull CompoundNBT otherCompound) {
+    public static boolean contains(@Nonnull CompoundTag thisCompound, @Nonnull CompoundTag otherCompound) {
         for (String key : thisCompound.keySet()) {
             if (!otherCompound.contains(key)) {
                 return false;
@@ -40,7 +40,7 @@ public class NBTComparator {
         return true;
     }
 
-    private static boolean containList(ListNBT base, ListNBT other) {
+    private static boolean containList(ListTag base, ListTag other) {
         if (base.size() > other.size()) {
             return false;
         }
@@ -66,10 +66,10 @@ public class NBTComparator {
     }
 
     private static boolean compare(INBT thisEntry, INBT thatEntry) {
-        if (thisEntry instanceof CompoundNBT && thatEntry instanceof CompoundNBT) {
-            return contains((CompoundNBT) thisEntry, (CompoundNBT) thatEntry);
-        } else if (thisEntry instanceof ListNBT && thatEntry instanceof ListNBT) {
-            return containList((ListNBT) thisEntry, (ListNBT) thatEntry);
+        if (thisEntry instanceof CompoundTag && thatEntry instanceof CompoundTag) {
+            return contains((CompoundTag) thisEntry, (CompoundTag) thatEntry);
+        } else if (thisEntry instanceof ListTag && thatEntry instanceof ListTag) {
+            return containList((ListTag) thisEntry, (ListTag) thatEntry);
         } else {
             return thisEntry.equals(thatEntry);
         }

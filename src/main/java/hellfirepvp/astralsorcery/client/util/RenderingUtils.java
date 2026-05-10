@@ -58,10 +58,10 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.IBlockDisplayReader;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biomes;
-import net.minecraftforge.client.ForgeHooksClient;
-import net.minecraftforge.client.model.data.EmptyModelData;
-import net.minecraftforge.client.model.data.IModelData;
-import net.minecraftforge.fluids.FluidStack;
+import net.neoforged.neoforge.client.ForgeHooksClient;
+import net.neoforged.neoforge.client.model.data.EmptyModelData;
+import net.neoforged.neoforge.client.model.data.IModelData;
+import net.neoforged.neoforge.fluids.FluidStack;
 import org.apache.commons.lang3.ObjectUtils;
 import org.lwjgl.opengl.GL11;
 

@@ -14,9 +14,9 @@ import net.minecraft.block.BlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
+import net.neoforged.neoforge.common.util.LazyOptional;
+import net.neoforged.neoforge.items.CapabilityItemHandler;
+import net.neoforged.neoforge.items.IItemHandler;
 
 /**
  * This class is part of the Astral Sorcery Mod

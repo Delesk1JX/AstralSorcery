@@ -16,15 +16,15 @@ import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.util.Constants;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.util.Constants;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -105,7 +105,7 @@ public abstract class LiquidStarlightRecipe extends CustomRecipe {
     protected final void setCraftingTick(Entity e, int tick) {
         long wTick = e.getEntityWorld().getGameTime();
 
-        CompoundNBT nbt = NBTHelper.getPersistentData(e);
+        CompoundTag nbt = NBTHelper.getPersistentData(e);
         nbt.putInt("craftTick", tick);
         nbt.putLong("wCraftTick", wTick);
     }
@@ -113,7 +113,7 @@ public abstract class LiquidStarlightRecipe extends CustomRecipe {
     protected final int getCraftingTick(Entity e) {
         long wTick = e.getEntityWorld().getGameTime();
 
-        CompoundNBT nbt = NBTHelper.getPersistentData(e);
+        CompoundTag nbt = NBTHelper.getPersistentData(e);
         if (!nbt.contains("wCraftTick", Constants.NBT.TAG_LONG)) {
             return 0;
         }

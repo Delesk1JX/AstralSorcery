@@ -12,9 +12,9 @@ import hellfirepvp.astralsorcery.common.base.patreon.entity.PatreonFlare;
 import hellfirepvp.astralsorcery.common.base.patreon.entity.PatreonPartialEntity;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
 
 import javax.annotation.Nullable;
 import java.util.Objects;

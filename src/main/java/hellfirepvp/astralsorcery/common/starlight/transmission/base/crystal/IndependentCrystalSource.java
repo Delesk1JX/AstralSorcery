@@ -25,13 +25,13 @@ import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import hellfirepvp.astralsorcery.common.util.world.SkyCollectionHelper;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -161,7 +161,7 @@ public class IndependentCrystalSource implements IIndependentStarlightSource {
     }
 
     @Override
-    public void readFromNBT(CompoundNBT compound) {
+    public void readFromNBT(CompoundTag compound) {
         this.constellation = NBTHelper.readOptional(compound, "constellation", (nbt) -> {
             IConstellation cst = IConstellation.readFromNBT(nbt);
             if (cst instanceof IWeakConstellation) {
@@ -178,7 +178,7 @@ public class IndependentCrystalSource implements IIndependentStarlightSource {
     }
 
     @Override
-    public void writeToNBT(CompoundNBT compound) {
+    public void writeToNBT(CompoundTag compound) {
         if (crystalAttributes != null) {
             crystalAttributes.store(compound);
         }

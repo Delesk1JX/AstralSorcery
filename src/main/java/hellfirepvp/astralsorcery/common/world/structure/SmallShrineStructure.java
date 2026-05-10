@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.world.structure;
 
 import hellfirepvp.astralsorcery.common.lib.WorldGenerationAS;
 import hellfirepvp.astralsorcery.common.world.TemplateStructure;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.feature.template.TemplateManager;
@@ -28,7 +28,7 @@ public class SmallShrineStructure extends TemplateStructure {
         super(WorldGenerationAS.Structures.SMALL_SHRINE_PIECE, mgr, templatePosition);
     }
 
-    public SmallShrineStructure(TemplateManager mgr, CompoundNBT nbt) {
+    public SmallShrineStructure(TemplateManager mgr, CompoundTag nbt) {
         super(WorldGenerationAS.Structures.SMALL_SHRINE_PIECE, mgr, nbt);
     }
 

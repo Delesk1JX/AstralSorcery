@@ -9,8 +9,8 @@
 package hellfirepvp.astralsorcery.client.util.obj;
 
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
 
 import java.util.ArrayList;
 

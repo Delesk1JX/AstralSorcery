@@ -12,14 +12,14 @@ import hellfirepvp.astralsorcery.common.enchantment.dynamic.DynamicEnchantment;
 import hellfirepvp.astralsorcery.common.enchantment.dynamic.DynamicEnchantmentType;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.LanguageMap;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -65,8 +65,8 @@ public class AmuletEnchantment extends DynamicEnchantment {
         }
     }
 
-    public CompoundNBT serialize() {
-        CompoundNBT cmp = new CompoundNBT();
+    public CompoundTag serialize() {
+        CompoundTag cmp = new CompoundTag();
         cmp.putInt("type", this.type.ordinal());
         cmp.putInt("level", this.levelAddition);
         if (this.type.isEnchantmentSpecific()) { //Enchantment must not be null here anyway as the type requires a ench to begin with
@@ -76,7 +76,7 @@ public class AmuletEnchantment extends DynamicEnchantment {
     }
 
     @Nullable
-    public static AmuletEnchantment deserialize(CompoundNBT cmp) {
+    public static AmuletEnchantment deserialize(CompoundTag cmp) {
         int typeId = cmp.getInt("type");
         DynamicEnchantmentType type = DynamicEnchantmentType.values()[typeId];
         int level = Math.max(0, cmp.getInt("level"));

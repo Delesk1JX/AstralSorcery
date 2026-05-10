@@ -17,13 +17,13 @@ import hellfirepvp.astralsorcery.common.perk.tree.PerkTreeGem;
 import hellfirepvp.astralsorcery.common.perk.tree.PerkTreePoint;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import java.util.Collection;
 
@@ -58,7 +58,7 @@ public class GemSocketMajorPerk extends MajorPerk implements GemSocketPerk {
     }
 
     @Override
-    public void onRemovePerkServer(PlayerEntity player, PerkAllocationType allocationType, PlayerProgress progress, CompoundNBT dataStorage) {
+    public void onRemovePerkServer(PlayerEntity player, PerkAllocationType allocationType, PlayerProgress progress, CompoundTag dataStorage) {
         super.onRemovePerkServer(player, allocationType, progress, dataStorage);
 
         // Will be removed?

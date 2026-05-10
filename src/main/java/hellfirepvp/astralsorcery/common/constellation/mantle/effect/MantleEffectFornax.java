@@ -17,11 +17,11 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -99,16 +99,16 @@ public class MantleEffectFornax extends MantleEffect {
         private final double defaultDamageIncreaseInFire = 1.6F;
         private final double defaultHealPercentFromFireDamage = 0.6F;
 
-        public ForgeConfigSpec.DoubleValue damageReductionInFire;
-        public ForgeConfigSpec.DoubleValue damageIncreaseInFire;
-        public ForgeConfigSpec.DoubleValue healPercentFromFireDamage;
+        public NeoForgeConfigSpec.DoubleValue damageReductionInFire;
+        public NeoForgeConfigSpec.DoubleValue damageIncreaseInFire;
+        public NeoForgeConfigSpec.DoubleValue healPercentFromFireDamage;
 
         public FornaxConfig() {
             super("fornax");
         }
 
         @Override
-        public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.damageReductionInFire = cfgBuilder

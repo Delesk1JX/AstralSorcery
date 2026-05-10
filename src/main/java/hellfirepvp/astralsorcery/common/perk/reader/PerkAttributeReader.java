@@ -12,10 +12,10 @@ import hellfirepvp.astralsorcery.common.perk.PerkAttributeMap;
 import hellfirepvp.astralsorcery.common.perk.type.ModifierType;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.neoforge.registries.RegistryObject;
 
 import java.text.DecimalFormat;
 
@@ -26,7 +26,7 @@ import java.text.DecimalFormat;
  * Created by HellFirePvP
  * Date: 09.08.2019 / 07:47
  */
-public abstract class PerkAttributeReader extends ForgeRegistryEntry<PerkAttributeReader> {
+public abstract class PerkAttributeReader extends RegistryObject<PerkAttributeReader> {
 
     private static final DecimalFormat percentageFormat = new DecimalFormat("0.00");
 

@@ -19,11 +19,11 @@ import hellfirepvp.astralsorcery.common.perk.node.KeyPerk;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
+import net.neoforged.neoforge.eventbus.api.EventPriority;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -74,17 +74,17 @@ public class KeyCheatDeath extends KeyPerk implements CooldownPerk {
 
     private static class Config extends ConfigEntry {
 
-        private ForgeConfigSpec.IntValue cooldownPotionApplication;
-        private ForgeConfigSpec.IntValue potionDuration;
-        private ForgeConfigSpec.IntValue potionAmplifier;
-        private ForgeConfigSpec.IntValue chargeCost;
+        private NeoForgeConfigSpec.IntValue cooldownPotionApplication;
+        private NeoForgeConfigSpec.IntValue potionDuration;
+        private NeoForgeConfigSpec.IntValue potionAmplifier;
+        private NeoForgeConfigSpec.IntValue chargeCost;
 
         private Config(String section) {
             super(section);
         }
 
         @Override
-        public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
             cooldownPotionApplication = cfgBuilder
                     .comment("Once the potion effect gets applied, it'll take at least this amount of ticks or a server restart until it can be re-applied by this perk.")
                     .translation(translationKey("cooldownPotionApplication"))

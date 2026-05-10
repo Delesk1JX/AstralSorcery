@@ -19,15 +19,15 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.MendingEnchantment;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.util.Constants;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.util.Constants;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -102,7 +102,7 @@ public class ItemInfusedGlass extends Item {
             return null;
         }
 
-        CompoundNBT tag = NBTHelper.getPersistentData(stack);
+        CompoundTag tag = NBTHelper.getPersistentData(stack);
         if (tag.contains("starmap", Constants.NBT.TAG_COMPOUND)) {
             return EngravedStarMap.deserialize(tag.getCompound("starmap"));
         }
@@ -114,7 +114,7 @@ public class ItemInfusedGlass extends Item {
             return;
         }
 
-        CompoundNBT tag = NBTHelper.getPersistentData(stack);
+        CompoundTag tag = NBTHelper.getPersistentData(stack);
         if (map == null) {
             tag.remove("starmap");
         } else {

@@ -21,7 +21,7 @@ import net.minecraft.tags.ITag;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+import net.neoforged.neoforge.registries.RegistryObject;
 
 import javax.annotation.Nonnull;
 
@@ -50,7 +50,7 @@ public class LiquidInfusionBuilder extends CustomRecipeBuilder<LiquidInfusion> {
         this.id = id;
     }
 
-    public static LiquidInfusionBuilder builder(ForgeRegistryEntry<?> nameProvider) {
+    public static LiquidInfusionBuilder builder(RegistryObject<?> nameProvider) {
         return new LiquidInfusionBuilder(AstralSorcery.key(nameProvider.getRegistryName().getPath()));
     }
 

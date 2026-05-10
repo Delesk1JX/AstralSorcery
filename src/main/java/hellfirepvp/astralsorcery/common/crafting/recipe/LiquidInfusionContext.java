@@ -11,8 +11,8 @@ package hellfirepvp.astralsorcery.common.crafting.recipe;
 import hellfirepvp.astralsorcery.common.crafting.helper.RecipeCraftingContext;
 import hellfirepvp.astralsorcery.common.tile.TileInfuser;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.items.IItemHandler;
+import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.neoforge.items.IItemHandler;
 
 /**
  * This class is part of the Astral Sorcery Mod

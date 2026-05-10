@@ -19,8 +19,8 @@ import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.util.Constants;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import java.util.Collections;

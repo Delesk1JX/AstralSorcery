@@ -9,8 +9,8 @@
 package hellfirepvp.astralsorcery.common.item.base.client;
 
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
 
 /**
  * This class is part of the Astral Sorcery Mod

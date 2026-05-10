@@ -11,8 +11,8 @@ package hellfirepvp.astralsorcery.common.perk;
 import hellfirepvp.astralsorcery.client.lib.SpritesAS;
 import hellfirepvp.astralsorcery.client.resource.SpriteSheetResource;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
 
 import java.awt.*;
 

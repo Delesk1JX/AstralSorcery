@@ -14,10 +14,10 @@ import hellfirepvp.astralsorcery.client.input.KeyDisablePerkAbilities;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.client.util.InputMappings;
-import net.minecraftforge.client.event.InputEvent;
-import net.minecraftforge.client.settings.KeyConflictContext;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.neoforged.neoforge.client.event.InputEvent;
+import net.neoforged.neoforge.client.settings.KeyConflictContext;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.fml.client.registry.ClientRegistry;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.HashSet;
@@ -41,7 +41,7 @@ public class RegistryKeyBindings {
     public static void init() {
         DISABLE_PERK_ABILITIES = register("disable_perk_abilities", GLFW.GLFW_KEY_V, KeyDisablePerkAbilities::new);
 
-        MinecraftForge.EVENT_BUS.addListener(RegistryKeyBindings::onKeyInput);
+        NeoForge.EVENT_BUS.addListener(RegistryKeyBindings::onKeyInput);
     }
 
     private static KeyBindingWrapper register(String name, int glfwKey) {

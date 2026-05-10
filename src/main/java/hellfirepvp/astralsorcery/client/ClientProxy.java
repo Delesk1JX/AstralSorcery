@@ -45,15 +45,15 @@ import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.renderer.entity.PlayerRenderer;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraft.util.Unit;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.resource.SelectiveReloadStateHandler;
-import net.minecraftforge.resource.VanillaResourceType;
+import net.neoforged.neoforge.eventbus.api.EventPriority;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.neoforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.resource.SelectiveReloadStateHandler;
+import net.neoforged.neoforge.resource.VanillaResourceType;
 
 import java.util.Map;
 import java.util.function.Consumer;
@@ -159,7 +159,7 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public void openGuiClient(GuiType type, CompoundNBT data) {
+    public void openGuiClient(GuiType type, CompoundTag data) {
         Screen toOpen = type.deserialize(data);
         if (toOpen != null) {
             Minecraft.getInstance().displayGuiScreen(toOpen);

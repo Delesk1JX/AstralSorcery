@@ -22,13 +22,13 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.event.world.BlockEvent;
+import net.neoforged.neoforge.eventbus.api.EventPriority;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import java.util.List;
 
@@ -121,16 +121,16 @@ public class MantleEffectMineralis extends MantleEffect {
 
         private final int defaultChargeCostPerBreak = 2;
 
-        public ForgeConfigSpec.IntValue highlightRange;
+        public NeoForgeConfigSpec.IntValue highlightRange;
 
-        public ForgeConfigSpec.IntValue chargeCostPerBreak;
+        public NeoForgeConfigSpec.IntValue chargeCostPerBreak;
 
         public MineralisConfig() {
             super("mineralis");
         }
 
         @Override
-        public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.highlightRange = cfgBuilder

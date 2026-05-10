@@ -15,10 +15,10 @@ import hellfirepvp.astralsorcery.common.constellation.world.WorldContext;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.client.world.DimensionRenderInfo;
-import net.minecraftforge.client.ISkyRenderHandler;
-import net.minecraftforge.client.event.EntityViewRenderEvent;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.client.ISkyRenderHandler;
+import net.neoforged.neoforge.client.event.EntityViewRenderEvent;
+import net.neoforged.neoforge.client.event.RenderWorldLastEvent;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod

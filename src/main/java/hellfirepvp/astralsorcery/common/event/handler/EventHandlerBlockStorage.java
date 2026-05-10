@@ -12,8 +12,8 @@ import hellfirepvp.astralsorcery.common.item.base.ItemBlockStorage;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.network.play.client.PktClearBlockStorageStack;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
 
 /**
  * This class is part of the Astral Sorcery Mod

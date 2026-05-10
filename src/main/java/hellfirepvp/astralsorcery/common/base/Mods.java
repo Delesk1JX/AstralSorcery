@@ -10,10 +10,10 @@ package hellfirepvp.astralsorcery.common.base;
 
 import hellfirepvp.astralsorcery.AstralSorcery;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.InterModComms;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.registries.IForgeRegistryEntry;
-import net.minecraftforge.versions.forge.ForgeVersion;
+import net.neoforged.neoforge.fml.InterModComms;
+import net.neoforged.neoforge.fml.ModList;
+import net.neoforged.neoforge.registries.IRegistryObject;
+import net.neoforged.neoforge.versions.forge.ForgeVersion;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -73,7 +73,7 @@ public enum Mods {
         return null;
     }
 
-    public boolean owns(IForgeRegistryEntry<?> entry) {
+    public boolean owns(IRegistryObject<?> entry) {
         return this.isPresent() &&
                 entry.getRegistryName() != null &&
                 entry.getRegistryName().getNamespace().equals(this.modid);

@@ -36,16 +36,16 @@ import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.loot.*;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -83,7 +83,7 @@ public class CEffectOctans extends CEffectAbstractList<ListEntries.CounterMaxEnt
 
     @Nullable
     @Override
-    public ListEntries.CounterMaxEntry recreateElement(CompoundNBT tag, BlockPos pos) {
+    public ListEntries.CounterMaxEntry recreateElement(CompoundTag tag, BlockPos pos) {
         return new ListEntries.CounterMaxEntry(pos, 1);
     }
 
@@ -231,15 +231,15 @@ public class CEffectOctans extends CEffectAbstractList<ListEntries.CounterMaxEnt
         private final int defaultMinFishTickTime = 20;
         private final int defaultMaxFishTickTime = 60;
 
-        public ForgeConfigSpec.IntValue minFishTickTime;
-        public ForgeConfigSpec.IntValue maxFishTickTime;
+        public NeoForgeConfigSpec.IntValue minFishTickTime;
+        public NeoForgeConfigSpec.IntValue maxFishTickTime;
 
         public OctansConfig() {
             super("octans", 8D, 1D, 64);
         }
 
         @Override
-        public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.minFishTickTime = cfgBuilder

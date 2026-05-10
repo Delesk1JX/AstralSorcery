@@ -18,12 +18,12 @@ import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.network.play.server.PktSyncData;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -136,12 +136,12 @@ public class SyncDataHolder implements ITickHandler {
         if (dirtyData.isEmpty()) {
             return;
         }
-        Map<ResourceLocation, CompoundNBT> pktData = new HashMap<>();
+        Map<ResourceLocation, CompoundTag> pktData = new HashMap<>();
         synchronized (lck) {
             for (ResourceLocation key : dirtyData) {
                 AbstractData dat = serverData.get(key);
                 if (dat != null) {
-                    CompoundNBT nbt = new CompoundNBT();
+                    CompoundTag nbt = new CompoundTag();
                     dat.writeDiffDataToPacket(nbt);
                     pktData.put(key, nbt);
                 }

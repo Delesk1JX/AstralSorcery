@@ -13,9 +13,9 @@ import hellfirepvp.astralsorcery.common.data.sync.base.AbstractDataProvider;
 import hellfirepvp.astralsorcery.common.data.sync.base.ClientDataReader;
 import hellfirepvp.astralsorcery.common.data.sync.client.ClientTimeFreezeEntities;
 import net.minecraft.entity.Entity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.IntNBT;
-import net.minecraft.nbt.ListNBT;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.IntTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -72,12 +72,12 @@ public class DataTimeFreezeEntities extends AbstractData {
     }
 
     @Override
-    public void writeAllDataToPacket(CompoundNBT compound) {
+    public void writeAllDataToPacket(CompoundTag compound) {
         this.writeEntityInformation(compound, this.serverActiveEntityFreeze);
     }
 
     @Override
-    public void writeDiffDataToPacket(CompoundNBT compound) {
+    public void writeDiffDataToPacket(CompoundTag compound) {
         Map<RegistryKey<World>, Set<Integer>> entities = new HashMap<>();
         this.serverSyncTypes.forEach(type -> {
             entities.put(type, this.serverActiveEntityFreeze.getOrDefault(type, new HashSet<>()));
@@ -86,11 +86,11 @@ public class DataTimeFreezeEntities extends AbstractData {
         this.serverSyncTypes.clear();
     }
 
-    private void writeEntityInformation(CompoundNBT out, Map<RegistryKey<World>, Set<Integer>> entities) {
-        CompoundNBT dimTag = new CompoundNBT();
+    private void writeEntityInformation(CompoundTag out, Map<RegistryKey<World>, Set<Integer>> entities) {
+        CompoundTag dimTag = new CompoundTag();
         entities.forEach((dim, entityIds) -> {
-            ListNBT nbtEntities = new ListNBT();
-            entityIds.forEach(id -> nbtEntities.add(IntNBT.valueOf(id)));
+            ListTag nbtEntities = new ListTag();
+            entityIds.forEach(id -> nbtEntities.add(IntTag.valueOf(id)));
             dimTag.put(dim.getLocation().toString(), nbtEntities);
         });
         out.put("dimTypes", dimTag);

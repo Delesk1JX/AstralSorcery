@@ -43,8 +43,8 @@ import net.minecraft.util.text.ITextProperties;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.awt.*;

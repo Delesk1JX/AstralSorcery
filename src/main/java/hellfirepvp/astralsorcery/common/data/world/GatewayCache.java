@@ -20,8 +20,8 @@ import hellfirepvp.observerlib.common.data.WorldCacheDomain;
 import hellfirepvp.observerlib.common.data.base.GlobalWorldData;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.DyeColor;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.math.BlockPos;
@@ -30,7 +30,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.Constants;
+import net.neoforged.neoforge.common.util.Constants;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -136,10 +136,10 @@ public class GatewayCache extends GlobalWorldData {
     }
 
     @Override
-    public void writeToNBT(CompoundNBT compound) {
-        ListNBT list = new ListNBT();
+    public void writeToNBT(CompoundTag compound) {
+        ListTag list = new ListTag();
         for (GatewayNode node : gatewayPositions) {
-            CompoundNBT tag = new CompoundNBT();
+            CompoundTag tag = new CompoundTag();
             node.write(tag);
             list.add(tag);
         }
@@ -147,10 +147,10 @@ public class GatewayCache extends GlobalWorldData {
     }
 
     @Override
-    public void readFromNBT(CompoundNBT compound) {
-        ListNBT list = compound.getList("posList", Constants.NBT.TAG_COMPOUND);
+    public void readFromNBT(CompoundTag compound) {
+        ListTag list = compound.getList("posList", Constants.NBT.TAG_COMPOUND);
         for (int i = 0; i < list.size(); i++) {
-            CompoundNBT tag = list.getCompound(i);
+            CompoundTag tag = list.getCompound(i);
             gatewayPositions.add(GatewayNode.read(tag));
         }
     }
@@ -209,7 +209,7 @@ public class GatewayCache extends GlobalWorldData {
             return owner.isPlayer(player) || this.getAllowedUsers().values().stream().anyMatch(ref -> ref.isPlayer(player));
         }
 
-        public void write(CompoundNBT tag) {
+        public void write(CompoundTag tag) {
             NBTHelper.writeBlockPosToNBT(this.getPos(), tag);
             if (this.getDisplayName() != null) {
                 tag.putString("display", ITextComponent.Serializer.toJson(this.getDisplayName()));
@@ -221,7 +221,7 @@ public class GatewayCache extends GlobalWorldData {
             tag.putBoolean("locked", this.isLocked());
             NBTHelper.writeOptional(tag, "owningPlayer", this.getOwner(), (compound, playerRef) -> playerRef.writeToNBT(compound));
             NBTHelper.writeList(tag, "allowedUsers", this.allowedUsers.entrySet(), entry -> {
-                CompoundNBT compound = new CompoundNBT();
+                CompoundTag compound = new CompoundTag();
                 compound.putInt("index", entry.getKey());
                 compound.put("player", entry.getValue().serialize());
                 return compound;
@@ -237,7 +237,7 @@ public class GatewayCache extends GlobalWorldData {
             ByteBufUtils.writeMap(buf, this.getAllowedUsers(), PacketBuffer::writeInt, (buffer, ref) -> ref.write(buffer));
         }
 
-        public static GatewayNode read(CompoundNBT tag) {
+        public static GatewayNode read(CompoundTag tag) {
             GatewayNode node = new GatewayNode(NBTHelper.readBlockPosFromNBT(tag));
             if (tag.contains("display")) {
                 node.display = ITextComponent.Serializer.getComponentFromJson(tag.getString("display"));
@@ -249,7 +249,7 @@ public class GatewayCache extends GlobalWorldData {
             node.locked = tag.getBoolean("locked");
             node.owner = NBTHelper.readOptional(tag, "owningPlayer", PlayerReference::deserialize);
             NBTHelper.readList(tag, "allowedUsers", Constants.NBT.TAG_COMPOUND, nbt -> {
-                CompoundNBT compound = (CompoundNBT) nbt;
+                CompoundTag compound = (CompoundTag) nbt;
                 return new Tuple<>(compound.getInt("index"), PlayerReference.deserialize(compound.getCompound("player")));
             }).forEach(tpl -> node.allowedUsers.put(tpl.getA(), tpl.getB()));
             return node;

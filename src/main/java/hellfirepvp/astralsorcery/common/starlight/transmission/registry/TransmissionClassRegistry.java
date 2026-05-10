@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.common.starlight.transmission.base.crystal.Crys
 import hellfirepvp.astralsorcery.common.starlight.transmission.base.crystal.CrystalTransmissionNode;
 import hellfirepvp.astralsorcery.common.tile.network.*;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.MinecraftForge;
+import net.neoforged.neoforge.common.NeoForge;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -68,7 +68,7 @@ public class TransmissionClassRegistry {
         register(new StarlightTransmissionLens.Provider());
         register(new StarlightTransmissionPrism.Provider());
 
-        MinecraftForge.EVENT_BUS.post(new StarlightNetworkEvent.TransmissionRegister(eventInstance));
+        NeoForge.EVENT_BUS.post(new StarlightNetworkEvent.TransmissionRegister(eventInstance));
     }
 
 }

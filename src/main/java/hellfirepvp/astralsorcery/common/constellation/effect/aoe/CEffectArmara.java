@@ -31,15 +31,15 @@ import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -184,14 +184,14 @@ public class CEffectArmara extends ConstellationEffectEntityCollect<LivingEntity
     }
 
     @Override
-    public void readFromNBT(CompoundNBT cmp) {
+    public void readFromNBT(CompoundTag cmp) {
         super.readFromNBT(cmp);
 
         this.rememberedTimeout = cmp.getInt("rememberedTimeout");
     }
 
     @Override
-    public void writeToNBT(CompoundNBT cmp) {
+    public void writeToNBT(CompoundTag cmp) {
         super.writeToNBT(cmp);
 
         cmp.putInt("rememberedTimeout", this.rememberedTimeout);
@@ -201,14 +201,14 @@ public class CEffectArmara extends ConstellationEffectEntityCollect<LivingEntity
 
         private final int defaultPotionAmplifier = 1;
 
-        public ForgeConfigSpec.IntValue potionAmplifier;
+        public NeoForgeConfigSpec.IntValue potionAmplifier;
 
         public ArmaraConfig() {
             super("armara", 16, 2);
         }
 
         @Override
-        public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.potionAmplifier = cfgBuilder

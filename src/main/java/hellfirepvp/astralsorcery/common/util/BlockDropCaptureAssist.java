@@ -12,7 +12,7 @@ import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.neoforged.neoforge.event.entity.EntityJoinWorldEvent;
 
 import java.util.Stack;
 

@@ -13,10 +13,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraftforge.fml.network.NetworkDirection;
-import net.minecraftforge.fml.network.NetworkEvent;
-import net.minecraftforge.fml.network.PacketDistributor;
-import net.minecraftforge.fml.network.simple.SimpleChannel;
+import net.neoforged.neoforge.fml.network.NetworkDirection;
+import net.neoforged.neoforge.fml.network.NetworkEvent;
+import net.neoforged.neoforge.fml.network.PacketDistributor;
+import net.neoforged.neoforge.fml.network.simple.SimpleChannel;
 
 /**
  * This class is part of the Astral Sorcery Mod

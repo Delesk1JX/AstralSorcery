@@ -13,13 +13,13 @@ import hellfirepvp.astralsorcery.common.constellation.mantle.MantleEffect;
 import hellfirepvp.astralsorcery.common.item.armor.ItemMantle;
 import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.event.world.BlockEvent;
+import net.neoforged.neoforge.eventbus.api.EventPriority;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -75,14 +75,14 @@ public class MantleEffectEvorsio extends MantleEffect {
 
         private final int defaultChargeCostPerBreak = 2;
 
-        public ForgeConfigSpec.IntValue chargeCostPerBreak;
+        public NeoForgeConfigSpec.IntValue chargeCostPerBreak;
 
         public EvorsioConfig() {
             super("evorsio");
         }
 
         @Override
-        public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.chargeCostPerBreak = cfgBuilder

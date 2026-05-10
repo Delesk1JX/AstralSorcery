@@ -26,9 +26,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
-import net.minecraftforge.common.loot.LootModifier;
-import net.minecraftforge.fml.hooks.BasicEventHooks;
+import net.neoforged.neoforge.common.loot.GlobalLootModifierSerializer;
+import net.neoforged.neoforge.common.loot.LootModifier;
+import net.neoforged.neoforge.fml.hooks.BasicEventHooks;
 
 import javax.annotation.Nonnull;
 import java.util.List;

@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.client.util.camera;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -37,7 +37,7 @@ public class CameraTransformerPlayerFocus extends CameraTransformerSettingsCache
         super.onStartTransforming(pTicks);
 
         EntityClientReplacement repl = new EntityClientReplacement();
-        repl.read(Minecraft.getInstance().player.writeWithoutTypeId(new CompoundNBT()));
+        repl.read(Minecraft.getInstance().player.writeWithoutTypeId(new CompoundTag()));
         Minecraft.getInstance().world.addPlayer(repl.getEntityId(), repl);
         this.clientEntity = repl;
 

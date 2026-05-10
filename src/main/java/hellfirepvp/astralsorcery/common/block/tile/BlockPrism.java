@@ -42,9 +42,9 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockDisplayReader;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ToolType;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.ToolType;
 
 import javax.annotation.Nullable;
 

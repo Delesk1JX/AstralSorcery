@@ -19,10 +19,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.neoforge.registries.RegistryObject;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -37,7 +37,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * Created by HellFirePvP
  * Date: 08.08.2019 / 16:56
  */
-public class PerkAttributeType extends ForgeRegistryEntry<PerkAttributeType> implements ReadWriteLockable {
+public class PerkAttributeType extends RegistryObject<PerkAttributeType> implements ReadWriteLockable {
 
     protected static final Random rand = new Random();
 
@@ -56,7 +56,7 @@ public class PerkAttributeType extends ForgeRegistryEntry<PerkAttributeType> imp
         this.isOnlyMultiplicative = isMultiplicative;
 
         this.init();
-        this.attachListeners(MinecraftForge.EVENT_BUS);
+        this.attachListeners(NeoForge.EVENT_BUS);
     }
 
     public static PerkAttributeType makeDefault(ResourceLocation name, boolean isMultiplicative) {

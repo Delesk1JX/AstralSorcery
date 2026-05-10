@@ -15,12 +15,12 @@ import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
 import hellfirepvp.astralsorcery.common.block.tile.fountain.BlockFountainPrime;
 import hellfirepvp.astralsorcery.common.tile.TileFountain;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3i;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -147,9 +147,9 @@ public abstract class FountainEffect<E extends FountainEffect.EffectContext> {
 
     public abstract static class EffectContext {
 
-        public abstract void readFromNBT(CompoundNBT compound);
+        public abstract void readFromNBT(CompoundTag compound);
 
-        public abstract void writeToNBT(CompoundNBT compound);
+        public abstract void writeToNBT(CompoundTag compound);
 
     }
 

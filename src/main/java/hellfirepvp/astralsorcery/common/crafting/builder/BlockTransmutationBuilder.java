@@ -22,7 +22,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+import net.neoforged.neoforge.registries.RegistryObject;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -49,7 +49,7 @@ public class BlockTransmutationBuilder extends CustomRecipeBuilder<BlockTransmut
         this.id = id;
     }
 
-    public static BlockTransmutationBuilder builder(ForgeRegistryEntry<?> nameProvider) {
+    public static BlockTransmutationBuilder builder(RegistryObject<?> nameProvider) {
         return new BlockTransmutationBuilder(AstralSorcery.key(nameProvider.getRegistryName().getPath()));
     }
 

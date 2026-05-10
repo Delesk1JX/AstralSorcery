@@ -47,7 +47,7 @@ import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
@@ -56,9 +56,9 @@ import net.minecraft.util.Tuple;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -524,7 +524,7 @@ public class TileAttunementAltar extends TileEntityTick {
     }
 
     @Override
-    public void writeNetNBT(CompoundNBT compound) {
+    public void writeNetNBT(CompoundTag compound) {
         super.writeNetNBT(compound);
 
         if (this.activeConstellation != null) {
@@ -532,7 +532,7 @@ public class TileAttunementAltar extends TileEntityTick {
         }
 
         if (this.currentRecipe != null) {
-            CompoundNBT nbt = new CompoundNBT();
+            CompoundTag nbt = new CompoundTag();
             nbt.putString("recipe", this.currentRecipe.getRecipe().getKey().toString());
             this.currentRecipe.writeToNBT(nbt);
             compound.put("currentRecipe", nbt);
@@ -540,7 +540,7 @@ public class TileAttunementAltar extends TileEntityTick {
     }
 
     @Override
-    public void readNetNBT(CompoundNBT compound) {
+    public void readNetNBT(CompoundTag compound) {
         super.readNetNBT(compound);
 
         if (compound.contains("activeConstellation")) {
@@ -550,7 +550,7 @@ public class TileAttunementAltar extends TileEntityTick {
         }
 
         if (compound.contains("currentRecipe")) {
-            CompoundNBT nbt = compound.getCompound("currentRecipe");
+            CompoundTag nbt = compound.getCompound("currentRecipe");
             AttunementRecipe recipe = AttunementCraftingRegistry.INSTANCE.getRecipe(new ResourceLocation(nbt.getString("recipe")));
             if (recipe != null) {
                 this.currentRecipe = recipe.deserialize(this, nbt, this.currentRecipe);

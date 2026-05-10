@@ -14,8 +14,8 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import java.util.EnumSet;
 

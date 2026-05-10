@@ -24,14 +24,14 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.*;
 import net.minecraft.util.text.*;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -138,7 +138,7 @@ public class ItemKnowledgeShare extends Item {
     public static PlayerEntity getKnowledgeOwner(ItemStack stack, MinecraftServer server) {
         if (isCreative(stack)) return null;
 
-        CompoundNBT compound = NBTHelper.getPersistentData(stack);
+        CompoundTag compound = NBTHelper.getPersistentData(stack);
         UUID owner = NBTHelper.getUUID(compound, "knowledgeOwnerUUID", null);
         if (owner == null) {
             return null;
@@ -150,7 +150,7 @@ public class ItemKnowledgeShare extends Item {
     public static IFormattableTextComponent getKnowledgeOwnerName(ItemStack stack) {
         if (isCreative(stack)) return null;
 
-        CompoundNBT compound = NBTHelper.getPersistentData(stack);
+        CompoundTag compound = NBTHelper.getPersistentData(stack);
         if (!compound.contains("knowledgeOwnerName")) {
             return null;
         }
@@ -161,11 +161,11 @@ public class ItemKnowledgeShare extends Item {
     public static PlayerProgress getKnowledge(ItemStack stack) {
         if (isCreative(stack)) return null;
 
-        CompoundNBT compound = NBTHelper.getPersistentData(stack);
+        CompoundTag compound = NBTHelper.getPersistentData(stack);
         if (!compound.contains("knowledgeTag")) {
             return null;
         }
-        CompoundNBT tag = compound.getCompound("knowledgeTag");
+        CompoundTag tag = compound.getCompound("knowledgeTag");
         try {
             PlayerProgress progress = new PlayerProgress();
             progress.loadKnowledge(tag);
@@ -178,7 +178,7 @@ public class ItemKnowledgeShare extends Item {
     public static boolean canInscribeKnowledge(ItemStack stack, PlayerEntity player) {
         if (isCreative(stack)) return false;
 
-        CompoundNBT compound = NBTHelper.getPersistentData(stack);
+        CompoundTag compound = NBTHelper.getPersistentData(stack);
         UUID owner = NBTHelper.getUUID(compound, "knowledgeOwnerUUID", null);
         if (owner == null) {
             return true;
@@ -189,16 +189,16 @@ public class ItemKnowledgeShare extends Item {
     public static void setKnowledge(ItemStack stack, PlayerEntity player, PlayerProgress progress) {
         if (isCreative(stack) || !progress.isValid()) return;
 
-        CompoundNBT knowledge = new CompoundNBT();
+        CompoundTag knowledge = new CompoundTag();
         progress.storeKnowledge(knowledge);
-        CompoundNBT compound = NBTHelper.getPersistentData(stack);
+        CompoundTag compound = NBTHelper.getPersistentData(stack);
         compound.putString("knowledgeOwnerName", ITextComponent.Serializer.toJson(player.getDisplayName()));
         compound.putUniqueId("knowledgeOwnerUUID", player.getUniqueID());
         compound.put("knowledgeTag", knowledge);
     }
 
     public static boolean isCreative(ItemStack stack) {
-        CompoundNBT cmp = NBTHelper.getPersistentData(stack);
+        CompoundTag cmp = NBTHelper.getPersistentData(stack);
         if (!cmp.contains("creativeKnowledge")) {
             return false;
         }

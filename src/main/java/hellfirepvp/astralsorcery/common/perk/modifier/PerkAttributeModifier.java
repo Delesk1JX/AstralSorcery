@@ -22,9 +22,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.registries.RegistryObject;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -38,7 +38,7 @@ import java.util.Objects;
  * Created by HellFirePvP
  * Date: 08.08.2019 / 17:25
  */
-public class PerkAttributeModifier extends ForgeRegistryEntry<PerkAttributeModifier> {
+public class PerkAttributeModifier extends RegistryObject<PerkAttributeModifier> {
 
     private static long counter = 0;
 

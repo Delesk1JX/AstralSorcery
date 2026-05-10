@@ -13,8 +13,8 @@ import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
 
 import java.util.function.Supplier;
 

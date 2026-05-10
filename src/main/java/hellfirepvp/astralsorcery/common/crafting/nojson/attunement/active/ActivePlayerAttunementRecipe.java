@@ -35,13 +35,13 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,7 +74,7 @@ public class ActivePlayerAttunementRecipe extends AttunementRecipe.Active<Attune
         this.playerUUID = playerUUID;
     }
 
-    public ActivePlayerAttunementRecipe(AttunePlayerRecipe recipe, CompoundNBT nbt) {
+    public ActivePlayerAttunementRecipe(AttunePlayerRecipe recipe, CompoundTag nbt) {
         super(recipe);
         this.readFromNBT(nbt);
     }
@@ -404,7 +404,7 @@ public class ActivePlayerAttunementRecipe extends AttunementRecipe.Active<Attune
     }
 
     @Override
-    public void writeToNBT(CompoundNBT nbt) {
+    public void writeToNBT(CompoundTag nbt) {
         super.writeToNBT(nbt);
 
         nbt.putUniqueId("playerUUID", this.playerUUID);
@@ -412,7 +412,7 @@ public class ActivePlayerAttunementRecipe extends AttunementRecipe.Active<Attune
     }
 
     @Override
-    protected void readFromNBT(CompoundNBT nbt) {
+    protected void readFromNBT(CompoundTag nbt) {
         super.readFromNBT(nbt);
 
         this.playerUUID = nbt.getUniqueId("playerUUID");

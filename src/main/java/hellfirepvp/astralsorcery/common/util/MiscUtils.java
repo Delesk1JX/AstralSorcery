@@ -36,17 +36,17 @@ import net.minecraft.world.chunk.AbstractChunkProvider;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.server.ServerChunkProvider;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.ForgeMod;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.util.BlockSnapshot;
-import net.minecraftforge.common.util.FakePlayer;
-import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.fml.LogicalSidedProvider;
-import net.minecraftforge.fml.ModContainer;
-import net.minecraftforge.fml.ModLoadingContext;
+import net.neoforged.neoforge.common.ForgeHooks;
+import net.neoforged.neoforge.common.ForgeMod;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.common.util.BlockSnapshot;
+import net.neoforged.neoforge.common.util.FakePlayer;
+import net.neoforged.neoforge.event.ForgeEventFactory;
+import net.neoforged.neoforge.event.world.BlockEvent;
+import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.neoforge.fml.LogicalSidedProvider;
+import net.neoforged.neoforge.fml.ModContainer;
+import net.neoforged.neoforge.fml.ModLoadingContext;
 import org.apache.logging.log4j.util.TriConsumer;
 
 import javax.annotation.Nonnull;
@@ -341,7 +341,7 @@ public class MiscUtils {
 
     public static boolean canPlayerBreakBlockPos(PlayerEntity player, BlockPos tryBreak) {
         BlockEvent.BreakEvent ev = new BlockEvent.BreakEvent(player.getEntityWorld(), tryBreak, player.getEntityWorld().getBlockState(tryBreak), player);
-        MinecraftForge.EVENT_BUS.post(ev);
+        NeoForge.EVENT_BUS.post(ev);
         return !ev.isCanceled();
     }
 

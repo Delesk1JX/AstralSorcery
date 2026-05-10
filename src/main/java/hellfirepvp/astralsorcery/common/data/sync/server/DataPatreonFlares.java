@@ -15,8 +15,8 @@ import hellfirepvp.astralsorcery.common.data.sync.base.AbstractDataProvider;
 import hellfirepvp.astralsorcery.common.data.sync.base.ClientDataReader;
 import hellfirepvp.astralsorcery.common.data.sync.client.ClientPatreonFlares;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
@@ -104,18 +104,18 @@ public class DataPatreonFlares extends AbstractData {
     }
 
     @Override
-    public void writeAllDataToPacket(CompoundNBT compound) {
-        ListNBT entities = new ListNBT();
+    public void writeAllDataToPacket(CompoundTag compound) {
+        ListTag entities = new ListTag();
         for (UUID playerUUID : this.entitiesServer.keySet()) {
-            CompoundNBT tag = new CompoundNBT();
+            CompoundTag tag = new CompoundTag();
             tag.putUniqueId("playerUUID", playerUUID);
 
-            ListNBT entityList = new ListNBT();
+            ListTag entityList = new ListTag();
             for (PatreonPartialEntity entity : this.entitiesServer.get(playerUUID)) {
-                CompoundNBT entityNBT = new CompoundNBT();
+                CompoundTag entityNBT = new CompoundTag();
                 entityNBT.putUniqueId("id", entity.getEffectUUID());
 
-                CompoundNBT data = new CompoundNBT();
+                CompoundTag data = new CompoundTag();
                 entity.writeToNBT(data);
                 entityNBT.put("data", data);
 
@@ -129,18 +129,18 @@ public class DataPatreonFlares extends AbstractData {
     }
 
     @Override
-    public void writeDiffDataToPacket(CompoundNBT compound) {
-        ListNBT listUpdates = new ListNBT();
+    public void writeDiffDataToPacket(CompoundTag compound) {
+        ListTag listUpdates = new ListTag();
         for (UUID playerUUID : this.flarePlayerUpdates) {
-            CompoundNBT tag = new CompoundNBT();
+            CompoundTag tag = new CompoundTag();
             tag.putUniqueId("playerUUID", playerUUID);
 
-            ListNBT entityList = new ListNBT();
+            ListTag entityList = new ListTag();
             for (PatreonPartialEntity entity : this.entitiesServer.get(playerUUID)) {
-                CompoundNBT entityNBT = new CompoundNBT();
+                CompoundTag entityNBT = new CompoundTag();
                 entityNBT.putUniqueId("id", entity.getEffectUUID());
 
-                CompoundNBT data = new CompoundNBT();
+                CompoundTag data = new CompoundTag();
                 entity.writeToNBT(data);
                 entityNBT.put("data", data);
 
@@ -150,9 +150,9 @@ public class DataPatreonFlares extends AbstractData {
             listUpdates.add(tag);
         }
 
-        ListNBT listRemovals = new ListNBT();
+        ListTag listRemovals = new ListTag();
         for (UUID playerUUID : this.flareRemovals) {
-            CompoundNBT playerTag = new CompoundNBT();
+            CompoundTag playerTag = new CompoundTag();
             playerTag.putUniqueId("playerUUID", playerUUID);
             listRemovals.add(playerTag);
         }

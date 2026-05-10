@@ -24,11 +24,11 @@ import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.fml.LogicalSidedProvider;
-import net.minecraftforge.fml.common.thread.EffectiveSide;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.neoforge.fml.LogicalSidedProvider;
+import net.neoforged.neoforge.fml.common.thread.EffectiveSide;
 import org.apache.commons.lang3.ObjectUtils;
 
 import javax.annotation.Nonnull;

@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.util.log.LogCategory;
 import hellfirepvp.observerlib.api.ChangeSubscriber;
 import hellfirepvp.observerlib.api.ObserverHelper;
 import hellfirepvp.observerlib.common.change.ChangeObserverStructure;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
@@ -145,7 +145,7 @@ public abstract class TileEntityTick extends TileEntitySynchronized implements I
     protected void notifyMultiblockStateUpdate(boolean hadMultiblockPrev, boolean hasMultiblockNow) {}
 
     @Override
-    public void readCustomNBT(CompoundNBT compound) {
+    public void readCustomNBT(CompoundTag compound) {
         super.readCustomNBT(compound);
         
         this.ticksExisted = compound.getInt("ticksExisted");
@@ -154,7 +154,7 @@ public abstract class TileEntityTick extends TileEntitySynchronized implements I
     }
 
     @Override
-    public void writeCustomNBT(CompoundNBT compound) {
+    public void writeCustomNBT(CompoundTag compound) {
         super.writeCustomNBT(compound);
 
         compound.putInt("ticksExisted", this.ticksExisted);

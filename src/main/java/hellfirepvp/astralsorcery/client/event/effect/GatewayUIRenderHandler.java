@@ -31,8 +31,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
-import net.minecraftforge.event.TickEvent;
+import net.neoforged.neoforge.client.event.RenderWorldLastEvent;
+import net.neoforged.neoforge.event.TickEvent;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL11C;
 

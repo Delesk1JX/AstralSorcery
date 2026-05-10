@@ -15,7 +15,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
-import net.minecraftforge.fml.network.IContainerFactory;
+import net.neoforged.neoforge.fml.network.IContainerFactory;
 
 import javax.annotation.Nonnull;
 

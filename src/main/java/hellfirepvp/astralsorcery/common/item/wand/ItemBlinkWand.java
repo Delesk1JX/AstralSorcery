@@ -36,7 +36,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.UseAction;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
@@ -44,9 +44,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.*;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -292,7 +292,7 @@ public class ItemBlinkWand extends Item implements AlignmentChargeConsumer {
         if (stack.isEmpty() || !(stack.getItem() instanceof ItemBlinkWand)) {
             return;
         }
-        CompoundNBT nbt = NBTHelper.getPersistentData(stack);
+        CompoundTag nbt = NBTHelper.getPersistentData(stack);
         nbt.putInt("blinkMode", mode.ordinal());
     }
 
@@ -301,7 +301,7 @@ public class ItemBlinkWand extends Item implements AlignmentChargeConsumer {
         if (stack.isEmpty() || !(stack.getItem() instanceof ItemBlinkWand)) {
             return BlinkMode.LAUNCH;
         }
-        CompoundNBT nbt = NBTHelper.getPersistentData(stack);
+        CompoundTag nbt = NBTHelper.getPersistentData(stack);
         return MiscUtils.getEnumEntry(BlinkMode.class, nbt.getInt("blinkMode"));
     }
 

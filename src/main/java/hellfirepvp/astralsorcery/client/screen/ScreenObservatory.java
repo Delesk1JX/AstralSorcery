@@ -35,7 +35,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Matrix4f;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.fml.LogicalSide;
 import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nonnull;

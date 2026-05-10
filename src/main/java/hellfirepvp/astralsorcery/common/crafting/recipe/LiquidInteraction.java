@@ -25,14 +25,14 @@ import joptsimple.internal.Strings;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.Collection;
@@ -135,7 +135,7 @@ public class LiquidInteraction extends CustomMatcherRecipe {
             throw new JsonSyntaxException("Unknown fluid: " + fluidKey1);
         }
         int amount1 = JSONUtils.getInt(json, "reactant1Amount");
-        CompoundNBT tag1 = null;
+        CompoundTag tag1 = null;
         if (JSONUtils.hasField(json, "reactant1Tag")) {
             String jsonTag1 = JSONUtils.getString(json, "reactant1Tag");
             try {
@@ -152,7 +152,7 @@ public class LiquidInteraction extends CustomMatcherRecipe {
             throw new JsonSyntaxException("Unknown fluid: " + fluidKey2);
         }
         int amount2 = JSONUtils.getInt(json, "reactant2Amount");
-        CompoundNBT tag2 = null;
+        CompoundTag tag2 = null;
         if (JSONUtils.hasField(json, "reactant2Tag")) {
             String jsonTag2 = JSONUtils.getString(json, "reactant2Tag");
             try {

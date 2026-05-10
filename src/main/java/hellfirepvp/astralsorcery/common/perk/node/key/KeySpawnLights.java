@@ -20,8 +20,8 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -81,16 +81,16 @@ public class KeySpawnLights extends KeyPerk implements PlayerTickPerk {
 
     public static class Config extends ConfigEntry {
 
-        private ForgeConfigSpec.IntValue lightSpawnRate;
-        private ForgeConfigSpec.IntValue lightSpawnRadius;
-        private ForgeConfigSpec.IntValue chargeCost;
+        private NeoForgeConfigSpec.IntValue lightSpawnRate;
+        private NeoForgeConfigSpec.IntValue lightSpawnRadius;
+        private NeoForgeConfigSpec.IntValue chargeCost;
 
         private Config(String section) {
             super(section);
         }
 
         @Override
-        public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
             this.lightSpawnRate = cfgBuilder
                     .comment("Defines the rate in ticks a position to spawn a light in is attempted to be found near the player")
                     .translation(translationKey("lightSpawnRate"))

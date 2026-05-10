@@ -15,7 +15,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +58,7 @@ public class BlockStateList implements BlockPredicate, Predicate<BlockState> {
         return this;
     }
 
-    public ConfiguredBlockStateList getAsConfig(ForgeConfigSpec.Builder cfgBuilder, String key, String translationKey, String comment) {
+    public ConfiguredBlockStateList getAsConfig(NeoForgeConfigSpec.Builder cfgBuilder, String key, String translationKey, String comment) {
         List<String> out = new ArrayList<>();
         configuredMatches.stream().map(SimpleBlockPredicate::getAsConfigList).forEach(out::addAll);
         return new ConfiguredBlockStateList(cfgBuilder

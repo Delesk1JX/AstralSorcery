@@ -22,19 +22,19 @@ import hellfirepvp.astralsorcery.common.util.CacheEventBus;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.fml.ModContainer;
-import net.minecraftforge.fml.ModList;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.neoforge.fml.ModContainer;
+import net.neoforged.neoforge.fml.ModList;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -75,7 +75,7 @@ public class AbstractPerk implements ModifierSource {
 
     public AbstractPerk(ResourceLocation name, float x, float y) {
         this.registryName = name;
-        this.busWrapper = CacheEventBus.of(MinecraftForge.EVENT_BUS);
+        this.busWrapper = CacheEventBus.of(NeoForge.EVENT_BUS);
         this.offset = new Point.Float(x, y);
         this.unlocalizedKey = String.format("perk.%s.%s", name.getNamespace(), name.getPath());
     }
@@ -145,23 +145,23 @@ public class AbstractPerk implements ModifierSource {
     }
 
     @Nullable
-    public CompoundNBT getPerkData(PlayerEntity player, LogicalSide dist) {
+    public CompoundTag getPerkData(PlayerEntity player, LogicalSide dist) {
         return ResearchHelper.getProgress(player, dist).getPerkData().getData(this);
     }
 
     /**
      * Called ONCE when the perk is unlocked
-     * You may use the CompoundNBT to save data to remove it again later
+     * You may use the CompoundTag to save data to remove it again later
      * The player might be null for root perks on occasion.
      */
-    public void onUnlockPerkServer(@Nullable PlayerEntity player, PerkAllocationType allocationType, PlayerProgress progress, CompoundNBT dataStorage) {}
+    public void onUnlockPerkServer(@Nullable PlayerEntity player, PerkAllocationType allocationType, PlayerProgress progress, CompoundTag dataStorage) {}
 
     /**
      * Clean up and remove the perk from that single player.
      * Data in the dataStorage is filled with the data set in onUnlockPerkServer
      * Called after the perk is already removed from the player, but still in the player's perkData
      */
-    public void onRemovePerkServer(PlayerEntity player, PerkAllocationType allocationType, PlayerProgress progress, CompoundNBT dataStorage) {}
+    public void onRemovePerkServer(PlayerEntity player, PerkAllocationType allocationType, PlayerProgress progress, CompoundTag dataStorage) {}
 
     public <T extends AbstractPerk> T setName(String name) {
         this.unlocalizedKey = name;

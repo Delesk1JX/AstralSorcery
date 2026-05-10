@@ -32,15 +32,15 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.*;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -107,7 +107,7 @@ public class ItemConstellationPaper extends Item implements ItemDynamicColor, Co
     @Override
     public Entity createEntity(World world, Entity location, ItemStack itemstack) {
         EntityItemExplosionResistant res = new EntityItemExplosionResistant(EntityTypesAS.ITEM_EXPLOSION_RESISTANT, world, location.getPosX(), location.getPosY(), location.getPosZ(), itemstack);
-        res.read(location.writeWithoutTypeId(new CompoundNBT()));
+        res.read(location.writeWithoutTypeId(new CompoundTag()));
         if (itemstack.getItem() instanceof ItemConstellationPaper) {
             IConstellation cst = getConstellation(itemstack);
             if (cst != null) {

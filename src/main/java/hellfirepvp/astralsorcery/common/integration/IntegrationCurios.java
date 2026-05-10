@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.integration;
 import hellfirepvp.astralsorcery.common.base.Mods;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.InterModComms;
+import net.neoforged.neoforge.fml.InterModComms;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypeMessage;

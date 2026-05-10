@@ -18,13 +18,13 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.registries.IForgeRegistryEntry;
+import net.neoforged.neoforge.registries.IRegistryObject;
 
 import javax.annotation.Nullable;
 import java.awt.*;
@@ -38,7 +38,7 @@ import java.util.function.Supplier;
  * Created by HellFirePvP
  * Date: 16.11.2016 / 23:04
  */
-public interface IConstellation extends IForgeRegistryEntry<IConstellation>, Comparable<IConstellation> {
+public interface IConstellation extends IRegistryObject<IConstellation>, Comparable<IConstellation> {
 
     // 0-indexed
     public static final int STAR_GRID_INDEX = 31;
@@ -132,21 +132,21 @@ public interface IConstellation extends IForgeRegistryEntry<IConstellation>, Com
 
     boolean canDiscover(PlayerEntity player, PlayerProgress progress);
 
-    default public void writeToNBT(CompoundNBT compound) {
+    default public void writeToNBT(CompoundTag compound) {
         writeToNBT(compound, getDefaultSaveKey());
     }
 
-    default public void writeToNBT(CompoundNBT compound, String key) {
+    default public void writeToNBT(CompoundTag compound, String key) {
         compound.putString(key, getRegistryName().toString());
     }
 
     @Nullable
-    public static IConstellation readFromNBT(CompoundNBT compound) {
+    public static IConstellation readFromNBT(CompoundTag compound) {
         return readFromNBT(compound, getDefaultSaveKey());
     }
 
     @Nullable
-    public static IConstellation readFromNBT(CompoundNBT compound, String key) {
+    public static IConstellation readFromNBT(CompoundTag compound, String key) {
         return ConstellationRegistry.getConstellation(new ResourceLocation(compound.getString(key)));
     }
 

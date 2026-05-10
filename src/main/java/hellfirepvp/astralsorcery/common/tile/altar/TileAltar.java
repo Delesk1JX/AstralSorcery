@@ -43,8 +43,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.StringNBT;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.StringTag;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
@@ -53,11 +53,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.util.Constants;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.ForgeHooks;
+import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -450,7 +450,7 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
 
         this.altarType = newType;
 
-        CompoundNBT thisTag = new CompoundNBT();
+        CompoundTag thisTag = new CompoundTag();
         this.writeCustomNBT(thisTag);
         this.readCustomNBT(thisTag);
         if (!initialPlacement) {
@@ -462,21 +462,21 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
     }
 
     @Override
-    public void readNetNBT(CompoundNBT compound) {
+    public void readNetNBT(CompoundTag compound) {
         super.readNetNBT(compound);
 
         this.starlightStorage.readNBT(compound);
     }
 
     @Override
-    public void writeNetNBT(CompoundNBT compound) {
+    public void writeNetNBT(CompoundTag compound) {
         super.writeNetNBT(compound);
 
         this.starlightStorage.writeNBT(compound);
     }
 
     @Override
-    public void readCustomNBT(CompoundNBT compound) {
+    public void readCustomNBT(CompoundTag compound) {
         super.readCustomNBT(compound);
 
         this.altarType = AltarType.values()[compound.getInt("altarType")];
@@ -492,13 +492,13 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
     }
 
     @Override
-    public void writeCustomNBT(CompoundNBT compound) {
+    public void writeCustomNBT(CompoundTag compound) {
         super.writeCustomNBT(compound);
 
         compound.putInt("altarType", this.altarType.ordinal());
         compound.put("inventory", this.inventory.serialize());
         NBTHelper.setStack(compound, "focusItem", this.focusItem);
-        NBTHelper.writeList(compound, "knownRecipes", this.knownRecipes, key -> StringNBT.valueOf(key.toString()));
+        NBTHelper.writeList(compound, "knownRecipes", this.knownRecipes, key -> StringTag.valueOf(key.toString()));
 
         if (this.activeRecipe != null) {
             compound.put("activeRecipe", this.activeRecipe.serialize());

@@ -31,13 +31,13 @@ import hellfirepvp.astralsorcery.common.util.block.iterator.BlockRandomPositionG
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.api.distmarker.Dist;
+import net.neoforged.neoforge.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -72,7 +72,7 @@ public class CEffectFornax extends CEffectAbstractList<ListEntries.PosEntry> {
 
     @Nullable
     @Override
-    public ListEntries.PosEntry recreateElement(CompoundNBT tag, BlockPos pos) {
+    public ListEntries.PosEntry recreateElement(CompoundTag tag, BlockPos pos) {
         return new ListEntries.PosEntry(pos);
     }
 
@@ -151,14 +151,14 @@ public class CEffectFornax extends CEffectAbstractList<ListEntries.PosEntry> {
 
         private final float defaultMeltFailChance = 0F;
 
-        public ForgeConfigSpec.DoubleValue meltFailChance;
+        public NeoForgeConfigSpec.DoubleValue meltFailChance;
 
         public FornaxConfig() {
             super("fornax", 8D, 2D);
         }
 
         @Override
-        public void createEntries(ForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.meltFailChance = cfgBuilder

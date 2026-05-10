@@ -30,10 +30,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.registries.IForgeRegistryEntry;
+import net.neoforged.neoforge.fml.LogicalSide;
+import net.neoforged.neoforge.registries.IRegistryObject;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -155,7 +155,7 @@ public class ResearchManager {
         PlayerProgress progress = ResearchHelper.getProgress(player, LogicalSide.SERVER);
         if (!progress.isValid()) return false;
 
-        progress.setStoredConstellationPapers(papers.stream().map(IForgeRegistryEntry::getRegistryName).collect(Collectors.toList()));
+        progress.setStoredConstellationPapers(papers.stream().map(IRegistryObject::getRegistryName).collect(Collectors.toList()));
 
         ResearchSyncHelper.pushProgressToClientUnsafe(progress, player);
         ResearchHelper.savePlayerKnowledge(player);
@@ -211,7 +211,7 @@ public class ResearchManager {
         return true;
     }
 
-    public static boolean setPerkData(PlayerEntity player, @Nonnull AbstractPerk perk, CompoundNBT prevoiusData, CompoundNBT newData) {
+    public static boolean setPerkData(PlayerEntity player, @Nonnull AbstractPerk perk, CompoundTag prevoiusData, CompoundTag newData) {
         PlayerProgress progress = ResearchHelper.getProgress(player, LogicalSide.SERVER);
         if (!progress.isValid()) return false;
         PlayerPerkData perkData = progress.getPerkData();
@@ -371,7 +371,7 @@ public class ResearchManager {
     private static boolean doRemovePerk(PlayerProgress progress, PlayerEntity player, LogicalSide side, AbstractPerk perk, PlayerPerkAllocation allocation, boolean sync) {
         PlayerPerkData perkData = progress.getPerkData();
         if (perkData.hasPerkAllocation(perk, allocation.getType())) {
-            CompoundNBT data = perkData.getData(perk);
+            CompoundTag data = perkData.getData(perk);
             if (data != null) {
                 PerkRemovalResult removeResult = perkData.removePerkAllocation(perk, allocation, true);
                 if (removeResult.isFailure()) {
@@ -401,12 +401,12 @@ public class ResearchManager {
         }
         if (perkData.hasPerkAllocation(perk)) {
             if (!perkData.hasPerkAllocation(perk, allocation.getType())) {
-                CompoundNBT data = perkData.getData(perk);
+                CompoundTag data = perkData.getData(perk);
                 perk.onUnlockPerkServer(player, allocation.getType(), progress, data);
             }
             return perkData.applyPerkAllocation(perk, allocation, false);
         } else {
-            CompoundNBT data = new CompoundNBT();
+            CompoundTag data = new CompoundTag();
             perk.onUnlockPerkServer(player, allocation.getType(), progress, data);
             perkData.applyPerkAllocation(perk, allocation, false);
             perkData.updatePerkData(perk, data);

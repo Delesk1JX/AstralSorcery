@@ -10,9 +10,9 @@ package hellfirepvp.astralsorcery.common.data.config.base;
 
 import com.google.common.base.Splitter;
 import hellfirepvp.astralsorcery.AstralSorcery;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.fml.ModContainer;
-import net.minecraftforge.fml.config.ModConfig;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.fml.ModContainer;
+import net.neoforged.neoforge.fml.config.ModConfig;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,7 +47,7 @@ public class BaseConfiguration {
     }
 
     public void buildConfiguration() {
-        ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+        NeoForgeConfigSpec.Builder builder = new NeoForgeConfigSpec.Builder();
 
         for (ConfigEntry entry : configEntries) {
             List<String> splitPath = DOT_SPLITTER.splitToList(entry.getPath());
@@ -59,7 +59,7 @@ public class BaseConfiguration {
         makeAndRegister(builder.build(), AstralSorcery.MODID);
     }
 
-    private void makeAndRegister(ForgeConfigSpec spec, String file) {
+    private void makeAndRegister(NeoForgeConfigSpec spec, String file) {
         String fileName = this.configType == ModConfig.Type.SERVER ?
                 String.format("%s.toml", file) :
                 String.format("%s-%s.toml", file, this.configType.extension());
