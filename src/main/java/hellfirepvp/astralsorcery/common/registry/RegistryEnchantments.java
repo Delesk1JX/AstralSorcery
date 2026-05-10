@@ -11,7 +11,8 @@ package hellfirepvp.astralsorcery.common.registry;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.enchantment.EnchantmentNightVision;
 import hellfirepvp.astralsorcery.common.enchantment.EnchantmentScorchingHeat;
-import net.minecraft.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import static hellfirepvp.astralsorcery.common.lib.EnchantmentsAS.*;
 
@@ -30,15 +31,7 @@ public class RegistryEnchantments {
      * @see hellfirepvp.astralsorcery.common.loot.global.LootModifierScorchingHeat
      */
     public static void init() {
-        NIGHT_VISION = register(new EnchantmentNightVision())
-                .setRegistryName(AstralSorcery.key("night_vision"));
-        SCORCHING_HEAT = register(new EnchantmentScorchingHeat())
-                .setRegistryName(AstralSorcery.key("scorching_heat"));
+        NIGHT_VISION = ASRegistries.ENCHANTMENTS.register("night_vision", EnchantmentNightVision::new);
+        SCORCHING_HEAT = ASRegistries.ENCHANTMENTS.register("scorching_heat", EnchantmentScorchingHeat::new);
     }
-
-    private static <T extends Enchantment> T register(T effect) {
-        AstralSorcery.getProxy().getRegistryPrimer().register(effect);
-        return effect;
-    }
-
 }

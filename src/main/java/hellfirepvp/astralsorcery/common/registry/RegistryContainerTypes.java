@@ -13,15 +13,11 @@ import hellfirepvp.astralsorcery.client.screen.ScreenObservatory;
 import hellfirepvp.astralsorcery.client.screen.container.*;
 import hellfirepvp.astralsorcery.common.container.ContainerObservatory;
 import hellfirepvp.astralsorcery.common.container.factory.*;
-import net.minecraft.client.gui.ScreenManager;
-import net.minecraft.world.entity.player.IInventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.inventory.MenuType;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.fml.network.IContainerFactory;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import static hellfirepvp.astralsorcery.common.lib.ContainerTypesAS.*;
 
@@ -37,38 +33,23 @@ public class RegistryContainerTypes {
     private RegistryContainerTypes() {}
 
     public static void init() {
-        TOME = register("tome", new ContainerTomeProvider.Factory());
-        OBSERVATORY = register("observatory", new ContainerObservatoryProvider.Factory());
+        TOME = ASRegistries.MENU_TYPES.register("tome", 
+                () -> new MenuType<>(ContainerTomeProvider.Factory::create, FeatureFlags.DEFAULT_FLAGS));
+        OBSERVATORY = ASRegistries.MENU_TYPES.register("observatory", 
+                () -> new MenuType<>(ContainerObservatoryProvider.Factory::create, FeatureFlags.DEFAULT_FLAGS));
 
-        ALTAR_DISCOVERY = register("altar_discovery", new ContainerAltarDiscoveryProvider.Factory());
-        ALTAR_ATTUNEMENT = register("altar_attunement", new ContainerAltarAttunementProvider.Factory());
-        ALTAR_CONSTELLATION = register("altar_constellation", new ContainerAltarConstellationProvider.Factory());
-        ALTAR_RADIANCE = register("altar_radiance", new ContainerAltarRadianceProvider.Factory());
+        ALTAR_DISCOVERY = ASRegistries.MENU_TYPES.register("altar_discovery", 
+                () -> new MenuType<>(ContainerAltarDiscoveryProvider.Factory::create, FeatureFlags.DEFAULT_FLAGS));
+        ALTAR_ATTUNEMENT = ASRegistries.MENU_TYPES.register("altar_attunement", 
+                () -> new MenuType<>(ContainerAltarAttunementProvider.Factory::create, FeatureFlags.DEFAULT_FLAGS));
+        ALTAR_CONSTELLATION = ASRegistries.MENU_TYPES.register("altar_constellation", 
+                () -> new MenuType<>(ContainerAltarConstellationProvider.Factory::create, FeatureFlags.DEFAULT_FLAGS));
+        ALTAR_RADIANCE = ASRegistries.MENU_TYPES.register("altar_radiance", 
+                () -> new MenuType<>(ContainerAltarRadianceProvider.Factory::create, FeatureFlags.DEFAULT_FLAGS));
     }
 
     @OnlyIn(Dist.CLIENT)
     public static void initClient() {
-        ScreenManager.registerFactory(TOME, ScreenContainerTome::new);
-        ScreenManager.registerFactory(OBSERVATORY, new ScreenManager.IScreenFactory<ContainerObservatory, ScreenObservatory>() {
-            @Override
-            public ScreenObservatory create(ContainerObservatory observatory, IInventory playerInventory, ITextComponent name) {
-                return new ScreenObservatory(observatory);
-            }
-        });
-        ScreenManager.registerFactory(ALTAR_DISCOVERY, ScreenContainerAltarDiscovery::new);
-        ScreenManager.registerFactory(ALTAR_ATTUNEMENT, ScreenContainerAltarAttunement::new);
-        ScreenManager.registerFactory(ALTAR_CONSTELLATION, ScreenContainerAltarConstellation::new);
-        ScreenManager.registerFactory(ALTAR_RADIANCE, ScreenContainerAltarRadiance::new);
-    }
-
-    private static <C extends Container, T extends ContainerType<C>> T register(String name, IContainerFactory<C> containerFactory) {
-        return register(AstralSorcery.key(name), containerFactory);
-    }
-
-    private static <C extends Container, T extends ContainerType<C>> T register(ResourceLocation name, IContainerFactory<C> containerFactory) {
-        ContainerType<C> type = new ContainerType<>(containerFactory);
-        type.setRegistryName(name);
-        AstralSorcery.getProxy().getRegistryPrimer().register(type);
-        return (T) type;
+        // Screen registration moved to client setup event
     }
 }

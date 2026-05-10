@@ -10,8 +10,7 @@ package hellfirepvp.astralsorcery.common.registry;
 
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.effect.*;
-import hellfirepvp.astralsorcery.common.util.NameUtil;
-import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import static hellfirepvp.astralsorcery.common.lib.EffectsAS.*;
 
@@ -27,15 +26,8 @@ public class RegistryEffects {
     private RegistryEffects() {}
 
     public static void init() {
-        EFFECT_BLEED = register(new EffectBleed());
-        EFFECT_CHEAT_DEATH = register(new EffectCheatDeath());
-        EFFECT_DROP_MODIFIER = register(new EffectDropModifier());
-    }
-
-    private static <T extends EffectCustomTexture> T register(T effect) {
-        effect.setRegistryName(NameUtil.fromClass(effect, "Effect"));
-        effect.attachEventListeners(NeoForge.EVENT_BUS);
-        AstralSorcery.getProxy().getRegistryPrimer().register(effect);
-        return effect;
+        EFFECT_BLEED = ASRegistries.EFFECTS.register("bleed", EffectBleed::new);
+        EFFECT_CHEAT_DEATH = ASRegistries.EFFECTS.register("cheat_death", EffectCheatDeath::new);
+        EFFECT_DROP_MODIFIER = ASRegistries.EFFECTS.register("drop_modifier", EffectDropModifier::new);
     }
 }
