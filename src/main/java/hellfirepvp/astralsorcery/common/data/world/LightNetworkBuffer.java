@@ -31,7 +31,7 @@ import hellfirepvp.observerlib.common.data.base.WorldSection;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.BlockPos;
@@ -92,7 +92,7 @@ public class LightNetworkBuffer extends SectionWorldData<LightNetworkBuffer.Chun
                     }
                 } else {
                     BlockState actual = world.getBlockState(pos);
-                    AstralSorcery.log.warn("Cached source at " + pos + " but didn't find the TileEntity!");
+                    AstralSorcery.log.warn("Cached source at " + pos + " but didn't find the BlockEntity!");
                     AstralSorcery.log.warn("Purging cache entry and removing erroneous block!");
                     AstralSorcery.log.warn("Block that gets purged: " + BlockStateHelper.serialize(actual));
                     iterator.remove();

@@ -80,7 +80,7 @@ public class RegistryRecipeTypes {
 
     private static <T extends AltarRecipeEffect> T registerEffect(T recipeEffect) {
         recipeEffect.setRegistryName(NameUtil.fromClass(recipeEffect, "Effect"));
-        AstralSorcery.getProxy().getRegistryPrimer().register(recipeEffect);
+        register(recipeEffect);
         return recipeEffect;
     }
 

@@ -13,7 +13,7 @@ import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.Util;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.text.TextFormatting;
@@ -109,7 +109,7 @@ public class LinkHandler implements ITickHandler {
                 }
                 break;
             case TRY_LINK:
-                TileEntity te = MiscUtils.getTileAt(world, pos, TileEntity.class, true);
+                BlockEntity te = MiscUtils.getTileAt(world, pos, BlockEntity.class, true);
                 linkedToName = "astralsorcery.misc.link.link.block";
                 if (te instanceof LinkableTileEntity) {
                     if (!((LinkableTileEntity) te).doesAcceptLinks()) {
@@ -143,7 +143,7 @@ public class LinkHandler implements ITickHandler {
             case TRY_UNLINK:
                 if (tile.tryUnlink(playerIn, pos)) {
                     linkedToName = "astralsorcery.misc.link.link.block";
-                    te = MiscUtils.getTileAt(world, pos, TileEntity.class, true);
+                    te = MiscUtils.getTileAt(world, pos, BlockEntity.class, true);
                     if (te instanceof LinkableTileEntity) {
                         String unloc = ((LinkableTileEntity) te).getUnLocalizedDisplayName();
                         if (unloc != null) {

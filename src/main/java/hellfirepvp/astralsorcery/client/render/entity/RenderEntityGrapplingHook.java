@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.render.entity;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.lib.SpritesAS;
@@ -45,7 +45,7 @@ public class RenderEntityGrapplingHook extends EntityRenderer<EntityGrapplingHoo
     }
 
     @Override
-    public void render(EntityGrapplingHook entity, float entityYaw, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int packedLight) {
+    public void render(EntityGrapplingHook entity, float entityYaw, float partialTicks, PoseStack poseStack, IRenderTypeBuffer buffer, int packedLight) {
         int alphaMultiplier;
         if (entity.isDespawning()) {
             alphaMultiplier = Mth.clamp(127 - ((int) (entity.despawnPercentage(partialTicks) * 255F)), 0, 255);
@@ -68,7 +68,7 @@ public class RenderEntityGrapplingHook extends EntityRenderer<EntityGrapplingHoo
         SpritesAS.SPR_GRAPPLING_HOOK.bindTexture();
 
         RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
-            RenderingDrawUtils.renderFacingSpriteVB(buf, matrixStack,
+            RenderingDrawUtils.renderFacingSpriteVB(buf, poseStack,
                     entityPos.getX(), entityPos.getY(), entityPos.getZ(),
                     1.3F, 0F,
                     SpritesAS.SPR_GRAPPLING_HOOK, ClientScheduler.getClientTick() + entity.ticksExisted,
@@ -82,7 +82,7 @@ public class RenderEntityGrapplingHook extends EntityRenderer<EntityGrapplingHoo
         RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
             for (Vector3 pos : line) {
                 Vector3 at = pos.multiply(2).add(entityPos);
-                RenderingDrawUtils.renderFacingFullQuadVB(buf, matrixStack,
+                RenderingDrawUtils.renderFacingFullQuadVB(buf, poseStack,
                         at.getX(), at.getY(), at.getZ(),
                         0.3F, 0F,
                         50, 40, 180, (int) (alphaMultiplier * 0.8F));

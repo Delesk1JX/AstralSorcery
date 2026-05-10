@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.screen.container;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import hellfirepvp.astralsorcery.client.screen.base.ScreenCustomContainer;
@@ -35,7 +35,7 @@ public class ScreenContainerTome extends ScreenCustomContainer<ContainerTome> {
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(MatrixStack matrixStack, int x, int y) {
+    protected void drawGuiContainerForegroundLayer(PoseStack poseStack, int x, int y) {
         //Don't draw container names. (Currently all this does)
     }
 }

@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.crafting.recipe.interaction.jei;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.common.crafting.recipe.LiquidInteraction;
 import hellfirepvp.astralsorcery.common.crafting.recipe.interaction.InteractionResult;
 import hellfirepvp.astralsorcery.common.crafting.recipe.interaction.ResultDropItem;
@@ -57,6 +57,6 @@ public class JEIHandlerDropItem extends JEIInteractionResultHandler {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void drawRecipe(LiquidInteraction recipe, MatrixStack renderStack, double mouseX, double mouseY) {
+    public void drawRecipe(LiquidInteraction recipe, PoseStack renderStack, double mouseX, double mouseY) {
     }
 }

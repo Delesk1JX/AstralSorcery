@@ -14,7 +14,7 @@ import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -47,7 +47,7 @@ public abstract class CustomContainerProvider<C extends Container> implements IN
     @Override
     public abstract C createMenu(int id, IInventory plInventory, Player player);
 
-    protected abstract void writeExtraData(PacketBuffer buf);
+    protected abstract void writeExtraData(FriendlyByteBuf buf);
 
     public void openFor(ServerPlayer player) {
         NetworkHooks.openGui(player, this, this::writeExtraData);

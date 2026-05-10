@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.render.entity;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.common.entity.item.EntityItemHighlighted;
 import net.minecraft.client.Minecraft;
@@ -33,7 +33,7 @@ public class RenderEntityItemHighlighted extends ItemRenderer {
     }
 
     @Override
-    public void render(ItemEntity entity, float entityYaw, float partialTicks, MatrixStack renderStack, IRenderTypeBuffer buffer, int packedLight) {
+    public void render(ItemEntity entity, float entityYaw, float partialTicks, PoseStack renderStack, IRenderTypeBuffer buffer, int packedLight) {
         if (entity instanceof EntityItemHighlighted && ((EntityItemHighlighted) entity).hasColor()) {
             renderStack.push();
             renderStack.translate(0, 0.35F, 0);

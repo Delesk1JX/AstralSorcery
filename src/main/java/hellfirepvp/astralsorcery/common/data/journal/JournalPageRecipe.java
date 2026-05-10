@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchNode;
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
 import hellfirepvp.astralsorcery.common.util.RecipeHelper;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.Recipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.resources.ResourceLocation;
@@ -37,9 +37,9 @@ import java.util.function.Supplier;
  */
 public class JournalPageRecipe implements JournalPage {
 
-    private final Supplier<IRecipe<?>> recipeProvider;
+    private final Supplier<Recipe<?>> recipeProvider;
 
-    private JournalPageRecipe(Supplier<IRecipe<?>> recipeProvider) {
+    private JournalPageRecipe(Supplier<Recipe<?>> recipeProvider) {
         this.recipeProvider = recipeProvider;
     }
 
@@ -50,7 +50,7 @@ public class JournalPageRecipe implements JournalPage {
                 throw new IllegalStateException("Not connected to a server, but calling GUI code?");
             }
 
-            IRecipe<?> recipe = mgr.getRecipes(RecipeTypesAS.TYPE_ALTAR.getType()).get(recipeId);
+            Recipe<?> recipe = mgr.getRecipes(RecipeTypesAS.TYPE_ALTAR.getType()).get(recipeId);
             if (recipe != null) {
                 return recipe;
             }
@@ -70,7 +70,7 @@ public class JournalPageRecipe implements JournalPage {
                 throw new IllegalStateException("Not connected to a server, but calling GUI code?");
             }
 
-            IRecipe<?> recipe = mgr.getRecipes(RecipeTypesAS.TYPE_ALTAR.getType()).values()
+            Recipe<?> recipe = mgr.getRecipes(RecipeTypesAS.TYPE_ALTAR.getType()).values()
                     .stream()
                     .map(r -> (SimpleAltarRecipe) r)
                     .filter(r -> outputTest.test(r.getOutputForRender(Collections.emptyList())))
@@ -99,7 +99,7 @@ public class JournalPageRecipe implements JournalPage {
                 throw new IllegalStateException("Not connected to a server, but calling GUI code?");
             }
 
-            IRecipe<?> recipe = mgr.getRecipes(IRecipeType.CRAFTING).values()
+            Recipe<?> recipe = mgr.getRecipes(IRecipeType.CRAFTING).values()
                     .stream()
                     .filter(r -> outputTest.test(r.getRecipeOutput()))
                     .findFirst()
@@ -124,7 +124,7 @@ public class JournalPageRecipe implements JournalPage {
     @Override
     @OnlyIn(Dist.CLIENT)
     public RenderablePage buildRenderPage(ResearchNode node, int nodePage) {
-        IRecipe<?> recipe = this.recipeProvider.get();
+        Recipe<?> recipe = this.recipeProvider.get();
         if (recipe instanceof SimpleAltarRecipe) {
             return new RenderPageAltarRecipe(node, nodePage, (SimpleAltarRecipe) recipe);
         } else if (recipe != null) {

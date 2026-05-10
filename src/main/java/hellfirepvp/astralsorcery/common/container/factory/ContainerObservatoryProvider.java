@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.IInventory;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.BlockPos;
 import net.neoforged.neoforge.fml.network.IContainerFactory;
 
@@ -38,7 +38,7 @@ public class ContainerObservatoryProvider extends CustomContainerProvider<Contai
     }
 
     @Override
-    protected void writeExtraData(PacketBuffer buf) {
+    protected void writeExtraData(FriendlyByteBuf buf) {
         ByteBufUtils.writePos(buf, this.observatory.getPos());
     }
 
@@ -48,7 +48,7 @@ public class ContainerObservatoryProvider extends CustomContainerProvider<Contai
         return new ContainerObservatory(this.observatory, windowId);
     }
 
-    private static ContainerObservatory createFromPacket(int windowId, IInventory plInventory, PacketBuffer data) {
+    private static ContainerObservatory createFromPacket(int windowId, IInventory plInventory, FriendlyByteBuf data) {
         BlockPos at = ByteBufUtils.readPos(data);
         Player player = plInventory.player;
         TileObservatory observatory = MiscUtils.getTileAt(player.getEntityWorld(), at, TileObservatory.class, true);
@@ -58,7 +58,7 @@ public class ContainerObservatoryProvider extends CustomContainerProvider<Contai
     public static class Factory implements IContainerFactory<ContainerObservatory> {
 
         @Override
-        public ContainerObservatory create(int windowId, IInventory inv, PacketBuffer data) {
+        public ContainerObservatory create(int windowId, IInventory inv, FriendlyByteBuf data) {
             return ContainerObservatoryProvider.createFromPacket(windowId, inv, data);
         }
     }

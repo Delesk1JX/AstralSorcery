@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.event.effect;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
@@ -76,7 +76,7 @@ public class ClientMiscEventHandler {
                 ((65 - ma) * Math.max(0, Math.min(1, (float) new Vector3(motion.x, 0, motion.z).length())));
         float rot = RenderingVectorUtils.interpolateRotation(player.prevRenderYawOffset, player.renderYawOffset, event.getPartialRenderTick());
 
-        MatrixStack renderStack = event.getMatrixStack();
+        PoseStack renderStack = event.getMatrixStack();
         renderStack.push();
         float swimAngle = player.getSwimAnimation(event.getPartialRenderTick());
         if (swimAngle > 0) {
@@ -95,10 +95,10 @@ public class ClientMiscEventHandler {
         renderStack.translate(0, 5.5, 0.7 - ((r / ma) * (f ? 0.5D : 0.2D)));
 
         if (vboR == null) {
-            vboR = obj.batchOnly(Tessellator.getInstance().getBuffer(), "wR");
+            vboR = obj.batchOnly(buffer, "wR");
         }
         if (vboL == null) {
-            vboL = obj.batchOnly(Tessellator.getInstance().getBuffer(), "wL");
+            vboL = obj.batchOnly(buffer, "wL");
         }
 
 

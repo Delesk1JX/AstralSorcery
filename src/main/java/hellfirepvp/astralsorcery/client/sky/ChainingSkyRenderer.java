@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.sky;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.data.config.entry.RenderingConfig;
 import hellfirepvp.astralsorcery.client.sky.astral.AstralSkyRenderer;
@@ -38,7 +38,7 @@ public class ChainingSkyRenderer implements ISkyRenderHandler {
     }
 
     @Override
-    public void render(int ticks, float partialTicks, MatrixStack renderStack, ClientWorld world, Minecraft mc) {
+    public void render(int ticks, float partialTicks, PoseStack renderStack, ClientWorld world, Minecraft mc) {
         EventFlags.SKY_RENDERING.executeWithFlag(() -> {
             RegistryKey<World> dim = world.getDimensionKey();
             if (world.func_239132_a_().func_241683_c_() == DimensionRenderInfo.FogType.NORMAL) {
@@ -66,7 +66,7 @@ public class ChainingSkyRenderer implements ISkyRenderHandler {
         });
     }
 
-    private void renderConstellations(ClientWorld world, MatrixStack renderStack, float pTicks) {
+    private void renderConstellations(ClientWorld world, PoseStack renderStack, float pTicks) {
         RenderSystem.disableAlphaTest();
         RenderSystem.enableBlend();
         Blending.ADDITIVE_ALPHA.apply();

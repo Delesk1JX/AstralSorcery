@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.base.patreon.types;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.resource.BlockAtlasTexture;
@@ -91,7 +91,7 @@ public class TypeBlockRing extends PatreonEffect {
         Player pl = Minecraft.getInstance().player;
         if (Minecraft.getInstance().gameSettings.getPointOfView().func_243192_a() && //First person
                 pl != null && pl.getUniqueID().equals(playerUUID)) {
-            MatrixStack renderStack = event.getMatrixStack();
+            PoseStack renderStack = event.getMatrixStack();
 
             int alpha = 88;
             if (pl.rotationPitch >= 35F) {
@@ -122,7 +122,7 @@ public class TypeBlockRing extends PatreonEffect {
     }
 
     @OnlyIn(Dist.CLIENT)
-    private void renderRingAt(MatrixStack renderStack, Player player, int alphaMultiplier, float pTicks) {
+    private void renderRingAt(PoseStack renderStack, Player player, int alphaMultiplier, float pTicks) {
         float addedRotationAngle = 0;
 
         if (rotationSpeed > 1) {

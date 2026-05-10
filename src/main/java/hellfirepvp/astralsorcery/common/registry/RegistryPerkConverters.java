@@ -66,7 +66,6 @@ public class RegistryPerkConverters {
     }
 
     private static <T extends PerkConverter> T register(T converter) {
-        AstralSorcery.getProxy().getRegistryPrimer().register(converter);
-        return converter;
+        return ASRegistries.PERK_CONVERTERS.register(converter.getIdentifier(), () -> converter);
     }
 }

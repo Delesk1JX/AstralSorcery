@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.render.entity;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.client.util.Blending;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.common.entity.EntitySpectralTool;
@@ -37,7 +37,7 @@ public class RenderEntitySpectralTool extends EntityRenderer<EntitySpectralTool>
     }
 
     @Override
-    public void render(EntitySpectralTool entity, float entityYaw, float partialTicks, MatrixStack renderStack, IRenderTypeBuffer buffer, int packedLight) {
+    public void render(EntitySpectralTool entity, float entityYaw, float partialTicks, PoseStack renderStack, IRenderTypeBuffer buffer, int packedLight) {
         ItemStack stack = entity.getItem();
         if (stack.isEmpty() || !entity.isAlive()) {
             return;

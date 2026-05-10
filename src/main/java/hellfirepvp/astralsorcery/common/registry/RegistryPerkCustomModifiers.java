@@ -91,7 +91,7 @@ public class RegistryPerkCustomModifiers {
     }
 
     private static <T extends PerkAttributeModifier> T register(T modifier) {
-        AstralSorcery.getProxy().getRegistryPrimer().register(modifier);
+        register(modifier);
         return modifier;
     }
 }

@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.RecipeHelper;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.Recipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.resources.ResourceLocation;
@@ -66,9 +66,9 @@ public class ResolvingRecipeType<C extends IItemHandler, T extends IHandlerRecip
         if (mgr == null) {
             return Collections.emptyList();
         }
-        Collection<IRecipe<IInventory>> recipeSet = mgr.getRecipes(this.type).values();
+        Collection<Recipe<IInventory>> recipeSet = mgr.getRecipes(this.type).values();
         List<T> recipes = new ArrayList<>(recipeSet.size());
-        for (IRecipe<IInventory> rec : recipeSet) {
+        for (Recipe<IInventory> rec : recipeSet) {
             recipes.add((T) rec);
         }
         return recipes;

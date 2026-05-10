@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.client.screen;
 
 import com.google.common.collect.Lists;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
@@ -128,7 +128,7 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
     }
 
     @Override
-    public void render(MatrixStack renderStack, int mouseX, int mouseY, float pTicks) {
+    public void render(PoseStack renderStack, int mouseX, int mouseY, float pTicks) {
         RenderSystem.enableDepthTest();
         super.render(renderStack, mouseX, mouseY, pTicks);
 
@@ -146,7 +146,7 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
         this.drawFrame(renderStack);
     }
 
-    private void drawObservatoryScreen(MatrixStack renderStack, float pTicks) {
+    private void drawObservatoryScreen(PoseStack renderStack, float pTicks) {
         boolean canSeeSky = this.canObserverSeeSky(this.getTile().getPos(), 2);
         double guiFactor = Minecraft.getInstance().getMainWindow().getGuiScaleFactor();
         float pitch = Minecraft.getInstance().player.getPitch(pTicks);
@@ -254,7 +254,7 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
         RenderSystem.enableAlphaTest();
     }
 
-    private void drawFrame(MatrixStack renderStack) {
+    private void drawFrame(PoseStack renderStack) {
         this.setBlitOffset(10);
         TexturesAS.TEX_GUI_OBSERVATORY.bindTexture();
 
@@ -289,7 +289,7 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
         this.setBlitOffset(0);
     }
 
-    private void drawSkyBackground(MatrixStack renderStack, float pTicks, boolean canSeeSky, float angleOpacity) {
+    private void drawSkyBackground(PoseStack renderStack, float pTicks, boolean canSeeSky, float angleOpacity) {
         Tuple<Color, Color> rgbFromTo = SkyScreen.getSkyGradient(canSeeSky, angleOpacity, pTicks);
         RenderingDrawUtils.drawGradientRect(renderStack, this.getGuiZLevel(),
                 this.guiLeft, this.guiTop,

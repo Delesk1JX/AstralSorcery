@@ -19,7 +19,7 @@ import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
@@ -105,14 +105,14 @@ public class ConstellationBaseItemRecipe extends SimpleAltarRecipe {
     }
 
     @Override
-    public void writeRecipeSync(PacketBuffer buf) {
+    public void writeRecipeSync(FriendlyByteBuf buf) {
         super.writeRecipeSync(buf);
 
         ByteBufUtils.writeOptional(buf, this.getConstellation(), ByteBufUtils::writeRegistryEntry);
     }
 
     @Override
-    public void readRecipeSync(PacketBuffer buf) {
+    public void readRecipeSync(FriendlyByteBuf buf) {
         super.readRecipeSync(buf);
 
         this.setConstellation(ByteBufUtils.readOptional(buf, ByteBufUtils::readRegistryEntry));

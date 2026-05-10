@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.base.patreon.types;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
 import hellfirepvp.astralsorcery.client.render.ObjModelRender;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
@@ -64,7 +64,7 @@ public class TypeWraithWings extends PatreonEffect {
         if (!shouldDoEffect(player)) {
             return;
         }
-        MatrixStack renderStack = event.getMatrixStack();
+        PoseStack renderStack = event.getMatrixStack();
 
         float rot = RenderingVectorUtils.interpolateRotation(player.prevRenderYawOffset, player.renderYawOffset, event.getPartialRenderTick());
 

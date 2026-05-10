@@ -25,7 +25,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathType;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
@@ -172,7 +172,7 @@ public class BlockWell extends BlockStarlightNetwork implements CustomItemBlock 
 
     @Nullable
     @Override
-    public TileEntity createNewTileEntity(IBlockReader worldIn) {
+    public BlockEntity createNewTileEntity(IBlockReader worldIn) {
         return new TileWell();
     }
 

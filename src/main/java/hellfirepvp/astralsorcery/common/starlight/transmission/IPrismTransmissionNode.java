@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.common.starlight.WorldNetworkHandler;
 import hellfirepvp.astralsorcery.common.starlight.transmission.registry.TransmissionProvider;
 import hellfirepvp.astralsorcery.common.util.block.ILocatable;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -46,7 +46,7 @@ public interface IPrismTransmissionNode extends ILocatable {
 
     //Used to push update from the tileentity owning this node (potentially)
     //to this network node. Return true to indicate a successful data transfer
-    default public <T extends TileEntity> boolean updateFromTileEntity(T tile) {
+    default public <T extends BlockEntity> boolean updateFromTileEntity(T tile) {
         return true;
     }
 
@@ -112,7 +112,7 @@ public interface IPrismTransmissionNode extends ILocatable {
 
     //If needsUpdate returns true and it is added to the UpdateHandler,
     //this method will be called each server-world-tick and may be used
-    //like the TileEntity's update method.
+    //like the BlockEntity's update method.
     default public void update(World world) {}
 
     //Called once after reading the node from NBT

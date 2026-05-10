@@ -27,7 +27,7 @@ public class CapabilitiesAS {
 
     public static final ResourceLocation CHUNK_FLUID_KEY = AstralSorcery.key("chunk_fluid");
 
-    @CapabilityInject(ChunkFluidEntry.class)
+    // @CapabilityInject(ChunkFluidEntry.class) - migrated to RegisterCapabilitiesEvent
     public static Capability<ChunkFluidEntry> CHUNK_FLUID = null;
 
 }

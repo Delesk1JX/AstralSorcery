@@ -125,7 +125,7 @@ public class RegistryCrystalProperties {
     }
 
     private static <T extends CrystalProperty> T registerProperty(T property) {
-        AstralSorcery.getProxy().getRegistryPrimer().register(property);
+        register(property);
         return property;
     }
 }

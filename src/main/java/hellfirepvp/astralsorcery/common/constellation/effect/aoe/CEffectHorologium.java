@@ -31,7 +31,7 @@ import hellfirepvp.astralsorcery.common.util.time.TimeStopController;
 import hellfirepvp.astralsorcery.common.util.time.TimeStopZone;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
@@ -54,7 +54,7 @@ public class CEffectHorologium extends CEffectAbstractList<ListEntries.PosEntry>
     public static HorologiumConfig CONFIG = new HorologiumConfig();
 
     public CEffectHorologium(@Nonnull ILocatable origin) {
-        super(origin, ConstellationsAS.horologium, CONFIG.maxAmount.get(), (world, pos, state) -> TileAccelerationBlacklistRegistry.INSTANCE.canBeInfluenced(MiscUtils.getTileAt(world, pos, TileEntity.class, false)));
+        super(origin, ConstellationsAS.horologium, CONFIG.maxAmount.get(), (world, pos, state) -> TileAccelerationBlacklistRegistry.INSTANCE.canBeInfluenced(MiscUtils.getTileAt(world, pos, BlockEntity.class, false)));
     }
 
     @Nonnull
@@ -119,7 +119,7 @@ public class CEffectHorologium extends CEffectAbstractList<ListEntries.PosEntry>
         ListEntries.PosEntry entry = this.getRandomElementChanced();
         if (entry != null) {
             if (MiscUtils.executeWithChunk(world, entry.getPos(), () -> {
-                TileEntity tile = MiscUtils.getTileAt(world, entry.getPos(), TileEntity.class, true);
+                BlockEntity tile = MiscUtils.getTileAt(world, entry.getPos(), BlockEntity.class, true);
                 if (tile != null && isValid(world, entry)) {
                     sendConstellationPing(world, new Vector3(entry.getPos()).add(Vector3.positiveRandom()));
                     sendConstellationPing(world, new Vector3(entry.getPos()).add(Vector3.positiveRandom()));
@@ -136,7 +136,7 @@ public class CEffectHorologium extends CEffectAbstractList<ListEntries.PosEntry>
                     } catch (Exception exc) {
                         TileAccelerationBlacklistRegistry.INSTANCE.addErrored(tile);
                         this.removeElement(entry);
-                        AstralSorcery.log.warn("Couldn't accelerate TileEntity " + tile.getClass().getName() + ".");
+                        AstralSorcery.log.warn("Couldn't accelerate BlockEntity " + tile.getClass().getName() + ".");
                         AstralSorcery.log.warn("Temporarily blacklisting that class. Consider adding that to the blacklist if it persists?");
                         exc.printStackTrace();
                     }

@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.crafting.recipe.interaction.jei;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.client.util.LightmapUtil;
 import hellfirepvp.astralsorcery.common.crafting.recipe.LiquidInteraction;
 import hellfirepvp.astralsorcery.common.crafting.recipe.interaction.InteractionResult;
@@ -46,7 +46,7 @@ public class JEIHandlerSpawnEntity extends JEIInteractionResultHandler {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void drawRecipe(LiquidInteraction recipe, MatrixStack renderStack, double mouseX, double mouseY) {
+    public void drawRecipe(LiquidInteraction recipe, PoseStack renderStack, double mouseX, double mouseY) {
         InteractionResult result = recipe.getResult();
         if (!(result instanceof ResultSpawnEntity)) {
             return;
@@ -61,7 +61,7 @@ public class JEIHandlerSpawnEntity extends JEIInteractionResultHandler {
         renderStack.scale(15, 15, 15);
         renderStack.rotate(Vector3f.XP.rotationDegrees(180));
         renderStack.rotate(Vector3f.YP.rotationDegrees(145));
-        IRenderTypeBuffer.Impl buffer = IRenderTypeBuffer.getImpl(Tessellator.getInstance().getBuffer());
+        IRenderTypeBuffer.Impl buffer = IRenderTypeBuffer.getImpl(buffer);
         Minecraft.getInstance().getRenderManager()
                 .renderEntityStatic(le, 0, 0, 0, 0, 0, renderStack, buffer, LightmapUtil.getPackedFullbrightCoords());
         buffer.finish();

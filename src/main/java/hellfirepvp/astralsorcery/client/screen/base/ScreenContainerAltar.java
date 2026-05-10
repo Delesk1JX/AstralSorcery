@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.screen.base;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.lib.SpritesAS;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
@@ -52,13 +52,13 @@ public abstract class ScreenContainerAltar<T extends ContainerAltarBase> extends
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(MatrixStack renderStack, float partialTicks, int mouseX, int mouseY) {
+    protected void drawGuiContainerBackgroundLayer(PoseStack renderStack, float partialTicks, int mouseX, int mouseY) {
         RenderSystem.enableDepthTest();
         this.renderGuiBackground(renderStack, partialTicks, mouseX, mouseY);
         super.drawGuiContainerBackgroundLayer(renderStack, partialTicks, mouseX, mouseY);
     }
 
-    protected void renderStarlightBar(MatrixStack renderStack, int offsetX, int offsetZ, int width, int height) {
+    protected void renderStarlightBar(PoseStack renderStack, int offsetX, int offsetZ, int width, int height) {
         TileAltar altar = this.getContainer().getTileEntity();
 
         RenderSystem.disableAlphaTest();
@@ -116,5 +116,5 @@ public abstract class ScreenContainerAltar<T extends ContainerAltarBase> extends
         RenderSystem.enableAlphaTest();
     }
 
-    public abstract void renderGuiBackground(MatrixStack renderStack, float partialTicks, int mouseX, int mouseY);
+    public abstract void renderGuiBackground(PoseStack renderStack, float partialTicks, int mouseX, int mouseY);
 }

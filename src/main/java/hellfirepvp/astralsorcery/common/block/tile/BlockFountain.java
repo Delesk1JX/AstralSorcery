@@ -16,7 +16,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ContainerBlock;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.shapes.IBooleanFunction;
@@ -64,7 +64,7 @@ public class BlockFountain extends ContainerBlock implements CustomItemBlock {
 
     @Override
     @Nullable
-    public TileEntity createNewTileEntity(IBlockReader world) {
+    public BlockEntity createNewTileEntity(IBlockReader world) {
         return new TileFountain();
     }
 }

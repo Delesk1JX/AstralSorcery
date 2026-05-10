@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.common.starlight.transmission.IPrismTransmissio
 import hellfirepvp.astralsorcery.common.starlight.transmission.base.crystal.CrystalPrismTransmissionNode;
 import hellfirepvp.astralsorcery.common.starlight.transmission.registry.TransmissionProvider;
 import hellfirepvp.astralsorcery.common.tile.TilePrism;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.BlockPos;
 
 /**
@@ -37,7 +37,7 @@ public class StarlightTransmissionPrism extends CrystalPrismTransmissionNode {
     }
 
     @Override
-    public <T extends TileEntity> boolean updateFromTileEntity(T tile) {
+    public <T extends BlockEntity> boolean updateFromTileEntity(T tile) {
         if (!(tile instanceof TilePrism)) {
             return super.updateFromTileEntity(tile);
         }

@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.screen.base;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
@@ -28,7 +28,7 @@ import java.awt.*;
  */
 public interface NavigationArrowScreen {
 
-    default public Rectangle drawArrow(MatrixStack renderStack, int offsetLeft, int offsetTop, int guiZLevel, Type direction, int mouseX, int mouseY, float pTicks) {
+    default public Rectangle drawArrow(PoseStack renderStack, int offsetLeft, int offsetTop, int guiZLevel, Type direction, int mouseX, int mouseY, float pTicks) {
         float width = 30F;
         float height = 15F;
 

@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.render.tile;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.client.model.builtin.ModelObservatory;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import hellfirepvp.astralsorcery.common.entity.technical.EntityObservatoryHelper;
@@ -36,7 +36,7 @@ public class RenderObservatory extends CustomTileEntityRenderer<TileObservatory>
     }
 
     @Override
-    public void render(TileObservatory tile, float pTicks, MatrixStack renderStack, IRenderTypeBuffer renderTypeBuffer, int combinedLight, int combinedOverlay) {
+    public void render(TileObservatory tile, float pTicks, PoseStack renderStack, IRenderTypeBuffer renderTypeBuffer, int combinedLight, int combinedOverlay) {
         Entity ridden;
         Player player = Minecraft.getInstance().player;
         if (player != null &&

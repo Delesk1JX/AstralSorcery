@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.sky.astral;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
@@ -96,7 +96,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler {
     }
 
     @Override
-    public void render(int ticks, float pTicks, MatrixStack renderStack, ClientWorld world, Minecraft mc) {
+    public void render(int ticks, float pTicks, PoseStack renderStack, ClientWorld world, Minecraft mc) {
         if (AssetLibrary.isReloading()) {
             return;
         }
@@ -189,7 +189,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler {
         RenderSystem.pushMatrix();
         RenderSystem.rotatef(180F, 1F, 0F, 0F);
 
-        Tessellator tes = Tessellator.getInstance();
+        Tessellator tes = Tesselator.getInstance();
         BufferBuilder vb = tes.getBuffer();
         GL11.glColor4f(1F, 0, 0, 1F);
 
@@ -230,7 +230,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler {
     }
     */
 
-    public static void renderConstellationsSky(ClientWorld world, MatrixStack renderStack, float pTicks) {
+    public static void renderConstellationsSky(ClientWorld world, PoseStack renderStack, float pTicks) {
         WorldContext ctx = SkyHandler.getContext(world, LogicalSide.CLIENT);
         if (ctx == null) {
             return;
@@ -263,7 +263,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler {
         }
     }
 
-    private void renderStars(ClientWorld world, MatrixStack renderStack, float pTicks) {
+    private void renderStars(ClientWorld world, PoseStack renderStack, float pTicks) {
         float starBrightness = world.getStarBrightness(pTicks) * (1.0F - world.getRainStrength(pTicks));
         if (starBrightness > 0) {
             this.starLists.forEach((list) -> {
@@ -275,7 +275,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler {
         }
     }
 
-    private void renderCelestials(ClientWorld world, MatrixStack renderStack, float pTicks) {
+    private void renderCelestials(ClientWorld world, PoseStack renderStack, float pTicks) {
         WorldContext ctx = SkyHandler.getContext(world, LogicalSide.CLIENT);
 
         float rainAlpha = 1F - world.getRainStrength(pTicks);
@@ -305,7 +305,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler {
         RenderSystem.color4f(1F, 1F, 1F, 1F);
     }
 
-    private void renderSolarEclipseSun(MatrixStack renderStack, WorldContext ctx) {
+    private void renderSolarEclipseSun(PoseStack renderStack, WorldContext ctx) {
         float sunSize = 30F;
 
         float eclipseTick = ctx.getCelestialEventHandler().getSolarEclipse().getEffectTick(0F);
@@ -333,7 +333,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler {
         renderStack.pop();
     }
 
-    private void renderSun(MatrixStack renderStack) {
+    private void renderSun(PoseStack renderStack) {
         float sunSize = 30F;
 
         Matrix4f matr = renderStack.getLast().getMatrix();
@@ -347,7 +347,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler {
         });
     }
 
-    private void renderMoon(MatrixStack renderStack, World world) {
+    private void renderMoon(PoseStack renderStack, World world) {
         float moonSize = 20F;
 
         //Don't ask me.. i'm just copying this and be done with it
@@ -370,7 +370,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler {
         });
     }
 
-    private void renderDuskDawn(float[] duskDawnColors, MatrixStack renderStack, ClientWorld world, float pTicks) {
+    private void renderDuskDawn(float[] duskDawnColors, PoseStack renderStack, ClientWorld world, float pTicks) {
         float f3 = Mth.sin(world.getCelestialAngleRadians(pTicks)) < 0.0F ? 180.0F : 0.0F;
 
         renderStack.push();
@@ -409,7 +409,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler {
         }
 
         @Override
-        public void render(MatrixStack renderStack) {
+        public void render(PoseStack renderStack) {
             this.texture.bindTexture();
             super.render(renderStack);
         }

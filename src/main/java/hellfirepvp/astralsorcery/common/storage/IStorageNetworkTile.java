@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
  * Created by HellFirePvP
  * Date: 30.05.2019 / 14:44
  */
-//TileEntity interface!
+//BlockEntity interface!
 public interface IStorageNetworkTile<T extends IStorageNetworkTile<T>> extends ILocatable {
 
     //Should return the actual network core this tileentity is associated with.

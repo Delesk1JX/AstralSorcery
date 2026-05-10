@@ -171,11 +171,11 @@ public class RegistryWorldGeneration {
     }
 
     private static void registerFeature(ResourceLocation key, Feature<?> feature) {
-        AstralSorcery.getProxy().getRegistryPrimer().register(feature.setRegistryName(key));
+        register(feature.setRegistryName(key));
     }
 
     private static void registerPlacement(ResourceLocation key, Placement<?> placement) {
-        AstralSorcery.getProxy().getRegistryPrimer().register(placement.setRegistryName(key));
+        register(placement.setRegistryName(key));
     }
 
     private static <T extends IStructurePieceType> T registerStructurePiece(ResourceLocation key, T type) {
@@ -183,7 +183,7 @@ public class RegistryWorldGeneration {
     }
 
     private static <S extends TemplateStructureFeature> S registerStructure(ResourceLocation key, StructureGenerationConfig cfg, S structure) {
-        AstralSorcery.getProxy().getRegistryPrimer().register(structure.setRegistryName(key));
+        register(structure.setRegistryName(key));
         Structure.NAME_STRUCTURE_BIMAP.put(structure.getStructureName(), structure);
         StructureFeature<?, ?> structureFeature = structure.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG);
         STRUCTURES.put(structureFeature, cfg);

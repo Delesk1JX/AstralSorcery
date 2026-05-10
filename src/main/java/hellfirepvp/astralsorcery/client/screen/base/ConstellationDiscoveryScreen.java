@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.client.screen.base;
 
 import com.google.common.collect.Iterables;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import hellfirepvp.astralsorcery.client.util.MouseUtil;
@@ -128,7 +128,7 @@ public abstract class ConstellationDiscoveryScreen<D extends ConstellationDiscov
     }
 
     @Override
-    public void render(MatrixStack renderStack, int mouseX, int mouseY, float partialTicks) {
+    public void render(PoseStack renderStack, int mouseX, int mouseY, float partialTicks) {
         if (this.isMouseRotatingGui()) {
             if (hasShiftDown() && Minecraft.getInstance().mouseHelper.isMouseGrabbed()) {
                 MouseUtil.ungrab();
@@ -141,7 +141,7 @@ public abstract class ConstellationDiscoveryScreen<D extends ConstellationDiscov
         super.render(renderStack, mouseX, mouseY, partialTicks);
     }
 
-    protected void renderDrawnLines(MatrixStack renderStack, Random rand, float pTicks) {
+    protected void renderDrawnLines(PoseStack renderStack, Random rand, float pTicks) {
         if (!canDraw()) {
             this.clearDrawing();
             return;
@@ -164,7 +164,7 @@ public abstract class ConstellationDiscoveryScreen<D extends ConstellationDiscov
         });
     }
 
-    private void drawLine(BufferBuilder buf, MatrixStack renderStack, float pTicks, Point from, Point to, Supplier<Float> brightnessFn, float lineBreadth) {
+    private void drawLine(BufferBuilder buf, PoseStack renderStack, float pTicks, Point from, Point to, Supplier<Float> brightnessFn, float lineBreadth) {
         float brightness = brightnessFn.get();
         float starBr = this.multiplyStarBrightness(pTicks, brightness);
         if (starBr <= 0.0F) {

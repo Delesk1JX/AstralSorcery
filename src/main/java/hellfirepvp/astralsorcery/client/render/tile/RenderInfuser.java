@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.render.tile;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.common.tile.TileInfuser;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -29,7 +29,7 @@ public class RenderInfuser extends CustomTileEntityRenderer<TileInfuser> {
     }
 
     @Override
-    public void render(TileInfuser tile, float pTicks, MatrixStack renderStack, IRenderTypeBuffer renderTypeBuffer, int combinedLight, int combinedOverlay) {
+    public void render(TileInfuser tile, float pTicks, PoseStack renderStack, IRenderTypeBuffer renderTypeBuffer, int combinedLight, int combinedOverlay) {
         ItemStack stack = tile.getItemInput();
         if (!stack.isEmpty()) {
             renderStack.push();

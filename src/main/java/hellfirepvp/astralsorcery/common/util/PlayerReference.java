@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
@@ -94,7 +94,7 @@ public class PlayerReference {
         tag.putString("playerName", ITextComponent.Serializer.toJson(this.playerName));
     }
 
-    public void write(PacketBuffer buf) {
+    public void write(FriendlyByteBuf buf) {
         ByteBufUtils.writeUUID(buf, this.playerUUID);
         ByteBufUtils.writeTextComponent(buf, this.playerName);
     }
@@ -103,7 +103,7 @@ public class PlayerReference {
         return new PlayerReference(tag.getUniqueId("playerUUID"), ITextComponent.Serializer.getComponentFromJson(tag.getString("playerName")));
     }
 
-    public static PlayerReference read(PacketBuffer buf) {
+    public static PlayerReference read(FriendlyByteBuf buf) {
         return new PlayerReference(ByteBufUtils.readUUID(buf), ByteBufUtils.readTextComponent(buf));
     }
 }

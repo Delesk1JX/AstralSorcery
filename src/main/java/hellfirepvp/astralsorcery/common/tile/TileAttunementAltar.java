@@ -48,7 +48,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.SoundCategory;
@@ -473,7 +473,7 @@ public class TileAttunementAltar extends TileEntityTick {
                     continue;
                 }
 
-                TileEntity tile = MiscUtils.getTileAt(getWorld(), expectedRelayPos, TileEntity.class, true);
+                BlockEntity tile = MiscUtils.getTileAt(getWorld(), expectedRelayPos, BlockEntity.class, true);
                 if (!(tile instanceof TileSpectralRelay) && !(tile instanceof TileAttunementAltar)) {
                     isValid = false;
                     break;

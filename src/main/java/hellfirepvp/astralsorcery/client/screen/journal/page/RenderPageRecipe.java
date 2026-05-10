@@ -8,11 +8,11 @@
 
 package hellfirepvp.astralsorcery.client.screen.journal.page;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import hellfirepvp.astralsorcery.common.data.research.ResearchNode;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.Recipe;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
 import net.minecraft.resources.ResourceLocation;
@@ -41,7 +41,7 @@ public class RenderPageRecipe extends RenderPageRecipeTemplate {
         this.recipeId = recipeId;
     }
 
-    public static RenderPageRecipe fromRecipe(@Nullable ResearchNode node, int nodePage, IRecipe<?> recipe) {
+    public static RenderPageRecipe fromRecipe(@Nullable ResearchNode node, int nodePage, Recipe<?> recipe) {
         NonNullList<Ingredient> ingredients = recipe.getIngredients();
         Map<Integer, Ingredient> inputs = new HashMap<>();
         for (int i = 0; i < 9; i++) {
@@ -67,7 +67,7 @@ public class RenderPageRecipe extends RenderPageRecipeTemplate {
     }
 
     @Override
-    public void render(MatrixStack renderStack, float x, float y, float z, float pTicks, float mouseX, float mouseY) {
+    public void render(PoseStack renderStack, float x, float y, float z, float pTicks, float mouseX, float mouseY) {
         this.clearFrameRectangles();
 
         this.renderRecipeGrid(renderStack, x, y, z, TexturesAS.TEX_GUI_BOOK_GRID_T1);
@@ -92,7 +92,7 @@ public class RenderPageRecipe extends RenderPageRecipeTemplate {
     }
 
     @Override
-    public void postRender(MatrixStack renderStack, float x, float y, float z, float pTicks, float mouseX, float mouseY) {
+    public void postRender(PoseStack renderStack, float x, float y, float z, float pTicks, float mouseX, float mouseY) {
         this.renderHoverTooltips(renderStack, mouseX, mouseY, z, this.recipeId);
     }
 }

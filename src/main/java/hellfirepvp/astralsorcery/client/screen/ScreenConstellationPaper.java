@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.screen;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import hellfirepvp.astralsorcery.client.screen.base.WidthHeightScreen;
@@ -80,7 +80,7 @@ public class ScreenConstellationPaper extends WidthHeightScreen {
     }
 
     @Override
-    public void render(MatrixStack renderStack, int mouseX, int mouseY, float pTicks) {
+    public void render(PoseStack renderStack, int mouseX, int mouseY, float pTicks) {
         RenderSystem.enableDepthTest();
         drawWHRect(renderStack, TexturesAS.TEX_GUI_CONSTELLATION_PAPER);
         drawHeader(renderStack);
@@ -88,7 +88,7 @@ public class ScreenConstellationPaper extends WidthHeightScreen {
         drawPhaseInformation(renderStack);
     }
 
-    private void drawHeader(MatrixStack renderStack) {
+    private void drawHeader(PoseStack renderStack) {
         IFormattableTextComponent name = this.constellation.getConstellationName();
         float length = font.getStringPropertyWidth(name) * 1.8F;
         double offsetLeft = (width >> 1) - (length / 2);
@@ -101,7 +101,7 @@ public class ScreenConstellationPaper extends WidthHeightScreen {
         renderStack.pop();
     }
 
-    private void drawConstellation(MatrixStack renderStack) {
+    private void drawConstellation(PoseStack renderStack) {
         RenderSystem.enableBlend();
         Blending.DEFAULT.apply();
 
@@ -115,7 +115,7 @@ public class ScreenConstellationPaper extends WidthHeightScreen {
         RenderSystem.disableBlend();
     }
 
-    private void drawPhaseInformation(MatrixStack renderStack) {
+    private void drawPhaseInformation(PoseStack renderStack) {
         if (this.phases == null) {
             this.resolvePhases();
         }

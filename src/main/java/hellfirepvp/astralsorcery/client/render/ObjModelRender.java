@@ -8,9 +8,9 @@
 
 package hellfirepvp.astralsorcery.client.render;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
 import hellfirepvp.astralsorcery.client.resource.AssetLoader;
 import hellfirepvp.astralsorcery.client.util.obj.WavefrontObject;
@@ -37,14 +37,14 @@ public class ObjModelRender {
     private static WavefrontObject wraithWingsModel;
     private static VertexBuffer wraithWingsBones, wraithWingsWing;
 
-    public static void renderCrystal(MatrixStack renderStack, IVertexBuilder buf, Runnable drawFn) {
+    public static void renderCrystal(PoseStack renderStack, VertexConsumer buf, Runnable drawFn) {
         if (crystalModel == null) {
             crystalModel = AssetLoader.loadObjModel(AssetLoader.ModelLocation.OBJ, "crystal");
         }
         //if (vboCrystal == null) {
         //    int[] transparent = new int[] { 255, 255, 255, 65 };
         //    BufferDecoratorBuilder.withColor((r, g, b, a) -> transparent)
-        //            .decorate(Tessellator.getInstance().getBuffer(),
+        //            .decorate(buffer,
         //                    (BufferBuilder decorated) -> vboCrystal = crystalModel.batch(decorated));
         //}
 
@@ -62,14 +62,14 @@ public class ObjModelRender {
         //VertexBuffer.unbindBuffer();
     }
 
-    public static void renderCelestialWings(MatrixStack renderStack) {
+    public static void renderCelestialWings(PoseStack renderStack) {
         if (celestialWingsModel == null) {
             celestialWingsModel = AssetLoader.loadObjModel(AssetLoader.ModelLocation.OBJ, "celestial_wings");
         }
         if (vboCelestialWings == null) {
             int[] lightGray = new int[] { 178, 178, 178, 255 };
             BufferDecoratorBuilder.withColor((r, g, b, a) -> lightGray)
-                    .decorate(Tessellator.getInstance().getBuffer(),
+                    .decorate(buffer,
                             (BufferBuilder decorated) -> vboCelestialWings = celestialWingsModel.batch(decorated));
         }
         vboCelestialWings.bindBuffer();
@@ -79,7 +79,7 @@ public class ObjModelRender {
         VertexBuffer.unbindBuffer();
     }
 
-    public static void renderWraithWings(MatrixStack renderStack) {
+    public static void renderWraithWings(PoseStack renderStack) {
         if (wraithWingsModel == null) {
             wraithWingsModel = AssetLoader.loadObjModel(AssetLoader.ModelLocation.OBJ, "wraith_wings");
         }
@@ -87,13 +87,13 @@ public class ObjModelRender {
         if (wraithWingsBones == null) {
             int[] gray = new int[] { 77, 77, 77, 255 };
             BufferDecoratorBuilder.withColor((r, g, b, a) -> gray)
-                    .decorate(Tessellator.getInstance().getBuffer(),
+                    .decorate(buffer,
                             (BufferBuilder decorated) -> wraithWingsBones = wraithWingsModel.batchOnly(decorated, "Bones"));
         }
         if (wraithWingsWing == null) {
             int[] black = new int[] { 0, 0, 0, 255 };
             BufferDecoratorBuilder.withColor((r, g, b, a) -> black)
-                    .decorate(Tessellator.getInstance().getBuffer(),
+                    .decorate(buffer,
                             (BufferBuilder decorated) -> wraithWingsWing = wraithWingsModel.batchOnly(decorated, "Wing"));
         }
 

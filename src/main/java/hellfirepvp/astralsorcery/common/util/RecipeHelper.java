@@ -18,7 +18,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.AbstractCookingRecipe;
-import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.Recipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.server.MinecraftServer;
@@ -69,7 +69,7 @@ public class RecipeHelper {
     public static Optional<Tuple<ItemStack, Float>> findSmeltingResult(World world, ItemStack input) {
         RecipeManager mgr = world.getRecipeManager();
         IInventory inv = new Inventory(input);
-        Optional<IRecipe<IInventory>> optRecipe = (Optional<IRecipe<IInventory>>) ObjectUtils.firstNonNull(
+        Optional<Recipe<IInventory>> optRecipe = (Optional<Recipe<IInventory>>) ObjectUtils.firstNonNull(
                 mgr.getRecipe(IRecipeType.SMELTING, inv, world),
                 mgr.getRecipe(IRecipeType.CAMPFIRE_COOKING, inv, world),
                 mgr.getRecipe(IRecipeType.SMOKING, inv, world),

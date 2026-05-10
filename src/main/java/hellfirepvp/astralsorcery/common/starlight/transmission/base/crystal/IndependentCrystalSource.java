@@ -26,7 +26,7 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import hellfirepvp.astralsorcery.common.util.world.SkyCollectionHelper;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.vector.Vector3d;
@@ -108,7 +108,7 @@ public class IndependentCrystalSource implements IIndependentStarlightSource {
     }
 
     @Override
-    public <T extends TileEntity> boolean updateFromTileEntity(T tile) {
+    public <T extends BlockEntity> boolean updateFromTileEntity(T tile) {
         if (!(tile instanceof TileCollectorCrystal)) {
             return true;
         }

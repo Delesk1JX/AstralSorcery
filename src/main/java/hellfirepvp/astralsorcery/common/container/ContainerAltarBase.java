@@ -16,7 +16,7 @@ import net.minecraft.world.entity.player.IInventory;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.BlockPos;
 
 import javax.annotation.Nullable;
@@ -97,7 +97,7 @@ public abstract class ContainerAltarBase extends ContainerTileEntity<TileAltar> 
     @Override
     public boolean canInteractWith(Player player) {
         BlockPos pos = this.getTileEntity().getPos();
-        if (MiscUtils.getTileAt(this.getTileEntity().getWorld(), pos, TileEntity.class, false) != this.getTileEntity()) {
+        if (MiscUtils.getTileAt(this.getTileEntity().getWorld(), pos, BlockEntity.class, false) != this.getTileEntity()) {
             return false;
         } else {
             return player.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64.0D;

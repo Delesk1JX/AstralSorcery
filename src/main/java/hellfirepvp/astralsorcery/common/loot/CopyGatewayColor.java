@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.tile.TileCelestialGateway;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.*;
 import net.minecraft.loot.conditions.ILootCondition;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 
 import java.util.Set;
 
@@ -46,7 +46,7 @@ public class CopyGatewayColor extends LootFunction {
 
     @Override
     protected ItemStack doApply(ItemStack stack, LootContext context) {
-        TileEntity tile = context.get(LootParameters.BLOCK_ENTITY);
+        BlockEntity tile = context.get(LootParameters.BLOCK_ENTITY);
         if (tile instanceof TileCelestialGateway) {
             ((TileCelestialGateway) tile).getColor().ifPresent(color -> {
                 BlockCelestialGateway.setColor(stack, color);

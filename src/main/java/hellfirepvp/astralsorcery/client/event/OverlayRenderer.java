@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.event;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.common.item.base.client.ItemOverlayRender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
@@ -47,7 +47,7 @@ public class OverlayRenderer {
             return;
         }
 
-        MatrixStack renderStack = event.getMatrixStack();
+        PoseStack renderStack = event.getMatrixStack();
         for (EquipmentSlotType type : EquipmentSlotType.values()) {
             if (doHudRender(renderStack, player.getItemStackFromSlot(type), pTicks)) {
                 break;
@@ -55,7 +55,7 @@ public class OverlayRenderer {
         }
     }
 
-    private boolean doHudRender(MatrixStack renderStack, ItemStack heldItem, float pTicks) {
+    private boolean doHudRender(PoseStack renderStack, ItemStack heldItem, float pTicks) {
         if (heldItem.isEmpty()) {
             return false;
         }

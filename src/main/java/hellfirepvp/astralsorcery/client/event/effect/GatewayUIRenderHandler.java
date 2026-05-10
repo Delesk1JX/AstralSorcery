@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.event.effect;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
@@ -99,7 +99,7 @@ public class GatewayUIRenderHandler implements ITickHandler {
             return;
         }
         float pTicks = event.getPartialTicks();
-        MatrixStack renderStack = event.getMatrixStack();
+        PoseStack renderStack = event.getMatrixStack();
         Vector3 renderOffset = this.currentUI.getRenderCenter();
 
         Player player = Minecraft.getInstance().player;
@@ -119,7 +119,7 @@ public class GatewayUIRenderHandler implements ITickHandler {
         this.renderGatewayAllowedPlayers(renderStack, renderOffset, dst, pTicks);
     }
 
-    private void renderGatewayAllowedPlayers(MatrixStack renderStack, Vector3 renderOffset, double distance, float pTicks) {
+    private void renderGatewayAllowedPlayers(PoseStack renderStack, Vector3 renderOffset, double distance, float pTicks) {
         GatewayCache.GatewayNode node = this.currentUI.getThisGatewayNode();
         if (node == null || !node.isLocked() || node.getOwner() == null || node.getAllowedUsers().isEmpty()) {
             return;
@@ -154,7 +154,7 @@ public class GatewayUIRenderHandler implements ITickHandler {
         });
     }
 
-    private void renderGatewayFocusedEntry(MatrixStack renderStack, Vector3 renderOffset, float pTicks) {
+    private void renderGatewayFocusedEntry(PoseStack renderStack, Vector3 renderOffset, float pTicks) {
         Player player = Minecraft.getInstance().player;
         GatewayUI.GatewayEntry entry = findMatchingEntry(Mth.wrapDegrees(player.rotationYaw), Mth.wrapDegrees(player.rotationPitch));
         if (entry != null) {
@@ -176,7 +176,7 @@ public class GatewayUIRenderHandler implements ITickHandler {
         }
     }
 
-    private void renderGatewayShieldOverlay(MatrixStack renderStack, Vector3 renderOffset, double distance, float pTicks) {
+    private void renderGatewayShieldOverlay(PoseStack renderStack, Vector3 renderOffset, double distance, float pTicks) {
         float alpha = Mth.clamp(1F - ((float) (distance / 2D)), 0F, 1F);
         Color c = ColorsAS.CONSTELLATION_SINGLE_STAR;
         int red = c.getRed();

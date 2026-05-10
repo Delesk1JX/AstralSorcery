@@ -8,8 +8,8 @@
 
 package hellfirepvp.astralsorcery.client.render.tile;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
 import hellfirepvp.astralsorcery.client.model.builtin.ModelRefractionTable;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
@@ -38,7 +38,7 @@ public class RenderRefractionTable extends CustomTileEntityRenderer<TileRefracti
     }
 
     @Override
-    public void render(TileRefractionTable tile, float pTicks, MatrixStack renderStack, IRenderTypeBuffer renderTypeBuffer, int combinedLight, int combinedOverlay) {
+    public void render(TileRefractionTable tile, float pTicks, PoseStack renderStack, IRenderTypeBuffer renderTypeBuffer, int combinedLight, int combinedOverlay) {
         if (!tile.hasParchment() && !tile.getInputStack().isEmpty()) {
             ItemStack input = tile.getInputStack();
 
@@ -56,7 +56,7 @@ public class RenderRefractionTable extends CustomTileEntityRenderer<TileRefracti
         renderStack.rotate(Vector3f.XP.rotationDegrees(180F));
 
         RenderType type = MODEL_REFRACTION_TABLE.getGeneralType();
-        IVertexBuilder vb = renderTypeBuffer.getBuffer(type);
+        VertexConsumer vb = renderTypeBuffer.getBuffer(type);
         MODEL_REFRACTION_TABLE.renderFrame(renderStack, vb,
                 combinedLight, combinedOverlay, 1F, 1F, 1F, 1F, tile.hasParchment());
         RenderingUtils.refreshDrawing(vb, type);

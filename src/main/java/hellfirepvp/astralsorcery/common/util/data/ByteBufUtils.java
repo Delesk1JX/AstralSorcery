@@ -21,7 +21,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.CompressedStreamTools;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.state.Property;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.resources.ResourceLocation;
@@ -51,34 +51,34 @@ import java.util.function.Supplier;
 public class ByteBufUtils {
 
     @Nullable
-    public static <T> T readOptional(PacketBuffer buf, Function<PacketBuffer, T> readFct) {
+    public static <T> T readOptional(FriendlyByteBuf buf, Function<FriendlyByteBuf, T> readFct) {
         if (buf.readBoolean()) {
             return readFct.apply(buf);
         }
         return null;
     }
 
-    public static <T> void writeOptional(PacketBuffer buf, @Nullable T object, BiConsumer<PacketBuffer, T> applyFct) {
+    public static <T> void writeOptional(FriendlyByteBuf buf, @Nullable T object, BiConsumer<FriendlyByteBuf, T> applyFct) {
         writeOptional(buf, object, Function.identity(), applyFct);
     }
 
-    public static <T, R> void writeOptional(PacketBuffer buf, @Nullable T object, Function<T, R> converter, BiConsumer<PacketBuffer, R> applyFct) {
+    public static <T, R> void writeOptional(FriendlyByteBuf buf, @Nullable T object, Function<T, R> converter, BiConsumer<FriendlyByteBuf, R> applyFct) {
         buf.writeBoolean(object != null);
         if (object != null) {
             applyFct.accept(buf, converter.apply(object));
         }
     }
 
-    public static void writeUUID(PacketBuffer buf, UUID uuid) {
+    public static void writeUUID(FriendlyByteBuf buf, UUID uuid) {
         buf.writeLong(uuid.getMostSignificantBits());
         buf.writeLong(uuid.getLeastSignificantBits());
     }
 
-    public static UUID readUUID(PacketBuffer buf) {
+    public static UUID readUUID(FriendlyByteBuf buf) {
         return new UUID(buf.readLong(), buf.readLong());
     }
 
-    public static <T> void writeCollection(PacketBuffer buf, @Nullable Collection<T> list, BiConsumer<PacketBuffer, T> iterationFct) {
+    public static <T> void writeCollection(FriendlyByteBuf buf, @Nullable Collection<T> list, BiConsumer<FriendlyByteBuf, T> iterationFct) {
         if (list != null) {
             buf.writeInt(list.size());
             list.forEach(e -> iterationFct.accept(buf, e));
@@ -88,17 +88,17 @@ public class ByteBufUtils {
     }
 
     @Nullable
-    public static <T> List<T> readList(PacketBuffer buf, Function<PacketBuffer, T> readFct) {
+    public static <T> List<T> readList(FriendlyByteBuf buf, Function<FriendlyByteBuf, T> readFct) {
         return readCollection(buf, ArrayList::new, List::add, readFct);
     }
 
     @Nullable
-    public static <T> Set<T> readSet(PacketBuffer buf, Function<PacketBuffer, T> readFct) {
+    public static <T> Set<T> readSet(FriendlyByteBuf buf, Function<FriendlyByteBuf, T> readFct) {
         return readCollection(buf, HashSet::new, Set::add, readFct);
     }
 
     @Nullable
-    public static <T, C extends Collection<T>> C readCollection(PacketBuffer buf, Supplier<C> newCollection, BiConsumer<C, T> addFn, Function<PacketBuffer, T> readFct) {
+    public static <T, C extends Collection<T>> C readCollection(FriendlyByteBuf buf, Supplier<C> newCollection, BiConsumer<C, T> addFn, Function<FriendlyByteBuf, T> readFct) {
         int size = buf.readInt();
         if (size == -1) {
             return null;
@@ -110,10 +110,10 @@ public class ByteBufUtils {
         return collection;
     }
 
-    public static <K, V> void writeMap(PacketBuffer buf,
+    public static <K, V> void writeMap(FriendlyByteBuf buf,
                                        @Nullable Map<K, V> map,
-                                       BiConsumer<PacketBuffer, K> keySerializer,
-                                       BiConsumer<PacketBuffer, V> valueSerializer) {
+                                       BiConsumer<FriendlyByteBuf, K> keySerializer,
+                                       BiConsumer<FriendlyByteBuf, V> valueSerializer) {
         if (map != null) {
             buf.writeInt(map.size());
             for (Map.Entry<K, V> entry : map.entrySet()) {
@@ -126,9 +126,9 @@ public class ByteBufUtils {
     }
 
     @Nullable
-    public static <K, V> Map<K, V> readMap(PacketBuffer buf,
-                                           Function<PacketBuffer, K> readKey,
-                                           Function<PacketBuffer, V> readValue) {
+    public static <K, V> Map<K, V> readMap(FriendlyByteBuf buf,
+                                           Function<FriendlyByteBuf, K> readKey,
+                                           Function<FriendlyByteBuf, V> readValue) {
         int size = buf.readInt();
         if (size == -1) {
             return null;
@@ -140,28 +140,28 @@ public class ByteBufUtils {
         return map;
     }
 
-    public static void writeTextComponent(PacketBuffer buf, ITextComponent cmp) {
+    public static void writeTextComponent(FriendlyByteBuf buf, ITextComponent cmp) {
         writeString(buf, IFormattableTextComponent.Serializer.toJson(cmp));
     }
 
-    public static IFormattableTextComponent readTextComponent(PacketBuffer buf) {
+    public static IFormattableTextComponent readTextComponent(FriendlyByteBuf buf) {
         return IFormattableTextComponent.Serializer.getComponentFromJson(readString(buf));
     }
 
-    public static void writeString(PacketBuffer buf, String toWrite) {
+    public static void writeString(FriendlyByteBuf buf, String toWrite) {
         byte[] str = toWrite.getBytes(StandardCharsets.UTF_8);
         buf.writeInt(str.length);
         buf.writeBytes(str);
     }
 
-    public static String readString(PacketBuffer buf) {
+    public static String readString(FriendlyByteBuf buf) {
         int length = buf.readInt();
         byte[] strBytes = new byte[length];
         buf.readBytes(strBytes, 0, length);
         return new String(strBytes, StandardCharsets.UTF_8);
     }
 
-    public static <T> void writeRegistryEntry(PacketBuffer buf, T entry) {
+    public static <T> void writeRegistryEntry(FriendlyByteBuf buf, T entry) {
         ResourceLocation registryName = BuiltInRegistries.getRegistry(entry.getClass()).getKey();
         if (registryName == null) {
             registryName = BuiltInRegistries.REGISTRY_REGISTRY.getKey(BuiltInRegistries.getRegistry(entry.getClass()));
@@ -170,50 +170,50 @@ public class ByteBufUtils {
         writeResourceLocation(buf, registryName);
     }
 
-    public static <T> T readRegistryEntry(PacketBuffer buf) {
+    public static <T> T readRegistryEntry(FriendlyByteBuf buf) {
         ResourceLocation entryName = readResourceLocation(buf);
         ResourceLocation registryName = readResourceLocation(buf);
         return (T) BuiltInRegistries.getRegistry(registryName).get(entryName);
     }
 
-    public static void writeVanillaRegistryEntry(PacketBuffer buf, RegistryKey<?> key) {
+    public static void writeVanillaRegistryEntry(FriendlyByteBuf buf, RegistryKey<?> key) {
         writeResourceLocation(buf, key.getRegistryName());
         writeResourceLocation(buf, key.getLocation());
     }
 
-    public static <T> RegistryKey<T> readVanillaRegistryEntry(PacketBuffer buf) {
+    public static <T> RegistryKey<T> readVanillaRegistryEntry(FriendlyByteBuf buf) {
         ResourceLocation registryName = readResourceLocation(buf);
         return RegistryKey.getOrCreateKey(RegistryKey.getOrCreateRootKey(registryName), readResourceLocation(buf));
     }
 
-    public static void writeResourceLocation(PacketBuffer buf, ResourceLocation key) {
+    public static void writeResourceLocation(FriendlyByteBuf buf, ResourceLocation key) {
         writeString(buf, key.toString());
     }
 
-    public static ResourceLocation readResourceLocation(PacketBuffer buf) {
+    public static ResourceLocation readResourceLocation(FriendlyByteBuf buf) {
         return new ResourceLocation(readString(buf));
     }
 
-    public static <T extends Enum<T>> void writeEnumValue(PacketBuffer buf, T value) {
+    public static <T extends Enum<T>> void writeEnumValue(FriendlyByteBuf buf, T value) {
         buf.writeInt(value.ordinal());
     }
 
-    public static <T extends Enum<T>> T readEnumValue(PacketBuffer buf, Class<T> enumClazz) {
+    public static <T extends Enum<T>> T readEnumValue(FriendlyByteBuf buf, Class<T> enumClazz) {
         if (!enumClazz.isEnum()) {
             throw new IllegalArgumentException("Passed class is not an enum!");
         }
         return enumClazz.getEnumConstants()[buf.readInt()];
     }
 
-    public static void writeJsonObject(PacketBuffer buf, JsonObject object) {
+    public static void writeJsonObject(FriendlyByteBuf buf, JsonObject object) {
         writeString(buf, object.toString());
     }
 
-    public static JsonObject readJsonObject(PacketBuffer buf) {
+    public static JsonObject readJsonObject(FriendlyByteBuf buf) {
         return new JsonParser().parse(readString(buf)).getAsJsonObject();
     }
 
-    public static void writeModifierSource(PacketBuffer buf, ModifierSource source) {
+    public static void writeModifierSource(FriendlyByteBuf buf, ModifierSource source) {
         ResourceLocation providerName = source.getProviderName();
         ByteBufUtils.writeResourceLocation(buf, providerName);
 
@@ -224,7 +224,7 @@ public class ByteBufUtils {
         provider.serialize(source, buf);
     }
 
-    public static ModifierSource readModifierSource(PacketBuffer buf) {
+    public static ModifierSource readModifierSource(FriendlyByteBuf buf) {
         ResourceLocation providerName = ByteBufUtils.readResourceLocation(buf);
         ModifierSourceProvider<?> provider = ModifierManager.getProvider(providerName);
         if (provider == null) {
@@ -233,33 +233,33 @@ public class ByteBufUtils {
         return provider.deserialize(buf);
     }
 
-    public static void writePos(PacketBuffer buf, BlockPos pos) {
+    public static void writePos(FriendlyByteBuf buf, BlockPos pos) {
         buf.writeInt(pos.getX());
         buf.writeInt(pos.getY());
         buf.writeInt(pos.getZ());
     }
 
-    public static BlockPos readPos(PacketBuffer buf) {
+    public static BlockPos readPos(FriendlyByteBuf buf) {
         int x = buf.readInt();
         int y = buf.readInt();
         int z = buf.readInt();
         return new BlockPos(x, y, z);
     }
 
-    public static void writeVector(PacketBuffer buf, Vector3 vec) {
+    public static void writeVector(FriendlyByteBuf buf, Vector3 vec) {
         buf.writeDouble(vec.getX());
         buf.writeDouble(vec.getY());
         buf.writeDouble(vec.getZ());
     }
 
-    public static Vector3 readVector(PacketBuffer buf) {
+    public static Vector3 readVector(FriendlyByteBuf buf) {
         double x = buf.readDouble();
         double y = buf.readDouble();
         double z = buf.readDouble();
         return new Vector3(x, y, z);
     }
 
-    public static void writeItemStack(PacketBuffer byteBuf, @Nonnull ItemStack stack) {
+    public static void writeItemStack(FriendlyByteBuf byteBuf, @Nonnull ItemStack stack) {
         boolean defined = !stack.isEmpty();
         byteBuf.writeBoolean(defined);
         if (defined) {
@@ -270,7 +270,7 @@ public class ByteBufUtils {
     }
 
     @Nonnull
-    public static ItemStack readItemStack(PacketBuffer byteBuf) {
+    public static ItemStack readItemStack(FriendlyByteBuf byteBuf) {
         boolean defined = byteBuf.readBoolean();
         if (defined) {
             return ItemStack.read(readNBTTag(byteBuf));
@@ -279,7 +279,7 @@ public class ByteBufUtils {
         }
     }
 
-    public static void writeBlockState(PacketBuffer byteBuf, @Nonnull BlockState state) {
+    public static void writeBlockState(FriendlyByteBuf byteBuf, @Nonnull BlockState state) {
         ByteBufUtils.writeRegistryEntry(byteBuf, state.getBlock());
 
         Collection<Property<?>> properties = state.getProperties();
@@ -290,7 +290,7 @@ public class ByteBufUtils {
         }
     }
 
-    public static <T extends Comparable<T>> BlockState readBlockState(PacketBuffer byteBuf) {
+    public static <T extends Comparable<T>> BlockState readBlockState(FriendlyByteBuf byteBuf) {
         Block block = ByteBufUtils.readRegistryEntry(byteBuf);
         BlockState state = block.getDefaultState();
 
@@ -309,23 +309,23 @@ public class ByteBufUtils {
         return state;
     }
 
-    public static void writeFluidStack(PacketBuffer byteBuf, @Nonnull FluidStack stack) {
+    public static void writeFluidStack(FriendlyByteBuf byteBuf, @Nonnull FluidStack stack) {
         stack.writeToPacket(byteBuf);
     }
 
     @Nonnull
-    public static FluidStack readFluidStack(PacketBuffer byteBuf) {
+    public static FluidStack readFluidStack(FriendlyByteBuf byteBuf) {
         return FluidStack.readFromPacket(byteBuf);
     }
 
-    public static void writeNBTTag(PacketBuffer byteBuf, @Nonnull CompoundTag tag) {
+    public static void writeNBTTag(FriendlyByteBuf byteBuf, @Nonnull CompoundTag tag) {
         try (DataOutputStream dos = new DataOutputStream(new ByteBufOutputStream(byteBuf))) {
             CompressedStreamTools.write(tag, dos);
         } catch (Exception exc) {}
     }
 
     @Nonnull
-    public static CompoundTag readNBTTag(PacketBuffer byteBuf) {
+    public static CompoundTag readNBTTag(FriendlyByteBuf byteBuf) {
         try (DataInputStream dis = new DataInputStream(new ByteBufInputStream(byteBuf))) {
             return CompressedStreamTools.read(dis);
         } catch (Exception exc) {}

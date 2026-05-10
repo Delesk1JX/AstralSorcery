@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.BlockPos;
@@ -59,7 +59,7 @@ public class AreaOfInfluencePreview implements ITickHandler {
     }
 
     public void show(TileAreaOfInfluence aoeTile) {
-        if (!(aoeTile instanceof TileEntity)) {
+        if (!(aoeTile instanceof BlockEntity)) {
             return;
         }
         this.tileDimension = aoeTile.getDimension();

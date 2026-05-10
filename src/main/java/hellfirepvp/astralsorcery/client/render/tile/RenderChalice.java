@@ -8,8 +8,8 @@
 
 package hellfirepvp.astralsorcery.client.render.tile;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
@@ -39,7 +39,7 @@ public class RenderChalice extends CustomTileEntityRenderer<TileChalice> {
     }
 
     @Override
-    public void render(TileChalice tile, float pTicks, MatrixStack renderStack, IRenderTypeBuffer renderTypeBuffer, int combinedLight, int combinedOverlay) {
+    public void render(TileChalice tile, float pTicks, PoseStack renderStack, IRenderTypeBuffer renderTypeBuffer, int combinedLight, int combinedOverlay) {
         FluidStack stack = tile.getTank().getFluid();
         if (stack.isEmpty()) {
             return;
@@ -68,7 +68,7 @@ public class RenderChalice extends CustomTileEntityRenderer<TileChalice> {
         renderStack.rotate(Vector3f.ZP.rotationDegrees((float) rotation.getZ()));
         renderStack.scale(percSize, percSize, percSize);
 
-        IVertexBuilder buf = renderTypeBuffer.getBuffer(RenderTypesAS.TER_CHALICE_LIQUID);
+        VertexConsumer buf = renderTypeBuffer.getBuffer(RenderTypesAS.TER_CHALICE_LIQUID);
         RenderingDrawUtils.renderTexturedCubeCentralColorNormal(renderStack, buf,
                 uOffset, vOffset, uPart, vPart,
                 color.getRed(), color.getGreen(), color.getBlue(), 255,

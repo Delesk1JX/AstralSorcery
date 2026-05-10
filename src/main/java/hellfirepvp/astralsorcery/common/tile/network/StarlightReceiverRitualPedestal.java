@@ -35,7 +35,7 @@ import hellfirepvp.astralsorcery.common.util.world.SkyCollectionHelper;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.vector.Vector3d;
 import net.minecraft.world.ISeedReader;
@@ -198,7 +198,7 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
     }
 
     @Override
-    public <T extends TileEntity> boolean updateFromTileEntity(T tile) {
+    public <T extends BlockEntity> boolean updateFromTileEntity(T tile) {
         if (!(tile instanceof TileRitualPedestal)) {
             return super.updateFromTileEntity(tile); //Whatever.
         }

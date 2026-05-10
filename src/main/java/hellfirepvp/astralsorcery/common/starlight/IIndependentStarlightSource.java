@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.starlight;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 import hellfirepvp.astralsorcery.common.starlight.transmission.registry.SourceClassRegistry;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.server.ServerWorld;
 
@@ -43,7 +43,7 @@ public interface IIndependentStarlightSource {
 
     //Update the state of the independent tile. for example if "doesSeeSky" has changed or something.
     //Return true to indicate a successful update.
-    default public <T extends TileEntity> boolean updateFromTileEntity(T tile) {
+    default public <T extends BlockEntity> boolean updateFromTileEntity(T tile) {
         return true;
     }
 

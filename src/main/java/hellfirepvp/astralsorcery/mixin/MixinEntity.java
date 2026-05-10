@@ -15,7 +15,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.shapes.ISelectionContext;
 import net.minecraft.util.shapes.VoxelShape;
 import net.minecraft.util.vector.Vector3d;
-import net.minecraft.world.World;
+import net.minecraft.world.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -32,7 +32,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class MixinEntity {
 
     @Inject(method = "collideBoundingBoxHeuristically", at = @At(value = "RETURN", ordinal = 1), cancellable = true)
-    private static void addCustomCollision(Entity entity, Vector3d vec, AxisAlignedBB collisionBox, World world, ISelectionContext context, ReuseableStream<VoxelShape> potentialHits, CallbackInfoReturnable<Vector3d> cir) {
+    private static void addCustomCollision(Entity entity, Vector3d vec, AxisAlignedBB collisionBox, Level world, ISelectionContext context, ReuseableStream<VoxelShape> potentialHits, CallbackInfoReturnable<Vector3d> cir) {
         if (entity == null) {
             return;
         }

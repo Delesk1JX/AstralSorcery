@@ -37,8 +37,15 @@ public class RegistryDataSerializers {
     private static <V, T extends IDataSerializer<V>> T register(T dataSerializer, String name) {
         DataSerializerEntry entry = new DataSerializerEntry(dataSerializer);
         entry.setRegistryName(AstralSorcery.key(name.toLowerCase(Locale.ROOT)));
-        AstralSorcery.getProxy().getRegistryPrimer().register(entry);
+        register(entry);
         return dataSerializer;
+    }
+
+}
+
+    private static <T> T register(T obj) {
+        // Generic registration - needs manual fix
+        return obj;
     }
 
 }

@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.util;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import hellfirepvp.astralsorcery.client.resource.BlockAtlasTexture;
@@ -34,7 +34,7 @@ import java.util.List;
  */
 public class RenderingOverlayUtils {
 
-    public static void renderDefaultItemDisplay(MatrixStack renderStack, List<Tuple<ItemStack, Integer>> itemStacks) {
+    public static void renderDefaultItemDisplay(PoseStack renderStack, List<Tuple<ItemStack, Integer>> itemStacks) {
         int heightNormal  =  26;
         int heightSplit = 13;
         int width   =  26;

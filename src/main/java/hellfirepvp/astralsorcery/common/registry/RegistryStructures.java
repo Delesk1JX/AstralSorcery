@@ -44,9 +44,9 @@ public class RegistryStructures {
     }
 
     private static <T extends MatchableStructure> T register(T struct) {
-        AstralSorcery.getProxy().getRegistryPrimer().register(struct);
+        register(struct);
         ObserverProviderStructure structureProvider = new ObserverProviderStructure(struct.getRegistryName());
-        AstralSorcery.getProxy().getRegistryPrimer().register(structureProvider);
+        register(structureProvider);
         return struct;
     }
 

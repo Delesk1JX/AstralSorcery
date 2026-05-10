@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.event;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.lib.SpritesAS;
 import hellfirepvp.astralsorcery.client.resource.BlockAtlasTexture;
@@ -72,7 +72,7 @@ public class AlignmentChargeRenderer implements ITickHandler {
             return;
         }
 
-        MatrixStack renderStack = event.getMatrixStack();
+        PoseStack renderStack = event.getMatrixStack();
         MainWindow window = event.getWindow();
         int screenWidth = window.getScaledWidth();
         int screenHeight = window.getScaledHeight();

@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.crafting.recipe.altar.effect;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.common.block.tile.altar.AltarType;
 import hellfirepvp.astralsorcery.common.crafting.recipe.altar.ActiveSimpleAltarRecipe;
@@ -107,7 +107,7 @@ public abstract class AltarRecipeEffect extends DeferredHolder<AltarRecipeEffect
     public abstract void onTick(TileAltar altar, ActiveSimpleAltarRecipe.CraftingState state);
 
     @OnlyIn(Dist.CLIENT)
-    public abstract void onTESR(TileAltar altar, ActiveSimpleAltarRecipe.CraftingState state, MatrixStack renderStack, IRenderTypeBuffer buffer, float pTicks, int combinedLight);
+    public abstract void onTESR(TileAltar altar, ActiveSimpleAltarRecipe.CraftingState state, PoseStack renderStack, IRenderTypeBuffer buffer, float pTicks, int combinedLight);
 
     @OnlyIn(Dist.CLIENT)
     public abstract void onCraftingFinish(TileAltar altar, boolean isChaining);

@@ -22,7 +22,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathType;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.BlockRayTraceResult;
@@ -145,7 +145,7 @@ public class BlockSpectralRelay extends BlockStarlightNetwork implements CustomI
 
     @Nullable
     @Override
-    public TileEntity createNewTileEntity(IBlockReader worldIn) {
+    public BlockEntity createNewTileEntity(IBlockReader worldIn) {
         return new TileSpectralRelay();
     }
 }

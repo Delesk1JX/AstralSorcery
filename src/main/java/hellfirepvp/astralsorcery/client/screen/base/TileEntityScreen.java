@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.client.screen.base;
 
 import hellfirepvp.astralsorcery.common.util.tile.NamedInventoryTile;
 import net.minecraft.client.Minecraft;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.world.World;
 
 /**
@@ -20,7 +20,7 @@ import net.minecraft.world.World;
  * Created by HellFirePvP
  * Date: 02.08.2019 / 20:35
  */
-public class TileEntityScreen<T extends TileEntity & NamedInventoryTile> extends WidthHeightScreen {
+public class TileEntityScreen<T extends BlockEntity & NamedInventoryTile> extends WidthHeightScreen {
 
     private final T tile;
 

@@ -22,8 +22,7 @@ import hellfirepvp.astralsorcery.common.perk.reader.PerkAttributeReader;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeTypeHelper;
 import hellfirepvp.astralsorcery.common.structure.types.StructureType;
-import net.neoforged.neoforge.event.RegistryEvent;
-import net.neoforged.neoforge.registries.Registry;
+import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.RegistryBuilder;
 
 import static hellfirepvp.astralsorcery.common.lib.RegistriesAS.*;
@@ -40,94 +39,9 @@ public class RegistryRegistries {
 
     private RegistryRegistries() {}
 
-    public static void buildRegistries(RegistryEvent.NewRegistry event) {
-        REGISTRY_CONSTELLATIONS = new RegistryBuilder<IConstellation>()
-                .setName(REGISTRY_NAME_CONSTELLATIONS)
-                .setType(IConstellation.class)
-                .add((Registry.AddCallback<IConstellation>) (owner, stage, id, obj, oldObj) ->
-                        ConstellationRegistry.addConstellation(obj))
-                .disableSaving()
-                .disableOverrides()
-                .create();
-
-        REGISTRY_CONSTELLATION_EFFECT = new RegistryBuilder<ConstellationEffectProvider>()
-                .setName(REGISTRY_NAME_CONSTELLATION_EFFECTS)
-                .setType(ConstellationEffectProvider.class)
-                .disableSaving()
-                .disableOverrides()
-                .create();
-
-        REGISTRY_MANTLE_EFFECT = new RegistryBuilder<MantleEffect>()
-                .setName(REGISTRY_NAME_MANTLE_EFFECTS)
-                .setType(MantleEffect.class)
-                .disableSaving()
-                .disableOverrides()
-                .create();
-
-        REGISTRY_ENGRAVING_EFFECT = new RegistryBuilder<EngravingEffect>()
-                .setName(REGISTRY_NAME_ENGRAVING_EFFECT)
-                .setType(EngravingEffect.class)
-                .disableSaving()
-                .disableOverrides()
-                .create();
-
-        REGISTRY_PERK_ATTRIBUTE_CONVERTERS = new RegistryBuilder<PerkConverter>()
-                .setName(REGISTRY_NAME_PERK_ATTRIBUTE_CONVERTERS)
-                .setType(PerkConverter.class)
-                .disableSaving()
-                .disableOverrides()
-                .allowModification()
-                .create();
-
-        REGISTRY_PERK_CUSTOM_MODIFIERS = new RegistryBuilder<PerkAttributeModifier>()
-                .setName(REGISTRY_NAME_PERK_CUSTOM_MODIFIERS)
-                .setType(PerkAttributeModifier.class)
-                .disableSaving()
-                .disableOverrides()
-                .allowModification()
-                .create();
-
-        REGISTRY_STRUCTURE_TYPES = new RegistryBuilder<StructureType>()
-                .setName(REGISTRY_NAME_STRUCTURE_TYPES)
-                .setType(StructureType.class)
-                .disableSaving()
-                .disableOverrides()
-                .create();
-
-        REGISTRY_PERK_ATTRIBUTE_TYPES = new RegistryBuilder<PerkAttributeType>()
-                .setName(REGISTRY_NAME_PERK_ATTRIBUTE_TYPES)
-                .setType(PerkAttributeType.class)
-                .disableSaving()
-                .disableOverrides()
-                .create();
-
-        REGISTRY_PERK_ATTRIBUTE_READERS = new RegistryBuilder<PerkAttributeReader>()
-                .setName(REGISTRY_NAME_PERK_ATTRIBUTE_READERS)
-                .setType(PerkAttributeReader.class)
-                .disableSaving()
-                .disableOverrides()
-                .create();
-
-        REGISTRY_CRYSTAL_PROPERTIES = new RegistryBuilder<CrystalProperty>()
-                .setName(REGISTRY_NAME_CRYSTAL_PROPERTIES)
-                .setType(CrystalProperty.class)
-                .disableSaving()
-                .disableOverrides()
-                .create();
-
-        REGISTRY_CRYSTAL_USAGES = new RegistryBuilder<PropertyUsage>()
-                .setName(REGISTRY_NAME_CRYSTAL_USAGES)
-                .setType(PropertyUsage.class)
-                .disableSaving()
-                .disableOverrides()
-                .create();
-
-        REGISTRY_ALTAR_EFFECTS = new RegistryBuilder<AltarRecipeEffect>()
-                .setName(REGISTRY_NAME_ALTAR_EFFECTS)
-                .setType(AltarRecipeEffect.class)
-                .disableSaving()
-                .disableOverrides()
-                .create();
+    public static void buildRegistries() {
+        // Custom registries are now handled through ASRegistries DeferredRegister system
+        // The registry building happens automatically when DeferredRegister is registered to the mod event bus
     }
 
 }

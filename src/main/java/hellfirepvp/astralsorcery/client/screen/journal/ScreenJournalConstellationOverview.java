@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.screen.journal;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
@@ -74,7 +74,7 @@ public class ScreenJournalConstellationOverview extends ScreenJournal implements
     }
 
     @Override
-    public void render(MatrixStack renderStack, int mouseX, int mouseY, float pTicks) {
+    public void render(PoseStack renderStack, int mouseX, int mouseY, float pTicks) {
         drawConstellationBackground(renderStack);
         drawDefault(renderStack, TexturesAS.TEX_GUI_BOOK_FRAME_FULL, mouseX, mouseY);
 
@@ -84,7 +84,7 @@ public class ScreenJournalConstellationOverview extends ScreenJournal implements
         this.setBlitOffset(0);
     }
 
-    private void drawConstellationBackground(MatrixStack renderStack) {
+    private void drawConstellationBackground(PoseStack renderStack) {
         TexturesAS.TEX_BLACK.bindTexture();
         RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
             Matrix4f offset = renderStack.getLast().getMatrix();
@@ -107,7 +107,7 @@ public class ScreenJournalConstellationOverview extends ScreenJournal implements
         RenderSystem.disableBlend();
     }
 
-    private void drawConstellations(MatrixStack renderStack, float partial, int mouseX, int mouseY) {
+    private void drawConstellations(PoseStack renderStack, float partial, int mouseX, int mouseY) {
         this.rectCRenderMap.clear();
         List<IConstellation> cs = constellations.subList(pageId * CONSTELLATIONS_PER_PAGE, Math.min((pageId + 1) * CONSTELLATIONS_PER_PAGE, constellations.size()));
         for (int i = 0; i < cs.size(); i++) {
@@ -118,7 +118,7 @@ public class ScreenJournalConstellationOverview extends ScreenJournal implements
         }
     }
 
-    private Rectangle drawConstellation(MatrixStack renderStack, IConstellation display, double offsetX, double offsetY, float zLevel, float partial, int mouseX, int mouseY) {
+    private Rectangle drawConstellation(PoseStack renderStack, IConstellation display, double offsetX, double offsetY, float zLevel, float partial, int mouseX, int mouseY) {
         Rectangle rect = new Rectangle(Mth.floor(offsetX), Mth.floor(offsetY), width, height);
 
         renderStack.push();
@@ -151,7 +151,7 @@ public class ScreenJournalConstellationOverview extends ScreenJournal implements
         return rect;
     }
 
-    private void drawNavArrows(MatrixStack renderStack, float partialTicks, int mouseX, int mouseY) {
+    private void drawNavArrows(PoseStack renderStack, float partialTicks, int mouseX, int mouseY) {
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
 

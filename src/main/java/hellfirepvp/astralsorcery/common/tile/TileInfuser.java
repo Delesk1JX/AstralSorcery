@@ -40,7 +40,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.Recipe;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.util.Direction;
@@ -158,7 +158,7 @@ public class TileInfuser extends TileEntityTick implements WandInteractable {
 
         TileInfuser thisInfuser = MiscUtils.getTileAt(world, at, TileInfuser.class, false);
         if (thisInfuser != null) {
-            IRecipe<?> recipe = world.getRecipeManager().getRecipes(RecipeTypesAS.TYPE_INFUSION.getType()).get(recipeName);
+            Recipe<?> recipe = world.getRecipeManager().getRecipes(RecipeTypesAS.TYPE_INFUSION.getType()).get(recipeName);
             if (recipe instanceof LiquidInfusion) {
                 FluidStack stack = new FluidStack(((LiquidInfusion) recipe).getLiquidInput(), FluidAttributes.BUCKET_VOLUME);
                 Vector3 pos = new Vector3(at).add(0.5, 1, 0.5);

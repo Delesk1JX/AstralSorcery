@@ -23,7 +23,7 @@ import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.BlockPos;
@@ -94,7 +94,7 @@ public class BlockTelescope extends ContainerBlock implements CustomItemBlock {
 
     @Nullable
     @Override
-    public TileEntity createNewTileEntity(IBlockReader worldIn) {
+    public BlockEntity createNewTileEntity(IBlockReader worldIn) {
         return new TileTelescope();
     }
 }

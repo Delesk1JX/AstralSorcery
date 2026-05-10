@@ -32,7 +32,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
@@ -109,7 +109,7 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
                     }
                 }
             } else {
-                TileEntity tile = MiscUtils.getTileAt(world, pos, TileEntity.class, true);
+                BlockEntity tile = MiscUtils.getTileAt(world, pos, BlockEntity.class, true);
                 if (tile == null &&
                         !state.hasTileEntity() &&
                         player.canPlayerEdit(pos, dir, stack) &&

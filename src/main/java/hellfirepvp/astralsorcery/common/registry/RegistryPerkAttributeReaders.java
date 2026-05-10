@@ -78,9 +78,8 @@ public class RegistryPerkAttributeReaders {
         }
     }
 
-    private static <T extends PerkAttributeReader> T register(T reader) {
-        AstralSorcery.getProxy().getRegistryPrimer().register(reader);
-        return reader;
+        private static <T extends PerkAttributeReader> T register(T obj) {
+        return ASRegistries.PERK_ATTRIBUTE_READERS.register(obj.getIdentifier(), () -> obj);
     }
 
 }

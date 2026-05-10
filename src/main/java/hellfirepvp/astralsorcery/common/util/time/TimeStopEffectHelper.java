@@ -21,7 +21,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.EntitySize;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
@@ -126,10 +126,10 @@ public class TimeStopEffectHelper {
             for (int zz = minZ; zz <= maxZ; ++zz) {
                 Chunk ch = world.getChunk(xx, zz);
                 if (!ch.isEmpty()) {
-                    Map<BlockPos, TileEntity> map = ch.getTileEntityMap();
-                    for (Map.Entry<BlockPos, TileEntity> teEntry : map.entrySet()) {
+                    Map<BlockPos, BlockEntity> map = ch.getTileEntityMap();
+                    for (Map.Entry<BlockPos, BlockEntity> teEntry : map.entrySet()) {
 
-                        TileEntity te = teEntry.getValue();
+                        BlockEntity te = teEntry.getValue();
                         if (TileAccelerationBlacklistRegistry.INSTANCE.canBeInfluenced(te) && te.getPos().withinDistance(position, range)) {
 
                             double x = te.getPos().getX() + rand.nextFloat();

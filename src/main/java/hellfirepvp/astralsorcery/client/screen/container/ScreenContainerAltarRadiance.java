@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.screen.container;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
@@ -53,7 +53,7 @@ public class ScreenContainerAltarRadiance extends ScreenContainerAltar<Container
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(MatrixStack renderStack, int mouseX, int mouse) {
+    protected void drawGuiContainerForegroundLayer(PoseStack renderStack, int mouseX, int mouse) {
         SimpleAltarRecipe recipe = this.findRecipe(false);
         if (recipe != null) {
             ItemStack out = recipe.getOutputForRender(this.getContainer().getTileEntity().getInventory());
@@ -104,7 +104,7 @@ public class ScreenContainerAltarRadiance extends ScreenContainerAltar<Container
     }
 
     @Override
-    public void renderGuiBackground(MatrixStack renderStack, float partialTicks, int mouseX, int mouseY) {
+    public void renderGuiBackground(PoseStack renderStack, float partialTicks, int mouseX, int mouseY) {
         this.renderStarlightBar(renderStack, 11, 104, 232, 10);
     }
 }

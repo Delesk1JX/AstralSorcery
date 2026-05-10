@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.util.obj;
 
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -178,7 +178,7 @@ public class WavefrontObject {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void render(IVertexBuilder vb) {
+    public void render(VertexConsumer vb) {
         for (GroupObject groupObject : groupObjects) {
             groupObject.render(vb);
         }

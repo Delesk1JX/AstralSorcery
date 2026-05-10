@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.integration.jei;
 
 import com.google.common.collect.ImmutableList;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.crafting.recipe.WellLiquefaction;
 import hellfirepvp.astralsorcery.common.integration.IntegrationJEI;
@@ -63,7 +63,7 @@ public class CategoryWell extends JEICategory<WellLiquefaction> {
     }
 
     @Override
-    public void draw(WellLiquefaction recipe, MatrixStack renderStack, double mouseX, double mouseY) {
+    public void draw(WellLiquefaction recipe, PoseStack renderStack, double mouseX, double mouseY) {
         this.icon.draw(renderStack, 46, 20);
     }
 

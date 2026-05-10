@@ -8,8 +8,8 @@
 
 package hellfirepvp.astralsorcery.client.model.armor;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.world.entity.LivingEntity;
 
@@ -119,7 +119,7 @@ public class ModelArmorMantle extends CustomArmorModel<LivingEntity> {
     }
 
     @Override
-    public void render(MatrixStack matrixStackIn, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
+    public void render(PoseStack matrixStackIn, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
         bodyAnchor.showModel = true;
         armRAnchor.showModel = true;
         armLAnchor.showModel = true;

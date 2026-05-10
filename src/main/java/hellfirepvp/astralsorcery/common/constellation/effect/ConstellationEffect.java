@@ -28,7 +28,7 @@ import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
@@ -76,7 +76,7 @@ public abstract class ConstellationEffect {
 
     @Nullable
     public TileRitualPedestal getPedestal(World world, BlockPos pos) {
-        TileEntity te = MiscUtils.getTileAt(world, pos, TileEntity.class, false);
+        BlockEntity te = MiscUtils.getTileAt(world, pos, BlockEntity.class, false);
         if (te instanceof TileRitualLink) {
             TileRitualLink link = (TileRitualLink) te;
             pos = link.getLinkedTo();

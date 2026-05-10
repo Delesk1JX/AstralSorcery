@@ -18,7 +18,7 @@ import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.fml.LogicalSide;
 
@@ -82,13 +82,13 @@ public class EquipmentSourceProvider extends ModifierSourceProvider<EquipmentMod
     }
 
     @Override
-    public void serialize(EquipmentModifierSource source, PacketBuffer buf) {
+    public void serialize(EquipmentModifierSource source, FriendlyByteBuf buf) {
         ByteBufUtils.writeEnumValue(buf, source.slot);
         ByteBufUtils.writeItemStack(buf, source.itemStack);
     }
 
     @Override
-    public EquipmentModifierSource deserialize(PacketBuffer buf) {
+    public EquipmentModifierSource deserialize(FriendlyByteBuf buf) {
         EquipmentSlotType type = ByteBufUtils.readEnumValue(buf, EquipmentSlotType.class);
         ItemStack stack = ByteBufUtils.readItemStack(buf);
         return new EquipmentModifierSource(type, stack);

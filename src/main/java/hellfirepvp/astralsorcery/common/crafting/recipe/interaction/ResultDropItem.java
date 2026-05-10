@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -66,12 +66,12 @@ public class ResultDropItem extends InteractionResult {
     }
 
     @Override
-    public void read(PacketBuffer buf) {
+    public void read(FriendlyByteBuf buf) {
         this.output = ByteBufUtils.readItemStack(buf);
     }
 
     @Override
-    public void write(PacketBuffer buf) {
+    public void write(FriendlyByteBuf buf) {
         ByteBufUtils.writeItemStack(buf, this.output);
     }
 }

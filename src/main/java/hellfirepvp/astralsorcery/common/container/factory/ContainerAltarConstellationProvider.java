@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.IInventory;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.BlockPos;
 import net.neoforged.neoforge.fml.network.IContainerFactory;
 
@@ -38,7 +38,7 @@ public class ContainerAltarConstellationProvider extends CustomContainerProvider
     }
 
     @Override
-    protected void writeExtraData(PacketBuffer buf) {
+    protected void writeExtraData(FriendlyByteBuf buf) {
         ByteBufUtils.writePos(buf, this.ta.getPos());
     }
 
@@ -48,7 +48,7 @@ public class ContainerAltarConstellationProvider extends CustomContainerProvider
         return new ContainerAltarConstellation(ta, plInventory, id);
     }
 
-    private static ContainerAltarConstellation createFromPacket(int id, IInventory plInventory, PacketBuffer data) {
+    private static ContainerAltarConstellation createFromPacket(int id, IInventory plInventory, FriendlyByteBuf data) {
         BlockPos at = ByteBufUtils.readPos(data);
         Player player = plInventory.player;
         TileAltar ta = MiscUtils.getTileAt(player.getEntityWorld(), at, TileAltar.class, true);
@@ -58,7 +58,7 @@ public class ContainerAltarConstellationProvider extends CustomContainerProvider
     public static class Factory implements IContainerFactory<ContainerAltarConstellation> {
 
         @Override
-        public ContainerAltarConstellation create(int windowId, IInventory inv, PacketBuffer data) {
+        public ContainerAltarConstellation create(int windowId, IInventory inv, FriendlyByteBuf data) {
             return ContainerAltarConstellationProvider.createFromPacket(windowId, inv, data);
         }
     }

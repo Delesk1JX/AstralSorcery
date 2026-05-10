@@ -27,7 +27,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.JsonToNBT;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.fluids.FluidStack;
@@ -203,7 +203,7 @@ public class LiquidInteraction extends CustomMatcherRecipe {
         object.add("result", ctResult);
     }
 
-    public static LiquidInteraction read(ResourceLocation recipeId, PacketBuffer buffer) {
+    public static LiquidInteraction read(ResourceLocation recipeId, FriendlyByteBuf buffer) {
         FluidStack reactant1 = ByteBufUtils.readFluidStack(buffer);
         FluidStack reactant2 = ByteBufUtils.readFluidStack(buffer);
         float chanceConsumeReactant1 = buffer.readFloat();
@@ -218,7 +218,7 @@ public class LiquidInteraction extends CustomMatcherRecipe {
         return new LiquidInteraction(recipeId, reactant1, chanceConsumeReactant1, reactant2, chanceConsumeReactant2, weight, result);
     }
 
-    public final void write(PacketBuffer buffer) {
+    public final void write(FriendlyByteBuf buffer) {
         ByteBufUtils.writeFluidStack(buffer, this.reactant1);
         ByteBufUtils.writeFluidStack(buffer, this.reactant2);
         buffer.writeFloat(this.chanceConsumeReactant1);

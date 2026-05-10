@@ -40,8 +40,7 @@ public class RegistryMantleEffects {
         VICIO = register(new MantleEffectVicio());
     }
 
-    private static <T extends MantleEffect> T register(T effect) {
-        AstralSorcery.getProxy().getRegistryPrimer().register(effect);
-        return effect;
+        private static <T extends MantleEffect> T register(T obj) {
+        return ASRegistries.MANTLE_EFFECTS.register(obj.getIdentifier(), () -> obj);
     }
 }

@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.screen.journal.page;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import hellfirepvp.astralsorcery.client.resource.BlockAtlasTexture;
 import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
@@ -46,7 +46,7 @@ public class RenderPageLiquidInfusion extends RenderPageRecipeTemplate {
     }
 
     @Override
-    public void render(MatrixStack renderStack, float x, float y, float z, float pTicks, float mouseX, float mouseY) {
+    public void render(PoseStack renderStack, float x, float y, float z, float pTicks, float mouseX, float mouseY) {
         this.clearFrameRectangles();
 
         this.renderRecipeGrid(renderStack, x, y, z, TexturesAS.TEX_GUI_BOOK_GRID_INFUSION);
@@ -79,7 +79,7 @@ public class RenderPageLiquidInfusion extends RenderPageRecipeTemplate {
         });
     }
 
-    private void renderLiquidInput(BufferBuilder buf, MatrixStack renderStack, TextureAtlasSprite tas, int x, int y) {
+    private void renderLiquidInput(BufferBuilder buf, PoseStack renderStack, TextureAtlasSprite tas, int x, int y) {
         RenderingGuiUtils.rect(buf, renderStack, 28 + x * 25.15F, 76 + y * 25.15F, 0, 22.3F, 22.3F)
                 .tex(tas)
                 .draw();
@@ -91,7 +91,7 @@ public class RenderPageLiquidInfusion extends RenderPageRecipeTemplate {
     }
 
     @Override
-    public void postRender(MatrixStack renderStack, float x, float y, float z, float pTicks, float mouseX, float mouseY) {
+    public void postRender(PoseStack renderStack, float x, float y, float z, float pTicks, float mouseX, float mouseY) {
         this.renderHoverTooltips(renderStack, mouseX, mouseY, z, this.recipe.getId());
         this.renderInfoStarTooltips(renderStack, x, y, z, mouseX, mouseY, (toolTip) -> {
             toolTip.add(new TranslationTextComponent("astralsorcery.journal.recipe.infusion.liquid",

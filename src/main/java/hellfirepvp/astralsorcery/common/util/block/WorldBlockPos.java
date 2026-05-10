@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.util.block;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.object.TransformReference;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.vector.Vector3i;
@@ -51,7 +51,7 @@ public class WorldBlockPos extends BlockPos {
         });
     }
 
-    public static WorldBlockPos wrapTileEntity(TileEntity tile) {
+    public static WorldBlockPos wrapTileEntity(BlockEntity tile) {
         return new WorldBlockPos(tile.getWorld().getDimensionKey(), tile.getPos(), type -> tile.getWorld());
     }
 
@@ -79,7 +79,7 @@ public class WorldBlockPos extends BlockPos {
     }
 
     @Nullable
-    public <T extends TileEntity> T getTileAt(Class<T> tileClass, boolean forceChunkLoad) {
+    public <T extends BlockEntity> T getTileAt(Class<T> tileClass, boolean forceChunkLoad) {
         World world = this.worldReference.getValue();
         if (world != null) {
             return MiscUtils.getTileAt(world, this, tileClass, forceChunkLoad);
