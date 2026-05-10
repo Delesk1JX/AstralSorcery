@@ -29,7 +29,7 @@ public class CrystalPropertyRegistry {
 
     @Nullable
     public CrystalProperty getConstellationProperty(IConstellation cst) {
-        return RegistriesAS.REGISTRY_CRYSTAL_PROPERTIES.getValues()
+        return RegistriesAS.REGISTRY_CRYSTAL_PROPERTIES.toList()
                 .stream()
                 .filter(prop -> prop instanceof PropertyConstellation &&
                         ((PropertyConstellation) prop).getConstellation().equals(cst))

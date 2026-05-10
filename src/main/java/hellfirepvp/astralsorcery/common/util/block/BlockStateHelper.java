@@ -20,7 +20,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.state.Property;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.neoforge.registries.RegistryManager;
+import net.neoforged.neoforge.registries.BuiltInRegistries;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -90,7 +90,7 @@ public class BlockStateHelper {
 
     @Nonnull
     public static Block deserializeBlock(@Nonnull String serialized) {
-        Block block = RegistryManager.BLOCKS.getValue(new ResourceLocation(serialized));
+        Block block = BuiltInRegistries.BLOCK.get(new ResourceLocation(serialized));
         return block == null ? Blocks.AIR : block;
     }
 
@@ -104,7 +104,7 @@ public class BlockStateHelper {
         } else {
             key = new ResourceLocation(serialized.toLowerCase(Locale.ROOT));
         }
-        Block block = RegistryManager.BLOCKS.getValue(key);
+        Block block = BuiltInRegistries.BLOCK.get(key);
         BlockState state = block.getDefaultState();
         if (!block.equals(Blocks.AIR) && hasProperties) {
             List<String> strProps = PROP_SPLITTER.splitToList(serialized.substring(propIndex, serialized.length() - 1));
@@ -127,7 +127,7 @@ public class BlockStateHelper {
     @Nonnull
     public static <T extends Comparable<T>> BlockState deserializeObject(JsonObject object) {
         String key = JSONUtils.getString(object, "block");
-        Block b = RegistryManager.BLOCKS.getValue(new ResourceLocation(key));
+        Block b = BuiltInRegistries.BLOCK.get(new ResourceLocation(key));
         if (b == null || b instanceof AirBlock) {
             return Blocks.AIR.getDefaultState();
         }

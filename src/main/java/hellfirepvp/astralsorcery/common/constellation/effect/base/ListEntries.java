@@ -18,7 +18,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.server.ServerWorld;
-import net.neoforged.neoforge.registries.RegistryManager;
+import net.neoforged.neoforge.registries.BuiltInRegistries;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -50,7 +50,7 @@ public class ListEntries {
         public void readFromNBT(CompoundTag nbt) {
             super.readFromNBT(nbt);
 
-            this.type = RegistryManager.ENTITIES.getValue(new ResourceLocation(nbt.getString("entity")));
+            this.type = BuiltInRegistries.ENTITY_TYPE.get(new ResourceLocation(nbt.getString("entity")));
         }
 
         @Override

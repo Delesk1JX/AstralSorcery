@@ -26,7 +26,7 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.registries.RegistryManager;
+import net.neoforged.neoforge.registries.BuiltInRegistries;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -41,7 +41,7 @@ import java.util.*;
 public class DynamicEnchantmentHelper {
 
     private static int getNewEnchantmentLevel(int current, String enchStr, ItemStack item, @Nullable List<DynamicEnchantment> context) {
-        Enchantment enchantment = RegistryManager.ENCHANTMENTS.getValue(new ResourceLocation(enchStr));
+        Enchantment enchantment = BuiltInRegistries.ENCHANTMENT.get(new ResourceLocation(enchStr));
         if (enchantment != null) {
             current = getNewEnchantmentLevel(current, enchantment, item, context);
             if (enchantment instanceof QuickChargeEnchantment) {

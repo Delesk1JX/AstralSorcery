@@ -19,7 +19,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.BlockPos;
-import net.neoforged.neoforge.registries.RegistryManager;
+import net.neoforged.neoforge.registries.BuiltInRegistries;
 
 import java.util.HashMap;
 import java.util.List;
@@ -56,7 +56,7 @@ public class ProviderBlockRing implements PatreonEffectProvider<TypeBlockRing> {
                     obj.getAsJsonPrimitive("posX").getAsInt(),
                     obj.getAsJsonPrimitive("posY").getAsInt(),
                     obj.getAsJsonPrimitive("posZ").getAsInt());
-            Block b = RegistryManager.BLOCKS.getValue(new ResourceLocation(obj.getAsJsonPrimitive("block").getAsString()));
+            Block b = BuiltInRegistries.BLOCK.get(new ResourceLocation(obj.getAsJsonPrimitive("block").getAsString()));
             pattern.put(pos, b.getDefaultState());
         }
         return new TypeBlockRing(effectUniqueId,

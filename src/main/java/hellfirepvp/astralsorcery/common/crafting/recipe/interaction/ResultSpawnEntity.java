@@ -22,7 +22,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.registries.RegistryManager;
+import net.neoforged.neoforge.registries.BuiltInRegistries;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -65,7 +65,7 @@ public class ResultSpawnEntity extends InteractionResult {
     @Override
     public void read(JsonObject json) throws JsonParseException {
         ResourceLocation key = new ResourceLocation(JSONUtils.getString(json, "entityType"));
-        EntityType<?> type = RegistryManager.ENTITIES.getValue(key);
+        EntityType<?> type = BuiltInRegistries.ENTITY_TYPE.get(key);
         if (type == null) {
             throw new JsonParseException("Unknown entity type: " + key);
         }

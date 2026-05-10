@@ -21,7 +21,7 @@ import net.minecraft.util.registry.Registry;
 import net.neoforged.neoforge.common.crafting.CraftingHelper;
 import net.neoforged.neoforge.fluids.FluidAttributes;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.registries.RegistryManager;
+import net.neoforged.neoforge.registries.BuiltInRegistries;
 
 import javax.annotation.Nonnull;
 import java.awt.*;
@@ -85,7 +85,7 @@ public class JsonHelper {
         if (fluidElement.isJsonPrimitive() && ((JsonPrimitive) fluidElement).isString()) {
             String strKey = fluidElement.getAsString();
             ResourceLocation fluidKey = new ResourceLocation(strKey);
-            fluidStack = new FluidStack(RegistryManager.FLUIDS.getValue(fluidKey), FluidAttributes.BUCKET_VOLUME);
+            fluidStack = new FluidStack(BuiltInRegistries.FLUID.get(fluidKey), FluidAttributes.BUCKET_VOLUME);
         } else if (fluidElement.isJsonObject()) {
             fluidStack = getFluidStack(fluidElement.getAsJsonObject(), true);
         } else {
@@ -97,7 +97,7 @@ public class JsonHelper {
     @Nonnull
     public static FluidStack getFluidStack(JsonObject json, boolean readNBT) {
         String fluidName = JSONUtils.getString(json, "fluid");
-        Fluid fluid = RegistryManager.FLUIDS.getValue(new ResourceLocation(fluidName));
+        Fluid fluid = BuiltInRegistries.FLUID.get(new ResourceLocation(fluidName));
         if (fluid == null || fluid == Fluids.EMPTY) {
             return FluidStack.EMPTY;
         }
@@ -133,7 +133,7 @@ public class JsonHelper {
         if (itemElement.isJsonPrimitive() && ((JsonPrimitive) itemElement).isString()) {
             String strKey = itemElement.getAsString();
             ResourceLocation itemKey = new ResourceLocation(strKey);
-            itemstack = new ItemStack(RegistryManager.ITEMS.getValue(itemKey));
+            itemstack = new ItemStack(BuiltInRegistries.ITEM.get(itemKey));
         } else if (itemElement.isJsonObject()) {
             itemstack = CraftingHelper.getItemStack(itemElement.getAsJsonObject(), true);
         } else {
@@ -153,7 +153,7 @@ public class JsonHelper {
         } else {
             String strKey = JSONUtils.getString(root, key);
             ResourceLocation itemKey = new ResourceLocation(strKey);
-            itemstack = new ItemStack(RegistryManager.ITEMS.getValue(itemKey));
+            itemstack = new ItemStack(BuiltInRegistries.ITEM.get(itemKey));
         }
         return itemstack;
     }

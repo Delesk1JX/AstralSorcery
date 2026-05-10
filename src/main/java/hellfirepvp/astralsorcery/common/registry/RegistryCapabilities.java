@@ -14,7 +14,6 @@ import net.minecraft.nbt.INBT;
 import net.minecraft.util.Direction;
 import net.minecraft.world.chunk.Chunk;
 import net.neoforged.neoforge.common.capabilities.Capability;
-import net.neoforged.neoforge.common.capabilities.CapabilityManager;
 import net.neoforged.neoforge.common.capabilities.ICapabilitySerializable;
 import net.neoforged.neoforge.common.util.INBTSerializable;
 import net.neoforged.neoforge.common.util.LazyOptional;

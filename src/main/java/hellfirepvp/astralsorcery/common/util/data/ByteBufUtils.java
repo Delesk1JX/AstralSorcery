@@ -29,8 +29,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.registries.IRegistryObject;
-import net.neoforged.neoforge.registries.RegistryManager;
+import net.neoforged.neoforge.registries.BuiltInRegistries;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -162,15 +161,19 @@ public class ByteBufUtils {
         return new String(strBytes, StandardCharsets.UTF_8);
     }
 
-    public static <T> void writeRegistryEntry(PacketBuffer buf, IRegistryObject<T> entry) {
-        writeResourceLocation(buf, entry.getRegistryName());
-        writeResourceLocation(buf, RegistryManager.ACTIVE.getRegistry(entry.getRegistryType()).getRegistryName());
+    public static <T> void writeRegistryEntry(PacketBuffer buf, T entry) {
+        ResourceLocation registryName = BuiltInRegistries.getRegistry(entry.getClass()).getKey();
+        if (registryName == null) {
+            registryName = BuiltInRegistries.REGISTRY_REGISTRY.getKey(BuiltInRegistries.getRegistry(entry.getClass()));
+        }
+        writeResourceLocation(buf, BuiltInRegistries.getRegistry(entry.getClass()).getKey());
+        writeResourceLocation(buf, registryName);
     }
 
     public static <T> T readRegistryEntry(PacketBuffer buf) {
         ResourceLocation entryName = readResourceLocation(buf);
         ResourceLocation registryName = readResourceLocation(buf);
-        return (T) RegistryManager.ACTIVE.getRegistry(registryName).getValue(entryName);
+        return (T) BuiltInRegistries.getRegistry(registryName).get(entryName);
     }
 
     public static void writeVanillaRegistryEntry(PacketBuffer buf, RegistryKey<?> key) {

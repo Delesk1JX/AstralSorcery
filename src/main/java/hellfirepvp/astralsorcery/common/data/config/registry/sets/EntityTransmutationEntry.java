@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.data.config.base.ConfigDataSet;
 import net.minecraft.world.entity.EntityClassification;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.neoforge.registries.RegistryManager;
+import net.neoforged.neoforge.registries.BuiltInRegistries;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -55,12 +55,12 @@ public class EntityTransmutationEntry implements ConfigDataSet {
             return null;
         }
         ResourceLocation fromKey = new ResourceLocation(split[0]);
-        EntityType<?> fromType = RegistryManager.ENTITIES.getValue(fromKey);
+        EntityType<?> fromType = BuiltInRegistries.ENTITY_TYPE.get(fromKey);
         if (fromType == null) {
             throw new IllegalArgumentException(split[0] + " is not a known EntityType.");
         }
         ResourceLocation toKey = new ResourceLocation(split[1]);
-        EntityType<?> toType = RegistryManager.ENTITIES.getValue(toKey);
+        EntityType<?> toType = BuiltInRegistries.ENTITY_TYPE.get(toKey);
         if (toType == null) {
             throw new IllegalArgumentException(split[0] + " is not a known EntityType.");
         }

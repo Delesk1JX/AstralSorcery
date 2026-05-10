@@ -14,7 +14,7 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.event.TickEvent;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.registries.RegistryManager;
+import net.neoforged.neoforge.registries.BuiltInRegistries;
 
 import java.util.Collection;
 import java.util.EnumSet;
@@ -41,7 +41,7 @@ public class EventHelperEnchantmentTick implements ITickHandler {
         LogicalSide side = (LogicalSide) context[1];
 
         if (tickableEnchantments == null) {
-            tickableEnchantments = RegistryManager.ENCHANTMENTS.getValues().stream()
+            tickableEnchantments = BuiltInRegistries.ENCHANTMENT.gets().stream()
                     .filter(enchantment -> enchantment instanceof EnchantmentPlayerTick)
                     .map(enchantment -> (EnchantmentPlayerTick) enchantment)
                     .collect(Collectors.toList());

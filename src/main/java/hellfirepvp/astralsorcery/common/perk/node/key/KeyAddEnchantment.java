@@ -24,7 +24,7 @@ import net.minecraft.util.JSONUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.eventbus.api.IEventBus;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.registries.RegistryManager;
+import net.neoforged.neoforge.registries.BuiltInRegistries;
 
 import java.util.List;
 
@@ -121,7 +121,7 @@ public class KeyAddEnchantment extends KeyPerk {
 
                 if (type.isEnchantmentSpecific()) {
                     String enchantmentKey = JSONUtils.getString(serializedEnchantment, "enchantment");
-                    Enchantment ench = RegistryManager.ENCHANTMENTS.getValue(new ResourceLocation(enchantmentKey));
+                    Enchantment ench = BuiltInRegistries.ENCHANTMENT.get(new ResourceLocation(enchantmentKey));
                     if (ench == null) {
                         throw new IllegalArgumentException("Unknown Enchantment: " + enchantmentKey);
                     }

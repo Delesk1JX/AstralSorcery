@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.base.Mods;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigDataSet;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.neoforge.registries.RegistryManager;
+import net.neoforged.neoforge.registries.BuiltInRegistries;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -37,7 +37,7 @@ public class EntityTechnicalEntry implements ConfigDataSet {
     }
 
     public EntityType<?> getEntityType() {
-        return RegistryManager.ENTITIES.getValue(this.name);
+        return BuiltInRegistries.ENTITY_TYPE.get(this.name);
     }
 
     @Nonnull
@@ -52,7 +52,7 @@ public class EntityTechnicalEntry implements ConfigDataSet {
         if (mod != null && !mod.isPresent()) {
             throw new IllegalArgumentException("Entry " + string + ", Mod not present: " + mod.getModId());
         }
-        if (RegistryManager.ENTITIES.getValue(name) == null) {
+        if (BuiltInRegistries.ENTITY_TYPE.get(name) == null) {
             throw new IllegalArgumentException("Unknown Entity Type: " + name);
         }
         return new EntityTechnicalEntry(name);
