@@ -51,8 +51,6 @@ import hellfirepvp.astralsorcery.common.perk.data.PerkTypeHandler;
 import hellfirepvp.astralsorcery.common.perk.source.ModifierManager;
 import hellfirepvp.astralsorcery.common.perk.tick.PerkTickHelper;
 import hellfirepvp.astralsorcery.common.registry.*;
-import hellfirepvp.astralsorcery.common.registry.internal.InternalRegistryPrimer;
-import hellfirepvp.astralsorcery.common.registry.internal.PrimerEventHandler;
 import hellfirepvp.astralsorcery.common.starlight.network.StarlightNetworkRegistry;
 import hellfirepvp.astralsorcery.common.starlight.network.StarlightTransmissionHandler;
 import hellfirepvp.astralsorcery.common.starlight.network.StarlightUpdateHandler;
@@ -143,18 +141,12 @@ public class CommonProxy {
 
     public static final IArmorMaterial ARMOR_MATERIAL_IMBUED_LEATHER = new ArmorMaterialImbuedLeather();
 
-    private InternalRegistryPrimer registryPrimer;
-    private PrimerEventHandler registryEventHandler;
-    private CommonScheduler commonScheduler;
-    private TickManager tickManager;
     private final List<ServerLifecycleListener> serverLifecycleListeners = Lists.newArrayList();
 
     private CommonConfig commonConfig;
     private ServerConfig serverConfig;
 
     public void initialize() {
-        this.registryPrimer = new InternalRegistryPrimer();
-        this.registryEventHandler = new PrimerEventHandler(this.registryPrimer);
         this.commonScheduler = new CommonScheduler();
 
         this.commonConfig = new CommonConfig();
@@ -198,9 +190,10 @@ public class CommonProxy {
         modEventBus.addListener(this::onEnqueueIMC);
         modEventBus.addListener(BaseConfiguration::refreshConfiguration);
 
-        modEventBus.addListener(RegistryRegistries::buildRegistries);
+        // Register all DeferredRegisters
+        ASRegistries.register(modEventBus);
+        
         modEventBus.addListener(RegistryEntities::initAttributes);
-        registryEventHandler.attachEventHandlers(modEventBus);
     }
 
     public void attachEventHandlers(IEventBus eventBus) {
@@ -292,10 +285,6 @@ public class CommonProxy {
 
         ConstellationEffectRegistry.addConfigEntries(this.serverConfig);
         MantleEffectRegistry.addConfigEntries(this.serverConfig);
-    }
-
-    public InternalRegistryPrimer getRegistryPrimer() {
-        return registryPrimer;
     }
 
     public TickManager getTickManager() {

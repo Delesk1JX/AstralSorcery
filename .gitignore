@@ -1,69 +1,62 @@
 ```
-# Compiled and build artifacts
+# Compiled Java files
 *.class
-*.o
-*.obj
-*.out
-*.dll
-*.so
-*.a
-*.pyc
-__pycache__/
+*.jar
+*.war
+*.ear
+
+# Build directories
+target/
+build/
 
 # Dependencies
-node_modules/
-venv/
-.venv/
-target/
+lib/
+libs/
+
+# IDE files
 .gradle/
-.mypy_cache/
-.pytest_cache/
-dist/
-build/
-coverage/
-htmlcov/
-.coverage
-
-# Editors
-.vscode/
 .idea/
-*.swp
-*.swo
+.vscode/
+*.iml
+*.ipr
+*.iws
 
-# Logs and temp files
+# Log files
 *.log
-*.tmp
-
-# System files
-.DS_Store
-Thumbs.db
 
 # Environment
 .env
 .env.local
 *.env.*
 
-# Compressed files
-*.zip
-*.gz
-*.tar
-*.tgz
-*.bz2
-*.xz
-*.7z
-*.rar
-*.zst
-*.lz4
-*.lzh
-*.cab
-*.arj
-*.rpm
-*.deb
-*.Z
-*.lz
-*.lzo
-*.tar.gz
-*.tar.bz2
-*.tar.xz
-*.tar.zst
+# Temporary files
+*.tmp
+*.temp
+*~
+.DS_Store
+Thumbs.db
+
+# Coverage reports
+coverage/
+htmlcov/
+.coverage
+
+# Package manager
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python specific (if applicable)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+.env
+.env.local
+.pytest_cache/
+.mypy_cache/
 ```
