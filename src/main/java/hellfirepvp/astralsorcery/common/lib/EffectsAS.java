@@ -11,6 +11,7 @@ package hellfirepvp.astralsorcery.common.lib;
 import hellfirepvp.astralsorcery.common.effect.EffectBleed;
 import hellfirepvp.astralsorcery.common.effect.EffectCheatDeath;
 import hellfirepvp.astralsorcery.common.effect.EffectDropModifier;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -23,8 +24,8 @@ public class EffectsAS {
 
     private EffectsAS() {}
 
-    public static EffectBleed        EFFECT_BLEED;
-    public static EffectCheatDeath   EFFECT_CHEAT_DEATH;
-    public static EffectDropModifier EFFECT_DROP_MODIFIER;
+    public static DeferredHolder<?, EffectBleed>        EFFECT_BLEED;
+    public static DeferredHolder<?, EffectCheatDeath>   EFFECT_CHEAT_DEATH;
+    public static DeferredHolder<?, EffectDropModifier> EFFECT_DROP_MODIFIER;
 
 }
