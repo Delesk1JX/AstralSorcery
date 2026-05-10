@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import hellfirepvp.astralsorcery.common.constellation.IConstellationSpecialShowup;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.minecraft.world.World;
 
 import java.util.HashMap;
@@ -68,12 +68,12 @@ public class DistributionHandler {
 
         for (IConstellationSpecialShowup special : ConstellationRegistry.getSpecialShowupConstellations()) {
             if (special.doesShowUp(world, lastRecordedDay)) {
-                distribution.put(special, MathHelper.clamp(
+                distribution.put(special, Mth.clamp(
                         special.getDistribution(world, lastRecordedDay, true),
                         0F,
                         1F));
             } else {
-                distribution.put(special, MathHelper.clamp(
+                distribution.put(special, Mth.clamp(
                         special.getDistribution(world, lastRecordedDay, false),
                         0F,
                         1F));
@@ -116,6 +116,6 @@ public class DistributionHandler {
         int phaseCount = MoonPhase.values().length;
         int dist = Math.min(Math.abs(dayStart - dayIn), Math.abs(dayStart - (dayIn + phaseCount)));
         float part = ((float) dist) / ((float) (phaseCount / 2));
-        return MathHelper.cos((float) ((part / 2) * Math.PI)) * 0.5F + 0.5F;
+        return Mth.cos((float) ((part / 2) * Math.PI)) * 0.5F + 0.5F;
     }
 }

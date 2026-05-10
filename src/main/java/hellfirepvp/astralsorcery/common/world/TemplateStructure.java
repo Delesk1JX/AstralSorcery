@@ -10,10 +10,10 @@ package hellfirepvp.astralsorcery.common.world;
 
 import hellfirepvp.astralsorcery.common.world.marker.MarkerManagerAS;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.MutableBoundingBox;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.ChunkPos;
+import net.minecraft.util.MutableBoundingBox;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.gen.ChunkGenerator;

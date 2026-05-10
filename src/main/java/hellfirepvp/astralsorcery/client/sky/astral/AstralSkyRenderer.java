@@ -30,11 +30,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Matrix4f;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import net.minecraft.util.vector.Matrix4f;
+import net.minecraft.util.vector.Vector3d;
+import net.minecraft.util.vector.Vector3f;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -371,7 +371,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler {
     }
 
     private void renderDuskDawn(float[] duskDawnColors, MatrixStack renderStack, ClientWorld world, float pTicks) {
-        float f3 = MathHelper.sin(world.getCelestialAngleRadians(pTicks)) < 0.0F ? 180.0F : 0.0F;
+        float f3 = Mth.sin(world.getCelestialAngleRadians(pTicks)) < 0.0F ? 180.0F : 0.0F;
 
         renderStack.push();
         renderStack.rotate(Vector3f.XP.rotationDegrees(90.0F));
@@ -387,8 +387,8 @@ public class AstralSkyRenderer implements ISkyRenderHandler {
             buf.pos(0, 100, 0).color(r, g, b, a).endVertex();
             for (int i = 0; i <= 16; i++) {
                 float f6 = (float) i * ((float) Math.PI * 2F) / 16F;
-                float f7 = MathHelper.sin(f6);
-                float f8 = MathHelper.cos(f6);
+                float f7 = Mth.sin(f6);
+                float f8 = Mth.cos(f6);
                 buf.pos(f7 * 120F, f8 * 120F, -f8 * 40F * a).color(r, g, b, 0F).endVertex();
             }
         });

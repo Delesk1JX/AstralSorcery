@@ -25,8 +25,8 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchProgression;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Matrix4f;
+import net.minecraft.util.Mth;
+import net.minecraft.util.vector.Matrix4f;
 import net.minecraft.util.text.ITextProperties;
 import org.lwjgl.opengl.GL11;
 
@@ -327,7 +327,7 @@ public class ScreenJournalProgressionRenderer {
         float width  = this.sizeHandler.scaledDistanceX(cluster.x, cluster.maxX);
         float height = this.sizeHandler.scaledDistanceY(cluster.y, cluster.maxY);
 
-        Rectangle r = new Rectangle(MathHelper.floor(pCluster.x), MathHelper.floor(pCluster.y), MathHelper.floor(width), MathHelper.floor(height));
+        Rectangle r = new Rectangle(Mth.floor(pCluster.x), Mth.floor(pCluster.y), Mth.floor(width), Mth.floor(height));
         clusterRectMap.put(r, p);
 
         cluster.cloudTexture.bindTexture();

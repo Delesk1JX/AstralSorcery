@@ -30,9 +30,9 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Matrix4f;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.util.vector.Matrix4f;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.neoforged.fml.LogicalSide;
@@ -124,7 +124,7 @@ public abstract class ConstellationDiscoveryScreen<D extends ConstellationDiscov
 
     protected float multiplyStarBrightness(float pTicks, float brightnessIn) {
         brightnessIn *= Minecraft.getInstance().world.getStarBrightness(pTicks) * 2;
-        return MathHelper.clamp(brightnessIn * (1F - Minecraft.getInstance().world.getRainStrength(pTicks)), 0, 1);
+        return Mth.clamp(brightnessIn * (1F - Minecraft.getInstance().world.getRainStrength(pTicks)), 0, 1);
     }
 
     @Override

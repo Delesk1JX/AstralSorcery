@@ -17,9 +17,9 @@ import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.common.util.Constants;
 
@@ -77,7 +77,7 @@ public class EngravedStarMap {
             }
 
             IConstellation drawnConstellation = drawn.getConstellation();
-            float percent = 0.1F + 0.9F * MathHelper.clamp(((foundPositions.size() * 1.5F) / positions.size()) * nightPerc, 0F, 1F);
+            float percent = 0.1F + 0.9F * Mth.clamp(((foundPositions.size() * 1.5F) / positions.size()) * nightPerc, 0F, 1F);
             float existingPercent = distributionMap.getOrDefault(drawnConstellation.getRegistryName(), 0.1F);
             if (percent >= existingPercent) {
                 distributionMap.put(drawnConstellation.getRegistryName(), percent);

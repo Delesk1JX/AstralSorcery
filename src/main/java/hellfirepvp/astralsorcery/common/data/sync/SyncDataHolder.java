@@ -20,7 +20,7 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.RegistryKey;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.event.TickEvent;
 import net.neoforged.fml.LogicalSide;

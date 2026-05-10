@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.util;
 
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -32,7 +32,7 @@ public class EffectIncrementer {
         } else {
             this.current--;
         }
-        this.current = MathHelper.clamp(this.current, 0, this.cap);
+        this.current = Mth.clamp(this.current, 0, this.cap);
     }
 
     public int get() {

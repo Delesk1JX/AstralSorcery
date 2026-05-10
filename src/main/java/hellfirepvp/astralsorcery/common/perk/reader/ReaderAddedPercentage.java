@@ -15,8 +15,8 @@ import hellfirepvp.astralsorcery.common.perk.PerkAttributeMap;
 import hellfirepvp.astralsorcery.common.perk.type.ModifierType;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
@@ -46,12 +46,12 @@ public class ReaderAddedPercentage extends PerkAttributeReader {
     }
 
     @Override
-    public double getDefaultValue(PerkAttributeMap statMap, PlayerEntity player, LogicalSide side) {
+    public double getDefaultValue(PerkAttributeMap statMap, Player player, LogicalSide side) {
         return this.defaultValue;
     }
 
     @Override
-    public double getModifierValueForMode(PerkAttributeMap statMap, PlayerEntity player, LogicalSide side, ModifierType mode) {
+    public double getModifierValueForMode(PerkAttributeMap statMap, Player player, LogicalSide side, ModifierType mode) {
         double value = statMap.getModifier(player, ResearchHelper.getProgress(player, side), this.getType(), mode);
         if (mode == ModifierType.ADDITION) {
             value /= 100.0;
@@ -62,13 +62,13 @@ public class ReaderAddedPercentage extends PerkAttributeReader {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public PerkStatistic getStatistics(PerkAttributeMap statMap, PlayerEntity player) {
+    public PerkStatistic getStatistics(PerkAttributeMap statMap, Player player) {
         String limitStr = "";
         Double limit = null;
         if (PerkAttributeLimiter.hasLimit(this.getType())) {
             Pair<Double, Double> limits = PerkAttributeLimiter.getLimit(this.getType());
             limit = limits.getRight();
-            limitStr = I18n.format("perk.reader.astralsorcery.limit.percent", MathHelper.floor(limit * 100));
+            limitStr = I18n.format("perk.reader.astralsorcery.limit.percent", Mth.floor(limit * 100));
         }
 
         double value = statMap.modifyValue(player, ResearchHelper.getProgress(player, LogicalSide.CLIENT),

@@ -13,13 +13,13 @@ import hellfirepvp.astralsorcery.common.data.sync.client.ClientTimeFreezeEntitie
 import hellfirepvp.astralsorcery.common.data.sync.server.DataTimeFreezeEffects;
 import hellfirepvp.astralsorcery.common.data.sync.server.DataTimeFreezeEntities;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.boss.dragon.EnderDragonEntity;
-import net.minecraft.entity.boss.dragon.phase.PhaseType;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.boss.dragon.EnderDragonEntity;
+import net.minecraft.world.entity.boss.dragon.phase.PhaseType;
 import net.minecraft.util.RegistryKey;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Mth;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.event.TickEvent;
 
@@ -109,7 +109,7 @@ public class TimeStopController implements ITickHandler {
             }
             if (shouldFreeze) {
                 if (e.world.isRemote()) {
-                    int amt = (int) MathHelper.sqrt(e.getWidth() * e.getHeight());
+                    int amt = (int) Mth.sqrt(e.getWidth() * e.getHeight());
                     for (int i = 0; i < amt; i++) {
                         if (e.world.rand.nextInt(5) == 0) {
                             TimeStopEffectHelper.playEntityParticles(e);

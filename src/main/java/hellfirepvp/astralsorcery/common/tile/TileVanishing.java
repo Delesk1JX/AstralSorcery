@@ -19,8 +19,8 @@ import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
 import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import hellfirepvp.astralsorcery.common.tile.base.TileEntityTick;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.util.AxisAlignedBB;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -48,8 +48,8 @@ public class TileVanishing extends TileEntityTick {
         if (!this.getWorld().isRemote() && this.getTicksExisted() % 5 == 0) {
             boolean removeBlock = true;
 
-            List<PlayerEntity> players = getWorld().getEntitiesWithinAABB(PlayerEntity.class, SEARCH_BOX.offset(getPos()));
-            for (PlayerEntity player : players) {
+            List<Player> players = getWorld().getEntitiesWithinAABB(Player.class, SEARCH_BOX.offset(getPos()));
+            for (Player player : players) {
                 if (ItemMantle.getEffect(player, ConstellationsAS.aevitas) != null) {
                     double yDiff = player.getPosY() - this.getPos().getY();
 

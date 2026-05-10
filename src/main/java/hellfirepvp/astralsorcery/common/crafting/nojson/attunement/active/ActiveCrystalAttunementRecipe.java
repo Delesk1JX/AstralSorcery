@@ -34,15 +34,15 @@ import hellfirepvp.astralsorcery.common.tile.TileAttunementAltar;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Mth;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -132,9 +132,9 @@ public class ActiveCrystalAttunementRecipe extends AttunementRecipe.Active<Attun
 
                 UUID throwerUUID = crystal.getThrowerId();
                 if (throwerUUID != null) {
-                    PlayerEntity thrower = altar.getWorld().getPlayerByUuid(throwerUUID);
-                    if (thrower instanceof ServerPlayerEntity) {
-                        AdvancementsAS.ATTUNE_CRYSTAL.trigger((ServerPlayerEntity) thrower, altar.getActiveConstellation());
+                    Player thrower = altar.getWorld().getPlayerByUuid(throwerUUID);
+                    if (thrower instanceof ServerPlayer) {
+                        AdvancementsAS.ATTUNE_CRYSTAL.trigger((ServerPlayer) thrower, altar.getActiveConstellation());
                     }
                 }
             }
@@ -224,7 +224,7 @@ public class ActiveCrystalAttunementRecipe extends AttunementRecipe.Active<Attun
         for (int i = 0; i < parts; i++) {
             Vector3 v = Vector3.RotAxis.X_AXIS.clone();
             float originalAngle = (((float) i) / ((float) parts)) * 360F;
-            double angle = originalAngle + (MathHelper.sin(percCycle) * angleSwirl);
+            double angle = originalAngle + (Mth.sin(percCycle) * angleSwirl);
             v.rotate(-Math.toRadians(angle), Vector3.RotAxis.Y_AXIS).normalize().multiply(dst);
             Vector3 pos = center.clone();
             Vector3 mot = center.clone().subtract(pos.clone().add(v)).normalize().multiply(0.14);

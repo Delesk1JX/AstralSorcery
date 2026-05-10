@@ -17,14 +17,14 @@ import hellfirepvp.astralsorcery.common.util.block.BlockPredicate;
 import hellfirepvp.astralsorcery.common.util.block.BlockUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.controller.MovementController;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.controller.MovementController;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
@@ -136,7 +136,7 @@ public class SpectralToolBreakLogGoal extends SpectralToolGoal {
                 this.actionCooldown++;
                 if (this.actionCooldown >= MantleEffectPelotrio.CONFIG.ticksPerAxeLogBreak.get() && world instanceof ServerWorld) {
                     LivingEntity owner = this.getEntity().getOwningEntity();
-                    if (owner instanceof PlayerEntity) {
+                    if (owner instanceof Player) {
                         BlockDropCaptureAssist.startCapturing();
                     }
                     if (BlockUtils.breakBlockWithoutPlayer(
@@ -149,9 +149,9 @@ public class SpectralToolBreakLogGoal extends SpectralToolGoal {
                             true)) {
                         resetTimer = true;
                     }
-                    if (owner instanceof PlayerEntity) {
+                    if (owner instanceof Player) {
                         for (ItemStack dropped : BlockDropCaptureAssist.getCapturedStacksAndStop()) {
-                            ItemStack remainder = ItemUtils.dropItemToPlayer((PlayerEntity) owner, dropped);
+                            ItemStack remainder = ItemUtils.dropItemToPlayer((Player) owner, dropped);
                             if (!remainder.isEmpty()) {
                                 ItemUtils.dropItemNaturally(world, owner.getPosX(), owner.getPosY(), owner.getPosZ(), remainder);
                             }

@@ -11,8 +11,8 @@ package hellfirepvp.astralsorcery.common.event;
 import hellfirepvp.astralsorcery.common.util.tick.TimeoutList;
 import hellfirepvp.astralsorcery.common.util.tick.TimeoutListContainer;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.event.TickEvent;
 
 import java.util.Objects;
@@ -41,11 +41,11 @@ public class PlayerAffectionFlags {
         affectMap.clear();
     }
 
-    public static void markPlayerAffected(PlayerEntity player, AffectionFlag flag) {
+    public static void markPlayerAffected(Player player, AffectionFlag flag) {
         affectMap.getOrCreateList(player.getUniqueID()).setOrAddTimeout(DEFAULT_TICK_TIMEOUT, flag);
     }
 
-    public static boolean isPlayerAffected(PlayerEntity player, AffectionFlag flag) {
+    public static boolean isPlayerAffected(Player player, AffectionFlag flag) {
         UUID playerUUID = player.getUniqueID();
         return affectMap.hasList(playerUUID) && affectMap.getOrCreateList(playerUUID).contains(flag);
     }

@@ -19,14 +19,14 @@ import hellfirepvp.astralsorcery.common.util.MapStream;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.util.data.JsonHelper;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
@@ -64,7 +64,7 @@ public class LiquidInfusion extends CustomMatcherRecipe implements GatedRecipe.P
         this.copyNBTToOutputs = copyNBTToOutputs;
     }
 
-    public boolean matches(TileInfuser infuser, PlayerEntity crafter, LogicalSide side) {
+    public boolean matches(TileInfuser infuser, Player crafter, LogicalSide side) {
         if (crafter == null) {
             return false;
         }
@@ -122,7 +122,7 @@ public class LiquidInfusion extends CustomMatcherRecipe implements GatedRecipe.P
     }
 
     public float getConsumptionChance() {
-        return MathHelper.clamp(consumptionChance, 0F, 1F);
+        return Mth.clamp(consumptionChance, 0F, 1F);
     }
 
     public boolean doesConsumeMultipleFluids() {

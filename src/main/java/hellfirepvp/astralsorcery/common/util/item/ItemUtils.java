@@ -14,18 +14,18 @@ import hellfirepvp.astralsorcery.common.util.tile.TileInventory;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.vector.Vector3d;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.items.CapabilityItemHandler;
 import net.neoforged.neoforge.items.IItemHandler;
@@ -125,7 +125,7 @@ public class ItemUtils {
         return false;
     }
 
-    public static ItemStack dropItemToPlayer(PlayerEntity player, ItemStack stack) {
+    public static ItemStack dropItemToPlayer(Player player, ItemStack stack) {
         World world = player.getEntityWorld();
         if (world.isRemote() || stack.isEmpty()) {
             return stack;
@@ -199,7 +199,7 @@ public class ItemUtils {
         return findItemsInInventory(handler, match, strict);
     }
 
-    public static Collection<ItemStack> findItemsInPlayerInventory(PlayerEntity player, ItemStack match, boolean strict) {
+    public static Collection<ItemStack> findItemsInIInventory(Player player, ItemStack match, boolean strict) {
         IItemHandler handler = player.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(EMPTY_INVENTORY);
         Collection<ItemStack> results = findItemsInInventory(handler, match, strict);
 
@@ -223,7 +223,7 @@ public class ItemUtils {
         return stacksOut;
     }
 
-    public static Map<Integer, ItemStack> findItemsIndexedInPlayerInventory(PlayerEntity player, Predicate<ItemStack> match) {
+    public static Map<Integer, ItemStack> findItemsIndexedInIInventory(Player player, Predicate<ItemStack> match) {
         return findItemsIndexedInInventory(player.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(EMPTY_INVENTORY), match);
     }
 
@@ -245,7 +245,7 @@ public class ItemUtils {
         return stacksOut;
     }
 
-    public static boolean consumeFromPlayerInventory(PlayerEntity player, ItemStack requestingItemStack, ItemStack toConsume, boolean simulate) {
+    public static boolean consumeFromIInventory(Player player, ItemStack requestingItemStack, ItemStack toConsume, boolean simulate) {
         int consumed = 0;
         ItemStack tryConsume = copyStackWithSize(toConsume, toConsume.getCount() - consumed);
 
@@ -259,7 +259,7 @@ public class ItemUtils {
         }
         
         if (Mods.BOTANIA.isPresent()) {
-            if (IntegrationBotania.consumeFromPlayerInventory(player, requestingItemStack, toConsume, simulate)) {
+            if (IntegrationBotania.consumeFromIInventory(player, requestingItemStack, toConsume, simulate)) {
                 return true;
             }
         }

@@ -24,8 +24,8 @@ import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LecternBlock;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
@@ -36,7 +36,7 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.common.util.Constants;
 import net.neoforged.fml.LogicalSide;
@@ -61,12 +61,12 @@ public class ItemTome extends Item implements PerkExperienceRevealer {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, Player player, Hand hand) {
         if (world.isRemote() && !player.isSneaking()) {
             AstralSorcery.getProxy().openGui(player, GuiType.TOME);
-        } else if (!world.isRemote() && player.isSneaking() && hand == Hand.MAIN_HAND && player instanceof ServerPlayerEntity) {
+        } else if (!world.isRemote() && player.isSneaking() && hand == Hand.MAIN_HAND && player instanceof ServerPlayer) {
             new ContainerTomeProvider(player.getHeldItem(hand), player.inventory.currentItem)
-                    .openFor((ServerPlayerEntity) player);
+                    .openFor((ServerPlayer) player);
         }
         return ActionResult.resultSuccess(player.getHeldItem(hand));
     }
@@ -82,7 +82,7 @@ public class ItemTome extends Item implements PerkExperienceRevealer {
         }
     }
 
-    public static IInventory getTomeStorage(ItemStack stack, PlayerEntity player) {
+    public static IInventory getTomeStorage(ItemStack stack, Player player) {
         Inventory inventory = new Inventory(27);
         getStoredConstellations(stack, player).stream().map(cst -> {
             ItemStack cstPaper = new ItemStack(ItemsAS.CONSTELLATION_PAPER);
@@ -94,7 +94,7 @@ public class ItemTome extends Item implements PerkExperienceRevealer {
         return inventory;
     }
 
-    public static List<IConstellation> getStoredConstellations(ItemStack stack, PlayerEntity player) {
+    public static List<IConstellation> getStoredConstellations(ItemStack stack, Player player) {
         LinkedList<IConstellation> out = new LinkedList<>();
 
         PlayerProgress prog = ResearchHelper.getProgress(player, player.getEntityWorld().isRemote() ? LogicalSide.CLIENT : LogicalSide.SERVER);

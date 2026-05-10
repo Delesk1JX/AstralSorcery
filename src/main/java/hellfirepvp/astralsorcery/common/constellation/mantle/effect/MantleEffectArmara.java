@@ -19,10 +19,10 @@ import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -62,7 +62,7 @@ public class MantleEffectArmara extends MantleEffect {
     }
 
     @Override
-    protected void tickServer(PlayerEntity player) {
+    protected void tickServer(Player player) {
         super.tickServer(player);
 
         if (getCurrentImmunityStacks(player) >= CONFIG.immunityStacks.get()) {
@@ -84,7 +84,7 @@ public class MantleEffectArmara extends MantleEffect {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    protected void tickClient(PlayerEntity player) {
+    protected void tickClient(Player player) {
         super.tickClient(player);
 
         this.playCapeSparkles(player, 0.15F);
@@ -117,7 +117,7 @@ public class MantleEffectArmara extends MantleEffect {
                     float deg = (float) Math.toDegrees(lookVec.angle(anglePlayer));
                     if (deg < 70F) {
                         float tansparentDegree = 40F;
-                        alpha *= MathHelper.clamp((deg - tansparentDegree) / (80F - tansparentDegree), 0F, 1F);
+                        alpha *= Mth.clamp((deg - tansparentDegree) / (80F - tansparentDegree), 0F, 1F);
                     }
                 }
 

@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.enchantment.dynamic.DynamicEnchantmentHe
 import hellfirepvp.astralsorcery.common.event.DynamicEnchantmentEvent;
 import hellfirepvp.astralsorcery.common.item.ItemEnchantmentAmulet;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Tuple;
@@ -38,7 +38,7 @@ public class PlayerAmuletHandler implements ITickHandler {
             return;
         }
 
-        Tuple<ItemStack, PlayerEntity> linkedAmulet = AmuletEnchantmentHelper.getWornAmulet(event.getEnchantedItemStack());
+        Tuple<ItemStack, Player> linkedAmulet = AmuletEnchantmentHelper.getWornAmulet(event.getEnchantedItemStack());
         if (linkedAmulet == null ||
                 linkedAmulet.getA().isEmpty() ||
                 linkedAmulet.getB() == null) {
@@ -50,18 +50,18 @@ public class PlayerAmuletHandler implements ITickHandler {
 
     @Override
     public void tick(TickEvent.Type type, Object... context) {
-        PlayerEntity player = (PlayerEntity) context[0];
+        Player player = (Player) context[0];
         applyAmuletTags(player);
         clearAmuletTags(player);
     }
 
-    private void applyAmuletTags(PlayerEntity player) {
+    private void applyAmuletTags(Player player) {
         for (EquipmentSlotType slot : EquipmentSlotType.values()) {
             AmuletEnchantmentHelper.applyAmuletOwner(player.getItemStackFromSlot(slot), player);
         }
     }
 
-    private void clearAmuletTags(PlayerEntity player) {
+    private void clearAmuletTags(Player player) {
         AmuletEnchantmentHelper.removeAmuletTagsAndCleanup(player, true);
     }
 

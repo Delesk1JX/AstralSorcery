@@ -11,8 +11,8 @@ package hellfirepvp.astralsorcery.common.container;
 import hellfirepvp.astralsorcery.common.lib.ContainerTypesAS;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import hellfirepvp.astralsorcery.common.util.tile.TileInventory;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.IInventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.neoforged.neoforge.items.SlotItemHandler;
@@ -28,12 +28,12 @@ import java.util.Optional;
  */
 public class ContainerAltarAttunement extends ContainerAltarBase {
 
-    public ContainerAltarAttunement(TileAltar altar, PlayerInventory inv, int windowId) {
+    public ContainerAltarAttunement(TileAltar altar, IInventory inv, int windowId) {
         super(altar, ContainerTypesAS.ALTAR_ATTUNEMENT, inv, windowId);
     }
 
     @Override
-    void bindPlayerInventory(PlayerInventory plInventory) {
+    void bindIInventory(IInventory plInventory) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 9; j++) {
                 addSlot(new Slot(plInventory, j + i * 9 + 9, 48 + j * 18, 120 + i * 18));
@@ -62,7 +62,7 @@ public class ContainerAltarAttunement extends ContainerAltarBase {
     }
 
     @Override
-    Optional<ItemStack> handleCustomTransfer(PlayerEntity player, int index) {
+    Optional<ItemStack> handleCustomTransfer(Player player, int index) {
         return Optional.empty();
     }
 

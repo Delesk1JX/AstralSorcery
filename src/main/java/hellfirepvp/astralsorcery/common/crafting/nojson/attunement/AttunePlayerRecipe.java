@@ -20,9 +20,9 @@ import hellfirepvp.astralsorcery.common.tile.TileAttunementAltar;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -59,7 +59,7 @@ public class AttunePlayerRecipe extends AttunementRecipe<ActivePlayerAttunementR
     @Override
     @Nonnull
     public ActivePlayerAttunementRecipe createRecipe(TileAttunementAltar altar) {
-        ServerPlayerEntity player = findEligiblePlayer(altar);
+        ServerPlayer player = findEligiblePlayer(altar);
         return new ActivePlayerAttunementRecipe(this, (IMajorConstellation) altar.getActiveConstellation(), player.getUniqueID());
     }
 
@@ -75,16 +75,16 @@ public class AttunePlayerRecipe extends AttunementRecipe<ActivePlayerAttunementR
     }
 
     @Nullable
-    private static ServerPlayerEntity findEligiblePlayer(TileAttunementAltar altar) {
+    private static ServerPlayer findEligiblePlayer(TileAttunementAltar altar) {
         if (!(altar.getActiveConstellation() instanceof IMajorConstellation)) {
             return null;
         }
         AxisAlignedBB boxAt = BOX.offset(altar.getPos().up()).grow(1);
 
         Vector3 thisVec = new Vector3(altar).add(0.5, 1.5, 0.5);
-        List<ServerPlayerEntity> players = altar.getWorld().getEntitiesWithinAABB(ServerPlayerEntity.class, boxAt);
+        List<ServerPlayer> players = altar.getWorld().getEntitiesWithinAABB(ServerPlayer.class, boxAt);
         if (!players.isEmpty()) {
-            ServerPlayerEntity pl = EntityUtils.selectClosest(players, (player) -> thisVec.distanceSquared(player.getPositionVec()));
+            ServerPlayer pl = EntityUtils.selectClosest(players, (player) -> thisVec.distanceSquared(player.getPositionVec()));
             if (isEligablePlayer(pl, altar.getActiveConstellation())) {
                 return pl;
             }
@@ -92,7 +92,7 @@ public class AttunePlayerRecipe extends AttunementRecipe<ActivePlayerAttunementR
         return null;
     }
 
-    public static boolean isEligablePlayer(ServerPlayerEntity player, IConstellation attuneTo) {
+    public static boolean isEligablePlayer(ServerPlayer player, IConstellation attuneTo) {
         if (player != null && player.isAlive() && !MiscUtils.isPlayerFakeMP(player) && !player.isSneaking()) {
             PlayerProgress prog = ResearchHelper.getProgress(player, LogicalSide.SERVER);
 

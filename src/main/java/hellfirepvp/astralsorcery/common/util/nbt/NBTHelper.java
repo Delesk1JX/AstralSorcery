@@ -14,16 +14,16 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.*;
 import net.minecraft.state.Property;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
 import net.neoforged.neoforge.common.util.Constants;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.RegistryManager;
 import net.neoforged.neoforge.registries.Registry;
 import net.neoforged.neoforge.registries.IRegistryObject;
 import net.neoforged.neoforge.registries.RegistryManager;
@@ -315,7 +315,7 @@ public class NBTHelper {
     @Nullable
     public static <T extends Comparable<T>> BlockState getBlockStateFromTag(CompoundTag cmp, BlockState _default) {
         ResourceLocation key = new ResourceLocation(cmp.getString("registryName"));
-        Block block = ForgeRegistries.BLOCKS.getValue(key);
+        Block block = RegistryManager.BLOCKS.getValue(key);
         if (block == null || block == Blocks.AIR) return _default;
         BlockState state = block.getDefaultState();
         Collection<Property<?>> properties = state.getProperties();

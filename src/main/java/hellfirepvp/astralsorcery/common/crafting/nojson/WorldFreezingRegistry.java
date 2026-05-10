@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.crafting.nojson.freezing.BlockFreezingRe
 import hellfirepvp.astralsorcery.common.crafting.nojson.freezing.FluidFreezingRecipe;
 import hellfirepvp.astralsorcery.common.crafting.nojson.freezing.WorldFreezingRecipe;
 import net.minecraft.block.Blocks;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;

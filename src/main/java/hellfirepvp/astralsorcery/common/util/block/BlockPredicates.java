@@ -17,7 +17,7 @@ import net.minecraft.tags.Tag;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.RegistryKey;
-import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.ChunkPos;
 import net.minecraft.world.World;
 import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;

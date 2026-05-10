@@ -19,12 +19,12 @@ import net.minecraft.block.CampfireBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.common.ToolType;
 
@@ -85,7 +85,7 @@ public class ItemCrystalShovel extends ItemCrystalTierItem implements TypeEnchan
         if (context.getFace() == Direction.DOWN) {
             return ActionResultType.PASS;
         } else {
-            PlayerEntity playerentity = context.getPlayer();
+            Player playerentity = context.getPlayer();
             BlockState modifiedState = state.getToolModifiedState(world, pos, playerentity, context.getItem(), ToolType.SHOVEL);
             BlockState targetState = null;
             if (modifiedState != null && world.isAirBlock(pos.up())) {

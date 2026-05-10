@@ -16,7 +16,7 @@ import net.minecraft.client.audio.ITickableSound;
 import net.minecraft.client.audio.SimpleSound;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 
 import java.util.function.Predicate;
 
@@ -64,13 +64,13 @@ public class FadeSound extends SimpleSound implements ITickableSound, ISound {
     }
 
     public void setVolumeMultiplier(float volumeMultiplier) {
-        this.volumeMultiplier = MathHelper.clamp(volumeMultiplier, 0F, 1F);
+        this.volumeMultiplier = Mth.clamp(volumeMultiplier, 0F, 1F);
     }
 
     @Override
     public float getVolume() {
-        float mulFadeIn = MathHelper.clamp(this.tick / this.fadeInTicks, 0F, 1F);
-        float mulFadeOut = MathHelper.clamp(1F - this.stopTick / this.fadeOutTicks, 0F, 1F);
+        float mulFadeIn = Mth.clamp(this.tick / this.fadeInTicks, 0F, 1F);
+        float mulFadeOut = Mth.clamp(1F - this.stopTick / this.fadeOutTicks, 0F, 1F);
         return mulFadeIn * mulFadeOut * super.getVolume()* volumeMultiplier;
     }
 

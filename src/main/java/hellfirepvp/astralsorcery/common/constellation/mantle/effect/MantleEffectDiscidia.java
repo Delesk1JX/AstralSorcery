@@ -16,10 +16,10 @@ import hellfirepvp.astralsorcery.common.item.armor.ItemMantle;
 import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
 import hellfirepvp.astralsorcery.common.util.DamageUtil;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
@@ -61,7 +61,7 @@ public class MantleEffectDiscidia extends MantleEffect {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    protected void tickClient(PlayerEntity player) {
+    protected void tickClient(Player player) {
         super.tickClient(player);
 
         float effChance = 0.1F;
@@ -80,11 +80,11 @@ public class MantleEffectDiscidia extends MantleEffect {
         if (world.isRemote()) {
             return;
         }
-        if (attacker instanceof PlayerEntity) {
-            if (attacked instanceof ServerPlayerEntity && MiscUtils.isPlayerFakeMP((ServerPlayerEntity) attacked)) {
+        if (attacker instanceof Player) {
+            if (attacked instanceof ServerPlayer && MiscUtils.isPlayerFakeMP((ServerPlayer) attacked)) {
                 return;
             }
-            PlayerEntity player = (PlayerEntity) attacker;
+            Player player = (Player) attacker;
 
             MantleEffectDiscidia eff = ItemMantle.getEffect(player, ConstellationsAS.discidia);
             if (eff != null) {

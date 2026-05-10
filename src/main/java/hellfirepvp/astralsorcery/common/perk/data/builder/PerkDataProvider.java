@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
 import java.awt.*;
 import java.io.BufferedWriter;

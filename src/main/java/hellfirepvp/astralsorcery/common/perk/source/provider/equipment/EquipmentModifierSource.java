@@ -14,10 +14,10 @@ import hellfirepvp.astralsorcery.common.perk.source.AttributeModifierProvider;
 import hellfirepvp.astralsorcery.common.perk.source.ModifierManager;
 import hellfirepvp.astralsorcery.common.perk.source.ModifierSource;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Util;
 import net.neoforged.fml.LogicalSide;
 
@@ -43,18 +43,18 @@ public class EquipmentModifierSource implements ModifierSource, AttributeModifie
     }
 
     @Override
-    public boolean canApplySource(PlayerEntity player, LogicalSide dist) {
+    public boolean canApplySource(Player player, LogicalSide dist) {
         return true;
     }
 
     @Override
-    public void onRemove(PlayerEntity player, LogicalSide dist) {}
+    public void onRemove(Player player, LogicalSide dist) {}
 
     @Override
-    public void onApply(PlayerEntity player, LogicalSide dist) {}
+    public void onApply(Player player, LogicalSide dist) {}
 
     @Override
-    public Collection<PerkAttributeModifier> getModifiers(PlayerEntity player, LogicalSide side, boolean ignoreRequirements) {
+    public Collection<PerkAttributeModifier> getModifiers(Player player, LogicalSide side, boolean ignoreRequirements) {
         if (this.itemStack.isEmpty()) {
             return Collections.emptyList();
         }

@@ -29,9 +29,9 @@ import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import hellfirepvp.astralsorcery.common.util.object.CacheReference;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemGroup;
@@ -94,18 +94,18 @@ public class ItemMantle extends ArmorItem implements ItemDynamicColor, Constella
 
     @Override
     public boolean canElytraFly(ItemStack stack, LivingEntity entity) {
-        if (!(entity instanceof PlayerEntity)) {
+        if (!(entity instanceof Player)) {
             return false;
         }
-        return MantleEffectVicio.isUsableElytra(stack, (PlayerEntity) entity);
+        return MantleEffectVicio.isUsableElytra(stack, (Player) entity);
     }
 
     @Override
     public boolean elytraFlightTick(ItemStack stack, LivingEntity entity, int flightTicks) {
-        if (!(entity instanceof PlayerEntity)) {
+        if (!(entity instanceof Player)) {
             return false;
         }
-        return MantleEffectVicio.isUsableElytra(stack, (PlayerEntity) entity);
+        return MantleEffectVicio.isUsableElytra(stack, (Player) entity);
     }
 
     @Override
@@ -118,7 +118,7 @@ public class ItemMantle extends ArmorItem implements ItemDynamicColor, Constella
     }
 
     @Override
-    public Collection<PerkAttributeModifier> getModifiers(ItemStack stack, PlayerEntity player, LogicalSide side, boolean ignoreRequirements) {
+    public Collection<PerkAttributeModifier> getModifiers(ItemStack stack, Player player, LogicalSide side, boolean ignoreRequirements) {
         if (ItemMantle.getEffect(stack, ConstellationsAS.evorsio) == null) {
             return Collections.emptyList();
         }
@@ -214,7 +214,7 @@ public class ItemMantle extends ArmorItem implements ItemDynamicColor, Constella
     }
 
     @Override
-    public float getAlignmentChargeCost(PlayerEntity player, ItemStack stack) {
+    public float getAlignmentChargeCost(Player player, ItemStack stack) {
         return 0;
     }
 }

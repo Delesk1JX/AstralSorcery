@@ -19,9 +19,9 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.BlockRayTraceResult;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.Style;
@@ -50,7 +50,7 @@ public class CommandSerialize {
     }
 
     private static int serializeHand(CommandContext<CommandSource> context) throws CommandSyntaxException {
-        PlayerEntity player = context.getSource().asPlayer();
+        Player player = context.getSource().asPlayer();
         ItemStack held = player.getHeldItemMainhand();
         String serialized = JsonHelper.serializeItemStack(held).toString();
 
@@ -65,7 +65,7 @@ public class CommandSerialize {
     }
 
     private static int serializeLook(CommandContext<CommandSource> context) throws CommandSyntaxException {
-        PlayerEntity player = context.getSource().asPlayer();
+        Player player = context.getSource().asPlayer();
         BlockRayTraceResult result = MiscUtils.rayTraceLookBlock(player);
         BlockState state = result == null ? Blocks.AIR.getDefaultState() : player.getEntityWorld().getBlockState(result.getPos());
         String serialized = BlockStateHelper.serialize(state);

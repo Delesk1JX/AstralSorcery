@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.crafting.helper;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.items.IItemHandler;
 

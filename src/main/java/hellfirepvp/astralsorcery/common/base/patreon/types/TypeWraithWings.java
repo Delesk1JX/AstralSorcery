@@ -14,10 +14,10 @@ import hellfirepvp.astralsorcery.client.render.ObjModelRender;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import hellfirepvp.astralsorcery.common.base.patreon.FlareColor;
 import hellfirepvp.astralsorcery.common.base.patreon.PatreonEffect;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.potion.Effects;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.util.Mth;
+import net.minecraft.util.vector.Vector3f;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.RenderPlayerEvent;
@@ -50,7 +50,7 @@ public class TypeWraithWings extends PatreonEffect {
         bus.register(this);
     }
 
-    private boolean shouldDoEffect(PlayerEntity player) {
+    private boolean shouldDoEffect(Player player) {
         return player.getUniqueID().equals(playerUUID) &&
                 !player.isPassenger() &&
                 !player.isElytraFlying() &&
@@ -60,7 +60,7 @@ public class TypeWraithWings extends PatreonEffect {
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
     void onRender(RenderPlayerEvent.Post event) {
-        PlayerEntity player = event.getPlayer();
+        Player player = event.getPlayer();
         if (!shouldDoEffect(player)) {
             return;
         }
@@ -78,7 +78,7 @@ public class TypeWraithWings extends PatreonEffect {
         float swimAngle = player.getSwimAnimation(event.getPartialRenderTick());
         if (swimAngle > 0) {
             float waterPitch = player.isInWater() ? -90.0F - player.rotationPitch : -90.0F;
-            float bodySwimAngle = MathHelper.lerp(swimAngle, 0.0F, waterPitch);
+            float bodySwimAngle = Mth.lerp(swimAngle, 0.0F, waterPitch);
             renderStack.rotate(Vector3f.YP.rotationDegrees(180 - rot));
             renderStack.rotate(Vector3f.XP.rotationDegrees(bodySwimAngle));
             if (player.isActualySwimming()) {

@@ -26,11 +26,11 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.block.ILocatable;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -117,7 +117,7 @@ public abstract class ConstellationEffect {
     public void writeToNBT(CompoundTag cmp) {}
 
     @Nullable
-    public PlayerEntity getOwningPlayerInWorld(World world, BlockPos pos) {
+    public Player getOwningPlayerInWorld(World world, BlockPos pos) {
         TileRitualPedestal pedestal = getPedestal(world, pos);
         if (pedestal != null) {
             return pedestal.getOwner();
@@ -138,7 +138,7 @@ public abstract class ConstellationEffect {
         PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(world, at.toBlockPos(), 32));
     }
 
-    protected void markPlayerAffected(PlayerEntity player) {
+    protected void markPlayerAffected(Player player) {
         if (player.getEntityWorld().isRemote()) {
             return;
         }

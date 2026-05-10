@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.container.slot;
 
 import hellfirepvp.astralsorcery.common.item.base.IConstellationFocus;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.neoforged.neoforge.items.IItemHandler;
@@ -50,12 +50,12 @@ public class SlotConstellationFocus extends SlotItemHandler {
     }
 
     @Override
-    public boolean canTakeStack(PlayerEntity playerIn) {
+    public boolean canTakeStack(Player playerIn) {
         return true;
     }
 
     @Override
-    public ItemStack onTake(PlayerEntity thePlayer, ItemStack stack) {
+    public ItemStack onTake(Player thePlayer, ItemStack stack) {
         this.altar.markForUpdate();
         return super.onTake(thePlayer, stack);
     }

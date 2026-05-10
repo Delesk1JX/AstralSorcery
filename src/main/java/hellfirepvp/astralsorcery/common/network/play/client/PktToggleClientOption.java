@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.data.research.ResearchManager;
 import hellfirepvp.astralsorcery.common.network.base.ASPacket;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -64,7 +64,7 @@ public class PktToggleClientOption extends ASPacket<PktToggleClientOption> {
 
             @Override
             public void handleServer(PktToggleClientOption packet, NetworkEvent.Context context) {
-                ServerPlayerEntity player = context.getSender();
+                ServerPlayer player = context.getSender();
                 switch (packet.option) {
                     case DISABLE_PERK_ABILITIES:
                         if (ResearchManager.togglePerkAbilities(player)) {

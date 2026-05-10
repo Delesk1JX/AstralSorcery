@@ -31,10 +31,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.IHasContainer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.settings.PointOfView;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Matrix4f;
+import net.minecraft.util.Mth;
+import net.minecraft.util.vector.Matrix4f;
 import net.neoforged.fml.LogicalSide;
 import org.lwjgl.opengl.GL11;
 
@@ -65,7 +65,7 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
                 Minecraft.getInstance().getMainWindow().getScaledWidth() - FRAME_TEXTURE_SIZE * 2);
         this.container = container;
 
-        PlayerEntity player = Minecraft.getInstance().player;
+        Player player = Minecraft.getInstance().player;
         if (player != null) {
             TileObservatory observatory = this.getTile();
             player.rotationPitch     = observatory.observatoryPitch;
@@ -136,10 +136,10 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
 
         double guiFactor = Minecraft.getInstance().getMainWindow().getGuiScaleFactor();
         GL11.glEnable(GL11.GL_SCISSOR_TEST);
-        GL11.glScissor(MathHelper.floor((FRAME_TEXTURE_SIZE - 2) * guiFactor),
-                MathHelper.floor((FRAME_TEXTURE_SIZE - 2) * guiFactor),
-                MathHelper.floor((this.getGuiWidth() + 2) * guiFactor),
-                MathHelper.floor((this.getGuiHeight() + 2) * guiFactor));
+        GL11.glScissor(Mth.floor((FRAME_TEXTURE_SIZE - 2) * guiFactor),
+                Mth.floor((FRAME_TEXTURE_SIZE - 2) * guiFactor),
+                Mth.floor((this.getGuiWidth() + 2) * guiFactor),
+                Mth.floor((this.getGuiHeight() + 2) * guiFactor));
         this.drawObservatoryScreen(renderStack, pTicks);
         GL11.glDisable(GL11.GL_SCISSOR_TEST);
 
@@ -155,7 +155,7 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
             angleOpacity = 1F;
         } else if (pitch <= -9F) {
             angleOpacity = 0.2F + 0.8F * ((Math.abs(pitch) - 10F) / 20F);
-            angleOpacity = MathHelper.sqrt(angleOpacity);
+            angleOpacity = Mth.sqrt(angleOpacity);
         }
         float brMultiplier = angleOpacity;
 
@@ -221,18 +221,18 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
 
                     if ((Math.abs(diffYaw) <= size || Math.abs(diffYaw += 360F) <= size) &&
                             Math.abs(diffPitch) <= size) {
-                        int wPart = MathHelper.floor(this.getGuiWidth() * 0.1F);
-                        int hPart = MathHelper.floor(this.getGuiHeight() * 0.1F);
+                        int wPart = Mth.floor(this.getGuiWidth() * 0.1F);
+                        int hPart = Mth.floor(this.getGuiHeight() * 0.1F);
                         float xFactor = diffYaw   / 8F;
                         float yFactor = diffPitch / 8F;
 
                         Map<StarLocation, Rectangle.Float> cstRenderInfo = RenderingConstellationUtils.renderConstellationIntoGUI(
                                 cst, renderStack,
-                                this.getGuiLeft() + wPart + MathHelper.floor((xFactor / guiFactor) * this.getGuiWidth()),
-                                this.getGuiTop() + hPart + MathHelper.floor((yFactor / guiFactor) * this.getGuiHeight()),
+                                this.getGuiLeft() + wPart + Mth.floor((xFactor / guiFactor) * this.getGuiWidth()),
+                                this.getGuiTop() + hPart + Mth.floor((yFactor / guiFactor) * this.getGuiHeight()),
                                 this.getGuiZLevel(),
-                                MathHelper.floor(this.getGuiHeight() * 0.6F),
-                                MathHelper.floor(this.getGuiHeight() * 0.6F),
+                                Mth.floor(this.getGuiHeight() * 0.6F),
+                                Mth.floor(this.getGuiHeight() * 0.6F),
                                 2F,
                                 () -> (0.2F + 0.7F * RenderingConstellationUtils.conCFlicker(ClientScheduler.getClientTick(), pTicks, 5 + gen.nextInt(15)) * rainBr) * brMultiplier,
                                 ResearchHelper.getClientProgress().hasConstellationDiscovered(cst),

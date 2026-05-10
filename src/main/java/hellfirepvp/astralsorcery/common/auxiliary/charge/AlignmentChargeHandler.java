@@ -18,8 +18,8 @@ import hellfirepvp.astralsorcery.common.network.play.server.PktSyncCharge;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
 import hellfirepvp.astralsorcery.common.perk.node.key.KeyChargeBalancing;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.util.Mth;
 import net.minecraft.world.gen.Heightmap;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -48,7 +48,7 @@ public class AlignmentChargeHandler implements ITickHandler {
 
     private AlignmentChargeHandler() {}
 
-    public void updateMaximum(PlayerEntity player, LogicalSide side) {
+    public void updateMaximum(Player player, LogicalSide side) {
         float cap = PerkAttributeHelper.getOrCreateMap(player, side)
                 .modifyValue(player, ResearchHelper.getProgress(player, side), PerkAttributeTypesAS.ATTR_TYPE_ALIGNMENT_CHARGE_MAXIMUM, MAX_CHARGE);
         cap = AttributeEvent.postProcessModded(player, PerkAttributeTypesAS.ATTR_TYPE_ALIGNMENT_CHARGE_MAXIMUM, cap);
@@ -60,12 +60,12 @@ public class AlignmentChargeHandler implements ITickHandler {
         }
     }
 
-    public float getMaximumCharge(PlayerEntity player, LogicalSide side) {
+    public float getMaximumCharge(Player player, LogicalSide side) {
         return maximumCharge.computeIfAbsent(side, s -> new HashMap<>())
                 .computeIfAbsent(player.getUniqueID(), uuid -> MAX_CHARGE);
     }
 
-    public float getCurrentCharge(PlayerEntity player, LogicalSide side) {
+    public float getCurrentCharge(Player player, LogicalSide side) {
         if (player.isCreative() || player.isSpectator()) {
             return getMaximumCharge(player, side);
         }
@@ -73,16 +73,16 @@ public class AlignmentChargeHandler implements ITickHandler {
                 .computeIfAbsent(player.getUniqueID(), uuid -> MAX_CHARGE);
     }
 
-    public float getFilledPercentage(PlayerEntity player, LogicalSide side) {
+    public float getFilledPercentage(Player player, LogicalSide side) {
         if (player.isCreative() || player.isSpectator()) {
             return 1F;
         }
         float max = this.getMaximumCharge(player, side);
         float current = this.getCurrentCharge(player, side);
-        return MathHelper.clamp(current / max, 0F, 1F);
+        return Mth.clamp(current / max, 0F, 1F);
     }
 
-    public boolean hasCharge(PlayerEntity player, LogicalSide side, float charge) {
+    public boolean hasCharge(Player player, LogicalSide side, float charge) {
         if (player.isCreative() || player.isSpectator()) {
             return true;
         }
@@ -90,7 +90,7 @@ public class AlignmentChargeHandler implements ITickHandler {
         return current >= charge;
     }
 
-    public boolean drainCharge(PlayerEntity player, LogicalSide side, float charge, boolean simulate) {
+    public boolean drainCharge(Player player, LogicalSide side, float charge, boolean simulate) {
         if (player.isCreative() || player.isSpectator()) {
             return true;
         }
@@ -104,20 +104,20 @@ public class AlignmentChargeHandler implements ITickHandler {
         }
         if (!simulate) {
             currentCharge.computeIfAbsent(side, s -> new HashMap<>())
-                    .put(player.getUniqueID(), MathHelper.clamp(result, 0, this.getMaximumCharge(player, side)));
+                    .put(player.getUniqueID(), Mth.clamp(result, 0, this.getMaximumCharge(player, side)));
         }
         return true;
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void receiveCharge(PktSyncCharge pkt, PlayerEntity player) {
+    public void receiveCharge(PktSyncCharge pkt, Player player) {
         maximumCharge.computeIfAbsent(LogicalSide.CLIENT, s -> new HashMap<>()).put(player.getUniqueID(), pkt.getMaxCharge());
         currentCharge.computeIfAbsent(LogicalSide.CLIENT, s -> new HashMap<>()).put(player.getUniqueID(), pkt.getCharge());
     }
 
     @Override
     public void tick(TickEvent.Type type, Object... context) {
-        PlayerEntity player = (PlayerEntity) context[0];
+        Player player = (Player) context[0];
         LogicalSide side = (LogicalSide) context[1];
 
         float charge = this.getCurrentCharge(player, side);

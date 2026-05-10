@@ -17,11 +17,11 @@ import hellfirepvp.astralsorcery.common.starlight.transmission.IPrismTransmissio
 import hellfirepvp.astralsorcery.common.starlight.transmission.ITransmissionSource;
 import hellfirepvp.astralsorcery.common.starlight.transmission.NodeConnection;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.math.vector.Vector3i;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.ChunkPos;
+import net.minecraft.util.Mth;
+import net.minecraft.util.vector.Vector3d;
+import net.minecraft.util.vector.Vector3i;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -263,12 +263,12 @@ public class WorldNetworkHandler {
     private List<LightNetworkBuffer.ChunkSectionNetworkData> getAffectedChunkSections(BlockPos centralPos) {
         List<LightNetworkBuffer.ChunkSectionNetworkData> dataList = new LinkedList<>();
         ChunkPos central = new ChunkPos(centralPos);
-        int posYLevel = MathHelper.clamp(centralPos.getY(), 0, 255);
+        int posYLevel = Mth.clamp(centralPos.getY(), 0, 255);
         for (int xx = -1; xx <= 1; xx++) {
             for (int zz = -1; zz <= 1; zz++) {
                 for (int yy = -1; yy <= 1; yy++) {
                     BlockPos pos = central.asBlockPos();
-                    pos = pos.add(xx * 16, MathHelper.clamp(posYLevel + yy * 16, 0, 255), zz * 16);
+                    pos = pos.add(xx * 16, Mth.clamp(posYLevel + yy * 16, 0, 255), zz * 16);
                     queryData(pos, dataList);
                 }
             }

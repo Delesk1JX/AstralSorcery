@@ -34,11 +34,11 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
@@ -84,13 +84,13 @@ public class ActivePlayerAttunementRecipe extends AttunementRecipe.Active<Attune
         if (!super.matches(altar)) {
             return false;
         }
-        PlayerEntity player;
+        Player player;
         return (player = altar.getWorld().getPlayerByUuid(this.playerUUID)) != null && player.isAlive();
     }
 
     @Override
     public void startCrafting(TileAttunementAltar altar) {
-        PlayerEntity player = altar.getWorld().getPlayerByUuid(this.playerUUID);
+        Player player = altar.getWorld().getPlayerByUuid(this.playerUUID);
         if (player != null && player.isAlive()) {
             Vector3 offset = new Vector3(altar).add(0.5F, 1.2F, 0.5F);
             player.setPositionAndRotation(offset.getX(), offset.getY(), offset.getZ(), 0F, 0F);
@@ -105,7 +105,7 @@ public class ActivePlayerAttunementRecipe extends AttunementRecipe.Active<Attune
 
     @Override
     public void finishRecipe(TileAttunementAltar altar) {
-        PlayerEntity player = altar.getWorld().getPlayerByUuid(this.playerUUID);
+        Player player = altar.getWorld().getPlayerByUuid(this.playerUUID);
         if (player != null) {
             ResearchManager.setAttunedConstellation(player, this.constellation);
         }
@@ -114,7 +114,7 @@ public class ActivePlayerAttunementRecipe extends AttunementRecipe.Active<Attune
     @Override
     public void doTick(LogicalSide side, TileAttunementAltar altar) {
         if (side.isServer()) {
-            PlayerEntity player = altar.getWorld().getPlayerByUuid(this.playerUUID);
+            Player player = altar.getWorld().getPlayerByUuid(this.playerUUID);
             if (player != null) {
                 EventHelperInvulnerability.makeInvulnerable(player);
             }
@@ -359,7 +359,7 @@ public class ActivePlayerAttunementRecipe extends AttunementRecipe.Active<Attune
             }
 
             float floatTick = (ClientScheduler.getClientTick() % 40) / 40F;
-            float sin = MathHelper.sin((float) (floatTick * 2 * Math.PI)) / 2F + 0.5F;
+            float sin = Mth.sin((float) (floatTick * 2 * Math.PI)) / 2F + 0.5F;
             focusedEntity.setCustomNameVisible(false);
             focusedEntity.setPositionAndRotation(offset.getX(), offset.getY() + sin * 0.2D, offset.getZ(), 0F, 0F);
             focusedEntity.setPositionAndRotation(offset.getX(), offset.getY() + sin * 0.2D, offset.getZ(), 0F, 0F);

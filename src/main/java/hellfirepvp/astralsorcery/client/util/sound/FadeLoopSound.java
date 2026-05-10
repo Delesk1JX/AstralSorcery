@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.sound.CategorizedSoundEvent;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -70,8 +70,8 @@ public class FadeLoopSound extends PositionedLoopSound {
 
     @Override
     public float getVolume() {
-        float mulFadeIn = MathHelper.clamp(this.tick / this.fadeInTicks, 0F, 1F);
-        float mulFadeOut = MathHelper.clamp(1F - this.stopTick / this.fadeOutTicks, 0F, 1F);
+        float mulFadeIn = Mth.clamp(this.tick / this.fadeInTicks, 0F, 1F);
+        float mulFadeOut = Mth.clamp(1F - this.stopTick / this.fadeOutTicks, 0F, 1F);
         return mulFadeIn * mulFadeOut * super.getVolume();
     }
 }

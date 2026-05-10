@@ -17,17 +17,17 @@ import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
 import hellfirepvp.astralsorcery.common.util.block.BlockUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ThrowableEntity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.ThrowableEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.network.IPacket;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.BlockRayTraceResult;
+import net.minecraft.util.RayTraceResult;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -122,11 +122,11 @@ public class EntityIlluminationSpark extends ThrowableEntity {
         if (world.isRemote()) {
             return;
         }
-        if (!(result instanceof BlockRayTraceResult) || !(this.func_234616_v_() instanceof PlayerEntity)) {
+        if (!(result instanceof BlockRayTraceResult) || !(this.func_234616_v_() instanceof Player)) {
             remove();
             return;
         }
-        PlayerEntity player = (PlayerEntity) this.func_234616_v_();
+        Player player = (Player) this.func_234616_v_();
         BlockRayTraceResult brtr = (BlockRayTraceResult) result;
 
         BlockItemUseContext bCtx = new BlockItemUseContext(new ItemUseContext(player, Hand.MAIN_HAND, brtr));

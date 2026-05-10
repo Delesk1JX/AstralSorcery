@@ -17,15 +17,15 @@ import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
 import hellfirepvp.astralsorcery.common.perk.PerkTree;
 import hellfirepvp.astralsorcery.common.perk.node.key.KeyVoidTrash;
 import hellfirepvp.astralsorcery.common.util.loot.LootUtil;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootParameterSets;
 import net.minecraft.loot.LootParameters;
 import net.minecraft.loot.conditions.ILootCondition;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.loot.GlobalLootModifierSerializer;
 import net.neoforged.neoforge.common.loot.LootModifier;
 import net.neoforged.fml.LogicalSide;
@@ -54,10 +54,10 @@ public class LootModifierPerkVoidTrash extends LootModifier {
             return generatedLoot;
         }
         Entity e = context.get(LootParameters.THIS_ENTITY);
-        if (!(e instanceof PlayerEntity)) {
+        if (!(e instanceof Player)) {
             return generatedLoot;
         }
-        PlayerEntity player = (PlayerEntity) e;
+        Player player = (Player) e;
         PlayerProgress prog = ResearchHelper.getProgress(player, LogicalSide.SERVER);
         if (!prog.isValid() || !prog.getPerkData().hasPerkEffect(perk -> perk instanceof KeyVoidTrash)) {
             return generatedLoot;

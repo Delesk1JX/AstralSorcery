@@ -12,10 +12,10 @@ import hellfirepvp.astralsorcery.common.base.patreon.PatreonEffect;
 import hellfirepvp.astralsorcery.common.base.patreon.PatreonEffectHelper;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.RegistryKey;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -106,7 +106,7 @@ public class PatreonPartialEntity {
     private boolean updateMotion(IWorld world) {
         Vector3 prevMot = this.motion.clone();
 
-        PlayerEntity target = findOwner(world);
+        Player target = findOwner(world);
         if (target == null) {
             this.motion = new Vector3();
         } else {
@@ -127,7 +127,7 @@ public class PatreonPartialEntity {
     private boolean tryMoveEntity(IWorld world) {
         this.prevPos = this.pos.clone();
 
-        PlayerEntity owner = findOwner(world);
+        Player owner = findOwner(world);
         if (owner != null && this.pos.distance(Vector3.atEntityCenter(owner)) >= 16) {
             placeNear(owner);
             return true;
@@ -136,7 +136,7 @@ public class PatreonPartialEntity {
         return !this.pos.equals(this.prevPos);
     }
 
-    public void placeNear(PlayerEntity player) {
+    public void placeNear(Player player) {
         this.pos = Vector3.atEntityCenter(player)
                 .setY(player.getPosY())
                 .addY(player.getHeight())
@@ -147,7 +147,7 @@ public class PatreonPartialEntity {
     }
 
     @Nullable
-    public PlayerEntity findOwner(IWorld world) {
+    public Player findOwner(IWorld world) {
         return world.getPlayerByUuid(this.ownerUUID);
     }
 

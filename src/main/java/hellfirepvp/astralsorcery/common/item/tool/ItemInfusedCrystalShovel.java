@@ -16,10 +16,10 @@ import hellfirepvp.astralsorcery.common.network.play.server.PktPlayEffect;
 import hellfirepvp.astralsorcery.common.util.block.BlockDiscoverer;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.neoforged.fml.LogicalSide;
 
@@ -35,12 +35,12 @@ import java.util.List;
 public class ItemInfusedCrystalShovel extends ItemCrystalShovel {
 
     @Override
-    public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, PlayerEntity player) {
+    public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, Player player) {
         World world = player.getEntityWorld();
         if (!world.isRemote() &&
                 !player.isSneaking() &&
                 !player.getCooldownTracker().hasCooldown(itemstack.getItem()) &&
-                player instanceof ServerPlayerEntity) {
+                player instanceof ServerPlayer) {
 
             PlayerProgress prog = ResearchHelper.getProgress(player, LogicalSide.SERVER);
             if (prog.doPerkAbilities()) {
@@ -48,7 +48,7 @@ public class ItemInfusedCrystalShovel extends ItemCrystalShovel {
                     if (!world.getBlockState(pos).isAir(world, pos)) {
                         List<BlockPos> foundBlocks = BlockDiscoverer.discoverBlocksWithSameStateAround(world, pos, true, 8, 200, false);
                         if (!foundBlocks.isEmpty()) {
-                            ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
+                            ServerPlayer serverPlayer = (ServerPlayer) player;
 
                             foundBlocks.forEach(at -> {
                                 BlockState currentState = world.getBlockState(at);

@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.enchantment;
 
 import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
@@ -30,7 +30,7 @@ public class EnchantmentNightVision extends EnchantmentPlayerTick {
     }
 
     @Override
-    public void tick(PlayerEntity player, LogicalSide side, int level) {
+    public void tick(Player player, LogicalSide side, int level) {
         if (side.isServer()) {
             player.addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, 300, level - 1, true, false));
         }

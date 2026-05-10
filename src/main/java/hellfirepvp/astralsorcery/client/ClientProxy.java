@@ -41,10 +41,10 @@ import hellfirepvp.astralsorcery.common.perk.tree.PerkTreePoint;
 import hellfirepvp.astralsorcery.common.registry.*;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
+import net.minecraft.client.entity.player.AbstractClientPlayer;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.renderer.entity.PlayerRenderer;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraft.util.Unit;
@@ -167,8 +167,8 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public void openGui(PlayerEntity player, GuiType type, Object... data) {
-        if (player instanceof AbstractClientPlayerEntity) {
+    public void openGui(Player player, GuiType type, Object... data) {
+        if (player instanceof AbstractClientPlayer) {
             openGuiClient(type, type.serializeArguments(data));
             return;
         }

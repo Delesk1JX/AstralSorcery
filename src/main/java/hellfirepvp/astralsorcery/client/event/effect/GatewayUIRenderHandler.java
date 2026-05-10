@@ -23,12 +23,12 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.DyeColor;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.BlockRayTraceResult;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RayTraceResult;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.client.event.RenderWorldLastEvent;
@@ -102,7 +102,7 @@ public class GatewayUIRenderHandler implements ITickHandler {
         MatrixStack renderStack = event.getMatrixStack();
         Vector3 renderOffset = this.currentUI.getRenderCenter();
 
-        PlayerEntity player = Minecraft.getInstance().player;
+        Player player = Minecraft.getInstance().player;
         double dst = renderOffset.distance(Vector3.atEntityCorner(player).addY(1.5));
         if(dst > 3) {
             return;
@@ -134,7 +134,7 @@ public class GatewayUIRenderHandler implements ITickHandler {
         }
 
         Color c = ColorsAS.CONSTELLATION_TYPE_MAJOR;
-        float alpha = MathHelper.clamp(1F - ((float) (distance / 2D)), 0F, 1F);
+        float alpha = Mth.clamp(1F - ((float) (distance / 2D)), 0F, 1F);
 
         node.getAllowedUsers().forEach((index, playerRef) -> {
             BlockPos drawPos = TileCelestialGateway.getAllowedUserOffset(index).add(node.getPos());
@@ -155,8 +155,8 @@ public class GatewayUIRenderHandler implements ITickHandler {
     }
 
     private void renderGatewayFocusedEntry(MatrixStack renderStack, Vector3 renderOffset, float pTicks) {
-        PlayerEntity player = Minecraft.getInstance().player;
-        GatewayUI.GatewayEntry entry = findMatchingEntry(MathHelper.wrapDegrees(player.rotationYaw), MathHelper.wrapDegrees(player.rotationPitch));
+        Player player = Minecraft.getInstance().player;
+        GatewayUI.GatewayEntry entry = findMatchingEntry(Mth.wrapDegrees(player.rotationYaw), Mth.wrapDegrees(player.rotationPitch));
         if (entry != null) {
             ITextComponent display = entry.getNode().getDisplayName();
             if (display != null && !display.getString().isEmpty()) {
@@ -177,7 +177,7 @@ public class GatewayUIRenderHandler implements ITickHandler {
     }
 
     private void renderGatewayShieldOverlay(MatrixStack renderStack, Vector3 renderOffset, double distance, float pTicks) {
-        float alpha = MathHelper.clamp(1F - ((float) (distance / 2D)), 0F, 1F);
+        float alpha = Mth.clamp(1F - ((float) (distance / 2D)), 0F, 1F);
         Color c = ColorsAS.CONSTELLATION_SINGLE_STAR;
         int red = c.getRed();
         int green = c.getGreen();

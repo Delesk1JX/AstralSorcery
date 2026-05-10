@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.data.sync.client.ClientPatreonFlares;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.event.TickEvent;
@@ -42,7 +42,7 @@ public class PatreonManagerClient implements ITickHandler {
     @Override
     public void tick(TickEvent.Type type, Object... context) {
         World clWorld = Minecraft.getInstance().world;
-        PlayerEntity thisPlayer = Minecraft.getInstance().player;
+        Player thisPlayer = Minecraft.getInstance().player;
         if (clWorld == null || thisPlayer == null) {
             return;
         }
@@ -64,7 +64,7 @@ public class PatreonManagerClient implements ITickHandler {
         });
 
         SyncDataHolder.executeClient(SyncDataHolder.DATA_PATREON_FLARES, ClientPatreonFlares.class, data -> {
-            for (PlayerEntity player : clWorld.getPlayers()) {
+            for (Player player : clWorld.getPlayers()) {
                 for (PatreonEffect effect : PatreonEffectHelper.getPatreonEffects(LogicalSide.CLIENT, player.getUniqueID())) {
                     effect.doClientEffect(player);
                 }

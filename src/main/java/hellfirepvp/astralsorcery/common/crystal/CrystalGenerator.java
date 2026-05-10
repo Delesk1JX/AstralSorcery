@@ -12,7 +12,7 @@ import com.google.common.collect.Lists;
 import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -71,7 +71,7 @@ public class CrystalGenerator {
             return attr; //Can't upgrade 'to' something then.
         }
         int existing = attr.getTotalTierLevel();
-        int expected = MathHelper.clamp(existing + 1,
+        int expected = Mth.clamp(existing + 1,
                 ((CrystalAttributeGenItem) stack.getItem()).getGeneratedPropertyTiers(),
                 ((CrystalAttributeGenItem) stack.getItem()).getMaxPropertyTiers());
         int generate = expected - attr.getTotalTierLevel();

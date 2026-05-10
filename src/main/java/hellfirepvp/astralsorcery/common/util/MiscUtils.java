@@ -17,10 +17,10 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.log.LogCategory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FlowingFluidBlock;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.Item;
@@ -29,15 +29,15 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.*;
+import net.minecraft.util.vector.Vector3d;
 import net.minecraft.world.*;
 import net.minecraft.world.chunk.AbstractChunkProvider;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.server.ServerChunkProvider;
 import net.minecraft.world.server.ServerWorld;
 import net.neoforged.neoforge.common.ForgeHooks;
-import net.neoforged.neoforge.common.ForgeMod;
+import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.util.BlockSnapshot;
 import net.neoforged.neoforge.common.util.FakePlayer;
@@ -133,7 +133,7 @@ public class MiscUtils {
         if (values.length == 0) {
             throw new IllegalArgumentException(enumClazz.getName() + " has no enum constants.");
         }
-        return values[MathHelper.clamp(index, 0, values.length - 1)];
+        return values[Mth.clamp(index, 0, values.length - 1)];
     }
 
     @Nullable
@@ -321,8 +321,8 @@ public class MiscUtils {
         if (!target.isAlive()) {
             return false;
         }
-        if (target instanceof PlayerEntity) {
-            PlayerEntity plTarget = (PlayerEntity) target;
+        if (target instanceof Player) {
+            Player plTarget = (Player) target;
             if (target.getEntityWorld() instanceof ServerWorld &&
                     target.getEntityWorld().getServer() != null &&
                     target.getEntityWorld().getServer().isPVPEnabled()) {
@@ -331,21 +331,21 @@ public class MiscUtils {
             if (plTarget.isSpectator() || plTarget.isCreative()) {
                 return false;
             }
-            if (source instanceof PlayerEntity &&
-                    !((PlayerEntity) source).canAttackPlayer(plTarget)) {
+            if (source instanceof Player &&
+                    !((Player) source).canAttackPlayer(plTarget)) {
                 return false;
             }
         }
         return true;
     }
 
-    public static boolean canPlayerBreakBlockPos(PlayerEntity player, BlockPos tryBreak) {
+    public static boolean canPlayerBreakBlockPos(Player player, BlockPos tryBreak) {
         BlockEvent.BreakEvent ev = new BlockEvent.BreakEvent(player.getEntityWorld(), tryBreak, player.getEntityWorld().getBlockState(tryBreak), player);
         NeoForge.EVENT_BUS.post(ev);
         return !ev.isCanceled();
     }
 
-    public static boolean canPlayerPlaceBlockPos(PlayerEntity player, BlockState tryPlace, BlockPos pos, Direction againstSide) {
+    public static boolean canPlayerPlaceBlockPos(Player player, BlockState tryPlace, BlockPos pos, Direction againstSide) {
         World world = player.getEntityWorld();
         world.captureBlockSnapshots = true;
         world.setBlockState(pos, tryPlace);
@@ -368,7 +368,7 @@ public class MiscUtils {
         return !cancelPlacement;
     }
 
-    public static boolean isConnectionEstablished(ServerPlayerEntity player) {
+    public static boolean isConnectionEstablished(ServerPlayer player) {
         return player.connection != null && player.connection.netManager != null && player.connection.netManager.isChannelOpen();
     }
 
@@ -419,8 +419,8 @@ public class MiscUtils {
             if (targetWorld == null) {
                 return null;
             }
-            if (entity instanceof ServerPlayerEntity) {
-                ((ServerPlayerEntity) entity).teleport(targetWorld,
+            if (entity instanceof ServerPlayer) {
+                ((ServerPlayer) entity).teleport(targetWorld,
                         targetPos.getX() + 0.5,
                         targetPos.getY() + 0.1,
                         targetPos.getZ() + 0.5,
@@ -482,32 +482,32 @@ public class MiscUtils {
     }
 
     @Nullable
-    public static BlockRayTraceResult rayTraceLookBlock(PlayerEntity player) {
-        return rayTraceLookBlock(player, player.getAttribute(ForgeMod.REACH_DISTANCE.get()).getValue());
+    public static BlockRayTraceResult rayTraceLookBlock(Player player) {
+        return rayTraceLookBlock(player, player.getAttribute(NeoForgeMod.REACH_DISTANCE.get()).getValue());
     }
 
     @Nonnull
-    public static RayTraceResult rayTraceLook(PlayerEntity player) {
-        return rayTraceLook(player, player.getAttribute(ForgeMod.REACH_DISTANCE.get()).getValue());
+    public static RayTraceResult rayTraceLook(Player player) {
+        return rayTraceLook(player, player.getAttribute(NeoForgeMod.REACH_DISTANCE.get()).getValue());
     }
 
     @Nullable
-    public static BlockRayTraceResult rayTraceLookBlock(PlayerEntity player, RayTraceContext.BlockMode blockMode, RayTraceContext.FluidMode fluidMode) {
-        return rayTraceLookBlock(player, blockMode, fluidMode, player.getAttribute(ForgeMod.REACH_DISTANCE.get()).getValue());
+    public static BlockRayTraceResult rayTraceLookBlock(Player player, RayTraceContext.BlockMode blockMode, RayTraceContext.FluidMode fluidMode) {
+        return rayTraceLookBlock(player, blockMode, fluidMode, player.getAttribute(NeoForgeMod.REACH_DISTANCE.get()).getValue());
     }
 
     @Nonnull
-    public static RayTraceResult rayTraceLook(PlayerEntity player, RayTraceContext.BlockMode blockMode, RayTraceContext.FluidMode fluidMode) {
-        return rayTraceLook(player, blockMode, fluidMode, player.getAttribute(ForgeMod.REACH_DISTANCE.get()).getValue());
+    public static RayTraceResult rayTraceLook(Player player, RayTraceContext.BlockMode blockMode, RayTraceContext.FluidMode fluidMode) {
+        return rayTraceLook(player, blockMode, fluidMode, player.getAttribute(NeoForgeMod.REACH_DISTANCE.get()).getValue());
     }
 
     @Nullable
-    public static BlockRayTraceResult rayTraceLookBlock(PlayerEntity player, double reachDst) {
+    public static BlockRayTraceResult rayTraceLookBlock(Player player, double reachDst) {
         return rayTraceLookBlock(player, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.ANY, reachDst);
     }
 
     @Nonnull
-    public static RayTraceResult rayTraceLook(PlayerEntity player, double reachDst) {
+    public static RayTraceResult rayTraceLook(Player player, double reachDst) {
         return rayTraceLook(player, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.ANY, reachDst);
     }
 
@@ -642,7 +642,7 @@ public class MiscUtils {
         return Optional.empty();
     }
 
-    public static boolean isPlayerFakeMP(ServerPlayerEntity player) {
+    public static boolean isPlayerFakeMP(ServerPlayer player) {
         if (player instanceof FakePlayer) {
             return true;
         }
@@ -654,13 +654,13 @@ public class MiscUtils {
             }
             Class<?> specificPlayerClass = mod.getExtendedPlayerClass();
             if (specificPlayerClass != null) {
-                if (player.getClass() != ServerPlayerEntity.class && player.getClass() == specificPlayerClass) {
+                if (player.getClass() != ServerPlayer.class && player.getClass() == specificPlayerClass) {
                     isModdedPlayer = true;
                     break;
                 }
             }
         }
-        if (!isModdedPlayer && player.getClass() != ServerPlayerEntity.class) {
+        if (!isModdedPlayer && player.getClass() != ServerPlayer.class) {
             return true;
         }
 

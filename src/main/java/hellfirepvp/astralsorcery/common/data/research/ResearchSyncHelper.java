@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.data.research;
 import hellfirepvp.astralsorcery.client.event.PerkExperienceRenderer;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.network.play.server.PktSyncKnowledge;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
@@ -25,14 +25,14 @@ import net.neoforged.fml.LogicalSide;
  */
 public class ResearchSyncHelper {
 
-    public static void pushProgressToClientUnsafe(PlayerProgress progress, PlayerEntity p) {
+    public static void pushProgressToClientUnsafe(PlayerProgress progress, Player p) {
         PktSyncKnowledge pkt = new PktSyncKnowledge(PktSyncKnowledge.STATE_ADD);
         pkt.load(progress);
         PacketChannel.CHANNEL.sendToPlayer(p, pkt);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static void recieveProgressFromServer(PktSyncKnowledge packet, PlayerEntity player) {
+    public static void recieveProgressFromServer(PktSyncKnowledge packet, Player player) {
         PlayerPerkData perkData = ResearchHelper.getClientProgress().getPerkData();
         int currentLvl = perkData.getPerkLevel(player, LogicalSide.CLIENT);
         ResearchHelper.updateClientResearch(packet);

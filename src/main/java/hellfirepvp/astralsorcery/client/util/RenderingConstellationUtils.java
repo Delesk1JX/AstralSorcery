@@ -24,8 +24,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Matrix4f;
+import net.minecraft.util.Mth;
+import net.minecraft.util.vector.Matrix4f;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
@@ -68,7 +68,7 @@ public class RenderingConstellationUtils {
                     int v = ((i + 2) & 2) >> 1;
                     Vector3 pos = ofStar.clone().add(dirU.clone().multiply(u << 1).multiply(bgScale / 2)).add(dirV.clone().multiply(v << 1).multiply(bgScale / 2));
                     buf.pos(matr, (float) pos.getX(), (float) pos.getY(), (float) pos.getZ())
-                            .color(r, g, b, MathHelper.clamp((int) (brightnessFn.get() * 255 * 0.5), 0, 255))
+                            .color(r, g, b, Mth.clamp((int) (brightnessFn.get() * 255 * 0.5), 0, 255))
                             .tex(u, v)
                             .endVertex();
                 }
@@ -90,7 +90,7 @@ public class RenderingConstellationUtils {
                     for (int i = 0; i < 4; i++) {
                         Vector3 pos = offset00.clone().add(vecU.clone().multiply(((i + 1) & 2) >> 1)).add(vecCV.clone().multiply(((i + 2) & 2) >> 1));
                         buf.pos(matr, (float) pos.getX(), (float) pos.getY(), (float) pos.getZ())
-                                .color(r, g, b, MathHelper.clamp((int) (brightnessFn.get() * 255), 0, 255))
+                                .color(r, g, b, Mth.clamp((int) (brightnessFn.get() * 255), 0, 255))
                                 .tex(((i + 2) & 2) >> 1, ((i + 3) & 2) >> 1)
                                 .endVertex();
                     }
@@ -109,7 +109,7 @@ public class RenderingConstellationUtils {
                     int v = ((i + 2) & 2) >> 1;
                     Vector3 pos = ofStar.clone().add(dirU.clone().multiply(u << 1)).add(dirV.clone().multiply(v << 1));
                     buf.pos(matr, (float) pos.getX(), (float) pos.getY(), (float) pos.getZ())
-                            .color(r, g, b, MathHelper.clamp((int) (brightnessFn.get() * 255), 0, 255))
+                            .color(r, g, b, Mth.clamp((int) (brightnessFn.get() * 255), 0, 255))
                             .tex(u, v)
                             .endVertex();
                 }
@@ -238,7 +238,7 @@ public class RenderingConstellationUtils {
                 backgroundInfo.getBackgroundTexture().bindTexture();
 
                 RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
-                    int alpha = MathHelper.clamp((int) (brightnessFn.get() * brightness * 0.5 * 255F), 0, 255);
+                    int alpha = Mth.clamp((int) (brightnessFn.get() * brightness * 0.5 * 255F), 0, 255);
                     Vector3 bgVec = new Vector3(offsetX, offsetY, zLevel);
                     for (int i = 0; i < 4; i++) {
                         int u = ((i + 1) & 2) >> 1;
@@ -246,7 +246,7 @@ public class RenderingConstellationUtils {
 
                         Vector3 pos = bgVec.clone().addX(width * u).addY(height * v);
                         buf.pos(offset, offsetX + width * u, offsetY + height * v, zLevel)
-                                .color(r, g, b, MathHelper.clamp((int) (alpha * 1.2F + 0.2F), 0, 255))
+                                .color(r, g, b, Mth.clamp((int) (alpha * 1.2F + 0.2F), 0, 255))
                                 .tex(u, v)
                                 .endVertex();
                     }
@@ -257,7 +257,7 @@ public class RenderingConstellationUtils {
             RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
                 for (int j = 0; j < 2; j++) {
                     for (StarConnection sc : c.getStarConnections()) {
-                        int alpha = MathHelper.clamp((int) (brightnessFn.get() * brightness * 255F), 0, 255);
+                        int alpha = Mth.clamp((int) (brightnessFn.get() * brightness * 255F), 0, 255);
 
                         Vector3 fromStar = new Vector3(offsetX + sc.from.x * ulength, offsetY + sc.from.y * vlength, zLevel);
                         Vector3 toStar   = new Vector3(offsetX + sc.to.x   * ulength, offsetY + sc.to.y * vlength,   zLevel);
@@ -288,7 +288,7 @@ public class RenderingConstellationUtils {
         TexturesAS.TEX_STAR_1.bindTexture();
         RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
             for (StarLocation sl : c.getStars()) {
-                int alpha = MathHelper.clamp((int) (brightnessFn.get() * brightness * 255F), 0, 255);
+                int alpha = Mth.clamp((int) (brightnessFn.get() * brightness * 255F), 0, 255);
 
                 int starX = sl.x;
                 int starY = sl.y;
@@ -305,7 +305,7 @@ public class RenderingConstellationUtils {
                             .color(isKnown ? r : alpha,
                                     isKnown ? g : alpha,
                                     isKnown ? b : alpha,
-                                    MathHelper.clamp((int) (alpha * 1.2F + 0.2F), 0, 255))
+                                    Mth.clamp((int) (alpha * 1.2F + 0.2F), 0, 255))
                             .tex(u, v)
                             .endVertex();
                 }
@@ -327,7 +327,7 @@ public class RenderingConstellationUtils {
 
     private static float flickerSin(long wtime, float partialTicks, double divisor, float div, float move) {
         double rad = ((wtime % (GeneralConfig.CONFIG.dayLength.get() / 2)) + partialTicks) / divisor;
-        float sin = MathHelper.sin((float) rad);
+        float sin = Mth.sin((float) rad);
         return (sin / div) + move;
     }
 }

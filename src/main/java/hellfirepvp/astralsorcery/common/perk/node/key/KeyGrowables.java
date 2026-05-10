@@ -23,10 +23,10 @@ import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Mth;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 import net.neoforged.fml.LogicalSide;
@@ -51,7 +51,7 @@ public class KeyGrowables extends KeyPerk implements PlayerTickPerk {
     }
 
     @Override
-    public void onPlayerTick(PlayerEntity player, LogicalSide side) {
+    public void onPlayerTick(Player player, LogicalSide side) {
         if (!side.isServer()) {
             return;
         }
@@ -62,7 +62,7 @@ public class KeyGrowables extends KeyPerk implements PlayerTickPerk {
         if (rand.nextFloat() < cChance && AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, CONFIG.chargeCost.get(), true)) {
             float fRadius = PerkAttributeHelper.getOrCreateMap(player, side)
                     .modifyValue(player, prog, PerkAttributeTypesAS.ATTR_TYPE_INC_PERK_EFFECT, CONFIG.radius.get());
-            int rRadius = Math.max(MathHelper.floor(fRadius), 1);
+            int rRadius = Math.max(Mth.floor(fRadius), 1);
 
             BlockPos pos = player.getPosition().add(
                     rand.nextInt(rRadius * 2) + 1 - rRadius,

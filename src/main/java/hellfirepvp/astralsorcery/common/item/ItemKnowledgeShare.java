@@ -18,8 +18,8 @@ import hellfirepvp.astralsorcery.common.network.play.server.PktProgressionUpdate
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -81,7 +81,7 @@ public class ItemKnowledgeShare extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, Player player, Hand hand) {
         ItemStack held = player.getHeldItem(hand);
         if (held.isEmpty() || world.isRemote() || !(held.getItem() instanceof ItemKnowledgeShare)) {
             return ActionResult.resultSuccess(held);
@@ -97,7 +97,7 @@ public class ItemKnowledgeShare extends Item {
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
         ItemStack stack = context.getItem();
-        PlayerEntity player = context.getPlayer();
+        Player player = context.getPlayer();
         if (stack.isEmpty() || player == null || context.getWorld().isRemote() || !(stack.getItem() instanceof ItemKnowledgeShare)) {
             return ActionResultType.SUCCESS;
         }
@@ -109,8 +109,8 @@ public class ItemKnowledgeShare extends Item {
         return ActionResultType.SUCCESS;
     }
 
-    private void tryGiveKnowledge(ItemStack stack, PlayerEntity player) {
-        if (player instanceof ServerPlayerEntity && MiscUtils.isPlayerFakeMP((ServerPlayerEntity) player)) {
+    private void tryGiveKnowledge(ItemStack stack, Player player) {
+        if (player instanceof ServerPlayer && MiscUtils.isPlayerFakeMP((ServerPlayer) player)) {
             return;
         }
 
@@ -128,14 +128,14 @@ public class ItemKnowledgeShare extends Item {
         }
     }
 
-    private void tryInscribeKnowledge(ItemStack stack, PlayerEntity player) {
+    private void tryInscribeKnowledge(ItemStack stack, Player player) {
         if (canInscribeKnowledge(stack, player)) {
             setKnowledge(stack, player, ResearchHelper.getProgress(player, LogicalSide.SERVER));
         }
     }
 
     @Nullable
-    public static PlayerEntity getKnowledgeOwner(ItemStack stack, MinecraftServer server) {
+    public static Player getKnowledgeOwner(ItemStack stack, MinecraftServer server) {
         if (isCreative(stack)) return null;
 
         CompoundTag compound = NBTHelper.getPersistentData(stack);
@@ -175,7 +175,7 @@ public class ItemKnowledgeShare extends Item {
         }
     }
 
-    public static boolean canInscribeKnowledge(ItemStack stack, PlayerEntity player) {
+    public static boolean canInscribeKnowledge(ItemStack stack, Player player) {
         if (isCreative(stack)) return false;
 
         CompoundTag compound = NBTHelper.getPersistentData(stack);
@@ -186,7 +186,7 @@ public class ItemKnowledgeShare extends Item {
         return player.getUniqueID().equals(owner);
     }
 
-    public static void setKnowledge(ItemStack stack, PlayerEntity player, PlayerProgress progress) {
+    public static void setKnowledge(ItemStack stack, Player player, PlayerProgress progress) {
         if (isCreative(stack) || !progress.isValid()) return;
 
         CompoundTag knowledge = new CompoundTag();

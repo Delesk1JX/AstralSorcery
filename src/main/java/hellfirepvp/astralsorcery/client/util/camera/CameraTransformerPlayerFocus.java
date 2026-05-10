@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.client.util.camera;
 
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
 
 /**
@@ -54,7 +54,7 @@ public class CameraTransformerPlayerFocus extends CameraTransformerSettingsCache
         }
 
         if (mc.player != null) {
-            PlayerEntity player = mc.player;
+            Player player = mc.player;
             player.setPositionAndRotation(this.clientEntity.getPosX(), this.clientEntity.getPosY(), this.clientEntity.getPosZ(), this.clientEntity.rotationYaw, this.clientEntity.rotationPitch);
             player.setVelocity(0, 0, 0);
         }

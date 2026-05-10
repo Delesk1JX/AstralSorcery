@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.item;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import hellfirepvp.astralsorcery.common.GuiType;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -34,7 +34,7 @@ public class ItemHandTelescope extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, Player player, Hand hand) {
         ItemStack held = player.getHeldItem(hand);
         if (held.isEmpty()) {
             return ActionResult.resultSuccess(held);

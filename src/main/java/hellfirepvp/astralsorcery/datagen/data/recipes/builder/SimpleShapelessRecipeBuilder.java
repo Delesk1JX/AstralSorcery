@@ -17,9 +17,9 @@ import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.registry.Registry;
-import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.RegistryManager;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -85,7 +85,7 @@ public class SimpleShapelessRecipeBuilder {
     }
 
     public void build(Consumer<IFinishedRecipe> consumerIn) {
-        this.build(consumerIn, ForgeRegistries.ITEMS.getKey(this.result.getItem()));
+        this.build(consumerIn, RegistryManager.ITEMS.getKey(this.result.getItem()));
     }
 
     public void build(Consumer<IFinishedRecipe> consumerIn, ResourceLocation id) {

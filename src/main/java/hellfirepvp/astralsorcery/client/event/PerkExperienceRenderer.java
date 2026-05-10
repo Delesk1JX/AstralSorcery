@@ -21,7 +21,7 @@ import hellfirepvp.astralsorcery.common.item.base.PerkExperienceRevealer;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.StringTextComponent;
@@ -69,7 +69,7 @@ public class PerkExperienceRenderer implements ITickHandler {
         }
 
         MatrixStack renderStack = event.getMatrixStack();
-        PlayerEntity player = Minecraft.getInstance().player;
+        Player player = Minecraft.getInstance().player;
         float frameHeight  = 128F;
         float frameWidth   =  32F;
         float frameOffsetX =   0F;
@@ -119,7 +119,7 @@ public class PerkExperienceRenderer implements ITickHandler {
 
     @Override
     public void tick(TickEvent.Type type, Object... context) {
-        PlayerEntity player = Minecraft.getInstance().player;
+        Player player = Minecraft.getInstance().player;
         if (player != null) {
             ItemStack held = player.getHeldItem(Hand.MAIN_HAND);
             if (!held.isEmpty() &&

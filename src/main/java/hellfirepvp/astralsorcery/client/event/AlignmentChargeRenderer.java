@@ -22,7 +22,7 @@ import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.MainWindow;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Tuple;
@@ -80,7 +80,7 @@ public class AlignmentChargeRenderer implements ITickHandler {
         int offsetLeft = screenWidth / 2 - barWidth / 2;
         int offsetTop = screenHeight + 3 - 81; //*sigh* vanilla
 
-        PlayerEntity player = Minecraft.getInstance().player;
+        Player player = Minecraft.getInstance().player;
         float percFilled = AlignmentChargeHandler.INSTANCE.getFilledPercentage(player, LogicalSide.CLIENT);
 
         boolean hasEnoughCharge = true;
@@ -131,7 +131,7 @@ public class AlignmentChargeRenderer implements ITickHandler {
 
     @Override
     public void tick(TickEvent.Type type, Object... context) {
-        PlayerEntity player = Minecraft.getInstance().player;
+        Player player = Minecraft.getInstance().player;
         if (player != null) {
             if (AlignmentChargeHandler.INSTANCE.getFilledPercentage(player, LogicalSide.CLIENT) <= 0.95F) {
                 revealCharge(20);

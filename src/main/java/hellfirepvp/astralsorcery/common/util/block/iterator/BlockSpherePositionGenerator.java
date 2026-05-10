@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.util.block.iterator;
 import hellfirepvp.astralsorcery.common.util.block.BlockGeometry;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 
 import java.util.ArrayList;
 import java.util.Collections;

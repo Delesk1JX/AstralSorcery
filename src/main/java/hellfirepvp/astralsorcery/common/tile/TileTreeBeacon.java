@@ -41,8 +41,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RegistryKey;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Mth;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.neoforged.api.distmarker.Dist;
@@ -92,7 +92,7 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
     private void doHarvestCycle() {
         boolean changed = this.starlight > 0 || !this.treeComponents.isEmpty();
 
-        int cycles = Math.max(1, MathHelper.ceil(this.starlight * 0.8F));
+        int cycles = Math.max(1, Mth.ceil(this.starlight * 0.8F));
         this.starlight = 0;
         for (int i = 0; i < cycles; i++) {
             float filled = this.treeComponents.size() / Config.CONFIG.maxCount.get().floatValue();
@@ -204,7 +204,7 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
 
         float radius = Config.CONFIG.range.get().floatValue();
         Vector3 thisPos = new Vector3(this.getPos()).add(0.5, 0.5, 0.5);
-        int amt = MathHelper.floor( radius * Math.PI / 8);
+        int amt = Mth.floor( radius * Math.PI / 8);
         for (int i = 0; i < amt; i++) {
             Vector3 at = MiscUtils.getRandomCirclePosition(thisPos, Vector3.RotAxis.Y_AXIS, radius);
             MiscUtils.applyRandomOffset(at, rand, 0.35F);

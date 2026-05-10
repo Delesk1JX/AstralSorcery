@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.registry.internal;
 
 import com.google.common.collect.Lists;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.registries.Registry;
 import net.neoforged.neoforge.registries.IRegistryObject;
 

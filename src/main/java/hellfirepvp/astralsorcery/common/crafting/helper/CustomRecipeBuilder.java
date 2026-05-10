@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.AstralSorcery;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.Level;
 

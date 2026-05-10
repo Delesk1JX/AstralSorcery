@@ -19,8 +19,8 @@ import hellfirepvp.astralsorcery.common.util.object.PredicateBuilder;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.IWorld;
 
 import javax.annotation.Nonnull;

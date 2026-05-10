@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.crafting.recipe.altar.ActiveSimpleAltarR
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -53,7 +53,7 @@ public class EffectFocusDustSwirl extends AltarRecipeEffect implements IFocusEff
             for (int i = 0; i < parts; i++) {
                 Vector3 v = Vector3.RotAxis.X_AXIS.clone();
                 float originalAngle = (((float) i) / ((float) parts)) * 360F;
-                double angle = originalAngle + (MathHelper.sin(percCycle) * angleSwirl);
+                double angle = originalAngle + (Mth.sin(percCycle) * angleSwirl);
                 v.rotate(-Math.toRadians(angle), Vector3.RotAxis.Y_AXIS).normalize().multiply(dst);
                 Vector3 pos = center.clone().add(v);
                 Vector3 mot = center.clone().subtract(pos).normalize().multiply(0.07);

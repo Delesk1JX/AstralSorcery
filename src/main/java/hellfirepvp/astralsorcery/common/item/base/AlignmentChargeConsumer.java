@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.item.base;
 
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -20,6 +20,6 @@ import net.minecraft.item.ItemStack;
  */
 public interface AlignmentChargeConsumer extends AlignmentChargeRevealer {
 
-    float getAlignmentChargeCost(PlayerEntity player, ItemStack stack);
+    float getAlignmentChargeCost(Player player, ItemStack stack);
 
 }

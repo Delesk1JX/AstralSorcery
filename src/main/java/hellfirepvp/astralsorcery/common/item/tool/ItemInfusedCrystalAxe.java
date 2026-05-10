@@ -23,10 +23,10 @@ import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.util.object.CacheReference;
 import hellfirepvp.observerlib.api.util.BlockArray;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.neoforged.fml.LogicalSide;
 
@@ -48,19 +48,19 @@ public class ItemInfusedCrystalAxe extends ItemCrystalAxe implements EquipmentAt
             new CacheReference<>(() -> new DynamicAttributeModifier(MODIFIER_ID, PerkAttributeTypesAS.ATTR_TYPE_INC_HARVEST_SPEED, ModifierType.ADDED_MULTIPLY, 0.1F));
 
     @Override
-    public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, PlayerEntity player) {
+    public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, Player player) {
         World world = player.getEntityWorld();
         if (!world.isRemote() &&
                 !player.isSneaking() &&
                 !player.getCooldownTracker().hasCooldown(itemstack.getItem()) &&
-                player instanceof ServerPlayerEntity) {
+                player instanceof ServerPlayer) {
 
             PlayerProgress prog = ResearchHelper.getProgress(player, LogicalSide.SERVER);
             if (prog.doPerkAbilities()) {
                 EventFlags.CHAIN_MINING.executeWithFlag(() -> {
                     BlockArray tree = TreeDiscoverer.findTreeAt(world, pos, true, 9);
                     if (!tree.getContents().isEmpty()) {
-                        ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
+                        ServerPlayer serverPlayer = (ServerPlayer) player;
 
                         tree.getContents().keySet().forEach(at -> {
                             BlockState currentState = world.getBlockState(at);
@@ -83,7 +83,7 @@ public class ItemInfusedCrystalAxe extends ItemCrystalAxe implements EquipmentAt
     }
 
     @Override
-    public Collection<PerkAttributeModifier> getModifiers(ItemStack stack, PlayerEntity player, LogicalSide side, boolean ignoreRequirements) {
+    public Collection<PerkAttributeModifier> getModifiers(ItemStack stack, Player player, LogicalSide side, boolean ignoreRequirements) {
         return Collections.singletonList(MINING_SPEED_MODIFIER.get());
     }
 }

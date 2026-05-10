@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.world;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 

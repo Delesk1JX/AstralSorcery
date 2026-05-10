@@ -14,12 +14,12 @@ import hellfirepvp.astralsorcery.common.perk.source.ModifierManager;
 import hellfirepvp.astralsorcery.common.perk.source.ModifierSourceProvider;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.fml.LogicalSide;
 
 import java.util.Collection;
@@ -41,7 +41,7 @@ public class EquipmentSourceProvider extends ModifierSourceProvider<EquipmentMod
     }
 
     @Override
-    protected void update(ServerPlayerEntity playerEntity) {
+    protected void update(ServerPlayer playerEntity) {
         for (EquipmentSlotType slot : EquipmentSlotType.values()) {
             //Items held in offhand will not provide modifers.
             if (slot == EquipmentSlotType.OFFHAND) {
@@ -70,7 +70,7 @@ public class EquipmentSourceProvider extends ModifierSourceProvider<EquipmentMod
     }
 
     @Override
-    protected void removeModifiers(ServerPlayerEntity playerEntity) {
+    protected void removeModifiers(ServerPlayer playerEntity) {
         for (EquipmentSlotType slot : EquipmentSlotType.values()) {
             if (slot == EquipmentSlotType.OFFHAND) {
                 continue;

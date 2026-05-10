@@ -35,10 +35,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ITag;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.Util;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.minecraft.util.text.ITextProperties;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -96,7 +96,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage {
 
     public void renderExpectedIngredientInput(MatrixStack renderStack, float offsetX, float offsetY, float zLevel, float scale, long tickOffset, List<ItemStack> displayOptions) {
         int mod = (int) (((ClientScheduler.getClientTick() + tickOffset) / 20L) % displayOptions.size());
-        ItemStack expected = displayOptions.get(MathHelper.clamp(mod, 0, displayOptions.size() - 1));
+        ItemStack expected = displayOptions.get(Mth.clamp(mod, 0, displayOptions.size() - 1));
         if (!expected.isEmpty()) {
             BlockAtlasTexture.getInstance().bindTexture();
 
@@ -115,7 +115,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage {
         int amt = ingredients.size();
         for (int i = 0; i < ingredients.size(); i++) {
             double part = ((double) i) / ((double) amt) * 2.0 * Math.PI; //Shift by half a period
-            part = MathHelper.clamp(part, 0, 2.0 * Math.PI);
+            part = Mth.clamp(part, 0, 2.0 * Math.PI);
             part += (2.0 * Math.PI * perc) + Math.PI;
             double xAdd = Math.sin(part) * 75.0;
             double yAdd = Math.cos(part) * 75.0;

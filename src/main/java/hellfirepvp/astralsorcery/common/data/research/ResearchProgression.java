@@ -74,11 +74,11 @@ public enum ResearchProgression implements IExtensibleEnum {
         return researchNodes;
     }
 
-    /*public boolean tryStepTo(PlayerEntity player, boolean force) {
+    /*public boolean tryStepTo(Player player, boolean force) {
         return (force || canStepTo(player)) && ResearchManager.forceUnsafeResearchStep(player, this);
     }
 
-    public boolean canStepTo(PlayerEntity player) {
+    public boolean canStepTo(Player player) {
         PlayerProgress progress = ResearchManager.getProgress(player);
         if (progress == null) return false;
         List<ResearchProgression> playerResearchProgression = progress.getResearchProgression();

@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.common.crafting.recipe.interaction.ResultSpawnE
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.common.lib.FluidsAS;
 import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.entity.EntityType;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;

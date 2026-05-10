@@ -16,11 +16,11 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.PlayerReference;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.Util;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -76,7 +76,7 @@ public class PktRevokeGatewayAccess extends ASPacket<PktRevokeGatewayAccess> {
     public Handler<PktRevokeGatewayAccess> handler() {
         return (packet, context, side) -> {
             if (side.isServer()) {
-                PlayerEntity sender = context.getSender();
+                Player sender = context.getSender();
                 if (sender == null) {
                     return;
                 }

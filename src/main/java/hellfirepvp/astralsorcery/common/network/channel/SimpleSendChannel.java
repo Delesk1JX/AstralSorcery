@@ -9,8 +9,8 @@
 package hellfirepvp.astralsorcery.common.network.channel;
 
 import hellfirepvp.astralsorcery.common.network.base.ASPacket;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.world.chunk.Chunk;
 import net.neoforged.neoforge.fml.network.NetworkDirection;
@@ -33,9 +33,9 @@ public abstract class SimpleSendChannel {
         this.channel = channel;
     }
 
-    public <P extends ASPacket<P>> void sendToPlayer(PlayerEntity player, P packet) {
-        if (player instanceof ServerPlayerEntity) {
-            this.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) player), packet);
+    public <P extends ASPacket<P>> void sendToPlayer(Player player, P packet) {
+        if (player instanceof ServerPlayer) {
+            this.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player), packet);
         }
     }
 

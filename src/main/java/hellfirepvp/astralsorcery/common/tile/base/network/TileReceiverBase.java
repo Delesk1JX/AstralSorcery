@@ -12,10 +12,10 @@ import hellfirepvp.astralsorcery.common.auxiliary.link.LinkableTileEntity;
 import hellfirepvp.astralsorcery.common.starlight.IStarlightReceiver;
 import hellfirepvp.astralsorcery.common.starlight.transmission.ITransmissionReceiver;
 import hellfirepvp.astralsorcery.common.tile.base.TileNetwork;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
@@ -48,23 +48,23 @@ public abstract class TileReceiverBase<T extends ITransmissionReceiver> extends 
     }
 
     @Override
-    public void onBlockLinkCreate(PlayerEntity player, BlockPos other) {}
+    public void onBlockLinkCreate(Player player, BlockPos other) {}
 
     @Override
-    public void onEntityLinkCreate(PlayerEntity player, LivingEntity linked) {}
+    public void onEntityLinkCreate(Player player, LivingEntity linked) {}
 
     @Override
-    public boolean tryLinkBlock(PlayerEntity player, BlockPos other) {
+    public boolean tryLinkBlock(Player player, BlockPos other) {
         return false;
     }
 
     @Override
-    public boolean tryLinkEntity(PlayerEntity player, LivingEntity other) {
+    public boolean tryLinkEntity(Player player, LivingEntity other) {
         return false;
     }
 
     @Override
-    public boolean tryUnlink(PlayerEntity player, BlockPos other) {
+    public boolean tryUnlink(Player player, BlockPos other) {
         return false;
     }
 

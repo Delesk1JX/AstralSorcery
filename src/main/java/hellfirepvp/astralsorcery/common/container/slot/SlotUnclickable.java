@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.container.slot;
 
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Slot;
 
@@ -26,7 +26,7 @@ public class SlotUnclickable extends Slot {
     }
 
     @Override
-    public boolean canTakeStack(PlayerEntity playerIn) {
+    public boolean canTakeStack(Player playerIn) {
         return false;
     }
 }

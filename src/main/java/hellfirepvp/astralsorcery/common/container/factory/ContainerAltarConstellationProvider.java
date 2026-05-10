@@ -13,10 +13,10 @@ import hellfirepvp.astralsorcery.common.lib.ContainerTypesAS;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.IInventory;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.neoforged.neoforge.fml.network.IContainerFactory;
 
 import javax.annotation.Nonnull;
@@ -44,13 +44,13 @@ public class ContainerAltarConstellationProvider extends CustomContainerProvider
 
     @Nonnull
     @Override
-    public ContainerAltarConstellation createMenu(int id, PlayerInventory plInventory, PlayerEntity player) {
+    public ContainerAltarConstellation createMenu(int id, IInventory plInventory, Player player) {
         return new ContainerAltarConstellation(ta, plInventory, id);
     }
 
-    private static ContainerAltarConstellation createFromPacket(int id, PlayerInventory plInventory, PacketBuffer data) {
+    private static ContainerAltarConstellation createFromPacket(int id, IInventory plInventory, PacketBuffer data) {
         BlockPos at = ByteBufUtils.readPos(data);
-        PlayerEntity player = plInventory.player;
+        Player player = plInventory.player;
         TileAltar ta = MiscUtils.getTileAt(player.getEntityWorld(), at, TileAltar.class, true);
         return new ContainerAltarConstellation(ta, plInventory, id);
     }
@@ -58,7 +58,7 @@ public class ContainerAltarConstellationProvider extends CustomContainerProvider
     public static class Factory implements IContainerFactory<ContainerAltarConstellation> {
 
         @Override
-        public ContainerAltarConstellation create(int windowId, PlayerInventory inv, PacketBuffer data) {
+        public ContainerAltarConstellation create(int windowId, IInventory inv, PacketBuffer data) {
             return ContainerAltarConstellationProvider.createFromPacket(windowId, inv, data);
         }
     }

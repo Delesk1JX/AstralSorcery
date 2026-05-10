@@ -14,9 +14,9 @@ import hellfirepvp.astralsorcery.client.model.builtin.ModelAttunementAltar;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import hellfirepvp.astralsorcery.common.tile.TileAttunementAltar;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.util.vector.Vector3f;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -77,8 +77,8 @@ public class RenderAttunementAltar extends CustomTileEntityRenderer<TileAttuneme
             double partRenderFrame = (renderFrame % spinDur) / spinDur;
             float normalized = (float) (partRenderFrame * 2F * Math.PI);
 
-            float xOffset = MathHelper.cos(normalized);
-            float zOffset = MathHelper.sin(normalized);
+            float xOffset = Mth.cos(normalized);
+            float zOffset = Mth.sin(normalized);
             float rotation = RenderingVectorUtils.interpolate(tile.prevActivationTick / spinStart, tile.activationTick / spinStart, pTicks);
 
             renderStack.push();

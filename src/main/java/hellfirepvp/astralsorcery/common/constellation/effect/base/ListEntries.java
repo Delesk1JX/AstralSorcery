@@ -11,14 +11,14 @@ package hellfirepvp.astralsorcery.common.constellation.effect.base;
 import hellfirepvp.astralsorcery.common.constellation.effect.ConstellationEffectRegistry;
 import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
 import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
-import net.minecraft.entity.*;
+import net.minecraft.world.entity.*;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.server.ServerWorld;
-import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.RegistryManager;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -50,7 +50,7 @@ public class ListEntries {
         public void readFromNBT(CompoundTag nbt) {
             super.readFromNBT(nbt);
 
-            this.type = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(nbt.getString("entity")));
+            this.type = RegistryManager.ENTITIES.getValue(new ResourceLocation(nbt.getString("entity")));
         }
 
         @Override

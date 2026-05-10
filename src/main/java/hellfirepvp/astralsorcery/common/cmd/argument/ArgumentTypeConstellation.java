@@ -17,7 +17,7 @@ import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import hellfirepvp.astralsorcery.common.constellation.*;
 import net.minecraft.command.ISuggestionProvider;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.concurrent.CompletableFuture;

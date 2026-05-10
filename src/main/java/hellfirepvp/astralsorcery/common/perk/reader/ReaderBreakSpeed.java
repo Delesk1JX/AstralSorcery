@@ -15,9 +15,9 @@ import hellfirepvp.astralsorcery.common.perk.type.AttributeTypeBreakSpeed;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
@@ -37,7 +37,7 @@ public class ReaderBreakSpeed extends ReaderFlatAttribute {
     }
 
     @Override
-    public double getDefaultValue(PerkAttributeMap statMap, PlayerEntity player, LogicalSide side) {
+    public double getDefaultValue(PerkAttributeMap statMap, Player player, LogicalSide side) {
         AttributeTypeBreakSpeed.evaluateBreakSpeedWithoutPerks = true;
         double speed;
         try {
@@ -50,13 +50,13 @@ public class ReaderBreakSpeed extends ReaderFlatAttribute {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public PerkStatistic getStatistics(PerkAttributeMap statMap, PlayerEntity player) {
+    public PerkStatistic getStatistics(PerkAttributeMap statMap, Player player) {
         String limitStr = "";
         Double limit = null;
         if (PerkAttributeLimiter.hasLimit(this.getType())) {
             Pair<Double, Double> limits = PerkAttributeLimiter.getLimit(this.getType());
             limit = limits.getRight();
-            limitStr = I18n.format("perk.reader.astralsorcery.limit.percent", MathHelper.floor(limit * 100));
+            limitStr = I18n.format("perk.reader.astralsorcery.limit.percent", Mth.floor(limit * 100));
         }
 
         double value = player.getDigSpeed(Blocks.COBBLESTONE.getDefaultState(), BlockPos.ZERO);

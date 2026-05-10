@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.item.dust;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.dispenser.IDispenseItemBehavior;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
@@ -35,7 +35,7 @@ public abstract class ItemUsableDust extends Item implements IDispenseItemBehavi
 
     abstract boolean dispense(IBlockSource dispenser);
 
-    abstract boolean rightClickAir(World world, PlayerEntity player, ItemStack dust);
+    abstract boolean rightClickAir(World world, Player player, ItemStack dust);
 
     abstract boolean rightClickBlock(ItemUseContext ctx);
 
@@ -52,7 +52,7 @@ public abstract class ItemUsableDust extends Item implements IDispenseItemBehavi
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, Player player, Hand hand) {
         ItemStack held = player.getHeldItem(hand);
         if (!held.isEmpty() && !world.isRemote()) {
             if (this.rightClickAir(world, player, held)) {

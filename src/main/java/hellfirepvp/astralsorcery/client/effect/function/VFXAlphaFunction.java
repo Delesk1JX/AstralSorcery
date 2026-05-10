@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.client.effect.function;
 
 import hellfirepvp.astralsorcery.client.effect.EntityVisualFX;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 
 import java.util.function.Supplier;
 
@@ -33,7 +33,7 @@ public interface VFXAlphaFunction<T extends EntityVisualFX> {
     };
 
     public static <T extends EntityVisualFX> VFXAlphaFunction<T> proximity(Supplier<Vector3> targetSupplier, float distance) {
-        return (fx, alpha, pTicks) -> alpha * MathHelper.clamp(((float) fx.getRenderPosition(pTicks).distance(targetSupplier.get())) / distance, 0F, 1F);
+        return (fx, alpha, pTicks) -> alpha * Mth.clamp(((float) fx.getRenderPosition(pTicks).distance(targetSupplier.get())) / distance, 0F, 1F);
     }
 
     public float getAlpha(T fx, float alphaIn, float pTicks);
@@ -48,7 +48,7 @@ public interface VFXAlphaFunction<T extends EntityVisualFX> {
             if (fx.getAgeRefreshCount() > 0) {
                 return alphaIn;
             }
-            float mul = MathHelper.clamp((fadeInTicks - (fx.getAge() + pTicks)) / fadeInTicks, 0F, 1F);
+            float mul = Mth.clamp((fadeInTicks - (fx.getAge() + pTicks)) / fadeInTicks, 0F, 1F);
             return alphaIn * mul;
         };
     }

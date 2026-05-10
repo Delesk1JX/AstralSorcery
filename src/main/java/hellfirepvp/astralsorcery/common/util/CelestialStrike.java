@@ -25,12 +25,12 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.world.SkyCollectionHelper;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityPredicates;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.Mth;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.neoforged.api.distmarker.Dist;
@@ -66,20 +66,20 @@ public class CelestialStrike {
         DamageSource ds = CommonProxy.DAMAGE_SOURCE_STELLAR;
         if (attacker != null) {
             ds = DamageSource.causeMobDamage(attacker);
-            if (attacker instanceof PlayerEntity) {
-                ds = DamageSource.causePlayerDamage((PlayerEntity) attacker);
+            if (attacker instanceof Player) {
+                ds = DamageSource.causePlayerDamage((Player) attacker);
             }
         }
         float dmg = 25F;
         dmg += SkyCollectionHelper.getSkyNoiseDistribution(world, at.toBlockPos()) * 10F;
         for (LivingEntity living : livingEntities) {
-            if ((living instanceof PlayerEntity) &&
-                    (living.isSpectator() || ((PlayerEntity) living).isCreative() ||
+            if ((living instanceof Player) &&
+                    (living.isSpectator() || ((Player) living).isCreative() ||
                             (attacker != null && living.isOnSameTeam(attacker)))) {
                 continue;
             }
             float dstPerc = (float) (Vector3.atEntityCenter(living).distance(at) / radius);
-            dstPerc = 1F - MathHelper.clamp(dstPerc, 0F, 1F);
+            dstPerc = 1F - Mth.clamp(dstPerc, 0F, 1F);
             float dmgDealt = dstPerc * dmg;
             if (dmgDealt > 0.5) {
                 DamageUtil.attackEntityFrom(living, ds, dmgDealt);

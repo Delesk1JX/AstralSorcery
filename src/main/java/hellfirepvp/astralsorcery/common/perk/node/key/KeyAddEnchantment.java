@@ -19,12 +19,12 @@ import hellfirepvp.astralsorcery.common.event.DynamicEnchantmentEvent;
 import hellfirepvp.astralsorcery.common.perk.node.KeyPerk;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.JSONUtils;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.eventbus.api.IEventBus;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.RegistryManager;
 
 import java.util.List;
 
@@ -67,7 +67,7 @@ public class KeyAddEnchantment extends KeyPerk {
         return this;
     }
     private void onEnchantmentAddClient(DynamicEnchantmentEvent.Add event) {
-        PlayerEntity player = event.getResolvedPlayer();
+        Player player = event.getResolvedPlayer();
         LogicalSide side = this.getSide(player);
         if (side.isClient()) {
             addEnchantments(player, side, event);
@@ -75,14 +75,14 @@ public class KeyAddEnchantment extends KeyPerk {
     }
 
     private void onEnchantmentAddServer(DynamicEnchantmentEvent.Add event) {
-        PlayerEntity player = event.getResolvedPlayer();
+        Player player = event.getResolvedPlayer();
         LogicalSide side = this.getSide(player);
         if (side.isServer()) {
             addEnchantments(player, side, event);
         }
     }
 
-    private void addEnchantments(PlayerEntity player, LogicalSide side, DynamicEnchantmentEvent.Add event) {
+    private void addEnchantments(Player player, LogicalSide side, DynamicEnchantmentEvent.Add event) {
         PlayerProgress prog = ResearchHelper.getProgress(player, side);
         if (prog.getPerkData().hasPerkEffect(this)) {
             List<DynamicEnchantment> listedEnchantments = event.getEnchantmentsToApply();
@@ -121,7 +121,7 @@ public class KeyAddEnchantment extends KeyPerk {
 
                 if (type.isEnchantmentSpecific()) {
                     String enchantmentKey = JSONUtils.getString(serializedEnchantment, "enchantment");
-                    Enchantment ench = ForgeRegistries.ENCHANTMENTS.getValue(new ResourceLocation(enchantmentKey));
+                    Enchantment ench = RegistryManager.ENCHANTMENTS.getValue(new ResourceLocation(enchantmentKey));
                     if (ench == null) {
                         throw new IllegalArgumentException("Unknown Enchantment: " + enchantmentKey);
                     }

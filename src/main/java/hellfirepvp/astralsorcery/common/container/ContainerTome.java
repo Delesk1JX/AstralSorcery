@@ -16,8 +16,8 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchManager;
 import hellfirepvp.astralsorcery.common.item.ItemConstellationPaper;
 import hellfirepvp.astralsorcery.common.item.ItemTome;
 import hellfirepvp.astralsorcery.common.lib.ContainerTypesAS;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
@@ -36,11 +36,11 @@ import java.util.LinkedList;
  */
 public class ContainerTome extends Container {
 
-    private final PlayerEntity owningPlayer;
+    private final Player owningPlayer;
     private final ItemStack parentTome;
     private final int tomeIndex;
 
-    public ContainerTome(int id, PlayerInventory plInventory, PlayerEntity owningPlayer, ItemStack tome, int tomeIndex) {
+    public ContainerTome(int id, IInventory plInventory, Player owningPlayer, ItemStack tome, int tomeIndex) {
         super(ContainerTypesAS.TOME, id);
         this.parentTome = tome;
         this.tomeIndex = tomeIndex;
@@ -49,7 +49,7 @@ public class ContainerTome extends Container {
         buildSlots(new InvWrapper(ItemTome.getTomeStorage(tome, this.owningPlayer)));
     }
 
-    private void buildPlayerSlots(PlayerInventory playerInv) {
+    private void buildPlayerSlots(IInventory playerInv) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 9; j++) {
                 int index = j + i * 9 + 9;
@@ -79,7 +79,7 @@ public class ContainerTome extends Container {
     }
 
     @Override
-    public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
+    public ItemStack transferStackInSlot(Player playerIn, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(index);
 
@@ -124,7 +124,7 @@ public class ContainerTome extends Container {
     }
 
     @Override
-    public boolean canInteractWith(PlayerEntity playerIn) {
+    public boolean canInteractWith(Player playerIn) {
         return true;
     }
 

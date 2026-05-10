@@ -14,8 +14,8 @@ import hellfirepvp.astralsorcery.common.perk.modifier.AttributeModifierPerk;
 import hellfirepvp.astralsorcery.common.perk.tree.PerkTreeConstellation;
 import hellfirepvp.astralsorcery.common.perk.tree.PerkTreePoint;
 import hellfirepvp.astralsorcery.common.util.DiminishingMultiplier;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 import net.neoforged.fml.LogicalSide;
 
@@ -68,7 +68,7 @@ public abstract class RootPerk extends AttributeModifierPerk {
         return this.config.expMultiplier.get();
     }
 
-    protected float getDiminishingReturns(PlayerEntity player) {
+    protected float getDiminishingReturns(Player player) {
         UUID playerUUID = player.getUniqueID();
         return this.dimReturns.computeIfAbsent(playerUUID, uuid -> createMultiplier()).getMultiplier();
     }

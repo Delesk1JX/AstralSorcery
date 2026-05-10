@@ -37,16 +37,16 @@ import hellfirepvp.astralsorcery.common.util.sound.CategorizedSoundEvent;
 import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import hellfirepvp.astralsorcery.common.util.tile.TileInventory;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -234,11 +234,11 @@ public class TileInfuser extends TileEntityTick implements WandInteractable {
         markForUpdate();
     }
 
-    protected LiquidInfusion findRecipe(PlayerEntity crafter) {
+    protected LiquidInfusion findRecipe(Player crafter) {
         return RecipeTypesAS.TYPE_INFUSION.findRecipe(new LiquidInfusionContext(this, crafter, LogicalSide.SERVER));
     }
 
-    protected boolean startCrafting(LiquidInfusion recipe, PlayerEntity crafter) {
+    protected boolean startCrafting(LiquidInfusion recipe, Player crafter) {
         if (this.getActiveRecipe() != null) {
             return false;
         }
@@ -251,7 +251,7 @@ public class TileInfuser extends TileEntityTick implements WandInteractable {
     }
 
     @Override
-    public boolean onInteract(World world, BlockPos pos, PlayerEntity player, Direction side, boolean sneak) {
+    public boolean onInteract(World world, BlockPos pos, Player player, Direction side, boolean sneak) {
         if (!world.isRemote() && this.hasMultiblock() && !this.getItemInput().isEmpty()) {
             if (this.getActiveRecipe() != null) {
                 if (this.getActiveRecipe().matches(this)) {

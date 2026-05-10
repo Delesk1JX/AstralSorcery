@@ -19,9 +19,9 @@ import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.RegistryKey;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Mth;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.event.TickEvent;
 
@@ -123,7 +123,7 @@ public class AreaOfInfluencePreview implements ITickHandler {
             if (aoeTile != null) {
                 updateEffect(cube, sizeMultiplier, aoeTile);
             }
-            cube.setAlphaMultiplier(MathHelper.clamp(cube.getAlphaMultiplier() - alphaTick, 0F, 0.75F));
+            cube.setAlphaMultiplier(Mth.clamp(cube.getAlphaMultiplier() - alphaTick, 0F, 0.75F));
             if (!this.canRefresh(cube)) {
                 cube = null;
             }
@@ -136,7 +136,7 @@ public class AreaOfInfluencePreview implements ITickHandler {
             if (cube.isRemoved()) {
                 EffectHelper.refresh(cube, EffectTemplatesAS.CUBE_AREA_OF_EFFECT);
             }
-            cube.setAlphaMultiplier(MathHelper.clamp(cube.getAlphaMultiplier() + alphaTick, 0F, 0.75F));
+            cube.setAlphaMultiplier(Mth.clamp(cube.getAlphaMultiplier() + alphaTick, 0F, 0.75F));
             updateEffect(cube, sizeMultiplier, aoeTile);
         } else {
             cube = createCube(sizeMultiplier, aoeTile);

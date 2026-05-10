@@ -10,15 +10,15 @@ package hellfirepvp.astralsorcery.common.util.data;
 
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Matrix4f;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.math.vector.Vector3i;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.ChunkPos;
+import net.minecraft.util.Mth;
+import net.minecraft.util.vector.Matrix4f;
+import net.minecraft.util.vector.Vector3d;
+import net.minecraft.util.vector.Vector3i;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -102,9 +102,9 @@ public class Vector3 {
     public static Vector3 directionFromYawPitch(float yaw, float pitch) {
         float radYaw   = yaw   * 0.017453292F;/* / 180F * Math.PI; */
         float radPitch = pitch * 0.017453292F;/* / 180F * Math.PI; */
-        float x = -MathHelper.sin(radYaw) * MathHelper.cos(radPitch);
-        float y = -MathHelper.sin(radPitch);
-        float z = MathHelper.cos(radYaw) * MathHelper.cos(radPitch);
+        float x = -Mth.sin(radYaw) * Mth.cos(radPitch);
+        float y = -Mth.sin(radPitch);
+        float z = Mth.cos(radYaw) * Mth.cos(radPitch);
         return new Vector3(x, y, z);
     }
 
@@ -459,11 +459,11 @@ public class Vector3 {
     }
 
     public BlockPos toBlockPos() {
-        return new BlockPos(MathHelper.floor(x), MathHelper.floor(y), MathHelper.floor(z));
+        return new BlockPos(Mth.floor(x), Mth.floor(y), Mth.floor(z));
     }
 
     public ChunkPos toChunkPos() {
-        return new ChunkPos(MathHelper.floor(x) >> 4, MathHelper.floor(z) >> 4);
+        return new ChunkPos(Mth.floor(x) >> 4, Mth.floor(z) >> 4);
     }
 
     public Vector3 vectorFromHereTo(Vector3 target) {

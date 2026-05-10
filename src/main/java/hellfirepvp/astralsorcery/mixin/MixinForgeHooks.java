@@ -13,13 +13,13 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.perk.node.key.KeyMagnetDrops;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import hellfirepvp.astralsorcery.common.util.loot.LootUtil;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootParameterSets;
 import net.minecraft.loot.LootParameters;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.ForgeHooks;
 import net.neoforged.fml.LogicalSide;
 import org.spongepowered.asm.mixin.Mixin;
@@ -54,10 +54,10 @@ public class MixinForgeHooks {
             return;
         }
         Entity e = context.get(LootParameters.THIS_ENTITY);
-        if (!(e instanceof PlayerEntity)) {
+        if (!(e instanceof Player)) {
             return;
         }
-        PlayerEntity player = (PlayerEntity) e;
+        Player player = (Player) e;
         PlayerProgress prog = ResearchHelper.getProgress(player, LogicalSide.SERVER);
         if (!prog.isValid() || !prog.getPerkData().hasPerkEffect(perk -> perk instanceof KeyMagnetDrops)) {
             return;

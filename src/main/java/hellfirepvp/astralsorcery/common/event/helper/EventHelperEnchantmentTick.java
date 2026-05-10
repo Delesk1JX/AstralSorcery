@@ -11,10 +11,10 @@ package hellfirepvp.astralsorcery.common.event.helper;
 import hellfirepvp.astralsorcery.common.enchantment.EnchantmentPlayerTick;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.event.TickEvent;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.RegistryManager;
 
 import java.util.Collection;
 import java.util.EnumSet;
@@ -37,11 +37,11 @@ public class EventHelperEnchantmentTick implements ITickHandler {
 
     @Override
     public void tick(TickEvent.Type type, Object... context) {
-        PlayerEntity player = (PlayerEntity) context[0];
+        Player player = (Player) context[0];
         LogicalSide side = (LogicalSide) context[1];
 
         if (tickableEnchantments == null) {
-            tickableEnchantments = ForgeRegistries.ENCHANTMENTS.getValues().stream()
+            tickableEnchantments = RegistryManager.ENCHANTMENTS.getValues().stream()
                     .filter(enchantment -> enchantment instanceof EnchantmentPlayerTick)
                     .map(enchantment -> (EnchantmentPlayerTick) enchantment)
                     .collect(Collectors.toList());

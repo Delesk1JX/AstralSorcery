@@ -10,8 +10,8 @@ package hellfirepvp.astralsorcery.common.util.block;
 
 import hellfirepvp.astralsorcery.common.util.data.BiDiPair;
 import net.minecraft.block.BlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3i;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.vector.Vector3i;
 import net.minecraft.world.IBlockReader;
 
 import java.util.HashSet;

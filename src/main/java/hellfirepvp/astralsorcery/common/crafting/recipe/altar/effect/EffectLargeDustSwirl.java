@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.crafting.recipe.altar.ActiveSimpleAltarR
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -45,7 +45,7 @@ public class EffectLargeDustSwirl extends AltarRecipeEffect {
                 Vector3 center = new Vector3(altar).add(0.5, 1.1, 0.5);
                 Vector3 v = Vector3.RotAxis.X_AXIS.clone();
                 float originalAngle = (((float) i) / ((float) parts)) * 360F;
-                double angle = originalAngle + (MathHelper.sin(cycle) * angleSwirl);
+                double angle = originalAngle + (Mth.sin(cycle) * angleSwirl);
                 v.rotate(Math.toRadians(angle), Vector3.RotAxis.Y_AXIS).normalize().multiply(2.5);
                 Vector3 pos = center.clone().add(v);
 
@@ -65,7 +65,7 @@ public class EffectLargeDustSwirl extends AltarRecipeEffect {
                 center = new Vector3(altar).add(0.5, 0.1, 0.5);
                 v = new Vector3(1, 0, 0);
                 originalAngle = (((float) i) / ((float) parts)) * 360F;
-                angle = originalAngle + (MathHelper.sin(cycle) * angleSwirl);
+                angle = originalAngle + (Mth.sin(cycle) * angleSwirl);
                 v.rotate(-Math.toRadians(angle), Vector3.RotAxis.Y_AXIS).normalize().multiply(5);
                 pos = center.clone().add(v);
 

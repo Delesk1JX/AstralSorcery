@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.base.patreon;
 import hellfirepvp.astralsorcery.common.base.patreon.entity.PatreonFlare;
 import hellfirepvp.astralsorcery.common.base.patreon.entity.PatreonPartialEntity;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.eventbus.api.IEventBus;
@@ -61,7 +61,7 @@ public class PatreonEffect {
     public void attachTickListeners(Consumer<ITickHandler> registrar) {}
 
     @OnlyIn(Dist.CLIENT)
-    public void doClientEffect(PlayerEntity player) {}
+    public void doClientEffect(Player player) {}
 
     @Nullable
     public PatreonPartialEntity createEntity(UUID playerUUID) {

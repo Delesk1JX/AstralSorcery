@@ -15,9 +15,9 @@ import hellfirepvp.astralsorcery.common.event.CooldownSetEvent;
 import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.ServerPlayer;
+import net.minecraft.util.Mth;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.eventbus.api.IEventBus;
 import net.neoforged.fml.LogicalSide;
@@ -43,7 +43,7 @@ public class AttributeTypeCooldown extends PerkAttributeType {
     }
 
     private void onCooldown(CooldownSetEvent event) {
-        PlayerEntity player = event.getPlayer();
+        Player player = event.getPlayer();
         World world = player.getEntityWorld();
 
         if (world.isRemote()) {
@@ -53,8 +53,8 @@ public class AttributeTypeCooldown extends PerkAttributeType {
         if (!prog.isValid()) {
             return;
         }
-        if (player instanceof ServerPlayerEntity) {
-            if (MiscUtils.isPlayerFakeMP((ServerPlayerEntity) player)) {
+        if (player instanceof ServerPlayer) {
+            if (MiscUtils.isPlayerFakeMP((ServerPlayer) player)) {
                 return;
             }
         }
@@ -63,7 +63,7 @@ public class AttributeTypeCooldown extends PerkAttributeType {
                 .modifyValue(player, prog, this, 1F);
         multiplier -= 1F;
         multiplier = AttributeEvent.postProcessModded(player, this, multiplier);
-        multiplier = 1F - MathHelper.clamp(multiplier, 0F, 1F);
+        multiplier = 1F - Mth.clamp(multiplier, 0F, 1F);
         event.setCooldown(Math.round(event.getResultCooldown() * multiplier));
     }
 

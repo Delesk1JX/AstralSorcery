@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.event.TickEvent;
 import net.neoforged.fml.LogicalSide;
 
@@ -34,7 +34,7 @@ public class PerkTickHelper implements ITickHandler {
 
     @Override
     public void tick(TickEvent.Type type, Object... context) {
-        PlayerEntity ticked = (PlayerEntity) context[0];
+        Player ticked = (Player) context[0];
         LogicalSide side = (LogicalSide) context[1];
         PlayerProgress prog = ResearchHelper.getProgress(ticked, side);
         if (prog.isValid()) {

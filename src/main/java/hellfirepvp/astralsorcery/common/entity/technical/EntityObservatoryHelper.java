@@ -15,17 +15,17 @@ import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
 import hellfirepvp.astralsorcery.common.tile.TileObservatory;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.RayTraceResult;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.fml.network.NetworkHooks;
 
@@ -93,8 +93,8 @@ public class EntityObservatoryHelper extends Entity {
         }
 
         Entity riding = Iterables.getFirst(this.getPassengers(), null);
-        if (riding instanceof PlayerEntity) {
-            this.applyObservatoryRotationsFrom(observatory, (PlayerEntity) riding, true);
+        if (riding instanceof Player) {
+            this.applyObservatoryRotationsFrom(observatory, (Player) riding, true);
         } else {
             this.prevRotationYaw = this.rotationYaw;
             this.prevRotationPitch = this.rotationPitch;
@@ -104,7 +104,7 @@ public class EntityObservatoryHelper extends Entity {
         }
     }
 
-    public void applyObservatoryRotationsFrom(TileObservatory to, PlayerEntity riding, boolean updateTile) {
+    public void applyObservatoryRotationsFrom(TileObservatory to, Player riding, boolean updateTile) {
         if (riding.openContainer instanceof ContainerObservatory) {
             //Adjust observatory pitch and jaw to player head
             this.rotationYaw = riding.rotationYawHead;

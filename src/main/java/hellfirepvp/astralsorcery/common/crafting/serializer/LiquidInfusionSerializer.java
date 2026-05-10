@@ -20,9 +20,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.crafting.CraftingHelper;
-import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.RegistryManager;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -40,7 +40,7 @@ public class LiquidInfusionSerializer extends CustomRecipeSerializer<LiquidInfus
     @Override
     public LiquidInfusion read(ResourceLocation recipeId, JsonObject json) {
         ResourceLocation fluidKey = new ResourceLocation(JSONUtils.getString(json, "fluidInput"));
-        Fluid fluidInput = ForgeRegistries.FLUIDS.getValue(fluidKey);
+        Fluid fluidInput = RegistryManager.FLUIDS.getValue(fluidKey);
         if (fluidInput == null || fluidInput == Fluids.EMPTY) {
             throw new JsonSyntaxException("Unknown fluid: " + fluidKey);
         }

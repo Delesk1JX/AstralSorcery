@@ -15,7 +15,7 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.ICommandSource;
 import net.minecraft.command.arguments.EntityArgument;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -40,22 +40,22 @@ public class CommandProgress {
                 .then(Commands.argument("player", EntityArgument.player())
                         /*.then(Commands.literal("next")
                                 .executes(ctx -> {
-                                    PlayerEntity src = ctx.getSource().asPlayer();
-                                    PlayerEntity target = EntityArgument.getPlayer(ctx, "player");
+                                    Player src = ctx.getSource().asPlayer();
+                                    Player target = EntityArgument.getPlayer(ctx, "player");
                                     PlayerProgress prog = ResearchHelper.getProgress(target, LogicalSide.SERVER);
                                     ProgressionTier next = prog.getTierReached().next();
                                     return pushPlayerToProgress(src, target, next);
                                 }))*/
                         .then(Commands.argument("progress", EnumArgument.enumArgument(ProgressionTier.class))
                                 .executes(ctx -> {
-                                    PlayerEntity src = ctx.getSource().asPlayer();
-                                    PlayerEntity target = EntityArgument.getPlayer(ctx, "player");
+                                    Player src = ctx.getSource().asPlayer();
+                                    Player target = EntityArgument.getPlayer(ctx, "player");
                                     ProgressionTier goal = ctx.getArgument("progress", ProgressionTier.class);
                                     return pushPlayerToProgress(src, target, goal);
                                 })));
     }
 
-    private static int pushPlayerToProgress(ICommandSource src, PlayerEntity target, ProgressionTier goal) {
+    private static int pushPlayerToProgress(ICommandSource src, Player target, ProgressionTier goal) {
         ITextComponent targetName = target.getDisplayName();
         PlayerProgress progress = ResearchHelper.getProgress(target, LogicalSide.SERVER);
         if (!progress.isValid() || progress.getTierReached().isThisLaterOrEqual(goal)) {

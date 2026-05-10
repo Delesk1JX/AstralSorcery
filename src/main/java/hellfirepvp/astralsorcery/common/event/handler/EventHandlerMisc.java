@@ -17,8 +17,8 @@ import hellfirepvp.astralsorcery.common.item.ItemTome;
 import hellfirepvp.astralsorcery.common.item.crystal.ItemCrystalBase;
 import hellfirepvp.astralsorcery.common.lib.CapabilitiesAS;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.entity.AreaEffectCloudEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.AreaEffectCloudEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.LecternTileEntity;
 import net.minecraft.world.ISeedReader;
@@ -97,7 +97,7 @@ public class EventHandlerMisc {
         WorldContext ctx = SkyHandler.getContext(event.getEntityLiving().getEntityWorld());
         if (ctx != null && ctx.getCelestialEventHandler().getSolarEclipse().isActiveNow()) {
             if (event.getResultStatus() == null) {
-                event.setResult(PlayerEntity.SleepResult.NOT_POSSIBLE_NOW);
+                event.setResult(Player.SleepResult.NOT_POSSIBLE_NOW);
             }
         }
     }

@@ -11,11 +11,11 @@ package hellfirepvp.astralsorcery.common.item.dust;
 import hellfirepvp.astralsorcery.common.entity.EntityNocturnalSpark;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.dispenser.IBlockSource;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
 /**
@@ -37,7 +37,7 @@ public class ItemNocturnalPowder extends ItemUsableDust {
     }
 
     @Override
-    boolean rightClickAir(World world, PlayerEntity player, ItemStack dust) {
+    boolean rightClickAir(World world, Player player, ItemStack dust) {
         return world.addEntity(new EntityNocturnalSpark(player, world));
     }
 

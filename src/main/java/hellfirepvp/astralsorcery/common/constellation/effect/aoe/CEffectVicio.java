@@ -22,11 +22,11 @@ import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
 import hellfirepvp.astralsorcery.common.tile.TileRitualPedestal;
 import hellfirepvp.astralsorcery.common.util.block.ILocatable;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -89,8 +89,8 @@ public class CEffectVicio extends ConstellationEffect implements ConstellationEf
         if (modified.isCorrupted()) {
             List<LivingEntity> entities = world.getEntitiesWithinAABB(LivingEntity.class, BOX.offset(pos).grow(range));
             for (LivingEntity entity : entities) {
-                if (entity instanceof ServerPlayerEntity) {
-                    ServerPlayerEntity pl = (ServerPlayerEntity) entity;
+                if (entity instanceof ServerPlayer) {
+                    ServerPlayer pl = (ServerPlayer) entity;
                     if (pl.interactionManager.getGameType().isSurvivalOrAdventure()) {
                         boolean prev = pl.abilities.allowFlying;
                         pl.abilities.allowFlying = false;
@@ -106,8 +106,8 @@ public class CEffectVicio extends ConstellationEffect implements ConstellationEf
                 entity.addPotionEffect(new EffectInstance(Effects.MINING_FATIGUE, 200, 9));
             }
         } else {
-            List<ServerPlayerEntity> entities = world.getEntitiesWithinAABB(ServerPlayerEntity.class, BOX.offset(pos).grow(range));
-            for (ServerPlayerEntity pl : entities) {
+            List<ServerPlayer> entities = world.getEntitiesWithinAABB(ServerPlayer.class, BOX.offset(pos).grow(range));
+            for (ServerPlayer pl : entities) {
                 if (EventHelperTemporaryFlight.allowFlight(pl)) {
                     boolean prev = pl.abilities.allowFlying;
                     pl.abilities.allowFlying = true;

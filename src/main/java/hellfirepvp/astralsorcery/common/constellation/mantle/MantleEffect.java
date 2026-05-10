@@ -23,9 +23,9 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
@@ -36,7 +36,7 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.TickEvent;
 import net.neoforged.neoforge.eventbus.api.IEventBus;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import javax.annotation.Nonnull;
 import java.awt.*;
@@ -51,7 +51,7 @@ import java.util.function.Consumer;
  * Created by HellFirePvP
  * Date: 17.02.2020 / 20:13
  */
-public abstract class MantleEffect extends RegistryObject<MantleEffect> implements ITickHandler {
+public abstract class MantleEffect extends DeferredHolder<MantleEffect> implements ITickHandler {
 
     protected static final Random rand = new Random();
 
@@ -85,17 +85,17 @@ public abstract class MantleEffect extends RegistryObject<MantleEffect> implemen
         }
     }
 
-    protected void tickServer(PlayerEntity player) {}
+    protected void tickServer(Player player) {}
 
     @OnlyIn(Dist.CLIENT)
-    protected void tickClient(PlayerEntity player) {}
+    protected void tickClient(Player player) {}
 
     protected boolean usesTickMethods() {
         return false;
     }
 
     @OnlyIn(Dist.CLIENT)
-    protected void playCapeSparkles(PlayerEntity player, float chance) {
+    protected void playCapeSparkles(Player player, float chance) {
         if (player == Minecraft.getInstance().player && Minecraft.getInstance().gameSettings.getPointOfView().func_243192_a()) {
             chance *= 0.1F;
         }
@@ -130,7 +130,7 @@ public abstract class MantleEffect extends RegistryObject<MantleEffect> implemen
 
     @Nonnull
     @OnlyIn(Dist.CLIENT)
-    protected FXFacingParticle spawnFacingParticle(PlayerEntity player, Vector3 at) {
+    protected FXFacingParticle spawnFacingParticle(Player player, Vector3 at) {
         return EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE)
                 .setOwner(player.getUniqueID())
                 .spawn(at);
@@ -142,7 +142,7 @@ public abstract class MantleEffect extends RegistryObject<MantleEffect> implemen
             return;
         }
 
-        PlayerEntity pl = (PlayerEntity) context[0];
+        Player pl = (Player) context[0];
         LogicalSide side = (LogicalSide) context[1];
         boolean hasMantle = ItemMantle.getEffect(pl, this.getAssociatedConstellation()) != null;
         if (!hasMantle) {
@@ -150,7 +150,7 @@ public abstract class MantleEffect extends RegistryObject<MantleEffect> implemen
         }
 
         if (side.isServer()) {
-            if (!(pl instanceof ServerPlayerEntity) || MiscUtils.isPlayerFakeMP((ServerPlayerEntity) pl)) {
+            if (!(pl instanceof ServerPlayer) || MiscUtils.isPlayerFakeMP((ServerPlayer) pl)) {
                 return;
             }
             PlayerAffectionFlags.markPlayerAffected(pl, this.playerAffectionFlag);

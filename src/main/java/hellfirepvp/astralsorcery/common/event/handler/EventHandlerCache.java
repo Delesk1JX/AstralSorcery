@@ -32,7 +32,7 @@ import hellfirepvp.astralsorcery.common.starlight.network.StarlightTransmissionH
 import hellfirepvp.astralsorcery.common.starlight.network.StarlightUpdateHandler;
 import hellfirepvp.astralsorcery.common.util.time.TimeStopController;
 import hellfirepvp.astralsorcery.common.util.world.WorldSeedCache;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -117,7 +117,7 @@ public class EventHandlerCache {
 
     @SubscribeEvent
     public static void onPlayerConnect(PlayerEvent.PlayerLoggedInEvent event) {
-        ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
+        ServerPlayer player = (ServerPlayer) event.getPlayer();
 
         PlayerProgress progress = ResearchHelper.getProgress(player, LogicalSide.SERVER);
         if (GeneralConfig.CONFIG.giveJournalOnJoin.get() && !progress.didReceiveTome()) {
@@ -132,7 +132,7 @@ public class EventHandlerCache {
 
     @SubscribeEvent
     public static void onPlayerDisconnect(PlayerEvent.PlayerLoggedOutEvent event) {
-        ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
+        ServerPlayer player = (ServerPlayer) event.getPlayer();
 
         EventHelperTemporaryFlight.onDisconnect(player);
         PerkEffectHelper.onPlayerDisconnectEvent(player);
@@ -141,6 +141,6 @@ public class EventHandlerCache {
 
     @SubscribeEvent
     public static void onPlayerClone(PlayerEvent.Clone event) {
-        PerkEffectHelper.onPlayerCloneEvent((ServerPlayerEntity) event.getOriginal(), (ServerPlayerEntity) event.getPlayer());
+        PerkEffectHelper.onPlayerCloneEvent((ServerPlayer) event.getOriginal(), (ServerPlayer) event.getPlayer());
     }
 }

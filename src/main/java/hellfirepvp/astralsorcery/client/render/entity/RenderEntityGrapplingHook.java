@@ -24,8 +24,8 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.neoforged.neoforge.fml.client.registry.IRenderFactory;
 import org.lwjgl.opengl.GL11;
 
@@ -48,7 +48,7 @@ public class RenderEntityGrapplingHook extends EntityRenderer<EntityGrapplingHoo
     public void render(EntityGrapplingHook entity, float entityYaw, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int packedLight) {
         int alphaMultiplier;
         if (entity.isDespawning()) {
-            alphaMultiplier = MathHelper.clamp(127 - ((int) (entity.despawnPercentage(partialTicks) * 255F)), 0, 255);
+            alphaMultiplier = Mth.clamp(127 - ((int) (entity.despawnPercentage(partialTicks) * 255F)), 0, 255);
         } else {
             alphaMultiplier = 255;
         }

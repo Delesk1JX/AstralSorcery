@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.common.container.ContainerAltarDiscovery;
 import hellfirepvp.astralsorcery.common.crafting.recipe.SimpleAltarRecipe;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.world.entity.player.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 
@@ -30,7 +30,7 @@ import net.minecraft.util.text.ITextComponent;
  */
 public class ScreenContainerAltarDiscovery extends ScreenContainerAltar<ContainerAltarDiscovery> {
 
-    public ScreenContainerAltarDiscovery(ContainerAltarDiscovery screenContainer, PlayerInventory inv, ITextComponent name) {
+    public ScreenContainerAltarDiscovery(ContainerAltarDiscovery screenContainer, IInventory inv, ITextComponent name) {
         super(screenContainer, inv, name, 176, 166);
     }
 

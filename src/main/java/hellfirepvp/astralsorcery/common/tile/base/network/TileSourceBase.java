@@ -14,12 +14,12 @@ import hellfirepvp.astralsorcery.common.starlight.transmission.ITransmissionSour
 import hellfirepvp.astralsorcery.common.starlight.transmission.TransmissionNetworkHelper;
 import hellfirepvp.astralsorcery.common.tile.base.TileNetwork;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.common.util.Constants;
 
@@ -91,7 +91,7 @@ public abstract class TileSourceBase<T extends ITransmissionSource> extends Tile
     }
 
     @Override
-    public void onBlockLinkCreate(PlayerEntity player, BlockPos other) {
+    public void onBlockLinkCreate(Player player, BlockPos other) {
         if (other.equals(getPos())) return;
 
         if (TransmissionNetworkHelper.createTransmissionLink(this, other)) {
@@ -108,21 +108,21 @@ public abstract class TileSourceBase<T extends ITransmissionSource> extends Tile
     }
 
     @Override
-    public void onEntityLinkCreate(PlayerEntity player, LivingEntity linked) {
+    public void onEntityLinkCreate(Player player, LivingEntity linked) {
     }
 
     @Override
-    public boolean tryLinkBlock(PlayerEntity player, BlockPos other) {
+    public boolean tryLinkBlock(Player player, BlockPos other) {
         return !other.equals(getPos()) && TransmissionNetworkHelper.canCreateTransmissionLink(this, other);
     }
 
     @Override
-    public boolean tryLinkEntity(PlayerEntity player, LivingEntity other) {
+    public boolean tryLinkEntity(Player player, LivingEntity other) {
         return false;
     }
 
     @Override
-    public boolean tryUnlink(PlayerEntity player, BlockPos other) {
+    public boolean tryUnlink(Player player, BlockPos other) {
         if (other.equals(getPos())) return false;
 
         if (TransmissionNetworkHelper.hasTransmissionLink(this, other)) {

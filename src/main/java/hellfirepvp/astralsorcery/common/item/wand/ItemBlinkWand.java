@@ -30,9 +30,9 @@ import hellfirepvp.astralsorcery.common.util.block.BlockUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.UseAction;
@@ -40,8 +40,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Mth;
 import net.minecraft.util.text.*;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
@@ -78,7 +78,7 @@ public class ItemBlinkWand extends Item implements AlignmentChargeConsumer {
     }
 
     @Override
-    public float getAlignmentChargeCost(PlayerEntity player, ItemStack stack) {
+    public float getAlignmentChargeCost(Player player, ItemStack stack) {
         if (player.getCooldownTracker().hasCooldown(this)) {
             return 0F;
         }
@@ -96,7 +96,7 @@ public class ItemBlinkWand extends Item implements AlignmentChargeConsumer {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, Player player, Hand hand) {
         ItemStack held = player.getHeldItem(hand);
         if (player.isSneaking()) {
             BlinkMode nextMode = getBlinkMode(held).next();
@@ -120,10 +120,10 @@ public class ItemBlinkWand extends Item implements AlignmentChargeConsumer {
 
     @Override
     public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
-        if (worldIn.isRemote() || !(entityLiving instanceof ServerPlayerEntity)) {
+        if (worldIn.isRemote() || !(entityLiving instanceof ServerPlayer)) {
             return;
         }
-        ServerPlayerEntity player = (ServerPlayerEntity) entityLiving;
+        ServerPlayer player = (ServerPlayer) entityLiving;
 
         BlinkMode mode = getBlinkMode(stack);
         if (mode == BlinkMode.TELEPORT) {
@@ -163,7 +163,7 @@ public class ItemBlinkWand extends Item implements AlignmentChargeConsumer {
                 if (AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, chargeCost, false)) {
                     Vector3 motion = new Vector3(player.getLook(1F)).normalize().multiply(strength * 3F);
                     if (motion.getY() > 0) {
-                        motion.setY(MathHelper.clamp(motion.getY() + (0.2F * strength), 0.2F * strength, Float.MAX_VALUE));
+                        motion.setY(Mth.clamp(motion.getY() + (0.2F * strength), 0.2F * strength, Float.MAX_VALUE));
                     }
 
                     player.setMotion(motion.toVector3d());
@@ -195,10 +195,10 @@ public class ItemBlinkWand extends Item implements AlignmentChargeConsumer {
 
     @OnlyIn(Dist.CLIENT)
     private void playUseParticles(ItemStack stack, LivingEntity entity, int useTicks, float usagePercent) {
-        if (!(entity instanceof PlayerEntity)) {
+        if (!(entity instanceof Player)) {
             return;
         }
-        PlayerEntity player = (PlayerEntity) entity;
+        Player player = (Player) entity;
         if (player.getCooldownTracker().hasCooldown(this)) {
             return;
         }

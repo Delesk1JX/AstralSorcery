@@ -15,10 +15,10 @@ import hellfirepvp.astralsorcery.common.entity.technical.EntityObservatoryHelper
 import hellfirepvp.astralsorcery.common.tile.TileObservatory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.util.vector.Vector3f;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -38,7 +38,7 @@ public class RenderObservatory extends CustomTileEntityRenderer<TileObservatory>
     @Override
     public void render(TileObservatory tile, float pTicks, MatrixStack renderStack, IRenderTypeBuffer renderTypeBuffer, int combinedLight, int combinedOverlay) {
         Entity ridden;
-        PlayerEntity player = Minecraft.getInstance().player;
+        Player player = Minecraft.getInstance().player;
         if (player != null &&
                 (ridden = Minecraft.getInstance().player.getRidingEntity()) != null &&
                 ridden instanceof EntityObservatoryHelper &&

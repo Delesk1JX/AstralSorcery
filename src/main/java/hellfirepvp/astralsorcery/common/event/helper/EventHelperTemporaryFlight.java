@@ -10,8 +10,8 @@ package hellfirepvp.astralsorcery.common.event.helper;
 
 import hellfirepvp.astralsorcery.common.util.tick.TimeoutList;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.neoforged.neoforge.event.TickEvent;
 
 import java.util.function.Consumer;
@@ -25,8 +25,8 @@ import java.util.function.Consumer;
  */
 public class EventHelperTemporaryFlight {
 
-    private static final TimeoutList<PlayerEntity> temporaryFlight = new TimeoutList<>(player -> {
-        if (player instanceof ServerPlayerEntity && ((ServerPlayerEntity) player).interactionManager.getGameType().isSurvivalOrAdventure()) {
+    private static final TimeoutList<Player> temporaryFlight = new TimeoutList<>(player -> {
+        if (player instanceof ServerPlayer && ((ServerPlayer) player).interactionManager.getGameType().isSurvivalOrAdventure()) {
             player.abilities.allowFlying = false;
             player.abilities.isFlying = false;
             player.sendPlayerAbilities();
@@ -39,7 +39,7 @@ public class EventHelperTemporaryFlight {
         temporaryFlight.clear();
     }
 
-    public static void onDisconnect(ServerPlayerEntity player) {
+    public static void onDisconnect(ServerPlayer player) {
         temporaryFlight.remove(player);
     }
 
@@ -47,11 +47,11 @@ public class EventHelperTemporaryFlight {
         registrar.accept(temporaryFlight);
     }
 
-    public static boolean allowFlight(PlayerEntity player) {
+    public static boolean allowFlight(Player player) {
         return allowFlight(player, 20);
     }
 
-    public static boolean allowFlight(PlayerEntity player, int timeout) {
+    public static boolean allowFlight(Player player, int timeout) {
         return temporaryFlight.setOrAddTimeout(timeout, player);
     }
 }

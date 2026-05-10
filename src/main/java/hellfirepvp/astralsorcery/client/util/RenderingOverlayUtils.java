@@ -18,7 +18,7 @@ import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.math.vector.Matrix4f;
+import net.minecraft.util.vector.Matrix4f;
 import net.minecraft.util.text.ITextProperties;
 import net.minecraft.util.text.StringTextComponent;
 import org.lwjgl.opengl.GL11;

@@ -18,14 +18,14 @@ import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.EntitySize;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.world.entity.EntitySize;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EntityPredicates;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Mth;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.neoforged.api.distmarker.Dist;
@@ -117,10 +117,10 @@ public class TimeStopEffectHelper {
             }
         }
 
-        int minX = MathHelper.floor((position.getX() - range) / 16.0D);
-        int maxX = MathHelper.floor((position.getX() + range) / 16.0D);
-        int minZ = MathHelper.floor((position.getZ() - range) / 16.0D);
-        int maxZ = MathHelper.floor((position.getZ() + range) / 16.0D);
+        int minX = Mth.floor((position.getX() - range) / 16.0D);
+        int maxX = Mth.floor((position.getX() + range) / 16.0D);
+        int minZ = Mth.floor((position.getZ() - range) / 16.0D);
+        int maxZ = Mth.floor((position.getZ() + range) / 16.0D);
 
         for (int xx = minX; xx <= maxX; ++xx) {
             for (int zz = minZ; zz <= maxZ; ++zz) {

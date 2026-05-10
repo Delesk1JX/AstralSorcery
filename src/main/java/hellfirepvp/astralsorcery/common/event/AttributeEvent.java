@@ -11,12 +11,12 @@ package hellfirepvp.astralsorcery.common.event;
 import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeTypeHelper;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.AttributeModifierManager;
-import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifierManager;
+import net.minecraft.world.entity.ai.attributes.ModifiableAttributeInstance;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.eventbus.api.Event;
 
@@ -71,12 +71,12 @@ public class AttributeEvent {
 
     public static class PostProcessModded extends Event {
 
-        private final PlayerEntity player;
+        private final Player player;
         private final PerkAttributeType type;
         private final double originalValue;
         private double value;
 
-        public PostProcessModded(double value, PerkAttributeType type, PlayerEntity player) {
+        public PostProcessModded(double value, PerkAttributeType type, Player player) {
             this.player = player;
             this.type = type;
             this.originalValue = value;
@@ -99,22 +99,22 @@ public class AttributeEvent {
             return type;
         }
 
-        public PlayerEntity getPlayer() {
+        public Player getPlayer() {
             return player;
         }
     }
 
-    public static double postProcessModded(PlayerEntity player, PerkAttributeType type, double value) {
+    public static double postProcessModded(Player player, PerkAttributeType type, double value) {
         PostProcessModded ev = new PostProcessModded(value, type, player);
         NeoForge.EVENT_BUS.post(ev);
         return ev.getValue();
     }
 
-    public static float postProcessModded(PlayerEntity player, PerkAttributeType type, float value) {
+    public static float postProcessModded(Player player, PerkAttributeType type, float value) {
         return (float) postProcessModded(player, type, (double) value);
     }
 
-    public static double postProcessModded(PlayerEntity player, ResourceLocation key, double value) {
+    public static double postProcessModded(Player player, ResourceLocation key, double value) {
         PerkAttributeType pType = RegistriesAS.REGISTRY_PERK_ATTRIBUTE_TYPES.getValue(key);
         if (pType == null) {
             return value;
@@ -122,7 +122,7 @@ public class AttributeEvent {
         return postProcessModded(player, pType, value);
     }
 
-    public static float postProcessModded(PlayerEntity player, ResourceLocation key, float value) {
+    public static float postProcessModded(Player player, ResourceLocation key, float value) {
         return (float) postProcessModded(player, key, (double) value);
     }
 

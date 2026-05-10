@@ -23,9 +23,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
-import net.neoforged.neoforge.registries.RegistryObject;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -83,7 +83,7 @@ public class SimpleAltarRecipeBuilder<T extends SimpleAltarRecipe> extends Custo
     }
 
     public SimpleAltarRecipeBuilder<T> setStarlightRequirement(float percentOfAltarBar) {
-        this.recipe.setStarlightRequirement((int) (this.recipe.getAltarType().getStarlightCapacity() * MathHelper.clamp(percentOfAltarBar, 0F, 1F)));
+        this.recipe.setStarlightRequirement((int) (this.recipe.getAltarType().getStarlightCapacity() * Mth.clamp(percentOfAltarBar, 0F, 1F)));
         return this;
     }
 

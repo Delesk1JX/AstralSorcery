@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.common.data.sync.SyncDataHolder;
 import hellfirepvp.astralsorcery.common.data.sync.server.DataPatreonFlares;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.event.TickEvent;
@@ -50,7 +50,7 @@ public class PatreonManager implements ITickHandler {
             Map<UUID, List<PatreonEffect>> playerEffects = PatreonEffectHelper.getPatreonEffects(server.getPlayerList().getPlayers());
 
             for (UUID playerUUID : playerEffects.keySet()) {
-                ServerPlayerEntity player = server.getPlayerList().getPlayerByUUID(playerUUID);
+                ServerPlayer player = server.getPlayerList().getPlayerByUUID(playerUUID);
                 if (player == null) {
                     continue;
                 }

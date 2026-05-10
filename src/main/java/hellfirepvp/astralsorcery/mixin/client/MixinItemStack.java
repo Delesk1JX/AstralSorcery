@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.perk.DynamicModifierHelper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.util.text.ITextComponent;
@@ -41,7 +41,7 @@ import java.util.Map;
 public class MixinItemStack {
 
     @Inject(method = "getTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;hasTag()Z", ordinal = 0), locals = LocalCapture.CAPTURE_FAILSOFT)
-    public void addMissingEnchantmentTooltip(PlayerEntity player, ITooltipFlag advanced, CallbackInfoReturnable<List<ITextComponent>> cir, List<ITextComponent> tooltip) {
+    public void addMissingEnchantmentTooltip(Player player, ITooltipFlag advanced, CallbackInfoReturnable<List<ITextComponent>> cir, List<ITextComponent> tooltip) {
         ItemStack stack = (ItemStack)(Object) this;
 
         List<ITextComponent> addition = new ArrayList<>();

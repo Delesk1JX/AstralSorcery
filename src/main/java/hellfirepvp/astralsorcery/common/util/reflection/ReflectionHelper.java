@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.util.reflection;
 
-import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.neoforged.neoforge.fml.common.ObfuscationReflectionHelper;
 
 import javax.annotation.Nullable;

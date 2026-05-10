@@ -25,11 +25,11 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Matrix3f;
-import net.minecraft.util.math.vector.Matrix4f;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.util.Mth;
+import net.minecraft.util.vector.Matrix3f;
+import net.minecraft.util.vector.Matrix4f;
+import net.minecraft.util.vector.Vector3d;
+import net.minecraft.util.vector.Vector3f;
 import net.minecraft.util.text.ITextProperties;
 import net.minecraft.util.text.LanguageMap;
 import net.minecraft.util.text.StringTextComponent;
@@ -118,16 +118,16 @@ public class RenderingDrawUtils {
 
         float tick = ClientScheduler.getClientTick() + pTicks;
         float deg = (tick * 2) % 360F;
-        float wh = widthHeightBase - (widthHeightBase / 6F) * (MathHelper.sin((float) Math.toRadians(((tick) * 4) % 360F)) + 1F);
+        float wh = widthHeightBase - (widthHeightBase / 6F) * (Mth.sin((float) Math.toRadians(((tick) * 4) % 360F)) + 1F);
         drawInfoStarSingle(renderStack, vb, wh, Math.toRadians(deg));
 
         deg = ((tick + 22.5F) * 2) % 360F;
-        wh = widthHeightBase - (widthHeightBase / 6F) * (MathHelper.sin((float) Math.toRadians(((tick + 45F) * 4) % 360F)) + 1F);
+        wh = widthHeightBase - (widthHeightBase / 6F) * (Mth.sin((float) Math.toRadians(((tick + 45F) * 4) % 360F)) + 1F);
         drawInfoStarSingle(renderStack, vb, wh, Math.toRadians(deg));
 
         buffer.draw(RenderTypesAS.GUI_MISC_INFO_STAR);
-        return new Rectangle(MathHelper.floor(-widthHeightBase / 2F), MathHelper.floor(-widthHeightBase / 2F),
-                MathHelper.floor(widthHeightBase), MathHelper.floor(widthHeightBase));
+        return new Rectangle(Mth.floor(-widthHeightBase / 2F), Mth.floor(-widthHeightBase / 2F),
+                Mth.floor(widthHeightBase), Mth.floor(widthHeightBase));
     }
 
     private static void drawInfoStarSingle(MatrixStack renderStack, IVertexBuilder vb, float widthHeight, double deg) {
@@ -398,13 +398,13 @@ public class RenderingDrawUtils {
         Vector3 v3 = new Vector3( arX * scale + arYZ * scale,  arXZ * scale,  arZ * scale + arXY * scale);
         Vector3 v4 = new Vector3( arX * scale - arYZ * scale, -arXZ * scale,  arZ * scale - arXY * scale);
         if (angle != 0.0F) {
-            float cAngle = MathHelper.cos(angle * 0.5F);
+            float cAngle = Mth.cos(angle * 0.5F);
             float cAngleSq = cAngle * cAngle;
 
             Vector3 vAngle = new Vector3(
-                    MathHelper.sin(angle * 0.5F) * look.getX(),
-                    MathHelper.sin(angle * 0.5F) * look.getY(),
-                    MathHelper.sin(angle * 0.5F) * look.getZ());
+                    Mth.sin(angle * 0.5F) * look.getX(),
+                    Mth.sin(angle * 0.5F) * look.getY(),
+                    Mth.sin(angle * 0.5F) * look.getZ());
 
             v1 = vAngle.clone()
                     .multiply(2 * v1.dot(vAngle))

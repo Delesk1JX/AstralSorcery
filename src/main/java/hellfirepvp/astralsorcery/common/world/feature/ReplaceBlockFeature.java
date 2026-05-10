@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.world.feature;
 
 import hellfirepvp.astralsorcery.common.world.feature.config.ReplaceBlockConfig;
 import net.minecraft.block.BlockState;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.gen.ChunkGenerator;

@@ -14,11 +14,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.Effects;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.util.vector.Vector3d;
+import net.minecraft.util.shapes.ISelectionContext;
+import net.minecraft.util.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.neoforged.neoforge.common.IPlantable;
@@ -70,9 +70,9 @@ public class BlockGlowFlower extends BlockFlowerTemplate implements IPlantable {
             return 0;
         }
         if (fortune > 0) {
-            return fortune * MathHelper.nextInt(RANDOM, 2, 5);
+            return fortune * Mth.nextInt(RANDOM, 2, 5);
         }
-        return MathHelper.nextInt(RANDOM, 1, 2);
+        return Mth.nextInt(RANDOM, 1, 2);
     }
 
     @Override

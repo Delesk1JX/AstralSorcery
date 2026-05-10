@@ -56,13 +56,13 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.Util;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Matrix4f;
+import net.minecraft.util.Mth;
+import net.minecraft.util.vector.Matrix4f;
 import net.minecraft.util.text.*;
 import net.neoforged.fml.LogicalSide;
 import org.lwjgl.opengl.GL11;
@@ -183,14 +183,14 @@ public class ScreenJournalPerkTree extends ScreenJournal {
             AbstractPerk root = PerkTree.PERK_TREE.getRootPerk(LogicalSide.CLIENT, attunement);
             if (root != null) {
                 Point.Float shift = this.sizeHandler.evRelativePos(root.getOffset());
-                this.moveMouse(MathHelper.floor(shift.x), MathHelper.floor(shift.y));
+                this.moveMouse(Mth.floor(shift.x), Mth.floor(shift.y));
                 shifted = true;
             }
         }
 
         if (!shifted) {
-            this.moveMouse(MathHelper.floor(this.sizeHandler.getTotalWidth() / 2),
-                    MathHelper.floor(this.sizeHandler.getTotalHeight() / 2));
+            this.moveMouse(Mth.floor(this.sizeHandler.getTotalWidth() / 2),
+                    Mth.floor(this.sizeHandler.getTotalHeight() / 2));
         }
 
         this.applyMovedMouseOffset();
@@ -204,8 +204,8 @@ public class ScreenJournalPerkTree extends ScreenJournal {
 
         double guiFactor = Minecraft.getInstance().getMainWindow().getGuiScaleFactor();
         GL11.glEnable(GL11.GL_SCISSOR_TEST);
-        GL11.glScissor(MathHelper.floor((guiLeft + 39) * guiFactor), MathHelper.floor((guiTop + 44) * guiFactor),
-                MathHelper.floor((guiWidth - 76) * guiFactor), MathHelper.floor((guiHeight - 71) * guiFactor));
+        GL11.glScissor(Mth.floor((guiLeft + 39) * guiFactor), Mth.floor((guiTop + 44) * guiFactor),
+                Mth.floor((guiWidth - 76) * guiFactor), Mth.floor((guiHeight - 71) * guiFactor));
 
         this.setBlitOffset(-50);
         this.drawBackground(renderStack);
@@ -273,7 +273,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
     }
 
     private void drawHoverTooltips(MatrixStack renderStack, int mouseX, int mouseY) {
-        PlayerEntity player = Minecraft.getInstance().player;
+        Player player = Minecraft.getInstance().player;
 
         for (Rectangle.Float r : this.slotsSocketMenu.keySet()) {
             if (r.contains(mouseX, mouseY)) {
@@ -360,7 +360,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
 
         if (socketMenu != null) {
             T sMenuPerk = (T) socketMenu;
-            Map<Integer, ItemStack> found = ItemUtils.findItemsIndexedInPlayerInventory(Minecraft.getInstance().player, stack -> {
+            Map<Integer, ItemStack> found = ItemUtils.findItemsIndexedInIInventory(Minecraft.getInstance().player, stack -> {
                 if (stack.isEmpty() || !(stack.getItem() instanceof GemSocketItem)) {
                     return false;
                 }
@@ -373,8 +373,8 @@ public class ScreenJournalPerkTree extends ScreenJournal {
             }
 
             Point.Float offset = this.sizeHandler.scalePointToGui(this, this.mousePosition, sMenuPerk.getPoint().getOffset());
-            float offsetX = MathHelper.floor(offset.x);
-            float offsetY = MathHelper.floor(offset.y);
+            float offsetX = Mth.floor(offset.x);
+            float offsetY = Mth.floor(offset.y);
 
             float scale = this.sizeHandler.getScalingFactor();
             float scaledSlotSize = 18F * scale;
@@ -436,7 +436,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
 
     private void drawMiscInfo(MatrixStack renderStack, int mouseX, int mouseY, float pTicks) {
         PlayerProgress prog = ResearchHelper.getClientProgress();
-        PlayerEntity player = Minecraft.getInstance().player;
+        Player player = Minecraft.getInstance().player;
 
         int availablePerks;
         if (prog.isAttuned() && (availablePerks = prog.getPerkData().getAvailablePerkPoints(player, LogicalSide.CLIENT)) > 0) {
@@ -486,7 +486,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
     }
 
     private void drawPerkTree(MatrixStack renderStack, float partialTicks) {
-        PlayerEntity player = Minecraft.getInstance().player;
+        Player player = Minecraft.getInstance().player;
         PlayerProgress progress = ResearchHelper.getClientProgress();
         PlayerPerkData perkData = progress.getPerkData();
 
@@ -854,7 +854,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
             return true;
         }
 
-        PlayerEntity player = Minecraft.getInstance().player;
+        Player player = Minecraft.getInstance().player;
 
         if (!this.mouseSealStack.isEmpty()) {
             this.mouseSealStack = ItemStack.EMPTY;

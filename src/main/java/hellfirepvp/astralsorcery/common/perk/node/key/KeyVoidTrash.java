@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.perk.node.KeyPerk;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 
 import java.util.ArrayList;

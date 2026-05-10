@@ -14,9 +14,9 @@ import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
 import hellfirepvp.astralsorcery.common.perk.modifier.AttributeModifierCritChance;
 import hellfirepvp.astralsorcery.common.perk.modifier.PerkAttributeModifier;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ArrowEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.ArrowEntity;
 import net.neoforged.neoforge.event.entity.EntityJoinWorldEvent;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 import net.neoforged.neoforge.eventbus.api.Event;
@@ -56,8 +56,8 @@ public class AttributeTypeCritChance extends PerkAttributeType {
         if (event.getEntity() instanceof ArrowEntity) {
             ArrowEntity arrow = (ArrowEntity) event.getEntity();
             Entity shooter = arrow.func_234616_v_();
-            if (shooter instanceof PlayerEntity) {
-                PlayerEntity player = (PlayerEntity) shooter;
+            if (shooter instanceof Player) {
+                Player player = (Player) shooter;
                 LogicalSide side = this.getSide(player);
                 if (!hasTypeApplied(player, side)) {
                     return;
@@ -77,7 +77,7 @@ public class AttributeTypeCritChance extends PerkAttributeType {
         if (event.isVanillaCritical() || event.getResult() == Event.Result.ALLOW) {
             return;
         }
-        PlayerEntity player = event.getPlayer();
+        Player player = event.getPlayer();
         LogicalSide side = this.getSide(player);
         if (!hasTypeApplied(player, side)) {
             return;

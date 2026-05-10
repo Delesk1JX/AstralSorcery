@@ -12,7 +12,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import hellfirepvp.astralsorcery.common.container.ContainerTileEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
-import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.world.entity.player.IInventory;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.text.ITextComponent;
 
@@ -25,7 +25,7 @@ import net.minecraft.util.text.ITextComponent;
  */
 public abstract class ContainerBaseScreen<T extends TileEntity, C extends ContainerTileEntity<T>> extends ContainerScreen<C> {
 
-    public ContainerBaseScreen(C screenContainer, PlayerInventory inv, ITextComponent titleIn) {
+    public ContainerBaseScreen(C screenContainer, IInventory inv, ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);
     }
 

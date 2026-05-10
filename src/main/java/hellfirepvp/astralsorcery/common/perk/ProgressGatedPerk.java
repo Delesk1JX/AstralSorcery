@@ -19,9 +19,9 @@ import hellfirepvp.astralsorcery.common.data.research.ProgressionTier;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.data.research.ResearchProgression;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.JSONUtils;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -44,7 +44,7 @@ import java.util.function.BiPredicate;
  */
 public class ProgressGatedPerk extends AbstractPerk {
 
-    private BiPredicate<PlayerEntity, PlayerProgress> unlockFunction = (player, progress) -> true;
+    private BiPredicate<Player, PlayerProgress> unlockFunction = (player, progress) -> true;
 
     private final List<IConstellation> neededConstellations = new ArrayList<>();
     private final List<ResearchProgression> neededResearch = new ArrayList<>();
@@ -69,13 +69,13 @@ public class ProgressGatedPerk extends AbstractPerk {
         this.neededProgression.add(tier);
     }
 
-    public void addResearchPreRequisite(BiPredicate<PlayerEntity, PlayerProgress> unlockFunction) {
+    public void addResearchPreRequisite(BiPredicate<Player, PlayerProgress> unlockFunction) {
         this.unlockFunction = this.unlockFunction.and(unlockFunction);
         disableTooltipCaching(); //Cannot cache as it may change.
     }
 
     @Override
-    public boolean mayUnlockPerk(PlayerProgress progress, PlayerEntity player) {
+    public boolean mayUnlockPerk(PlayerProgress progress, Player player) {
         if (!canSee(player, progress)) {
             return false;
         }
@@ -98,7 +98,7 @@ public class ProgressGatedPerk extends AbstractPerk {
         return canSee(Minecraft.getInstance().player, LogicalSide.CLIENT);
     }
 
-    public final boolean canSee(PlayerEntity player, LogicalSide side) {
+    public final boolean canSee(Player player, LogicalSide side) {
         PlayerProgress prog = ResearchHelper.getProgress(player, side);
         if (prog.isValid()) {
             return this.canSee(player, prog);
@@ -106,7 +106,7 @@ public class ProgressGatedPerk extends AbstractPerk {
         return false;
     }
 
-    public final boolean canSee(PlayerEntity player, PlayerProgress progress) {
+    public final boolean canSee(Player player, PlayerProgress progress) {
         return this.unlockFunction.test(player, progress);
     }
 

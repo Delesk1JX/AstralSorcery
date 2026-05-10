@@ -12,17 +12,17 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.RegistryManager;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -65,7 +65,7 @@ public class ResultSpawnEntity extends InteractionResult {
     @Override
     public void read(JsonObject json) throws JsonParseException {
         ResourceLocation key = new ResourceLocation(JSONUtils.getString(json, "entityType"));
-        EntityType<?> type = ForgeRegistries.ENTITIES.getValue(key);
+        EntityType<?> type = RegistryManager.ENTITIES.getValue(key);
         if (type == null) {
             throw new JsonParseException("Unknown entity type: " + key);
         }

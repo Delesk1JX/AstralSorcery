@@ -66,8 +66,8 @@ import hellfirepvp.astralsorcery.common.util.time.TimeStopController;
 import hellfirepvp.observerlib.common.event.BlockChangeNotifier;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import hellfirepvp.observerlib.common.util.tick.TickManager;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -341,8 +341,8 @@ public class CommonProxy {
         //No-Op
     }
 
-    public void openGui(PlayerEntity player, GuiType type, Object... data) {
-        if (player instanceof ServerPlayerEntity && !(player instanceof FakePlayer)) {
+    public void openGui(Player player, GuiType type, Object... data) {
+        if (player instanceof ServerPlayer && !(player instanceof FakePlayer)) {
             PktOpenGui pkt = new PktOpenGui(type, type.serializeArguments(data));
             PacketChannel.CHANNEL.sendToPlayer(player, pkt);
         }

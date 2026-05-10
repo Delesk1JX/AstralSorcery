@@ -15,8 +15,8 @@ import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.tags.TagCollectionManager;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -44,7 +44,7 @@ public class IngredientHelper {
             return ItemStack.EMPTY;
         }
         int mod = (int) ((tick / 20L) % applicable.size());
-        return applicable.get(MathHelper.clamp(mod, 0, applicable.size() - 1));
+        return applicable.get(Mth.clamp(mod, 0, applicable.size() - 1));
     }
 
     @OnlyIn(Dist.CLIENT)

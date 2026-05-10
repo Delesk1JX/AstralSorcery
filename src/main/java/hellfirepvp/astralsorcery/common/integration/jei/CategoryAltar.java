@@ -28,8 +28,8 @@ import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 
 import java.awt.*;
 import java.util.Collections;
@@ -131,11 +131,11 @@ public class CategoryAltar extends JEICategory<SimpleAltarRecipe> {
         int additional = altarRecipe.getRelayInputs().size();
         for (int i = 0; i < additional; i++) {
             double part = ((double) i) / ((double) additional) * 2.0 * Math.PI; //Shift by half a period
-            part = MathHelper.clamp(part, 0, 2.0 * Math.PI);
+            part = Mth.clamp(part, 0, 2.0 * Math.PI);
             part += Math.PI;
             double xAdd = Math.sin(part) * 60.0;
             double yAdd = Math.cos(part) * 60.0;
-            itemStacks.init(25 + i, true, MathHelper.floor(centerX + xAdd), MathHelper.floor(centerY + yAdd));
+            itemStacks.init(25 + i, true, Mth.floor(centerX + xAdd), Mth.floor(centerY + yAdd));
         }
 
         itemStacks.init(itemStacks.getGuiIngredients().size(), false, 48, 18);
