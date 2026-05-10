@@ -41,10 +41,10 @@ import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.shapes.ISelectionContext;
 import net.minecraft.util.shapes.VoxelShape;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Component;
 import net.minecraft.util.text.Style;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.ChatFormatting;
+import net.minecraft.util.text.Component.translatable;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
@@ -82,7 +82,7 @@ public abstract class BlockCollectorCrystal extends BlockStarlightNetwork implem
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable IBlockReader world, List<ITextComponent> toolTip, ITooltipFlag flag) {
+    public void addInformation(ItemStack stack, @Nullable IBlockReader world, List<Component> toolTip, ITooltipFlag flag) {
         super.addInformation(stack, world, toolTip, flag);
 
         CrystalAttributes attr = CrystalAttributes.getCrystalAttributes(stack);
@@ -103,24 +103,24 @@ public abstract class BlockCollectorCrystal extends BlockStarlightNetwork implem
             IWeakConstellation c = ((ConstellationItem) stack.getItem()).getAttunedConstellation(stack);
             if (c != null) {
                 if (GatedKnowledge.COLLECTOR_TYPE.canSee(tier) && clientProgress.hasConstellationDiscovered(c)) {
-                    toolTip.add(new TranslationTextComponent("crystal.info.astralsorcery.collect.type",
-                            c.getConstellationName().mergeStyle(TextFormatting.BLUE))
-                            .mergeStyle(TextFormatting.GRAY));
+                    toolTip.add(new Component.translatable("crystal.info.astralsorcery.collect.type",
+                            c.getConstellationName().withStyle(ChatFormatting.BLUE))
+                            .withStyle(ChatFormatting.GRAY));
 
                 } else if (!addedMissing) {
-                    toolTip.add(new TranslationTextComponent("astralsorcery.progress.missing.knowledge").mergeStyle(TextFormatting.GRAY));
+                    toolTip.add(new Component.translatable("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY));
                 }
             }
 
             IMinorConstellation tr = ((ConstellationItem) stack.getItem()).getTraitConstellation(stack);
             if (tr != null) {
                 if (GatedKnowledge.CRYSTAL_TRAIT.canSee(tier) && clientProgress.hasConstellationDiscovered(tr)) {
-                    toolTip.add(new TranslationTextComponent("crystal.info.astralsorcery.trait",
-                            tr.getConstellationName().mergeStyle(TextFormatting.BLUE))
-                            .mergeStyle(TextFormatting.GRAY));
+                    toolTip.add(new Component.translatable("crystal.info.astralsorcery.trait",
+                            tr.getConstellationName().withStyle(ChatFormatting.BLUE))
+                            .withStyle(ChatFormatting.GRAY));
 
                 } else if (!addedMissing) {
-                    toolTip.add(new TranslationTextComponent("astralsorcery.progress.missing.knowledge").mergeStyle(TextFormatting.GRAY));
+                    toolTip.add(new Component.translatable("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY));
                 }
             }
         }

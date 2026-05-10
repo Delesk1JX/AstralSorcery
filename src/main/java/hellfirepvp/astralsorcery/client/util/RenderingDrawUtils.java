@@ -32,7 +32,7 @@ import net.minecraft.util.vector.Vector3d;
 import net.minecraft.util.vector.Vector3f;
 import net.minecraft.util.text.ITextProperties;
 import net.minecraft.util.text.LanguageMap;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.Component.literal;
 import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nullable;

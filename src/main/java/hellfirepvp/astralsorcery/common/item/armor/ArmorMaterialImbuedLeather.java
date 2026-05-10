@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.item.armor;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.IArmorMaterial;
+import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.SoundEvent;
 import net.neoforged.api.distmarker.Dist;
@@ -24,7 +24,7 @@ import net.neoforged.api.distmarker.OnlyIn;
  * Created by HellFirePvP
  * Date: 17.02.2020 / 19:16
  */
-public class ArmorMaterialImbuedLeather implements IArmorMaterial {
+public class ArmorMaterialImbuedLeather implements ArmorMaterial {
 
     @Override
     public int getDurability(EquipmentSlotType slot) {

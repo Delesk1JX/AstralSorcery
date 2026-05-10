@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.world.feature;
 import hellfirepvp.astralsorcery.common.lib.DataAS;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.BlockPos;
-import net.minecraft.world.IServerWorld;
+import net.minecraft.world.IServerLevel;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -23,7 +23,7 @@ import net.minecraft.world.IServerWorld;
 public class RockCrystalFeature extends ReplaceBlockFeature {
 
     @Override
-    protected boolean setBlockState(IServerWorld world, BlockPos pos, BlockState state) {
+    protected boolean setBlockState(IServerLevel world, BlockPos pos, BlockState state) {
         DataAS.DOMAIN_AS.getData(world.getWorld(), DataAS.KEY_ROCK_CRYSTAL_BUFFER).addOre(pos);
         return super.setBlockState(world, pos, state);
     }

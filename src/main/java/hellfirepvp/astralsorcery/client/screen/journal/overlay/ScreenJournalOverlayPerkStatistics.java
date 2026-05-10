@@ -32,8 +32,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.Mth;
 import net.minecraft.util.text.ITextProperties;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component.literal;
+import net.minecraft.util.text.Component.translatable;
 import net.neoforged.fml.LogicalSide;
 
 import java.awt.*;
@@ -61,7 +61,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay {
     private int suffixStrWidth = -1;
 
     public ScreenJournalOverlayPerkStatistics(ScreenJournal origin) {
-        super(new TranslationTextComponent("screen.astralsorcery.tome.perks.stats"), origin);
+        super(new Component.translatable("screen.astralsorcery.tome.perks.stats"), origin);
     }
 
     @Override
@@ -111,7 +111,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay {
     }
 
     private void drawHeader(PoseStack renderStack) {
-        ITextProperties title = new TranslationTextComponent("perk.reader.astralsorcery.gui");
+        ITextProperties title = new Component.translatable("perk.reader.astralsorcery.gui");
         List<IReorderingProcessor> lines = font.trimStringToWidth(title, Mth.floor(HEADER_WIDTH / 1.4F));
         int step = 14;
         float offsetTop = guiTop + 15 - (lines.size() * step) / 2F;
@@ -142,7 +142,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay {
         int offsetX = guiLeft + guiWidth / 2 - DEFAULT_WIDTH / 2;
         int line = 0;
         for (PerkStatistic stat : statistics) {
-            ITextProperties statName = new TranslationTextComponent(stat.getUnlocPerkTypeName());
+            ITextProperties statName = new Component.translatable(stat.getUnlocPerkTypeName());
             List<IReorderingProcessor> statistics = font.trimStringToWidth(statName, Mth.floor(HEADER_WIDTH / 1.5F));
             for (int i = 0; i < statistics.size(); i++) {
                 IReorderingProcessor statistic = statistics.get(i);
@@ -159,7 +159,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay {
 
             renderStack.push();
             renderStack.translate(offsetX + nameStrWidth, offsetY + (line * 10), this.getGuiZLevel());
-            RenderingDrawUtils.renderStringAt(new StringTextComponent(stat.getPerkValue()), renderStack, font, 0xEE333333, false);
+            RenderingDrawUtils.renderStringAt(new Component.literal(stat.getPerkValue()), renderStack, font, 0xEE333333, false);
             renderStack.pop();
 
             int strLength = font.getStringWidth(stat.getPerkValue());
@@ -170,7 +170,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay {
             if (!stat.getSuffix().isEmpty()) {
                 renderStack.push();
                 renderStack.translate(offsetX + 25, offsetY + (line * 10), this.getGuiZLevel());
-                RenderingDrawUtils.renderStringAt(new StringTextComponent(stat.getSuffix()), renderStack, font, 0xEE333333, false);
+                RenderingDrawUtils.renderStringAt(new Component.literal(stat.getSuffix()), renderStack, font, 0xEE333333, false);
                 renderStack.pop();
 
                 line++;
@@ -196,26 +196,26 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay {
         PerkAttributeMap attrMap = PerkAttributeHelper.getOrCreateMap(player, LogicalSide.CLIENT);
 
         List<ITextProperties> information = Lists.newArrayList();
-        information.add(new TranslationTextComponent("perk.reader.astralsorcery.description.head",
+        information.add(new Component.translatable("perk.reader.astralsorcery.description.head",
                 PerkAttributeReader.formatDecimal(reader.getDefaultValue(attrMap, player, LogicalSide.CLIENT))));
-        information.add(new TranslationTextComponent("perk.reader.astralsorcery.description.addition",
+        information.add(new Component.translatable("perk.reader.astralsorcery.description.addition",
                 PerkAttributeReader.formatDecimal(reader.getModifierValueForMode(attrMap, player, LogicalSide.CLIENT,
                         ModifierType.ADDITION) - 1)));
-        information.add(new TranslationTextComponent("perk.reader.astralsorcery.description.increase",
+        information.add(new Component.translatable("perk.reader.astralsorcery.description.increase",
                 PerkAttributeReader.formatDecimal(reader.getModifierValueForMode(attrMap, player, LogicalSide.CLIENT,
                         ModifierType.ADDED_MULTIPLY))));
-        information.add(new TranslationTextComponent("perk.reader.astralsorcery.description.moreless",
+        information.add(new Component.translatable("perk.reader.astralsorcery.description.moreless",
                 PerkAttributeReader.formatDecimal(reader.getModifierValueForMode(attrMap, player, LogicalSide.CLIENT,
                         ModifierType.STACKING_MULTIPLY))));
 
         if (!stat.getSuffix().isEmpty() || !stat.getPostProcessInfo().isEmpty()) {
-            information.add(StringTextComponent.EMPTY);
+            information.add(Component.literal.EMPTY);
         }
         if (!stat.getSuffix().isEmpty()) {
-            information.add(new StringTextComponent(stat.getSuffix()));
+            information.add(new Component.literal(stat.getSuffix()));
         }
         if (!stat.getPostProcessInfo().isEmpty()) {
-            information.add(new StringTextComponent(stat.getPostProcessInfo()));
+            information.add(new Component.literal(stat.getPostProcessInfo()));
         }
 
         RenderingDrawUtils.renderBlueTooltipComponents(renderStack, x, y, this.getGuiZLevel(), information, this.font, false);
@@ -227,7 +227,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay {
         suffixStrWidth = -1;
 
         for (PerkStatistic stat : this.statistics) {
-            ITextProperties typeName = new TranslationTextComponent(stat.getUnlocPerkTypeName());
+            ITextProperties typeName = new Component.translatable(stat.getUnlocPerkTypeName());
             int nameWidth = Math.min(font.getStringPropertyWidth(typeName), ((int) (HEADER_WIDTH / 1.5F)));
             int valueWidth = font.getStringWidth(stat.getPerkValue());
             int suffixWidth = font.getStringWidth(stat.getSuffix());

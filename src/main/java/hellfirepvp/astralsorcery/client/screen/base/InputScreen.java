@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.client.screen.base;
 
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Component;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -28,7 +28,7 @@ public class InputScreen extends Screen {
     private double oMouseX, oMouseY;
     private boolean dragging = false;
 
-    protected InputScreen(ITextComponent name) {
+    protected InputScreen(Component name) {
         super(name);
     }
 

@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.starlight.transmission.registry.SourceCl
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.BlockPos;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 
 import javax.annotation.Nullable;
 import java.util.Map;
@@ -31,7 +31,7 @@ public interface IIndependentStarlightSource {
     public static final Random rand = new Random();
 
     //As the purpose of the source, this should produce the starlight - called once every tick
-    public float produceStarlightTick(ServerWorld world, BlockPos pos);
+    public float produceStarlightTick(ServerLevel world, BlockPos pos);
 
     //Can be null or change per tick.
     @Nullable

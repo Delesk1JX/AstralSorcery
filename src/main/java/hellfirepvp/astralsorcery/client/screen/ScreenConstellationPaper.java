@@ -26,7 +26,7 @@ import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextProperties;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component.translatable;
 import net.neoforged.fml.LogicalSide;
 
 import java.util.ArrayList;
@@ -122,7 +122,7 @@ public class ScreenConstellationPaper extends WidthHeightScreen {
 
         List<MoonPhase> phases = this.phases == null ? Collections.emptyList() : this.phases;
         if (phases.isEmpty()) {
-            ITextProperties text = new TranslationTextComponent("astralsorcery.journal.constellation.unknown");
+            ITextProperties text = new Component.translatable("astralsorcery.journal.constellation.unknown");
             RenderingDrawUtils.renderStringCentered(Minecraft.getInstance().fontRenderer, renderStack,
                     text, guiLeft + guiWidth / 2 + 25, guiTop + 239,
                     1.8F, 0xAA4D4D4D);

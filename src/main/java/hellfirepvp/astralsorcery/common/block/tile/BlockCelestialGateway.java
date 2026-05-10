@@ -42,7 +42,7 @@ import net.minecraft.util.RayTraceResult;
 import net.minecraft.util.shapes.ISelectionContext;
 import net.minecraft.util.shapes.VoxelShape;
 import net.minecraft.util.shapes.VoxelShapes;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Component;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
@@ -76,12 +76,12 @@ public class BlockCelestialGateway extends ContainerBlock implements CustomItemB
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<Component> tooltip, ITooltipFlag flagIn) {
         super.addInformation(stack, worldIn, tooltip, flagIn);
 
         DyeColor color = getColor(stack);
         if (color != null) {
-            tooltip.add(ColorUtils.getTranslation(color).mergeStyle(ColorUtils.textFormattingForDye(color)));
+            tooltip.add(ColorUtils.getTranslation(color).withStyle(ColorUtils.textFormattingForDye(color)));
         }
     }
 

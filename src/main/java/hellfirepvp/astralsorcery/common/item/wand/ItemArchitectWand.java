@@ -82,8 +82,8 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        tooltip.add(getPlaceMode(stack).getDisplay().mergeStyle(TextFormatting.GOLD));
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<Component> tooltip, ITooltipFlag flagIn) {
+        tooltip.add(getPlaceMode(stack).getDisplay().withStyle(ChatFormatting.GOLD));
     }
 
     @Override
@@ -411,11 +411,11 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
         }
 
         public IFormattableTextComponent getName() {
-            return new TranslationTextComponent("astralsorcery.misc.architect.mode." + this.name);
+            return new Component.translatable("astralsorcery.misc.architect.mode." + this.name);
         }
 
         public IFormattableTextComponent getDisplay() {
-            return new TranslationTextComponent("astralsorcery.misc.architect.mode", this.getName());
+            return new Component.translatable("astralsorcery.misc.architect.mode", this.getName());
         }
 
         public float getPlaceCostMulitplier() {

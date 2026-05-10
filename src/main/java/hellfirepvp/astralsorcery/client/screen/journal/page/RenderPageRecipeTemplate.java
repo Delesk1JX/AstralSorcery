@@ -40,9 +40,9 @@ import net.minecraft.util.Tuple;
 import net.minecraft.util.Util;
 import net.minecraft.util.Mth;
 import net.minecraft.util.text.ITextProperties;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component.literal;
+import net.minecraft.ChatFormatting;
+import net.minecraft.util.text.Component.translatable;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.fml.LogicalSide;
 
@@ -154,7 +154,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage {
                 this.thisFrameOuputStack.getA().contains(mouseX, mouseZ)) {
             String recipeName = recipe.getId().toString();
             Minecraft.getInstance().keyboardListener.setClipboardString(recipeName);
-            Minecraft.getInstance().player.sendMessage(new TranslationTextComponent("astralsorcery.misc.ctrlcopy.copied", recipeName), Util.DUMMY_UUID);
+            Minecraft.getInstance().player.sendMessage(new Component.translatable("astralsorcery.misc.ctrlcopy.copied", recipeName), Util.DUMMY_UUID);
             return true;
         }
         return false;
@@ -249,20 +249,20 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage {
                 AltarType typeSelected = AltarType.values()[((int) indexSel)];
                 ITextProperties itemName = typeSelected.getAltarItemRepresentation().getDisplayName();
                 ITextProperties starlightRequired = getAltarStarlightAmountDescription(itemName, altarRecipe.getStarlightRequirement(), typeSelected.getStarlightCapacity());
-                ITextProperties starlightRequirementDescription = new TranslationTextComponent("astralsorcery.journal.recipe.altar.starlight.desc");
+                ITextProperties starlightRequirementDescription = new Component.translatable("astralsorcery.journal.recipe.altar.starlight.desc");
 
                 toolTip.add(starlightRequirementDescription);
                 toolTip.add(starlightRequired);
             }
         }
         if (altarRecipe instanceof AltarUpgradeRecipe) {
-            toolTip.add(new TranslationTextComponent("astralsorcery.journal.recipe.altar.upgrade"));
+            toolTip.add(new Component.translatable("astralsorcery.journal.recipe.altar.upgrade"));
         }
     }
 
     protected void addConstellationInfoTooltip(@Nullable IConstellation cst, List<ITextProperties> toolTip) {
         if (cst != null) {
-            toolTip.add(new TranslationTextComponent("astralsorcery.journal.recipe.constellation", cst.getConstellationName()));
+            toolTip.add(new Component.translatable("astralsorcery.journal.recipe.constellation", cst.getConstellationName()));
         }
     }
 
@@ -284,9 +284,9 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage {
         } else {
             base += "highest";
         }
-        return new TranslationTextComponent("astralsorcery.journal.recipe.altar.starlight.format",
+        return new Component.translatable("astralsorcery.journal.recipe.altar.starlight.format",
                 altarName,
-                new TranslationTextComponent(base));
+                new Component.translatable(base));
     }
 
     protected ITextProperties getInfuserChanceDescription(float chance) {
@@ -300,7 +300,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage {
         } else {
             base += "always";
         }
-        return new TranslationTextComponent(base);
+        return new Component.translatable(base);
     }
 
     protected void addStackTooltip(float mouseX, float mouseY, ResourceLocation recipeName, List<ITextProperties> tooltip) {
@@ -316,9 +316,9 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage {
             addInputInformation(stack, null, tooltip);
 
             if (Minecraft.getInstance().gameSettings.showDebugInfo) {
-                tooltip.add(StringTextComponent.EMPTY);
-                tooltip.add(new TranslationTextComponent("astralsorcery.misc.recipename", recipeName.toString()).mergeStyle(TextFormatting.LIGHT_PURPLE).mergeStyle(TextFormatting.ITALIC));
-                tooltip.add(new TranslationTextComponent("astralsorcery.misc.ctrlcopy", recipeName.toString()).mergeStyle(TextFormatting.LIGHT_PURPLE).mergeStyle(TextFormatting.ITALIC));
+                tooltip.add(Component.literal.EMPTY);
+                tooltip.add(new Component.translatable("astralsorcery.misc.recipename", recipeName.toString()).withStyle(ChatFormatting.LIGHT_PURPLE).withStyle(ChatFormatting.ITALIC));
+                tooltip.add(new Component.translatable("astralsorcery.misc.ctrlcopy", recipeName.toString()).withStyle(ChatFormatting.LIGHT_PURPLE).withStyle(ChatFormatting.ITALIC));
             }
         }
     }
@@ -327,21 +327,21 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage {
         try {
             tooltip.addAll(stack.getTooltip(Minecraft.getInstance().player, Minecraft.getInstance().gameSettings.advancedItemTooltips ? ITooltipFlag.TooltipFlags.ADVANCED : ITooltipFlag.TooltipFlags.NORMAL));
         } catch (Exception exc) {
-            tooltip.add(new TranslationTextComponent("astralsorcery.misc.tooltipError").mergeStyle(TextFormatting.RED));
+            tooltip.add(new Component.translatable("astralsorcery.misc.tooltipError").withStyle(ChatFormatting.RED));
         }
         BookLookupInfo info = BookLookupRegistry.findPage(Minecraft.getInstance().player, LogicalSide.CLIENT, stack);
         if (info != null &&
                 info.canSee(ResearchHelper.getProgress(Minecraft.getInstance().player, LogicalSide.CLIENT)) &&
                 !info.getResearchNode().equals(this.getResearchNode())) {
-            tooltip.add(StringTextComponent.EMPTY);
-            tooltip.add(new TranslationTextComponent("astralsorcery.misc.craftInformation").mergeStyle(TextFormatting.GRAY));
+            tooltip.add(Component.literal.EMPTY);
+            tooltip.add(new Component.translatable("astralsorcery.misc.craftInformation").withStyle(ChatFormatting.GRAY));
         }
         if (stackIngredient != null && Minecraft.getInstance().gameSettings.advancedItemTooltips) {
             ITag<Item> itemTag = IngredientHelper.guessTag(stackIngredient);
             if (itemTag instanceof ITag.INamedTag) {
-                tooltip.add(StringTextComponent.EMPTY);
-                tooltip.add(new TranslationTextComponent("astralsorcery.misc.input.tag",
-                        ((ITag.INamedTag<Item>) itemTag).getName().toString()).mergeStyle(TextFormatting.GRAY));
+                tooltip.add(Component.literal.EMPTY);
+                tooltip.add(new Component.translatable("astralsorcery.misc.input.tag",
+                        ((ITag.INamedTag<Item>) itemTag).getName().toString()).withStyle(ChatFormatting.GRAY));
             }
             if (stackIngredient instanceof FluidIngredient) {
                 List<FluidStack> fluids = ((FluidIngredient) stackIngredient).getFluids();
@@ -352,11 +352,11 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage {
                         if (cmp == null) {
                             cmp = f.getFluid().getAttributes().getDisplayName(f);
                         } else {
-                            cmp = new TranslationTextComponent("astralsorcery.misc.input.fluid.chain", cmp, f.getFluid().getAttributes().getDisplayName(f)).mergeStyle(TextFormatting.GRAY);
+                            cmp = new Component.translatable("astralsorcery.misc.input.fluid.chain", cmp, f.getFluid().getAttributes().getDisplayName(f)).withStyle(ChatFormatting.GRAY);
                         }
                     }
-                    tooltip.add(StringTextComponent.EMPTY);
-                    tooltip.add(new TranslationTextComponent("astralsorcery.misc.input.fluid", cmp).mergeStyle(TextFormatting.GRAY));
+                    tooltip.add(Component.literal.EMPTY);
+                    tooltip.add(new Component.translatable("astralsorcery.misc.input.fluid", cmp).withStyle(ChatFormatting.GRAY));
                 }
             }
         }

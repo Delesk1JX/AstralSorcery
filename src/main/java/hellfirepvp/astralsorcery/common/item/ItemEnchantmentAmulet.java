@@ -51,18 +51,18 @@ public class ItemEnchantmentAmulet extends Item implements ItemDynamicColor {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<Component> tooltip, ITooltipFlag flagIn) {
         super.addInformation(stack, worldIn, tooltip, flagIn);
 
         List<AmuletEnchantment> enchantments = getAmuletEnchantments(stack);
         for (AmuletEnchantment ench : enchantments) {
-            tooltip.add(ench.getDisplay().mergeStyle(TextFormatting.BLUE));
+            tooltip.add(ench.getDisplay().withStyle(ChatFormatting.BLUE));
         }
 
         if (getAmuletColor(stack).map(color -> color == 0xFFFFFFFF).orElse(false)) {
-            tooltip.add(new TranslationTextComponent("astralsorcery.amulet.color.colorless")
-                    .mergeStyle(TextFormatting.ITALIC)
-                    .mergeStyle(TextFormatting.GRAY));
+            tooltip.add(new Component.translatable("astralsorcery.amulet.color.colorless")
+                    .withStyle(ChatFormatting.ITALIC)
+                    .withStyle(ChatFormatting.GRAY));
         }
     }
 

@@ -27,7 +27,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component.translatable;
 import net.neoforged.neoforge.fluids.FluidAttributes;
 import net.neoforged.neoforge.fluids.FluidStack;
 
@@ -92,7 +92,7 @@ public class CategoryLiquidInteraction extends JEICategory<LiquidInteraction> {
             float perc = ((float) recipe.getWeight() / totalWeight) * 100;
 
             FontRenderer fr = Minecraft.getInstance().fontRenderer;
-            IFormattableTextComponent txt = new TranslationTextComponent("jei.astralsorcery.tip.chance", FORMAT_CHANCE.format(perc));
+            IFormattableTextComponent txt = new Component.translatable("jei.astralsorcery.tip.chance", FORMAT_CHANCE.format(perc));
             int width = fr.getStringPropertyWidth(txt);
             fr.func_243248_b(renderStack, txt, 74 - width, 44, 0x333333);
         }

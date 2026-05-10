@@ -23,7 +23,7 @@ import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component.translatable;
 import net.neoforged.neoforge.registries.IRegistryObject;
 
 import javax.annotation.Nullable;
@@ -66,7 +66,7 @@ public interface IConstellation extends IRegistryObject<IConstellation>, Compara
     public String getTranslationKey();
 
     default public IFormattableTextComponent getConstellationName() {
-        return new TranslationTextComponent(this.getTranslationKey());
+        return new Component.translatable(this.getTranslationKey());
     }
 
     default public IFormattableTextComponent getConstellationTypeDescription() {
@@ -78,19 +78,19 @@ public interface IConstellation extends IRegistryObject<IConstellation>, Compara
         } else if (this instanceof IMinorConstellation) {
             type = "minor";
         }
-        return new TranslationTextComponent(String.format("astralsorcery.journal.constellation.type.%s", type));
+        return new Component.translatable(String.format("astralsorcery.journal.constellation.type.%s", type));
     }
 
     default public IFormattableTextComponent getConstellationTag() {
-        return new TranslationTextComponent(this.getTranslationKey() + ".tag");
+        return new Component.translatable(this.getTranslationKey() + ".tag");
     }
 
     default public IFormattableTextComponent getConstellationDescription() {
-        return new TranslationTextComponent(this.getTranslationKey() + ".description");
+        return new Component.translatable(this.getTranslationKey() + ".description");
     }
 
     default public IFormattableTextComponent getConstellationEnchantmentDescription() {
-        return new TranslationTextComponent(this.getTranslationKey() + ".enchantments");
+        return new Component.translatable(this.getTranslationKey() + ".enchantments");
     }
 
     public static String getDefaultSaveKey() {

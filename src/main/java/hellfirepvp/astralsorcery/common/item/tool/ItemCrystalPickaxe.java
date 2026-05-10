@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.lib.CrystalPropertiesAS;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.neoforged.neoforge.common.ToolType;
@@ -33,7 +33,7 @@ public class ItemCrystalPickaxe extends ItemCrystalTierItem implements TypeEncha
     }
 
     @Override
-    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> stacks) {
+    public void fillCreativeModeTab(CreativeModeTab group, NonNullList<ItemStack> stacks) {
         if (this.isInGroup(group)) {
             ItemStack stack = new ItemStack(this);
             CrystalPropertiesAS.CREATIVE_CRYSTAL_TOOL_ATTRIBUTES.store(stack);

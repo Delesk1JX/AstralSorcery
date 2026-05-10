@@ -23,9 +23,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRayTraceResult;
 import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.Component.literal;
 import net.minecraft.util.text.Style;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.ChatFormatting;
 import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.util.text.event.HoverEvent;
 
@@ -54,9 +54,9 @@ public class CommandSerialize {
         ItemStack held = player.getHeldItemMainhand();
         String serialized = JsonHelper.serializeItemStack(held).toString();
 
-        IFormattableTextComponent msg = new StringTextComponent(serialized);
-        Style s = Style.EMPTY.setFormatting(TextFormatting.GREEN)
-                .setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new StringTextComponent("Copy")))
+        IFormattableTextComponent msg = new Component.literal(serialized);
+        Style s = Style.EMPTY.setFormatting(ChatFormatting.GREEN)
+                .setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Component.literal("Copy")))
                 .setClickEvent(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, serialized));
         msg.setStyle(s);
 
@@ -70,9 +70,9 @@ public class CommandSerialize {
         BlockState state = result == null ? Blocks.AIR.getDefaultState() : player.getEntityWorld().getBlockState(result.getPos());
         String serialized = BlockStateHelper.serialize(state);
 
-        IFormattableTextComponent msg = new StringTextComponent(serialized);
-        Style s = Style.EMPTY.setFormatting(TextFormatting.GREEN)
-                .setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new StringTextComponent("Copy")))
+        IFormattableTextComponent msg = new Component.literal(serialized);
+        Style s = Style.EMPTY.setFormatting(ChatFormatting.GREEN)
+                .setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Component.literal("Copy")))
                 .setClickEvent(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, serialized));
         msg.setStyle(s);
 

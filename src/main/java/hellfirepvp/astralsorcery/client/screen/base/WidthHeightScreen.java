@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.client.util.Blending;
 import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Component;
 
 import java.awt.*;
 
@@ -34,7 +34,7 @@ public class WidthHeightScreen extends InputScreen {
 
     protected boolean closeWithInventoryKey = true;
 
-    protected WidthHeightScreen(ITextComponent titleIn, int guiHeight, int guiWidth) {
+    protected WidthHeightScreen(Component titleIn, int guiHeight, int guiWidth) {
         super(titleIn);
         this.guiHeight = guiHeight;
         this.guiWidth = guiWidth;

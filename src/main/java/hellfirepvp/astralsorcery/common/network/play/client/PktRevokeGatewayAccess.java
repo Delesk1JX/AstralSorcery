@@ -21,9 +21,9 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.Util;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component;
+import net.minecraft.ChatFormatting;
+import net.minecraft.util.text.Component.translatable;
 import net.minecraft.world.World;
 import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;
@@ -95,10 +95,10 @@ public class PktRevokeGatewayAccess extends ASPacket<PktRevokeGatewayAccess> {
                                     .addData(buffer -> ByteBufUtils.writePos(buffer, gateway.getPos()));
                             PacketChannel.CHANNEL.sendToPlayer(sender, pkt);
 
-                            ITextComponent accessGrantedMessage = new TranslationTextComponent(
+                            Component accessGrantedMessage = new Component.translatable(
                                     "astralsorcery.misc.link.gateway.unlink",
                                     removedPlayer.getPlayerName())
-                                    .mergeStyle(TextFormatting.GREEN);
+                                    .withStyle(ChatFormatting.GREEN);
                             sender.sendMessage(accessGrantedMessage, Util.DUMMY_UUID);
                         }
                     }

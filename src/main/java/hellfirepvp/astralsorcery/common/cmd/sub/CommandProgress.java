@@ -17,9 +17,9 @@ import net.minecraft.command.ICommandSource;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.Util;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.Component;
+import net.minecraft.util.text.Component.literal;
+import net.minecraft.ChatFormatting;
 import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.server.command.EnumArgument;
 
@@ -56,11 +56,11 @@ public class CommandProgress {
     }
 
     private static int pushPlayerToProgress(ICommandSource src, Player target, ProgressionTier goal) {
-        ITextComponent targetName = target.getDisplayName();
+        Component targetName = target.getDisplayName();
         PlayerProgress progress = ResearchHelper.getProgress(target, LogicalSide.SERVER);
         if (!progress.isValid() || progress.getTierReached().isThisLaterOrEqual(goal)) {
-            src.sendMessage(new StringTextComponent("Failed! ").append(targetName).appendString("'s progress is higher or equal to ").appendString(goal.name())
-                    .mergeStyle(TextFormatting.RED), Util.DUMMY_UUID);
+            src.sendMessage(new Component.literal("Failed! ").append(targetName).appendString("'s progress is higher or equal to ").appendString(goal.name())
+                    .withStyle(ChatFormatting.RED), Util.DUMMY_UUID);
             return 0;
         }
         ResearchProgression research = null;
@@ -87,13 +87,13 @@ public class CommandProgress {
                 break;
         }
         if (research == null) {
-            src.sendMessage(new StringTextComponent("Invalid progression tier: " + goal.name()).mergeStyle(TextFormatting.RED), Util.DUMMY_UUID);
+            src.sendMessage(new Component.literal("Invalid progression tier: " + goal.name()).withStyle(ChatFormatting.RED), Util.DUMMY_UUID);
         }
         if (ResearchManager.grantProgress(target, goal) && ResearchManager.grantResearch(target, research)) {
-            src.sendMessage(new StringTextComponent("Success!").mergeStyle(TextFormatting.GREEN), Util.DUMMY_UUID);
+            src.sendMessage(new Component.literal("Success!").withStyle(ChatFormatting.GREEN), Util.DUMMY_UUID);
             return Command.SINGLE_SUCCESS;
         } else {
-            src.sendMessage(new StringTextComponent("Failed!").mergeStyle(TextFormatting.RED), Util.DUMMY_UUID);
+            src.sendMessage(new Component.literal("Failed!").withStyle(ChatFormatting.RED), Util.DUMMY_UUID);
             return 0;
         }
     }

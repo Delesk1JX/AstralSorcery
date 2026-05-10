@@ -21,8 +21,8 @@ import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.command.arguments.EntitySelector;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.Component.literal;
+import net.minecraft.ChatFormatting;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -52,11 +52,11 @@ public class CommandAttune implements Command<CommandSource> {
 
         if (ResearchManager.setAttunedConstellation(player, cst)) {
             context.getSource().sendFeedback(
-                    new StringTextComponent("Success! Player has been attuned to ").append(cst.getConstellationName().mergeStyle(TextFormatting.BLUE))
-                            .mergeStyle(TextFormatting.GREEN), true);
+                    new Component.literal("Success! Player has been attuned to ").append(cst.getConstellationName().withStyle(ChatFormatting.BLUE))
+                            .withStyle(ChatFormatting.GREEN), true);
         } else {
             context.getSource().sendFeedback(
-                    new StringTextComponent("Failed! Player specified doesn't seem to have the research progress necessary!").mergeStyle(TextFormatting.RED), true);
+                    new Component.literal("Failed! Player specified doesn't seem to have the research progress necessary!").withStyle(ChatFormatting.RED), true);
         }
         return 0;
     }

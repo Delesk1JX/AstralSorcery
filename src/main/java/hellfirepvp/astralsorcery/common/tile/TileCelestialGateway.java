@@ -42,9 +42,9 @@ import net.minecraft.util.Tuple;
 import net.minecraft.util.Util;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.Mth;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component;
+import net.minecraft.ChatFormatting;
+import net.minecraft.util.text.Component.translatable;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.util.Constants;
@@ -90,7 +90,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
     };
 
     private boolean networkRegistered = false;
-    private ITextComponent displayText = null;
+    private Component displayText = null;
     private DyeColor color = null;
 
     private boolean locked = false;
@@ -350,7 +350,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
         return OFFSETS_ALLOWED_PREVIEW[Mth.clamp(index, 0, OFFSETS_ALLOWED_PREVIEW.length - 1)];
     }
 
-    public void setDisplayText(@Nullable ITextComponent displayText) {
+    public void setDisplayText(@Nullable Component displayText) {
         this.displayText = displayText;
     }
 
@@ -370,8 +370,8 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
     }
 
     @Override
-    public ITextComponent getName() {
-        return this.displayText != null ? this.displayText : new TranslationTextComponent("block.astralsorcery.celestial_gateway");
+    public Component getName() {
+        return this.displayText != null ? this.displayText : new Component.translatable("block.astralsorcery.celestial_gateway");
     }
 
     @Override
@@ -381,7 +381,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
 
     @Nullable
     @Override
-    public ITextComponent getCustomName() {
+    public Component getCustomName() {
         return getName();
     }
 
@@ -394,7 +394,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
         super.readCustomNBT(compound);
 
         this.networkRegistered = compound.getBoolean("networkRegistered");
-        this.displayText = compound.contains("displayText") ? ITextComponent.Serializer.getComponentFromJson(compound.getString("displayText")) : null;
+        this.displayText = compound.contains("displayText") ? Component.Serializer.getComponentFromJson(compound.getString("displayText")) : null;
         this.color = compound.contains("color") ? NBTHelper.readEnum(compound, "color", DyeColor.class) : null;
 
         this.locked = compound.getBoolean("locked");
@@ -412,7 +412,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
 
         compound.putBoolean("networkRegistered", this.networkRegistered);
         if (this.displayText != null) {
-            compound.putString("displayText", ITextComponent.Serializer.toJson(this.displayText));
+            compound.putString("displayText", Component.Serializer.toJson(this.displayText));
         }
         if (this.color != null) {
             NBTHelper.writeEnum(compound, "color", this.color);
@@ -436,10 +436,10 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
         if (linked instanceof Player) {
             if (this.addAllowedUser((Player) linked)) {
 
-                ITextComponent accessGrantedMessage = new TranslationTextComponent(
+                Component accessGrantedMessage = new Component.translatable(
                         "astralsorcery.misc.link.gateway.link",
                         linked.getDisplayName())
-                        .mergeStyle(TextFormatting.GREEN);
+                        .withStyle(ChatFormatting.GREEN);
                 player.sendMessage(accessGrantedMessage, Util.DUMMY_UUID);
                 linked.sendMessage(accessGrantedMessage, Util.DUMMY_UUID);
             }

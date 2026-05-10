@@ -24,8 +24,8 @@ import net.minecraft.item.*;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.PotionUtils;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.ChatFormatting;
+import net.minecraft.util.text.Component.translatable;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 import javax.annotation.Nonnull;
@@ -245,7 +245,7 @@ public class EngravingEffect extends DeferredHolder<EngravingEffect> {
             PotionUtils.appendEffects(stack, existing);
             stack.getTag().putInt("CustomPotionColor", ColorsAS.DYE_ORANGE.getRGB());
             //TODO meh.. they changed displayname stuff :V RIP
-            stack.setDisplayName(new TranslationTextComponent("potion.astralsorcery.crafted.name").mergeStyle(TextFormatting.GOLD));
+            stack.setDisplayName(new Component.translatable("potion.astralsorcery.crafted.name").withStyle(ChatFormatting.GOLD));
             return stack;
         }
     }

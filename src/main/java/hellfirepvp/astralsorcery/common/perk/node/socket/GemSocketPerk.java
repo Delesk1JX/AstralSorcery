@@ -20,9 +20,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component.literal;
+import net.minecraft.ChatFormatting;
+import net.minecraft.util.text.Component.translatable;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
@@ -160,9 +160,9 @@ public interface GemSocketPerk {
 
         ItemStack contained = getContainedItem(Minecraft.getInstance().player, LogicalSide.CLIENT);
         if (contained.isEmpty()) {
-            tooltip.add(new TranslationTextComponent("perk.info.astralsorcery.gem.empty").mergeStyle(TextFormatting.GRAY));
+            tooltip.add(new Component.translatable("perk.info.astralsorcery.gem.empty").withStyle(ChatFormatting.GRAY));
             if (perkData.hasPerkEffect(thisPerk)) {
-                tooltip.add(new TranslationTextComponent("perk.info.astralsorcery.gem.content.empty").mergeStyle(TextFormatting.GRAY));
+                tooltip.add(new Component.translatable("perk.info.astralsorcery.gem.content.empty").withStyle(ChatFormatting.GRAY));
 
                 boolean has = !ItemUtils.findItemsIndexedInIInventory(Minecraft.getInstance().player, stack -> {
                     if (stack.isEmpty() || !(stack.getItem() instanceof GemSocketItem)) {
@@ -172,8 +172,8 @@ public interface GemSocketPerk {
                     return item.canBeInserted(stack, thisPerk, Minecraft.getInstance().player, ResearchHelper.getClientProgress(), LogicalSide.CLIENT);
                 }).isEmpty();
                 if (!has) {
-                    tooltip.add(new TranslationTextComponent("perk.info.astralsorcery.gem.content.empty.none")
-                            .mergeStyle(TextFormatting.RED));
+                    tooltip.add(new Component.translatable("perk.info.astralsorcery.gem.content.empty.none")
+                            .withStyle(ChatFormatting.RED));
                 }
             }
         } else {
@@ -183,14 +183,14 @@ public interface GemSocketPerk {
                 item.addTooltip(contained, thisPerk, additionalToolTip);
                 if (!additionalToolTip.isEmpty()) {
                     tooltip.addAll(additionalToolTip);
-                    tooltip.add(new StringTextComponent(""));
+                    tooltip.add(new Component.literal(""));
                 }
             }
 
-            tooltip.add(new TranslationTextComponent("perk.info.astralsorcery.gem.content.item", contained.getDisplayName())
-                    .mergeStyle(TextFormatting.GRAY));
+            tooltip.add(new Component.translatable("perk.info.astralsorcery.gem.content.item", contained.getDisplayName())
+                    .withStyle(ChatFormatting.GRAY));
             if (perkData.hasPerkEffect(thisPerk)) {
-                tooltip.add(new TranslationTextComponent("perk.info.astralsorcery.gem.remove").mergeStyle(TextFormatting.GRAY));
+                tooltip.add(new Component.translatable("perk.info.astralsorcery.gem.remove").withStyle(ChatFormatting.GRAY));
             }
         }
     }

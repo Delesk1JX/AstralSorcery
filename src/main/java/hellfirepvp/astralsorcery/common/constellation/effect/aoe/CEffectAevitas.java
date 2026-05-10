@@ -38,7 +38,7 @@ import net.minecraft.potion.Effects;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.NeoForgeConfigSpec;
@@ -89,13 +89,13 @@ public class CEffectAevitas extends CEffectAbstractList<CropHelper.GrowablePlant
         if (plant != null) {
             changed = MiscUtils.executeWithChunk(world, plant.getPos(), changed, (changedFlag) -> {
                 if (properties.isCorrupted()) {
-                    if (world instanceof ServerWorld) {
+                    if (world instanceof ServerLevel) {
                         CropHelper.HarvestablePlant harvestablePlant = CropHelper.wrapHarvestablePlant(world, plant.getPos());
                         if (harvestablePlant != null) {
-                            NonNullList<ItemStack> drops = harvestablePlant.harvestDropsAndReplant((ServerWorld) world, rand, 1);
+                            NonNullList<ItemStack> drops = harvestablePlant.harvestDropsAndReplant((ServerLevel) world, rand, 1);
                             drops.forEach(drop -> ItemUtils.dropItem(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, drop));
                             changedFlag = !drops.isEmpty();
-                        } else if (BlockUtils.breakBlockWithoutPlayer(((ServerWorld) world), plant.getPos())) {
+                        } else if (BlockUtils.breakBlockWithoutPlayer(((ServerLevel) world), plant.getPos())) {
                             changedFlag = true;
                         }
                     } else {

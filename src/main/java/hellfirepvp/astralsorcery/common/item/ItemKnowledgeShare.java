@@ -21,7 +21,7 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundTag;
@@ -53,7 +53,7 @@ public class ItemKnowledgeShare extends Item {
     }
 
     @Override
-    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
+    public void fillCreativeModeTab(CreativeModeTab group, NonNullList<ItemStack> items) {
         if (this.isInGroup(group)) {
             items.add(new ItemStack(this));
 
@@ -65,17 +65,17 @@ public class ItemKnowledgeShare extends Item {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+    public void addInformation(ItemStack stack, @Nullable World world, List<Component> tooltip, ITooltipFlag flag) {
         if (isCreative(stack)) {
-            tooltip.add(new TranslationTextComponent("astralsorcery.misc.knowledge.inscribed.creative").mergeStyle(TextFormatting.LIGHT_PURPLE));
+            tooltip.add(new Component.translatable("astralsorcery.misc.knowledge.inscribed.creative").withStyle(ChatFormatting.LIGHT_PURPLE));
             return;
         }
         if (getKnowledge(stack) == null) {
-            tooltip.add(new TranslationTextComponent("astralsorcery.misc.knowledge.missing").mergeStyle(TextFormatting.GRAY));
+            tooltip.add(new Component.translatable("astralsorcery.misc.knowledge.missing").withStyle(ChatFormatting.GRAY));
         } else {
             IFormattableTextComponent name = getKnowledgeOwnerName(stack);
             if (name != null) {
-                tooltip.add(new TranslationTextComponent("astralsorcery.misc.knowledge.inscribed", name).mergeStyle(TextFormatting.BLUE));
+                tooltip.add(new Component.translatable("astralsorcery.misc.knowledge.inscribed", name).withStyle(ChatFormatting.BLUE));
             }
         }
     }
@@ -154,7 +154,7 @@ public class ItemKnowledgeShare extends Item {
         if (!compound.contains("knowledgeOwnerName")) {
             return null;
         }
-        return ITextComponent.Serializer.getComponentFromJson(compound.getString("knowledgeOwnerName"));
+        return Component.Serializer.getComponentFromJson(compound.getString("knowledgeOwnerName"));
     }
 
     @Nullable
@@ -192,7 +192,7 @@ public class ItemKnowledgeShare extends Item {
         CompoundTag knowledge = new CompoundTag();
         progress.storeKnowledge(knowledge);
         CompoundTag compound = NBTHelper.getPersistentData(stack);
-        compound.putString("knowledgeOwnerName", ITextComponent.Serializer.toJson(player.getDisplayName()));
+        compound.putString("knowledgeOwnerName", Component.Serializer.toJson(player.getDisplayName()));
         compound.putUniqueId("knowledgeOwnerUUID", player.getUniqueID());
         compound.put("knowledgeTag", knowledge);
     }

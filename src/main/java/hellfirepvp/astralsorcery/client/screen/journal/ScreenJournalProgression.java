@@ -29,8 +29,8 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.Mth;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component.literal;
+import net.minecraft.util.text.Component.translatable;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
@@ -66,7 +66,7 @@ public class ScreenJournalProgression extends ScreenJournal {
     private static ScreenJournalProgressionRenderer progressionRenderer;
 
     private ScreenJournalProgression() {
-        super(new TranslationTextComponent("screen.astralsorcery.tome.progression"), 10);
+        super(new Component.translatable("screen.astralsorcery.tome.progression"), 10);
 
         this.searchTextEntry.setChangeCallback(this::onSearchTextInput);
     }
@@ -288,7 +288,7 @@ public class ScreenJournalProgression extends ScreenJournal {
 
         renderStack.push();
         renderStack.translate(guiLeft + 304, guiTop + 20, this.getGuiZLevel());
-        RenderingDrawUtils.renderStringAt(font, renderStack, new StringTextComponent(text), 0xCCCCCC);
+        RenderingDrawUtils.renderStringAt(font, renderStack, new Component.literal(text), 0xCCCCCC);
         renderStack.pop();
     }
 

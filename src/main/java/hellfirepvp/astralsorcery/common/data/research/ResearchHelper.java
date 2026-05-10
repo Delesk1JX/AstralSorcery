@@ -22,9 +22,9 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Util;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component.literal;
+import net.minecraft.ChatFormatting;
+import net.minecraft.util.text.Component.translatable;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
@@ -163,35 +163,35 @@ public class ResearchHelper {
         if (server != null) {
             ServerPlayer player = server.getPlayerList().getPlayerByUUID(pUUID);
             if (player != null) {
-                player.sendMessage(new StringTextComponent("AstralSorcery: Your progression could not be loaded and can't be recovered from backup. Please contact an administrator to lookup what went wrong and/or potentially recover your data from a backup.").mergeStyle(TextFormatting.RED), Util.DUMMY_UUID);
+                player.sendMessage(new Component.literal("AstralSorcery: Your progression could not be loaded and can't be recovered from backup. Please contact an administrator to lookup what went wrong and/or potentially recover your data from a backup.").withStyle(ChatFormatting.RED), Util.DUMMY_UUID);
             }
             String resolvedName = player != null ? player.getGameProfile().getName() : pUUID.toString() + " (Not online)";
             for (String opName : server.getPlayerList().getOppedPlayerNames()) {
                 Player pl = server.getPlayerList().getPlayerByUsername(opName);
                 if (pl != null) {
-                    pl.sendMessage(new StringTextComponent("AstralSorcery: The progression of " + resolvedName + " could not be loaded and can't be recovered from backup. Error files might be created from the unloadable progression files, check the console for additional information!").mergeStyle(TextFormatting.RED), Util.DUMMY_UUID);
+                    pl.sendMessage(new Component.literal("AstralSorcery: The progression of " + resolvedName + " could not be loaded and can't be recovered from backup. Error files might be created from the unloadable progression files, check the console for additional information!").withStyle(ChatFormatting.RED), Util.DUMMY_UUID);
                 }
             }
         }
     }
 
     public static void sendConstellationDiscoveryMessage(ICommandSource src, IConstellation cst) {
-        src.sendMessage(new TranslationTextComponent("astralsorcery.progress.constellation.discover.chat",
-                        cst.getConstellationName().mergeStyle(TextFormatting.GRAY))
-                        .mergeStyle(TextFormatting.BLUE),
+        src.sendMessage(new Component.translatable("astralsorcery.progress.constellation.discover.chat",
+                        cst.getConstellationName().withStyle(ChatFormatting.GRAY))
+                        .withStyle(ChatFormatting.BLUE),
                 Util.DUMMY_UUID);
     }
 
     public static void sendConstellationMemorizationMessage(ICommandSource src, PlayerProgress progress, IConstellation cst) {
         src.sendMessage(
-                new TranslationTextComponent("astralsorcery.progress.constellation.seen.chat",
-                        cst.getConstellationName().mergeStyle(TextFormatting.GRAY))
-                        .mergeStyle(TextFormatting.BLUE),
+                new Component.translatable("astralsorcery.progress.constellation.seen.chat",
+                        cst.getConstellationName().withStyle(ChatFormatting.GRAY))
+                        .withStyle(ChatFormatting.BLUE),
                 Util.DUMMY_UUID);
         if (progress.getSeenConstellations().size() == 1) {
             src.sendMessage(
-                    new TranslationTextComponent("astralsorcery.progress.constellation.seen.track")
-                            .mergeStyle(TextFormatting.BLUE),
+                    new Component.translatable("astralsorcery.progress.constellation.seen.track")
+                            .withStyle(ChatFormatting.BLUE),
                     Util.DUMMY_UUID);
         }
     }

@@ -34,7 +34,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.feature.structure.StructureManager;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.spawner.WorldEntitySpawner;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -114,7 +114,7 @@ public class EntityUtils {
     }
 
     @Nullable
-    public static LivingEntity performWorldSpawningAt(ServerWorld world, BlockPos pos, EntityClassification category, SpawnReason reason, boolean ignoreWeighting, int ignoreSpawnCheckFlags) {
+    public static LivingEntity performWorldSpawningAt(ServerLevel world, BlockPos pos, EntityClassification category, SpawnReason reason, boolean ignoreWeighting, int ignoreSpawnCheckFlags) {
         Biome b = world.getBiome(pos);
         StructureManager mgr = world.func_241112_a_();
         List<MobSpawnInfo.Spawners> spawnList = world.getChunkProvider().getChunkGenerator().func_230353_a_(b, mgr, EntityClassification.MONSTER, pos);
@@ -161,7 +161,7 @@ public class EntityUtils {
         return null;
     }
 
-    public static boolean canEntitySpawnHere(ServerWorld world, BlockPos at, EntityType<? extends Entity> type, SpawnReason spawnReason, int ignoreCheckFlags, @Nullable Consumer<Entity> preCheckEntity) {
+    public static boolean canEntitySpawnHere(ServerLevel world, BlockPos at, EntityType<? extends Entity> type, SpawnReason spawnReason, int ignoreCheckFlags, @Nullable Consumer<Entity> preCheckEntity) {
         if (type.getClassification() == EntityClassification.MISC || !type.isSummonable() || !world.getWorldBorder().contains(at)) {
             return false;
         }
@@ -215,7 +215,7 @@ public class EntityUtils {
     @Nonnull
     public static List<ItemStack> generateLoot(LivingEntity entity, Random rand, DamageSource srcDeath, @Nullable LivingEntity lastAttacker) {
         MinecraftServer srv = LogicalSidedProvider.INSTANCE.get(LogicalSide.SERVER);
-        ServerWorld sw = (ServerWorld) entity.getEntityWorld();
+        ServerLevel sw = (ServerLevel) entity.getEntityWorld();
 
         if (!sw.getGameRules().getBoolean(GameRules.DO_MOB_LOOT)) {
             return Collections.emptyList();

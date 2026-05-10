@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component.translatable;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -36,7 +36,7 @@ public class BookmarkProvider {
     public BookmarkProvider(String unlocName, int bookmarkIndex,
                             Supplier<Screen> guiProvider,
                             Supplier<Boolean> canSeeTest) {
-        this.unlocName = new TranslationTextComponent(unlocName);
+        this.unlocName = new Component.translatable(unlocName);
         this.index = bookmarkIndex;
         this.provider = guiProvider;
         this.canSeeTest = canSeeTest;

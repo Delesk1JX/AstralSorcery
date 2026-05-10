@@ -36,7 +36,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.RayTraceResult;
 import net.minecraft.util.vector.Vector3d;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.fml.network.NetworkHooks;
@@ -114,8 +114,8 @@ public class EntityNocturnalSpark extends ThrowableEntity {
     }
 
     private void removeLights() {
-        if (this.getEntityWorld() instanceof ServerWorld) {
-            ServerWorld sWorld = (ServerWorld) this.getEntityWorld();
+        if (this.getEntityWorld() instanceof ServerLevel) {
+            ServerLevel sWorld = (ServerLevel) this.getEntityWorld();
             if (this.ticksExisted % 5 == 0) {
                 List<BlockPos> lightPositions = BlockDiscoverer.searchForBlocksAround(
                         sWorld, this.getPosition(), 8,
@@ -196,7 +196,7 @@ public class EntityNocturnalSpark extends ThrowableEntity {
     }
 
     private void spawnCycle() {
-        if (rand.nextInt(12) == 0 && world instanceof ServerWorld) {
+        if (rand.nextInt(12) == 0 && world instanceof ServerLevel) {
             BlockPos pos = getPosition();
             pos.add(rand.nextInt(2) - rand.nextInt(2), 1, rand.nextInt(2) - rand.nextInt(2));
             pos = BlockUtils.firstSolidDown(world, pos).up();
@@ -204,7 +204,7 @@ public class EntityNocturnalSpark extends ThrowableEntity {
             if (pos.distanceSq(this.getPosition()) >= 16) {
                 return;
             }
-            EntityUtils.performWorldSpawningAt((ServerWorld) world, pos, EntityClassification.MONSTER, SpawnReason.SPAWNER, true,
+            EntityUtils.performWorldSpawningAt((ServerLevel) world, pos, EntityClassification.MONSTER, SpawnReason.SPAWNER, true,
                     EntityUtils.SpawnConditionFlags.IGNORE_SPAWN_CONDITIONS | EntityUtils.SpawnConditionFlags.IGNORE_ENTITY_COLLISION);
         }
     }

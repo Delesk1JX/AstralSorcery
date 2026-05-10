@@ -35,7 +35,7 @@ import net.minecraft.world.*;
 import net.minecraft.world.chunk.AbstractChunkProvider;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.server.ServerChunkProvider;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 import net.neoforged.neoforge.common.ForgeHooks;
 import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.common.NeoForge;
@@ -85,11 +85,11 @@ public class MiscUtils {
         if (!world.getChunkProvider().isChunkLoaded(chPos)) {
             return false;
         }
-        if (world.isRemote() || !(world instanceof ServerWorld)) {
+        if (world.isRemote() || !(world instanceof ServerLevel)) {
             //Assume if a chunk is present and loaded on the client that it is valid for the client.
             return true;
         }
-        ServerChunkProvider chunkProvider = ((ServerWorld) world).getChunkProvider();
+        ServerChunkProvider chunkProvider = ((ServerLevel) world).getChunkProvider();
         return !chunkProvider.chunkManager.isOutsideSpawningRadius(chPos);
     }
 
@@ -323,7 +323,7 @@ public class MiscUtils {
         }
         if (target instanceof Player) {
             Player plTarget = (Player) target;
-            if (target.getEntityWorld() instanceof ServerWorld &&
+            if (target.getEntityWorld() instanceof ServerLevel &&
                     target.getEntityWorld().getServer() != null &&
                     target.getEntityWorld().getServer().isPVPEnabled()) {
                 return false;
@@ -415,7 +415,7 @@ public class MiscUtils {
             }
 
             MinecraftServer srv = LogicalSidedProvider.INSTANCE.get(LogicalSide.SERVER);
-            ServerWorld targetWorld = srv.getWorld(target);
+            ServerLevel targetWorld = srv.getWorld(target);
             if (targetWorld == null) {
                 return null;
             }
@@ -567,15 +567,15 @@ public class MiscUtils {
     }
 
     public static <T> T executeWithChunk(IWorldReader world, BlockPos pos, Supplier<T> run, T defaultValue) {
-        if (world instanceof ServerWorld && LogCategory.UNINTENDED_CHUNK_LOADING.isEnabled()) {
-            ServerChunkProvider provider = ((ServerWorld) world).getChunkProvider();
+        if (world instanceof ServerLevel && LogCategory.UNINTENDED_CHUNK_LOADING.isEnabled()) {
+            ServerChunkProvider provider = ((ServerLevel) world).getChunkProvider();
             int prev = provider.getLoadedChunkCount();
             try {
                 if (provider.isChunkLoaded(new ChunkPos(pos))) {
                     return run.get();
                 }
             } finally {
-                int current = ((ServerWorld) world).getChunkProvider().getLoadedChunkCount();
+                int current = ((ServerLevel) world).getChunkProvider().getLoadedChunkCount();
                 if (current > prev) { //We... don't really care about unloading tbh.
                     AstralSorcery.log.warn("Astral Sorcery loaded a chunk when it intended not to!");
                     AstralSorcery.log.warn("Previous chunk count: " + prev);

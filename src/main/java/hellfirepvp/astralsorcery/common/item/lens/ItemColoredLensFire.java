@@ -33,7 +33,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.util.Constants;
@@ -119,7 +119,7 @@ public class ItemColoredLensFire extends ItemColoredLens {
 
         @Override
         public void blockInBeam(World world, BlockPos pos, BlockState state, PartialEffectExecutor executor) {
-            if (!(world instanceof ServerWorld)) {
+            if (!(world instanceof ServerLevel)) {
                 return;
             }
 

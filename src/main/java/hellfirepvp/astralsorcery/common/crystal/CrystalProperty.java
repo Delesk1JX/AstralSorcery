@@ -12,8 +12,8 @@ import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
 import hellfirepvp.astralsorcery.common.data.research.ResearchProgression;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component;
+import net.minecraft.util.text.Component.translatable;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.ArrayList;
@@ -96,7 +96,7 @@ public abstract class CrystalProperty extends DeferredHolder<CrystalProperty> im
     }
 
     public IFormattableTextComponent getName(int currentTier) {
-        return new TranslationTextComponent(String.format("crystal.property.%s.%s.name", getRegistryName().getNamespace(), getRegistryName().getPath()));
+        return new Component.translatable(String.format("crystal.property.%s.%s.name", getRegistryName().getNamespace(), getRegistryName().getPath()));
     }
 
     @Override

@@ -37,7 +37,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.IntTag;
@@ -48,9 +48,9 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.Mth;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component;
+import net.minecraft.ChatFormatting;
+import net.minecraft.util.text.Component.translatable;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunk;
@@ -84,7 +84,7 @@ public class ItemResonator extends Item implements OverrideInteractItem {
     }
 
     @Override
-    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
+    public void fillCreativeModeTab(CreativeModeTab group, NonNullList<ItemStack> items) {
         if (this.isInGroup(group)) {
             ItemStack resonator = new ItemStack(this);
             setUpgradeUnlocked(resonator, ResonatorUpgrade.STARLIGHT);
@@ -98,11 +98,11 @@ public class ItemResonator extends Item implements OverrideInteractItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag extended) {
+    public void addInformation(ItemStack stack, @Nullable World world, List<Component> tooltip, ITooltipFlag extended) {
         ResonatorUpgrade current = getCurrentUpgrade(Minecraft.getInstance().player, stack);
         for (ResonatorUpgrade upgrade : getUpgrades(stack)) {
-            TextFormatting color = upgrade.equals(current) ? TextFormatting.GOLD : TextFormatting.BLUE;
-            tooltip.add(new TranslationTextComponent(upgrade.getUnlocalizedTypeName()).mergeStyle(color));
+            TextFormatting color = upgrade.equals(current) ? ChatFormatting.GOLD : ChatFormatting.BLUE;
+            tooltip.add(new Component.translatable(upgrade.getUnlocalizedTypeName()).withStyle(color));
         }
     }
 

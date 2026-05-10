@@ -15,8 +15,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.Component;
+import net.minecraft.util.text.Component.literal;
 import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;
 
@@ -42,11 +42,11 @@ public class PlayerReference {
     }
 
     public static PlayerReference of(Player player) {
-        ITextComponent txt = player.getDisplayName();
+        Component txt = player.getDisplayName();
         if (txt instanceof IFormattableTextComponent) {
             return new PlayerReference(player.getUniqueID(), (IFormattableTextComponent) txt);
         }
-        return new PlayerReference(player.getUniqueID(), new StringTextComponent("").append(txt));
+        return new PlayerReference(player.getUniqueID(), new Component.literal("").append(txt));
     }
 
     public boolean isPlayer(Player player) {
@@ -57,7 +57,7 @@ public class PlayerReference {
         return this.playerUUID;
     }
 
-    public ITextComponent getPlayerName() {
+    public Component getPlayerName() {
         return this.playerName;
     }
 
@@ -91,7 +91,7 @@ public class PlayerReference {
 
     public void writeToNBT(CompoundTag tag) {
         tag.putUniqueId("playerUUID", this.playerUUID);
-        tag.putString("playerName", ITextComponent.Serializer.toJson(this.playerName));
+        tag.putString("playerName", Component.Serializer.toJson(this.playerName));
     }
 
     public void write(FriendlyByteBuf buf) {
@@ -100,7 +100,7 @@ public class PlayerReference {
     }
 
     public static PlayerReference deserialize(CompoundTag tag) {
-        return new PlayerReference(tag.getUniqueId("playerUUID"), ITextComponent.Serializer.getComponentFromJson(tag.getString("playerName")));
+        return new PlayerReference(tag.getUniqueId("playerUUID"), Component.Serializer.getComponentFromJson(tag.getString("playerName")));
     }
 
     public static PlayerReference read(FriendlyByteBuf buf) {

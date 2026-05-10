@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.resources.ResourceLocation;
@@ -35,7 +35,7 @@ public class ItemBlockGemCrystalCluster extends ItemBlockCustom {
     }
 
     @Override
-    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
+    public void fillCreativeModeTab(CreativeModeTab group, NonNullList<ItemStack> items) {
         if (isInGroup(group)) {
             for (BlockGemCrystalCluster.GrowthStageType stage : BlockGemCrystalCluster.STAGE.getAllowedValues()) {
                 ItemStack cluster = new ItemStack(this);

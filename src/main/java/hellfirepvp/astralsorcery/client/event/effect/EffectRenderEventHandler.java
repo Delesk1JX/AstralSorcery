@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.client.event.effect;
 import hellfirepvp.astralsorcery.client.effect.handler.EffectHandler;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.ChatFormatting;
 import net.neoforged.neoforge.client.event.RenderGameOverlayEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
 import net.neoforged.neoforge.eventbus.api.IEventBus;
@@ -48,9 +48,9 @@ public class EffectRenderEventHandler {
     private void onDebugText(RenderGameOverlayEvent.Text event) {
         if (Minecraft.getInstance().gameSettings.showDebugInfo) {
             event.getLeft().add("");
-            //event.getLeft().add(TextFormatting.BLUE + "[AstralSorcery]" + TextFormatting.RESET + " Use Local persistent data: " + PersistentDataManager.INSTANCE.usePersistent());
-            event.getLeft().add(TextFormatting.BLUE + "[AstralSorcery]" + TextFormatting.RESET + " EffectHandler:");
-            event.getLeft().add(TextFormatting.BLUE + "[AstralSorcery]" + TextFormatting.RESET + " > Complex effects: " + EffectHandler.getInstance().getEffectCount());
+            //event.getLeft().add(ChatFormatting.BLUE + "[AstralSorcery]" + ChatFormatting.RESET + " Use Local persistent data: " + PersistentDataManager.INSTANCE.usePersistent());
+            event.getLeft().add(ChatFormatting.BLUE + "[AstralSorcery]" + ChatFormatting.RESET + " EffectHandler:");
+            event.getLeft().add(ChatFormatting.BLUE + "[AstralSorcery]" + ChatFormatting.RESET + " > Complex effects: " + EffectHandler.getInstance().getEffectCount());
         }
     }
 

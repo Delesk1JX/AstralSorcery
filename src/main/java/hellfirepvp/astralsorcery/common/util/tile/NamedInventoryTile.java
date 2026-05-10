@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.util.tile;
 
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Component;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -19,6 +19,6 @@ import net.minecraft.util.text.ITextComponent;
  */
 public interface NamedInventoryTile {
 
-    ITextComponent getDisplayName();
+    Component getDisplayName();
 
 }

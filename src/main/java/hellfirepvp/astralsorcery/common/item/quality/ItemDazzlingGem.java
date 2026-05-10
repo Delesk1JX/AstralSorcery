@@ -14,7 +14,7 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Component;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -41,7 +41,7 @@ public class ItemDazzlingGem extends Item {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flag) {
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<Component> tooltip, ITooltipFlag flag) {
         getQuality(stack).ifPresent(quality -> tooltip.add(quality.getDisplayName()));
     }
 

@@ -26,7 +26,7 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.Mth;
 import net.minecraft.util.vector.Matrix4f;
 import net.minecraft.util.text.ITextProperties;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component.translatable;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
@@ -55,7 +55,7 @@ public class ScreenJournalConstellationOverview extends ScreenJournal implements
     private Rectangle rectPrev, rectNext;
 
     private ScreenJournalConstellationOverview(int pageId, List<IConstellation> constellations) {
-        super(new TranslationTextComponent("screen.astralsorcery.tome.constellations"), 20);
+        super(new Component.translatable("screen.astralsorcery.tome.constellations"), 20);
         this.constellations = constellations;
         this.pageId = pageId;
     }

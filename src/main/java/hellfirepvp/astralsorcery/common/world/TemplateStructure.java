@@ -15,7 +15,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChunkPos;
 import net.minecraft.util.MutableBoundingBox;
 import net.minecraft.world.ISeedReader;
-import net.minecraft.world.IServerWorld;
+import net.minecraft.world.IServerLevel;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.structure.IStructurePieceType;
 import net.minecraft.world.gen.feature.structure.StructureManager;
@@ -81,7 +81,7 @@ public abstract class TemplateStructure extends TemplateStructurePiece {
     }
 
     @Override
-    protected void handleDataMarker(String function, BlockPos pos, IServerWorld worldIn, Random rand, MutableBoundingBox sbb) {
+    protected void handleDataMarker(String function, BlockPos pos, IServerLevel worldIn, Random rand, MutableBoundingBox sbb) {
         if (sbb.isVecInside(pos)) {
             MarkerManagerAS.handleMarker(function, pos, worldIn, rand, boundingBox);
         }

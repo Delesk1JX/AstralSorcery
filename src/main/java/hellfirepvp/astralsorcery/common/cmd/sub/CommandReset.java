@@ -18,8 +18,8 @@ import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.command.arguments.EntitySelector;
 import net.minecraft.world.entity.player.ServerPlayer;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.Component.literal;
+import net.minecraft.ChatFormatting;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -47,7 +47,7 @@ public class CommandReset implements Command<CommandSource> {
         ResearchHelper.wipeKnowledge(player);
 
         String name = player.getGameProfile().getName();
-        context.getSource().sendFeedback(new StringTextComponent("Wiped " + name + "'s data!").mergeStyle(TextFormatting.GREEN), true);
+        context.getSource().sendFeedback(new Component.literal("Wiped " + name + "'s data!").withStyle(ChatFormatting.GREEN), true);
         return 0;
     }
 }

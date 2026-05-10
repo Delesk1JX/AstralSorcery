@@ -115,25 +115,25 @@ public final class CrystalAttributes {
 
     @Nonnull
     @OnlyIn(Dist.CLIENT)
-    public TooltipResult addTooltip(List<ITextComponent> tooltip) {
+    public TooltipResult addTooltip(List<Component> tooltip) {
         return addTooltip(tooltip, CalculationContext.Builder.newBuilder().build());
     }
 
     @Nonnull
     @OnlyIn(Dist.CLIENT)
-    public TooltipResult addTooltip(List<ITextComponent> tooltip, PlayerProgress progress) {
+    public TooltipResult addTooltip(List<Component> tooltip, PlayerProgress progress) {
         return addTooltip(tooltip, progress, CalculationContext.Builder.newBuilder().build());
     }
 
     @Nonnull
     @OnlyIn(Dist.CLIENT)
-    public TooltipResult addTooltip(List<ITextComponent> tooltip, CalculationContext ctx) {
+    public TooltipResult addTooltip(List<Component> tooltip, CalculationContext ctx) {
         return addTooltip(tooltip, ResearchHelper.getClientProgress(), ctx);
     }
 
     @Nonnull
     @OnlyIn(Dist.CLIENT)
-    private TooltipResult addTooltip(List<ITextComponent> tooltip, PlayerProgress progress, CalculationContext ctx) {
+    private TooltipResult addTooltip(List<Component> tooltip, PlayerProgress progress, CalculationContext ctx) {
         boolean missing = false;
         boolean addedAtLeastOne = false;
 
@@ -148,12 +148,12 @@ public final class CrystalAttributes {
                 if (!prop.canSee(progress) || !attr.isDiscovered()) {
                     missing = true;
                 } else {
-                    IFormattableTextComponent enchantmentLevel = new TranslationTextComponent(String.format("enchantment.level.%s", attr.getTier()))
-                            .mergeStyle(TextFormatting.GOLD);
-                    IFormattableTextComponent propertyName = prop.getName(attr.getTier()).mergeStyle(TextFormatting.GRAY);
+                    IFormattableTextComponent enchantmentLevel = new Component.translatable(String.format("enchantment.level.%s", attr.getTier()))
+                            .withStyle(ChatFormatting.GOLD);
+                    IFormattableTextComponent propertyName = prop.getName(attr.getTier()).withStyle(ChatFormatting.GRAY);
 
                     tooltip.add(propertyName
-                            .append(new StringTextComponent(" "))
+                            .append(new Component.literal(" "))
                             .append(enchantmentLevel));
                     addedAtLeastOne = true;
                 }
@@ -161,7 +161,7 @@ public final class CrystalAttributes {
         }
 
         if (missing) {
-            tooltip.add(new TranslationTextComponent("astralsorcery.progress.missing.knowledge").mergeStyle(TextFormatting.GRAY));
+            tooltip.add(new Component.translatable("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY));
         }
         return missing && !addedAtLeastOne ? TooltipResult.ALL_MISSING :
                 missing ?  TooltipResult.ADDED_ALL_WITH_MISSING : TooltipResult.ADDED_ALL;

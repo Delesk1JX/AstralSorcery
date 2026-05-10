@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import hellfirepvp.astralsorcery.client.screen.base.ScreenCustomContainer;
 import hellfirepvp.astralsorcery.common.container.ContainerTome;
 import net.minecraft.world.entity.player.IInventory;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Component;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -25,7 +25,7 @@ import net.minecraft.util.text.ITextComponent;
  */
 public class ScreenContainerTome extends ScreenCustomContainer<ContainerTome> {
 
-    public ScreenContainerTome(ContainerTome screenContainer, IInventory inv, ITextComponent name) {
+    public ScreenContainerTome(ContainerTome screenContainer, IInventory inv, Component name) {
         super(screenContainer, inv, name, 176, 166);
     }
 

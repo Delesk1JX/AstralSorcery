@@ -29,7 +29,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.Mth;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component.translatable;
 import net.neoforged.fml.LogicalSide;
 import org.lwjgl.opengl.GL11;
 
@@ -51,7 +51,7 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<Constellat
     private final List<Point.Float> usedStars = new ArrayList<>(randomStars);
 
     public ScreenHandTelescope() {
-        super(new TranslationTextComponent("screen.astralsorcery.hand_telescope"), 216, 216);
+        super(new Component.translatable("screen.astralsorcery.hand_telescope"), 216, 216);
     }
 
     @Nonnull

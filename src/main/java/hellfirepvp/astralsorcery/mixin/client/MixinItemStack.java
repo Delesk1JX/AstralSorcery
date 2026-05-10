@@ -16,9 +16,9 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component;
+import net.minecraft.ChatFormatting;
+import net.minecraft.util.text.Component.translatable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -41,10 +41,10 @@ import java.util.Map;
 public class MixinItemStack {
 
     @Inject(method = "getTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;hasTag()Z", ordinal = 0), locals = LocalCapture.CAPTURE_FAILSOFT)
-    public void addMissingEnchantmentTooltip(Player player, ITooltipFlag advanced, CallbackInfoReturnable<List<ITextComponent>> cir, List<ITextComponent> tooltip) {
+    public void addMissingEnchantmentTooltip(Player player, ITooltipFlag advanced, CallbackInfoReturnable<List<Component>> cir, List<Component> tooltip) {
         ItemStack stack = (ItemStack)(Object) this;
 
-        List<ITextComponent> addition = new ArrayList<>();
+        List<Component> addition = new ArrayList<>();
         try {
             //Add any dynamic modifiers this item has.
             DynamicModifierHelper.addModifierTooltip(stack, addition);
@@ -58,7 +58,7 @@ public class MixinItemStack {
             }
         } catch (Exception exc) {
             addition.clear();
-            tooltip.add(new TranslationTextComponent("astralsorcery.misc.tooltipError").mergeStyle(TextFormatting.GRAY));
+            tooltip.add(new Component.translatable("astralsorcery.misc.tooltipError").withStyle(ChatFormatting.GRAY));
         }
         tooltip.addAll(addition);
     }

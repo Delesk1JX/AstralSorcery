@@ -32,7 +32,7 @@ import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Mth;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -54,7 +54,7 @@ public class CelestialStrike {
 
     private CelestialStrike() {}
 
-    public static void play(@Nullable LivingEntity attacker, ServerWorld world, Vector3 at, Vector3 displayPosition) {
+    public static void play(@Nullable LivingEntity attacker, ServerLevel world, Vector3 at, Vector3 displayPosition) {
         double radius = 16D;
         List<LivingEntity> livingEntities = world.getEntitiesWithinAABB(LivingEntity.class,
                 EMPTY.grow(radius, radius / 2, radius)

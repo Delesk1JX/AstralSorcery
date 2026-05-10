@@ -17,7 +17,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.MobSpawnInfo;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 import net.neoforged.neoforge.registries.BuiltInRegistries;
 
 import java.util.Collections;
@@ -60,7 +60,7 @@ public class ListEntries {
             nbt.putString("entity", this.type.getRegistryName().toString());
         }
 
-        public static EntitySpawnEntry createEntry(ServerWorld world, BlockPos pos, SpawnReason reason) {
+        public static EntitySpawnEntry createEntry(ServerLevel world, BlockPos pos, SpawnReason reason) {
             Biome b = world.getBiome(pos);
             List<MobSpawnInfo.Spawners> applicable = new LinkedList<>();
             if (DayTimeHelper.isNight(world)) {
@@ -81,7 +81,7 @@ public class ListEntries {
             return null;
         }
 
-        public void spawn(ServerWorld world, SpawnReason reason) {
+        public void spawn(ServerLevel world, SpawnReason reason) {
             if (this.type == null) {
                 return;
             }

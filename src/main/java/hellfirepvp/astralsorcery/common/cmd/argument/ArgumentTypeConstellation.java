@@ -18,7 +18,7 @@ import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import hellfirepvp.astralsorcery.common.constellation.*;
 import net.minecraft.command.ISuggestionProvider;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component.translatable;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Predicate;
@@ -34,7 +34,7 @@ import java.util.stream.Collectors;
 public class ArgumentTypeConstellation implements ArgumentType<IConstellation> {
 
     public static final SimpleCommandExceptionType CONSTELLATION_NOT_FOUND =
-            new SimpleCommandExceptionType(new TranslationTextComponent("astralsorcery.command.argument.constellation.notfound"));
+            new SimpleCommandExceptionType(new Component.translatable("astralsorcery.command.argument.constellation.notfound"));
 
     private final Predicate<IConstellation> filter;
 

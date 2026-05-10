@@ -18,7 +18,7 @@ import net.minecraft.util.RegistryKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
@@ -92,7 +92,7 @@ public class PktRequestSeed extends ASPacket<PktRequestSeed> {
                 context.enqueueWork(() -> {
                     //TODO 1.16.2 re-check once worlds are not all constantly loaded
                     MinecraftServer srv = LogicalSidedProvider.INSTANCE.get(LogicalSide.SERVER);
-                    ServerWorld w = srv.getWorld(packet.dim);
+                    ServerLevel w = srv.getWorld(packet.dim);
                     if (w != null) {
                         PktRequestSeed seedResponse = new PktRequestSeed(packet.session, packet.dim);
                         seedResponse.seed(MiscUtils.getRandomWorldSeed(w));

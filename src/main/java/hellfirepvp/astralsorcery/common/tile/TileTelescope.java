@@ -12,8 +12,8 @@ import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import hellfirepvp.astralsorcery.common.tile.base.TileEntitySynchronized;
 import hellfirepvp.astralsorcery.common.util.tile.NamedInventoryTile;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component;
+import net.minecraft.util.text.Component.translatable;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -54,8 +54,8 @@ public class TileTelescope extends TileEntitySynchronized implements NamedInvent
     }
 
     @Override
-    public ITextComponent getDisplayName() {
-        return new TranslationTextComponent("screen.astralsorcery.telescope");
+    public Component getDisplayName() {
+        return new Component.translatable("screen.astralsorcery.telescope");
     }
 
     public static enum TelescopeRotation {

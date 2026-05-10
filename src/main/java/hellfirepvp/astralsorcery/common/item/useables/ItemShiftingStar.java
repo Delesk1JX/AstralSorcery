@@ -33,9 +33,9 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.Util;
 import net.minecraft.util.Mth;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component;
+import net.minecraft.ChatFormatting;
+import net.minecraft.util.text.Component.translatable;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -61,13 +61,13 @@ public class ItemShiftingStar extends Item implements PerkExperienceRevealer {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<Component> tooltip, ITooltipFlag flagIn) {
         IConstellation cst = this.getBaseConstellation();
         if (cst != null) {
             if (ResearchHelper.getClientProgress().hasConstellationDiscovered(cst)) {
-                tooltip.add(cst.getConstellationName().mergeStyle(TextFormatting.BLUE));
+                tooltip.add(cst.getConstellationName().withStyle(ChatFormatting.BLUE));
             } else {
-                tooltip.add(new TranslationTextComponent("astralsorcery.misc.noinformation").mergeStyle(TextFormatting.GRAY));
+                tooltip.add(new Component.translatable("astralsorcery.misc.noinformation").withStyle(ChatFormatting.GRAY));
             }
         }
     }
@@ -92,12 +92,12 @@ public class ItemShiftingStar extends Item implements PerkExperienceRevealer {
                 double perkExp = prog.getPerkData().getPerkExp();
                 if (ResearchManager.setAttunedConstellation(player, cst)) {
                     ResearchManager.setExp(player, Mth.lfloor(perkExp));
-                    player.sendMessage(new TranslationTextComponent("astralsorcery.progress.switch.attunement").mergeStyle(TextFormatting.BLUE), Util.DUMMY_UUID);
+                    player.sendMessage(new Component.translatable("astralsorcery.progress.switch.attunement").withStyle(ChatFormatting.BLUE), Util.DUMMY_UUID);
                     SoundHelper.playSoundAround(SoundEvents.BLOCK_GLASS_BREAK, worldIn, entityLiving.getPosition(), 1F, 1F);
                     return ItemStack.EMPTY;
                 }
             } else if (ResearchManager.setAttunedConstellation(player, null)) {
-                player.sendMessage(new TranslationTextComponent("astralsorcery.progress.remove.attunement").mergeStyle(TextFormatting.BLUE), Util.DUMMY_UUID);
+                player.sendMessage(new Component.translatable("astralsorcery.progress.remove.attunement").withStyle(ChatFormatting.BLUE), Util.DUMMY_UUID);
                 SoundHelper.playSoundAround(SoundEvents.BLOCK_GLASS_BREAK, worldIn, entityLiving.getPosition(), 1F, 1F);
                 return ItemStack.EMPTY;
             }

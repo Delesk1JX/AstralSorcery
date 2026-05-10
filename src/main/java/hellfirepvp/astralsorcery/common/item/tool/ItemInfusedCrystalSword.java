@@ -56,7 +56,7 @@ public class ItemInfusedCrystalSword extends ItemCrystalSword implements Equipme
 
                 PlayerProgress prog = ResearchHelper.getProgress(player, LogicalSide.SERVER);
                 if (prog.doPerkAbilities()) {
-                    CelestialStrike.play(serverPlayer, serverPlayer.getServerWorld(), Vector3.atEntityCorner(entity), Vector3.atEntityCorner(entity));
+                    CelestialStrike.play(serverPlayer, serverPlayer.level(), Vector3.atEntityCorner(entity), Vector3.atEntityCorner(entity));
                     serverPlayer.getCooldownTracker().setCooldown(sword.getItem(), 120);
                 }
             }

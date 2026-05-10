@@ -19,7 +19,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 import net.neoforged.neoforge.common.IPlantable;
 import net.neoforged.neoforge.common.util.Constants;
 
@@ -144,7 +144,7 @@ public class CropHelper {
 
         public boolean canHarvest(IWorld world);
 
-        public NonNullList<ItemStack> harvestDropsAndReplant(ServerWorld world, Random rand, int harvestFortune);
+        public NonNullList<ItemStack> harvestDropsAndReplant(ServerLevel world, Random rand, int harvestFortune);
 
     }
 
@@ -165,7 +165,7 @@ public class CropHelper {
         }
 
         @Override
-        public NonNullList<ItemStack> harvestDropsAndReplant(ServerWorld world, Random rand, int harvestFortune) {
+        public NonNullList<ItemStack> harvestDropsAndReplant(ServerLevel world, Random rand, int harvestFortune) {
             NonNullList<ItemStack> drops = NonNullList.create();
             if (canHarvest(world)) {
                 BlockPos pos = getPos();
@@ -209,17 +209,17 @@ public class CropHelper {
 
         @Override
         public boolean tryGrow(IWorld world, Random rand) {
-            if (!(world instanceof ServerWorld)) {
+            if (!(world instanceof ServerLevel)) {
                 return false;
             }
             BlockState at = world.getBlockState(pos);
             if (at.getBlock() instanceof IGrowable) {
                 if (((IGrowable) at.getBlock()).canGrow(world, pos, at, false)) {
-                    ((IGrowable) at.getBlock()).grow((ServerWorld) world, rand, pos, at);
+                    ((IGrowable) at.getBlock()).grow((ServerLevel) world, rand, pos, at);
                     return true;
                 }
                 if (at.getBlock() instanceof StemBlock && rand.nextInt(4) == 0) {
-                    at.randomTick((ServerWorld) world, pos, rand);
+                    at.randomTick((ServerLevel) world, pos, rand);
                 }
             }
             return false;
@@ -262,7 +262,7 @@ public class CropHelper {
         }
 
         @Override
-        public NonNullList<ItemStack> harvestDropsAndReplant(ServerWorld world, Random rand, int harvestFortune) {
+        public NonNullList<ItemStack> harvestDropsAndReplant(ServerLevel world, Random rand, int harvestFortune) {
             NonNullList<ItemStack> stacks = NonNullList.create();
             stacks.addAll(BlockUtils.getDrops(world, pos, harvestFortune, rand));
             world.setBlockState(pos, Blocks.NETHER_WART.getDefaultState().with(NetherWartBlock.AGE, 0), Constants.BlockFlags.DEFAULT);
@@ -300,7 +300,7 @@ public class CropHelper {
         }
 
         @Override
-        public NonNullList<ItemStack> harvestDropsAndReplant(ServerWorld world, Random rand, int harvestFortune) {
+        public NonNullList<ItemStack> harvestDropsAndReplant(ServerLevel world, Random rand, int harvestFortune) {
             NonNullList<ItemStack> drops = NonNullList.create();
             for (int i = 2; i > 0; i--) {
                 BlockPos bp = pos.up(i);
@@ -372,7 +372,7 @@ public class CropHelper {
         }
 
         @Override
-        public NonNullList<ItemStack> harvestDropsAndReplant(ServerWorld world, Random rand, int harvestFortune) {
+        public NonNullList<ItemStack> harvestDropsAndReplant(ServerLevel world, Random rand, int harvestFortune) {
             NonNullList<ItemStack> drops = NonNullList.create();
             for (int i = 2; i > 0; i--) {
                 BlockPos bp = pos.up(i);
@@ -482,7 +482,7 @@ public class CropHelper {
         }
 
         @Override
-        public NonNullList<ItemStack> harvestDropsAndReplant(ServerWorld world, Random rand, int harvestFortune) {
+        public NonNullList<ItemStack> harvestDropsAndReplant(ServerLevel world, Random rand, int harvestFortune) {
             NonNullList<ItemStack> drops = NonNullList.create();
             BlockState state = world.getBlockState(this.pos);
             if (state.getBlock() instanceof CropsBlock) {
@@ -551,18 +551,18 @@ public class CropHelper {
         @Override
         public boolean tryGrow(IWorld world, Random rand) {
             BlockState at = world.getBlockState(pos);
-            if (at.getBlock() instanceof IGrowable && world instanceof ServerWorld) {
+            if (at.getBlock() instanceof IGrowable && world instanceof ServerLevel) {
                 if (((IGrowable) at.getBlock()).canGrow(world, pos, at, false)) {
                     if (!((IGrowable) at.getBlock()).canUseBonemeal((World) world, rand, pos, at)) {
                         if (rand.nextInt(20) != 0) {
                             return true; //Returning true to say it could've been potentially grown - So this doesn't invalidate caches.
                         }
                     }
-                    ((IGrowable) at.getBlock()).grow((ServerWorld) world, rand, pos, at);
+                    ((IGrowable) at.getBlock()).grow((ServerLevel) world, rand, pos, at);
                     return true;
                 }
                 if (at.getBlock() instanceof StemBlock) {
-                    at.randomTick((ServerWorld) world, pos, rand);
+                    at.randomTick((ServerLevel) world, pos, rand);
                     return true;
                 }
             }

@@ -24,7 +24,7 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.Component.literal;
 import net.neoforged.neoforge.client.event.RenderGameOverlayEvent;
 import net.neoforged.neoforge.event.TickEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
@@ -101,7 +101,7 @@ public class PerkExperienceRenderer implements ITickHandler {
         });
 
         String strLevel = String.valueOf(perkData.getPerkLevel(player, LogicalSide.CLIENT));
-        StringTextComponent txtLevel = new StringTextComponent(strLevel);
+        Component.literal txtLevel = new Component.literal(strLevel);
         int strLength = Minecraft.getInstance().fontRenderer.getStringPropertyWidth(txtLevel);
 
         renderStack.push();

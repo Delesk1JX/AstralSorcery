@@ -35,8 +35,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.Mth;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component;
+import net.minecraft.util.text.Component.translatable;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -278,8 +278,8 @@ public class TileRefractionTable extends TileEntityTick implements NamedInventor
     }
 
     @Override
-    public ITextComponent getDisplayName() {
-        return new TranslationTextComponent("screen.astralsorcery.refraction_table");
+    public Component getDisplayName() {
+        return new Component.translatable("screen.astralsorcery.refraction_table");
     }
 
     @Override

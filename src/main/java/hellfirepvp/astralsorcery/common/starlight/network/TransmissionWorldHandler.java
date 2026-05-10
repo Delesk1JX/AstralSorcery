@@ -26,7 +26,7 @@ import net.minecraft.util.Tuple;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChunkPos;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 
 import java.util.*;
 
@@ -62,7 +62,7 @@ public class TransmissionWorldHandler {
         this.dim = dimKey;
     }
 
-    public void tick(ServerWorld world) {
+    public void tick(ServerLevel world) {
         WorldNetworkHandler handler = WorldNetworkHandler.getNetworkHandler(world);
 
         for (Tuple<BlockPos, IIndependentStarlightSource> sourceTuple : handler.getAllSources()) {

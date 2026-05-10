@@ -16,7 +16,7 @@ import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.event.TickEvent;
@@ -53,13 +53,13 @@ public class SkyHandler implements ITickHandler {
     public void tick(TickEvent.Type type, Object... context) {
         if (type == TickEvent.Type.WORLD) {
             World w = (World) context[0];
-            if (!w.isRemote() && w instanceof ServerWorld) {
+            if (!w.isRemote() && w instanceof ServerLevel) {
                 RegistryKey<World> dimKey = w.getDimensionKey();
                 skyRevertMap.put(dimKey, false);
 
                 WorldContext ctx = worldHandlersServer.get(dimKey);
                 if (ctx == null) {
-                    ctx = createContext(MiscUtils.getRandomWorldSeed((ServerWorld) w));
+                    ctx = createContext(MiscUtils.getRandomWorldSeed((ServerLevel) w));
                     worldHandlersServer.put(dimKey, ctx);
                 }
                 ctx.tick(w);
@@ -109,7 +109,7 @@ public class SkyHandler implements ITickHandler {
         }
     }
 
-    public void revertWorldTimeTick(ServerWorld world) {
+    public void revertWorldTimeTick(ServerLevel world) {
         RegistryKey<World> dimKey = world.getDimensionKey();
         Boolean state = skyRevertMap.get(dimKey);
         if (!world.isRemote && state != null && !state) {

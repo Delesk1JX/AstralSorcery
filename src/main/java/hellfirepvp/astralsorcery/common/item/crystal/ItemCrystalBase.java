@@ -20,7 +20,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Component;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -56,12 +56,12 @@ public abstract class ItemCrystalBase extends Item implements CrystalAttributeGe
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> toolTip, ITooltipFlag flag) {
+    public void addInformation(ItemStack stack, @Nullable World world, List<Component> toolTip, ITooltipFlag flag) {
         this.addCrystalPropertyToolTip(stack, toolTip);
     }
 
     @OnlyIn(Dist.CLIENT)
-    protected CrystalAttributes.TooltipResult addCrystalPropertyToolTip(ItemStack stack, List<ITextComponent> tooltip) {
+    protected CrystalAttributes.TooltipResult addCrystalPropertyToolTip(ItemStack stack, List<Component> tooltip) {
         CrystalAttributes attr = getAttributes(stack);
         if (attr != null) {
             return attr.addTooltip(tooltip);

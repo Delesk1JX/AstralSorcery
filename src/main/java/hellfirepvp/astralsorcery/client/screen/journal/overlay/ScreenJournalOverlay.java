@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.client.screen.journal.ScreenJournal;
 import hellfirepvp.astralsorcery.client.screen.journal.ScreenJournalPerkTree;
 import hellfirepvp.astralsorcery.client.screen.journal.ScreenJournalProgression;
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Component;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -26,7 +26,7 @@ public abstract class ScreenJournalOverlay extends ScreenJournal {
 
     private final ScreenJournal origin;
 
-    protected ScreenJournalOverlay(ITextComponent titleIn, ScreenJournal origin) {
+    protected ScreenJournalOverlay(Component titleIn, ScreenJournal origin) {
         super(titleIn, origin.getGuiHeight(), origin.getGuiWidth(), NO_BOOKMARK);
         this.origin = origin;
     }

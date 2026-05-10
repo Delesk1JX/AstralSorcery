@@ -21,9 +21,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component;
+import net.minecraft.ChatFormatting;
+import net.minecraft.util.text.Component.translatable;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -51,23 +51,23 @@ public class ItemInfusedGlass extends Item {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<Component> tooltip, ITooltipFlag flagIn) {
         EngravedStarMap map = getEngraving(stack);
         if (map != null) {
             for (ResourceLocation key : map.getConstellationKeys()) {
                 IConstellation cst = ConstellationRegistry.getConstellation(key);
                 if (cst != null) {
                     String format = "item.astralsorcery.infused_glass.ttip";
-                    ITextComponent cstName = cst.getConstellationName().mergeStyle(TextFormatting.BLUE);
+                    Component cstName = cst.getConstellationName().withStyle(ChatFormatting.BLUE);
 
                     if (Minecraft.getInstance().player != null && Minecraft.getInstance().player.isCreative()) {
                         String percent = String.valueOf(Math.round(map.getDistribution(cst) * 100F));
-                        ITextComponent creativeHint = new TranslationTextComponent("item.astralsorcery.infused_glass.ttip.creative", percent)
-                                .mergeStyle(TextFormatting.LIGHT_PURPLE);
+                        Component creativeHint = new Component.translatable("item.astralsorcery.infused_glass.ttip.creative", percent)
+                                .withStyle(ChatFormatting.LIGHT_PURPLE);
 
-                        tooltip.add(new TranslationTextComponent(format, cstName, creativeHint).mergeStyle(TextFormatting.GRAY));
+                        tooltip.add(new Component.translatable(format, cstName, creativeHint).withStyle(ChatFormatting.GRAY));
                     } else {
-                        tooltip.add(new TranslationTextComponent(format, cstName, "").mergeStyle(TextFormatting.GRAY));
+                        tooltip.add(new Component.translatable(format, cstName, "").withStyle(ChatFormatting.GRAY));
                     }
                 }
             }
