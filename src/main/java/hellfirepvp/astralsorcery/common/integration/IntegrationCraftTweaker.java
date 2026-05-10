@@ -39,7 +39,7 @@ public class IntegrationCraftTweaker {
                 CraftTweakerAPI.logDump("%s\tis weak: %s, is major: %s", resourceLocation.toString(), constellation instanceof IWeakConstellation, constellation instanceof IMajorConstellation);
             });
             
-            final StringTextComponent message = new StringTextComponent(TextFormatting.GREEN + "Constellations written to the log" + TextFormatting.RESET);
+            final Component.literal message = new Component.literal(ChatFormatting.GREEN + "Constellations written to the log" + ChatFormatting.RESET);
             commandContext.getSource().sendFeedback(message, true);
             return 0;
         });
@@ -49,7 +49,7 @@ public class IntegrationCraftTweaker {
             for(AltarType value : AltarType.values()) {
                 CraftTweakerAPI.logDump(value.name());
             }
-            final StringTextComponent message = new StringTextComponent(TextFormatting.GREEN + "Altar Types written to the log" + TextFormatting.RESET);
+            final Component.literal message = new Component.literal(ChatFormatting.GREEN + "Altar Types written to the log" + ChatFormatting.RESET);
             commandContext.getSource().sendFeedback(message, true);
             return 0;
         });

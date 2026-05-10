@@ -14,7 +14,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.world.entity.player.IInventory;
 import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Component;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -25,7 +25,7 @@ import net.minecraft.util.text.ITextComponent;
  */
 public abstract class ContainerBaseScreen<T extends BlockEntity, C extends ContainerTileEntity<T>> extends ContainerScreen<C> {
 
-    public ContainerBaseScreen(C screenContainer, IInventory inv, ITextComponent titleIn) {
+    public ContainerBaseScreen(C screenContainer, IInventory inv, Component titleIn) {
         super(screenContainer, inv, titleIn);
     }
 

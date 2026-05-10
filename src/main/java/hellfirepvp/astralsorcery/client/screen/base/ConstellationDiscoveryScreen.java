@@ -33,7 +33,7 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.util.vector.Matrix4f;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Component;
 import net.minecraft.world.World;
 import net.neoforged.fml.LogicalSide;
 import org.lwjgl.opengl.GL11;
@@ -65,7 +65,7 @@ public abstract class ConstellationDiscoveryScreen<D extends ConstellationDiscov
 
     private boolean initialized = false;
 
-    protected ConstellationDiscoveryScreen(ITextComponent titleIn, int guiHeight, int guiWidth) {
+    protected ConstellationDiscoveryScreen(Component titleIn, int guiHeight, int guiWidth) {
         super(titleIn, guiHeight, guiWidth);
     }
 

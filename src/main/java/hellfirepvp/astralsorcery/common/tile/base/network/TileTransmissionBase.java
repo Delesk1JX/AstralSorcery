@@ -23,8 +23,8 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Util;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.text.Style;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.ChatFormatting;
+import net.minecraft.util.text.Component.translatable;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.common.util.Constants;
 
@@ -53,7 +53,7 @@ public abstract class TileTransmissionBase<T extends IPrismTransmissionNode> ext
             for (BlockPos linkTo : Lists.newArrayList(getLinkedPositions())) {
                 tryUnlink(player, linkTo);
             }
-            player.sendMessage(new TranslationTextComponent("astralsorcery.misc.link.unlink.all").mergeStyle(TextFormatting.GREEN), Util.DUMMY_UUID);
+            player.sendMessage(new Component.translatable("astralsorcery.misc.link.unlink.all").withStyle(ChatFormatting.GREEN), Util.DUMMY_UUID);
             return false;
         }
         return true;

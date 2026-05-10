@@ -21,9 +21,9 @@ import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.Util;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.Component;
+import net.minecraft.util.text.Component.literal;
+import net.minecraft.ChatFormatting;
 import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nullable;
@@ -71,20 +71,20 @@ public class CommandConstellation {
     private static int markConstellationMemorized(CommandSource src, @Nullable Player target, IConstellation cst) throws CommandSyntaxException {
         Player source = src.asPlayer();
         target = target != null ? target : source;
-        ITextComponent targetName = target.getDisplayName();
+        Component targetName = target.getDisplayName();
         PlayerProgress progress = ResearchHelper.getProgress(target, LogicalSide.SERVER);
         if (!progress.isValid() || progress.hasSeenConstellation(cst)) {
-            source.sendMessage(new StringTextComponent("Failed! ").append(targetName).appendString(" has already seen ").append(cst.getConstellationName())
-                    .mergeStyle(TextFormatting.RED), Util.DUMMY_UUID);
+            source.sendMessage(new Component.literal("Failed! ").append(targetName).appendString(" has already seen ").append(cst.getConstellationName())
+                    .withStyle(ChatFormatting.RED), Util.DUMMY_UUID);
             return 0;
         }
         if (ResearchManager.memorizeConstellation(cst, target)) {
             ResearchHelper.sendConstellationMemorizationMessage(target, progress, cst);
-            source.sendMessage(new StringTextComponent("Success! ")
-                    .mergeStyle(TextFormatting.GREEN), Util.DUMMY_UUID);
+            source.sendMessage(new Component.literal("Success! ")
+                    .withStyle(ChatFormatting.GREEN), Util.DUMMY_UUID);
             return Command.SINGLE_SUCCESS;
         } else {
-            source.sendMessage(new StringTextComponent("Failed!").mergeStyle(TextFormatting.RED), Util.DUMMY_UUID);
+            source.sendMessage(new Component.literal("Failed!").withStyle(ChatFormatting.RED), Util.DUMMY_UUID);
             return 0;
         }
     }
@@ -92,19 +92,19 @@ public class CommandConstellation {
     private static int discoverConstellation(CommandSource src, @Nullable Player target, IConstellation cst) throws CommandSyntaxException {
         Player source = src.asPlayer();
         target = target != null ? target : source;
-        ITextComponent targetName = target.getDisplayName();
+        Component targetName = target.getDisplayName();
         PlayerProgress progress = ResearchHelper.getProgress(target, LogicalSide.SERVER);
         if (!progress.isValid() || progress.hasConstellationDiscovered(cst)) {
-            source.sendMessage(new StringTextComponent("Failed! ").append(targetName).appendString(" has already discovered ").append(cst.getConstellationName())
-                    .mergeStyle(TextFormatting.RED), Util.DUMMY_UUID);
+            source.sendMessage(new Component.literal("Failed! ").append(targetName).appendString(" has already discovered ").append(cst.getConstellationName())
+                    .withStyle(ChatFormatting.RED), Util.DUMMY_UUID);
             return 0;
         }
         if (ResearchManager.discoverConstellation(cst, target)) {
             ResearchHelper.sendConstellationDiscoveryMessage(target, cst);
-            source.sendMessage(new StringTextComponent("Success! ").mergeStyle(TextFormatting.GREEN), Util.DUMMY_UUID);
+            source.sendMessage(new Component.literal("Success! ").withStyle(ChatFormatting.GREEN), Util.DUMMY_UUID);
             return Command.SINGLE_SUCCESS;
         } else {
-            source.sendMessage(new StringTextComponent("Failed!").mergeStyle(TextFormatting.RED), Util.DUMMY_UUID);
+            source.sendMessage(new Component.literal("Failed!").withStyle(ChatFormatting.RED), Util.DUMMY_UUID);
             return 0;
         }
     }

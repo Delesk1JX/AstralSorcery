@@ -10,8 +10,8 @@ package hellfirepvp.astralsorcery.common.crystal.calc;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component;
+import net.minecraft.util.text.Component.translatable;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.Objects;
@@ -30,7 +30,7 @@ public class PropertyUsage extends DeferredHolder<PropertyUsage> {
     }
 
     public IFormattableTextComponent getName() {
-        return new TranslationTextComponent(String.format("crystal.usage.%s.%s.name",
+        return new Component.translatable(String.format("crystal.usage.%s.%s.name",
                 getRegistryName().getNamespace(), getRegistryName().getPath()));
     }
 

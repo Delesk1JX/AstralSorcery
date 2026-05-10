@@ -22,7 +22,7 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component.translatable;
 import net.neoforged.neoforge.fluids.FluidAttributes;
 import net.neoforged.neoforge.fluids.FluidStack;
 import org.lwjgl.opengl.GL11;
@@ -94,18 +94,18 @@ public class RenderPageLiquidInfusion extends RenderPageRecipeTemplate {
     public void postRender(PoseStack renderStack, float x, float y, float z, float pTicks, float mouseX, float mouseY) {
         this.renderHoverTooltips(renderStack, mouseX, mouseY, z, this.recipe.getId());
         this.renderInfoStarTooltips(renderStack, x, y, z, mouseX, mouseY, (toolTip) -> {
-            toolTip.add(new TranslationTextComponent("astralsorcery.journal.recipe.infusion.liquid",
+            toolTip.add(new Component.translatable("astralsorcery.journal.recipe.infusion.liquid",
                     this.recipe.getLiquidInput().getAttributes().getDisplayName(new FluidStack(this.recipe.getLiquidInput(), FluidAttributes.BUCKET_VOLUME))));
-            toolTip.add(new TranslationTextComponent("astralsorcery.journal.recipe.infusion.chance.format",
+            toolTip.add(new Component.translatable("astralsorcery.journal.recipe.infusion.chance.format",
                     this.getInfuserChanceDescription(this.recipe.getConsumptionChance())));
             if (this.recipe.doesConsumeMultipleFluids()) {
-                toolTip.add(new TranslationTextComponent("astralsorcery.journal.recipe.infusion.multiple"));
+                toolTip.add(new Component.translatable("astralsorcery.journal.recipe.infusion.multiple"));
             }
             if (!this.recipe.acceptsChaliceInput() && ResearchHelper.getClientProgress().getTierReached().isThisLaterOrEqual(ProgressionTier.TRAIT_CRAFT)) {
-                toolTip.add(new TranslationTextComponent("astralsorcery.journal.recipe.infusion.no_chalice"));
+                toolTip.add(new Component.translatable("astralsorcery.journal.recipe.infusion.no_chalice"));
             }
             if (this.recipe.doesCopyNBTToOutputs()) {
-                toolTip.add(new TranslationTextComponent("astralsorcery.journal.recipe.infusion.copy_nbt"));
+                toolTip.add(new Component.translatable("astralsorcery.journal.recipe.infusion.copy_nbt"));
             }
         });
     }

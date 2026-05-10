@@ -20,7 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.vector.Matrix4f;
 import net.minecraft.util.text.ITextProperties;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.Component.literal;
 import org.lwjgl.opengl.GL11;
 
 import java.util.List;
@@ -120,7 +120,7 @@ public class RenderingOverlayUtils {
             if (stackTpl.getB() == -1) {
                 amountStr = "\u221E"; //+Inf
             }
-            ITextProperties prop = new StringTextComponent(amountStr);
+            ITextProperties prop = new Component.literal(amountStr);
             int length = fontRenderer.getStringPropertyWidth(prop);
 
             renderStack.push();

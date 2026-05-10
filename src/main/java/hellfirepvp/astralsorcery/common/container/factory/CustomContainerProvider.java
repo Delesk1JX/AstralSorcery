@@ -16,8 +16,8 @@ import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component;
+import net.minecraft.util.text.Component.translatable;
 import net.neoforged.neoforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nonnull;
@@ -38,9 +38,9 @@ public abstract class CustomContainerProvider<C extends Container> implements IN
     }
 
     @Override
-    public ITextComponent getDisplayName() {
+    public Component getDisplayName() {
         ResourceLocation key = this.type.getRegistryName();
-        return new TranslationTextComponent("screen.%s.%s", key.getNamespace(), key.getPath());
+        return new Component.translatable("screen.%s.%s", key.getNamespace(), key.getPath());
     }
 
     @Nonnull

@@ -19,8 +19,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component;
+import net.minecraft.util.text.Component.translatable;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -47,8 +47,8 @@ public class TileObservatory extends TileEntityTick implements NamedInventoryTil
     }
 
     @Override
-    public ITextComponent getDisplayName() {
-        return new TranslationTextComponent("screen.astralsorcery.observatory");
+    public Component getDisplayName() {
+        return new Component.translatable("screen.astralsorcery.observatory");
     }
 
     @Override

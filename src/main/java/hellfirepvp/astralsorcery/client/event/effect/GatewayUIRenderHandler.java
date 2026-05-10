@@ -29,7 +29,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.BlockRayTraceResult;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RayTraceResult;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Component;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.client.event.RenderWorldLastEvent;
 import net.neoforged.neoforge.event.TickEvent;
@@ -158,7 +158,7 @@ public class GatewayUIRenderHandler implements ITickHandler {
         Player player = Minecraft.getInstance().player;
         GatewayUI.GatewayEntry entry = findMatchingEntry(Mth.wrapDegrees(player.rotationYaw), Mth.wrapDegrees(player.rotationPitch));
         if (entry != null) {
-            ITextComponent display = entry.getNode().getDisplayName();
+            Component display = entry.getNode().getDisplayName();
             if (display != null && !display.getString().isEmpty()) {
                 Vector3 at = entry.getRelativePos().clone()
                         .add(renderOffset)

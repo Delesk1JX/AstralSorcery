@@ -130,7 +130,7 @@ public class FountainEffectVortex extends FountainEffect<VortexContext> {
             EntityUtils.applyVortexMotion(() -> Vector3.atEntityCorner(le), (v) -> {
                 if (le instanceof EnderDragonEntity) {
                     Vector3 nextPos = Vector3.atEntityCorner(le).add(v);
-                    if (le.isServerWorld()) {
+                    if (le.isServerLevel()) {
                         le.setPositionAndUpdate(nextPos.getX(), nextPos.getY(), nextPos.getZ());
                     } else {
                         le.setPositionAndRotation(nextPos.getX(), nextPos.getY(), nextPos.getZ(), le.rotationYaw, le.rotationPitch);

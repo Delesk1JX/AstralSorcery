@@ -16,7 +16,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -63,7 +63,7 @@ public class EntityTransmutationRegistry extends ConfigDataAdapter<EntityTransmu
     }
 
     @Nullable
-    public LivingEntity transmuteEntity(ServerWorld world, LivingEntity entity) {
+    public LivingEntity transmuteEntity(ServerLevel world, LivingEntity entity) {
         EntityType<?> transmute = getEntityTransmuteTo(entity.getType());
         if (transmute != null) {
             CompoundTag tag = new CompoundTag();

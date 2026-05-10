@@ -19,7 +19,7 @@ import net.minecraft.block.material.MaterialColor;
 import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootContext;
 import net.minecraft.state.EnumProperty;
@@ -64,7 +64,7 @@ public class BlockStructural extends Block {
     }
 
     @Override
-    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {}
+    public void fillCreativeModeTab(CreativeModeTab group, NonNullList<ItemStack> items) {}
 
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {

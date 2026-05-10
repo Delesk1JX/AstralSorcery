@@ -15,9 +15,9 @@ import hellfirepvp.astralsorcery.common.auxiliary.book.BookLookupRegistry;
 import hellfirepvp.astralsorcery.common.data.journal.JournalPage;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IItemProvider;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Component;
 import net.minecraft.util.text.ITextProperties;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component.translatable;
 
 import javax.annotation.Nullable;
 import java.awt.*;
@@ -160,8 +160,8 @@ public class ResearchNode {
         return pages;
     }
 
-    public ITextComponent getName() {
-        return new TranslationTextComponent(String.format("astralsorcery.journal.node.%s.name", this.getKey()));
+    public Component getName() {
+        return new Component.translatable(String.format("astralsorcery.journal.node.%s.name", this.getKey()));
     }
 
     public String getKey() {

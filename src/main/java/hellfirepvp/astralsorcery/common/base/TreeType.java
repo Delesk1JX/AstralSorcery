@@ -18,7 +18,7 @@ import net.minecraft.block.trees.Tree;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 import net.neoforged.neoforge.common.util.BlockSnapshot;
 
 import javax.annotation.Nullable;
@@ -42,20 +42,20 @@ public class TreeType {
     private static final List<TreeType> TYPES = new ArrayList<>();
 
     private final BiPredicate<World, BlockPos> treeTest;
-    private final TriFunction<ServerWorld, BlockPos, Random, Supplier<List<BlockPos>>> treeGenerator;
+    private final TriFunction<ServerLevel, BlockPos, Random, Supplier<List<BlockPos>>> treeGenerator;
 
-    private TreeType(BiPredicate<World, BlockPos> treeTest, TriFunction<ServerWorld, BlockPos, Random, Supplier<List<BlockPos>>> treeGenerator) {
+    private TreeType(BiPredicate<World, BlockPos> treeTest, TriFunction<ServerLevel, BlockPos, Random, Supplier<List<BlockPos>>> treeGenerator) {
         this.treeTest = treeTest;
         this.treeGenerator = treeGenerator;
     }
 
-    public static TreeType register(BiPredicate<World, BlockPos> treeTest, TriFunction<ServerWorld, BlockPos, Random, Supplier<List<BlockPos>>> treeGenerator) {
+    public static TreeType register(BiPredicate<World, BlockPos> treeTest, TriFunction<ServerLevel, BlockPos, Random, Supplier<List<BlockPos>>> treeGenerator) {
         TreeType type = new TreeType(treeTest, treeGenerator);
         TYPES.add(type);
         return type;
     }
 
-    public Supplier<List<BlockPos>> getTreeGenerator(ServerWorld world, BlockPos pos, Random rand) {
+    public Supplier<List<BlockPos>> getTreeGenerator(ServerLevel world, BlockPos pos, Random rand) {
         return this.treeGenerator.apply(world, pos, rand);
     }
 

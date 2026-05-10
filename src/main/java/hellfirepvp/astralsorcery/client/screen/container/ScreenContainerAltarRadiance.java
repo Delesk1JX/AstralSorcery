@@ -27,7 +27,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.world.entity.player.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Component;
 import org.lwjgl.opengl.GL11;
 
 import java.util.Random;
@@ -43,7 +43,7 @@ public class ScreenContainerAltarRadiance extends ScreenContainerAltar<Container
 
     private static final Random rand = new Random();
 
-    public ScreenContainerAltarRadiance(ContainerAltarTrait screenContainer, IInventory inv, ITextComponent name) {
+    public ScreenContainerAltarRadiance(ContainerAltarTrait screenContainer, IInventory inv, Component name) {
         super(screenContainer, inv, name, 255, 202);
     }
 

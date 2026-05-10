@@ -19,7 +19,7 @@ import hellfirepvp.astralsorcery.common.crafting.recipe.SimpleAltarRecipe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Component;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -30,7 +30,7 @@ import net.minecraft.util.text.ITextComponent;
  */
 public class ScreenContainerAltarDiscovery extends ScreenContainerAltar<ContainerAltarDiscovery> {
 
-    public ScreenContainerAltarDiscovery(ContainerAltarDiscovery screenContainer, IInventory inv, ITextComponent name) {
+    public ScreenContainerAltarDiscovery(ContainerAltarDiscovery screenContainer, IInventory inv, Component name) {
         super(screenContainer, inv, name, 176, 166);
     }
 

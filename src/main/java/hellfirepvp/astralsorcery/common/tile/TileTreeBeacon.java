@@ -44,7 +44,7 @@ import net.minecraft.util.RegistryKey;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.NeoForgeConfigSpec;
@@ -133,13 +133,13 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
             return true;
         }
         World world = this.getWorld();
-        if (!(world instanceof ServerWorld)) {
+        if (!(world instanceof ServerLevel)) {
             return false;
         }
         if (!MiscUtils.canEntityTickAt(world, harvest.getPos())) {
             return false;
         }
-        List<ItemStack> drops = BlockUtils.getDrops((ServerWorld) world, harvest.getPos(), harvest.getFakedState(), 2, rand, ItemStack.EMPTY);
+        List<ItemStack> drops = BlockUtils.getDrops((ServerLevel) world, harvest.getPos(), harvest.getFakedState(), 2, rand, ItemStack.EMPTY);
         drops.forEach(drop -> {
             if (drop.isEmpty()) {
                 return;
@@ -451,11 +451,11 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
         }
 
         public static void onGrow(SaplingGrowTreeEvent event) {
-            if (event.getWorld().isRemote() || !(event.getWorld() instanceof ServerWorld)) {
+            if (event.getWorld().isRemote() || !(event.getWorld() instanceof ServerLevel)) {
                 return;
             }
 
-            ServerWorld world = (ServerWorld) event.getWorld();
+            ServerLevel world = (ServerLevel) event.getWorld();
             BlockPos treePos = event.getPos();
             TreeType type = TreeType.isTree(world, treePos);
             if (type == null) {

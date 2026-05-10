@@ -26,7 +26,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -134,13 +134,13 @@ public class SpectralToolBreakLogGoal extends SpectralToolGoal {
 
             if (Vector3.atEntityCorner(this.getEntity()).distanceSquared(this.selectedBreakPos) <= 9) {
                 this.actionCooldown++;
-                if (this.actionCooldown >= MantleEffectPelotrio.CONFIG.ticksPerAxeLogBreak.get() && world instanceof ServerWorld) {
+                if (this.actionCooldown >= MantleEffectPelotrio.CONFIG.ticksPerAxeLogBreak.get() && world instanceof ServerLevel) {
                     LivingEntity owner = this.getEntity().getOwningEntity();
                     if (owner instanceof Player) {
                         BlockDropCaptureAssist.startCapturing();
                     }
                     if (BlockUtils.breakBlockWithoutPlayer(
-                            (ServerWorld) world,
+                            (ServerLevel) world,
                             this.selectedBreakPos,
                             world.getBlockState(this.selectedBreakPos),
                             this.getEntity().getItem(),

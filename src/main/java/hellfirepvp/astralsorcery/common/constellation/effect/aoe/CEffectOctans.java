@@ -42,7 +42,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.NeoForgeConfigSpec;
@@ -119,7 +119,7 @@ public class CEffectOctans extends CEffectAbstractList<ListEntries.CounterMaxEnt
 
     @Override
     public boolean playEffect(World world, BlockPos pos, ConstellationEffectProperties properties, @Nullable IMinorConstellation trait) {
-        if (!(world instanceof ServerWorld)) {
+        if (!(world instanceof ServerLevel)) {
             return false;
         }
 
@@ -136,7 +136,7 @@ public class CEffectOctans extends CEffectAbstractList<ListEntries.CounterMaxEnt
                     if (!world.getDimensionType().isUltrawarm()) {
                         if (world.setBlockState(entry.getPos(), Blocks.WATER.getDefaultState())) {
                             for (int i = 0; i < 3; i++) {
-                                spawnFishingDropsAt((ServerWorld) world, entry.getPos());
+                                spawnFishingDropsAt((ServerLevel) world, entry.getPos());
                             }
                             world.neighborChanged(entry.getPos(), Blocks.WATER, entry.getPos());
                         }
@@ -144,14 +144,14 @@ public class CEffectOctans extends CEffectAbstractList<ListEntries.CounterMaxEnt
                 } else if (BlockUtils.isFluidBlock(state)) {
                     if (state.getBlock() == Blocks.WATER) {
                         if (rand.nextInt(100) == 0) {
-                            spawnFishingDropsAt((ServerWorld) world, entry.getPos());
+                            spawnFishingDropsAt((ServerLevel) world, entry.getPos());
                         }
                     } else {
                         world.setBlockState(entry.getPos(), Blocks.SAND.getDefaultState());
                     }
                 } else if (state.getBlock() instanceof BubbleColumnBlock) {
                     if (rand.nextInt(70) == 0) {
-                        spawnFishingDropsAt((ServerWorld) world, entry.getPos());
+                        spawnFishingDropsAt((ServerLevel) world, entry.getPos());
                     }
                 }
                 return true;
@@ -177,7 +177,7 @@ public class CEffectOctans extends CEffectAbstractList<ListEntries.CounterMaxEnt
                         entry.setMaxCount(min + rand.nextInt(diff));
                         entry.setCounter(0);
 
-                        spawnFishingDropsAt((ServerWorld) world, entry.getPos());
+                        spawnFishingDropsAt((ServerLevel) world, entry.getPos());
                     }
                 }
                 update = true;
@@ -192,7 +192,7 @@ public class CEffectOctans extends CEffectAbstractList<ListEntries.CounterMaxEnt
         return update;
     }
 
-    private void spawnFishingDropsAt(ServerWorld world, BlockPos pos) {
+    private void spawnFishingDropsAt(ServerLevel world, BlockPos pos) {
         Vector3 dropLoc = new Vector3(pos).add(0.5, 0.85, 0.5);
         ItemStack tool = new ItemStack(Items.FISHING_ROD);
         tool.addEnchantment(Enchantments.LUCK_OF_THE_SEA, 2);

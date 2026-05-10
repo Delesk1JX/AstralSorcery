@@ -32,7 +32,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.ToolType;
 import net.neoforged.neoforge.common.util.BlockSnapshot;
@@ -56,17 +56,17 @@ import java.util.Random;
 public class BlockUtils {
 
     @Nonnull
-    public static List<ItemStack> getDrops(ServerWorld world, BlockPos pos, int harvestFortune, Random rand) {
+    public static List<ItemStack> getDrops(ServerLevel world, BlockPos pos, int harvestFortune, Random rand) {
         return getDrops(world, pos, harvestFortune, rand, ItemStack.EMPTY);
     }
 
     @Nonnull
-    public static List<ItemStack> getDrops(ServerWorld world, BlockPos pos, int harvestFortune, Random rand, ItemStack tool) {
+    public static List<ItemStack> getDrops(ServerLevel world, BlockPos pos, int harvestFortune, Random rand, ItemStack tool) {
         return getDrops(world, pos, world.getBlockState(pos), harvestFortune, rand, tool);
     }
 
     @Nonnull
-    public static List<ItemStack> getDrops(ServerWorld world, BlockPos pos, BlockState state, int harvestFortune, Random rand, ItemStack tool) {
+    public static List<ItemStack> getDrops(ServerLevel world, BlockPos pos, BlockState state, int harvestFortune, Random rand, ItemStack tool) {
         LootContext.Builder builder = new LootContext.Builder(world)
                 .withParameter(LootParameters.field_237457_g_, Vector3d.copyCentered(pos))
                 .withParameter(LootParameters.BLOCK_STATE, state)
@@ -222,16 +222,16 @@ public class BlockUtils {
     //Copied from ForgeHooks.onBlockBreak & PlayerInteractionManager.tryHarvestBlock
     //Duplicate break functionality without a active player.
     //Emulates a FakePlayer - attempts without a player as harvester in case a fakeplayer leads to issues.
-    public static boolean breakBlockWithoutPlayer(ServerWorld world, BlockPos pos) {
+    public static boolean breakBlockWithoutPlayer(ServerLevel world, BlockPos pos) {
         return breakBlockWithoutPlayer(world, pos, world.getBlockState(pos), ItemStack.EMPTY, true, false);
     }
 
     @Deprecated
-    public static boolean breakBlockWithoutPlayer(ServerWorld world, BlockPos pos, BlockState stateBroken, ItemStack heldItem, boolean breakBlock, boolean ignoreHarvestRestrictions, boolean playEffects) {
+    public static boolean breakBlockWithoutPlayer(ServerLevel world, BlockPos pos, BlockState stateBroken, ItemStack heldItem, boolean breakBlock, boolean ignoreHarvestRestrictions, boolean playEffects) {
         return breakBlockWithoutPlayer(world, pos, stateBroken, heldItem, breakBlock, ignoreHarvestRestrictions);
     }
 
-    public static boolean breakBlockWithoutPlayer(ServerWorld world, BlockPos pos, BlockState stateBroken, ItemStack heldItem, boolean breakBlock, boolean ignoreHarvestRestrictions) {
+    public static boolean breakBlockWithoutPlayer(ServerLevel world, BlockPos pos, BlockState stateBroken, ItemStack heldItem, boolean breakBlock, boolean ignoreHarvestRestrictions) {
         FakePlayer fakePlayer = AstralSorcery.getProxy().getASFakePlayerServer(world);
         int xp;
         try {

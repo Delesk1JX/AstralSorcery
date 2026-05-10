@@ -25,7 +25,7 @@ import net.minecraft.item.Items;
 import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 
 import java.util.EnumSet;
 
@@ -135,13 +135,13 @@ public class SpectralToolBreakBlockGoal extends SpectralToolGoal {
 
             if (Vector3.atEntityCorner(this.getEntity()).distanceSquared(this.selectedBreakPos) <= 9) {
                 this.actionCooldown++;
-                if (this.actionCooldown >= MantleEffectPelotrio.CONFIG.ticksPerPickaxeBlockBreak.get() && world instanceof ServerWorld) {
+                if (this.actionCooldown >= MantleEffectPelotrio.CONFIG.ticksPerPickaxeBlockBreak.get() && world instanceof ServerLevel) {
                     LivingEntity owner = this.getEntity().getOwningEntity();
                     if (owner instanceof Player) {
                         BlockDropCaptureAssist.startCapturing();
                     }
                     if (BlockUtils.breakBlockWithoutPlayer(
-                            (ServerWorld) world,
+                            (ServerLevel) world,
                             this.selectedBreakPos,
                             world.getBlockState(this.selectedBreakPos),
                             this.getEntity().getItem(),

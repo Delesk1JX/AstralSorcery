@@ -25,7 +25,7 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.Mth;
 import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Component;
 import net.minecraft.util.text.ITextProperties;
 import net.minecraft.util.text.LanguageMap;
 import org.lwjgl.opengl.GL11;
@@ -51,11 +51,11 @@ public class ScreenJournal extends WidthHeightScreen {
 
     protected Map<Rectangle, BookmarkProvider> drawnBookmarks = Maps.newHashMap();
 
-    protected ScreenJournal(ITextComponent titleIn, int bookmarkIndex) {
+    protected ScreenJournal(Component titleIn, int bookmarkIndex) {
         this(titleIn, 270, 420, bookmarkIndex);
     }
 
-    public ScreenJournal(ITextComponent titleIn, int guiHeight, int guiWidth, int bookmarkIndex) {
+    public ScreenJournal(Component titleIn, int guiHeight, int guiWidth, int bookmarkIndex) {
         super(titleIn, guiHeight, guiWidth);
         this.bookmarkIndex = bookmarkIndex;
     }

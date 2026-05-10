@@ -17,9 +17,9 @@ import net.minecraft.item.DyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Mth;
 import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component;
+import net.minecraft.ChatFormatting;
+import net.minecraft.util.text.Component.translatable;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.fluids.FluidStack;
@@ -109,7 +109,7 @@ public class ColorUtils {
 
     @Nonnull
     public static IFormattableTextComponent getTranslation(DyeColor color) {
-        return new TranslationTextComponent(String.format("color.minecraft.%s", color.getTranslationKey()));
+        return new Component.translatable(String.format("color.minecraft.%s", color.getTranslationKey()));
     }
 
     @Nonnull
@@ -121,39 +121,39 @@ public class ColorUtils {
     public static TextFormatting textFormattingForDye(DyeColor color) {
         switch (color) {
             case WHITE:
-                return TextFormatting.WHITE;
+                return ChatFormatting.WHITE;
             case ORANGE:
-                return TextFormatting.GOLD;
+                return ChatFormatting.GOLD;
             case MAGENTA:
-                return TextFormatting.DARK_PURPLE;
+                return ChatFormatting.DARK_PURPLE;
             case LIGHT_BLUE:
-                return TextFormatting.DARK_AQUA;
+                return ChatFormatting.DARK_AQUA;
             case YELLOW:
-                return TextFormatting.YELLOW;
+                return ChatFormatting.YELLOW;
             case LIME:
-                return TextFormatting.GREEN;
+                return ChatFormatting.GREEN;
             case PINK:
-                return TextFormatting.LIGHT_PURPLE;
+                return ChatFormatting.LIGHT_PURPLE;
             case GRAY:
-                return TextFormatting.DARK_GRAY;
+                return ChatFormatting.DARK_GRAY;
             case LIGHT_GRAY:
-                return TextFormatting.GRAY;
+                return ChatFormatting.GRAY;
             case CYAN:
-                return TextFormatting.BLUE;
+                return ChatFormatting.BLUE;
             case PURPLE:
-                return TextFormatting.DARK_PURPLE;
+                return ChatFormatting.DARK_PURPLE;
             case BLUE:
-                return TextFormatting.DARK_BLUE;
+                return ChatFormatting.DARK_BLUE;
             case BROWN:
-                return TextFormatting.GOLD;
+                return ChatFormatting.GOLD;
             case GREEN:
-                return TextFormatting.DARK_GREEN;
+                return ChatFormatting.DARK_GREEN;
             case RED:
-                return TextFormatting.DARK_RED;
+                return ChatFormatting.DARK_RED;
             case BLACK:
-                return TextFormatting.DARK_GRAY; //Black is unreadable. fck that.
+                return ChatFormatting.DARK_GRAY; //Black is unreadable. fck that.
             default:
-                return TextFormatting.WHITE;
+                return ChatFormatting.WHITE;
         }
     }
 }

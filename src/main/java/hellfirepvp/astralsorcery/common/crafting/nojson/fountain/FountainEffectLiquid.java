@@ -33,7 +33,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.vector.Vector3i;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.fluids.FluidStack;
@@ -109,12 +109,12 @@ public class FountainEffectLiquid extends FountainEffect<LiquidContext> {
     }
 
     private void digCone(World world, LiquidContext ctx) {
-        if (world instanceof ServerWorld) {
-            dig((ServerWorld) world, ctx.getDigPositions());
+        if (world instanceof ServerLevel) {
+            dig((ServerLevel) world, ctx.getDigPositions());
         }
     }
 
-    private void dig(ServerWorld world, List<BlockPos> positions) {
+    private void dig(ServerLevel world, List<BlockPos> positions) {
         BlockDropCaptureAssist.startCapturing();
         try {
             positions.forEach(pos -> {

@@ -67,7 +67,7 @@ public class PatreonManager implements ITickHandler {
                         effectEntity = data.createEntity(player, effect);
                     }
 
-                    World playerWorld = player.getServerWorld();
+                    World playerWorld = player.level();
                     if (effectEntity.getLastTickedDimension() != null &&
                             !playerWorld.getDimensionKey().equals(effectEntity.getLastTickedDimension())) {
                         effectEntity.placeNear(player);

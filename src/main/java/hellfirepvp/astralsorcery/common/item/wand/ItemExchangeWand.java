@@ -83,8 +83,8 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        tooltip.add(getSizeMode(stack).getDisplay().mergeStyle(TextFormatting.GOLD));
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<Component> tooltip, ITooltipFlag flagIn) {
+        tooltip.add(getSizeMode(stack).getDisplay().withStyle(ChatFormatting.GOLD));
     }
 
     @Override
@@ -336,11 +336,11 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
         }
 
         public IFormattableTextComponent getName() {
-            return new TranslationTextComponent("astralsorcery.misc.exchange.size." + this.searchRadius);
+            return new Component.translatable("astralsorcery.misc.exchange.size." + this.searchRadius);
         }
 
         public IFormattableTextComponent getDisplay() {
-            return new TranslationTextComponent("astralsorcery.misc.exchange.size", this.getName());
+            return new Component.translatable("astralsorcery.misc.exchange.size", this.getName());
         }
 
         @Nonnull

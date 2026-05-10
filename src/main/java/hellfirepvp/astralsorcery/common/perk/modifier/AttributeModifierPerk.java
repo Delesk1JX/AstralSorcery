@@ -21,7 +21,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.Component.literal;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
@@ -78,7 +78,7 @@ public class AttributeModifierPerk extends AttributeConverterPerk implements Att
             for (PerkAttributeModifier modifier : modifiers) {
                 String modifierDisplay = modifier.getLocalizedDisplayString();
                 if (modifierDisplay != null) {
-                    tooltip.add(new StringTextComponent(modifierDisplay));
+                    tooltip.add(new Component.literal(modifierDisplay));
                 } else {
                     addEmptyLine = false;
                 }

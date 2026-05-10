@@ -9,8 +9,8 @@
 package hellfirepvp.astralsorcery.common.item.quality;
 
 import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.ChatFormatting;
+import net.minecraft.util.text.Component.translatable;
 
 import java.util.Locale;
 
@@ -23,13 +23,13 @@ import java.util.Locale;
  */
 public enum GemQuality {
 
-    BROKEN  (TextFormatting.GRAY,  0.1F),
-    FLAWED  (TextFormatting.GRAY,  0.35F),
-    MUNDANE (TextFormatting.WHITE, 0.5F),
-    CLEAR   (TextFormatting.AQUA,  0.6F),
-    FACETED (TextFormatting.AQUA,  0.7F),
-    GLEAMING(TextFormatting.GOLD,  0.8F),
-    FLAWLESS(TextFormatting.GOLD,  1.0F);
+    BROKEN  (ChatFormatting.GRAY,  0.1F),
+    FLAWED  (ChatFormatting.GRAY,  0.35F),
+    MUNDANE (ChatFormatting.WHITE, 0.5F),
+    CLEAR   (ChatFormatting.AQUA,  0.6F),
+    FACETED (ChatFormatting.AQUA,  0.7F),
+    GLEAMING(ChatFormatting.GOLD,  0.8F),
+    FLAWLESS(ChatFormatting.GOLD,  1.0F);
 
     private final TextFormatting color;
     private final float degree;
@@ -44,7 +44,7 @@ public enum GemQuality {
     }
 
     public IFormattableTextComponent getDisplayName() {
-        return new TranslationTextComponent("item.astralsorcery.gem_quality.%s", this.name().toLowerCase(Locale.ROOT))
-                .mergeStyle(this.color);
+        return new Component.translatable("item.astralsorcery.gem_quality.%s", this.name().toLowerCase(Locale.ROOT))
+                .withStyle(this.color);
     }
 }

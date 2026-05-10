@@ -15,9 +15,9 @@ import hellfirepvp.astralsorcery.common.network.base.ASPacket;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.util.Util;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component;
+import net.minecraft.ChatFormatting;
+import net.minecraft.util.text.Component.translatable;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
@@ -70,13 +70,13 @@ public class PktToggleClientOption extends ASPacket<PktToggleClientOption> {
                         if (ResearchManager.togglePerkAbilities(player)) {
                             PlayerProgress prog = ResearchHelper.getProgress(player, LogicalSide.SERVER);
                             if (prog.isValid()) {
-                                ITextComponent status;
+                                Component status;
                                 if (prog.doPerkAbilities()) {
-                                    status = new TranslationTextComponent("astralsorcery.progress.perk_abilities.enable").mergeStyle(TextFormatting.GREEN);
+                                    status = new Component.translatable("astralsorcery.progress.perk_abilities.enable").withStyle(ChatFormatting.GREEN);
                                 } else {
-                                    status = new TranslationTextComponent("astralsorcery.progress.perk_abilities.disable").mergeStyle(TextFormatting.RED);
+                                    status = new Component.translatable("astralsorcery.progress.perk_abilities.disable").withStyle(ChatFormatting.RED);
                                 }
-                                player.sendMessage(new TranslationTextComponent("astralsorcery.progress.perk_abilities", status).mergeStyle(TextFormatting.GRAY), Util.DUMMY_UUID);
+                                player.sendMessage(new Component.translatable("astralsorcery.progress.perk_abilities", status).withStyle(ChatFormatting.GRAY), Util.DUMMY_UUID);
                             }
                         }
                         break;

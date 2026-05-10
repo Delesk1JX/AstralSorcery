@@ -25,9 +25,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component.literal;
+import net.minecraft.ChatFormatting;
+import net.minecraft.util.text.Component.translatable;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.NeoForge;
@@ -53,12 +53,12 @@ public class AbstractPerk implements ModifierSource {
 
     protected static final Random rand = new Random();
 
-    public static final PerkCategory CATEGORY_BASE = new PerkCategory("base", TextFormatting.WHITE);
-    public static final PerkCategory CATEGORY_ROOT = new PerkCategory("root", TextFormatting.WHITE);
-    public static final PerkCategory CATEGORY_MAJOR = new PerkCategory("major", TextFormatting.WHITE);
-    public static final PerkCategory CATEGORY_KEY = new PerkCategory("key", TextFormatting.GOLD);
-    public static final PerkCategory CATEGORY_EPIPHANY = new PerkCategory("epiphany", TextFormatting.GOLD);
-    public static final PerkCategory CATEGORY_FOCUS = new PerkCategory("focus", TextFormatting.GOLD);
+    public static final PerkCategory CATEGORY_BASE = new PerkCategory("base", ChatFormatting.WHITE);
+    public static final PerkCategory CATEGORY_ROOT = new PerkCategory("root", ChatFormatting.WHITE);
+    public static final PerkCategory CATEGORY_MAJOR = new PerkCategory("major", ChatFormatting.WHITE);
+    public static final PerkCategory CATEGORY_KEY = new PerkCategory("key", ChatFormatting.GOLD);
+    public static final PerkCategory CATEGORY_EPIPHANY = new PerkCategory("epiphany", ChatFormatting.GOLD);
+    public static final PerkCategory CATEGORY_FOCUS = new PerkCategory("focus", ChatFormatting.GOLD);
 
     private final ResourceLocation registryName;
     private final CacheEventBus busWrapper;
@@ -210,8 +210,8 @@ public class AbstractPerk implements ModifierSource {
     }
 
     public IFormattableTextComponent getName() {
-        return new TranslationTextComponent(this.unlocalizedKey + ".name")
-                .mergeStyle(this.getCategory().getTextFormatting());
+        return new Component.translatable(this.unlocalizedKey + ".name")
+                .withStyle(this.getCategory().getTextFormatting());
     }
 
     @Nonnull
@@ -221,13 +221,13 @@ public class AbstractPerk implements ModifierSource {
         if (I18n.hasKey(this.unlocalizedKey + ".desc.1")) { // Might have a indexed list there
             int count = 1;
             while (I18n.hasKey(this.unlocalizedKey + ".desc." + count)) {
-                toolTip.add(new TranslationTextComponent(this.unlocalizedKey + ".desc." + count));
+                toolTip.add(new Component.translatable(this.unlocalizedKey + ".desc." + count));
                 count++;
             }
-            toolTip.add(new StringTextComponent(""));
+            toolTip.add(new Component.literal(""));
         } else if (I18n.hasKey(this.unlocalizedKey + ".desc")) {
-            toolTip.add(new TranslationTextComponent(this.unlocalizedKey + ".desc"));
-            toolTip.add(new StringTextComponent(""));
+            toolTip.add(new Component.translatable(this.unlocalizedKey + ".desc"));
+            toolTip.add(new Component.literal(""));
         }
         return toolTip;
     }
@@ -250,12 +250,12 @@ public class AbstractPerk implements ModifierSource {
             int prevLength = tooltipCache.size();
             boolean shouldAdd = addLocalizedTooltip(tooltipCache);
             if (shouldAdd && prevLength != tooltipCache.size()) {
-                tooltipCache.add(new StringTextComponent(""));
+                tooltipCache.add(new Component.literal(""));
             }
             tooltipCache.addAll(this.getDescription());
         } else {
-            tooltipCache.add(new TranslationTextComponent("perk.info.astralsorcery.missing_progress")
-                    .mergeStyle(TextFormatting.RED));
+            tooltipCache.add(new Component.translatable("perk.info.astralsorcery.missing_progress")
+                    .withStyle(ChatFormatting.RED));
         }
         return tooltipCache;
     }
@@ -273,7 +273,7 @@ public class AbstractPerk implements ModifierSource {
         String modid = getRegistryName().getNamespace();
         ModContainer mod = ModList.get().getModContainerById(modid).orElse(null);
         if (mod != null) {
-            return Lists.newArrayList(new StringTextComponent(mod.getModInfo().getDisplayName()));
+            return Lists.newArrayList(new Component.literal(mod.getModInfo().getDisplayName()));
         }
         return null;
     }
@@ -357,7 +357,7 @@ public class AbstractPerk implements ModifierSource {
         private final TextFormatting color;
 
         public PerkCategory(@Nonnull String unlocName, @Nonnull TextFormatting color) {
-            this.name = new TranslationTextComponent("perk.category.astralsorcery." + unlocName + ".name");
+            this.name = new Component.translatable("perk.category.astralsorcery." + unlocName + ".name");
             this.color = color;
         }
 

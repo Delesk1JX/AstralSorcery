@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.util;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 import net.neoforged.neoforge.event.entity.EntityJoinWorldEvent;
 
 import java.util.Stack;
@@ -32,7 +32,7 @@ public class BlockDropCaptureAssist {
     private BlockDropCaptureAssist() {}
 
     public void onDrop(EntityJoinWorldEvent event) {
-        if (event.getWorld() instanceof ServerWorld && event.getEntity() instanceof ItemEntity) {
+        if (event.getWorld() instanceof ServerLevel && event.getEntity() instanceof ItemEntity) {
             ItemStack itemStack = ((ItemEntity) event.getEntity()).getItem();
             if (!capturing.isEmpty()) {
                 event.setCanceled(true);

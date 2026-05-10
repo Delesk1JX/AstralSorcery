@@ -20,7 +20,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 import net.neoforged.neoforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidActionResult;
 import net.neoforged.neoforge.fluids.FluidAttributes;
@@ -85,7 +85,7 @@ public class FluidContainerDispenseBehavior extends DefaultDispenseItemBehavior 
 
     @Nonnull
     private ItemStack dumpContainer(IBlockSource source, @Nonnull ItemStack stack) {
-        ServerWorld world = source.getWorld();
+        ServerLevel world = source.getWorld();
         ItemStack singleStack = stack.copy();
         singleStack.setCount(1);
         LazyOptional<IFluidHandlerItem> itemFluidHandler = FluidUtil.getFluidHandler(singleStack);
@@ -97,7 +97,7 @@ public class FluidContainerDispenseBehavior extends DefaultDispenseItemBehavior 
                 .orElse(FluidStack.EMPTY);
         Direction dispenserFacing = source.getBlockState().get(DispenserBlock.FACING);
         BlockPos pos = source.getBlockPos().offset(dispenserFacing);
-        Player player = AstralSorcery.getProxy().getASFakePlayerServer((ServerWorld) world);
+        Player player = AstralSorcery.getProxy().getASFakePlayerServer((ServerLevel) world);
         FluidActionResult result = FluidUtil.tryPlaceFluid(player, source.getWorld(), Hand.MAIN_HAND, pos, stack, drained);
 
         if (result.isSuccess()) {

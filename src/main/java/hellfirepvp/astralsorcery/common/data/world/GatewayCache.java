@@ -26,8 +26,8 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.Component;
+import net.minecraft.util.text.Component.literal;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.common.util.Constants;
@@ -158,7 +158,7 @@ public class GatewayCache extends GlobalWorldData {
     public static class GatewayNode {
 
         private final BlockPos pos;
-        private ITextComponent display;
+        private Component display;
         private DyeColor color;
 
         private boolean locked = false;
@@ -179,7 +179,7 @@ public class GatewayCache extends GlobalWorldData {
         }
 
         @Nullable
-        public ITextComponent getDisplayName() {
+        public Component getDisplayName() {
             return display;
         }
 
@@ -212,7 +212,7 @@ public class GatewayCache extends GlobalWorldData {
         public void write(CompoundTag tag) {
             NBTHelper.writeBlockPosToNBT(this.getPos(), tag);
             if (this.getDisplayName() != null) {
-                tag.putString("display", ITextComponent.Serializer.toJson(this.getDisplayName()));
+                tag.putString("display", Component.Serializer.toJson(this.getDisplayName()));
             }
             if (this.getColor() != null) {
                 NBTHelper.writeEnum(tag, "color", this.getColor());
@@ -240,7 +240,7 @@ public class GatewayCache extends GlobalWorldData {
         public static GatewayNode read(CompoundTag tag) {
             GatewayNode node = new GatewayNode(NBTHelper.readBlockPosFromNBT(tag));
             if (tag.contains("display")) {
-                node.display = ITextComponent.Serializer.getComponentFromJson(tag.getString("display"));
+                node.display = Component.Serializer.getComponentFromJson(tag.getString("display"));
             }
             if (tag.contains("color")) {
                 node.color = NBTHelper.readEnum(tag, "color", DyeColor.class);
@@ -300,11 +300,11 @@ public class GatewayCache extends GlobalWorldData {
 
         @Nullable
         @Override
-        public ITextComponent getDisplayName() {
+        public Component getDisplayName() {
             return this.decorated.getDisplayName();
         }
 
-        public void setDisplayName(@Nullable ITextComponent displayName) {
+        public void setDisplayName(@Nullable Component displayName) {
             this.decorated.display = displayName;
         }
 

@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.util;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.Teleporter;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 
 import java.util.function.Function;
 
@@ -26,13 +26,13 @@ public class NoOpTeleporter extends Teleporter {
 
     private final BlockPos targetPos;
 
-    public NoOpTeleporter(ServerWorld worldIn, BlockPos targetPos) {
+    public NoOpTeleporter(ServerLevel worldIn, BlockPos targetPos) {
         super(worldIn);
         this.targetPos = targetPos;
     }
 
     @Override
-    public Entity placeEntity(Entity entity, ServerWorld currentWorld, ServerWorld destWorld, float yaw, Function<Boolean, Entity> repositionEntity) {
+    public Entity placeEntity(Entity entity, ServerLevel currentWorld, ServerLevel destWorld, float yaw, Function<Boolean, Entity> repositionEntity) {
         Entity created = repositionEntity.apply(false);
         created.setPositionAndUpdate(targetPos.getX(), targetPos.getY(), targetPos.getZ());
         return created;

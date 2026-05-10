@@ -28,7 +28,7 @@ import hellfirepvp.astralsorcery.common.util.tick.TickTokenMap;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -67,8 +67,8 @@ public class CEffectLucerna extends ConstellationEffect implements Constellation
     @Override
     public boolean runStatusEffect(World world, BlockPos pos, int mirrorAmount, ConstellationEffectProperties modified, @Nullable IMinorConstellation possibleTraitEffect) {
         if (modified.isCorrupted()) {
-            if (world instanceof ServerWorld && DayTimeHelper.isNight(world) && rand.nextBoolean()) {
-                SkyHandler.getInstance().revertWorldTimeTick((ServerWorld) world);
+            if (world instanceof ServerLevel && DayTimeHelper.isNight(world) && rand.nextBoolean()) {
+                SkyHandler.getInstance().revertWorldTimeTick((ServerLevel) world);
             }
             return true;
         }

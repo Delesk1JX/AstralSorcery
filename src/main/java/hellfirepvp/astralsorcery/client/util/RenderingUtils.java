@@ -54,7 +54,7 @@ import net.minecraft.util.vector.Vector3f;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.ITextProperties;
 import net.minecraft.util.text.LanguageMap;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.Component.literal;
 import net.minecraft.world.IBlockDisplayReader;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biomes;
@@ -398,7 +398,7 @@ public class RenderingUtils {
         renderStack.push();
         renderStack.translate(0, 0, 100F);
         if (stack.getCount() > 1 || text != null) {
-            ITextProperties display = new StringTextComponent(ObjectUtils.firstNonNull(text, String.valueOf(stack.getCount())));
+            ITextProperties display = new Component.literal(ObjectUtils.firstNonNull(text, String.valueOf(stack.getCount())));
             int length = fr.getStringPropertyWidth(display);
 
             renderStack.push();

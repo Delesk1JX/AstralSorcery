@@ -44,7 +44,7 @@ public class RenderPageText extends RenderablePage {
         String text = LanguageMap.getInstance().func_230503_a_(unlocText);
         List<IReorderingProcessor> lines = new LinkedList<>();
         for (String segment : text.split("<NL>")) {
-            lines.addAll(fontRenderer.trimStringToWidth(new StringTextComponent(segment), JournalPage.DEFAULT_WIDTH));
+            lines.addAll(fontRenderer.trimStringToWidth(new Component.literal(segment), JournalPage.DEFAULT_WIDTH));
             lines.add(IReorderingProcessor.field_242232_a);
         }
         return lines;

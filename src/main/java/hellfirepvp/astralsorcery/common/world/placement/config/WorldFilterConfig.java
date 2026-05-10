@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.world.placement.config;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.util.RegistryKey;
-import net.minecraft.world.IServerWorld;
+import net.minecraft.world.IServerLevel;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 
@@ -47,7 +47,7 @@ public class WorldFilterConfig implements IPlacementConfig {
         this.worldFilter = worldFilter;
     }
 
-    public boolean generatesIn(IServerWorld world) {
+    public boolean generatesIn(IServerLevel world) {
          return this.ignoreFilter.get() || this.worldFilter.get().contains(world.getWorld().getDimensionKey());
     }
 }

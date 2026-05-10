@@ -30,7 +30,7 @@ import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.vector.Vector3d;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
@@ -61,7 +61,7 @@ public class IndependentCrystalSource implements IIndependentStarlightSource {
     private boolean enhanced = false;
 
     @Override
-    public float produceStarlightTick(ServerWorld world, BlockPos pos) {
+    public float produceStarlightTick(ServerLevel world, BlockPos pos) {
         if (!doesSeeSky || crystalAttributes == null) {
             return 0F;
         }

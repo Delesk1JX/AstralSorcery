@@ -24,7 +24,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.world.entity.player.IInventory;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Component;
 import net.neoforged.fml.LogicalSide;
 import org.lwjgl.opengl.GL11;
 
@@ -40,7 +40,7 @@ import java.awt.*;
  */
 public abstract class ScreenContainerAltar<T extends ContainerAltarBase> extends ScreenCustomContainer<T> {
 
-    public ScreenContainerAltar(T screenContainer, IInventory inv, ITextComponent name, int width, int height) {
+    public ScreenContainerAltar(T screenContainer, IInventory inv, Component name, int width, int height) {
         super(screenContainer, inv, name, width, height);
     }
 

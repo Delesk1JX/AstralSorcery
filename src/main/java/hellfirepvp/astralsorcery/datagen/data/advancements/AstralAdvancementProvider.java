@@ -30,7 +30,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.Component.translatable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -82,12 +82,12 @@ public class AstralAdvancementProvider extends AdvancementProvider {
         return base.resolve(String.format("data/%s/advancements/%s.json", advancement.getId().getNamespace(), advancement.getId().getPath()));
     }
 
-    private TranslationTextComponent title(String key) {
-        return new TranslationTextComponent(String.format("advancements.astralsorcery.%s.title", key));
+    private Component.translatable title(String key) {
+        return new Component.translatable(String.format("advancements.astralsorcery.%s.title", key));
     }
 
-    private TranslationTextComponent description(String key) {
-        return new TranslationTextComponent(String.format("advancements.astralsorcery.%s.desc", key));
+    private Component.translatable description(String key) {
+        return new Component.translatable(String.format("advancements.astralsorcery.%s.desc", key));
     }
 
     private void registerAdvancements(Consumer<Advancement> registrar) {

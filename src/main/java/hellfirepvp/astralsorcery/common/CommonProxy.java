@@ -66,16 +66,16 @@ import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import hellfirepvp.observerlib.common.util.tick.TickManager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.ServerPlayer;
-import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Rarity;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.storage.FolderName;
+import net.minecraft.ChatFormatting;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.util.FakePlayer;
 import net.neoforged.neoforge.common.util.FakePlayerFactory;
@@ -117,29 +117,23 @@ public class CommonProxy {
     public static DamageSource DAMAGE_SOURCE_REFLECT = DamageSourceUtil.newType("thorns")
             .setDamageBypassesArmor().setDamageIsAbsolute();
 
-    public static final ItemGroup ITEM_GROUP_AS = new ItemGroup(AstralSorcery.MODID) {
-        @Override
-        public ItemStack createIcon() {
-            return new ItemStack(TOME);
-        }
-    };
-    public static final ItemGroup ITEM_GROUP_AS_PAPERS = new ItemGroup(AstralSorcery.MODID + ".papers") {
-        @Override
-        public ItemStack createIcon() {
-            return new ItemStack(CONSTELLATION_PAPER);
-        }
-    };
-    public static final ItemGroup ITEM_GROUP_AS_CRYSTALS = new ItemGroup(AstralSorcery.MODID + ".crystals") {
-        @Override
-        public ItemStack createIcon() {
-            return new ItemStack(ROCK_CRYSTAL);
-        }
-    };
-    public static final Rarity RARITY_CELESTIAL = Rarity.create("AS_CELESTIAL", TextFormatting.BLUE);
-    public static final Rarity RARITY_ARTIFACT = Rarity.create("AS_ARTIFACT", TextFormatting.GOLD);
-    public static final Rarity RARITY_VESTIGE = Rarity.create("AS_VESTIGE", TextFormatting.RED);
+    public static final CreativeModeTab ITEM_GROUP_AS = CreativeModeTab.builder()
+            .title(Component.translatable("itemGroup." + AstralSorcery.MODID))
+            .icon(() -> new ItemStack(TOME))
+            .build();
+    public static final CreativeModeTab ITEM_GROUP_AS_PAPERS = CreativeModeTab.builder()
+            .title(Component.translatable("itemGroup." + AstralSorcery.MODID + ".papers"))
+            .icon(() -> new ItemStack(CONSTELLATION_PAPER))
+            .build();
+    public static final CreativeModeTab ITEM_GROUP_AS_CRYSTALS = CreativeModeTab.builder()
+            .title(Component.translatable("itemGroup." + AstralSorcery.MODID + ".crystals"))
+            .icon(() -> new ItemStack(ROCK_CRYSTAL))
+            .build();
+    public static final Rarity RARITY_CELESTIAL = Rarity.create("AS_CELESTIAL", ChatFormatting.BLUE);
+    public static final Rarity RARITY_ARTIFACT = Rarity.create("AS_ARTIFACT", ChatFormatting.GOLD);
+    public static final Rarity RARITY_VESTIGE = Rarity.create("AS_VESTIGE", ChatFormatting.RED);
 
-    public static final IArmorMaterial ARMOR_MATERIAL_IMBUED_LEATHER = new ArmorMaterialImbuedLeather();
+    public static final ArmorMaterial ARMOR_MATERIAL_IMBUED_LEATHER = new ArmorMaterialImbuedLeather();
 
     private final List<ServerLifecycleListener> serverLifecycleListeners = Lists.newArrayList();
 
@@ -293,7 +287,7 @@ public class CommonProxy {
 
     // Utils
 
-    public FakePlayer getASFakePlayerServer(ServerWorld world) {
+    public FakePlayer getASFakePlayerServer(ServerLevel world) {
         return FakePlayerFactory.get(world, new GameProfile(FAKEPLAYER_UUID, "AS-FakePlayer"));
     }
 
@@ -303,7 +297,7 @@ public class CommonProxy {
             return null;
         }
 
-        File asDataDir = server.func_240776_a_(new FolderName(AstralSorcery.MODID)).toFile();
+        File asDataDir = server.getWorldPath(ResourceLocation.parse(AstralSorcery.MODID)).toFile();
         if (!asDataDir.exists()) {
             asDataDir.mkdirs();
         }

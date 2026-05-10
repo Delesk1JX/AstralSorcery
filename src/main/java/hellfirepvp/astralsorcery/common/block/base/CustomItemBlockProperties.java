@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.block.base;
 
 import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.item.Rarity;
 import net.neoforged.neoforge.common.ToolType;
 
@@ -44,7 +44,7 @@ public interface CustomItemBlockProperties extends CustomItemBlock {
     }
 
     @Nullable
-    default ItemGroup getItemGroup() {
+    default CreativeModeTab getCreativeModeTab() {
         return null;
     }
 

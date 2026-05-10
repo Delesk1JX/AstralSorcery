@@ -21,10 +21,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.Component;
+import net.minecraft.util.text.Component.literal;
 import net.minecraft.util.text.Style;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.ChatFormatting;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.util.Constants;
@@ -85,7 +85,7 @@ public class DynamicModifierHelper {
         return modifiers;
     }
     @OnlyIn(Dist.CLIENT)
-    public static void addModifierTooltip(ItemStack stack, List<ITextComponent> tooltip) {
+    public static void addModifierTooltip(ItemStack stack, List<Component> tooltip) {
         Player clientPlayer = Minecraft.getInstance().player;
         if (clientPlayer == null) {
             return;
@@ -93,9 +93,9 @@ public class DynamicModifierHelper {
 
         for (PerkAttributeModifier mod : DynamicModifierHelper.getDynamicModifiers(stack, Minecraft.getInstance().player, LogicalSide.CLIENT, false)) {
             if (mod.hasDisplayString()) {
-                tooltip.add(new StringTextComponent(mod.getLocalizedDisplayString())
-                        .mergeStyle(TextFormatting.GRAY)
-                        .mergeStyle(TextFormatting.ITALIC));
+                tooltip.add(new Component.literal(mod.getLocalizedDisplayString())
+                        .withStyle(ChatFormatting.GRAY)
+                        .withStyle(ChatFormatting.ITALIC));
             }
         }
     }

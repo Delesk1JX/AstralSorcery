@@ -18,8 +18,8 @@ import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.command.arguments.EntitySelector;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.Component.literal;
+import net.minecraft.ChatFormatting;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -40,7 +40,7 @@ public class CommandMaximizeAll implements Command<CommandSource> {
                 .then(Commands.argument("player", EntityArgument.player())
                         .executes(ctx -> {
                             Player target = (Player) ctx.getArgument("player", EntitySelector.class).selectOne(ctx.getSource());
-                            ctx.getSource().sendFeedback(new StringTextComponent("Success!").mergeStyle(TextFormatting.GREEN), true);
+                            ctx.getSource().sendFeedback(new Component.literal("Success!").withStyle(ChatFormatting.GREEN), true);
                             maximizeAll(target);
                             return 0;
                         }))
@@ -50,7 +50,7 @@ public class CommandMaximizeAll implements Command<CommandSource> {
     @Override
     public int run(CommandContext<CommandSource> context) throws CommandSyntaxException {
         maximizeAll(context.getSource().asPlayer());
-        context.getSource().sendFeedback(new StringTextComponent("Success!").mergeStyle(TextFormatting.GREEN), true);
+        context.getSource().sendFeedback(new Component.literal("Success!").withStyle(ChatFormatting.GREEN), true);
         return 0;
     }
 

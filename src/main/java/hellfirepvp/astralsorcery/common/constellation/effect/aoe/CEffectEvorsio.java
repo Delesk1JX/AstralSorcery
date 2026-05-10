@@ -35,7 +35,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.util.Constants;
@@ -100,7 +100,7 @@ public class CEffectEvorsio extends CEffectAbstractList<ListEntries.PosEntry> {
 
     @Override
     public boolean playEffect(World world, BlockPos pos, ConstellationEffectProperties properties, @Nullable IMinorConstellation trait) {
-        if (!(world instanceof ServerWorld)) {
+        if (!(world instanceof ServerLevel)) {
             return false;
         }
 
@@ -130,7 +130,7 @@ public class CEffectEvorsio extends CEffectAbstractList<ListEntries.PosEntry> {
                 if (this.canBreakBlock(world, at, state, buildFilter(pedestal))) {
                     BlockDropCaptureAssist.startCapturing();
                     try {
-                        BlockUtils.breakBlockWithoutPlayer((ServerWorld) world, at, state,
+                        BlockUtils.breakBlockWithoutPlayer((ServerLevel) world, at, state,
                                 ItemStack.EMPTY, true, true);
                     } finally {
                         NonNullList<ItemStack> captured = BlockDropCaptureAssist.getCapturedStacksAndStop();

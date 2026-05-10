@@ -19,8 +19,8 @@ import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.command.arguments.EntitySelector;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.Component.literal;
+import net.minecraft.ChatFormatting;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -50,10 +50,10 @@ public class CommandExp implements Command<CommandSource> {
 
         if (ResearchManager.setExp(player, exp)) {
             context.getSource().sendFeedback(
-                    new StringTextComponent("Success! Player exp has been set to " + exp).mergeStyle(TextFormatting.GREEN), true);
+                    new Component.literal("Success! Player exp has been set to " + exp).withStyle(ChatFormatting.GREEN), true);
         } else {
             context.getSource().sendFeedback(
-                    new StringTextComponent("Failed! Player specified doesn't seem to have a research progress!").mergeStyle(TextFormatting.RED), true);
+                    new Component.literal("Failed! Player specified doesn't seem to have a research progress!").withStyle(ChatFormatting.RED), true);
         }
         return 0;
     }

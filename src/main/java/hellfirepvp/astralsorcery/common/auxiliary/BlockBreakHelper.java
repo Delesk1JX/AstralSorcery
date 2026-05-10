@@ -25,7 +25,7 @@ import net.minecraft.util.RegistryKey;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.event.TickEvent;
@@ -115,8 +115,8 @@ public class BlockBreakHelper {
             }
 
             BlockState nowAt = world.getBlockState(pos);
-            if (world instanceof ServerWorld && BlockUtils.matchStateExact(expected, nowAt)) {
-                BlockUtils.breakBlockWithoutPlayer((ServerWorld) world, pos, world.getBlockState(pos), ItemStack.EMPTY,
+            if (world instanceof ServerLevel && BlockUtils.matchStateExact(expected, nowAt)) {
+                BlockUtils.breakBlockWithoutPlayer((ServerLevel) world, pos, world.getBlockState(pos), ItemStack.EMPTY,
                         true, true);
             }
         }

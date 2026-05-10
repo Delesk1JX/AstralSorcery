@@ -27,7 +27,7 @@ import net.minecraft.util.RegistryKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Component;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.registries.BuiltInRegistries;
 
@@ -140,7 +140,7 @@ public class ByteBufUtils {
         return map;
     }
 
-    public static void writeTextComponent(FriendlyByteBuf buf, ITextComponent cmp) {
+    public static void writeTextComponent(FriendlyByteBuf buf, Component cmp) {
         writeString(buf, IFormattableTextComponent.Serializer.toJson(cmp));
     }
 

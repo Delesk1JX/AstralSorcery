@@ -20,7 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.Component.literal;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
@@ -71,7 +71,7 @@ public class GemSocketMajorPerk extends MajorPerk implements GemSocketPerk {
     @OnlyIn(Dist.CLIENT)
     public boolean addLocalizedTooltip(Collection<IFormattableTextComponent> tooltip) {
         if (super.addLocalizedTooltip(tooltip)) {
-            tooltip.add(new StringTextComponent(""));
+            tooltip.add(new Component.literal(""));
         }
         if (canSeeClient()) {
             this.addTooltipInfo(tooltip);
