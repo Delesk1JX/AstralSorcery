@@ -33,8 +33,8 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'hellfirepvp.observerlib:observerlib:1.10.1.21'
-    runtimeOnly 'hellfirepvp.observerlib:observerlib:1.10.1.21'
+    compileOnly files('libs/observerlib-1.10.1.21.jar')
+    runtimeOnly files('libs/observerlib-1.10.1.21.jar')
     implementation 'top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1-api'
     runtimeOnly 'top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1'
     compileOnly 'mezz.jei:jei-1.21.1-common-api:19.27.0.340'
