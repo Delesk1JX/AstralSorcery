@@ -55,8 +55,6 @@ public class RegistryStructureTypes {
         return type;
     }
 
-}
-
     private static <T extends StructureType> T register(T type) {
         return ASRegistries.STRUCTURE_TYPES.register(type.getIdentifier(), () -> type);
     }

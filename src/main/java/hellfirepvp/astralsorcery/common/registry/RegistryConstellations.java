@@ -471,11 +471,6 @@ public class RegistryConstellations {
         register(vorux);
     }
 
-    private static void register(IConstellation cst) {
-        register(cst);
-    }
-}
-
     private static <T extends IConstellation> T register(T constellation) {
         return ASRegistries.CONSTELLATIONS.register(constellation.getIdentifier(), () -> constellation);
     }

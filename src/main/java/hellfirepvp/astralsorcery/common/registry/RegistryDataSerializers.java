@@ -41,10 +41,8 @@ public class RegistryDataSerializers {
         return dataSerializer;
     }
 
-}
-
     private static <T> T register(T obj) {
-        // Generic registration - needs manual fix
+        // Generic registration
         return obj;
     }
 
