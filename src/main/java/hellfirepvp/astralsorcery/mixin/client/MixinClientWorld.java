@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.mixin.client;
 import hellfirepvp.astralsorcery.client.data.config.entry.RenderingConfig;
 import hellfirepvp.astralsorcery.common.constellation.SkyHandler;
 import hellfirepvp.astralsorcery.common.constellation.world.WorldContext;
-import net.minecraft.client.world.ClientLevel;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.world.Level;
 import net.neoforged.api.distmarker.LogicalSide;
 import org.spongepowered.asm.mixin.Mixin;

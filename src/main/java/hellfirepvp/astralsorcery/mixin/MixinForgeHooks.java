@@ -15,13 +15,14 @@ import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import hellfirepvp.astralsorcery.common.util.loot.LootUtil;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.item.ItemStack;
-import net.minecraft.loot.LootContext;
-import net.minecraft.loot.LootParameterSets;
-import net.minecraft.loot.LootParameters;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.neoforge.common.ForgeHooks;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.api.distmarker.Dist;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -38,11 +39,11 @@ import java.util.List;
  * Created by HellFirePvP
  * Date: 01.01.2022 / 10:06
  */
-@Mixin(ForgeHooks.class)
+@Mixin(NeoForge.class)
 public class MixinForgeHooks {
 
     @Inject(
-            method = "modifyLoot(Lnet/minecraft/util/ResourceLocation;Ljava/util/List;Lnet/minecraft/loot/LootContext;)Ljava/util/List;",
+            method = "modifyLoot(Lnet/minecraft/resources/ResourceLocation;Ljava/util/List;Lnet/minecraft/world/level/storage/loot/LootContext;)Ljava/util/List;",
             at = @At("RETURN"),
             cancellable = true,
             remap = false
@@ -50,21 +51,21 @@ public class MixinForgeHooks {
     private static void runLootTeleportation(ResourceLocation lootTableId, List<ItemStack> generatedLoot, LootContext context, CallbackInfoReturnable<List<ItemStack>> cir) {
         List<ItemStack> loot = cir.getReturnValue();
 
-        if (!LootUtil.doesContextFulfillSet(context, LootParameterSets.BLOCK)) {
+        if (!LootUtil.doesContextFulfillSet(context, LootContextParamSets.BLOCK)) {
             return;
         }
-        Entity e = context.get(LootParameters.THIS_ENTITY);
+        Entity e = context.get(LootContextParams.THIS_ENTITY);
         if (!(e instanceof Player)) {
             return;
         }
         Player player = (Player) e;
-        PlayerProgress prog = ResearchHelper.getProgress(player, LogicalSide.SERVER);
+        PlayerProgress prog = ResearchHelper.getProgress(player, Dist.DEDICATED_SERVER);
         if (!prog.isValid() || !prog.getPerkData().hasPerkEffect(perk -> perk instanceof KeyMagnetDrops)) {
             return;
         }
 
         //Means we're in the 2nd run of loot manipulation, re-run by top.theillusivec4.curios.common.objects.FortuneBonusMultiplier
-        ItemStack tool = context.get(LootParameters.TOOL);
+        ItemStack tool = context.get(LootContextParams.TOOL);
         if (tool != null && tool.hasTag() && tool.getTag().contains("HasCuriosFortuneBonus")) {
             loot.removeIf(result -> ItemUtils.dropItemToPlayer(player, result).isEmpty());
         }

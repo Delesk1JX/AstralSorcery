@@ -9,8 +9,8 @@
 package hellfirepvp.astralsorcery.mixin;
 
 import hellfirepvp.astralsorcery.common.event.CooldownSetEvent;
-import net.minecraft.util.CooldownTracker;
-import net.minecraft.util.ServerCooldownTracker;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemCooldowns;
 import net.neoforged.neoforge.common.NeoForge;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -23,18 +23,19 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
  * Created by HellFirePvP
  * Date: 01.01.2022 / 09:52
  */
-@Mixin(CooldownTracker.class)
+@Mixin(ItemCooldowns.class)
 public class MixinCooldownTracker {
 
+    // TODO: Rewrite for Minecraft 1.21.1 ItemCooldowns system
+    // The cooldown system has changed significantly in 1.21.1
+    // This mixin needs to be applied to ServerPlayer instead
+    /*
     @ModifyVariable(method = "setCooldown", at = @At("HEAD"), ordinal = 0, argsOnly = true)
     public int fireCooldownEvent(int cooldownTicks) {
-        CooldownTracker tracker = (CooldownTracker)(Object) this;
-        if (tracker instanceof ServerCooldownTracker) {
-            CooldownSetEvent event = new CooldownSetEvent(((ServerCooldownTracker) tracker).player, cooldownTicks);
-            NeoForge.EVENT_BUS.post(event);
-            cooldownTicks = Math.max(event.getResultCooldown(), 1);
-        }
+        ItemCooldowns cooldowns = (ItemCooldowns)(Object) this;
+        // TODO: Find a way to get player reference and fire event
         return cooldownTicks;
     }
+    */
 
 }

@@ -10,11 +10,11 @@ package hellfirepvp.astralsorcery.mixin.client;
 
 import hellfirepvp.astralsorcery.common.enchantment.dynamic.DynamicEnchantmentHelper;
 import hellfirepvp.astralsorcery.common.perk.DynamicModifierHelper;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
@@ -40,8 +40,8 @@ import java.util.Map;
 @Mixin(ItemStack.class)
 public class MixinItemStack {
 
-    @Inject(method = "getTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;hasTag()Z", ordinal = 0), locals = LocalCapture.CAPTURE_FAILSOFT)
-    public void addMissingEnchantmentTooltip(Player player, ITooltipFlag advanced, CallbackInfoReturnable<List<Component>> cir, List<Component> tooltip) {
+    @Inject(method = "getTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;hasTag()Z", ordinal = 0), locals = LocalCapture.CAPTURE_FAILSOFT)
+    public void addMissingEnchantmentTooltip(Player player, TooltipFlag advanced, CallbackInfoReturnable<List<Component>> cir, List<Component> tooltip) {
         ItemStack stack = (ItemStack)(Object) this;
 
         List<Component> addition = new ArrayList<>();
@@ -58,12 +58,12 @@ public class MixinItemStack {
             }
         } catch (Exception exc) {
             addition.clear();
-            tooltip.add(new Component.translatable("astralsorcery.misc.tooltipError").withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.translatable("astralsorcery.misc.tooltipError").withStyle(ChatFormatting.GRAY));
         }
         tooltip.addAll(addition);
     }
 
-    @Redirect(method = "getTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getEnchantmentTagList()Lnet/minecraft/nbt/ListTag;"))
+    @Redirect(method = "getTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;getEnchantmentTagList()Lnet/minecraft/nbt/ListTag;"))
     public ListTag enhanceEnchantmentTooltip(ItemStack stack) {
         return DynamicEnchantmentHelper.modifyEnchantmentTags(stack.getEnchantmentTagList(), stack);
     }
