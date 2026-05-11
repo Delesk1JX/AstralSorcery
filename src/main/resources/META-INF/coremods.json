@@ -1,4 +1,3 @@
 {
-  "reach_set_server_entity_interact": "coremods/reach_set_server_entity_interact.js",
-  "reach_set_client_renderer": "coremods/reach_set_client_renderer.js"
+  "NOTE": "CoreMods for 1.16.x Forge removed - NeoForge 1.21.1 uses Mixins instead of ForgeHooks API"
 }

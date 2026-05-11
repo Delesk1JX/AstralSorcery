@@ -9,107 +9,39 @@ version = '1.21.1-1.20.0'
 group = 'hellfirepvp.astralsorcery'
 archivesBaseName = 'astralsorcery'
 
-// Определение mod_id для использования в runs
 ext.mod_id = 'astralsorcery'
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
-
-// Конфигурация запусков (NeoGradle 7.x Syntax)
-runs {
-    configureEach {
-        modSource project.sourceSets.main
-        workingDirectory project.file('run')
-        systemProperty 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-        systemProperty 'forge.logging.console.level', 'info'
-        jvmArgument '-XX:+IgnoreUnrecognizedVMOptions'
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
     }
-
-    client {
-        systemProperty 'neoforge.enabledGameTestNamespaces', project.ext.mod_id
-    }
-
-    server {
-        systemProperty 'neoforge.enabledGameTestNamespaces', project.ext.mod_id
-        programArgument '--nogui'
-    }
-    
-    gameTestServer {
-        systemProperty 'neoforge.enabledGameTestNamespaces', project.ext.mod_id
-    }
-    
-    data {
-        // Используем getArguments() вместо programArguments()
-        arguments.addAll '--mod', project.ext.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
-    }
+    withSourcesJar()
 }
-
-sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
     mavenLocal()
+    maven { url 'https://maven.hellfiredev.net/' }
+    maven { url 'https://maven.theillusivec4.top/' }
+    maven { url 'https://dvs1.progwml6.com/files/maven' }
+    maven { url 'https://maven.blamejared.com' }
     maven {
-        name 'hellfirepvp maven'
-        url 'https://maven.hellfiredev.net/'
+        url 'https://www.cursemaven.com'
+        content { includeGroup 'curse.maven' }
     }
-    maven {
-        name 'curios maven'
-        url "https://maven.theillusivec4.top/"
-    }
-    maven {
-        name 'JEI maven'
-        url "https://dvs1.progwml6.com/files/maven"
-    }
-    maven {
-        name 'Botania maven'
-        url "https://maven.blamejared.com"
-    }
-    maven {
-        name 'CF maven'
-        url "https://www.cursemaven.com"
-        content {
-            includeGroup "curse.maven"
-        }
-    }
-    maven {
-        name 'NeoForge Maven'
-        url 'https://maven.neoforged.net/releases'
-    }
+    maven { url 'https://maven.neoforged.net/releases' }
     mavenCentral()
 }
 
 dependencies {
-    // Основной NeoForge
-    implementation 'net.neoforged:neoforge:21.1.74'
-    
-    // Curios API (Правильная координата для 1.21.1)
-    // Проверяем наличие версии на https://maven.theillusivec4.top/top/theillusivec4/curios/
-    implementation "top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1-api"
-    runtimeOnly "top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1"
-
-    // JEI (Проверьте актуальную версию для 1.21.1 на https://dvs1.progwml6.com/files/maven/mezz/jei/)
-    compileOnly "mezz.jei:jei-1.21.1-common-api:19.27.0.340"
-    compileOnly "mezz.jei:jei-1.21.1-neoforge-api:19.27.0.340"
-    runtimeOnly "mezz.jei:jei-1.21.1-neoforge:19.27.0.340"
-
-    // ObserverLib - ВРЕМЕННО ОТКЛЮЧЕН, так как его нет в мавене.
-    // Если он критичен, скачайте jar и положите в libs, затем используйте: implementation files('libs/observerlib.jar')
-    // compileOnly 'hellfirepvp.observerlib:observerlib:1.21.1-2.0.0'
-    // runtimeOnly 'hellfirepvp.observerlib:observerlib:1.21.1-2.0.0'
-
-    // Patchouli
-    // Для 1.21.1 координаты могут отличаться. Если нужен, найдите актуальный jar.
-    compileOnly "vazkii.patchouli:Patchouli:1.21.1-93-NEOFORGE:api"
-    runtimeOnly "vazkii.patchouli:Patchouli:1.21.1-93-NEOFORGE"
-
-    // Botania
-    // compileOnly "vazkii.botania:Botania:1.21.1-463-NEOFORGE:api"
-    // runtimeOnly "vazkii.botania:Botania:1.21.1-463-NEOFORGE"
-    
-    // Альтернатива для Botania/Patchouli через CurseMaven (если есть ID проекта)
-    // Пример (нужно найти правильные ID и файлы):
-    // implementation fg.deobf("curse.maven:botania-225643:XXXXXX") 
-    // Но в NeoForge 1.21+ fg.deobf не работает напрямую с curse.maven без дополнительной настройки.
-    // Лучше скачать jar вручную в папку libs и подключить как files('libs/botania.jar')
+    compileOnly 'hellfirepvp.observerlib:observerlib:1.10.1.21'
+    runtimeOnly 'hellfirepvp.observerlib:observerlib:1.10.1.21'
+    implementation 'top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1-api'
+    runtimeOnly 'top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1'
+    compileOnly 'mezz.jei:jei-1.21.1-common-api:19.27.0.340'
+    compileOnly 'mezz.jei:jei-1.21.1-neoforge-api:19.27.0.340'
+    runtimeOnly 'mezz.jei:jei-1.21.1-neoforge:19.27.0.340'
+    compileOnly 'vazkii.patchouli:Patchouli:1.21.1-93-NEOFORGE:api'
+    runtimeOnly 'vazkii.patchouli:Patchouli:1.21.1-93-NEOFORGE'
 }
 
 tasks.withType(JavaCompile).configureEach {
@@ -120,17 +52,12 @@ tasks.withType(JavaCompile).configureEach {
 jar {
     manifest {
         attributes([
-            "Specification-Title": "astralsorcery",
-            "Specification-Vendor": "hellfirepvp",
-            "Specification-Version": "1",
-            "Implementation-Title": project.name,
-            "Implementation-Version": version,
-            "Implementation-Vendor": "hellfirepvp",
-            // "MixinConnector": "hellfirepvp.astralsorcery.MixinConnector" // Раскомментируйте, когда создадите класс миксина
+            'Specification-Title': 'astralsorcery',
+            'Specification-Vendor': 'hellfirepvp',
+            'Implementation-Title': project.name,
+            'Implementation-Version': version,
+            'Implementation-Vendor': 'hellfirepvp',
+            'MixinConnector': 'hellfirepvp.astralsorcery.MixinConnector'
         ])
     }
-}
-
-java {
-    withSourcesJar()
 }
