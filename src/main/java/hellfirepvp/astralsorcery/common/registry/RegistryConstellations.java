@@ -20,6 +20,7 @@ import hellfirepvp.astralsorcery.common.lib.ItemsAS;
 import hellfirepvp.astralsorcery.common.lib.TagsAS;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.common.Tags;
