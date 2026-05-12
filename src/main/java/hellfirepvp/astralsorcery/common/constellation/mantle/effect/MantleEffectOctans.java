@@ -23,11 +23,11 @@ import net.minecraft.world.item.Items;
 import net.minecraft.tags.FluidTags;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.fml.config.ModConfigSpec;
 import net.neoforged.neoforge.event.entity.living.LivingKnockBackEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -136,9 +136,9 @@ public class MantleEffectOctans extends MantleEffect {
 
         private final int defaultChargeCostPerBreakSpeed = 30;
 
-        public NeoForgeConfigSpec.DoubleValue healPerTick;
+        public ModConfigSpec.DoubleValue healPerTick;
 
-        public NeoForgeConfigSpec.IntValue chargeCostPerBreakSpeed;
+        public ModConfigSpec.IntValue chargeCostPerBreakSpeed;
 
 
         public OctansConfig() {
@@ -146,7 +146,7 @@ public class MantleEffectOctans extends MantleEffect {
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.healPerTick = cfgBuilder

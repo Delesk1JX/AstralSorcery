@@ -9,8 +9,8 @@
 package hellfirepvp.astralsorcery.common.block.base;
 
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 import java.util.Random;
 

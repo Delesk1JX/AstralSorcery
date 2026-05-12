@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.constellation.world.event;
 
 import hellfirepvp.astralsorcery.common.constellation.world.WorldContext;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 
 import java.util.Random;
 

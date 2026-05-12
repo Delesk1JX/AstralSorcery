@@ -19,11 +19,10 @@ import net.minecraft.world.item.BlockItemUseContext;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.shapes.ISelectionContext;
 import net.minecraft.util.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-import net.neoforged.neoforge.common.ToolType;
 
 import javax.annotation.Nullable;
 

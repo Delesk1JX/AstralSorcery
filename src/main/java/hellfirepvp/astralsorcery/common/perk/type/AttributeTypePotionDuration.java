@@ -18,7 +18,7 @@ import net.minecraft.potion.EffectType;
 import net.minecraft.util.Mth;
 import net.neoforged.neoforge.event.entity.living.PotionEvent;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod

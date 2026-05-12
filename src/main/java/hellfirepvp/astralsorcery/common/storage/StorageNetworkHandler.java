@@ -11,8 +11,8 @@ package hellfirepvp.astralsorcery.common.storage;
 import hellfirepvp.astralsorcery.common.data.world.StorageNetworkBuffer;
 import hellfirepvp.astralsorcery.common.lib.DataAS;
 import net.minecraft.util.RegistryKey;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;

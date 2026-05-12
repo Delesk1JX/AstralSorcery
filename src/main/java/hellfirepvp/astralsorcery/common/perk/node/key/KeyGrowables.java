@@ -25,11 +25,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
-import net.minecraft.world.World;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.minecraft.world.level.Level;
+import net.neoforged.fml.config.ModConfigSpec;
+import net.neoforged.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -95,16 +95,16 @@ public class KeyGrowables extends KeyPerk implements PlayerTickPerk {
 
     public static class Config extends ConfigEntry {
 
-        private NeoForgeConfigSpec.DoubleValue chanceToBonemeal;
-        private NeoForgeConfigSpec.IntValue radius;
-        private NeoForgeConfigSpec.IntValue chargeCost;
+        private ModConfigSpec.DoubleValue chanceToBonemeal;
+        private ModConfigSpec.IntValue radius;
+        private ModConfigSpec.IntValue chargeCost;
 
         private Config(String section) {
             super(section);
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             this.chanceToBonemeal = cfgBuilder
                     .comment("Sets the chance to try to see if a random plant near the player gets bonemeal'd.")
                     .translation(translationKey("chanceToBonemeal"))

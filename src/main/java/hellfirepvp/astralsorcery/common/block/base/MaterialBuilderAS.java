@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.block.base;
 
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.level.material.PushReaction;
 

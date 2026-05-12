@@ -16,7 +16,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.RegistryKey;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.IBlockDisplayReader;
 import net.minecraft.world.LightType;

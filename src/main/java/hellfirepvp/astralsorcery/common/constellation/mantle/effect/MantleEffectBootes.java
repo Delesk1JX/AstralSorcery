@@ -24,16 +24,16 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.IntTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.util.DamageSource;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.fml.config.ModConfigSpec;
 import net.neoforged.neoforge.common.util.Constants;
 import net.neoforged.neoforge.event.entity.living.LivingAttackEvent;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -178,16 +178,16 @@ public class MantleEffectBootes extends MantleEffect {
 
         private final int defaultChargeCostPerFlare = 400;
 
-        public NeoForgeConfigSpec.IntValue maxFlareCount;
+        public ModConfigSpec.IntValue maxFlareCount;
 
-        public NeoForgeConfigSpec.IntValue chargeCostPerFlare;
+        public ModConfigSpec.IntValue chargeCostPerFlare;
 
         public BootesConfig() {
             super("bootes");
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.maxFlareCount = cfgBuilder

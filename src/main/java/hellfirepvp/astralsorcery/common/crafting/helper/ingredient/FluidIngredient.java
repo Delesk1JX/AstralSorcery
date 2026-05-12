@@ -18,7 +18,7 @@ import it.unimi.dsi.fastutil.ints.IntList;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeItemHelper;
-import net.minecraft.util.NonNullList;
+import net.minecraft.core.NonNullList;
 import net.neoforged.neoforge.common.crafting.CraftingHelper;
 import net.neoforged.neoforge.common.crafting.IIngredientSerializer;
 import net.neoforged.neoforge.fluids.FluidStack;

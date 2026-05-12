@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.util.collision;
 import hellfirepvp.astralsorcery.common.constellation.mantle.effect.MantleEffectAevitas;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.shapes.VoxelShapeSpliterator;
 
 import javax.annotation.Nullable;

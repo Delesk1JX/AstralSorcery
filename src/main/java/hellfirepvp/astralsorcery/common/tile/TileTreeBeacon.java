@@ -41,17 +41,17 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RegistryKey;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.fml.config.ModConfigSpec;
 import net.neoforged.neoforge.common.util.Constants;
 import net.neoforged.neoforge.event.world.SaplingGrowTreeEvent;
 import net.neoforged.neoforge.eventbus.api.Event;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -402,19 +402,19 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
         private static final int    defaultLogWeight    = 2;
         private static final int    defaultLeafWeight   = 1;
 
-        public NeoForgeConfigSpec.DoubleValue range;
-        public NeoForgeConfigSpec.IntValue    maxCount;
-        public NeoForgeConfigSpec.DoubleValue dropChance;
-        public NeoForgeConfigSpec.IntValue    breakChance;
-        public NeoForgeConfigSpec.IntValue    logWeight;
-        public NeoForgeConfigSpec.IntValue    leafWeight;
+        public ModConfigSpec.DoubleValue range;
+        public ModConfigSpec.IntValue    maxCount;
+        public ModConfigSpec.DoubleValue dropChance;
+        public ModConfigSpec.IntValue    breakChance;
+        public ModConfigSpec.IntValue    logWeight;
+        public ModConfigSpec.IntValue    leafWeight;
 
         private Config() {
             super("tree_beacon");
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             this.range = cfgBuilder
                     .comment("Set the radius of the tree beacon.")
                     .translation(translationKey("range"))

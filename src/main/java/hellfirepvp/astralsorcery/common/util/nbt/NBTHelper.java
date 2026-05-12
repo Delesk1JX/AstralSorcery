@@ -20,7 +20,7 @@ import net.minecraft.nbt.*;
 import net.minecraft.state.Property;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.neoforged.neoforge.common.util.Constants;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.minecraft.core.registries.BuiltInRegistries;

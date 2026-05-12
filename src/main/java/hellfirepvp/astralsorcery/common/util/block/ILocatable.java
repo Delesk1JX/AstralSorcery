@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.util.block;
 
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 
 /**
  * This class is part of the Astral Sorcery Mod

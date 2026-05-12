@@ -30,13 +30,13 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.util.vector.Vector3d;
 import net.minecraft.world.GameRules;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

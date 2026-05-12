@@ -18,10 +18,11 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.world.entity.boss.dragon.phase.PhaseType;
 import net.minecraft.util.RegistryKey;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
-import net.minecraft.world.World;
-import net.neoforged.neoforge.event.tick.TickEvent;
+import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
+import net.neoforged.neoforge.event.tick.ClientTickEvent;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

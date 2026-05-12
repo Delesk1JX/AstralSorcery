@@ -13,10 +13,10 @@ import hellfirepvp.astralsorcery.common.util.object.TransformReference;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.RegistryKey;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.vector.Vector3i;
-import net.minecraft.world.World;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.minecraft.world.level.Level;
+import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;
 
 import javax.annotation.Nullable;

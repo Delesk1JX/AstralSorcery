@@ -13,7 +13,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.ChunkPos;
 import net.minecraft.util.Mth;
 import net.minecraft.util.vector.Matrix4f;

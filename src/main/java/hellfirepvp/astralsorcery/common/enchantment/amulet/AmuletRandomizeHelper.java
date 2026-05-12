@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.enchantment.dynamic.DynamicEnchantmentTy
 import hellfirepvp.astralsorcery.common.item.ItemEnchantmentAmulet;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.fml.config.ModConfigSpec;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -34,11 +34,11 @@ public class AmuletRandomizeHelper {
     public static final Config CONFIG = new Config();
     private static final Random rand = new Random();
 
-    private static NeoForgeConfigSpec.DoubleValue chance2nd;
-    private static NeoForgeConfigSpec.DoubleValue chance3rd;
-    private static NeoForgeConfigSpec.DoubleValue chance2Level;
-    private static NeoForgeConfigSpec.DoubleValue chanceToAll;
-    private static NeoForgeConfigSpec.DoubleValue chanceToNonExisting;
+    private static ModConfigSpec.DoubleValue chance2nd;
+    private static ModConfigSpec.DoubleValue chance3rd;
+    private static ModConfigSpec.DoubleValue chance2Level;
+    private static ModConfigSpec.DoubleValue chanceToAll;
+    private static ModConfigSpec.DoubleValue chanceToNonExisting;
 
     public static void rollAmulet(ItemStack stack) {
         if (stack.isEmpty() || !(stack.getItem() instanceof ItemEnchantmentAmulet)) {
@@ -154,7 +154,7 @@ public class AmuletRandomizeHelper {
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             chance2nd = cfgBuilder
                     .comment("Defines the chance to roll a 2nd-enchantment-manipulating roll on the amulet. Value defines a percent chance from 0% to 100%. Setting this to 0 also prevents a 3rd roll")
                     .translation(translationKey("chance2nd"))

@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.perk.PerkEffectHelper;
 import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;

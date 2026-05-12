@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.data.sync.base;
 
 import net.minecraft.util.RegistryKey;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 
 /**
  * This class is part of the Astral Sorcery Mod

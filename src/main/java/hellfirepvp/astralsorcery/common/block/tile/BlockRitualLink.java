@@ -15,12 +15,11 @@ import net.minecraft.world.level.block.BlockRenderType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.ContainerBlock;
 import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.shapes.ISelectionContext;
 import net.minecraft.util.shapes.VoxelShape;
 import net.minecraft.util.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
-import net.neoforged.neoforge.common.ToolType;
 
 import javax.annotation.Nullable;
 

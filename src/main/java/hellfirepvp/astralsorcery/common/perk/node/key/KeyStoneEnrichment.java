@@ -22,11 +22,11 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+import net.neoforged.fml.config.ModConfigSpec;
 import net.neoforged.neoforge.common.util.Constants;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -80,16 +80,16 @@ public class KeyStoneEnrichment extends KeyPerk implements PlayerTickPerk {
 
     public static class Config extends ConfigEntry {
 
-        private NeoForgeConfigSpec.IntValue enrichmentRadius;
-        private NeoForgeConfigSpec.IntValue chanceToEnrich;
-        private NeoForgeConfigSpec.IntValue chargeCost;
+        private ModConfigSpec.IntValue enrichmentRadius;
+        private ModConfigSpec.IntValue chanceToEnrich;
+        private ModConfigSpec.IntValue chargeCost;
 
         private Config(String section) {
             super(section);
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             this.enrichmentRadius = cfgBuilder
                     .comment("Defines the radius where a random position to generate a ore at is checked for")
                     .translation(translationKey("enrichmentRadius"))

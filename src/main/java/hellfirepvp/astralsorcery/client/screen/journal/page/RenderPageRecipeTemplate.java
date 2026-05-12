@@ -30,7 +30,7 @@ import hellfirepvp.astralsorcery.common.util.IngredientHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -44,7 +44,7 @@ import static net.minecraft.network.chat.Component.literal;
 import net.minecraft.ChatFormatting;
 import static net.minecraft.network.chat.Component.translatable;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.awt.*;
@@ -325,7 +325,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage {
 
     protected void addInputInformation(ItemStack stack, @Nullable Ingredient stackIngredient, List<ITextProperties> tooltip) {
         try {
-            tooltip.addAll(stack.getTooltip(Minecraft.getInstance().player, Minecraft.getInstance().gameSettings.advancedItemTooltips ? ITooltipFlag.TooltipFlags.ADVANCED : ITooltipFlag.TooltipFlags.NORMAL));
+            tooltip.addAll(stack.getTooltip(Minecraft.getInstance().player, Minecraft.getInstance().gameSettings.advancedItemTooltips ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL));
         } catch (Exception exc) {
             tooltip.add(new Component.translatable("astralsorcery.misc.tooltipError").withStyle(ChatFormatting.RED));
         }

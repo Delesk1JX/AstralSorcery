@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.client.screen.base;
 import hellfirepvp.astralsorcery.common.util.tile.NamedInventoryTile;
 import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 
 /**
  * This class is part of the Astral Sorcery Mod

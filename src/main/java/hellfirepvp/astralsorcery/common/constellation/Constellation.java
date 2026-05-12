@@ -18,7 +18,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.neoforged.neoforge.fml.ModContainer;
+import net.neoforged.fml.ModContainer;
 
 import java.awt.*;
 import java.util.List;

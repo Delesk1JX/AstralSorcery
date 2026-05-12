@@ -11,8 +11,8 @@ package hellfirepvp.astralsorcery.common.block.base;
 import net.minecraft.world.item.BlockItemUseContext;
 import net.minecraft.util.Direction;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 /**
  * This class is part of the Astral Sorcery Mod

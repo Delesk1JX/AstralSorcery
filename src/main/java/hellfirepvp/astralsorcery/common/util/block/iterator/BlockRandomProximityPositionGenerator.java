@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.util.block.iterator;
 
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 
 /**
  * This class is part of the Astral Sorcery Mod
