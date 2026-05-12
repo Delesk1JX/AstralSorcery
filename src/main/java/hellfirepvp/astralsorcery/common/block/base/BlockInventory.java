@@ -35,7 +35,7 @@ public abstract class BlockInventory extends BlockCrystalContainer {
     public void onReplaced(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         BlockEntity te = MiscUtils.getTileAt(worldIn, pos, BlockEntity.class, true);
         if (te != null && !worldIn.isRemote) {
-            Lazy<IItemHandler> opt = te.getnet.neoforged.neoforge.capabilities(net.neoforged.neoforge.capabilitiesItemHandler.ITEM_HANDLER_CAPABILITY);
+            Lazy<IItemHandler> opt = te.getCapability(net.neoforged.neoforge.items.capability.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY);
             if (opt.isPresent()) {
                 ItemUtils.dropInventory(opt.orElse(ItemUtils.EMPTY_INVENTORY), worldIn, pos);
             }

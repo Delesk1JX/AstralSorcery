@@ -91,7 +91,7 @@ public class FountainEffectLiquid extends FountainEffect<LiquidContext> {
 
     private void produceLiquid(TileFountain fountain) {
         Chunk ch = fountain.getWorld().getChunkAt(fountain.getPos());
-        ch.getnet.neoforged.neoforge.capabilities(CapabilitiesAS.CHUNK_FLUID).ifPresent(entry -> {
+        ch.getCapability(CapabilitiesAS.CHUNK_FLUID).ifPresent(entry -> {
             int drain = 200 + rand.nextInt(400);
             FluidStack drained;
             if (!entry.isEmpty() && entry.isInitialized()) {

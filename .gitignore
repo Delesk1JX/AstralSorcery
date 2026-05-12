@@ -3,21 +3,19 @@
 *.class
 *.o
 *.obj
-*.exe
+*.out
 *.dll
 *.so
 *.a
-*.out
+*.exe
 
 # Dependencies
-lib/
-deps/
+.gradle/
 target/
 
 # Logs and temp files
 *.log
 *.tmp
-*.swp
 
 # Editors
 .vscode/
@@ -32,7 +30,7 @@ coverage/
 htmlcov/
 .coverage
 
-# Gradle specific
-.gradle/
+# Package distributions
+dist/
 build/
 ```

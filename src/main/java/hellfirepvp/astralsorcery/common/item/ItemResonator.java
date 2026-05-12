@@ -132,7 +132,7 @@ public class ItemResonator extends Item implements OverrideInteractItem {
 
                         IChunk ch = world.getChunk(pos);
                         if (ch instanceof Chunk) {
-                            ((Chunk) ch).getnet.neoforged.neoforge.capabilities(CapabilitiesAS.CHUNK_FLUID).ifPresent(entry -> {
+                            ((Chunk) ch).getCapability(CapabilitiesAS.CHUNK_FLUID).ifPresent(entry -> {
                                 FluidStack display = entry.drain(1, IFluidHandler.FluidAction.SIMULATE);
                                 if (!display.isEmpty()) {
                                     PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.LIQUID_FOUNTAIN).addData(buf -> {

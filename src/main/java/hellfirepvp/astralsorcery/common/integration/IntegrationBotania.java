@@ -39,7 +39,7 @@ public class IntegrationBotania {
         }
         Block matchBlock = ((BlockItem) match.getItem()).getBlock();
 
-        IItemHandler handler = player.getnet.neoforged.neoforge.capabilities(net.neoforged.neoforge.capabilitiesItemHandler.ITEM_HANDLER_CAPABILITY).orElse(ItemUtils.EMPTY_INVENTORY);
+        IItemHandler handler = player.getCapability(net.neoforged.neoforge.items.capability.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(ItemUtils.EMPTY_INVENTORY);
         for (int j = 0; j < handler.getSlots(); j++) {
             ItemStack s = handler.getStackInSlot(j);
             Item sItem = s.getItem();
@@ -65,7 +65,7 @@ public class IntegrationBotania {
         }
 
         Block consumeBlock = ((BlockItem) toConsume.getItem()).getBlock();
-        IItemHandler handler = player.getnet.neoforged.neoforge.capabilities(net.neoforged.neoforge.capabilitiesItemHandler.ITEM_HANDLER_CAPABILITY).orElse(ItemUtils.EMPTY_INVENTORY);
+        IItemHandler handler = player.getCapability(net.neoforged.neoforge.items.capability.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(ItemUtils.EMPTY_INVENTORY);
         for (int j = 0; j < handler.getSlots(); j++) {
             ItemStack s = handler.getStackInSlot(j);
             Item sItem = s.getItem();

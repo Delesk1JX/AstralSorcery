@@ -36,7 +36,7 @@ public class ItemPerkSeal extends Item {
     }
 
     public static int getPlayerSealCount(Player player) {
-        Lazy<IItemHandler> cap = player.getnet.neoforged.neoforge.capabilities(net.neoforged.neoforge.capabilitiesItemHandler.ITEM_HANDLER_CAPABILITY, null);
+        Lazy<IItemHandler> cap = player.getCapability(net.neoforged.neoforge.items.capability.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
         return getPlayerSealCount(cap.orElse(null));
     }
 
@@ -49,7 +49,7 @@ public class ItemPerkSeal extends Item {
     }
 
     public static boolean useSeal(Player player, boolean simulate) {
-        return useSeal((IItemHandlerModifiable) player.getnet.neoforged.neoforge.capabilities(net.neoforged.neoforge.capabilitiesItemHandler.ITEM_HANDLER_CAPABILITY, null).orElse(null), simulate);
+        return useSeal((IItemHandlerModifiable) player.getCapability(net.neoforged.neoforge.items.capability.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).orElse(null), simulate);
     }
 
     public static boolean useSeal(IItemHandlerModifiable inv, boolean simulate) {

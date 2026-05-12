@@ -61,7 +61,7 @@ public class ItemColoredLensPush extends ItemColoredLens {
                     dir.getY() + 0.04F,
                     Math.min(1F, eMotion.z + dir.getZ())
             );
-            entity.setMotion(MiscUtils.limitVelocityToMinecraftLimit(motion).tonet.minecraft.world.phys.Vec3());
+            entity.setMotion(MiscUtils.limitVelocityToMinecraftLimit(motion).toVec3());
         }
 
         @Override

@@ -62,7 +62,7 @@ public class MantleEffectLucerna extends MantleEffect {
             this.playBlockHighlight(player, ColorsAS.MANTLE_LUCERNA_SPAWNER, (tileEntity) -> tileEntity instanceof MobSpawnerTileEntity);
         }
         if (CONFIG.findChests.get() && rand.nextInt(10) == 0) {
-            this.playBlockHighlight(player, ColorsAS.MANTLE_LUCERNA_INVENTORY, (tileEntity) -> tileEntity.getnet.neoforged.neoforge.capabilities(net.neoforged.neoforge.capabilitiesItemHandler.ITEM_HANDLER_CAPABILITY).isPresent());
+            this.playBlockHighlight(player, ColorsAS.MANTLE_LUCERNA_INVENTORY, (tileEntity) -> tileEntity.getCapability(net.neoforged.neoforge.items.capability.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).isPresent());
         }
     }
 

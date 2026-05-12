@@ -307,10 +307,10 @@ public class TileSpectralRelay extends TileEntityTick {
 
     @Nonnull
     @Override
-    public <T> Lazy<T> getnet.neoforged.neoforge.capabilities(@Nonnull net.neoforged.neoforge.capabilities<T> cap, @Nullable Direction side) {
-        if (this.inventory.hasnet.neoforged.neoforge.capabilities(cap, side)) {
-            return this.inventory.getnet.neoforged.neoforge.capabilities().cast();
+    public <T> Lazy<T> getCapability(@Nonnull net.neoforged.neoforge.common.capabilities.Capability<T> cap, @Nullable Direction side) {
+        if (this.inventory.hasCapability(cap, side)) {
+            return this.inventory.getCapability().cast();
         }
-        return super.getnet.neoforged.neoforge.capabilities(cap, side);
+        return super.getCapability(cap, side);
     }
 }
