@@ -57,38 +57,34 @@ public class TickManager {
     }
     
     @SubscribeEvent
-    public void onServerTick(TickEvent.ServerTickEvent event) {
-        if (!canFireForPhase(event.getPhase())) {
-            return;
-        }
-        for (ITickHandler handler : serverTickHandlers) {
-            if (handler.canFire(event.getPhase())) {
-                try {
-                    handler.tick(TickEvent.Type.SERVER, event.getServer());
-                } catch (Exception e) {
-                    CommonProxy.LOGGER.error("Error during tick in handler: " + handler.getName(), e);
-                }
-            }
-        }
+    public void onServerTick(ServerTickEvent.Pre event) {
+        fireTicks(TickEvent.Phase.START, serverTickHandlers, TickEvent.Type.SERVER);
     }
     
     @SubscribeEvent
-    public void onClientTick(TickEvent.ClientTickEvent event) {
-        if (!canFireForPhase(event.getPhase())) {
-            return;
-        }
-        for (ITickHandler handler : clientTickHandlers) {
-            if (handler.canFire(event.getPhase())) {
+    public void onServerTickPost(ServerTickEvent.Post event) {
+        fireTicks(TickEvent.Phase.END, serverTickHandlers, TickEvent.Type.SERVER);
+    }
+    
+    @SubscribeEvent
+    public void onClientTick(ClientTickEvent.Pre event) {
+        fireTicks(TickEvent.Phase.START, clientTickHandlers, TickEvent.Type.CLIENT);
+    }
+    
+    @SubscribeEvent
+    public void onClientTickPost(ClientTickEvent.Post event) {
+        fireTicks(TickEvent.Phase.END, clientTickHandlers, TickEvent.Type.CLIENT);
+    }
+    
+    private void fireTicks(TickEvent.Phase phase, List<ITickHandler> handlers, TickEvent.Type type) {
+        for (ITickHandler handler : handlers) {
+            if (handler.canFire(phase)) {
                 try {
-                    handler.tick(TickEvent.Type.CLIENT, event.getMinecraft());
+                    handler.tick(type);
                 } catch (Exception e) {
                     CommonProxy.LOGGER.error("Error during tick in handler: " + handler.getName(), e);
                 }
             }
         }
-    }
-    
-    private boolean canFireForPhase(TickEvent.Phase phase) {
-        return phase == TickEvent.Phase.END;
     }
 }

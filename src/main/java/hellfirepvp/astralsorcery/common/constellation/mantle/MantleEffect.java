@@ -21,7 +21,7 @@ import hellfirepvp.astralsorcery.common.item.armor.ItemMantle;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
-import hellfirepvp.observerlib.common.util.tick.ITickHandler;
+import hellfirepvp.astralsorcery.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -33,11 +33,10 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import net.neoforged.neoforge.event.tick.ClientTickEvent;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import net.minecraft.world.item.Item;
 
 import javax.annotation.Nonnull;
 import java.awt.*;
@@ -52,7 +51,7 @@ import java.util.function.Consumer;
  * Created by HellFirePvP
  * Date: 17.02.2020 / 20:13
  */
-public abstract class MantleEffect extends DeferredHolder<MantleEffect> implements ITickHandler {
+public abstract class MantleEffect extends DeferredHolder<Item, MantleEffect> implements ITickHandler {
 
     protected static final Random rand = new Random();
 
@@ -60,8 +59,8 @@ public abstract class MantleEffect extends DeferredHolder<MantleEffect> implemen
     private final IWeakConstellation constellation;
 
     public MantleEffect(IWeakConstellation constellation) {
+        super(constellation.getRegistryName());
         this.constellation = constellation;
-        this.setRegistryName(this.constellation.getRegistryName());
         this.playerAffectionFlag = new PlayerAffectionFlags.NoOpAffectionFlag(AstralSorcery.key("mantle_effect_" + constellation.getSimpleName()));
 
         this.attachEventListeners(NeoForge.EVENT_BUS);

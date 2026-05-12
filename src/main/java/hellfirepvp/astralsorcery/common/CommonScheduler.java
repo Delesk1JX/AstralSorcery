@@ -10,9 +10,8 @@ package hellfirepvp.astralsorcery.common;
 
 import hellfirepvp.astralsorcery.common.util.Counter;
 import hellfirepvp.astralsorcery.common.util.tick.ITickHandler;
+import hellfirepvp.astralsorcery.common.util.tick.TickEvent;
 import net.minecraft.util.Tuple;
-import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import net.neoforged.neoforge.event.tick.ClientTickEvent;
 
 import java.util.EnumSet;
 import java.util.Iterator;
@@ -37,7 +36,6 @@ public class CommonScheduler implements ITickHandler {
     public void tick(TickEvent.Type type, Object... context) {
         inTick = true;
         synchronized (lock) {
-            inTick = true;
             Iterator<Tuple<Runnable, Counter>> iterator = queue.iterator();
             while (iterator.hasNext()) {
                 Tuple<Runnable, Counter> r = iterator.next();
