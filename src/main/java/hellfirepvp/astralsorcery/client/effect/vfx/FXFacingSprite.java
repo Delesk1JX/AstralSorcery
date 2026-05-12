@@ -18,7 +18,6 @@ import hellfirepvp.astralsorcery.client.resource.BlockAtlasTexture;
 import hellfirepvp.astralsorcery.client.resource.SpriteSheetResource;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-// RenderTypeDecorator - проверить ObserverLib
 import net.minecraft.util.Tuple;
 
 import java.awt.*;

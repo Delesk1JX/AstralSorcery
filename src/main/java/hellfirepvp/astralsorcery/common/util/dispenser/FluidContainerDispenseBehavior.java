@@ -51,7 +51,7 @@ public class FluidContainerDispenseBehavior extends DefaultDispenseItemBehavior 
     }
 
     @Override
-    protected ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
+    protected ItemStack dispenseStack(net.minecraft.core.BlockSource source, ItemStack stack) {
         if (FluidUtil.getFluidContained(stack).isPresent()) {
             return dumpContainer(source, stack);
         } else {
@@ -60,7 +60,7 @@ public class FluidContainerDispenseBehavior extends DefaultDispenseItemBehavior 
     }
 
     @Nonnull
-    private ItemStack fillContainer(IBlockSource source, ItemStack stack) {
+    private ItemStack fillContainer(net.minecraft.core.BlockSource source, ItemStack stack) {
         Level world = source.getWorld();
         Direction dispenserFacing = source.getBlockState().get(DispenserBlock.FACING);
         BlockPos blockpos = source.getBlockPos().offset(dispenserFacing);
@@ -84,7 +84,7 @@ public class FluidContainerDispenseBehavior extends DefaultDispenseItemBehavior 
     }
 
     @Nonnull
-    private ItemStack dumpContainer(IBlockSource source, @Nonnull ItemStack stack) {
+    private ItemStack dumpContainer(net.minecraft.core.BlockSource source, @Nonnull ItemStack stack) {
         ServerLevel world = source.getWorld();
         ItemStack singleStack = stack.copy();
         singleStack.setCount(1);

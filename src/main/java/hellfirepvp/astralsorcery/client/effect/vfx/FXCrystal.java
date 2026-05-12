@@ -21,7 +21,6 @@ import hellfirepvp.astralsorcery.client.resource.query.TextureQuery;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-// BufferDecoratorBuilder - проверить ObserverLib
 import net.minecraft.util.vector.Vector3f;
 
 import java.awt.*;

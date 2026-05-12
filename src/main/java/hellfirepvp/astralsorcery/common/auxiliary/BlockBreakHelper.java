@@ -105,7 +105,7 @@ public class BlockBreakHelper {
         }
 
         @Override
-        public void tick() {
+    public void tick() {
             idleTimeout++;
         }
 

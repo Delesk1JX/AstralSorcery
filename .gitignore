@@ -3,18 +3,48 @@
 *.class
 *.o
 *.obj
+*.exe
+*.dll
+*.so
+*.a
 *.out
+build/
 target/
 
 # Dependencies
 .gradle/
+libs/
+lib/
 
 # Logs and temp files
 *.log
 *.tmp
+*.swp
 
 # Editors
-.vscode/
 .idea/
+*.iml
+*.iws
+.vscode/
 
+# System files
+.DS_Store
+Thumbs.db
+
+# Coverage reports
+coverage/
+htmlcov/
+.coverage
+
+# Package manager
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+.mypy_cache/
+.pytest_cache/
+.nyc_output/
+coverage.xml
 ```

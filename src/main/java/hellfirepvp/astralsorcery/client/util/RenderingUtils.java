@@ -17,8 +17,6 @@ import hellfirepvp.astralsorcery.client.data.config.entry.RenderingConfig;
 import hellfirepvp.astralsorcery.client.effect.EntityComplexFX;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.reflection.ReflectionHelper;
-// BufferDecoratorBuilder - проверить ObserverLib
-// RenderTypeDecorator - проверить ObserverLib
 import hellfirepvp.observerlib.common.util.RegistryUtil;
 import net.minecraft.world.level.block.BlockRenderType;
 import net.minecraft.world.level.block.state.BlockState;
