@@ -66,7 +66,7 @@ import hellfirepvp.astralsorcery.common.util.tick.ITickHandler;
 import hellfirepvp.astralsorcery.common.util.tick.TickManager;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -84,14 +84,14 @@ import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
 import net.neoforged.neoforge.eventbus.api.IEventBus;
-import net.neoforged.api.distmarker.LogicalSide;
-import net.neoforged.neoforge.fml.LogicalSidedProvider;
-import net.neoforged.neoforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.neoforged.neoforge.fml.event.server.FMLServerStartedEvent;
-import net.neoforged.neoforge.fml.event.server.FMLServerStartingEvent;
-import net.neoforged.neoforge.fml.event.server.FMLServerStoppedEvent;
-import net.neoforged.neoforge.fml.event.server.FMLServerStoppingEvent;
+import net.neoforged.api.Dist;
+import net.neoforged.fml.LogicalSidedProvider;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.event.lifecycle.InterModEnqueueEvent;
+import net.neoforged.fml.event.lifecycle.FMLServerStartedEvent;
+import net.neoforged.fml.event.lifecycle.FMLServerStartingEvent;
+import net.neoforged.fml.event.lifecycle.FMLServerStoppedEvent;
+import net.neoforged.fml.event.lifecycle.FMLServerStoppingEvent;
 
 import java.io.File;
 import java.util.List;
@@ -292,7 +292,7 @@ public class CommonProxy {
     }
 
     public File getASServerDataDirectory() {
-        MinecraftServer server = LogicalSidedProvider.INSTANCE.get(LogicalSide.SERVER);
+        MinecraftServer server = LogicalSidedProvider.INSTANCE.get(Dist.SERVER);
         if (server == null) {
             return null;
         }
