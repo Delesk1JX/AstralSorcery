@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.client.resource.BlockAtlasTexture;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.ItemRenderer;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormat;
+import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.Tuple;
 import org.joml.Matrix4f;

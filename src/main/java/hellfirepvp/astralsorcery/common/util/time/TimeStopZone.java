@@ -43,14 +43,14 @@ public class TimeStopZone {
 
     final float range;
     final BlockPos offset;
-    private final World world;
+    private final Level world;
     private int ticksToLive;
 
     private boolean active = true;
 
     private final List<BlockEntity> cachedTiles = new LinkedList<>();
 
-    TimeStopZone(EntityTargetController ctrl, float range, BlockPos offset, World world, int tickLivespan) {
+    TimeStopZone(EntityTargetController ctrl, float range, BlockPos offset, Level world, int tickLivespan) {
         this.targetController = ctrl;
         this.range = range;
         this.offset = offset;
@@ -142,8 +142,8 @@ public class TimeStopZone {
         e.prevSwingProgress = e.swingProgress;
         e.prevDistanceWalkedModified = e.distanceWalkedModified;
 
-        if (!e.getEntityWorld().isRemote()) {
-            e.travel(Vector3d.ZERO);
+        if (!e.level.isRemote()) {
+            e.travel(net.minecraft.world.phys.Vec3.ZERO);
         }
 
         if (e instanceof EnderDragonEntity) {

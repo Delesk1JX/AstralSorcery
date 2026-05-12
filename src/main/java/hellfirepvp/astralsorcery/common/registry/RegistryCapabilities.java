@@ -10,13 +10,13 @@ package hellfirepvp.astralsorcery.common.registry;
 
 import hellfirepvp.astralsorcery.common.capability.ChunkFluidEntry;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.INBT;
+import net.minecraft.nbt.Tag;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.chunk.LevelChunk;
-import net.neoforged.neoforge.common.capabilities.Capability;
-import net.neoforged.neoforge.common.capabilities.ICapabilitySerializable;
-import net.neoforged.neoforge.common.util.INBTSerializable;
-import net.neoforged.neoforge.common.util.LazyOptional;
+
+import net.neoforged.neoforge.common.capabilities.Inet.neoforged.neoforge.capabilitiesSerializable;
+import net.neoforged.neoforge.common.util.TagSerializable;
+import net.neoforged.neoforge.common.util.Lazy;
 import net.neoforged.neoforge.event.AttachCapabilitiesEvent;
 import net.neoforged.bus.api.IEventBus;
 
@@ -41,30 +41,30 @@ public class RegistryCapabilities {
     public static void init(IEventBus eventBus) {
         registerDefault(ChunkFluidEntry.class, ChunkFluidEntry::new);
 
-        eventBus.addGenericListener(Chunk.class, RegistryCapabilities::attachChunkCapability);
+        eventBus.addGenericListener(Chunk.class, RegistryCapabilities::attachChunknet.neoforged.neoforge.capabilities);
     }
 
-    private static void attachChunkCapability(AttachCapabilitiesEvent<Chunk> chunkEvent) {
-        chunkEvent.addCapability(CHUNK_FLUID_KEY, serializeableProvider(CHUNK_FLUID.getDefaultInstance()));
+    private static void attachChunknet.neoforged.neoforge.capabilities(AttachCapabilitiesEvent<Chunk> chunkEvent) {
+        chunkEvent.addnet.neoforged.neoforge.capabilities(CHUNK_FLUID_KEY, serializeableProvider(CHUNK_FLUID.getDefaultInstance()));
     }
 
-    private static <T extends INBTSerializable<CompoundTag>> void registerDefault(Class<T> capabilityClass, Supplier<T> capProvider) {
+    private static <T extends TagSerializable<CompoundTag>> void registerDefault(Class<T> capabilityClass, Supplier<T> capProvider) {
         register(capabilityClass, serializeableStorage(), capProvider);
     }
 
-    private static <T> void register(Class<T> capabilityClass, Capability.IStorage<T> capStorage, Supplier<T> capProvider) {
-        CapabilityManager.INSTANCE.register(capabilityClass, capStorage, capProvider::get);
+    private static <T> void register(Class<T> capabilityClass, net.neoforged.neoforge.capabilities.IStorage<T> capStorage, Supplier<T> capProvider) {
+        net.neoforged.neoforge.capabilitiesManager.INSTANCE.register(capabilityClass, capStorage, capProvider::get);
     }
 
-    private static <E extends INBTSerializable<CompoundTag>> ICapabilitySerializable<CompoundTag> serializeableProvider(E defaultInstance) {
-        return new ICapabilitySerializable<CompoundTag>() {
+    private static <E extends TagSerializable<CompoundTag>> Inet.neoforged.neoforge.capabilitiesSerializable<CompoundTag> serializeableProvider(E defaultInstance) {
+        return new Inet.neoforged.neoforge.capabilitiesSerializable<CompoundTag>() {
             @Nonnull
             @Override
-            public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+            public <T> Lazy<T> getnet.neoforged.neoforge.capabilities(@Nonnull net.neoforged.neoforge.capabilities<T> cap, @Nullable Direction side) {
                 if (cap == CHUNK_FLUID) {
-                    return LazyOptional.of(() -> (T) defaultInstance);
+                    return Lazy.of(() -> (T) defaultInstance);
                 }
-                return LazyOptional.empty();
+                return Lazy.empty();
             }
 
             @Override
@@ -79,16 +79,16 @@ public class RegistryCapabilities {
         };
     }
 
-    private static <T extends INBTSerializable<CompoundTag>> Capability.IStorage<T> serializeableStorage() {
-        return new Capability.IStorage<T>() {
+    private static <T extends TagSerializable<CompoundTag>> net.neoforged.neoforge.capabilities.IStorage<T> serializeableStorage() {
+        return new net.neoforged.neoforge.capabilities.IStorage<T>() {
             @Nullable
             @Override
-            public INBT writeNBT(Capability<T> capability, T instance, Direction side) {
+            public Tag writeNBT(net.neoforged.neoforge.capabilities<T> capability, T instance, Direction side) {
                 return instance.serializeNBT();
             }
 
             @Override
-            public void readNBT(Capability<T> capability, T instance, Direction side, INBT nbt) {
+            public void readNBT(net.neoforged.neoforge.capabilities<T> capability, T instance, Direction side, Tag nbt) {
                 instance.deserializeNBT((CompoundTag) nbt);
             }
         };

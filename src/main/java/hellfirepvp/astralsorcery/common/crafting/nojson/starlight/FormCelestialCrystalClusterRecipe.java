@@ -73,7 +73,7 @@ public class FormCelestialCrystalClusterRecipe extends LiquidStarlightRecipe {
     }
 
     @Override
-    public boolean matches(ItemEntity trigger, World world, BlockPos at) {
+    public boolean matches(ItemEntity trigger, Level world, BlockPos at) {
         if (!world.getBlockState(at.down()).isTopSolid(world, at.down(), trigger, Direction.UP)) {
             return false;
         }
@@ -87,7 +87,7 @@ public class FormCelestialCrystalClusterRecipe extends LiquidStarlightRecipe {
     }
 
     @Override
-    public void doServerCraftTick(ItemEntity trigger, World world, BlockPos at) {
+    public void doServerCraftTick(ItemEntity trigger, Level world, BlockPos at) {
         Random r = new Random(Mth.getPositionRandom(at));
         if (!world.isRemote() && getAndIncrementCraftingTick(trigger) > 50 + r.nextInt(20)) {
             ItemStack crystalFound;
@@ -109,7 +109,7 @@ public class FormCelestialCrystalClusterRecipe extends LiquidStarlightRecipe {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void doClientEffectTick(ItemEntity trigger, World world, BlockPos at) {
+    public void doClientEffectTick(ItemEntity trigger, Level world, BlockPos at) {
         for (int i = 0; i < 3; i++) {
             Vector3 pos = Vector3.atEntityCorner(trigger);
             MiscUtils.applyRandomOffset(pos, rand, 0.15F);

@@ -12,7 +12,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.common.tile.TileCollectorCrystal;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 
 import java.awt.*;
@@ -31,7 +31,7 @@ public class RenderCollectorCrystal extends CustomTileEntityRenderer<TileCollect
     }
 
     @Override
-    public void render(TileCollectorCrystal tile, float pTicks, PoseStack renderStack, IRenderTypeBuffer renderTypeBuffer, int combinedLight, int combinedOverlay) {
+    public void render(TileCollectorCrystal tile, float pTicks, PoseStack renderStack, MultiBufferSource renderTypeBuffer, int combinedLight, int combinedOverlay) {
         if (!tile.doesSeeSky()) {
             return;
         }

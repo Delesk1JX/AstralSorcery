@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.time.TimeStopEffectHelper;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.util.RegistryKey;
+import net.minecraft.util.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.level.Level;
@@ -36,7 +36,7 @@ import java.util.Map;
  */
 public class DataTimeFreezeEffects extends AbstractData {
 
-    private final Map<RegistryKey<World>, List<TimeStopEffectHelper>> serverActiveFreezeZones = new HashMap<>();
+    private final Map<ResourceKey<Level>, List<TimeStopEffectHelper>> serverActiveFreezeZones = new HashMap<>();
 
     private final List<ServerSyncAction> scheduledServerSyncChanges = new LinkedList<>();
 
@@ -44,14 +44,14 @@ public class DataTimeFreezeEffects extends AbstractData {
         super(key);
     }
 
-    public void addNewEffect(RegistryKey<World> dim, TimeStopEffectHelper effectHelper) {
+    public void addNewEffect(ResourceKey<Level> dim, TimeStopEffectHelper effectHelper) {
         List<TimeStopEffectHelper> zones = serverActiveFreezeZones.computeIfAbsent(dim, (id) -> new LinkedList<>());
         zones.add(effectHelper);
         scheduledServerSyncChanges.add(new ServerSyncAction(ServerSyncAction.ActionType.ADD, dim, effectHelper));
         markDirty();
     }
 
-    public void removeEffect(RegistryKey<World> dim, TimeStopEffectHelper effectHelper) {
+    public void removeEffect(ResourceKey<Level> dim, TimeStopEffectHelper effectHelper) {
         if (serverActiveFreezeZones.containsKey(dim)) {
             serverActiveFreezeZones.get(dim).remove(effectHelper);
         }
@@ -60,7 +60,7 @@ public class DataTimeFreezeEffects extends AbstractData {
     }
 
     @Override
-    public void clear(RegistryKey<World> dim) {
+    public void clear(ResourceKey<Level> dim) {
         this.serverActiveFreezeZones.remove(dim);
     }
 
@@ -73,7 +73,7 @@ public class DataTimeFreezeEffects extends AbstractData {
     @Override
     public void writeAllDataToPacket(CompoundTag compound) {
         CompoundTag dimTag = new CompoundTag();
-        for (RegistryKey<World> dim : this.serverActiveFreezeZones.keySet()) {
+        for (ResourceKey<Level> dim : this.serverActiveFreezeZones.keySet()) {
             ListTag tagList = new ListTag();
             for (TimeStopEffectHelper effect : this.serverActiveFreezeZones.get(dim)) {
                 tagList.add(effect.serializeNBT());
@@ -98,10 +98,10 @@ public class DataTimeFreezeEffects extends AbstractData {
 
         private final ActionType type;
 
-        private final RegistryKey<World> dim;
+        private final ResourceKey<Level> dim;
         private final TimeStopEffectHelper involvedEffect;
 
-        private ServerSyncAction(ActionType type, RegistryKey<World> dim, TimeStopEffectHelper involvedEffect) {
+        private ServerSyncAction(ActionType type, ResourceKey<Level> dim, TimeStopEffectHelper involvedEffect) {
             this.type = type;
             this.dim = dim;
             this.involvedEffect = involvedEffect;
@@ -123,7 +123,7 @@ public class DataTimeFreezeEffects extends AbstractData {
         public static ServerSyncAction deserializeNBT(CompoundTag cmp) {
             ActionType type = MiscUtils.getEnumEntry(ActionType.class, cmp.getInt("type"));
             String dimKey = cmp.getString("dimType");
-            RegistryKey<World> dim = RegistryKey.getOrCreateKey(Registry.WORLD_KEY, new ResourceLocation(dimKey));
+            ResourceKey<Level> dim = ResourceKey.getOrCreateKey(Registry.WORLD_KEY, new ResourceLocation(dimKey));
             TimeStopEffectHelper helper = null;
             switch (type) {
                 case ADD:
@@ -139,7 +139,7 @@ public class DataTimeFreezeEffects extends AbstractData {
             return involvedEffect;
         }
 
-        public RegistryKey<World> getDimKey() {
+        public ResourceKey<Level> getDimKey() {
             return dim;
         }
 

@@ -38,7 +38,7 @@ public class EventHelperEntityFreeze {
         SyncDataHolder.executeServer(SyncDataHolder.DATA_TIME_FREEZE_ENTITIES, DataTimeFreezeEntities.class, data -> {
             data.unfreezeEntity(entity);
         });
-    }, TickEvent.Type.SERVER);
+    }, net.neoforged.neoforge.event.tick.ClientTickEvent.SERVER);
 
     private EventHelperEntityFreeze() {}
 

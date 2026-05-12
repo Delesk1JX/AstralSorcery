@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.common.data.sync.client.ClientLightBlockEndpoin
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
-import net.minecraft.util.RegistryKey;
+import net.minecraft.util.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelAccessor;
@@ -32,16 +32,16 @@ import java.util.*;
  */
 public class DataLightBlockEndpoints extends AbstractData {
 
-    private final Map<RegistryKey<World>, Set<BlockPos>> serverPositions = new HashMap<>();
+    private final Map<ResourceKey<Level>, Set<BlockPos>> serverPositions = new HashMap<>();
 
-    private final Map<RegistryKey<World>, Map<BlockPos, Boolean>> serverChangeBuffer = new HashMap<>();
-    private final Set<RegistryKey<World>> dimensionClearBuffer = new HashSet<>();
+    private final Map<ResourceKey<Level>, Map<BlockPos, Boolean>> serverChangeBuffer = new HashMap<>();
+    private final Set<ResourceKey<Level>> dimensionClearBuffer = new HashSet<>();
 
     private DataLightBlockEndpoints(ResourceLocation key) {
         super(key);
     }
 
-    public void updateNewEndpoint(RegistryKey<World> dim, BlockPos pos) {
+    public void updateNewEndpoint(ResourceKey<Level> dim, BlockPos pos) {
         Map<BlockPos, Boolean> posMap = serverChangeBuffer.computeIfAbsent(dim, k -> new HashMap<>());
         posMap.put(pos, true);
 
@@ -50,7 +50,7 @@ public class DataLightBlockEndpoints extends AbstractData {
         markDirty();
     }
 
-    public void updateNewEndpoints(RegistryKey<World> dim, Collection<BlockPos> newPositions) {
+    public void updateNewEndpoints(ResourceKey<Level> dim, Collection<BlockPos> newPositions) {
         Map<BlockPos, Boolean> posMap = serverChangeBuffer.computeIfAbsent(dim, k -> new HashMap<>());
         for (BlockPos pos : newPositions) {
             posMap.put(pos, true);
@@ -61,7 +61,7 @@ public class DataLightBlockEndpoints extends AbstractData {
         markDirty();
     }
 
-    public void removeEndpoints(RegistryKey<World> dim, Collection<BlockPos> positions) {
+    public void removeEndpoints(ResourceKey<Level> dim, Collection<BlockPos> positions) {
         Map<BlockPos, Boolean> posMap = serverChangeBuffer.computeIfAbsent(dim, k -> new HashMap<>());
         for (BlockPos pos : positions) {
             posMap.put(pos, false);
@@ -73,12 +73,12 @@ public class DataLightBlockEndpoints extends AbstractData {
         }
     }
 
-    public boolean doesPositionReceiveStarlightServer(World world, BlockPos pos) {
+    public boolean doesPositionReceiveStarlightServer(Level world, BlockPos pos) {
         return this.serverPositions.getOrDefault(world.getDimensionKey(), Collections.emptySet()).contains(pos);
     }
 
     @Override
-    public void clear(RegistryKey<World> dim) {
+    public void clear(ResourceKey<Level> dim) {
         if (this.serverPositions.remove(dim) != null) {
             this.serverChangeBuffer.remove(dim);
             this.dimensionClearBuffer.add(dim);
@@ -95,7 +95,7 @@ public class DataLightBlockEndpoints extends AbstractData {
 
     @Override
     public void writeAllDataToPacket(CompoundTag compound) {
-        for (RegistryKey<World> dim : serverPositions.keySet()) {
+        for (ResourceKey<Level> dim : serverPositions.keySet()) {
             Set<BlockPos> dat = serverPositions.get(dim);
 
             ListTag dataList = new ListTag();
@@ -112,12 +112,12 @@ public class DataLightBlockEndpoints extends AbstractData {
     @Override
     public void writeDiffDataToPacket(CompoundTag compound) {
         ListTag clearList = new ListTag();
-        for (RegistryKey<World> dim : this.dimensionClearBuffer) {
+        for (ResourceKey<Level> dim : this.dimensionClearBuffer) {
             clearList.add(StringTag.valueOf(dim.getLocation().toString()));
         }
         compound.put("clear", clearList);
 
-        for (RegistryKey<World> dim : this.serverChangeBuffer.keySet()) {
+        for (ResourceKey<Level> dim : this.serverChangeBuffer.keySet()) {
             if (this.dimensionClearBuffer.contains(dim)) {
                 continue;
             }

@@ -28,8 +28,8 @@ import hellfirepvp.astralsorcery.common.network.play.client.PktDiscoverConstella
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormat;
+import net.minecraft.client.renderer.VertexConsumer;
+import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import org.joml.Matrix4f;
@@ -164,7 +164,7 @@ public abstract class ConstellationDiscoveryScreen<D extends ConstellationDiscov
         });
     }
 
-    private void drawLine(BufferBuilder buf, PoseStack renderStack, float pTicks, Point from, Point to, Supplier<Float> brightnessFn, float lineBreadth) {
+    private void drawLine(VertexConsumer buf, PoseStack renderStack, float pTicks, Point from, Point to, Supplier<Float> brightnessFn, float lineBreadth) {
         float brightness = brightnessFn.get();
         float starBr = this.multiplyStarBrightness(pTicks, brightness);
         if (starBr <= 0.0F) {
@@ -331,7 +331,7 @@ public abstract class ConstellationDiscoveryScreen<D extends ConstellationDiscov
     }
 
     protected boolean canObserverSeeSky(BlockPos pos, int xzWidth) {
-        World world = Minecraft.getInstance().world;
+        Level world = Minecraft.getInstance().world;
         if (world == null) {
             return false;
         }

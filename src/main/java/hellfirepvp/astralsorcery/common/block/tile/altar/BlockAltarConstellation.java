@@ -32,7 +32,7 @@ import javax.annotation.Nullable;
  */
 public class BlockAltarConstellation extends BlockAltar implements LargeBlock {
 
-    private static final AxisAlignedBB PLACEMENT_BOX = new AxisAlignedBB(-1, 0, -1, 1, 1, 1);
+    private static final AABB PLACEMENT_BOX = new AABB(-1, 0, -1, 1, 1, 1);
 
     private final VoxelShape shape;
 
@@ -42,7 +42,7 @@ public class BlockAltarConstellation extends BlockAltar implements LargeBlock {
     }
 
     @Override
-    public AxisAlignedBB getBlockSpace() {
+    public AABB getBlockSpace() {
         return PLACEMENT_BOX;
     }
 

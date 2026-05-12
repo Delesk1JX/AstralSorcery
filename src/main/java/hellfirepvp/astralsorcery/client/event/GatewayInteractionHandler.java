@@ -68,7 +68,7 @@ public class GatewayInteractionHandler {
 
     private static void onAccessRevoke(PlayerInteractEvent.RightClickBlock event) {
         Player player = event.getPlayer();
-        World world = event.getWorld();
+        Level world = event.getWorld();
         if (player == null || world == null || !world.isRemote() || event.getHand() != Hand.MAIN_HAND) {
             return;
         }
@@ -101,7 +101,7 @@ public class GatewayInteractionHandler {
 
     private static void clientTick(TickEvent.ClientTickEvent event) {
         Player player = Minecraft.getInstance().player;
-        World world = Minecraft.getInstance().world;
+        Level world = Minecraft.getInstance().world;
         if (player == null || world == null) {
             focusingEntry = null;
             focusTicks = 0;
@@ -222,7 +222,7 @@ public class GatewayInteractionHandler {
             return;
         }
 
-        if (event.phase == TickEvent.Phase.START) {
+        if (event.phase == net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.START) {
             fovPre = Minecraft.getInstance().gameSettings.fov;
             if(focusTicks < 80) {
                 return;

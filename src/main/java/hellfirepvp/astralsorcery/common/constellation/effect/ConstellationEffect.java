@@ -50,7 +50,7 @@ import java.util.Random;
 public abstract class ConstellationEffect {
 
     protected static final Random rand = new Random();
-    protected static final AxisAlignedBB BOX = new AxisAlignedBB(0, 0, 0, 1, 1, 1);
+    protected static final AABB BOX = new AABB(0, 0, 0, 1, 1, 1);
 
     private final IWeakConstellation cst;
     private final ILocatable pos;
@@ -70,12 +70,12 @@ public abstract class ConstellationEffect {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public abstract void playClientEffect(World world, BlockPos pos, TileRitualPedestal pedestal, float alphaMultiplier, boolean extended);
+    public abstract void playClientEffect(Level world, BlockPos pos, TileRitualPedestal pedestal, float alphaMultiplier, boolean extended);
 
-    public abstract boolean playEffect(World world, BlockPos pos, ConstellationEffectProperties properties, @Nullable IMinorConstellation trait) ;
+    public abstract boolean playEffect(Level world, BlockPos pos, ConstellationEffectProperties properties, @Nullable IMinorConstellation trait) ;
 
     @Nullable
-    public TileRitualPedestal getPedestal(World world, BlockPos pos) {
+    public TileRitualPedestal getPedestal(Level world, BlockPos pos) {
         BlockEntity te = MiscUtils.getTileAt(world, pos, BlockEntity.class, false);
         if (te instanceof TileRitualLink) {
             TileRitualLink link = (TileRitualLink) te;
@@ -117,7 +117,7 @@ public abstract class ConstellationEffect {
     public void writeToNBT(CompoundTag cmp) {}
 
     @Nullable
-    public Player getOwningPlayerInWorld(World world, BlockPos pos) {
+    public Player getOwningPlayerInWorld(Level world, BlockPos pos) {
         TileRitualPedestal pedestal = getPedestal(world, pos);
         if (pedestal != null) {
             return pedestal.getOwner();
@@ -125,11 +125,11 @@ public abstract class ConstellationEffect {
         return null;
     }
 
-    public void sendConstellationPing(World world, Vector3 at) {
+    public void sendConstellationPing(Level world, Vector3 at) {
         sendConstellationPing(world, at, this.getConstellation());
     }
 
-    public static void sendConstellationPing(World world, Vector3 at, IConstellation cst) {
+    public static void sendConstellationPing(Level world, Vector3 at, IConstellation cst) {
         PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.CONSTELLATION_EFFECT_PING)
                 .addData(buf -> {
                     ByteBufUtils.writeVector(buf, at);
@@ -139,7 +139,7 @@ public abstract class ConstellationEffect {
     }
 
     protected void markPlayerAffected(Player player) {
-        if (player.getEntityWorld().isRemote()) {
+        if (player.level.isRemote()) {
             return;
         }
         PlayerAffectionFlags.markPlayerAffected(player, this.getPlayerAffectionFlag());

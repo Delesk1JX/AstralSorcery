@@ -38,7 +38,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.fml.LogicalSide;
 
 import java.util.LinkedList;
@@ -61,7 +61,7 @@ public class ItemTome extends Item implements PerkExperienceRevealer {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, Player player, Hand hand) {
+    public ActionResult<ItemStack> onItemRightClick(Level world, Player player, Hand hand) {
         if (world.isRemote() && !player.isSneaking()) {
             AstralSorcery.getProxy().openGui(player, GuiType.TOME);
         } else if (!world.isRemote() && player.isSneaking() && hand == Hand.MAIN_HAND && player instanceof ServerPlayer) {
@@ -73,7 +73,7 @@ public class ItemTome extends Item implements PerkExperienceRevealer {
 
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
-        World world = context.getWorld();
+        Level world = context.getWorld();
         BlockState blockstate = world.getBlockState(context.getPos());
         if (blockstate.getBlock() instanceof LecternBlock) {
             return LecternBlock.tryPlaceBook(world, context.getPos(), blockstate, context.getItem()) ? ActionResultType.SUCCESS : ActionResultType.PASS;
@@ -97,7 +97,7 @@ public class ItemTome extends Item implements PerkExperienceRevealer {
     public static List<IConstellation> getStoredConstellations(ItemStack stack, Player player) {
         LinkedList<IConstellation> out = new LinkedList<>();
 
-        PlayerProgress prog = ResearchHelper.getProgress(player, player.getEntityWorld().isRemote() ? LogicalSide.CLIENT : LogicalSide.SERVER);
+        PlayerProgress prog = ResearchHelper.getProgress(player, player.level.isRemote() ? LogicalSide.CLIENT : LogicalSide.SERVER);
         if (prog.isValid()) {
             prog.getStoredConstellationPapers().stream()
                     .map(ConstellationRegistry::getConstellation)

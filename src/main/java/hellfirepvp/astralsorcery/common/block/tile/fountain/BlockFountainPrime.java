@@ -19,7 +19,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.IWorldReader;
+import net.minecraft.world.LevelAccessor;
 
 import javax.annotation.Nonnull;
 
@@ -41,7 +41,7 @@ public abstract class BlockFountainPrime extends Block implements CustomItemBloc
     public abstract FountainEffect<?> provideEffect();
 
     @Override
-    public BlockState updatePostPlacement(BlockState state, Direction placedAgainst, BlockState facingState, IWorld world, BlockPos pos, BlockPos facingPos) {
+    public BlockState updatePostPlacement(BlockState state, Direction placedAgainst, BlockState facingState, ILevel world, BlockPos pos, BlockPos facingPos) {
         if (!this.isValidPosition(state, world, pos)) {
             return Blocks.AIR.getDefaultState();
         }
@@ -49,7 +49,7 @@ public abstract class BlockFountainPrime extends Block implements CustomItemBloc
     }
 
     @Override
-    public boolean isValidPosition(BlockState state, IWorldReader world, BlockPos pos) {
+    public boolean isValidPosition(BlockState state, LevelAccessor world, BlockPos pos) {
         return world.getBlockState(pos.up()).getBlock() instanceof BlockFountain;
     }
 }

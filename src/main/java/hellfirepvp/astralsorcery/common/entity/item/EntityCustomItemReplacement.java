@@ -20,15 +20,15 @@ public class EntityCustomItemReplacement extends ItemEntity {
     @Nullable
     private ItemEntity replacedEntity;
 
-    public EntityCustomItemReplacement(EntityType<? extends ItemEntity> type, World world) {
+    public EntityCustomItemReplacement(EntityType<? extends ItemEntity> type, Level world) {
         super(type, world);
     }
 
-    public EntityCustomItemReplacement(World worldIn, double x, double y, double z) {
+    public EntityCustomItemReplacement(Level worldIn, double x, double y, double z) {
         super(worldIn, x, y, z);
     }
 
-    public EntityCustomItemReplacement(World worldIn, double x, double y, double z, ItemStack stack) {
+    public EntityCustomItemReplacement(Level worldIn, double x, double y, double z, ItemStack stack) {
         super(worldIn, x, y, z, stack);
     }
 

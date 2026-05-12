@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.item.dust;
 
 import hellfirepvp.astralsorcery.common.CommonProxy;
-import net.minecraft.core.BlockSource;
+import net.minecraft.core.dispenser.DispenseItemContext;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -27,7 +27,7 @@ import net.minecraft.world.level.Level;
  * Created by HellFirePvP
  * Date: 17.08.2019 / 08:44
  */
-public abstract class ItemUsableDust extends Item implements IDispenseItemBehavior {
+public abstract class ItemUsableDust extends Item implements DispenseItemBehavior {
 
     public ItemUsableDust() {
         super(new Properties().group(CommonProxy.ITEM_GROUP_AS));
@@ -35,7 +35,7 @@ public abstract class ItemUsableDust extends Item implements IDispenseItemBehavi
 
     abstract boolean dispense(IBlockSource dispenser);
 
-    abstract boolean rightClickAir(World world, Player player, ItemStack dust);
+    abstract boolean rightClickAir(Level world, Player player, ItemStack dust);
 
     abstract boolean rightClickBlock(ItemUseContext ctx);
 
@@ -52,7 +52,7 @@ public abstract class ItemUsableDust extends Item implements IDispenseItemBehavi
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, Player player, Hand hand) {
+    public ActionResult<ItemStack> onItemRightClick(Level world, Player player, Hand hand) {
         ItemStack held = player.getHeldItem(hand);
         if (!held.isEmpty() && !world.isRemote()) {
             if (this.rightClickAir(world, player, held)) {

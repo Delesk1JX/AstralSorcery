@@ -18,8 +18,8 @@ import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.Util;
+import net.minecraft.util.ResourceKey;
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
@@ -40,13 +40,13 @@ import java.util.UUID;
  */
 public class PktRevokeGatewayAccess extends ASPacket<PktRevokeGatewayAccess> {
 
-    private RegistryKey<World> dim = null;
+    private ResourceKey<Level> dim = null;
     private BlockPos pos = BlockPos.ZERO;
     private UUID revokeUUID = null;
 
     public PktRevokeGatewayAccess() {}
 
-    public PktRevokeGatewayAccess(RegistryKey<World> dim, BlockPos pos, UUID revokeUUID) {
+    public PktRevokeGatewayAccess(ResourceKey<Level> dim, BlockPos pos, UUID revokeUUID) {
         this.dim = dim;
         this.pos = pos;
         this.revokeUUID = revokeUUID;
@@ -82,7 +82,7 @@ public class PktRevokeGatewayAccess extends ASPacket<PktRevokeGatewayAccess> {
                 }
 
                 MinecraftServer srv = LogicalSidedProvider.INSTANCE.get(LogicalSide.SERVER);
-                World world = srv.getWorld(packet.dim);
+                Level world = srv.getWorld(packet.dim);
 
                 TileCelestialGateway gateway = MiscUtils.getTileAt(world, packet.pos, TileCelestialGateway.class, false);
                 if (gateway != null && gateway.isLocked() && gateway.getOwner() != null && gateway.getOwner().isPlayer(sender)) {

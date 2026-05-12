@@ -129,7 +129,7 @@ public class IndependentCrystalSource implements IIndependentStarlightSource {
             if (other.equals(thisPos)) {
                 continue;
             }
-            double dstSq = thisPos.distanceSq(Vector3d.copy(other), false);
+            double dstSq = thisPos.distanceSq(net.minecraft.world.phys.Vec3.copy(other), false);
             if (dstSq < minDstSq) {
                 minDstSq = dstSq;
                 closest = other;

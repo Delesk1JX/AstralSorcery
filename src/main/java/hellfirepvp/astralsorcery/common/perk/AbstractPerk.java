@@ -141,7 +141,7 @@ public class AbstractPerk implements ModifierSource {
     protected void removePerkLogic(Player player, LogicalSide dist) {}
 
     protected LogicalSide getSide(Entity entity) {
-        return entity.getEntityWorld().isRemote() ? LogicalSide.CLIENT : LogicalSide.SERVER;
+        return entity.level.isRemote() ? LogicalSide.CLIENT : LogicalSide.SERVER;
     }
 
     @Nullable

@@ -52,7 +52,7 @@ public class ItemInfusedCrystalPickaxe extends ItemCrystalPickaxe implements Equ
             new CacheReference<>(() -> new DynamicAttributeModifier(MODIFIER_ID, PerkAttributeTypesAS.ATTR_TYPE_MINING_SIZE, ModifierType.ADDITION, 1F));
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, Player player, Hand hand) {
+    public ActionResult<ItemStack> onItemRightClick(Level world, Player player, Hand hand) {
         ItemStack held = player.getHeldItem(hand);
         if (this.doOreScan(world, player.getPosition(), player, held)) {
             return ActionResult.resultSuccess(held);
@@ -71,7 +71,7 @@ public class ItemInfusedCrystalPickaxe extends ItemCrystalPickaxe implements Equ
         return super.onItemUse(ctx);
     }
 
-    private boolean doOreScan(World world, BlockPos origin, Player player, ItemStack stack) {
+    private boolean doOreScan(Level world, BlockPos origin, Player player, ItemStack stack) {
         if (!world.isRemote() && player instanceof ServerPlayer && !MiscUtils.isPlayerFakeMP((ServerPlayer) player)) {
             if (stack.getItem() instanceof ItemInfusedCrystalPickaxe && !player.getCooldownTracker().hasCooldown(stack.getItem())) {
                 PlayerProgress prog = ResearchHelper.getProgress(player, LogicalSide.SERVER);

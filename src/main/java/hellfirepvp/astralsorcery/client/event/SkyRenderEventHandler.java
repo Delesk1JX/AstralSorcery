@@ -30,7 +30,7 @@ import net.neoforged.fml.LogicalSide;
 public class SkyRenderEventHandler {
 
     public static void onRender(RenderWorldLastEvent event) {
-        ClientWorld world = Minecraft.getInstance().world;
+        ClientLevel world = Minecraft.getInstance().world;
         if (world != null && world.func_239132_a_().func_241683_c_() == DimensionRenderInfo.FogType.NORMAL) {
             ISkyRenderHandler render = world.func_239132_a_().getSkyRenderHandler();
             if (!(render instanceof ChainingSkyRenderer)) {
@@ -43,7 +43,7 @@ public class SkyRenderEventHandler {
     }
 
     public static void onFog(EntityViewRenderEvent.FogColors event) {
-        ClientWorld world = Minecraft.getInstance().world;
+        ClientLevel world = Minecraft.getInstance().world;
         if (world != null) {
             String strDimKey = world.getDimensionKey().getLocation().toString();
             if (world.func_239132_a_().func_241683_c_() == DimensionRenderInfo.FogType.NORMAL &&

@@ -46,7 +46,7 @@ public abstract class ItemColoredLens extends Item implements ItemDynamicColor {
     @Override
     public ActionResultType onItemUse(ItemUseContext ctx) {
         Player player = ctx.getPlayer();
-        World world = ctx.getWorld();
+        Level world = ctx.getWorld();
         if (!world.isRemote() && player != null) {
             TileLens lens = MiscUtils.getTileAt(world, ctx.getPos(), TileLens.class, false);
             if (lens != null) {

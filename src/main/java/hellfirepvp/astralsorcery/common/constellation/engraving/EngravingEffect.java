@@ -19,7 +19,7 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.EnchantmentType;
+
 import net.minecraft.world.item.*;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
@@ -40,7 +40,7 @@ import java.util.stream.Collectors;
  * Created by HellFirePvP
  * Date: 01.05.2020 / 11:37
  */
-public class EngravingEffect extends DeferredHolder<EngravingEffect> {
+public class EngravingEffect extends DeferredHolder<net.neoforged.neoforge.registries.RegistryKey<EngravingEffect>, EngravingEffect> {
 
     private final List<ApplicableEffect> effects = new ArrayList<>();
 
@@ -73,7 +73,7 @@ public class EngravingEffect extends DeferredHolder<EngravingEffect> {
         private final ModifierType type;
         private final float min, max;
 
-        private final List<EnchantmentType> applicableTypes = new ArrayList<>();
+        private final List<net.minecraft.world.item.enchantment.Enchantment> applicableTypes = new ArrayList<>();
         private boolean formatToInteger = false;
 
         public ModifierEffect(Supplier<PerkAttributeType> modifier, ModifierType type, float min, float max) {
@@ -83,7 +83,7 @@ public class EngravingEffect extends DeferredHolder<EngravingEffect> {
             this.max = max;
         }
 
-        public ModifierEffect addApplicableType(EnchantmentType type) {
+        public ModifierEffect addApplicableType(net.minecraft.world.item.enchantment.Enchantment type) {
             this.applicableTypes.add(type);
             return this;
         }
@@ -103,7 +103,7 @@ public class EngravingEffect extends DeferredHolder<EngravingEffect> {
             }
             Item item = stack.getItem();
             if (this.applicableTypes.isEmpty()) {
-                for (EnchantmentType type : EnchantmentType.values()) {
+                for (net.minecraft.world.item.enchantment.Enchantment type : net.minecraft.world.item.enchantment.Enchantment.values()) {
                     if (type.canEnchantItem(item)) {
                         return true;
                     }
@@ -112,7 +112,7 @@ public class EngravingEffect extends DeferredHolder<EngravingEffect> {
                     }
                 }
             }
-            for (EnchantmentType type : this.applicableTypes) {
+            for (net.minecraft.world.item.enchantment.Enchantment type : this.applicableTypes) {
                 if (type.canEnchantItem(item)) {
                     return true;
                 }

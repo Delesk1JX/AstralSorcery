@@ -24,7 +24,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.Tags;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -56,25 +56,25 @@ public abstract class LiquidStarlightRecipe extends CustomRecipe {
 
     public abstract boolean doesStartRecipe(ItemStack item);
 
-    public abstract boolean matches(ItemEntity trigger, World world, BlockPos at);
+    public abstract boolean matches(ItemEntity trigger, Level world, BlockPos at);
 
-    public abstract void doServerCraftTick(ItemEntity trigger, World world, BlockPos at);
+    public abstract void doServerCraftTick(ItemEntity trigger, Level world, BlockPos at);
 
     @OnlyIn(Dist.CLIENT)
-    public abstract void doClientEffectTick(ItemEntity trigger, World world, BlockPos at);
+    public abstract void doClientEffectTick(ItemEntity trigger, Level world, BlockPos at);
 
-    protected final List<Entity> getEntitiesInBlock(IWorld world, BlockPos pos) {
-        return world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(pos));
+    protected final List<Entity> getEntitiesInBlock(ILevel world, BlockPos pos) {
+        return world.getEntitiesWithinAABB(Entity.class, new AABB(pos));
     }
 
     @Nullable
-    protected final ItemStack consumeItemEntityInBlock(IWorld world, BlockPos pos, Item itemClass) {
+    protected final ItemStack consumeItemEntityInBlock(ILevel world, BlockPos pos, Item itemClass) {
         return consumeItemEntityInBlock(world, pos, 1, stack ->
                 itemClass.getClass().isAssignableFrom(stack.getItem().getClass()));
     }
 
     @Nullable
-    protected final ItemStack consumeItemEntityInBlock(IWorld world, BlockPos pos, int count, Predicate<ItemStack> match) {
+    protected final ItemStack consumeItemEntityInBlock(ILevel world, BlockPos pos, int count, Predicate<ItemStack> match) {
         List<Entity> entities = getEntitiesInBlock(world, pos).stream()
                 .filter(e -> e instanceof ItemEntity)
                 .collect(Collectors.toList());
@@ -103,7 +103,7 @@ public abstract class LiquidStarlightRecipe extends CustomRecipe {
     }
 
     protected final void setCraftingTick(Entity e, int tick) {
-        long wTick = e.getEntityWorld().getGameTime();
+        long wTick = e.level.getGameTime();
 
         CompoundTag nbt = NBTHelper.getPersistentData(e);
         nbt.putInt("craftTick", tick);
@@ -111,10 +111,10 @@ public abstract class LiquidStarlightRecipe extends CustomRecipe {
     }
 
     protected final int getCraftingTick(Entity e) {
-        long wTick = e.getEntityWorld().getGameTime();
+        long wTick = e.level.getGameTime();
 
         CompoundTag nbt = NBTHelper.getPersistentData(e);
-        if (!nbt.contains("wCraftTick", Constants.NBT.TAG_LONG)) {
+        if (!nbt.contains("wCraftTick", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_LONG)) {
             return 0;
         }
 

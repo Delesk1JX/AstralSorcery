@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.block.base.template.BlockSandTemplate;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
-import net.minecraft.world.IWorldReader;
+import net.minecraft.world.LevelAccessor;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -24,7 +24,7 @@ import net.minecraft.world.IWorldReader;
 public class BlockAquamarineSandOre extends BlockSandTemplate {
 
     @Override
-    public int getExpDrop(BlockState state, IWorldReader world, BlockPos pos, int fortune, int silktouch) {
+    public int getExpDrop(BlockState state, LevelAccessor world, BlockPos pos, int fortune, int silktouch) {
         return silktouch == 0 ? fortune * Mth.nextInt(RANDOM, 2, 5) : 0;
     }
 }

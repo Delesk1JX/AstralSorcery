@@ -39,6 +39,6 @@ public interface BlockStarlightRecipient {
      * @param starlightType the constellation type of the starlight received
      * @param amount the amount received
      */
-    public void receiveStarlight(World world, Random rand, BlockPos pos, IWeakConstellation starlightType, double amount);
+    public void receiveStarlight(Level world, Random rand, BlockPos pos, IWeakConstellation starlightType, double amount);
 
 }

@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.item.crystal.ItemAttunedCelestialCrystal
 import hellfirepvp.astralsorcery.common.item.crystal.ItemAttunedRockCrystal;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.common.tile.TileRitualPedestal;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.world.item.ItemStack;
 
@@ -37,7 +37,7 @@ public class RenderRitualPedestal extends CustomTileEntityRenderer<TileRitualPed
     }
 
     @Override
-    public void render(TileRitualPedestal tile, float pTicks, PoseStack renderStack, IRenderTypeBuffer renderTypeBuffer, int combinedLight, int combinedOverlay) {
+    public void render(TileRitualPedestal tile, float pTicks, PoseStack renderStack, MultiBufferSource renderTypeBuffer, int combinedLight, int combinedOverlay) {
         ItemStack stack = tile.getCurrentCrystal();
         if (stack.isEmpty()) {
             return;

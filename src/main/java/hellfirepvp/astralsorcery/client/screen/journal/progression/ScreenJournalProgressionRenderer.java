@@ -24,7 +24,7 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.data.research.ResearchProgression;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormat;
+import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.util.Mth;
 import org.joml.Matrix4f;
 import net.minecraft.network.chat.FormattedText;

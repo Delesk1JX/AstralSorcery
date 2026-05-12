@@ -30,8 +30,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.Util;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.Util;
 import net.minecraft.util.Mth;
 import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
@@ -61,7 +61,7 @@ public class ItemShiftingStar extends Item implements PerkExperienceRevealer {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         IConstellation cst = this.getBaseConstellation();
         if (cst != null) {
             if (ResearchHelper.getClientProgress().hasConstellationDiscovered(cst)) {
@@ -73,13 +73,13 @@ public class ItemShiftingStar extends Item implements PerkExperienceRevealer {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, Player playerIn, Hand handIn) {
+    public ActionResult<ItemStack> onItemRightClick(Level worldIn, Player playerIn, Hand handIn) {
         playerIn.setActiveHand(handIn);
         return super.onItemRightClick(worldIn, playerIn, handIn);
     }
 
     @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
+    public ItemStack onItemUseFinish(ItemStack stack, Level worldIn, LivingEntity entityLiving) {
         if (!worldIn.isRemote() && entityLiving instanceof ServerPlayer) {
             ServerPlayer player = (ServerPlayer) entityLiving;
             IMajorConstellation cst = this.getBaseConstellation();
@@ -107,7 +107,7 @@ public class ItemShiftingStar extends Item implements PerkExperienceRevealer {
 
     @Override
     public void onUsingTick(ItemStack stack, LivingEntity player, int count) {
-        if (player.getEntityWorld().isRemote()) {
+        if (player.level.isRemote()) {
             this.playUseEffects(player, getUseDuration(stack) - count, getUseDuration(stack));
         }
     }

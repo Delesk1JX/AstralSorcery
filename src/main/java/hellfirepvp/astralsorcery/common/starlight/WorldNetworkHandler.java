@@ -39,18 +39,18 @@ import java.util.List;
 public class WorldNetworkHandler {
 
     private final LightNetworkBuffer buffer;
-    private final World world;
+    private final Level world;
 
-    public WorldNetworkHandler(LightNetworkBuffer lightNetworkBuffer, World world) {
+    public WorldNetworkHandler(LightNetworkBuffer lightNetworkBuffer, Level world) {
         this.buffer = lightNetworkBuffer;
         this.world = world;
     }
 
-    public World getWorld() {
+    public Level getWorld() {
         return world;
     }
 
-    public static WorldNetworkHandler getNetworkHandler(World world) {
+    public static WorldNetworkHandler getNetworkHandler(Level world) {
         return DataAS.DOMAIN_AS.getData(world, DataAS.KEY_STARLIGHT_NETWORK).getNetworkHandler(world);
     }
 
@@ -77,7 +77,7 @@ public class WorldNetworkHandler {
         for (Tuple<BlockPos, IIndependentStarlightSource> source : getAllSources()) {
             if (!source.getB().providesAutoLink()) continue;
 
-            if (source.getA().distanceSq(Vector3d.copy(at), false) <= 256) {
+            if (source.getA().distanceSq(net.minecraft.world.phys.Vec3.copy(at), false) <= 256) {
                 IPrismTransmissionNode node = getTransmissionNode(source.getA());
                 if (node == null) {
                     AstralSorcery.log.warn("Didn't find a TransmissionNode at a position that's supposed to be a source!");
@@ -107,7 +107,7 @@ public class WorldNetworkHandler {
         for (Tuple<BlockPos, IIndependentStarlightSource> source : getAllSources()) {
             if (!source.getB().providesAutoLink()) continue;
 
-            if (source.getA().distanceSq(Vector3d.copy(at), false) <= 256) {
+            if (source.getA().distanceSq(net.minecraft.world.phys.Vec3.copy(at), false) <= 256) {
                 IPrismTransmissionNode node = getTransmissionNode(source.getA());
                 if (node == null) {
                     AstralSorcery.log.warn("Didn't find a TransmissionNode at a position that's supposed to be a source!");
@@ -141,8 +141,8 @@ public class WorldNetworkHandler {
         return null;
     }
 
-    public void markDirty(Vector3i... positions) {
-        for (Vector3i pos : positions) {
+    public void markDirty(net.minecraft.core.Vec3i... positions) {
+        for (net.minecraft.core.Vec3i pos : positions) {
             buffer.markDirty(pos);
         }
     }

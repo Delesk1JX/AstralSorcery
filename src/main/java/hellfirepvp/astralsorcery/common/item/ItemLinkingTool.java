@@ -48,7 +48,7 @@ public class ItemLinkingTool extends Item implements IItemLinkingTool {
 
     @Override
     public boolean doBlockInteract(LogicalSide side, Player player, Hand hand, BlockPos pos, Direction face) {
-        World world = player.getEntityWorld();
+        Level world = player.level;
         if (!world.isRemote()) {
             LinkHandler.LinkSession session = LinkHandler.getActiveSession(player);
             if (session != null && session.getType() == LinkHandler.LinkType.ENTITY) {
@@ -74,7 +74,7 @@ public class ItemLinkingTool extends Item implements IItemLinkingTool {
             return false;
         }
         LivingEntity target = (LivingEntity) interacted;
-        World world = player.getEntityWorld();
+        Level world = player.level;
         if (!world.isRemote()) {
             LinkHandler.LinkSession session = LinkHandler.getActiveSession(player);
             if (session == null || session.getType() == LinkHandler.LinkType.ENTITY) {

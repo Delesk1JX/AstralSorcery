@@ -14,12 +14,12 @@ import hellfirepvp.astralsorcery.common.base.patreon.entity.PatreonPartialEntity
 import hellfirepvp.astralsorcery.common.data.sync.base.ClientData;
 import hellfirepvp.astralsorcery.common.data.sync.base.ClientDataReader;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.INBT;
+import net.minecraft.nbt.Tag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.world.DimensionType;
+import net.minecraft.util.ResourceKey;
+import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
@@ -52,7 +52,7 @@ public class ClientPatreonFlares extends ClientData<ClientPatreonFlares> {
     }
 
     @Override
-    public void clear(RegistryKey<World> dim) {}
+    public void clear(ResourceKey<Level> dim) {}
 
     @Override
     public void clearClient() {
@@ -65,15 +65,15 @@ public class ClientPatreonFlares extends ClientData<ClientPatreonFlares> {
         public void readFromIncomingFullSync(ClientPatreonFlares data, CompoundTag compound) {
             data.entitiesClient.clear();
 
-            ListTag entities = compound.getList("entities", Constants.NBT.TAG_COMPOUND);
-            for (INBT iNBT : entities) {
+            ListTag entities = compound.getList("entities", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
+            for (Tag iNBT : entities) {
                 CompoundTag tag = (CompoundTag) iNBT;
 
                 UUID playerUUID = tag.getUniqueId("playerUUID");
                 Set<PatreonPartialEntity> entitySet = new HashSet<>();
 
-                ListTag entityList = tag.getList("entityList", Constants.NBT.TAG_COMPOUND);
-                for (INBT iEntityTag : entityList) {
+                ListTag entityList = tag.getList("entityList", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
+                for (Tag iEntityTag : entityList) {
                     CompoundTag entityNBT = (CompoundTag) iEntityTag;
 
                     UUID effectUUID = entityNBT.getUniqueId("id");
@@ -99,15 +99,15 @@ public class ClientPatreonFlares extends ClientData<ClientPatreonFlares> {
 
         @Override
         public void readFromIncomingDiff(ClientPatreonFlares data, CompoundTag compound) {
-            ListTag entities = compound.getList("updates", Constants.NBT.TAG_COMPOUND);
-            for (INBT iNBT : entities) {
+            ListTag entities = compound.getList("updates", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
+            for (Tag iNBT : entities) {
                 CompoundTag tag = (CompoundTag) iNBT;
 
                 UUID playerUUID = tag.getUniqueId("playerUUID");
                 Set<PatreonPartialEntity> entitySet = data.entitiesClient.computeIfAbsent(playerUUID, p -> new HashSet<>());
 
-                ListTag entityList = tag.getList("entityList", Constants.NBT.TAG_COMPOUND);
-                for (INBT iEntityTag : entityList) {
+                ListTag entityList = tag.getList("entityList", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
+                for (Tag iEntityTag : entityList) {
                     CompoundTag entityNBT = (CompoundTag) iEntityTag;
 
                     UUID effectUUID = entityNBT.getUniqueId("id");
@@ -134,8 +134,8 @@ public class ClientPatreonFlares extends ClientData<ClientPatreonFlares> {
                 }
             }
 
-            ListTag removals = compound.getList("removals", Constants.NBT.TAG_COMPOUND);
-            for (INBT iNBT : removals) {
+            ListTag removals = compound.getList("removals", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
+            for (Tag iNBT : removals) {
                 CompoundTag tag = (CompoundTag) iNBT;
 
                 UUID playerUUID = tag.getUniqueId("playerUUID");

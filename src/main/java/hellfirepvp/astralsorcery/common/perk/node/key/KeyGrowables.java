@@ -68,7 +68,7 @@ public class KeyGrowables extends KeyPerk implements PlayerTickPerk {
                     rand.nextInt(rRadius * 2) + 1 - rRadius,
                     rand.nextInt(rRadius * 2) + 1 - rRadius,
                     rand.nextInt(rRadius * 2) + 1 - rRadius);
-            World w = player.getEntityWorld();
+            Level w = player.level;
             CropHelper.GrowablePlant plant = CropHelper.wrapPlant(w, pos);
             PktPlayEffect pkt = null;
             if (plant != null) {

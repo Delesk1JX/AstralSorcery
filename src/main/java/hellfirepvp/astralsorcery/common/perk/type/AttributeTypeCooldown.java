@@ -44,7 +44,7 @@ public class AttributeTypeCooldown extends PerkAttributeType {
 
     private void onCooldown(CooldownSetEvent event) {
         Player player = event.getPlayer();
-        World world = player.getEntityWorld();
+        Level world = player.level;
 
         if (world.isRemote()) {
             return;

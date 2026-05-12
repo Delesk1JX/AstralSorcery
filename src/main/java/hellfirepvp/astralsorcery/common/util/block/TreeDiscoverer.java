@@ -30,19 +30,19 @@ import java.util.Stack;
 public class TreeDiscoverer {
 
     @Nonnull
-    public static BlockArray findTreeAt(World world, BlockPos at, boolean checkCorners) {
+    public static BlockArray findTreeAt(Level world, BlockPos at, boolean checkCorners) {
         return findTreeAt(world, at, checkCorners, -1);
     }
 
     @Nonnull
-    public static BlockArray findTreeAt(World world, BlockPos at, boolean checkCorners, int xzLimit) {
+    public static BlockArray findTreeAt(Level world, BlockPos at, boolean checkCorners, int xzLimit) {
         int xzLimitSq = xzLimit == -1 ? -1 : xzLimit * xzLimit;
         BlockArray out = new BlockArray();
         findTree(world, at, xzLimitSq, checkCorners, out);
         return out;
     }
 
-    private static void findTree(World world, BlockPos at, int xzLimitSq, boolean checkCorners, BlockArray out) {
+    private static void findTree(Level world, BlockPos at, int xzLimitSq, boolean checkCorners, BlockArray out) {
         //The gist: we start at a LOG and eventually might find a LEAF
         //If we don't find a log instantly, stop. If we find something different than what we found before, stop.
         //Match against blocks, not tags, not specific states.
@@ -104,7 +104,7 @@ public class TreeDiscoverer {
         }
     }
 
-    private static double flatDistanceSq(Vector3i from, Vector3i to) {
+    private static double flatDistanceSq(net.minecraft.core.Vec3i from, net.minecraft.core.Vec3i to) {
         double xDiff = (double) from.getX() - to.getX();
         double zDiff = (double) from.getZ() - to.getZ();
         return xDiff * xDiff + zDiff * zDiff;

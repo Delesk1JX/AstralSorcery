@@ -21,7 +21,7 @@ import hellfirepvp.astralsorcery.client.resource.query.TextureQuery;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import hellfirepvp.observerlib.client.util.BufferDecoratorBuilder;
+// BufferDecoratorBuilder - проверить ObserverLib
 import net.minecraft.util.vector.Vector3f;
 
 import java.awt.*;
@@ -90,7 +90,7 @@ public class FXCrystal extends EntityVisualFX implements EntityDynamicFX {
         renderStack.rotate(Vector3f.YP.rotationDegrees((float) rotation.getY()));
         renderStack.rotate(Vector3f.ZP.rotationDegrees((float) rotation.getZ()));
 
-        BufferDecoratorBuilder.withColor((r, g, b, a) -> new int[] { c.getRed(), c.getGreen(), c.getBlue(), alpha})
+        VertexFormat.(r, g, b, a) -> new int[] { c.getRed(), c.getGreen(), c.getBlue(), alpha})
                 .decorate(drawBuffer.getBuffer(ctx.getRenderType()),
                         decorated -> ObjModelRender.renderCrystal(renderStack, decorated, drawBuffer::draw));
 

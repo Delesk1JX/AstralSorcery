@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.data.config.registry.sets.FluidRarityEnt
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.nbt.CompoundTag;
-import net.neoforged.neoforge.common.util.INBTSerializable;
+import net.neoforged.neoforge.common.util.TagSerializable;
 import net.neoforged.neoforge.fluids.FluidAttributes;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
@@ -28,7 +28,7 @@ import java.util.Random;
  * Created by HellFirePvP
  * Date: 25.04.2020 / 10:26
  */
-public class ChunkFluidEntry implements INBTSerializable<CompoundTag> {
+public class ChunkFluidEntry implements TagSerializable<CompoundTag> {
 
     private FluidStack chunkFluid = FluidStack.EMPTY;
     private int mbAmount = 0;

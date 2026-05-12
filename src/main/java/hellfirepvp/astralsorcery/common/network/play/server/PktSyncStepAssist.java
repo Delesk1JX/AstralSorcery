@@ -14,7 +14,7 @@ import net.minecraft.world.entity.player.Player;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.network.NetworkEvent;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import javax.annotation.Nonnull;
 
@@ -57,7 +57,7 @@ public class PktSyncStepAssist extends ASPacket<PktSyncStepAssist> {
         return new Handler<PktSyncStepAssist>() {
             @Override
             @OnlyIn(Dist.CLIENT)
-            public void handleClient(PktSyncStepAssist packet, NetworkEvent.Context context) {
+            public void handleClient(PktSyncStepAssist packet, IPayloadContext context) {
                 context.enqueueWork(() -> {
                     Player player = Minecraft.getInstance().player;
                     if (player != null) {
@@ -67,7 +67,7 @@ public class PktSyncStepAssist extends ASPacket<PktSyncStepAssist> {
             }
 
             @Override
-            public void handle(PktSyncStepAssist packet, NetworkEvent.Context context, LogicalSide side) {}
+            public void handle(PktSyncStepAssist packet, IPayloadContext context, LogicalSide side) {}
         };
     }
 }

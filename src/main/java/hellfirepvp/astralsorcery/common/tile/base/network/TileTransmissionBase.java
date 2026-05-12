@@ -19,14 +19,14 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.world.level.block.entity.TileEntityType;
-import net.minecraft.util.Util;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Style;
 import net.minecraft.ChatFormatting;
 import static net.minecraft.network.chat.Component.translatable;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.Tags;
 
 import javax.annotation.Nonnull;
 import java.util.LinkedList;
@@ -43,7 +43,7 @@ public abstract class TileTransmissionBase<T extends IPrismTransmissionNode> ext
 
     private final List<BlockPos> positions = new LinkedList<>();
 
-    protected TileTransmissionBase(TileEntityType<?> tileEntityTypeIn) {
+    protected TileTransmissionBase(BlockEntityType<?> tileEntityTypeIn) {
         super(tileEntityTypeIn);
     }
 
@@ -80,7 +80,7 @@ public abstract class TileTransmissionBase<T extends IPrismTransmissionNode> ext
         positions.clear();
 
         if (compound.contains("linked")) {
-            ListTag list = compound.getList("linked", Constants.NBT.TAG_COMPOUND);
+            ListTag list = compound.getList("linked", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
             for (int i = 0; i < list.size(); i++) {
                 CompoundTag tag = list.getCompound(i);
                 positions.add(NBTHelper.readBlockPosFromNBT(tag));
@@ -116,7 +116,7 @@ public abstract class TileTransmissionBase<T extends IPrismTransmissionNode> ext
 
     @Override
     @Nonnull
-    public World getTrWorld() {
+    public Level getTrWorld() {
         return getWorld();
     }
 

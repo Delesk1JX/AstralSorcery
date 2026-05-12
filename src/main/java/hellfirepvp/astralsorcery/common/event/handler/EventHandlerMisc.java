@@ -21,7 +21,7 @@ import net.minecraft.world.entity.AreaEffectCloudEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.LecternTileEntity;
-import net.minecraft.world.ISeedReader;
+import net.minecraft.world.WorldGenLevel;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.chunk.ChunkAccess;
@@ -51,7 +51,7 @@ public class EventHandlerMisc {
     }
 
     private static void onCrystalToss(ItemTossEvent event) {
-        if (!event.getPlayer().getEntityWorld().isRemote()) {
+        if (!event.getPlayer().level.isRemote()) {
             ItemStack thrown = event.getEntityItem().getItem();
             if (thrown.getItem() instanceof ItemCrystalBase) {
                 event.getEntityItem().setThrowerId(event.getPlayer().getUniqueID());
@@ -76,11 +76,11 @@ public class EventHandlerMisc {
     private static void onChunkLoad(ChunkEvent.Load event) {
         IChunk ch = event.getChunk();
         if (ch instanceof Chunk && !event.getWorld().isRemote()) {
-            ((Chunk) ch).getCapability(CapabilitiesAS.CHUNK_FLUID).ifPresent(entry -> {
+            ((Chunk) ch).getnet.neoforged.neoforge.capabilities(CapabilitiesAS.CHUNK_FLUID).ifPresent(entry -> {
                 if (!entry.isInitialized()) {
                     IWorld w = event.getWorld();
-                    if (w instanceof ISeedReader) {
-                        long seed = ((ISeedReader) w).getSeed();
+                    if (w instanceof WorldGenLevel) {
+                        long seed = ((WorldGenLevel) w).getSeed();
                         long chX = event.getChunk().getPos().x;
                         long chZ = event.getChunk().getPos().z;
                         seed ^= chX << 32;
@@ -94,7 +94,7 @@ public class EventHandlerMisc {
     }
 
     private static void onPlayerSleepEclipse(PlayerSleepInBedEvent event) {
-        WorldContext ctx = SkyHandler.getContext(event.getEntityLiving().getEntityWorld());
+        WorldContext ctx = SkyHandler.getContext(event.getEntityLiving().level);
         if (ctx != null && ctx.getCelestialEventHandler().getSolarEclipse().isActiveNow()) {
             if (event.getResultStatus() == null) {
                 event.setResult(Player.SleepResult.NOT_POSSIBLE_NOW);

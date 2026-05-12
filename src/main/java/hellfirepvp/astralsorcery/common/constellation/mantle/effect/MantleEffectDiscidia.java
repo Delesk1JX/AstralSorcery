@@ -73,7 +73,7 @@ public class MantleEffectDiscidia extends MantleEffect {
 
     private void onAttack(LivingAttackEvent event) {
         LivingEntity attacked = event.getEntityLiving();
-        World world = attacked.getEntityWorld();
+        Level world = attacked.level;
         DamageSource source = event.getSource();
         Entity attacker = source.getTrueSource();
 
@@ -103,7 +103,7 @@ public class MantleEffectDiscidia extends MantleEffect {
     }
 
     private void onHurt(LivingHurtEvent event) {
-        World world = event.getEntity().getEntityWorld();
+        Level world = event.getEntity().level;
         LivingEntity hurt = event.getEntityLiving();
 
         if (world.isRemote()) {

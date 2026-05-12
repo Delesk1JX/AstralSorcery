@@ -20,7 +20,7 @@ import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigEntry;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
-import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.network.play.server.PktPlayEffect;
 import hellfirepvp.astralsorcery.common.tile.base.TileAreaOfInfluence;
@@ -40,7 +40,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.RegistryKey;
+import net.minecraft.util.ResourceKey;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;
@@ -48,7 +48,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.ModConfigSpec;
-import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.event.world.SaplingGrowTreeEvent;
 import net.neoforged.neoforge.eventbus.api.Event;
 import net.neoforged.fml.LogicalSide;
@@ -75,7 +75,7 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
     private float starlight = 0F;
 
     public TileTreeBeacon() {
-        super(TileEntityTypesAS.TREE_BEACON);
+        super(BlockEntityTypesAS.TREE_BEACON);
     }
 
     @Override
@@ -132,7 +132,7 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
         if (rand.nextFloat() > Config.CONFIG.dropChance.get()) {
             return true;
         }
-        World world = this.getWorld();
+        Level world = this.getWorld();
         if (!(world instanceof ServerLevel)) {
             return false;
         }
@@ -168,7 +168,7 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
                 .filter(pos -> !this.addComponent(pos))
                 .forEach(pos -> {
                     //Update blocks that didn't get a client notification
-                    world.markAndNotifyBlock(pos, world.getChunkAt(pos), Blocks.AIR.getDefaultState(), world.getBlockState(pos), Constants.BlockFlags.DEFAULT_AND_RERENDER, 512);
+                    world.markAndNotifyBlock(pos, world.getChunkAt(pos), Blocks.AIR.getDefaultState(), world.getBlockState(pos), net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.DEFAULT_AND_RERENDER, 512);
                 });
     }
 
@@ -177,13 +177,13 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
             return false;
         }
 
-        World world = this.getWorld();
+        Level world = this.getWorld();
         BlockState state = world.getBlockState(pos);
         if (!state.isAir(world, pos)) {
-            if (this.getWorld().setBlockState(pos, BlocksAS.TREE_BEACON_COMPONENT.getDefaultState(), Constants.BlockFlags.DEFAULT)) {
+            if (this.getWorld().setBlockState(pos, BlocksAS.TREE_BEACON_COMPONENT.getDefaultState(), net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.DEFAULT)) {
                 TileTreeBeaconComponent tfs = MiscUtils.getTileAt(world, pos, TileTreeBeaconComponent.class, true);
                 if (tfs == null) {
-                    this.getWorld().setBlockState(pos, state, Constants.BlockFlags.DEFAULT);
+                    this.getWorld().setBlockState(pos, state, net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.DEFAULT);
                     return false;
                 }
 
@@ -317,7 +317,7 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
 
     @Nonnull
     @Override
-    public RegistryKey<World> getDimension() {
+    public ResourceKey<Level> getDimension() {
         return this.getWorld().getDimensionKey();
     }
 
@@ -360,7 +360,7 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
         super.readCustomNBT(compound);
 
         this.treeComponents.clear();
-        ListTag componentList = compound.getList("components", Constants.NBT.TAG_COMPOUND);
+        ListTag componentList = compound.getList("components", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
         for (int i = 0; i < componentList.size(); i++) {
             CompoundTag tag = componentList.getCompound(i);
             this.treeComponents.put(NBTHelper.readBlockPosFromNBT(tag), tag.getInt("weight"));
@@ -444,7 +444,7 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
 
     public static class TreeWatcher {
 
-        private static final Map<RegistryKey<World>, Set<BlockPos>> WATCHERS = new HashMap<>();
+        private static final Map<ResourceKey<Level>, Set<BlockPos>> WATCHERS = new HashMap<>();
 
         public static void clearServerCache() {
             WATCHERS.clear();

@@ -22,7 +22,7 @@ import hellfirepvp.astralsorcery.common.item.base.IConstellationFocus;
 import hellfirepvp.astralsorcery.common.item.wand.WandInteractable;
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
 import hellfirepvp.astralsorcery.common.lib.SoundsAS;
-import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.network.play.server.PktPlayEffect;
 import hellfirepvp.astralsorcery.common.structure.types.StructureType;
@@ -51,12 +51,12 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
-import net.minecraft.world.ISeedReader;
+import net.minecraft.world.WorldGenLevel;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.ForgeHooks;
-import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
@@ -89,7 +89,7 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
     private Object clientWaitSound = null;
 
     public TileAltar() {
-        super(TileEntityTypesAS.ALTAR);
+        super(BlockEntityTypesAS.ALTAR);
         this.inventory = new TileInventoryFiltered(this, () -> 25);
     }
 
@@ -177,7 +177,7 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
         BlockPos at = ByteBufUtils.readPos(pkt.getExtraData());
         boolean isChaining = pkt.getExtraData().readBoolean();
 
-        World world = Minecraft.getInstance().world;
+        Level world = Minecraft.getInstance().world;
         if (world == null) {
             return;
         }
@@ -268,7 +268,7 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
     }
 
     @Override
-    public boolean onInteract(World world, BlockPos pos, Player player, Direction side, boolean sneak) {
+    public boolean onInteract(Level world, BlockPos pos, Player player, Direction side, boolean sneak) {
         if (!world.isRemote() && this.hasMultiblock()) {
             if (this.getActiveRecipe() != null) {
                 if (this.getActiveRecipe().matches(this, false, false)) {
@@ -306,8 +306,8 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
             this.collectStarlight(heightAmount * altarTier * 60F, AltarCollectionCategory.HEIGHT);
 
             if (posDistribution == -1) {
-                if (world instanceof ISeedReader) {
-                    posDistribution = SkyCollectionHelper.getSkyNoiseDistribution((ISeedReader) world, pos);
+                if (world instanceof WorldGenLevel) {
+                    posDistribution = SkyCollectionHelper.getSkyNoiseDistribution((WorldGenLevel) world, pos);
                 } else {
                     posDistribution = 0.3F;
                 }
@@ -435,8 +435,8 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public AxisAlignedBB getRenderBoundingBox() {
-        AxisAlignedBB box = super.getRenderBoundingBox().expand(0, 5, 0);
+    public AABB getRenderBoundingBox() {
+        AABB box = super.getRenderBoundingBox().expand(0, 5, 0);
         if (this.getAltarType().isThisGEThan(AltarType.RADIANCE)) {
             box = box.grow(3, 0, 3);
         }
@@ -482,9 +482,9 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
         this.altarType = AltarType.values()[compound.getInt("altarType")];
         this.inventory = this.inventory.deserialize(compound.getCompound("inventory"));
         this.focusItem = NBTHelper.getStack(compound, "focusItem");
-        this.knownRecipes = NBTHelper.readSet(compound, "knownRecipes", Constants.NBT.TAG_STRING, nbt -> new ResourceLocation(nbt.getString()));
+        this.knownRecipes = NBTHelper.readSet(compound, "knownRecipes", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_STRING, nbt -> new ResourceLocation(nbt.getString()));
 
-        if (compound.contains("activeRecipe", Constants.NBT.TAG_COMPOUND)) {
+        if (compound.contains("activeRecipe", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND)) {
             this.activeRecipe = ActiveSimpleAltarRecipe.deserialize(compound.getCompound("activeRecipe"), this.activeRecipe);
         } else {
             this.activeRecipe = null;

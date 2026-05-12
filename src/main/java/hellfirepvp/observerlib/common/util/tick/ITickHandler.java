@@ -20,14 +20,14 @@ public interface ITickHandler {
      * @param type the type of tick (SERVER or CLIENT)
      * @param context additional context information (e.g., ServerLevel or ClientLevel)
      */
-    void tick(TickEvent.Type type, Object... context);
+    void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context);
     
     /**
      * Returns the set of tick types this handler wants to receive.
      * 
-     * @return EnumSet of TickEvent.Type that this handler handles
+     * @return EnumSet of net.neoforged.neoforge.event.tick.ClientTickEvent that this handler handles
      */
-    EnumSet<TickEvent.Type> getHandledTypes();
+    EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes();
     
     /**
      * Checks if this handler should fire for the given phase.
@@ -35,7 +35,7 @@ public interface ITickHandler {
      * @param phase the phase of the tick (START or END)
      * @return true if this handler should be called for this phase
      */
-    boolean canFire(TickEvent.Phase phase);
+    boolean canFire(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase);
     
     /**
      * Returns a name for this tick handler, useful for debugging.

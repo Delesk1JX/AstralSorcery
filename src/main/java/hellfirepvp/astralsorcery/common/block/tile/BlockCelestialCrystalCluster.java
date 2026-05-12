@@ -34,7 +34,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.util.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.IWorldReader;
+import net.minecraft.world.LevelAccessor;
 import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
@@ -72,7 +72,7 @@ public class BlockCelestialCrystalCluster extends BlockCrystalContainer implemen
     }
 
     @Override
-    public void receiveStarlight(World world, Random rand, BlockPos pos, IWeakConstellation starlightType, double amount) {
+    public void receiveStarlight(Level world, Random rand, BlockPos pos, IWeakConstellation starlightType, double amount) {
         TileCelestialCrystals crystals = MiscUtils.getTileAt(world, pos, TileCelestialCrystals.class, false);
         if (crystals != null) {
             crystals.grow((int) (TileCelestialCrystals.TICK_GROWTH_CHANCE / amount));
@@ -86,7 +86,7 @@ public class BlockCelestialCrystalCluster extends BlockCrystalContainer implemen
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context) {
-        Vector3d offset = state.getOffset(world, pos);
+        net.minecraft.world.phys.Vec3 offset = state.getOffset(world, pos);
         VoxelShape shape;
         switch (state.get(STAGE)) {
             case 4:
@@ -116,12 +116,12 @@ public class BlockCelestialCrystalCluster extends BlockCrystalContainer implemen
     /*
     TODO custom states via state container
     @Override
-    public Vector3d getOffset(BlockState state, IBlockReader world, BlockPos pos) {
+    public net.minecraft.world.phys.Vec3 getOffset(BlockState state, IBlockReader world, BlockPos pos) {
         return super.getOffset(state, world, pos).mul(0.7, 0.7, 0.7);
     }*/
 
     @Override
-    public BlockState updatePostPlacement(BlockState state, Direction placedAgainst, BlockState facingState, IWorld world, BlockPos pos, BlockPos facingPos) {
+    public BlockState updatePostPlacement(BlockState state, Direction placedAgainst, BlockState facingState, ILevel world, BlockPos pos, BlockPos facingPos) {
         if (!this.isValidPosition(state, world, pos)) {
             return Blocks.AIR.getDefaultState();
         }
@@ -129,12 +129,12 @@ public class BlockCelestialCrystalCluster extends BlockCrystalContainer implemen
     }
 
     @Override
-    public boolean isValidPosition(BlockState state, IWorldReader world, BlockPos pos) {
+    public boolean isValidPosition(BlockState state, LevelAccessor world, BlockPos pos) {
         return hasSolidSideOnTop(world, pos.down());
     }
 
     @Override
-    public void onReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean isMoving) {
+    public void onReplaced(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {
             super.onReplaced(state, world, pos, newState, isMoving);
 

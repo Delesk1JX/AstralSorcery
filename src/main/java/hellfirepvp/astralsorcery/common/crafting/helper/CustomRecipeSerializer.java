@@ -20,7 +20,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
  * Created by HellFirePvP
  * Date: 06.07.2019 / 20:38
  */
-public abstract class CustomRecipeSerializer<T extends CustomMatcherRecipe> extends DeferredHolder<IRecipeSerializer<?>> implements IRecipeSerializer<T> {
+public abstract class CustomRecipeSerializer<T extends CustomMatcherRecipe> extends DeferredHolder<net.neoforged.neoforge.registries.RegistryKey<IRecipeSerializer<?>, IRecipeSerializer<?>> implements IRecipeSerializer<T> {
 
     public CustomRecipeSerializer(ResourceLocation name) {
         this.setRegistryName(name);

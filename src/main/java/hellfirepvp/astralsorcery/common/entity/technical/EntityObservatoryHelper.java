@@ -43,7 +43,7 @@ public class EntityObservatoryHelper extends Entity {
 
     private static final DataParameter<BlockPos> FIXED = EntityDataManager.createKey(EntityObservatoryHelper.class, DataSerializers.BLOCK_POS);
 
-    public EntityObservatoryHelper(World worldIn) {
+    public EntityObservatoryHelper(Level worldIn) {
         super(EntityTypesAS.OBSERVATORY_HELPER, worldIn);
     }
 

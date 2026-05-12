@@ -53,7 +53,7 @@ public class ResultSpawnEntity extends InteractionResult {
     }
 
     @Override
-    public void doResult(World world, Vector3 at) {
+    public void doResult(Level world, Vector3 at) {
         Entity e = this.entityType.create(world);
         if (!(e instanceof LivingEntity)) {
             return;

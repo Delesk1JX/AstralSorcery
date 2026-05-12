@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.tile;
 
-import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
 import hellfirepvp.astralsorcery.common.tile.base.TileFakedState;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.nbt.CompoundTag;
@@ -28,7 +28,7 @@ public class TileTranslucentBlock extends TileFakedState {
     private UUID playerUUID = null;
 
     public TileTranslucentBlock() {
-        super(TileEntityTypesAS.TRANSLUCENT_BLOCK);
+        super(BlockEntityTypesAS.TRANSLUCENT_BLOCK);
     }
 
     @Nullable

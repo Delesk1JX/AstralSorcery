@@ -34,6 +34,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.util.*;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.fml.common.registry.IEntityAdditionalSpawnData;
@@ -66,11 +67,11 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
 
     private LivingEntity throwingEntity;
 
-    public EntityGrapplingHook(World world) {
+    public EntityGrapplingHook(Level world) {
         super(EntityTypesAS.GRAPPLING_HOOK, world);
     }
 
-    public EntityGrapplingHook(LivingEntity thrower, World world) {
+    public EntityGrapplingHook(LivingEntity thrower, Level world) {
         super(EntityTypesAS.GRAPPLING_HOOK, thrower, world);
         this.shoot(Vector3.directionFromYawPitch(thrower.rotationYaw, thrower.rotationPitch), 1.5F);
         this.throwingEntity = thrower;
@@ -186,14 +187,14 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
                     mx /= dist * 5.0D;
                     my /= dist * 5.0D;
                     mz /= dist * 5.0D;
-                    Vector3d v2 = new Vector3d(mx, my, mz);
+                    net.minecraft.world.phys.Vec3 v2 = new net.minecraft.world.phys.Vec3(mx, my, mz);
                     if (v2.length() > 0.25D) {
                         v2 = v2.normalize();
                         mx = v2.x / 4.0D;
                         my = v2.y / 4.0D;
                         mz = v2.z / 4.0D;
                     }
-                    Vector3d motion = thrower.getMotion();
+                    net.minecraft.world.phys.Vec3 motion = thrower.getMotion();
                     motion = motion.add(mx, my + 0.04F, mz);
                     if (!launchedThrower) {
                         motion = motion.add(0, 0.4F, 0);
@@ -272,7 +273,7 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
     }
 
     @Override
-    public AxisAlignedBB getRenderBoundingBox() {
+    public AABB getRenderBoundingBox() {
         return BlockEntity.INFINITE_EXTENT_AABB;
     }
 
@@ -313,7 +314,7 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
 
     @Override
     protected void onImpact(RayTraceResult result) {
-        Vector3d hit = result.getHitVec();
+        net.minecraft.world.phys.Vec3 hit = result.getHitVec();
         switch (result.getType()) {
             case BLOCK:
                 setPulling(true, null);
@@ -324,7 +325,7 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
                     return;
                 }
                 setPulling(true, (LivingEntity) ((EntityHitResult) result).getEntity());
-                hit = new Vector3d(hit.x, hit.y + ((EntityHitResult) result).getEntity().getHeight() * 3 / 4, hit.z);
+                hit = new net.minecraft.world.phys.Vec3(hit.x, hit.y + ((EntityHitResult) result).getEntity().getHeight() * 3 / 4, hit.z);
                 break;
             default:
                 break;

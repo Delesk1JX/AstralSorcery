@@ -70,7 +70,7 @@ public class BaseConfiguration {
         REGISTERED_CONFIGS.put(this.configType, this);
     }
 
-    public static void refreshConfiguration(ModConfig.Loading cfgLoadEvent) {
+    public static void refreshConfiguration(ModConfig.ModConfigEvent.Loading cfgLoadEvent) {
         ModConfig config = cfgLoadEvent.getConfig();
         if (config.getModId().equals(AstralSorcery.MODID)) {
             BaseConfiguration cfg = REGISTERED_CONFIGS.get(config.getType());

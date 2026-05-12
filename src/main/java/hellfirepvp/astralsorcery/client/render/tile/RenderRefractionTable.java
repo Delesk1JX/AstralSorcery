@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.client.model.builtin.ModelRefractionTable;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.common.tile.TileRefractionTable;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.util.vector.Vector3f;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
@@ -38,7 +38,7 @@ public class RenderRefractionTable extends CustomTileEntityRenderer<TileRefracti
     }
 
     @Override
-    public void render(TileRefractionTable tile, float pTicks, PoseStack renderStack, IRenderTypeBuffer renderTypeBuffer, int combinedLight, int combinedOverlay) {
+    public void render(TileRefractionTable tile, float pTicks, PoseStack renderStack, MultiBufferSource renderTypeBuffer, int combinedLight, int combinedOverlay) {
         if (!tile.hasParchment() && !tile.getInputStack().isEmpty()) {
             ItemStack input = tile.getInputStack();
 

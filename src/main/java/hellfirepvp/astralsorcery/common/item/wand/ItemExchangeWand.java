@@ -36,10 +36,10 @@ import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
-import hellfirepvp.observerlib.client.util.BufferDecoratorBuilder;
+// BufferDecoratorBuilder - проверить ObserverLib
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormat;
+import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.server.level.ServerPlayer;
@@ -82,7 +82,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         tooltip.add(getSizeMode(stack).getDisplay().withStyle(ChatFormatting.GOLD));
     }
 
@@ -117,7 +117,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
         if (hitResult == null) {
             return 0F;
         }
-        return getPlaceStates(player, player.getEntityWorld(), hitResult.getPos(), stack).size() * COST_PER_EXCHANGE;
+        return getPlaceStates(player, player.level, hitResult.getPos(), stack).size() * COST_PER_EXCHANGE;
     }
 
     @Override
@@ -127,7 +127,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
         if (hitResult == null) {
             return true;
         }
-        World world = Minecraft.getInstance().world;
+        Level world = Minecraft.getInstance().world;
         BlockPos at = hitResult.getPos();
         Map<BlockPos, BlockState> placeStates = getPlaceStates(Minecraft.getInstance().player, world, at, stack);
         if (placeStates.isEmpty()) {
@@ -138,7 +138,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
         BlockAtlasTexture.getInstance().bindTexture();
 
         int[] fullBright = new int[] { 15, 15 };
-        BufferDecoratorBuilder decorator = BufferDecoratorBuilder.withLightmap((skyLight, blockLight) -> fullBright);
+        BufferDecoratorBuilder decorator = VertexFormat.(skyLight, blockLight) -> fullBright);
         Vector3 offset = RenderingVectorUtils.getStandardTranslationRemovalVector(pTicks);
 
         RenderSystem.enableBlend();
@@ -173,7 +173,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
 
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
-        World world = context.getWorld();
+        Level world = context.getWorld();
         ItemStack stack = context.getItem();
         Player player = context.getPlayer();
         BlockPos pos = context.getPos();
@@ -229,7 +229,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, Player playerIn, Hand handIn) {
+    public ActionResult<ItemStack> onItemRightClick(Level worldIn, Player playerIn, Hand handIn) {
         ItemStack held = playerIn.getHeldItem(handIn);
         if (playerIn.isSneaking()) {
             SizeMode nextMode = getSizeMode(held).next();
@@ -240,7 +240,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
     }
 
     @Nonnull
-    private Map<BlockPos, BlockState> getPlaceStates(Player placer, World world, BlockPos origin, ItemStack refStack) {
+    private Map<BlockPos, BlockState> getPlaceStates(Player placer, Level world, BlockPos origin, ItemStack refStack) {
         Map<BlockState, Tuple<ItemStack, Integer>> tplStates = ItemBlockStorage.getInventoryMatching(placer, refStack);
         BlockState atState = world.getBlockState(origin);
         SizeMode mode = getSizeMode(refStack);

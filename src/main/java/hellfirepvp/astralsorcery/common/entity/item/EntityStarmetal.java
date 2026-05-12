@@ -40,20 +40,20 @@ import net.neoforged.neoforge.fml.network.NetworkHooks;
  */
 public class EntityStarmetal extends EntityCustomItemReplacement implements InteractableEntity {
 
-    public EntityStarmetal(EntityType<? extends ItemEntity> type, World world) {
+    public EntityStarmetal(EntityType<? extends ItemEntity> type, Level world) {
         super(type, world);
         ReflectionHelper.setSkipItemPhysicsRender(this);
         recalculateSize();
     }
 
-    public EntityStarmetal(EntityType<? extends ItemEntity> type, World world, double x, double y, double z) {
+    public EntityStarmetal(EntityType<? extends ItemEntity> type, Level world, double x, double y, double z) {
         this(type, world);
         this.setPosition(x, y, z);
         this.rotationYaw = this.rand.nextFloat() * 360.0F;
         this.setMotion(this.rand.nextDouble() * 0.2D - 0.1D, 0.2D, this.rand.nextDouble() * 0.2D - 0.1D);
     }
 
-    public EntityStarmetal(EntityType<? extends ItemEntity> type, World world, double x, double y, double z, ItemStack stack) {
+    public EntityStarmetal(EntityType<? extends ItemEntity> type, Level world, double x, double y, double z, ItemStack stack) {
         this(type, world, x, y, z);
         this.setItem(stack);
         this.lifespan = stack.isEmpty() ? 6000 : stack.getEntityLifespan(world);
@@ -75,7 +75,7 @@ public class EntityStarmetal extends EntityCustomItemReplacement implements Inte
 
     @Override
     public boolean hitByEntity(Entity entity) {
-        if (!this.getEntityWorld().isRemote() && entity instanceof ServerPlayer) {
+        if (!this.level.isRemote() && entity instanceof ServerPlayer) {
             ItemStack held = ((ServerPlayer) entity).getHeldItem(Hand.MAIN_HAND);
             if (!held.isEmpty() && held.getItem() instanceof ItemChisel) {
 

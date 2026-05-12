@@ -21,7 +21,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.Util;
+import net.minecraft.Util;
 import static net.minecraft.network.chat.Component.literal;
 import net.minecraft.ChatFormatting;
 import static net.minecraft.network.chat.Component.translatable;

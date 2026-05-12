@@ -29,7 +29,7 @@ import net.minecraft.world.chunk.ChunkStatus;
 public class EventHandlerAutoLink implements BlockChangeNotifier.Listener {
 
     @Override
-    public void onChange(World world, Chunk chunk, BlockPos pos, BlockState oldState, BlockState newState) {
+    public void onChange(Level world, Chunk chunk, BlockPos pos, BlockState oldState, BlockState newState) {
         if (world.isRemote() || !chunk.getStatus().isAtLeast(ChunkStatus.FULL)) {
             return;
         }

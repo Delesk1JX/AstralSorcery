@@ -21,7 +21,7 @@ import hellfirepvp.astralsorcery.common.data.world.GatewayCache;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.common.lib.DataAS;
 import hellfirepvp.astralsorcery.common.lib.StructureTypesAS;
-import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
 import hellfirepvp.astralsorcery.common.network.play.server.PktPlayEffect;
 import hellfirepvp.astralsorcery.common.structure.types.StructureType;
 import hellfirepvp.astralsorcery.common.tile.base.TileEntityTick;
@@ -39,7 +39,7 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.INameable;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.Util;
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.network.chat.Component;
@@ -47,7 +47,7 @@ import net.minecraft.ChatFormatting;
 import static net.minecraft.network.chat.Component.translatable;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.Tags;
 
 import javax.annotation.Nullable;
 import java.awt.*;
@@ -100,7 +100,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
     private Object clientGatewaySphereEffect = null;
 
     public TileCelestialGateway() {
-        super(TileEntityTypesAS.GATEWAY);
+        super(BlockEntityTypesAS.GATEWAY);
     }
 
     @Override
@@ -400,7 +400,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
         this.locked = compound.getBoolean("locked");
         this.owner = NBTHelper.readOptional(compound, "owningPlayer", PlayerReference::deserialize);
         this.allowedUsers.clear();
-        NBTHelper.readList(compound, "allowedUsers", Constants.NBT.TAG_COMPOUND, nbt -> {
+        NBTHelper.readList(compound, "allowedUsers", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND, nbt -> {
             CompoundTag tag = (CompoundTag) nbt;
             return new Tuple<>(tag.getInt("index"), PlayerReference.deserialize(tag.getCompound("player")));
         }).forEach(tpl -> this.allowedUsers.put(tpl.getA(), tpl.getB()));

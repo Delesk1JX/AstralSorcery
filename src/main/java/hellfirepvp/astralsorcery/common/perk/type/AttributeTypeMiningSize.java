@@ -54,10 +54,10 @@ public class AttributeTypeMiningSize extends PerkAttributeType {
     }
 
     private void onBreak(BlockEvent.BreakEvent event) {
-        IWorld world = event.getWorld();
+        ILevel world = event.getWorld();
         Player player = event.getPlayer();
 
-        if (!(world instanceof World) || world.isRemote()) {
+        if (!(world instanceof Level) || world.isRemote()) {
             return;
         }
         if (player instanceof ServerPlayer) {
@@ -79,9 +79,9 @@ public class AttributeTypeMiningSize extends PerkAttributeType {
                                         stateIn.getBlockHardness(worldIn, posIn) <= hardnessBroken;
                         Direction dir = brtr.getFace();
                         if (dir.getAxis() == Direction.Axis.Y) {
-                            this.breakBlocksPlaneHorizontal((ServerPlayer) player, dir, (World) world, event.getPos(), miningTest, Mth.floor(size));
+                            this.breakBlocksPlaneHorizontal((ServerPlayer) player, dir, (Level) world, event.getPos(), miningTest, Mth.floor(size));
                         } else {
-                            this.breakBlocksPlaneVertical((ServerPlayer) player, dir, (World) world, event.getPos(), miningTest, Mth.floor(size));
+                            this.breakBlocksPlaneVertical((ServerPlayer) player, dir, (Level) world, event.getPos(), miningTest, Mth.floor(size));
                         }
                     }
                 }
@@ -89,7 +89,7 @@ public class AttributeTypeMiningSize extends PerkAttributeType {
         }
     }
 
-    private void breakBlocksPlaneVertical(ServerPlayer player, Direction sideBroken, World world, BlockPos at, BlockPredicate miningTest, int size) {
+    private void breakBlocksPlaneVertical(ServerPlayer player, Direction sideBroken, Level world, BlockPos at, BlockPredicate miningTest, int size) {
         if (size <= 0) {
             return;
         }
@@ -120,7 +120,7 @@ public class AttributeTypeMiningSize extends PerkAttributeType {
         }
     }
 
-    private void breakBlocksPlaneHorizontal(ServerPlayer player, Direction sideBroken, World world, BlockPos at, BlockPredicate miningTest, int size) {
+    private void breakBlocksPlaneHorizontal(ServerPlayer player, Direction sideBroken, Level world, BlockPos at, BlockPredicate miningTest, int size) {
         if (size <= 0) {
             return;
         }

@@ -89,14 +89,14 @@ public class CEffectOctans extends CEffectAbstractList<ListEntries.CounterMaxEnt
 
     @Nullable
     @Override
-    public ListEntries.CounterMaxEntry createElement(World world, BlockPos pos) {
+    public ListEntries.CounterMaxEntry createElement(Level world, BlockPos pos) {
         pos = world.getHeight(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, pos).down();
         return new ListEntries.CounterMaxEntry(pos, 1);
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void playClientEffect(World world, BlockPos pos, TileRitualPedestal pedestal, float alphaMultiplier, boolean extended) {
+    public void playClientEffect(Level world, BlockPos pos, TileRitualPedestal pedestal, float alphaMultiplier, boolean extended) {
         ConstellationEffectProperties prop = this.createProperties(pedestal.getMirrorCount());
 
         Vector3 at = new Vector3(pos).add(0.5, 0.5, 0.5);
@@ -118,7 +118,7 @@ public class CEffectOctans extends CEffectAbstractList<ListEntries.CounterMaxEnt
     }
 
     @Override
-    public boolean playEffect(World world, BlockPos pos, ConstellationEffectProperties properties, @Nullable IMinorConstellation trait) {
+    public boolean playEffect(Level world, BlockPos pos, ConstellationEffectProperties properties, @Nullable IMinorConstellation trait) {
         if (!(world instanceof ServerLevel)) {
             return false;
         }
@@ -206,13 +206,13 @@ public class CEffectOctans extends CEffectAbstractList<ListEntries.CounterMaxEnt
         builder.withLuck(rand.nextInt(2) * rand.nextFloat());
         builder.withRandom(rand);
         builder.withParameter(LootParameters.TOOL, tool);
-        builder.withParameter(LootParameters.field_237457_g_, Vector3d.copyCentered(pos));
+        builder.withParameter(LootParameters.field_237457_g_, net.minecraft.world.phys.Vec3.copyCentered(pos));
         LootTable lootTable = world.getServer().getLootTableManager().getLootTableFromLocation(fromTable);
         for (ItemStack loot : lootTable.generate(builder.build(LootParameterSets.FISHING))) {
             ItemEntity ei = ItemUtils.dropItemNaturally(world, dropLoc.getX(), dropLoc.getY(), dropLoc.getZ(), loot);
             Vector3 motion = new Vector3(ei.getMotion());
             motion.setY(Math.abs(motion.getY()));
-            ei.setMotion(motion.toVector3d());
+            ei.setMotion(motion.tonet.minecraft.world.phys.Vec3());
         }
     }
 

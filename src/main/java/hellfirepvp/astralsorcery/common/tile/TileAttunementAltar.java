@@ -92,7 +92,7 @@ public class TileAttunementAltar extends TileEntityTick {
     public boolean animate = false, tesrLocked = true;
 
     public TileAttunementAltar() {
-        super(TileEntityTypesAS.ATTUNEMENT_ALTAR);
+        super(BlockEntityTypesAS.ATTUNEMENT_ALTAR);
     }
 
     @Override
@@ -360,7 +360,7 @@ public class TileAttunementAltar extends TileEntityTick {
         }
 
         Player player = Minecraft.getInstance().player;
-        if (player == null || player.getDistanceSq(Vector3d.copyCentered(getPos())) >= 256) {
+        if (player == null || player.getDistanceSq(net.minecraft.world.phys.Vec3.copyCentered(getPos())) >= 256) {
             return;
         }
         Tuple<Hand, ItemStack> heldTpl = MiscUtils.getMainOrOffHand(player, stack -> stack.getItem() instanceof ItemConstellationPaper);
@@ -519,7 +519,7 @@ public class TileAttunementAltar extends TileEntityTick {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public AxisAlignedBB getRenderBoundingBox() {
+    public AABB getRenderBoundingBox() {
         return super.getRenderBoundingBox().expand(3.5, 2, 3.5);
     }
 

@@ -20,7 +20,7 @@ import hellfirepvp.astralsorcery.client.resource.SpriteSheetResource;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import hellfirepvp.observerlib.client.util.RenderTypeDecorator;
+// RenderTypeDecorator - проверить ObserverLib
 import net.minecraft.util.Tuple;
 
 import java.awt.*;
@@ -103,7 +103,7 @@ public class FXSpritePlane extends EntityVisualFX implements EntityDynamicFX {
             deg = fixDegree;
         }
 
-        RenderTypeDecorator decorated = RenderTypeDecorator.wrapSetup(ctx.getRenderType(), ssr::bindTexture, () -> BlockAtlasTexture.getInstance().bindTexture());
+        RenderTypeDecorator decorated = RenderType.ctx.getRenderType(), ssr::bindTexture, () -> BlockAtlasTexture.getInstance().bindTexture());
         VertexConsumer buf = drawBuffer.getBuffer(decorated);
         RenderingDrawUtils.renderAngleRotatedTexturedRectVB(buf, renderStack, vec,
                 axis, (float) Math.toRadians(deg), scale,

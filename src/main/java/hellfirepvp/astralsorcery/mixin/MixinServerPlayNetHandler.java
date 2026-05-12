@@ -38,7 +38,7 @@ public class MixinServerPlayNetHandler {
         ServerPlayNetHandler playNetHandler = (ServerPlayNetHandler)(Object) this;
         Player player = playNetHandler.player;
 
-        PlayerProgress prog = ResearchHelper.getProgress(player, player.getEntityWorld().isRemote() ? LogicalSide.CLIENT : LogicalSide.SERVER);
+        PlayerProgress prog = ResearchHelper.getProgress(player, player.level.isRemote() ? LogicalSide.CLIENT : LogicalSide.SERVER);
         if (prog.isValid() && prog.getPerkData().hasPerkEffect(perk -> perk instanceof KeyEntityReach)) {
             return Double.MAX_VALUE;
         }

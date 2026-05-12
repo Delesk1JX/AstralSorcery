@@ -13,7 +13,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.network.NetworkEvent;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import javax.annotation.Nonnull;
 import java.util.Random;
@@ -45,11 +45,11 @@ public abstract class ASPacket<T extends ASPacket<T>> {
 
     public static interface Decoder<T extends ASPacket<T>> extends Function<FriendlyByteBuf, T> {}
 
-    public static interface Handler<T extends ASPacket<T>> extends BiConsumer<T, Supplier<NetworkEvent.Context>> {
+    public static interface Handler<T extends ASPacket<T>> extends BiConsumer<T, Supplier<IPayloadContext>> {
 
         @Override
-        default void accept(T t, Supplier<NetworkEvent.Context> contextSupplier) {
-            NetworkEvent.Context ctx = contextSupplier.get();
+        default void accept(T t, Supplier<IPayloadContext> contextSupplier) {
+            IPayloadContext ctx = contextSupplier.get();
             switch (ctx.getDirection().getReceptionSide()) {
                 case CLIENT:
                     this.handleClient(t, ctx);
@@ -62,19 +62,19 @@ public abstract class ASPacket<T extends ASPacket<T>> {
         }
 
         @OnlyIn(Dist.CLIENT)
-        default void handleClient(T packet, NetworkEvent.Context context) {
+        default void handleClient(T packet, IPayloadContext context) {
             this.handle(packet, context, LogicalSide.CLIENT);
         }
 
-        default void handleServer(T packet, NetworkEvent.Context context) {
+        default void handleServer(T packet, IPayloadContext context) {
             this.handle(packet, context, LogicalSide.SERVER);
         }
 
-        void handle(T packet, NetworkEvent.Context context, LogicalSide side);
+        void handle(T packet, IPayloadContext context, LogicalSide side);
 
     }
 
-    protected final void replyWith(T packet, NetworkEvent.Context ctx) {
+    protected final void replyWith(T packet, IPayloadContext ctx) {
         PacketChannel.CHANNEL.reply(packet, ctx);
     }
 }

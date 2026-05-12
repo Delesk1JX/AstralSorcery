@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.RegistryKey;
+import net.minecraft.util.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.level.LevelAccessor;
@@ -45,7 +45,7 @@ public class PatreonPartialEntity {
     protected Vector3 motion = new Vector3();
     protected boolean removed = false, updatePos = false;
 
-    private RegistryKey<World> lastTickedDimension = null;
+    private ResourceKey<Level> lastTickedDimension = null;
 
     public PatreonPartialEntity(UUID effectUUID, UUID ownerUUID) {
         this.effectUUID = effectUUID;
@@ -74,7 +74,7 @@ public class PatreonPartialEntity {
     }
 
     @Nullable
-    public RegistryKey<World> getLastTickedDimension() {
+    public ResourceKey<Level> getLastTickedDimension() {
         return lastTickedDimension;
     }
 
@@ -82,9 +82,9 @@ public class PatreonPartialEntity {
     public void tickClient() {}
 
     @OnlyIn(Dist.CLIENT)
-    public void tickEffects(World world) {}
+    public void tickEffects(Level world) {}
 
-    public boolean tick(World world) {
+    public boolean tick(Level world) {
         boolean changed = lastTickedDimension == null || !lastTickedDimension.equals(world.getDimensionKey());
         lastTickedDimension = world.getDimensionKey();
 
@@ -103,7 +103,7 @@ public class PatreonPartialEntity {
         return changed;
     }
 
-    private boolean updateMotion(IWorld world) {
+    private boolean updateMotion(ILevel world) {
         Vector3 prevMot = this.motion.clone();
 
         Player target = findOwner(world);
@@ -124,7 +124,7 @@ public class PatreonPartialEntity {
         return !this.motion.equals(prevMot);
     }
 
-    private boolean tryMoveEntity(IWorld world) {
+    private boolean tryMoveEntity(ILevel world) {
         this.prevPos = this.pos.clone();
 
         Player owner = findOwner(world);
@@ -147,14 +147,14 @@ public class PatreonPartialEntity {
     }
 
     @Nullable
-    public Player findOwner(IWorld world) {
+    public Player findOwner(ILevel world) {
         return world.getPlayerByUuid(this.ownerUUID);
     }
 
     public void readFromNBT(CompoundTag cmp) {
         if (cmp.contains("lastTickedDimension")) {
             ResourceLocation worldKey = new ResourceLocation(cmp.getString("lastTickedDimension"));
-            this.lastTickedDimension = RegistryKey.getOrCreateKey(Registry.WORLD_KEY, worldKey);
+            this.lastTickedDimension = ResourceKey.getOrCreateKey(Registry.WORLD_KEY, worldKey);
         } else {
             this.lastTickedDimension = null;
         }

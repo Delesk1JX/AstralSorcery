@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.lib.CrystalPropertiesAS;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentType;
+
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -49,14 +49,14 @@ public class ItemCrystalAxe extends ItemCrystalTierItem implements TypeEnchantab
     }
 
     @Override
-    public boolean canEnchantItem(ItemStack stack, EnchantmentType type) {
-        return type == EnchantmentType.BREAKABLE || type == EnchantmentType.DIGGER;
+    public boolean canEnchantItem(ItemStack stack, net.minecraft.world.item.enchantment.Enchantment type) {
+        return type == net.minecraft.world.item.enchantment.Enchantment.BREAKABLE || type == net.minecraft.world.item.enchantment.Enchantment.DIGGER;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        EnchantmentType type = enchantment.type;
-        return type == EnchantmentType.DIGGER || type == EnchantmentType.BREAKABLE;
+        net.minecraft.world.item.enchantment.Enchantment type = enchantment.type;
+        return type == net.minecraft.world.item.enchantment.Enchantment.DIGGER || type == net.minecraft.world.item.enchantment.Enchantment.BREAKABLE;
     }
 
     @Override
@@ -76,7 +76,7 @@ public class ItemCrystalAxe extends ItemCrystalTierItem implements TypeEnchantab
 
     @Override
     public InteractionResult onItemUse(ItemUseContext context) {
-        World world = context.getWorld();
+        Level world = context.getWorld();
         BlockPos blockpos = context.getPos();
         BlockState blockstate = world.getBlockState(blockpos);
         BlockState block = blockstate.getToolModifiedState(world, blockpos, context.getPlayer(), context.getItem(), ToolType.AXE);

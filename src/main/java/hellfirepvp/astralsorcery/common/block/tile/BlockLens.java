@@ -71,7 +71,7 @@ public class BlockLens extends BlockStarlightNetwork implements CustomItemBlock 
     }
 
     @Override
-    public void onBlockHarvested(World world, BlockPos pos, BlockState state, Player player) {
+    public void onBlockHarvested(Level world, BlockPos pos, BlockState state, Player player) {
         TileLens lens = MiscUtils.getTileAt(world, pos, TileLens.class, true);
         if (lens != null && !world.isRemote() && !player.isCreative()) {
             if (lens.getColorType() != null) {
@@ -83,7 +83,7 @@ public class BlockLens extends BlockStarlightNetwork implements CustomItemBlock 
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, Player player, Hand hand, BlockHitResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, Hand hand, BlockHitResult hit) {
         if (!world.isRemote() && player.isSneaking()) {
             TileLens lens = MiscUtils.getTileAt(world, pos, TileLens.class, true);
             if (lens != null && lens.getColorType() != null) {

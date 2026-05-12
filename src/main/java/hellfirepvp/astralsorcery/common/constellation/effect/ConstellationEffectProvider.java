@@ -23,7 +23,7 @@ import javax.annotation.Nullable;
  * Created by HellFirePvP
  * Date: 11.06.2019 / 19:34
  */
-public abstract class ConstellationEffectProvider extends DeferredHolder<ConstellationEffectProvider> implements IRegistryObject<ConstellationEffectProvider> {
+public abstract class ConstellationEffectProvider extends DeferredHolder<net.neoforged.neoforge.registries.RegistryKey<net.neoforged.neoforge.registries.RegistryKey<ConstellationEffectProvider>, net.neoforged.neoforge.registries.RegistryKey<ConstellationEffectProvider>, ConstellationEffectProvider> implements IForgeRegistryEntry<ConstellationEffectProvider> {
 
     private final IWeakConstellation cst;
 

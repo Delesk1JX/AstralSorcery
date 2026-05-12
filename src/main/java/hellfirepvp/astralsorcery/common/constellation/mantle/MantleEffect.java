@@ -137,7 +137,7 @@ public abstract class MantleEffect extends DeferredHolder<Item, MantleEffect> im
     }
 
     @Override
-    public final void tick(TickEvent.Type type, Object... context) {
+    public final void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
         if (!this.getConfig().enabled.get()) {
             return;
         }
@@ -173,13 +173,13 @@ public abstract class MantleEffect extends DeferredHolder<Item, MantleEffect> im
     }
 
     @Override
-    public EnumSet<TickEvent.Type> getHandledTypes() {
-        return EnumSet.of(TickEvent.Type.PLAYER);
+    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
+        return EnumSet.of(net.neoforged.neoforge.event.tick.ClientTickEvent.PLAYER);
     }
 
     @Override
-    public boolean canFire(TickEvent.Phase phase) {
-        return phase == TickEvent.Phase.END;
+    public boolean canFire(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
+        return phase == net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
     }
 
     @Override

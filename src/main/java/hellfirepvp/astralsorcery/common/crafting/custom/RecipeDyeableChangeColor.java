@@ -50,7 +50,7 @@ public class RecipeDyeableChangeColor extends SpecialRecipe {
     }
 
     @Override
-    public boolean matches(CraftingInventory inv, World worldIn) {
+    public boolean matches(CraftingInventory inv, Level worldIn) {
         return tryFindValidRecipeAndDye(inv) != null;
     }
 

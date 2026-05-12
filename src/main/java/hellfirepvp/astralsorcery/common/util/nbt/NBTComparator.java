@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.util.nbt;
 
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.INBT;
+import net.minecraft.nbt.Tag;
 import net.minecraft.nbt.ListTag;
 
 import javax.annotation.Nonnull;
@@ -31,8 +31,8 @@ public class NBTComparator {
                 return false;
             }
 
-            INBT thisNBT = thisCompound.get(key);
-            INBT otherNBT = otherCompound.get(key);
+            Tag thisNBT = thisCompound.get(key);
+            Tag otherNBT = otherCompound.get(key);
             if (!compare(thisNBT, otherNBT)) {
                 return false;
             }
@@ -47,9 +47,9 @@ public class NBTComparator {
 
         List<Integer> matched = new ArrayList<>();
         lblMatching:
-        for (INBT thisNbt : base) {
+        for (Tag thisNbt : base) {
             for (int matchIndex = 0; matchIndex < other.size(); matchIndex++) {
-                INBT matchNBT = other.get(matchIndex);
+                Tag matchNBT = other.get(matchIndex);
 
                 if (!matched.contains(matchIndex)) {
                     if (compare(thisNbt, matchNBT)) {
@@ -65,7 +65,7 @@ public class NBTComparator {
         return true;
     }
 
-    private static boolean compare(INBT thisEntry, INBT thatEntry) {
+    private static boolean compare(Tag thisEntry, Tag thatEntry) {
         if (thisEntry instanceof CompoundTag && thatEntry instanceof CompoundTag) {
             return contains((CompoundTag) thisEntry, (CompoundTag) thatEntry);
         } else if (thisEntry instanceof ListTag && thatEntry instanceof ListTag) {

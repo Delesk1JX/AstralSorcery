@@ -34,7 +34,7 @@ public class CollisionHelper {
         if (!CollisionManager.needsCustomCollision(iterator.entity)) {
             return false;
         }
-        AxisAlignedBB box = CollisionManager.getIteratorBoundingBoxes(iterator, iterator.entity);
+        AABB box = CollisionManager.getIteratorBoundingBoxes(iterator, iterator.entity);
         if (box == null) {
             return false;
         }
@@ -48,15 +48,15 @@ public class CollisionHelper {
     }
 
     @Nullable
-    public static Vector3d onEntityCollision(Vector3d allowedMovement, Entity entity) {
+    public static net.minecraft.world.phys.Vec3 onEntityCollision(net.minecraft.world.phys.Vec3 allowedMovement, Entity entity) {
         if (!CollisionManager.needsCustomCollision(entity)) {
             return null;
         }
-        List<AxisAlignedBB> additionalBoxes = CollisionManager.getAdditionalBoundingBoxes(entity);
-        AxisAlignedBB entityBox = entity.getBoundingBox().grow(1.0E-7D);
-        for (AxisAlignedBB box : additionalBoxes) {
+        List<AABB> additionalBoxes = CollisionManager.getAdditionalBoundingBoxes(entity);
+        AABB entityBox = entity.getBoundingBox().grow(1.0E-7D);
+        for (AABB box : additionalBoxes) {
             double newYMovement = VoxelShapes.create(box).getAllowedOffset(Direction.Axis.Y, entityBox, allowedMovement.y);
-            allowedMovement = new Vector3d(allowedMovement.x, newYMovement, allowedMovement.z);
+            allowedMovement = new net.minecraft.world.phys.Vec3(allowedMovement.x, newYMovement, allowedMovement.z);
         }
 
         return allowedMovement;

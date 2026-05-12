@@ -36,7 +36,7 @@ public class LiquidStarlightCraftingRegistry extends CustomRecipeRegistry<Liquid
     }
 
     @Nullable
-    public LiquidStarlightRecipe getRecipeFor(ItemEntity itemEntity, World world, BlockPos at) {
+    public LiquidStarlightRecipe getRecipeFor(ItemEntity itemEntity, Level world, BlockPos at) {
         return this.getRecipes()
                 .stream()
                 .filter(recipe -> recipe.doesStartRecipe(itemEntity.getItem()))
@@ -49,7 +49,7 @@ public class LiquidStarlightCraftingRegistry extends CustomRecipeRegistry<Liquid
         if (!itemEntity.isAlive()) {
             return;
         }
-        World world = itemEntity.getEntityWorld();
+        Level world = itemEntity.level;
 
         LiquidStarlightRecipe recipe = LiquidStarlightCraftingRegistry.INSTANCE.getRecipeFor(itemEntity, world, at);
         if (recipe != null) {

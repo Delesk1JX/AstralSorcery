@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.client.util.Blending;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.common.entity.EntitySpectralTool;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.util.vector.Vector3f;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -37,7 +37,7 @@ public class RenderEntitySpectralTool extends EntityRenderer<EntitySpectralTool>
     }
 
     @Override
-    public void render(EntitySpectralTool entity, float entityYaw, float partialTicks, PoseStack renderStack, IRenderTypeBuffer buffer, int packedLight) {
+    public void render(EntitySpectralTool entity, float entityYaw, float partialTicks, PoseStack renderStack, MultiBufferSource buffer, int packedLight) {
         ItemStack stack = entity.getItem();
         if (stack.isEmpty() || !entity.isAlive()) {
             return;

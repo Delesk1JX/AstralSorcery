@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.item.base.TypeEnchantableItem;
 import hellfirepvp.astralsorcery.common.lib.CrystalPropertiesAS;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentType;
+
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.NonNullList;
@@ -41,14 +41,14 @@ public class ItemCrystalPickaxe extends ItemCrystalTierItem implements TypeEncha
     }
 
     @Override
-    public boolean canEnchantItem(ItemStack stack, EnchantmentType type) {
-        return type == EnchantmentType.BREAKABLE || type == EnchantmentType.DIGGER;
+    public boolean canEnchantItem(ItemStack stack, net.minecraft.world.item.enchantment.Enchantment type) {
+        return type == net.minecraft.world.item.enchantment.Enchantment.BREAKABLE || type == net.minecraft.world.item.enchantment.Enchantment.DIGGER;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        EnchantmentType type = enchantment.type;
-        return type == EnchantmentType.DIGGER || type == EnchantmentType.BREAKABLE;
+        net.minecraft.world.item.enchantment.Enchantment type = enchantment.type;
+        return type == net.minecraft.world.item.enchantment.Enchantment.DIGGER || type == net.minecraft.world.item.enchantment.Enchantment.BREAKABLE;
     }
 
     @Override

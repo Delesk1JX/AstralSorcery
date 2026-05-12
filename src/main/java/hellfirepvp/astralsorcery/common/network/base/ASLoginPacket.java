@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.network.base;
 
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.network.login.client.PktLoginAcknowledge;
-import net.neoforged.neoforge.network.NetworkEvent;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import java.util.function.IntSupplier;
 
@@ -38,7 +38,7 @@ public abstract class ASLoginPacket<T extends ASLoginPacket<T>> extends ASPacket
         this.loginIndex = loginIndex;
     }
 
-    protected final void acknowledge(NetworkEvent.Context ctx) {
+    protected final void acknowledge(IPayloadContext ctx) {
         PacketChannel.CHANNEL.reply(new PktLoginAcknowledge(), ctx);
     }
 

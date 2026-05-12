@@ -33,8 +33,8 @@ public class ClientCameraManager implements ITickHandler {
     private ICameraTransformer lastTransformer = null;
 
     @Override
-    public void tick(TickEvent.Type type, Object... context) {
-        if (type == TickEvent.Type.RENDER) {
+    public void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
+        if (type == net.neoforged.neoforge.event.tick.ClientTickEvent.RENDER) {
             //Render Tick
             float pTicks = (float) context[0];
             if (this.hasActiveTransformer()) {
@@ -94,13 +94,13 @@ public class ClientCameraManager implements ITickHandler {
     }
 
     @Override
-    public EnumSet<TickEvent.Type> getHandledTypes() {
-        return EnumSet.of(TickEvent.Type.RENDER, TickEvent.Type.CLIENT);
+    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
+        return EnumSet.of(net.neoforged.neoforge.event.tick.ClientTickEvent.RENDER, net.neoforged.neoforge.event.tick.ClientTickEvent.CLIENT);
     }
 
     @Override
-    public boolean canFire(TickEvent.Phase phase) {
-        return phase == TickEvent.Phase.START;
+    public boolean canFire(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
+        return phase == net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.START;
     }
 
     @Override

@@ -15,7 +15,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.core.BlockPos;
-import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.Tags;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -31,7 +31,7 @@ import java.util.Map;
 public class StorageNetwork {
 
     private CoreArea master = null;
-    private final Map<BlockPos, AxisAlignedBB> cores = Maps.newHashMap();
+    private final Map<BlockPos, AABB> cores = Maps.newHashMap();
 
     //True if set.
     public boolean setMaster(@Nullable BlockPos pos) {
@@ -52,7 +52,7 @@ public class StorageNetwork {
     }
 
     //True if it didn't overwrite a previous one
-    public boolean addCore(BlockPos pos, AxisAlignedBB box) {
+    public boolean addCore(BlockPos pos, AABB box) {
         return this.cores.put(pos, box) == null;
     }
 
@@ -84,11 +84,11 @@ public class StorageNetwork {
     public void readFromNBT(CompoundTag tag) {
         this.cores.clear();
 
-        ListTag list = tag.getList("cores", Constants.NBT.TAG_COMPOUND);
+        ListTag list = tag.getList("cores", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
         for (int i = 0; i < list.size(); i++) {
             CompoundTag coreTag = list.getCompound(i);
             BlockPos pos = NBTHelper.readBlockPosFromNBT(coreTag);
-            AxisAlignedBB box = NBTHelper.readBoundingBox(coreTag);
+            AABB box = NBTHelper.readBoundingBox(coreTag);
             this.addCore(pos, box);
         }
 
@@ -98,9 +98,9 @@ public class StorageNetwork {
     public static class CoreArea {
 
         private final BlockPos pos;
-        private final AxisAlignedBB offsetBox;
+        private final AABB offsetBox;
 
-        private CoreArea(BlockPos pos, AxisAlignedBB offsetBox) {
+        private CoreArea(BlockPos pos, AABB offsetBox) {
             this.pos = pos;
             this.offsetBox = offsetBox;
         }
@@ -109,11 +109,11 @@ public class StorageNetwork {
             return pos;
         }
 
-        public AxisAlignedBB getOffsetBox() {
+        public AABB getOffsetBox() {
             return offsetBox;
         }
 
-        public AxisAlignedBB getRealBox() {
+        public AABB getRealBox() {
             return offsetBox.offset(getPos());
         }
     }

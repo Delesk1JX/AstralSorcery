@@ -110,7 +110,7 @@ public class ItemMantle extends ArmorItem implements ItemDynamicColor, Constella
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         IConstellation cst = this.getConstellation(stack);
         if (cst instanceof IWeakConstellation) {
             tooltip.add(cst.getConstellationName().withStyle(ChatFormatting.BLUE));

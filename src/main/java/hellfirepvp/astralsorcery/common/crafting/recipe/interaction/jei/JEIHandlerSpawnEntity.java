@@ -16,8 +16,8 @@ import hellfirepvp.astralsorcery.common.crafting.recipe.interaction.ResultSpawnE
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.Tesselator;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.util.vector.Vector3f;
@@ -61,7 +61,7 @@ public class JEIHandlerSpawnEntity extends JEIInteractionResultHandler {
         renderStack.scale(15, 15, 15);
         renderStack.rotate(Vector3f.XP.rotationDegrees(180));
         renderStack.rotate(Vector3f.YP.rotationDegrees(145));
-        IRenderTypeBuffer.Impl buffer = IRenderTypeBuffer.getImpl(buffer);
+        MultiBufferSource.Impl buffer = MultiBufferSource.getImpl(buffer);
         Minecraft.getInstance().getRenderManager()
                 .renderEntityStatic(le, 0, 0, 0, 0, 0, renderStack, buffer, LightmapUtil.getPackedFullbrightCoords());
         buffer.finish();

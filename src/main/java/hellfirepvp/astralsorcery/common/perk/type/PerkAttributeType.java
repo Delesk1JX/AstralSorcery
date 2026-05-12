@@ -37,7 +37,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * Created by HellFirePvP
  * Date: 08.08.2019 / 16:56
  */
-public class PerkAttributeType extends DeferredHolder<PerkAttributeType> implements ReadWriteLockable {
+public class PerkAttributeType extends DeferredHolder<net.neoforged.neoforge.registries.RegistryKey<PerkAttributeType>, PerkAttributeType> implements ReadWriteLockable {
 
     protected static final Random rand = new Random();
 
@@ -81,7 +81,7 @@ public class PerkAttributeType extends DeferredHolder<PerkAttributeType> impleme
     protected void attachListeners(IEventBus eventBus) {}
 
     protected LogicalSide getSide(Entity entity) {
-        return entity.getEntityWorld().isRemote() ? LogicalSide.CLIENT : LogicalSide.SERVER;
+        return entity.level.isRemote() ? LogicalSide.CLIENT : LogicalSide.SERVER;
     }
 
     @Nullable

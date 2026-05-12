@@ -40,7 +40,7 @@ public class BlockTreeBeaconComponent extends BlockFakedState {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState state, World world, BlockPos pos, Random rand) {
+    public void animateTick(BlockState state, Level world, BlockPos pos, Random rand) {
         this.playParticles(world, pos, rand);
     }
 

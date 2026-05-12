@@ -49,7 +49,7 @@ import java.util.List;
 public class CEffectPelotrio extends CEffectAbstractList<ListEntries.EntitySpawnEntry> {
 
     public static PlayerAffectionFlags.AffectionFlag FLAG = makeAffectionFlag("pelotrio");
-    private static final AxisAlignedBB PROXIMITY_BOX = new AxisAlignedBB(0, 0, 0, 0, 0, 0);
+    private static final AABB PROXIMITY_BOX = new AABB(0, 0, 0, 0, 0, 0);
 
     public static PelotrioConfig CONFIG = new PelotrioConfig();
 
@@ -71,7 +71,7 @@ public class CEffectPelotrio extends CEffectAbstractList<ListEntries.EntitySpawn
 
     @Nullable
     @Override
-    public ListEntries.EntitySpawnEntry createElement(World world, BlockPos pos) {
+    public ListEntries.EntitySpawnEntry createElement(Level world, BlockPos pos) {
         if (!(world instanceof ServerLevel)) {
             return null;
         }
@@ -81,7 +81,7 @@ public class CEffectPelotrio extends CEffectAbstractList<ListEntries.EntitySpawn
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void playClientEffect(World world, BlockPos pos, TileRitualPedestal pedestal, float alphaMultiplier, boolean extended) {
+    public void playClientEffect(Level world, BlockPos pos, TileRitualPedestal pedestal, float alphaMultiplier, boolean extended) {
         ConstellationEffectProperties prop = this.createProperties(pedestal.getMirrorCount());
 
         if (rand.nextFloat() < 0.2F) {
@@ -95,7 +95,7 @@ public class CEffectPelotrio extends CEffectAbstractList<ListEntries.EntitySpawn
     }
 
     @Override
-    public boolean playEffect(World world, BlockPos pos, ConstellationEffectProperties properties, @Nullable IMinorConstellation trait) {
+    public boolean playEffect(Level world, BlockPos pos, ConstellationEffectProperties properties, @Nullable IMinorConstellation trait) {
         if (!(world instanceof ServerLevel)) {
             return false;
         }

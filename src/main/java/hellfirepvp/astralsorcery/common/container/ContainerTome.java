@@ -21,7 +21,7 @@ import net.minecraft.world.entity.player.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.fml.common.thread.EffectiveSide;
+import net.neoforged.neoforge.fml.common.thread.LogicalSide;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
 
@@ -129,7 +129,7 @@ public class ContainerTome extends Container {
     }
 
     public void slotChanged() {
-        if (EffectiveSide.get().isServer()) {
+        if (LogicalSide.get().isServer()) {
             LinkedList<IConstellation> saveConstellations = new LinkedList<>();
             for (int i = 36; i < 63; i++) {
                 ItemStack in = inventorySlots.get(i).getStack();

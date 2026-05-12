@@ -15,8 +15,8 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.tags.TagKey;
 import net.minecraft.tags.Tag;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.TileEntityType;
-import net.minecraft.util.RegistryKey;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.util.ResourceKey;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.neoforged.fml.LogicalSide;
@@ -50,13 +50,13 @@ public class BlockPredicates {
     }
 
     public static <T extends BlockEntity> BlockPredicate doesTileExist(T tile, boolean loadTileWorldAndChunk) {
-        RegistryKey<World> dim = tile.getWorld().getDimensionKey();
-        TileEntityType<?> tileType = tile.getType();
+        ResourceKey<Level> dim = tile.getWorld().getDimensionKey();
+        BlockEntityType<?> tileType = tile.getType();
         MinecraftServer srv = LogicalSidedProvider.INSTANCE.get(LogicalSide.SERVER);
 
         return (world, pos, state) -> {
             if (loadTileWorldAndChunk || srv.forgeGetWorldMap().containsKey(dim)) {
-                World foundWorld = srv.getWorld(dim);
+                Level foundWorld = srv.getWorld(dim);
                 if (foundWorld == null) {
                     //If the intent was to load the world and it doesn't exist, then the tile doesn't exist either
                     //If the intent was to NOT load the world, but the world isn't there, we assume the tile still exists.

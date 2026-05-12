@@ -38,7 +38,7 @@ import java.util.function.Supplier;
  * Created by HellFirePvP
  * Date: 16.11.2016 / 23:04
  */
-public interface IConstellation extends IRegistryObject<IConstellation>, Comparable<IConstellation> {
+public interface IConstellation extends IForgeRegistryEntry<IConstellation>, Comparable<IConstellation> {
 
     // 0-indexed
     public static final int STAR_GRID_INDEX = 31;

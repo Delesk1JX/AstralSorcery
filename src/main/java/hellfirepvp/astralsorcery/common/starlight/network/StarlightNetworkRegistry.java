@@ -33,7 +33,7 @@ public class StarlightNetworkRegistry {
     private static final List<IStarlightBlockHandler> blockHandlers = new LinkedList<>();
 
     @Nullable
-    public static IStarlightBlockHandler getStarlightHandler(World world, BlockPos pos, BlockState state, IWeakConstellation cst) {
+    public static IStarlightBlockHandler getStarlightHandler(Level world, BlockPos pos, BlockState state, IWeakConstellation cst) {
         Block b = state.getBlock();
         if (b instanceof BlockStarlightRecipient) {
             return null;
@@ -58,9 +58,9 @@ public class StarlightNetworkRegistry {
     //This is NOT suggested as "first choice" - please implement BlockStarlightRecipient instead if possible.
     public static interface IStarlightBlockHandler {
 
-        public boolean isApplicable(World world, BlockPos pos, BlockState state, IWeakConstellation starlightType);
+        public boolean isApplicable(Level world, BlockPos pos, BlockState state, IWeakConstellation starlightType);
 
-        public void receiveStarlight(World world, Random rand, BlockPos pos, BlockState state, IWeakConstellation starlightType, double amount);
+        public void receiveStarlight(Level world, Random rand, BlockPos pos, BlockState state, IWeakConstellation starlightType, double amount);
 
     }
 

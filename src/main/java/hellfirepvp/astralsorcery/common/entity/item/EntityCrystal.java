@@ -39,15 +39,15 @@ import net.neoforged.neoforge.fml.network.NetworkHooks;
  */
 public class EntityCrystal extends EntityItemExplosionResistant implements InteractableEntity {
 
-    public EntityCrystal(EntityType<? extends ItemEntity> type, World world) {
+    public EntityCrystal(EntityType<? extends ItemEntity> type, Level world) {
         super(type, world);
     }
 
-    public EntityCrystal(EntityType<? extends ItemEntity> type, World world, double x, double y, double z) {
+    public EntityCrystal(EntityType<? extends ItemEntity> type, Level world, double x, double y, double z) {
         super(type, world, x, y, z);
     }
 
-    public EntityCrystal(EntityType<? extends ItemEntity> type, World world, double x, double y, double z, ItemStack stack) {
+    public EntityCrystal(EntityType<? extends ItemEntity> type, Level world, double x, double y, double z, ItemStack stack) {
         super(type, world, x, y, z, stack);
     }
 
@@ -67,7 +67,7 @@ public class EntityCrystal extends EntityItemExplosionResistant implements Inter
 
     @Override
     public boolean hitByEntity(Entity entity) {
-        if (!this.getEntityWorld().isRemote() && entity instanceof ServerPlayer) {
+        if (!this.level.isRemote() && entity instanceof ServerPlayer) {
             ItemStack held = ((ServerPlayer) entity).getHeldItem(Hand.MAIN_HAND);
             if (!held.isEmpty() && held.getItem() instanceof ItemChisel) {
 

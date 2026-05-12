@@ -51,7 +51,7 @@ public class ContainerAltarAttunementProvider extends CustomContainerProvider<Co
     private static ContainerAltarAttunement createFromPacket(int id, IInventory plInventory, FriendlyByteBuf data) {
         BlockPos at = ByteBufUtils.readPos(data);
         Player player = plInventory.player;
-        TileAltar ta = MiscUtils.getTileAt(player.getEntityWorld(), at, TileAltar.class, true);
+        TileAltar ta = MiscUtils.getTileAt(player.level, at, TileAltar.class, true);
         return new ContainerAltarAttunement(ta, plInventory, id);
     }
 

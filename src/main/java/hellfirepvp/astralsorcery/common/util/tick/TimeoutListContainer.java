@@ -29,17 +29,17 @@ import java.util.function.Predicate;
  */
 public class TimeoutListContainer<K, V> implements ITickHandler {
 
-    private final EnumSet<TickEvent.Type> tickTypes;
+    private final EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> tickTypes;
     private final ContainerTimeoutDelegate<K, V> delegate;
     private final Map<K, TimeoutList<V>> timeoutListMap = new HashMap<>();
 
-    public TimeoutListContainer(TickEvent.Type... restTypes) {
+    public TimeoutListContainer(net.neoforged.neoforge.event.tick.ClientTickEvent... restTypes) {
         this(null, restTypes);
     }
 
-    public TimeoutListContainer(@Nullable ContainerTimeoutDelegate<K, V> delegate, TickEvent.Type... types) {
-        this.tickTypes = EnumSet.noneOf(TickEvent.Type.class);
-        for (TickEvent.Type type : types) {
+    public TimeoutListContainer(@Nullable ContainerTimeoutDelegate<K, V> delegate, net.neoforged.neoforge.event.tick.ClientTickEvent... types) {
+        this.tickTypes = EnumSet.noneOf(net.neoforged.neoforge.event.tick.ClientTickEvent.class);
+        for (net.neoforged.neoforge.event.tick.ClientTickEvent type : types) {
             if (type != null) this.tickTypes.add(type);
         }
         this.delegate = delegate;
@@ -82,7 +82,7 @@ public class TimeoutListContainer<K, V> implements ITickHandler {
     }
 
     @Override
-    public void tick(TickEvent.Type type, Object... context) {
+    public void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
         Iterator<Map.Entry<K, TimeoutList<V>>> it = timeoutListMap.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<K, TimeoutList<V>> entry = it.next();
@@ -99,13 +99,13 @@ public class TimeoutListContainer<K, V> implements ITickHandler {
     }
 
     @Override
-    public EnumSet<TickEvent.Type> getHandledTypes() {
+    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
         return tickTypes;
     }
 
     @Override
-    public boolean canFire(TickEvent.Phase phase) {
-        return phase == TickEvent.Phase.END;
+    public boolean canFire(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
+        return phase == net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
     }
 
     @Override

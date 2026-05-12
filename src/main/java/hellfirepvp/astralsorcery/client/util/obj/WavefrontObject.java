@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.client.util.obj;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.VertexConsumer;
 import net.minecraft.client.renderer.vertex.VertexBuffer;
 import net.minecraft.resources.IResource;
 import net.minecraft.resources.ResourceLocation;
@@ -139,7 +139,7 @@ public class WavefrontObject {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public VertexBuffer batch(BufferBuilder buf) {
+    public VertexBuffer batch(VertexConsumer buf) {
         VertexBuffer vbo = new VertexBuffer(RenderTypesAS.POSITION_COLOR_TEX_NORMAL);
         if (this.getGLDrawingMode() == 0) {
             return vbo;
@@ -152,7 +152,7 @@ public class WavefrontObject {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public VertexBuffer batchOnly(BufferBuilder buf, String... groups) {
+    public VertexBuffer batchOnly(VertexConsumer buf, String... groups) {
         VertexBuffer vbo = new VertexBuffer(RenderTypesAS.POSITION_COLOR_TEX_NORMAL);
         if (this.getGLDrawingMode() == 0) {
             return vbo;
@@ -165,7 +165,7 @@ public class WavefrontObject {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public VertexBuffer batchExcept(BufferBuilder buf, String... excludedGroupNames) {
+    public VertexBuffer batchExcept(VertexConsumer buf, String... excludedGroupNames) {
         VertexBuffer vbo = new VertexBuffer(RenderTypesAS.POSITION_COLOR_TEX_NORMAL);
         if (this.getGLDrawingMode() == 0) {
             return vbo;
@@ -185,7 +185,7 @@ public class WavefrontObject {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void renderOnly(BufferBuilder vb, String... groups) {
+    public void renderOnly(VertexConsumer vb, String... groups) {
         List<String> groupList = Arrays.asList(groups);
         for (GroupObject groupObject : groupObjects) {
             if (groupList.contains(groupObject.name)) {
@@ -195,7 +195,7 @@ public class WavefrontObject {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void renderExcept(BufferBuilder vb, String... excludedGroupNames) {
+    public void renderExcept(VertexConsumer vb, String... excludedGroupNames) {
         boolean exclude;
         for (GroupObject groupObject : groupObjects) {
             exclude = false;

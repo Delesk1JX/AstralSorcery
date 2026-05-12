@@ -57,12 +57,12 @@ import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.util.TriPredicate;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.fml.common.thread.EffectiveSide;
+import net.neoforged.neoforge.fml.common.thread.LogicalSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -98,7 +98,7 @@ public class ItemResonator extends Item implements OverrideInteractItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World world, List<Component> tooltip, TooltipFlag extended) {
+    public void addInformation(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag extended) {
         ResonatorUpgrade current = getCurrentUpgrade(Minecraft.getInstance().player, stack);
         for (ResonatorUpgrade upgrade : getUpgrades(stack)) {
             TextFormatting color = upgrade.equals(current) ? ChatFormatting.GOLD : ChatFormatting.BLUE;
@@ -107,7 +107,7 @@ public class ItemResonator extends Item implements OverrideInteractItem {
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
+    public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
         if (!selected) {
             selected = entity instanceof LivingEntity && ((LivingEntity) entity).getHeldItemOffhand() == stack;
         }
@@ -132,7 +132,7 @@ public class ItemResonator extends Item implements OverrideInteractItem {
 
                         IChunk ch = world.getChunk(pos);
                         if (ch instanceof Chunk) {
-                            ((Chunk) ch).getCapability(CapabilitiesAS.CHUNK_FLUID).ifPresent(entry -> {
+                            ((Chunk) ch).getnet.neoforged.neoforge.capabilities(CapabilitiesAS.CHUNK_FLUID).ifPresent(entry -> {
                                 FluidStack display = entry.drain(1, IFluidHandler.FluidAction.SIMULATE);
                                 if (!display.isEmpty()) {
                                     PktPlayEffect pkt = new PktPlayEffect(PktPlayEffect.Type.LIQUID_FOUNTAIN).addData(buf -> {
@@ -152,7 +152,7 @@ public class ItemResonator extends Item implements OverrideInteractItem {
     }
 
     @OnlyIn(Dist.CLIENT)
-    private void clientInventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
+    private void clientInventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
         if (!(entity instanceof Player)) {
             return;
         }
@@ -207,14 +207,14 @@ public class ItemResonator extends Item implements OverrideInteractItem {
     @Override
     public boolean shouldInterceptBlockInteract(LogicalSide side, Player player, Hand hand, BlockPos pos, Direction face) {
         ResonatorUpgrade upgrade = getCurrentUpgrade(player, player.getHeldItem(hand));
-        return upgrade == ResonatorUpgrade.AREA_SIZE && MiscUtils.getTileAt(player.getEntityWorld(), pos, TileAreaOfInfluence.class, false) != null;
+        return upgrade == ResonatorUpgrade.AREA_SIZE && MiscUtils.getTileAt(player.level, pos, TileAreaOfInfluence.class, false) != null;
     }
 
     @Override
     public boolean doBlockInteract(LogicalSide side, Player player, Hand hand, BlockPos pos, Direction face) {
         ResonatorUpgrade upgrade = getCurrentUpgrade(player, player.getHeldItem(hand));
-        if (upgrade == ResonatorUpgrade.AREA_SIZE && player.getEntityWorld().isRemote()) {
-            TileAreaOfInfluence aoeTile = MiscUtils.getTileAt(player.getEntityWorld(), pos, TileAreaOfInfluence.class, false);
+        if (upgrade == ResonatorUpgrade.AREA_SIZE && player.level.isRemote()) {
+            TileAreaOfInfluence aoeTile = MiscUtils.getTileAt(player.level, pos, TileAreaOfInfluence.class, false);
             if (aoeTile != null) {
                 playAreaOfInfluenceEffect(aoeTile);
             }
@@ -228,7 +228,7 @@ public class ItemResonator extends Item implements OverrideInteractItem {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, Player player, Hand hand) {
+    public ActionResult<ItemStack> onItemRightClick(Level world, Player player, Hand hand) {
         if (!world.isRemote() && player.isSneaking()) {
             if (cycleUpgrade(player, player.getHeldItem(hand))) {
                 return ActionResult.resultSuccess(player.getHeldItem(hand));
@@ -364,8 +364,8 @@ public class ItemResonator extends Item implements OverrideInteractItem {
         public boolean hasUpgrade(ItemStack stack) {
             int id = ordinal();
             CompoundTag cmp = NBTHelper.getPersistentData(stack);
-            if (cmp.contains("upgrades", Constants.NBT.TAG_LIST)) {
-                ListTag list = cmp.getList("upgrades", Constants.NBT.TAG_INT);
+            if (cmp.contains("upgrades", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_LIST)) {
+                ListTag list = cmp.getList("upgrades", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_INT);
                 for (int i = 0; i < list.size(); i++) {
                     if (list.getInt(i) == id) {
                         return true;
@@ -376,17 +376,17 @@ public class ItemResonator extends Item implements OverrideInteractItem {
         }
 
         public boolean canSwitchTo(@Nonnull Player player, ItemStack stack) {
-            return hasUpgrade(stack) && check.test(player, EffectiveSide.get(), stack);
+            return hasUpgrade(stack) && check.test(player, LogicalSide.get(), stack);
         }
 
         public void applyUpgrade(ItemStack stack) {
             if (hasUpgrade(stack)) return;
 
             CompoundTag cmp = NBTHelper.getPersistentData(stack);
-            if (!cmp.contains("upgrades", Constants.NBT.TAG_LIST)) {
+            if (!cmp.contains("upgrades", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_LIST)) {
                 cmp.put("upgrades", new ListTag());
             }
-            ListTag list = cmp.getList("upgrades", Constants.NBT.TAG_INT);
+            ListTag list = cmp.getList("upgrades", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_INT);
             list.add(IntTag.valueOf(ordinal()));
         }
     }

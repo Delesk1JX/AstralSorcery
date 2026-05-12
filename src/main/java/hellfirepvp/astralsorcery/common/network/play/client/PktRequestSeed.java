@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.util.world.WorldSeedCache;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.RegistryKey;
+import net.minecraft.util.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.level.Level;
@@ -23,7 +23,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;
-import net.neoforged.neoforge.network.NetworkEvent;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import javax.annotation.Nonnull;
 
@@ -36,13 +36,13 @@ import javax.annotation.Nonnull;
  */
 public class PktRequestSeed extends ASPacket<PktRequestSeed> {
 
-    private RegistryKey<World> dim;
+    private ResourceKey<Level> dim;
     private Integer session;
     private Long seed;
 
     public PktRequestSeed() {}
 
-    public PktRequestSeed(Integer session, RegistryKey<World> dim) {
+    public PktRequestSeed(Integer session, ResourceKey<Level> dim) {
         this.dim = dim;
         this.session = session;
         this.seed = -1L;
@@ -83,12 +83,12 @@ public class PktRequestSeed extends ASPacket<PktRequestSeed> {
         return new Handler<PktRequestSeed>() {
             @Override
             @OnlyIn(Dist.CLIENT)
-            public void handleClient(PktRequestSeed packet, NetworkEvent.Context context) {
+            public void handleClient(PktRequestSeed packet, IPayloadContext context) {
                 context.enqueueWork(() -> WorldSeedCache.updateSeedCache(packet.dim, packet.session, packet.seed));
             }
 
             @Override
-            public void handle(PktRequestSeed packet, NetworkEvent.Context context, LogicalSide side) {
+            public void handle(PktRequestSeed packet, IPayloadContext context, LogicalSide side) {
                 context.enqueueWork(() -> {
                     //TODO 1.16.2 re-check once worlds are not all constantly loaded
                     MinecraftServer srv = LogicalSidedProvider.INSTANCE.get(LogicalSide.SERVER);

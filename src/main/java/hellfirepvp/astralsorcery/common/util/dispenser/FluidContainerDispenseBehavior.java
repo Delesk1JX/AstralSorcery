@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.util.dispenser;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.dispenser.DefaultDispenseItemBehavior;
-import net.minecraft.core.BlockSource;
+import net.minecraft.core.dispenser.DispenseItemContext;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -21,7 +21,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
-import net.neoforged.neoforge.common.util.LazyOptional;
+import net.neoforged.neoforge.common.util.Lazy;
 import net.neoforged.neoforge.fluids.FluidActionResult;
 import net.neoforged.neoforge.fluids.FluidAttributes;
 import net.neoforged.neoforge.fluids.FluidStack;
@@ -61,7 +61,7 @@ public class FluidContainerDispenseBehavior extends DefaultDispenseItemBehavior 
 
     @Nonnull
     private ItemStack fillContainer(IBlockSource source, ItemStack stack) {
-        World world = source.getWorld();
+        Level world = source.getWorld();
         Direction dispenserFacing = source.getBlockState().get(DispenserBlock.FACING);
         BlockPos blockpos = source.getBlockPos().offset(dispenserFacing);
 
@@ -88,7 +88,7 @@ public class FluidContainerDispenseBehavior extends DefaultDispenseItemBehavior 
         ServerLevel world = source.getWorld();
         ItemStack singleStack = stack.copy();
         singleStack.setCount(1);
-        LazyOptional<IFluidHandlerItem> itemFluidHandler = FluidUtil.getFluidHandler(singleStack);
+        Lazy<IFluidHandlerItem> itemFluidHandler = FluidUtil.getFluidHandler(singleStack);
         if (!itemFluidHandler.isPresent()) {
             return super.dispenseStack(source, stack);
         }

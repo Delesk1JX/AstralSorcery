@@ -55,9 +55,9 @@ public class BlockSymmetryHelper {
                     result.symmetryPairs.add(new BiDiPair<>(at, dotSym));
 
                     if (!allowMirrorSymmetry) {
-                        checkMirrorSymmetry(world, new Vector3i(-offset.getX(),  offset.getY(),  offset.getZ()), center, result, visitedBlocks);
-                        checkMirrorSymmetry(world, new Vector3i( offset.getX(), -offset.getY(),  offset.getZ()), center, result, visitedBlocks);
-                        checkMirrorSymmetry(world, new Vector3i( offset.getX(),  offset.getY(), -offset.getZ()), center, result, visitedBlocks);
+                        checkMirrorSymmetry(world, new net.minecraft.core.Vec3i(-offset.getX(),  offset.getY(),  offset.getZ()), center, result, visitedBlocks);
+                        checkMirrorSymmetry(world, new net.minecraft.core.Vec3i( offset.getX(), -offset.getY(),  offset.getZ()), center, result, visitedBlocks);
+                        checkMirrorSymmetry(world, new net.minecraft.core.Vec3i( offset.getX(),  offset.getY(), -offset.getZ()), center, result, visitedBlocks);
                     }
                 } else if (!dotState.isAir(world, dotSym)) {
                     result.fillerBlocks.add(at);
@@ -74,7 +74,7 @@ public class BlockSymmetryHelper {
         return result;
     }
 
-    private static void checkMirrorSymmetry(IBlockReader world, Vector3i offset, BlockPos center, SymmetryResult result, Set<BlockPos> visitedBlocks) {
+    private static void checkMirrorSymmetry(IBlockReader world, net.minecraft.core.Vec3i offset, BlockPos center, SymmetryResult result, Set<BlockPos> visitedBlocks) {
         BlockPos at = center.add(offset);
         BlockState state = world.getBlockState(at);
         visitedBlocks.add(at);

@@ -64,7 +64,7 @@ public class SpectralToolBreakBlockGoal extends SpectralToolGoal {
             return true;
         } else {
             BlockPos validPos = BlockDiscoverer.searchAreaForFirst(
-                    this.getEntity().getEntityWorld(),
+                    this.getEntity().level,
                     this.getEntity().getStartPosition(),
                     8,
                     Vector3.atEntityCorner(this.getEntity()),
@@ -83,7 +83,7 @@ public class SpectralToolBreakBlockGoal extends SpectralToolGoal {
         super.startExecuting();
 
         BlockPos validPos = BlockDiscoverer.searchAreaForFirst(
-                this.getEntity().getEntityWorld(),
+                this.getEntity().level,
                 this.getEntity().getStartPosition(),
                 8,
                 Vector3.atEntityCorner(this.getEntity()),
@@ -120,7 +120,7 @@ public class SpectralToolBreakBlockGoal extends SpectralToolGoal {
             this.actionCooldown = 0; //lol. wtf.
         }
 
-        World world = this.getEntity().getEntityWorld();
+        Level world = this.getEntity().level;
         boolean resetTimer = false;
 
         if (world.isAirBlock(this.selectedBreakPos)) {

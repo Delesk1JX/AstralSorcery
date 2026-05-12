@@ -27,7 +27,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.network.NetworkEvent;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import javax.annotation.Nonnull;
 import java.util.function.Consumer;
@@ -89,12 +89,12 @@ public class PktPlayEffect extends ASPacket<PktPlayEffect> {
         return new Handler<PktPlayEffect>() {
             @Override
             @OnlyIn(Dist.CLIENT)
-            public void handleClient(PktPlayEffect packet, NetworkEvent.Context context) {
+            public void handleClient(PktPlayEffect packet, IPayloadContext context) {
                 context.enqueueWork(() -> packet.type.runEffect().accept(packet));
             }
 
             @Override
-            public void handle(PktPlayEffect packet, NetworkEvent.Context context, LogicalSide side) {}
+            public void handle(PktPlayEffect packet, IPayloadContext context, LogicalSide side) {}
         };
     }
 

@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.client.resource;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.effect.EntityComplexFX;
 import hellfirepvp.astralsorcery.common.util.NameUtil;
-import net.minecraft.client.renderer.RenderState;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.Mth;
 
@@ -54,7 +54,7 @@ public class SpriteSheetResource extends AbstractRenderableTexture {
     }
 
     @Override
-    public RenderState.TextureState asState() {
+    public RenderType.CompositeState asState() {
         return this.resource.asState();
     }
 

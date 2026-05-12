@@ -18,7 +18,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.Tags;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -41,7 +41,7 @@ public class ItemDazzlingGem extends Item {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<Component> tooltip, TooltipFlag flag) {
+    public void addInformation(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flag) {
         getQuality(stack).ifPresent(quality -> tooltip.add(quality.getDisplayName()));
     }
 
@@ -64,7 +64,7 @@ public class ItemDazzlingGem extends Item {
             return Optional.empty();
         }
         CompoundTag tag = NBTHelper.getPersistentData(stack);
-        if (!tag.contains("quality", Constants.NBT.TAG_INT)) {
+        if (!tag.contains("quality", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_INT)) {
             return Optional.empty();
         }
         int qualityId = tag.getInt("quality");

@@ -38,7 +38,7 @@ import java.util.Objects;
  * Created by HellFirePvP
  * Date: 08.08.2019 / 17:25
  */
-public class PerkAttributeModifier extends DeferredHolder<PerkAttributeModifier> {
+public class PerkAttributeModifier extends DeferredHolder<net.neoforged.neoforge.registries.RegistryKey<PerkAttributeModifier>, PerkAttributeModifier> {
 
     private static long counter = 0;
 

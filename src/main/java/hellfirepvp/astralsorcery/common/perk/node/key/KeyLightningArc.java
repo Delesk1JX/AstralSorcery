@@ -139,7 +139,7 @@ public class KeyLightningArc extends KeyPerk {
 
     static class RepetitiveArcEffect {
 
-        private final World world;
+        private final Level world;
         private final Player player;
         private final int entityStartId;
         private final float damage;
@@ -147,7 +147,7 @@ public class KeyLightningArc extends KeyPerk {
 
         private int count;
 
-        public RepetitiveArcEffect(World world, Player player, int count, int entityStartId, float damage, double distance) {
+        public RepetitiveArcEffect(Level world, Player player, int count, int entityStartId, float damage, double distance) {
             this.world = world;
             this.player = player;
             this.count = count;
@@ -167,7 +167,7 @@ public class KeyLightningArc extends KeyPerk {
             Entity start = world.getEntityByID(entityStartId);
 
             if (start instanceof LivingEntity && start.isAlive()) {
-                AxisAlignedBB box = new AxisAlignedBB(-distance, -distance, -distance, distance, distance, distance);
+                AABB box = new AABB(-distance, -distance, -distance, distance, distance, distance);
 
                 LivingEntity last = null;
                 LivingEntity entity = (LivingEntity) start;
@@ -192,7 +192,7 @@ public class KeyLightningArc extends KeyPerk {
                                     buf.writeInt(ColorsAS.EFFECT_LIGHTNING.getRGB());
                                 }), target);
                     }
-                    List<LivingEntity> entities = entity.getEntityWorld().getEntitiesWithinAABB(LivingEntity.class, box.offset(entity.getPositionVec()), EntityUtils.selectEntities(LivingEntity.class));
+                    List<LivingEntity> entities = entity.level.getEntitiesWithinAABB(LivingEntity.class, box.offset(entity.getPositionVec()), EntityUtils.selectEntities(LivingEntity.class));
                     entities.remove(entity);
                     if (last != null) {
                         entities.remove(last);

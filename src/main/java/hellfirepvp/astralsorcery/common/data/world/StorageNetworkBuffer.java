@@ -21,7 +21,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.Tags;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -53,7 +53,7 @@ public class StorageNetworkBuffer extends GlobalWorldData {
 
         for (StorageNetwork network : this.rawNetworks.values()) {
             for (StorageNetwork.CoreArea core : network.getCores()) {
-                AxisAlignedBB box = core.getRealBox();
+                AABB box = core.getRealBox();
                 ChunkPos from = Vector3.getMin(box).toChunkPos();
                 ChunkPos to   = Vector3.getMax(box).toChunkPos();
 
@@ -83,7 +83,7 @@ public class StorageNetworkBuffer extends GlobalWorldData {
     public void readFromNBT(CompoundTag compound) {
         this.rawNetworks.clear();
 
-        ListTag networks = compound.getList("networks", Constants.NBT.TAG_COMPOUND);
+        ListTag networks = compound.getList("networks", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
         for (int i = 0; i < networks.size(); i++) {
             CompoundTag tag = networks.getCompound(i);
             StorageNetwork net = new StorageNetwork();
@@ -102,6 +102,6 @@ public class StorageNetworkBuffer extends GlobalWorldData {
     }
 
     @Override
-    public void updateTick(World world) {}
+    public void updateTick(Level world) {}
 
 }

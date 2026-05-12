@@ -10,11 +10,11 @@ package hellfirepvp.astralsorcery.common.util.tile;
 
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.core.Direction;
-import net.neoforged.neoforge.common.capabilities.Capability;
-import net.neoforged.neoforge.common.util.LazyOptional;
+
+import net.neoforged.neoforge.common.util.Lazy;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.IFluidTank;
-import net.neoforged.neoforge.fluids.capability.CapabilityFluidHandler;
+import net.neoforged.neoforge.fluids.capability.net.neoforged.neoforge.capabilitiesFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 
 import javax.annotation.Nonnull;
@@ -49,14 +49,14 @@ public class FluidTankAccess {
         return dir == null || MiscUtils.contains(this.tanks, tank -> tank.accessibleSides.test(dir));
     }
 
-    public boolean hasCapability(Capability<?> capability, @Nullable Direction facing) {
-        return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY == capability && hasTanksForSide(facing);
+    public boolean hasnet.neoforged.neoforge.capabilities(net.neoforged.neoforge.capabilities<?> capability, @Nullable Direction facing) {
+        return net.neoforged.neoforge.capabilitiesFluidHandler.FLUID_HANDLER_CAPABILITY == capability && hasTanksForSide(facing);
     }
 
-    public LazyOptional<IFluidHandler> getCapability(@Nullable Direction facing) {
+    public Lazy<IFluidHandler> getnet.neoforged.neoforge.capabilities(@Nullable Direction facing) {
         Set<AccessibleTank> available = facing == null ? this.tanks :
                 this.tanks.stream().filter(t -> t.isAccessible(facing)).collect(Collectors.toSet());
-        return available.isEmpty() ? LazyOptional.empty() : LazyOptional.of(() -> new SidedAccess(available));
+        return available.isEmpty() ? Lazy.empty() : Lazy.of(() -> new SidedAccess(available));
     }
 
     private static class SidedAccess implements IFluidHandler {

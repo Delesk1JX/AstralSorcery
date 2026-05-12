@@ -13,7 +13,7 @@ import com.google.common.collect.Maps;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.items.IItemHandler;
 
 import java.util.ArrayList;
@@ -169,7 +169,7 @@ public class StorageCache {
     public void readFromNBT(CompoundTag tag) {
         this.content.clear();
 
-        ListTag content = tag.getList("content", Constants.NBT.TAG_COMPOUND);
+        ListTag content = tag.getList("content", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
         for (int i = 0; i < content.size(); i++) {
             CompoundTag itemStorage = content.getCompound(i);
             StorageKey key = StorageKey.deserialize(itemStorage.getCompound("storageKey"));
@@ -177,7 +177,7 @@ public class StorageCache {
                 continue;
             }
 
-            ListTag items = itemStorage.getList("items", Constants.NBT.TAG_COMPOUND);
+            ListTag items = itemStorage.getList("items", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
             List<StoredItemStack> stacks = new ArrayList<>(items.size());
             for (int j = 0; j < items.size(); j++) {
                 StoredItemStack stack = StoredItemStack.deserialize(items.getCompound(j));

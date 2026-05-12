@@ -25,7 +25,7 @@ import hellfirepvp.astralsorcery.common.crafting.recipe.LiquidInteractionContext
 import hellfirepvp.astralsorcery.common.fluid.FluidLiquidStarlight;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
-import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.network.play.server.PktPlayEffect;
 import hellfirepvp.astralsorcery.common.tile.base.TileEntityTick;
@@ -46,8 +46,8 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.capabilities.Capability;
-import net.neoforged.neoforge.common.util.LazyOptional;
+
+import net.neoforged.neoforge.common.util.Lazy;
 import net.neoforged.neoforge.fluids.FluidAttributes;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
@@ -81,7 +81,7 @@ public class TileChalice extends TileEntityTick {
     private Vector3 rotationVec = null;
 
     public TileChalice() {
-        super(TileEntityTypesAS.CHALICE);
+        super(BlockEntityTypesAS.CHALICE);
 
         this.tank = new SimpleSingleFluidTank(TANK_SIZE);
         this.tank.addUpdateFunction(this::markForUpdate);
@@ -303,7 +303,7 @@ public class TileChalice extends TileEntityTick {
 
     @Nonnull
     public IFluidHandler getTankAccess() {
-        return this.access.getCapability(Direction.DOWN).orElse(null);
+        return this.access.getnet.neoforged.neoforge.capabilities(Direction.DOWN).orElse(null);
     }
 
     @Nonnull
@@ -332,10 +332,10 @@ public class TileChalice extends TileEntityTick {
 
     @Nonnull
     @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-        if (this.access.hasCapability(cap, side)) {
-            return this.access.getCapability(side).cast();
+    public <T> Lazy<T> getnet.neoforged.neoforge.capabilities(@Nonnull net.neoforged.neoforge.capabilities<T> cap, @Nullable Direction side) {
+        if (this.access.hasnet.neoforged.neoforge.capabilities(cap, side)) {
+            return this.access.getnet.neoforged.neoforge.capabilities(side).cast();
         }
-        return super.getCapability(cap, side);
+        return super.getnet.neoforged.neoforge.capabilities(cap, side);
     }
 }

@@ -19,13 +19,13 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.Util;
+import net.minecraft.Util;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;
-import net.neoforged.neoforge.fml.common.thread.EffectiveSide;
+import net.neoforged.neoforge.fml.common.thread.LogicalSide;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 
 import javax.annotation.Nonnull;
@@ -94,7 +94,7 @@ public class AmuletEnchantmentHelper {
             return null;
         }
         Player player;
-        if (EffectiveSide.get() == LogicalSide.CLIENT) {
+        if (LogicalSide.get() == LogicalSide.CLIENT) {
             player = resolvePlayerClient(plUUID);
         } else {
             MinecraftServer server = LogicalSidedProvider.INSTANCE.get(LogicalSide.SERVER);
@@ -137,7 +137,7 @@ public class AmuletEnchantmentHelper {
 
     @OnlyIn(Dist.CLIENT)
     private static Player resolvePlayerClient(UUID plUUID) {
-        Optional<World> w = LogicalSidedProvider.CLIENTWORLD.get(LogicalSide.CLIENT);
+        Optional<Level> w = LogicalSidedProvider.CLIENTWORLD.get(LogicalSide.CLIENT);
         return w.map(world -> world.getPlayerByUuid(plUUID)).orElse(null);
     }
 

@@ -91,7 +91,7 @@ public class BlockStructural extends Block {
     }
 
     @Override
-    public SoundType getSoundType(BlockState state, IWorldReader world, BlockPos pos, @Nullable Entity entity) {
+    public SoundType getSoundType(BlockState state, LevelAccessor world, BlockPos pos, @Nullable Entity entity) {
         switch (state.get(BLOCK_TYPE)) {
             case TELESCOPE:
                 return SoundType.WOOD;
@@ -101,7 +101,7 @@ public class BlockStructural extends Block {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public boolean addDestroyEffects(BlockState state, World world, BlockPos pos, ParticleManager manager) {
+    public boolean addDestroyEffects(BlockState state, Level world, BlockPos pos, ParticleManager manager) {
         EventFlags.PLAY_BLOCK_BREAK_EFFECTS.executeWithFlag(() -> {
             switch (state.get(BLOCK_TYPE)) {
                 case TELESCOPE:
@@ -114,7 +114,7 @@ public class BlockStructural extends Block {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public boolean addHitEffects(BlockState state, World world, RayTraceResult target, ParticleManager manager) {
+    public boolean addHitEffects(BlockState state, Level world, RayTraceResult target, ParticleManager manager) {
         if (target instanceof BlockHitResult) {
             EventFlags.PLAY_BLOCK_BREAK_EFFECTS.executeWithFlag(() -> {
                 switch (state.get(BLOCK_TYPE)) {
@@ -128,7 +128,7 @@ public class BlockStructural extends Block {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, Player entity, Hand hand, BlockHitResult rayTraceResult) {
+    public ActionResultType onBlockActivated(BlockState state, Level world, BlockPos pos, Player entity, Hand hand, BlockHitResult rayTraceResult) {
         switch (state.get(BLOCK_TYPE)) {
             case TELESCOPE:
                 if (world.isRemote()) {
@@ -168,7 +168,7 @@ public class BlockStructural extends Block {
     }
 
     @Override
-    public float getExplosionResistance(BlockState state, IWorldReader world, BlockPos pos, @Nullable Entity exploder, Explosion explosion) {
+    public float getExplosionResistance(BlockState state, LevelAccessor world, BlockPos pos, @Nullable Entity exploder, Explosion explosion) {
         switch (state.get(BLOCK_TYPE)) {
             case TELESCOPE:
                 return BlockType.TELESCOPE.getSupportedState().getExplosionResistance(world, pos.down(), exploder, explosion);
@@ -186,7 +186,7 @@ public class BlockStructural extends Block {
     }
 
     @Override
-    public void neighborChanged(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
+    public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
         switch (state.get(BLOCK_TYPE)) {
             case TELESCOPE:
                 if (world.isAirBlock(pos.down())) {
@@ -198,7 +198,7 @@ public class BlockStructural extends Block {
     }
 
     @Override
-    public void onNeighborChange(BlockState state, IWorldReader world, BlockPos pos, BlockPos neighbor) {
+    public void onNeighborChange(BlockState state, LevelAccessor world, BlockPos pos, BlockPos neighbor) {
         if (!(world instanceof IWorldWriter)) {
             return;
         }

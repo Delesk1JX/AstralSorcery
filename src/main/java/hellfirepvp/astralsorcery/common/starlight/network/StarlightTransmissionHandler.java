@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.starlight.network;
 
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
-import net.minecraft.util.RegistryKey;
+import net.minecraft.util.ResourceKey;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
@@ -30,7 +30,7 @@ import java.util.Map;
 public class StarlightTransmissionHandler implements ITickHandler {
 
     private static final StarlightTransmissionHandler instance = new StarlightTransmissionHandler();
-    private final Map<RegistryKey<World>, TransmissionWorldHandler> worldHandlers = new HashMap<>();
+    private final Map<ResourceKey<Level>, TransmissionWorldHandler> worldHandlers = new HashMap<>();
 
     private StarlightTransmissionHandler() {}
 
@@ -39,8 +39,8 @@ public class StarlightTransmissionHandler implements ITickHandler {
     }
 
     @Override
-    public void tick(TickEvent.Type type, Object... context) {
-        World world = (World) context[0];
+    public void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
+        Level world = (Level) context[0];
         if (world.isRemote() || !(world instanceof ServerLevel)) {
             return;
         }
@@ -53,8 +53,8 @@ public class StarlightTransmissionHandler implements ITickHandler {
         worldHandlers.clear();
     }
 
-    public void informWorldUnload(World world) {
-        RegistryKey<World> dimKey = world.getDimensionKey();
+    public void informWorldUnload(Level world) {
+        ResourceKey<Level> dimKey = world.getDimensionKey();
         TransmissionWorldHandler handle = worldHandlers.get(dimKey);
         if (handle != null) {
             handle.clear();
@@ -63,7 +63,7 @@ public class StarlightTransmissionHandler implements ITickHandler {
     }
 
     @Nullable
-    public TransmissionWorldHandler getWorldHandler(World world) {
+    public TransmissionWorldHandler getWorldHandler(Level world) {
         if (world == null) {
             return null;
         }
@@ -71,13 +71,13 @@ public class StarlightTransmissionHandler implements ITickHandler {
     }
 
     @Override
-    public EnumSet<TickEvent.Type> getHandledTypes() {
-        return EnumSet.of(TickEvent.Type.WORLD);
+    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
+        return EnumSet.of(net.neoforged.neoforge.event.tick.ClientTickEvent.WORLD);
     }
 
     @Override
-    public boolean canFire(TickEvent.Phase phase) {
-        return phase == TickEvent.Phase.START;
+    public boolean canFire(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
+        return phase == net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.START;
     }
 
     @Override

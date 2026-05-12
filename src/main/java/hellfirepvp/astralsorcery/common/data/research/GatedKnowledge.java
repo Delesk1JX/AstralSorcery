@@ -37,8 +37,8 @@ public enum GatedKnowledge {
         return canSee(progress.getTierReached());
     }
 
-    public boolean canSee(ProgressionTier compCapability) {
-        return capability.ordinal() <= compCapability.ordinal();
+    public boolean canSee(ProgressionTier compnet.neoforged.neoforge.capabilities) {
+        return capability.ordinal() <= compnet.neoforged.neoforge.capabilities.ordinal();
     }
 
 }

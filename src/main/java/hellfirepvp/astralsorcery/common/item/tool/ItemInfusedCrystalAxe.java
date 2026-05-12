@@ -49,7 +49,7 @@ public class ItemInfusedCrystalAxe extends ItemCrystalAxe implements EquipmentAt
 
     @Override
     public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, Player player) {
-        World world = player.getEntityWorld();
+        Level world = player.level;
         if (!world.isRemote() &&
                 !player.isSneaking() &&
                 !player.getCooldownTracker().hasCooldown(itemstack.getItem()) &&

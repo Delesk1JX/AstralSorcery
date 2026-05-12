@@ -67,7 +67,7 @@ public class BlockUtils {
     @Nonnull
     public static List<ItemStack> getDrops(ServerLevel world, BlockPos pos, BlockState state, int harvestFortune, Random rand, ItemStack tool) {
         LootContext.Builder builder = new LootContext.Builder(world)
-                .withParameter(LootParameters.field_237457_g_, Vector3d.copyCentered(pos))
+                .withParameter(LootParameters.field_237457_g_, net.minecraft.world.phys.Vec3.copyCentered(pos))
                 .withParameter(LootParameters.BLOCK_STATE, state)
                 .withParameter(LootParameters.TOOL, tool)
                 .withNullableParameter(LootParameters.BLOCK_ENTITY, MiscUtils.getTileAt(world, pos, BlockEntity.class, true))
@@ -79,7 +79,7 @@ public class BlockUtils {
     @Nonnull
     public static BlockPos getWorldTopPos(BlockPos at) {
         BlockPos it = at;
-        while (!World.isOutsideBuildHeight(it)) {
+        while (!Level.isOutsideBuildHeight(it)) {
             it = it.up();
         }
         return it;
@@ -94,11 +94,11 @@ public class BlockUtils {
         return at;
     }
 
-    public static boolean isReplaceable(World world, BlockPos pos) {
+    public static boolean isReplaceable(Level world, BlockPos pos) {
         return isReplaceable(world, pos, world.getBlockState(pos));
     }
 
-    public static boolean isReplaceable(World world, BlockPos pos, BlockState state) {
+    public static boolean isReplaceable(Level world, BlockPos pos, BlockState state) {
         if (world.isAirBlock(pos)) {
             return true;
         }
@@ -150,7 +150,7 @@ public class BlockUtils {
         return breakSpeed;
     }
 
-    public static boolean isFluidBlock(World world, BlockPos pos) {
+    public static boolean isFluidBlock(Level world, BlockPos pos) {
         return isFluidBlock(world.getBlockState(pos));
     }
 
@@ -193,7 +193,7 @@ public class BlockUtils {
         return true;
     }
 
-    public static boolean canToolBreakBlockWithoutPlayer(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull BlockState state, @Nonnull ItemStack stack) {
+    public static boolean canToolBreakBlockWithoutPlayer(@Nonnull Level world, @Nonnull BlockPos pos, @Nonnull BlockState state, @Nonnull ItemStack stack) {
         if (state.getBlockHardness(world, pos) == -1) {
             return false;
         }
@@ -326,7 +326,7 @@ public class BlockUtils {
         return true;
     }
 
-    private static void restoreWorldState(World world, boolean prevCaptureFlag, List<BlockSnapshot> prevSnapshots) {
+    private static void restoreWorldState(Level world, boolean prevCaptureFlag, List<BlockSnapshot> prevSnapshots) {
         world.captureBlockSnapshots = false;
 
         world.restoringBlockSnapshots = true;
