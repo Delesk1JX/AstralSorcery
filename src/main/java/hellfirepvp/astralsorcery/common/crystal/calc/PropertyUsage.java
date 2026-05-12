@@ -13,6 +13,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Component;
 import static net.minecraft.network.chat.Component.translatable;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import net.minecraft.world.item.Item;
 
 import java.util.Objects;
 
@@ -23,10 +24,10 @@ import java.util.Objects;
  * Created by HellFirePvP
  * Date: 30.01.2019 / 08:14
  */
-public class PropertyUsage extends DeferredHolder<PropertyUsage> {
+public class PropertyUsage extends DeferredHolder<Item, PropertyUsage> {
 
     public PropertyUsage(ResourceLocation registryName) {
-        setRegistryName(registryName);
+        super(registryName);
     }
 
     public IFormattableTextComponent getName() {
