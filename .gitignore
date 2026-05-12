@@ -4,10 +4,13 @@
 *.o
 *.obj
 *.out
+build/
 target/
 
 # Dependencies
 .gradle/
+lib/
+libs/
 
 # Logs and temp files
 *.log
@@ -15,6 +18,7 @@ target/
 
 # Editors
 .idea/
+.vscode/
 
 # System files
 .DS_Store
