@@ -21,7 +21,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.EntitySize;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.tileentity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.core.BlockPos;

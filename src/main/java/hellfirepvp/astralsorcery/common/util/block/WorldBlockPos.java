@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.util.block;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.object.TransformReference;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.tileentity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.vector.Vector3i;

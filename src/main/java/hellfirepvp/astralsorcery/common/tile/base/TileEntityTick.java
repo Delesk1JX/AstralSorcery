@@ -15,8 +15,8 @@ import hellfirepvp.observerlib.api.ChangeSubscriber;
 import hellfirepvp.observerlib.api.ObserverHelper;
 import hellfirepvp.observerlib.common.change.ChangeObserverStructure;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.world.level.block.entity.ITickableTileEntity;
+import net.minecraft.world.level.block.entity.TileEntityType;
 import net.minecraft.resources.ResourceLocation;
 
 import javax.annotation.Nullable;

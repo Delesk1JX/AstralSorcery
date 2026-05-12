@@ -25,12 +25,12 @@ import net.minecraft.loot.LootContext;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.BlockRayTraceResult;
-import net.minecraft.util.RayTraceResult;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.util.shapes.ISelectionContext;
 import net.minecraft.util.shapes.VoxelShape;
 import net.minecraft.util.shapes.VoxelShapes;
@@ -115,11 +115,11 @@ public class BlockStructural extends Block {
     @Override
     @OnlyIn(Dist.CLIENT)
     public boolean addHitEffects(BlockState state, World world, RayTraceResult target, ParticleManager manager) {
-        if (target instanceof BlockRayTraceResult) {
+        if (target instanceof BlockHitResult) {
             EventFlags.PLAY_BLOCK_BREAK_EFFECTS.executeWithFlag(() -> {
                 switch (state.get(BLOCK_TYPE)) {
                     case TELESCOPE:
-                        manager.addBlockDestroyEffects(((BlockRayTraceResult) target).getPos().down(), BlocksAS.TELESCOPE.getDefaultState());
+                        manager.addBlockDestroyEffects(((BlockHitResult) target).getPos().down(), BlocksAS.TELESCOPE.getDefaultState());
                         break;
                 }
             });
@@ -128,7 +128,7 @@ public class BlockStructural extends Block {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, Player entity, Hand hand, BlockRayTraceResult rayTraceResult) {
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, Player entity, Hand hand, BlockHitResult rayTraceResult) {
         switch (state.get(BLOCK_TYPE)) {
             case TELESCOPE:
                 if (world.isRemote()) {

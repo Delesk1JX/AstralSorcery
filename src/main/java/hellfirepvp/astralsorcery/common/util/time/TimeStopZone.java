@@ -18,7 +18,7 @@ import net.minecraft.world.entity.boss.dragon.phase.IPhase;
 import net.minecraft.world.entity.boss.dragon.phase.PhaseType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.tileentity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.util.vector.Vector3d;

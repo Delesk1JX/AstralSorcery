@@ -21,12 +21,12 @@ import hellfirepvp.astralsorcery.common.util.block.BlockPredicate;
 import hellfirepvp.astralsorcery.common.util.block.BlockUtils;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.ServerPlayer;
-import net.minecraft.util.Direction;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.core.Direction;
 import net.minecraft.util.*;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.level.Level;
-import net.neoforged.fml.config.ModConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.event.world.BlockEvent;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.LogicalSide;
@@ -70,8 +70,8 @@ public class AttributeTypeMiningSize extends PerkAttributeType {
                         .modifyValue(player, prog, PerkAttributeTypesAS.ATTR_TYPE_MINING_SIZE, 0);
                 size = AttributeEvent.postProcessModded(player, PerkAttributeTypesAS.ATTR_TYPE_MINING_SIZE, size);
                 if (size >= 1F) {
-                    BlockRayTraceResult brtr = MiscUtils.rayTraceLookBlock(player, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.NONE);
-                    if (brtr != null && brtr.getType() == RayTraceResult.Type.BLOCK) {
+                    BlockHitResult brtr = MiscUtils.rayTraceLookBlock(player, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.NONE);
+                    if (brtr != null && brtr.getType() == HitResult.Type.BLOCK) {
                         int levelBroken = event.getState().getHarvestLevel();
                         float hardnessBroken = event.getState().getBlockHardness(world, event.getPos());
                         BlockPredicate miningTest = (worldIn, posIn, stateIn) ->

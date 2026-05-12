@@ -47,7 +47,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.util.Direction;
+import net.minecraft.core.Direction;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;

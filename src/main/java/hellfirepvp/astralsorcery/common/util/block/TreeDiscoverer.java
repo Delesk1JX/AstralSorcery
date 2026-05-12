@@ -12,7 +12,7 @@ import hellfirepvp.observerlib.api.util.BlockArray;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.Direction;
+import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.vector.Vector3i;
 import net.minecraft.world.level.Level;

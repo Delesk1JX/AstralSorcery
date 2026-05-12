@@ -24,7 +24,7 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.RayTraceResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.util.shapes.ISelectionContext;
 import net.minecraft.util.shapes.VoxelShape;
 import net.minecraft.util.shapes.VoxelShapes;

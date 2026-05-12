@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.util.collision;
 
 import net.minecraft.world.entity.Entity;
-import net.minecraft.util.Direction;
+import net.minecraft.core.Direction;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.shapes.IBooleanFunction;
 import net.minecraft.util.shapes.VoxelShape;

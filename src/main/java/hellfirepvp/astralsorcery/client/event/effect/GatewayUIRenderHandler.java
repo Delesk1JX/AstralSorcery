@@ -26,9 +26,9 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.BlockRayTraceResult;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.util.Mth;
-import net.minecraft.util.RayTraceResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.client.event.RenderWorldLastEvent;
@@ -128,8 +128,8 @@ public class GatewayUIRenderHandler implements ITickHandler {
         UUID currentUUID = Minecraft.getInstance().player != null ? Minecraft.getInstance().player.getUniqueID() : null;
         RayTraceResult mouseOverRtr = Minecraft.getInstance().objectMouseOver;
         BlockPos blockSelected;
-        if (mouseOverRtr != null && mouseOverRtr.getType() == RayTraceResult.Type.BLOCK && mouseOverRtr instanceof BlockRayTraceResult) {
-            blockSelected = ((BlockRayTraceResult) mouseOverRtr).getPos().up();
+        if (mouseOverRtr != null && mouseOverRtr.getType() == HitResult.Type.BLOCK && mouseOverRtr instanceof BlockHitResult) {
+            blockSelected = ((BlockHitResult) mouseOverRtr).getPos().up();
         } else {
             blockSelected = null;
         }

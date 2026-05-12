@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.util.tile;
 
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.util.Direction;
+import net.minecraft.core.Direction;
 import net.neoforged.neoforge.common.capabilities.Capability;
 import net.neoforged.neoforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidStack;

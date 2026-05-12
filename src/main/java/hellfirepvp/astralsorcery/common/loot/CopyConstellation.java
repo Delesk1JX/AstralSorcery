@@ -18,7 +18,7 @@ import hellfirepvp.astralsorcery.common.lib.LootAS;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.loot.LootFunctionType;
 import net.minecraft.loot.LootParameters;
-import net.minecraft.tileentity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootFunction;
 import net.minecraft.loot.conditions.ILootCondition;

@@ -47,7 +47,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.fml.config.ModConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.util.Constants;
 import net.neoforged.neoforge.event.world.SaplingGrowTreeEvent;
 import net.neoforged.neoforge.eventbus.api.Event;
