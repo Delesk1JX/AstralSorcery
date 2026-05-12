@@ -34,7 +34,7 @@ import net.minecraft.util.shapes.VoxelShape;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.IWorldReader;
+import net.minecraft.world.LevelAccessor;
 import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
@@ -79,7 +79,7 @@ public class BlockGemCrystalCluster extends ContainerBlock implements CustomItem
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context) {
-        Vector3d offset = state.getOffset(world, pos);
+        net.minecraft.world.phys.Vec3 offset = state.getOffset(world, pos);
         VoxelShape shape = VoxelShapes.fullCube();
         switch (state.get(STAGE)) {
             case STAGE_0:
@@ -109,12 +109,12 @@ public class BlockGemCrystalCluster extends ContainerBlock implements CustomItem
     /*
     TODO custom states via state container
     @Override
-    public Vector3d getOffset(BlockState state, IBlockReader world, BlockPos pos) {
+    public net.minecraft.world.phys.Vec3 getOffset(BlockState state, IBlockReader world, BlockPos pos) {
         return super.getOffset(state, world, pos).mul(0.7, 0.7, 0.7);
     }*/
 
     @Override
-    public BlockState updatePostPlacement(BlockState state, Direction placedAgainst, BlockState facingState, IWorld world, BlockPos pos, BlockPos facingPos) {
+    public BlockState updatePostPlacement(BlockState state, Direction placedAgainst, BlockState facingState, ILevel world, BlockPos pos, BlockPos facingPos) {
         if (!this.isValidPosition(state, world, pos)) {
             return Blocks.AIR.getDefaultState();
         }
@@ -122,12 +122,12 @@ public class BlockGemCrystalCluster extends ContainerBlock implements CustomItem
     }
 
     @Override
-    public boolean isValidPosition(BlockState state, IWorldReader world, BlockPos pos) {
+    public boolean isValidPosition(BlockState state, LevelAccessor world, BlockPos pos) {
         return hasSolidSideOnTop(world, pos.down());
     }
 
     @Override
-    public void onReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean isMoving) {
+    public void onReplaced(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {
             super.onReplaced(state, world, pos, newState, isMoving);
 
@@ -181,7 +181,7 @@ public class BlockGemCrystalCluster extends ContainerBlock implements CustomItem
             return growthStage;
         }
 
-        public GrowthStageType grow(World world) {
+        public GrowthStageType grow(Level world) {
             if (this == STAGE_0) {
                 return STAGE_1;
             }

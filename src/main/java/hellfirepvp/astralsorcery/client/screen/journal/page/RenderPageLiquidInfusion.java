@@ -18,9 +18,9 @@ import hellfirepvp.astralsorcery.common.data.research.ProgressionTier;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.data.research.ResearchNode;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
-import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.VertexConsumer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormat;
+import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.world.item.ItemStack;
 import static net.minecraft.network.chat.Component.translatable;
 import net.neoforged.neoforge.fluids.FluidAttributes;
@@ -79,7 +79,7 @@ public class RenderPageLiquidInfusion extends RenderPageRecipeTemplate {
         });
     }
 
-    private void renderLiquidInput(BufferBuilder buf, PoseStack renderStack, TextureAtlasSprite tas, int x, int y) {
+    private void renderLiquidInput(VertexConsumer buf, PoseStack renderStack, TextureAtlasSprite tas, int x, int y) {
         RenderingGuiUtils.rect(buf, renderStack, 28 + x * 25.15F, 76 + y * 25.15F, 0, 22.3F, 22.3F)
                 .tex(tas)
                 .draw();

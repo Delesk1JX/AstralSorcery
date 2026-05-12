@@ -21,9 +21,9 @@ import hellfirepvp.astralsorcery.common.constellation.world.ActiveCelestialsHand
 import hellfirepvp.astralsorcery.common.data.config.entry.GeneralConfig;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormat;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.Tesselator;
+import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.util.Mth;
 import org.joml.Matrix4f;
 import org.lwjgl.opengl.GL11;
@@ -117,17 +117,17 @@ public class RenderingConstellationUtils {
         });
     }
 
-    public static void renderConstellationIntoWorldFlat(IConstellation c, PoseStack renderStack, IRenderTypeBuffer buffer, Vector3 offset, double scale, double line, float brightness) {
+    public static void renderConstellationIntoWorldFlat(IConstellation c, PoseStack renderStack, MultiBufferSource buffer, Vector3 offset, double scale, double line, float brightness) {
         renderConstellationIntoWorldFlat(c.getConstellationColor(), c, renderStack, buffer, offset, scale, line, brightness);
     }
 
     public static void renderConstellationIntoWorldFlat(Color color, IConstellation c, PoseStack renderStack, Vector3 offset, double scale, double line, float brightness) {
-        IRenderTypeBuffer.Impl drawBuffers = IRenderTypeBuffer.getImpl(buffer);
+        MultiBufferSource.Impl drawBuffers = MultiBufferSource.getImpl(buffer);
         renderConstellationIntoWorldFlat(color, c, renderStack, drawBuffers, offset, scale, line, brightness);
         drawBuffers.finish();
     }
 
-    public static void renderConstellationIntoWorldFlat(Color color, IConstellation c, PoseStack renderStack, IRenderTypeBuffer buffer, Vector3 offset, double scale, double line, float brightness) {
+    public static void renderConstellationIntoWorldFlat(Color color, IConstellation c, PoseStack renderStack, MultiBufferSource buffer, Vector3 offset, double scale, double line, float brightness) {
         Matrix4f matr = renderStack.getLast().getMatrix();
         Vector3 thisOffset = offset.clone();
         double starSize = 1D / ((double) IConstellation.STAR_GRID_WIDTH_HEIGHT) * scale;

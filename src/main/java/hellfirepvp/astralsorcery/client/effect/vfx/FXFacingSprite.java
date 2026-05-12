@@ -18,7 +18,7 @@ import hellfirepvp.astralsorcery.client.resource.BlockAtlasTexture;
 import hellfirepvp.astralsorcery.client.resource.SpriteSheetResource;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import hellfirepvp.observerlib.client.util.RenderTypeDecorator;
+// RenderTypeDecorator - проверить ObserverLib
 import net.minecraft.util.Tuple;
 
 import java.awt.*;
@@ -63,7 +63,7 @@ public class FXFacingSprite extends EntityVisualFX implements EntityDynamicFX {
         Vector3 vec = this.getRenderPosition(pTicks);
         float scale = this.getScale(pTicks);
 
-        RenderTypeDecorator decorated = RenderTypeDecorator.wrapSetup(ctx.getRenderType(), ssr::bindTexture, BlockAtlasTexture.getInstance()::bindTexture);
+        RenderTypeDecorator decorated = RenderType.ctx.getRenderType(), ssr::bindTexture, BlockAtlasTexture.getInstance()::bindTexture);
         VertexConsumer buf = drawBuffer.getBuffer(decorated);
         RenderingDrawUtils.renderFacingQuadVB(buf, renderStack,
                 vec.getX(), vec.getY(), vec.getZ(),

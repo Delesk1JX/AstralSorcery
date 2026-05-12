@@ -63,7 +63,7 @@ public class ItemWand extends Item implements OverrideInteractItem {
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
+    public void inventoryTick(ItemStack stack, Level world, Entity entity, int itemSlot, boolean isSelected) {
         boolean active = isSelected || (entity instanceof Player && ((Player) entity).getHeldItemOffhand() == stack);
 
         if (!world.isRemote()) {
@@ -103,7 +103,7 @@ public class ItemWand extends Item implements OverrideInteractItem {
 
     @Override
     public boolean doBlockInteract(LogicalSide side, Player player, Hand hand, BlockPos pos, Direction face) {
-        World world = player.getEntityWorld();
+        Level world = player.level;
         BlockState state = world.getBlockState(pos);
         Block b = state.getBlock();
         if (b instanceof WandInteractable) {
@@ -137,7 +137,7 @@ public class ItemWand extends Item implements OverrideInteractItem {
     }
 
     @OnlyIn(Dist.CLIENT)
-    private void displayClientStructurePreview(World world, BlockPos pos, StructureType type) {
+    private void displayClientStructurePreview(Level world, BlockPos pos, StructureType type) {
         StructurePreview.newBuilder(world.getDimensionKey(), pos, (MatchableStructure) type.getStructure())
                 .removeIfOutInDifferentWorld()
                 .andPersistOnlyIf((inWorld, at) -> {
@@ -159,7 +159,7 @@ public class ItemWand extends Item implements OverrideInteractItem {
     public static void playUndergroundEffect(PktPlayEffect effect) {
         Vector3 at = ByteBufUtils.readVector(effect.getExtraData());
 
-        World world = Minecraft.getInstance().world;
+        Level world = Minecraft.getInstance().world;
         if (world == null) {
             return;
         }
@@ -185,7 +185,7 @@ public class ItemWand extends Item implements OverrideInteractItem {
     public static void playEffect(PktPlayEffect effect) {
         Vector3 pos = ByteBufUtils.readVector(effect.getExtraData());
 
-        World world = Minecraft.getInstance().world;
+        Level world = Minecraft.getInstance().world;
         if (world == null) {
             return;
         }

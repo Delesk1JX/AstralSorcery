@@ -22,7 +22,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.network.NetworkEvent;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import javax.annotation.Nonnull;
 
@@ -73,7 +73,7 @@ public class PktRequestPerkSealAction extends ASPacket<PktRequestPerkSealAction>
         return new Handler<PktRequestPerkSealAction>() {
             @Override
             @OnlyIn(Dist.CLIENT)
-            public void handleClient(PktRequestPerkSealAction packet, NetworkEvent.Context context) {
+            public void handleClient(PktRequestPerkSealAction packet, IPayloadContext context) {
                 Screen current = Minecraft.getInstance().currentScreen;
                 if (current instanceof ScreenJournalPerkTree) {
                     PerkTree.PERK_TREE.getPerk(LogicalSide.CLIENT, packet.perkKey).ifPresent(perk -> {
@@ -87,7 +87,7 @@ public class PktRequestPerkSealAction extends ASPacket<PktRequestPerkSealAction>
             }
 
             @Override
-            public void handle(PktRequestPerkSealAction packet, NetworkEvent.Context context, LogicalSide side) {
+            public void handle(PktRequestPerkSealAction packet, IPayloadContext context, LogicalSide side) {
                 context.enqueueWork(() -> {
                     if (packet.perkKey == null) {
                         return;

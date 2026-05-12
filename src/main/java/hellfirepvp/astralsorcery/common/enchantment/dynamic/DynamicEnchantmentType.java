@@ -13,11 +13,11 @@ import java.util.Locale;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.
- * Class: DynamicEnchantmentType
+ * Class: Dynamicnet.minecraft.world.item.enchantment.Enchantment
  * Created by HellFirePvP
  * Date: 11.08.2019 / 19:46
  */
-public enum DynamicEnchantmentType {
+public enum Dynamicnet.minecraft.world.item.enchantment.Enchantment {
 
     ADD_TO_SPECIFIC,
     ADD_TO_EXISTING_SPECIFIC,
@@ -25,11 +25,11 @@ public enum DynamicEnchantmentType {
 
     private final boolean specific;
 
-    DynamicEnchantmentType() {
+    Dynamicnet.minecraft.world.item.enchantment.Enchantment() {
         this(true);
     }
 
-    DynamicEnchantmentType(boolean specific) {
+    Dynamicnet.minecraft.world.item.enchantment.Enchantment(boolean specific) {
         this.specific = specific;
     }
 

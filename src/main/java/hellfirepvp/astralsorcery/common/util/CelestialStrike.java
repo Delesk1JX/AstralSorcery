@@ -50,7 +50,7 @@ import java.util.Random;
  */
 public class CelestialStrike {
 
-    private static final AxisAlignedBB EMPTY = new AxisAlignedBB(0, 0, 0, 0, 0, 0);
+    private static final AABB EMPTY = new AABB(0, 0, 0, 0, 0, 0);
 
     private CelestialStrike() {}
 

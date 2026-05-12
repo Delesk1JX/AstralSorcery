@@ -34,9 +34,9 @@ public abstract class WorldFreezingRecipe extends CustomRecipe {
         this.matcher = matcher;
     }
 
-    public boolean canFreeze(World world, BlockPos pos) {
+    public boolean canFreeze(Level world, BlockPos pos) {
         return this.matcher.test(world, pos, world.getBlockState(pos));
     }
 
-    public abstract void doOutput(World world, BlockPos pos, BlockState state, Consumer<ItemStack> itemOutput);
+    public abstract void doOutput(Level world, BlockPos pos, BlockState state, Consumer<ItemStack> itemOutput);
 }

@@ -51,7 +51,7 @@ public class ItemColoredLensDamage extends ItemColoredLens {
         }
 
         @Override
-        public void entityInBeam(World world, Vector3 origin, Vector3 target, Entity entity, PartialEffectExecutor executor) {
+        public void entityInBeam(Level world, Vector3 origin, Vector3 target, Entity entity, PartialEffectExecutor executor) {
             if (world.isRemote() || !(entity instanceof LivingEntity)) {
                 return;
             }
@@ -68,6 +68,6 @@ public class ItemColoredLensDamage extends ItemColoredLens {
         }
 
         @Override
-        public void blockInBeam(World world, BlockPos pos, BlockState state, PartialEffectExecutor executor) {}
+        public void blockInBeam(Level world, BlockPos pos, BlockState state, PartialEffectExecutor executor) {}
     }
 }

@@ -42,7 +42,7 @@ public class RenderInfo implements ITickHandler {
     /** The Y component (scaled along the X axis) of the entity's pitch rotation */
     private float rotationXY;
 
-    private Vector3d view = Vector3d.ZERO;
+    private net.minecraft.world.phys.Vec3 view = net.minecraft.world.phys.Vec3.ZERO;
 
     private RenderInfo() {}
 
@@ -51,7 +51,7 @@ public class RenderInfo implements ITickHandler {
     }
 
     @Override
-    public void tick(TickEvent.Type type, Object... context) {
+    public void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
         ActiveRenderInfo info = this.getARI();
         if (info != null) {
             this.rotationX = Mth.cos(info.getYaw() * ((float)Math.PI / 180F));
@@ -92,13 +92,13 @@ public class RenderInfo implements ITickHandler {
     }
 
     @Override
-    public EnumSet<TickEvent.Type> getHandledTypes() {
-        return EnumSet.of(TickEvent.Type.RENDER);
+    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
+        return EnumSet.of(net.neoforged.neoforge.event.tick.ClientTickEvent.RENDER);
     }
 
     @Override
-    public boolean canFire(TickEvent.Phase phase) {
-        return phase == TickEvent.Phase.START;
+    public boolean canFire(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
+        return phase == net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.START;
     }
 
     @Override

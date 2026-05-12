@@ -37,20 +37,20 @@ public class EntityItemHighlighted extends EntityCustomItemReplacement {
     private static final DataParameter<Integer> DATA_COLOR = EntityDataManager.createKey(EntityItemHighlighted.class, DataSerializers.VARINT);
     private static final int NO_COLOR = 0xFF000000;
 
-    public EntityItemHighlighted(EntityType<? extends ItemEntity> type, World world) {
+    public EntityItemHighlighted(EntityType<? extends ItemEntity> type, Level world) {
         super(type, world);
         ReflectionHelper.setSkipItemPhysicsRender(this);
         recalculateSize();
     }
 
-    public EntityItemHighlighted(EntityType<? extends ItemEntity> type, World world, double x, double y, double z) {
+    public EntityItemHighlighted(EntityType<? extends ItemEntity> type, Level world, double x, double y, double z) {
         this(type, world);
         this.setPosition(x, y, z);
         this.rotationYaw = this.rand.nextFloat() * 360.0F;
         this.setMotion(this.rand.nextDouble() * 0.2D - 0.1D, 0.2D, this.rand.nextDouble() * 0.2D - 0.1D);
     }
 
-    public EntityItemHighlighted(EntityType<? extends ItemEntity> type, World world, double x, double y, double z, ItemStack stack) {
+    public EntityItemHighlighted(EntityType<? extends ItemEntity> type, Level world, double x, double y, double z, ItemStack stack) {
         this(type, world, x, y, z);
         this.setItem(stack);
         this.lifespan = stack.isEmpty() ? 6000 : stack.getEntityLifespan(world);

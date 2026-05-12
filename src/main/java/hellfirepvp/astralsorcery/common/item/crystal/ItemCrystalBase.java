@@ -43,7 +43,7 @@ public abstract class ItemCrystalBase extends Item implements CrystalAttributeGe
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean isSelected) {
+    public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean isSelected) {
         if (!world.isRemote()) {
             CrystalAttributes attributes = getAttributes(stack);
 
@@ -56,7 +56,7 @@ public abstract class ItemCrystalBase extends Item implements CrystalAttributeGe
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World world, List<Component> toolTip, TooltipFlag flag) {
+    public void addInformation(ItemStack stack, @Nullable Level world, List<Component> toolTip, TooltipFlag flag) {
         this.addCrystalPropertyToolTip(stack, toolTip);
     }
 
@@ -91,7 +91,7 @@ public abstract class ItemCrystalBase extends Item implements CrystalAttributeGe
 
     @Nullable
     @Override
-    public Entity createEntity(World world, Entity location, ItemStack itemstack) {
+    public Entity createEntity(Level world, Entity location, ItemStack itemstack) {
         EntityCrystal res = new EntityCrystal(EntityTypesAS.ITEM_CRYSTAL, world, location.getPosX(), location.getPosY(), location.getPosZ(), itemstack);
         res.read(location.writeWithoutTypeId(new CompoundTag()));
         res.applyColor(this.getItemEntityColor(itemstack));

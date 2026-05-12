@@ -23,7 +23,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.util.MutableBoundingBox;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
-import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.Tags;
 
 import java.util.Random;
 
@@ -42,21 +42,21 @@ public class MarkerManagerAS {
                 if (rand.nextBoolean()) {
                     makeChest(genWorld, pos, LootAS.SHRINE_CHEST, rand, box);
                 } else {
-                    genWorld.setBlockState(pos, BlocksAS.MARBLE_BRICKS.getDefaultState(), Constants.BlockFlags.BLOCK_UPDATE);
+                    genWorld.setBlockState(pos, BlocksAS.MARBLE_BRICKS.getDefaultState(), net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.BLOCK_UPDATE);
                 }
                 break;
             case "shrine_chest":
                 if (rand.nextBoolean()) {
                     makeChest(genWorld, pos, LootAS.SHRINE_CHEST, rand, box);
                 } else {
-                    genWorld.setBlockState(pos, Blocks.AIR.getDefaultState(), Constants.BlockFlags.BLOCK_UPDATE);
+                    genWorld.setBlockState(pos, Blocks.AIR.getDefaultState(), net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.BLOCK_UPDATE);
                 }
                 break;
             case "random_top_block":
                 if (rand.nextFloat() < 0.7F) {
-                    genWorld.setBlockState(pos, genWorld.getBiome(pos).getGenerationSettings().getSurfaceBuilderConfig().getTop(), Constants.BlockFlags.BLOCK_UPDATE);
+                    genWorld.setBlockState(pos, genWorld.getBiome(pos).getGenerationSettings().getSurfaceBuilderConfig().getTop(), net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.BLOCK_UPDATE);
                 } else {
-                    genWorld.setBlockState(pos, Blocks.AIR.getDefaultState(), Constants.BlockFlags.BLOCK_UPDATE);
+                    genWorld.setBlockState(pos, Blocks.AIR.getDefaultState(), net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.BLOCK_UPDATE);
                 }
                 break;
             case "crystal":
@@ -65,9 +65,9 @@ public class MarkerManagerAS {
         }
     }
 
-    private static void makeCollectorCrystal(IWorld world, BlockPos pos, Random rand, MutableBoundingBox box) {
+    private static void makeCollectorCrystal(ILevel world, BlockPos pos, Random rand, MutableBoundingBox box) {
         if (box.isVecInside(pos) && world.getBlockState(pos).getBlock() != BlocksAS.ROCK_COLLECTOR_CRYSTAL) {
-            world.setBlockState(pos, BlocksAS.ROCK_COLLECTOR_CRYSTAL.getDefaultState(), Constants.BlockFlags.BLOCK_UPDATE);
+            world.setBlockState(pos, BlocksAS.ROCK_COLLECTOR_CRYSTAL.getDefaultState(), net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.BLOCK_UPDATE);
 
             TileCollectorCrystal tcc = MiscUtils.getTileAt(world, pos, TileCollectorCrystal.class, true);
             if (tcc != null) {
@@ -78,11 +78,11 @@ public class MarkerManagerAS {
         }
     }
 
-    private static void makeChest(IWorld world, BlockPos pos, ResourceLocation tableName, Random rand, MutableBoundingBox box) {
+    private static void makeChest(ILevel world, BlockPos pos, ResourceLocation tableName, Random rand, MutableBoundingBox box) {
         if (box.isVecInside(pos) && world.getBlockState(pos).getBlock() != Blocks.CHEST) {
             BlockState chest = StructurePiece.correctFacing(world, pos, Blocks.CHEST.getDefaultState());
 
-            world.setBlockState(pos, chest, Constants.BlockFlags.BLOCK_UPDATE);
+            world.setBlockState(pos, chest, net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.BLOCK_UPDATE);
             // Static setLootTable used instead of manual tile fetch -> member setLootTable to provide compatibility with Lootr.
             LockableLootTileEntity.setLootTable(world, rand, pos, tableName);
         }

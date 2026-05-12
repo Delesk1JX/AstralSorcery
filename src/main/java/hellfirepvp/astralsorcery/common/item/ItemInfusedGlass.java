@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.MendingEnchantment;
+
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
@@ -27,7 +27,7 @@ import static net.minecraft.network.chat.Component.translatable;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.Tags;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -51,7 +51,7 @@ public class ItemInfusedGlass extends Item {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         EngravedStarMap map = getEngraving(stack);
         if (map != null) {
             for (ResourceLocation key : map.getConstellationKeys()) {
@@ -76,7 +76,7 @@ public class ItemInfusedGlass extends Item {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        if (enchantment instanceof MendingEnchantment) {
+        if (enchantment instanceof net.minecraft.world.item.enchantment.Enchantments) {
             return false;
         }
         return super.canApplyAtEnchantingTable(stack, enchantment);
@@ -103,7 +103,7 @@ public class ItemInfusedGlass extends Item {
         }
 
         CompoundTag tag = NBTHelper.getPersistentData(stack);
-        if (tag.contains("starmap", Constants.NBT.TAG_COMPOUND)) {
+        if (tag.contains("starmap", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND)) {
             return EngravedStarMap.deserialize(tag.getCompound("starmap"));
         }
         return null;

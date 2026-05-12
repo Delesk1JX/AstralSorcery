@@ -24,6 +24,6 @@ public interface CustomCollisionHandler {
 
     boolean shouldAddCollisionFor(Entity entity);
 
-    void addCollision(Entity entity, AxisAlignedBB testBox, List<AxisAlignedBB> additionalCollision);
+    void addCollision(Entity entity, AABB testBox, List<AABB> additionalCollision);
 
 }

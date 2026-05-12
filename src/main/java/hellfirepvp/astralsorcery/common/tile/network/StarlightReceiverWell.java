@@ -30,7 +30,7 @@ public class StarlightReceiverWell extends SimpleTransmissionReceiver<TileWell> 
     }
 
     @Override
-    public void onStarlightReceive(World world, IWeakConstellation type, double amount) {
+    public void onStarlightReceive(Level world, IWeakConstellation type, double amount) {
         TileWell well = getTileAtPos(world);
         if (well != null) {
             well.receiveStarlight(amount);
@@ -38,7 +38,7 @@ public class StarlightReceiverWell extends SimpleTransmissionReceiver<TileWell> 
     }
 
     @Override
-    public boolean syncTileData(World world, TileWell tile) {
+    public boolean syncTileData(Level world, TileWell tile) {
         return true;
     }
 

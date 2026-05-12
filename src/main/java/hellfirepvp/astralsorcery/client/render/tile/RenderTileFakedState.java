@@ -13,11 +13,11 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.common.tile.base.TileFakedState;
-import hellfirepvp.observerlib.client.util.BufferDecoratorBuilder;
-import hellfirepvp.observerlib.client.util.RenderTypeDecorator;
+// BufferDecoratorBuilder - проверить ObserverLib
+// RenderTypeDecorator - проверить ObserverLib
 import net.minecraft.world.level.block.AirBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
@@ -38,7 +38,7 @@ public class RenderTileFakedState extends CustomTileEntityRenderer<TileFakedStat
     }
 
     @Override
-    public void render(TileFakedState tile, float pTicks, PoseStack renderStack, IRenderTypeBuffer renderTypeBuffer, int combinedLight, int combinedOverlay) {
+    public void render(TileFakedState tile, float pTicks, PoseStack renderStack, MultiBufferSource renderTypeBuffer, int combinedLight, int combinedOverlay) {
         BlockState fakedState = tile.getFakedState();
         if (fakedState.getBlock() instanceof AirBlock) {
             return;
@@ -47,7 +47,7 @@ public class RenderTileFakedState extends CustomTileEntityRenderer<TileFakedStat
         int[] color = new int[] { blendColor.getRed(), blendColor.getGreen(), blendColor.getBlue(), 128 };
 
         RenderType type = RenderTypeLookup.func_239221_b_(fakedState);
-        RenderTypeDecorator decorated = RenderTypeDecorator.wrapSetup(type, () -> {
+        RenderTypeDecorator decorated = RenderType.type, () -> {
             RenderSystem.enableBlend();
             RenderSystem.defaultBlendFunc();
             RenderSystem.depthMask(false);
@@ -56,7 +56,7 @@ public class RenderTileFakedState extends CustomTileEntityRenderer<TileFakedStat
             RenderSystem.defaultBlendFunc();
             RenderSystem.disableBlend();
         });
-        BufferDecoratorBuilder decorator = BufferDecoratorBuilder.withColor(((r, g, b, a) -> color));
+        BufferDecoratorBuilder decorator = VertexFormat.((r, g, b, a) -> color));
         VertexConsumer buf = renderTypeBuffer.getBuffer(decorated);
         RenderingUtils.renderSimpleBlockModel(fakedState, renderStack, decorator.decorate(buf), tile.getPos(), tile, true);
     }

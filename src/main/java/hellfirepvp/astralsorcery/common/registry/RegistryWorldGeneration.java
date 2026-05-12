@@ -24,7 +24,7 @@ import hellfirepvp.astralsorcery.common.world.structure.feature.FeatureAncientSh
 import hellfirepvp.astralsorcery.common.world.structure.feature.FeatureDesertShrineStructure;
 import hellfirepvp.astralsorcery.common.world.structure.feature.FeatureSmallShrineStructure;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.RegistryKey;
+import net.minecraft.util.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
@@ -144,7 +144,7 @@ public class RegistryWorldGeneration {
                 GenerationStage.Decoration stage = FEATURE_STAGE.get(feature);
                 if (stage == null) {
                     ResourceLocation key = WorldGenRegistries.CONFIGURED_FEATURE.getOptionalKey(feature)
-                            .map(RegistryKey::getLocation)
+                            .map(ResourceKey::getLocation)
                             .orElse(new ResourceLocation("not_registered"));
                     throw new IllegalArgumentException("Unknown generation stage for feature " + key + "!");
                 }

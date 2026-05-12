@@ -21,8 +21,8 @@ import hellfirepvp.astralsorcery.client.resource.SpriteSheetResource;
 import hellfirepvp.astralsorcery.client.util.draw.RenderInfo;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.order.OrderSortable;
-import hellfirepvp.observerlib.client.util.RenderTypeDecorator;
-import net.minecraft.client.renderer.BufferBuilder;
+// RenderTypeDecorator - проверить ObserverLib
+import net.minecraft.client.renderer.VertexConsumer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.phys.Vec3;
 import org.lwjgl.opengl.GL11;
@@ -95,7 +95,7 @@ public class BatchRenderContext<T extends EntityVisualFX> extends OrderSortable 
 
         RenderType drawType = this.getRenderType();
         if (this.drawWithTexture) {
-            drawType = RenderTypeDecorator.wrapSetup(this.getRenderType(), () -> {
+            drawType = RenderType.this.getRenderType(), () -> {
                 RenderSystem.enableTexture();
                 this.getSprite().bindTexture();
             }, () -> {
@@ -109,9 +109,9 @@ public class BatchRenderContext<T extends EntityVisualFX> extends OrderSortable 
     }
 
     private void drawBatched(VertexConsumer buf, IDrawRenderTypeBuffer renderTypeBuffer) {
-        if (buf instanceof BufferBuilder && this.getRenderType().getDrawMode() == GL11.GL_QUADS) {
-            Vector3d view = RenderInfo.getInstance().getARI().getProjectedView();
-            ((BufferBuilder) buf).sortVertexData((float) view.x, (float) view.y, (float) view.z);
+        if (buf instanceof VertexConsumer && this.getRenderType().getDrawMode() == GL11.GL_QUADS) {
+            net.minecraft.world.phys.Vec3 view = RenderInfo.getInstance().getARI().getProjectedView();
+            ((VertexConsumer) buf).sortVertexData((float) view.x, (float) view.y, (float) view.z);
         }
         renderTypeBuffer.draw();
     }

@@ -23,7 +23,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.state.Property;
-import net.minecraft.util.RegistryKey;
+import net.minecraft.util.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.MutableComponent;
@@ -176,14 +176,14 @@ public class ByteBufUtils {
         return (T) BuiltInRegistries.getRegistry(registryName).get(entryName);
     }
 
-    public static void writeVanillaRegistryEntry(FriendlyByteBuf buf, RegistryKey<?> key) {
+    public static void writeVanillaRegistryEntry(FriendlyByteBuf buf, ResourceKey<?> key) {
         writeResourceLocation(buf, key.getRegistryName());
         writeResourceLocation(buf, key.getLocation());
     }
 
-    public static <T> RegistryKey<T> readVanillaRegistryEntry(FriendlyByteBuf buf) {
+    public static <T> ResourceKey<T> readVanillaRegistryEntry(FriendlyByteBuf buf) {
         ResourceLocation registryName = readResourceLocation(buf);
-        return RegistryKey.getOrCreateKey(RegistryKey.getOrCreateRootKey(registryName), readResourceLocation(buf));
+        return ResourceKey.getOrCreateKey(ResourceKey.getOrCreateRootKey(registryName), readResourceLocation(buf));
     }
 
     public static void writeResourceLocation(FriendlyByteBuf buf, ResourceLocation key) {
@@ -202,7 +202,7 @@ public class ByteBufUtils {
         if (!enumClazz.isEnum()) {
             throw new IllegalArgumentException("Passed class is not an enum!");
         }
-        return enumClazz.getEnumConstants()[buf.readInt()];
+        return enumClazz.getEnumnet.neoforged.neoforge.common.util.FakePlayerFactory()[buf.readInt()];
     }
 
     public static void writeJsonObject(FriendlyByteBuf buf, JsonObject object) {

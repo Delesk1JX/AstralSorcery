@@ -64,7 +64,7 @@ public final class EffectHelper {
         }
 
         @Override
-        public Builder<T> setPosition(@Nonnull Vector3i position) {
+        public Builder<T> setPosition(@Nonnull net.minecraft.core.Vec3i position) {
             return super.setPosition(position);
         }
 

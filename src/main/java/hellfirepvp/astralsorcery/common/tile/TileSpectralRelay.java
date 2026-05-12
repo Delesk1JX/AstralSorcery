@@ -18,7 +18,7 @@ import hellfirepvp.astralsorcery.common.block.tile.BlockSpectralRelay;
 import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
 import hellfirepvp.astralsorcery.common.item.ItemGlassLens;
 import hellfirepvp.astralsorcery.common.lib.StructureTypesAS;
-import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
 import hellfirepvp.astralsorcery.common.structure.types.StructureType;
 import hellfirepvp.astralsorcery.common.tile.altar.AltarCollectionCategory;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
@@ -38,8 +38,8 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.capabilities.Capability;
-import net.neoforged.neoforge.common.util.LazyOptional;
+
+import net.neoforged.neoforge.common.util.Lazy;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -64,7 +64,7 @@ public class TileSpectralRelay extends TileEntityTick {
     private float proximityMultiplier = 1F;
 
     public TileSpectralRelay() {
-        super(TileEntityTypesAS.SPECTRAL_RELAY);
+        super(BlockEntityTypesAS.SPECTRAL_RELAY);
 
         this.inventory = new TileInventory(this, () -> 1);
     }
@@ -109,7 +109,7 @@ public class TileSpectralRelay extends TileEntityTick {
         this.updateRelayProximity();
     }
 
-    public static void cascadeRelayProximityUpdates(World world, BlockPos pos) {
+    public static void cascadeRelayProximityUpdates(Level world, BlockPos pos) {
         if (world.isRemote()) {
             return;
         }
@@ -122,13 +122,13 @@ public class TileSpectralRelay extends TileEntityTick {
         }
         this.setClosestRelayPos(null);
         BlockPos thisPos = this.getPos();
-        Vector3d thisVPos = Vector3d.copy(thisPos);
+        net.minecraft.world.phys.Vec3 thisVPos = net.minecraft.world.phys.Vec3.copy(thisPos);
         foreachNearbyRelay(this.getWorld(), thisPos, relay -> {
             BlockPos relayPos = relay.getPos();
             if (relayPos.equals(thisPos)) {
                 return;
             }
-            Vector3d relayVPos = Vector3d.copy(relayPos);
+            net.minecraft.world.phys.Vec3 relayVPos = net.minecraft.world.phys.Vec3.copy(relayPos);
 
             BlockPos otherClosestPos = relay.closestRelayPos;
             if (otherClosestPos == null || thisPos.distanceSq(relayVPos, false) < otherClosestPos.distanceSq(relayVPos, false)) {
@@ -140,7 +140,7 @@ public class TileSpectralRelay extends TileEntityTick {
         });
     }
 
-    private static void foreachNearbyRelay(World world, BlockPos pos, Consumer<TileSpectralRelay> relayConsumer) {
+    private static void foreachNearbyRelay(Level world, BlockPos pos, Consumer<TileSpectralRelay> relayConsumer) {
         List<BlockPos> nearbyRelays = BlockDiscoverer.searchForBlocksAround(world, pos, 8,
                 ((world1, pos1, state) -> {
                     TileSpectralRelay relay;
@@ -243,7 +243,7 @@ public class TileSpectralRelay extends TileEntityTick {
     private void updateAltarPos() {
         Set<BlockPos> altarPositions = BlockDiscoverer.searchForTileEntitiesAround(getWorld(), getPos(), 16, tile -> tile instanceof TileAltar);
 
-        Vector3d thisPos = Vector3d.copy(getPos());
+        net.minecraft.world.phys.Vec3 thisPos = net.minecraft.world.phys.Vec3.copy(getPos());
         BlockPos closestAltar = null;
         for (BlockPos other : altarPositions) {
             if (closestAltar == null || other.distanceSq(thisPos, false) < closestAltar.distanceSq(thisPos, false)) {
@@ -307,10 +307,10 @@ public class TileSpectralRelay extends TileEntityTick {
 
     @Nonnull
     @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-        if (this.inventory.hasCapability(cap, side)) {
-            return this.inventory.getCapability().cast();
+    public <T> Lazy<T> getnet.neoforged.neoforge.capabilities(@Nonnull net.neoforged.neoforge.capabilities<T> cap, @Nullable Direction side) {
+        if (this.inventory.hasnet.neoforged.neoforge.capabilities(cap, side)) {
+            return this.inventory.getnet.neoforged.neoforge.capabilities().cast();
         }
-        return super.getCapability(cap, side);
+        return super.getnet.neoforged.neoforge.capabilities(cap, side);
     }
 }

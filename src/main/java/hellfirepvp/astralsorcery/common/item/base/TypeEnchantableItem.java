@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.item.base;
 
-import net.minecraft.world.item.enchantment.EnchantmentType;
+
 import net.minecraft.world.item.ItemStack;
 
 /**
@@ -20,6 +20,6 @@ import net.minecraft.world.item.ItemStack;
  */
 public interface TypeEnchantableItem {
 
-    boolean canEnchantItem(ItemStack stack, EnchantmentType type);
+    boolean canEnchantItem(ItemStack stack, net.minecraft.world.item.enchantment.Enchantment type);
 
 }

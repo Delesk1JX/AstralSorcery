@@ -26,7 +26,7 @@ import java.text.DecimalFormat;
  * Created by HellFirePvP
  * Date: 09.08.2019 / 07:47
  */
-public abstract class PerkAttributeReader extends DeferredHolder<PerkAttributeReader> {
+public abstract class PerkAttributeReader extends DeferredHolder<net.neoforged.neoforge.registries.RegistryKey<PerkAttributeReader>, PerkAttributeReader> {
 
     private static final DecimalFormat percentageFormat = new DecimalFormat("0.00");
 

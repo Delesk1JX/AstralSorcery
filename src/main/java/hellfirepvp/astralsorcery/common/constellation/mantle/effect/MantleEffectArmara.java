@@ -141,7 +141,7 @@ public class MantleEffectArmara extends MantleEffect {
     }
 
     private void onHurt(LivingHurtEvent event) {
-        World world = event.getEntity().getEntityWorld();
+        Level world = event.getEntity().level;
         LivingEntity hurt = event.getEntityLiving();
 
         if (world.isRemote()) {

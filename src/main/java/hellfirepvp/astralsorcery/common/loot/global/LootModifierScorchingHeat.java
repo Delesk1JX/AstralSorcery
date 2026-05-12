@@ -87,7 +87,7 @@ public class LootModifierScorchingHeat extends LootModifier {
                                         iExp += 1;
                                     }
                                     if (iExp >= 1) {
-                                        Vector3d blockPos = context.get(LootParameters.field_237457_g_);
+                                        net.minecraft.world.phys.Vec3 blockPos = context.get(LootParameters.field_237457_g_);
                                         if (blockPos != null) {
                                             ServerLevel world = context.getWorld();
                                             world.addEntity(new ExperienceOrbEntity(world, blockPos.getX(), blockPos.getY(), blockPos.getZ(), iExp));

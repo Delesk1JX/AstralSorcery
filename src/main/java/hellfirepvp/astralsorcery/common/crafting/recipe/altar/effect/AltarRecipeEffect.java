@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.block.tile.altar.AltarType;
 import hellfirepvp.astralsorcery.common.crafting.recipe.altar.ActiveSimpleAltarRecipe;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -29,7 +29,7 @@ import java.util.Random;
  * Created by HellFirePvP
  * Date: 23.09.2019 / 17:46
  */
-public abstract class AltarRecipeEffect extends DeferredHolder<AltarRecipeEffect> {
+public abstract class AltarRecipeEffect extends DeferredHolder<net.neoforged.neoforge.registries.RegistryKey<AltarRecipeEffect>, AltarRecipeEffect> {
 
     protected static final int INDEX_NOISE_PLANE_LAYER1 = 0;
     protected static final int INDEX_NOISE_PLANE_LAYER2 = 1;
@@ -107,7 +107,7 @@ public abstract class AltarRecipeEffect extends DeferredHolder<AltarRecipeEffect
     public abstract void onTick(TileAltar altar, ActiveSimpleAltarRecipe.CraftingState state);
 
     @OnlyIn(Dist.CLIENT)
-    public abstract void onTESR(TileAltar altar, ActiveSimpleAltarRecipe.CraftingState state, PoseStack renderStack, IRenderTypeBuffer buffer, float pTicks, int combinedLight);
+    public abstract void onTESR(TileAltar altar, ActiveSimpleAltarRecipe.CraftingState state, PoseStack renderStack, MultiBufferSource buffer, float pTicks, int combinedLight);
 
     @OnlyIn(Dist.CLIENT)
     public abstract void onCraftingFinish(TileAltar altar, boolean isChaining);

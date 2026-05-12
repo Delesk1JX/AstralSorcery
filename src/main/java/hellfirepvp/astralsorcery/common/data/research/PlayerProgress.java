@@ -21,7 +21,7 @@ import net.minecraft.nbt.StringTag;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.fml.LogicalSide;
 
 import java.util.*;
@@ -62,13 +62,13 @@ public class PlayerProgress {
         usePerkAbilities = true;
 
         if (compound.contains("seenConstellations")) {
-            ListTag list = compound.getList("seenConstellations", Constants.NBT.TAG_STRING);
+            ListTag list = compound.getList("seenConstellations", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_STRING);
             for (int i = 0; i < list.size(); i++) {
                 seenConstellations.add(new ResourceLocation(list.getString(i)));
             }
         }
         if (compound.contains("constellations")) {
-            ListTag list = compound.getList("constellations", Constants.NBT.TAG_STRING);
+            ListTag list = compound.getList("constellations", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_STRING);
             for (int i = 0; i < list.size(); i++) {
                 ResourceLocation s = new ResourceLocation(list.getString(i));
                 knownConstellations.add(s);
@@ -78,7 +78,7 @@ public class PlayerProgress {
             }
         }
         if (compound.contains("storedConstellationPapers")) {
-            ListTag list = compound.getList("storedConstellationPapers", Constants.NBT.TAG_STRING);
+            ListTag list = compound.getList("storedConstellationPapers", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_STRING);
             for (int i = 0; i < list.size(); i++) {
                 ResourceLocation s = new ResourceLocation(list.getString(i));
                 storedConstellationPapers.add(s);
@@ -183,7 +183,7 @@ public class PlayerProgress {
     //For knowledge sharing; some information is not important to be shared.
     public void loadKnowledge(CompoundTag compound) {
         if (compound.contains("seenConstellations")) {
-            ListTag list = compound.getList("seenConstellations", Constants.NBT.TAG_STRING);
+            ListTag list = compound.getList("seenConstellations", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_STRING);
             for (int i = 0; i < list.size(); i++) {
                 ResourceLocation cstName = new ResourceLocation(list.getString(i));
                 if (!seenConstellations.contains(cstName)) {
@@ -192,7 +192,7 @@ public class PlayerProgress {
             }
         }
         if (compound.contains("constellations")) {
-            ListTag list = compound.getList("constellations", Constants.NBT.TAG_STRING);
+            ListTag list = compound.getList("constellations", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_STRING);
             for (int i = 0; i < list.size(); i++) {
                 ResourceLocation cstName = new ResourceLocation(list.getString(i));
 

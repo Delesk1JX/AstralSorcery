@@ -67,7 +67,7 @@ public class CommandSerialize {
     private static int serializeLook(CommandContext<CommandSource> context) throws CommandSyntaxException {
         Player player = context.getSource().asPlayer();
         BlockHitResult result = MiscUtils.rayTraceLookBlock(player);
-        BlockState state = result == null ? Blocks.AIR.getDefaultState() : player.getEntityWorld().getBlockState(result.getPos());
+        BlockState state = result == null ? Blocks.AIR.getDefaultState() : player.level.getBlockState(result.getPos());
         String serialized = BlockStateHelper.serialize(state);
 
         IFormattableTextComponent msg = new Component.literal(serialized);

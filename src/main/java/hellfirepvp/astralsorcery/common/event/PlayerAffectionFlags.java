@@ -30,7 +30,7 @@ import java.util.function.Consumer;
 public class PlayerAffectionFlags {
 
     private static final int DEFAULT_TICK_TIMEOUT = 10;
-    private static final TimeoutListContainer<UUID, AffectionFlag> affectMap = new TimeoutListContainer<>(new TimeoutListContainer.ForwardingTimeoutDelegate<>(), TickEvent.Type.SERVER);
+    private static final TimeoutListContainer<UUID, AffectionFlag> affectMap = new TimeoutListContainer<>(new TimeoutListContainer.ForwardingTimeoutDelegate<>(), net.neoforged.neoforge.event.tick.ClientTickEvent.SERVER);
 
     private PlayerAffectionFlags() {}
 

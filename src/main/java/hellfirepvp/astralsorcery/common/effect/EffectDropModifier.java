@@ -53,10 +53,10 @@ public class EffectDropModifier extends EffectCustomTexture {
 
     private void onDrops(LivingDropsEvent event) {
         LivingEntity le = event.getEntityLiving();
-        if (le.getEntityWorld().isRemote() ||
+        if (le.level.isRemote() ||
                 !(le instanceof MobEntity) ||
-                !(le.getEntityWorld() instanceof ServerLevel) ||
-                !le.getEntityWorld().getGameRules().getBoolean(GameRules.DO_MOB_LOOT)) {
+                !(le.level instanceof ServerLevel) ||
+                !le.level.getGameRules().getBoolean(GameRules.DO_MOB_LOOT)) {
             return;
         }
 

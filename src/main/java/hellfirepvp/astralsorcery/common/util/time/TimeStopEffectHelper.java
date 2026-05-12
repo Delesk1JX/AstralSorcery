@@ -102,13 +102,13 @@ public class TimeStopEffectHelper {
 
     @OnlyIn(Dist.CLIENT)
     public void playClientTickEffect() {
-        World world = Minecraft.getInstance().world;
+        Level world = Minecraft.getInstance().world;
         if (world == null) {
             return;
         }
 
         List<LivingEntity> entities = world.getEntitiesWithinAABB(LivingEntity.class,
-                new AxisAlignedBB(-range, -range, -range, range, range, range).offset(position.getX(), position.getY(), position.getZ()),
+                new AABB(-range, -range, -range, range, range, range).offset(position.getX(), position.getY(), position.getZ()),
                 EntityPredicates.withinRange(position.getX(), position.getY(), position.getZ(), range));
 
         for (LivingEntity e : entities) {

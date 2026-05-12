@@ -117,7 +117,7 @@ public class AlignmentChargeHandler implements ITickHandler {
     }
 
     @Override
-    public void tick(TickEvent.Type type, Object... context) {
+    public void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
         Player player = (Player) context[0];
         LogicalSide side = (LogicalSide) context[1];
 
@@ -130,9 +130,9 @@ public class AlignmentChargeHandler implements ITickHandler {
 
         float regenPerTick = max / (6F * 20F);
 
-        boolean underground = player.getEntityWorld().getHeight(Heightmap.Type.WORLD_SURFACE, player.getPosition()).getY() > player.getPosition().getY() + 1;
+        boolean underground = player.level.getHeight(Heightmap.Type.WORLD_SURFACE, player.getPosition()).getY() > player.getPosition().getY() + 1;
 
-        float dayMultiplier = underground ? 0.85F : 0.3F + 0.7F * DayTimeHelper.getCurrentDaytimeDistribution(player.getEntityWorld());
+        float dayMultiplier = underground ? 0.85F : 0.3F + 0.7F * DayTimeHelper.getCurrentDaytimeDistribution(player.level);
         float caveMultiplier = underground ? 0.25F : 1F;
         if (progress.getPerkData().hasPerkEffect(p -> p instanceof KeyChargeBalancing)) {
             dayMultiplier = 0.6F + dayMultiplier * 0.4F;
@@ -153,13 +153,13 @@ public class AlignmentChargeHandler implements ITickHandler {
     }
 
     @Override
-    public EnumSet<TickEvent.Type> getHandledTypes() {
-        return EnumSet.of(TickEvent.Type.PLAYER);
+    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
+        return EnumSet.of(net.neoforged.neoforge.event.tick.ClientTickEvent.PLAYER);
     }
 
     @Override
-    public boolean canFire(TickEvent.Phase phase) {
-        return phase == TickEvent.Phase.END;
+    public boolean canFire(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
+        return phase == net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
     }
 
     @Override

@@ -61,7 +61,7 @@ public abstract class BlockAltar extends BlockStarlightNetwork implements Custom
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, Player player, Hand hand, BlockHitResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, Hand hand, BlockHitResult hit) {
         if (!world.isRemote() && player instanceof ServerPlayer) {
             TileAltar altar = MiscUtils.getTileAt(world, pos, TileAltar.class, true);
             if (altar != null) {
@@ -98,7 +98,7 @@ public abstract class BlockAltar extends BlockStarlightNetwork implements Custom
     }
 
     @Override
-    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+    public void onReplaced(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         if (!(newState.getBlock() instanceof BlockAltar)) {
             TileAltar ta = MiscUtils.getTileAt(worldIn, pos, TileAltar.class, true);
             if (ta != null && !worldIn.isRemote) {

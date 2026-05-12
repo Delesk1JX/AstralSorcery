@@ -32,7 +32,7 @@ import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.util.BlockSnapshot;
-import net.neoforged.neoforge.event.ForgeEventFactory;
+import net.neoforged.neoforge.event.EventHooks;
 import net.neoforged.neoforge.fml.network.NetworkHooks;
 
 /**
@@ -44,15 +44,15 @@ import net.neoforged.neoforge.fml.network.NetworkHooks;
  */
 public class EntityIlluminationSpark extends ThrowableEntity {
 
-    public EntityIlluminationSpark(World world) {
+    public EntityIlluminationSpark(Level world) {
         super(EntityTypesAS.ILLUMINATION_SPARK, world);
     }
 
-    public EntityIlluminationSpark(double x, double y, double z, World world) {
+    public EntityIlluminationSpark(double x, double y, double z, Level world) {
         super(EntityTypesAS.ILLUMINATION_SPARK, x, y, z, world);
     }
 
-    public EntityIlluminationSpark(LivingEntity thrower, World world) {
+    public EntityIlluminationSpark(LivingEntity thrower, Level world) {
         super(EntityTypesAS.ILLUMINATION_SPARK, thrower, world);
         this.func_234612_a_(thrower, thrower.rotationPitch, thrower.rotationYaw, 0F, 0.7F, 0.9F);
     }
@@ -136,7 +136,7 @@ public class EntityIlluminationSpark extends ThrowableEntity {
             pos = pos.offset(bCtx.getFace());
         }
 
-        if (!ForgeEventFactory.onBlockPlace(player, BlockSnapshot.create(world.getDimensionKey(), world, pos), bCtx.getFace())) {
+        if (!EventHooks.onBlockPlace(player, BlockSnapshot.create(world.getDimensionKey(), world, pos), bCtx.getFace())) {
             world.setBlockState(pos, BlocksAS.FLARE_LIGHT.getDefaultState());
         }
         remove();

@@ -31,7 +31,7 @@ public class EventHelperDamageCancelling {
     private EventHelperDamageCancelling() {}
 
     public static void markInvulnerableToNextDamage(Player player, DamageSource source) {
-        if (player.getEntityWorld().isRemote()) {
+        if (player.level.isRemote()) {
             return;
         }
         invulnerableTypes.computeIfAbsent(player.getUniqueID(), uuid -> new HashSet<>()).add(source);
@@ -44,7 +44,7 @@ public class EventHelperDamageCancelling {
 
     private static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         Player player = event.player;
-        if (event.phase == TickEvent.Phase.END && !player.getEntityWorld().isRemote()) {
+        if (event.phase == net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END && !player.level.isRemote()) {
             if (player.isOnGround()) {
                 Set<DamageSource> sources = invulnerableTypes.getOrDefault(event.player.getUniqueID(), Collections.emptySet());
                 sources.remove(DamageSource.FALL);

@@ -20,7 +20,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.network.NetworkEvent;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -101,7 +101,7 @@ public class PktSyncPerkActivity extends ASPacket<PktSyncPerkActivity> {
         return new Handler<PktSyncPerkActivity>() {
             @Override
             @OnlyIn(Dist.CLIENT)
-            public void handleClient(PktSyncPerkActivity packet, NetworkEvent.Context context) {
+            public void handleClient(PktSyncPerkActivity packet, IPayloadContext context) {
                 context.enqueueWork(() -> {
                     Player player = Minecraft.getInstance().player;
                     if (player == null) {
@@ -135,7 +135,7 @@ public class PktSyncPerkActivity extends ASPacket<PktSyncPerkActivity> {
             }
 
             @Override
-            public void handle(PktSyncPerkActivity packet, NetworkEvent.Context context, LogicalSide side) {}
+            public void handle(PktSyncPerkActivity packet, IPayloadContext context, LogicalSide side) {}
         };
     }
 

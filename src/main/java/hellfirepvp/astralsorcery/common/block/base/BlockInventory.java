@@ -14,8 +14,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.common.util.LazyOptional;
-import net.neoforged.neoforge.items.CapabilityItemHandler;
+import net.neoforged.neoforge.common.util.Lazy;
+
 import net.neoforged.neoforge.items.IItemHandler;
 
 /**
@@ -32,10 +32,10 @@ public abstract class BlockInventory extends BlockCrystalContainer {
     }
 
     @Override
-    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+    public void onReplaced(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         BlockEntity te = MiscUtils.getTileAt(worldIn, pos, BlockEntity.class, true);
         if (te != null && !worldIn.isRemote) {
-            LazyOptional<IItemHandler> opt = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY);
+            Lazy<IItemHandler> opt = te.getnet.neoforged.neoforge.capabilities(net.neoforged.neoforge.capabilitiesItemHandler.ITEM_HANDLER_CAPABILITY);
             if (opt.isPresent()) {
                 ItemUtils.dropInventory(opt.orElse(ItemUtils.EMPTY_INVENTORY), worldIn, pos);
             }

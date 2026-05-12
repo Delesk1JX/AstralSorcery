@@ -45,7 +45,7 @@ public class MantleEffectFornax extends MantleEffect {
     }
 
     private void onHurt(LivingHurtEvent event) {
-        World world = event.getEntityLiving().getEntityWorld();
+        Level world = event.getEntityLiving().level;
         if (world.isRemote()) {
             return;
         }

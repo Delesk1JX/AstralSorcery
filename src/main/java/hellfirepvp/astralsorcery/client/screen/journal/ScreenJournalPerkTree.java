@@ -53,14 +53,14 @@ import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormat;
+import net.minecraft.client.renderer.VertexConsumer;
+import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.Util;
+import net.minecraft.Util;
 import net.minecraft.util.Mth;
 import org.joml.Matrix4f;
 import net.minecraft.network.chat.*;
@@ -671,7 +671,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
         drawSeal(batch, renderStack, size, x, y, spriteOffsetTick, 1F);
     }
 
-    private void drawSeal(BufferBuilder vb, PoseStack renderStack, double size, double x, double y, long spriteOffsetTick, float alpha) {
+    private void drawSeal(VertexConsumer vb, PoseStack renderStack, double size, double x, double y, long spriteOffsetTick, float alpha) {
         SpriteSheetResource tex = SpritesAS.SPR_PERK_SEAL;
         if (tex == null) {
             return;
@@ -722,7 +722,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
         }
     }
 
-    private void drawConnection(BufferBuilder vb, PoseStack renderStack, AllocationStatus status, Point.Float source, Point.Float target, long effectTick) {
+    private void drawConnection(VertexConsumer vb, PoseStack renderStack, AllocationStatus status, Point.Float source, Point.Float target, long effectTick) {
         Point.Float offsetSrc = this.sizeHandler.scalePointToGui(this, this.mousePosition, source);
         Point.Float offsetDst = this.sizeHandler.scalePointToGui(this, this.mousePosition, target);
         Color overlay = status.getPerkConnectionColor();

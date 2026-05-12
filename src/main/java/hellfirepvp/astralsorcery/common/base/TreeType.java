@@ -41,15 +41,15 @@ public class TreeType {
 
     private static final List<TreeType> TYPES = new ArrayList<>();
 
-    private final BiPredicate<World, BlockPos> treeTest;
+    private final BiPredicate<Level, BlockPos> treeTest;
     private final TriFunction<ServerLevel, BlockPos, Random, Supplier<List<BlockPos>>> treeGenerator;
 
-    private TreeType(BiPredicate<World, BlockPos> treeTest, TriFunction<ServerLevel, BlockPos, Random, Supplier<List<BlockPos>>> treeGenerator) {
+    private TreeType(BiPredicate<Level, BlockPos> treeTest, TriFunction<ServerLevel, BlockPos, Random, Supplier<List<BlockPos>>> treeGenerator) {
         this.treeTest = treeTest;
         this.treeGenerator = treeGenerator;
     }
 
-    public static TreeType register(BiPredicate<World, BlockPos> treeTest, TriFunction<ServerLevel, BlockPos, Random, Supplier<List<BlockPos>>> treeGenerator) {
+    public static TreeType register(BiPredicate<Level, BlockPos> treeTest, TriFunction<ServerLevel, BlockPos, Random, Supplier<List<BlockPos>>> treeGenerator) {
         TreeType type = new TreeType(treeTest, treeGenerator);
         TYPES.add(type);
         return type;
@@ -60,7 +60,7 @@ public class TreeType {
     }
 
     @Nullable
-    public static TreeType isTree(World world, BlockPos pos) {
+    public static TreeType isTree(Level world, BlockPos pos) {
         for (TreeType type : TYPES) {
             if (type.treeTest.test(world, pos)) {
                 return type;

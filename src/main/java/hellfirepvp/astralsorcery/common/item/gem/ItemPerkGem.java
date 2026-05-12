@@ -44,7 +44,7 @@ public abstract class ItemPerkGem extends Item implements GemSocketItem {
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
+    public void inventoryTick(ItemStack stack, Level world, Entity entity, int itemSlot, boolean isSelected) {
         if (world.isRemote()) {
             return;
         }

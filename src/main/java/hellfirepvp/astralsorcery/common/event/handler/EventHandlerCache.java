@@ -105,8 +105,8 @@ public class EventHandlerCache {
     @SubscribeEvent
     public static void onUnload(WorldEvent.Unload event) {
         IWorld w = event.getWorld();
-        if (w instanceof World) {
-            World world = (World) w;
+        if (w instanceof Level) {
+            Level world = (Level) w;
 
             SyncDataHolder.clearWorld(world);
             StarlightTransmissionHandler.getInstance().informWorldUnload(world);

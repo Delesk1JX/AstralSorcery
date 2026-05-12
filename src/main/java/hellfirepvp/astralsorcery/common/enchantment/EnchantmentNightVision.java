@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.enchantment;
 
-import net.minecraft.world.item.enchantment.EnchantmentType;
+
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
@@ -26,7 +26,7 @@ import net.neoforged.fml.LogicalSide;
 public class EnchantmentNightVision extends EnchantmentPlayerTick {
 
     public EnchantmentNightVision() {
-        super(Rarity.VERY_RARE, EnchantmentType.ARMOR_HEAD, new EquipmentSlot[] { EquipmentSlot.HEAD });
+        super(Rarity.VERY_RARE, net.minecraft.world.item.enchantment.Enchantment.ARMOR_HEAD, new EquipmentSlot[] { EquipmentSlot.HEAD });
     }
 
     @Override

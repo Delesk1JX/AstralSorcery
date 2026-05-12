@@ -38,7 +38,7 @@ public class WorldFreezingRegistry extends CustomRecipeRegistry<WorldFreezingRec
     }
 
     @Nullable
-    public WorldFreezingRecipe getRecipeFor(World world, BlockPos pos) {
+    public WorldFreezingRecipe getRecipeFor(Level world, BlockPos pos) {
         return this.getRecipes()
                 .stream()
                 .filter(recipe -> recipe.canFreeze(world, pos))

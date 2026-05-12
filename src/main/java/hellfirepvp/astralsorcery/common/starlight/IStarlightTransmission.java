@@ -34,7 +34,7 @@ public interface IStarlightTransmission<T extends IPrismTransmissionNode> {
     public BlockPos getTrPos();
 
     @Nonnull
-    public World getTrWorld();
+    public Level getTrWorld();
 
     @Nonnull
     public T provideTransmissionNode(BlockPos at);

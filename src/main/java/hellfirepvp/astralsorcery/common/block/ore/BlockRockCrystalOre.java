@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
-import net.minecraft.world.IWorldReader;
+import net.minecraft.world.LevelAccessor;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -32,7 +32,7 @@ public class BlockRockCrystalOre extends Block implements CustomItemBlock {
     }
 
     @Override
-    public int getExpDrop(BlockState state, IWorldReader world, BlockPos pos, int fortune, int silktouch) {
+    public int getExpDrop(BlockState state, LevelAccessor world, BlockPos pos, int fortune, int silktouch) {
         return fortune * Mth.nextInt(RANDOM, 8, 14);
     }
 }

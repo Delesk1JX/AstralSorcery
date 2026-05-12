@@ -348,7 +348,7 @@ public class ActiveCrystalAttunementRecipe extends AttunementRecipe.Active<Attun
     }
 
     @Nullable
-    private ItemEntity getEntity(World world) {
+    private ItemEntity getEntity(Level world) {
         Entity entity = world.getEntityByID(this.entityId);
         if (entity != null && entity.isAlive() && entity instanceof ItemEntity) {
             return (ItemEntity) entity;

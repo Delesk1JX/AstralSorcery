@@ -21,7 +21,7 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.*;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormat;
+import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.Tuple;
@@ -107,7 +107,7 @@ public class RenderingDrawUtils {
         if (fr == null) {
             fr = Minecraft.getInstance().fontRenderer;
         }
-        IRenderTypeBuffer.Impl buffer = IRenderTypeBuffer.getImpl(buffer);
+        MultiBufferSource.Impl buffer = MultiBufferSource.getImpl(buffer);
         int length = fr.func_238416_a_(text, 0, 0, color, dropShadow, renderStack.getLast().getMatrix(), buffer, false, 0, LightmapUtil.getPackedFullbrightCoords());
         buffer.finish();
         return length;
@@ -323,7 +323,7 @@ public class RenderingDrawUtils {
         RenderSystem.enableTexture();
     }
 
-    public static void renderLightRayFan(PoseStack renderStack, IRenderTypeBuffer buffer, Color color, long seed, int minScale, float scale, int count) {
+    public static void renderLightRayFan(PoseStack renderStack, MultiBufferSource buffer, Color color, long seed, int minScale, float scale, int count) {
         rand.setSeed(seed);
 
         float f1 = ClientScheduler.getClientTick() / 400.0F;
@@ -389,7 +389,7 @@ public class RenderingDrawUtils {
         float arXY = ri.getRotationXY();
         float arXZ = ri.getRotationXZ();
 
-        Vector3d view = ari.getProjectedView();
+        net.minecraft.world.phys.Vec3 view = ari.getProjectedView();
         Vector3f look = ari.getViewVector();
 
         Vector3 iPos = new Vector3(view);

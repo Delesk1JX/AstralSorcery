@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.util.Util;
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Style;
 import net.minecraft.ChatFormatting;
@@ -37,7 +37,7 @@ public interface LinkableTileEntity {
      * This tile's world.
      * Links can only be created in the same world as this tile is in.
      */
-    default public World getLinkWorld() {
+    default public Level getLinkWorld() {
         if (this instanceof BlockEntity) {
             return ((BlockEntity) this).getWorld();
         }

@@ -13,13 +13,13 @@ import hellfirepvp.astralsorcery.common.data.world.GatewayCache;
 import hellfirepvp.astralsorcery.common.network.base.ASLoginPacket;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.util.RegistryKey;
+import net.minecraft.util.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.network.NetworkEvent;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import javax.annotation.Nonnull;
 import java.util.*;
@@ -33,7 +33,7 @@ import java.util.*;
  */
 public class PktLoginSyncGateway extends ASLoginPacket<PktLoginSyncGateway> {
 
-    private Map<RegistryKey<World>, Collection<GatewayCache.GatewayNode>> positions = new HashMap<>();
+    private Map<ResourceKey<Level>, Collection<GatewayCache.GatewayNode>> positions = new HashMap<>();
 
     public PktLoginSyncGateway() {}
 
@@ -48,7 +48,7 @@ public class PktLoginSyncGateway extends ASLoginPacket<PktLoginSyncGateway> {
     public Encoder<PktLoginSyncGateway> encoder() {
         return (packet, buffer) -> {
             buffer.writeInt(packet.positions.size());
-            for (RegistryKey<World> dim : packet.positions.keySet()) {
+            for (ResourceKey<Level> dim : packet.positions.keySet()) {
                 ByteBufUtils.writeVanillaRegistryEntry(buffer, dim);
                 ByteBufUtils.writeCollection(buffer, packet.positions.get(dim), (buf, node) -> node.write(buf));
             }
@@ -62,7 +62,7 @@ public class PktLoginSyncGateway extends ASLoginPacket<PktLoginSyncGateway> {
             PktLoginSyncGateway pkt = new PktLoginSyncGateway();
             int dimSize = buffer.readInt();
             for (int i = 0; i < dimSize; i++) {
-                RegistryKey<World> dim = ByteBufUtils.readVanillaRegistryEntry(buffer);
+                ResourceKey<Level> dim = ByteBufUtils.readVanillaRegistryEntry(buffer);
                 pkt.positions.put(dim, ByteBufUtils.readList(buffer, GatewayCache.GatewayNode::read));
             }
             return pkt;
@@ -75,7 +75,7 @@ public class PktLoginSyncGateway extends ASLoginPacket<PktLoginSyncGateway> {
         return new Handler<PktLoginSyncGateway>() {
             @Override
             @OnlyIn(Dist.CLIENT)
-            public void handleClient(PktLoginSyncGateway packet, NetworkEvent.Context context) {
+            public void handleClient(PktLoginSyncGateway packet, IPayloadContext context) {
                 context.enqueueWork(() -> {
                     CelestialGatewayHandler.INSTANCE.updateClientCache(packet.positions);
                     acknowledge(context);
@@ -83,7 +83,7 @@ public class PktLoginSyncGateway extends ASLoginPacket<PktLoginSyncGateway> {
             }
 
             @Override
-            public void handle(PktLoginSyncGateway packet, NetworkEvent.Context context, LogicalSide side) {}
+            public void handle(PktLoginSyncGateway packet, IPayloadContext context, LogicalSide side) {}
         };
     }
 }

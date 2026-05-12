@@ -59,10 +59,10 @@ public class KeySpawnLights extends KeyPerk implements PlayerTickPerk {
                             rand.nextInt(radius) * (rand.nextBoolean() ? 1 : -1),
                             rand.nextInt(radius) * (rand.nextBoolean() ? 1 : -1),
                             rand.nextInt(radius) * (rand.nextBoolean() ? 1 : -1));
-                    if (MiscUtils.executeWithChunk(player.getEntityWorld(), pos, () -> {
-                        if (TileIlluminator.ILLUMINATOR_CHECK.test(player.getEntityWorld(), pos, player.getEntityWorld().getBlockState(pos)) &&
+                    if (MiscUtils.executeWithChunk(player.level, pos, () -> {
+                        if (TileIlluminator.ILLUMINATOR_CHECK.test(player.level, pos, player.level.getBlockState(pos)) &&
                                 AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, CONFIG.chargeCost.get(), true)) {
-                            if (player.getEntityWorld().setBlockState(pos, BlocksAS.FLARE_LIGHT.getDefaultState())) {
+                            if (player.level.setBlockState(pos, BlocksAS.FLARE_LIGHT.getDefaultState())) {
                                 AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, CONFIG.chargeCost.get(), false);
                                 return true;
                             }

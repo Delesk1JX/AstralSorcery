@@ -29,7 +29,7 @@ import hellfirepvp.astralsorcery.common.tile.TileRefractionTable;
 import hellfirepvp.astralsorcery.common.util.world.WorldSeedCache;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormat;
+import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.Tuple;
@@ -203,7 +203,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         if (glass.isEmpty()) {
             return;
         }
-        World world = this.getTile().getWorld();
+        Level world = this.getTile().getWorld();
         float nightPerc = DayTimeHelper.getCurrentDaytimeDistribution(world);
         WorldContext ctx = SkyHandler.getContext(world, LogicalSide.CLIENT);
         if (ctx == null || !this.getTile().doesSeeSky() || nightPerc <= 0.05F) {
@@ -235,7 +235,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         if (glass.isEmpty()) {
             return;
         }
-        World world = this.getTile().getWorld();
+        Level world = this.getTile().getWorld();
         float nightPerc = DayTimeHelper.getCurrentDaytimeDistribution(world);
         WorldContext ctx = SkyHandler.getContext(world, LogicalSide.CLIENT);
         if (ctx == null || !this.getTile().doesSeeSky() || nightPerc <= 0.05F) {

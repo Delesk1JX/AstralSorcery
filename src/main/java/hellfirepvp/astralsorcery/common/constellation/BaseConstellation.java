@@ -23,7 +23,7 @@ import java.util.List;
  * Created by HellFirePvP
  * Date: 18.10.2020 / 20:09
  */
-public abstract class BaseConstellation extends DeferredHolder<IConstellation> implements IConstellation {
+public abstract class BaseConstellation extends DeferredHolder<net.neoforged.neoforge.registries.RegistryKey<IConstellation>, IConstellation> implements IConstellation {
 
     private final List<StarLocation> starLocations = new ArrayList<>(); //31x31 locations are valid. 0-indexed.
     private final List<StarConnection> connections = new ArrayList<>(); //The connections between 2 tuples/stars in the constellation.

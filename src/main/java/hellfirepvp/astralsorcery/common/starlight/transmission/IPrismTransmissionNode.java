@@ -76,27 +76,27 @@ public interface IPrismTransmissionNode extends ILocatable {
     }
 
     //The update method of #needsTransmissionUpdate
-    default public void onTransmissionTick(World world, float starlightAmt, IWeakConstellation type) {}
+    default public void onTransmissionTick(Level world, float starlightAmt, IWeakConstellation type) {}
 
     //Fired to notify THIS that the link to "to" is no longer valid
     //The node at "to" should have THIS as a valid source.
-    public boolean notifyUnlink(World world, BlockPos to);
+    public boolean notifyUnlink(Level world, BlockPos to);
 
     //Fired to notify THIS to add a link to "to"
     //The node at "to" should have THIS as a valid source.
-    public void notifyLink(World world, BlockPos to);
+    public void notifyLink(Level world, BlockPos to);
 
     //Fired to notify THIS that the given "source" is a valid energy transmission node
     //The node at "source" should have THIS as its "next" or one of his "next"
-    public void notifySourceLink(World world, BlockPos source);
+    public void notifySourceLink(Level world, BlockPos source);
 
     //Fired to notify THIS that the given "source" is no longer a valid energy transmission node
     //The node at "source" should have THIS as its "next" or one of his "next"
-    public void notifySourceUnlink(World world, BlockPos source);
+    public void notifySourceUnlink(Level world, BlockPos source);
 
     //Fired to check if a line from THIS to a NEXT is still valid after blockchanges
     //Return true, if and only if the state of this node in regards to the network has changed at all.
-    public boolean notifyBlockChange(World world, BlockPos changed);
+    public boolean notifyBlockChange(Level world, BlockPos changed);
 
     //Try get the next node. might not contain a valid transmission node.
     public List<NodeConnection<IPrismTransmissionNode>> queryNext(WorldNetworkHandler handler);
@@ -113,16 +113,16 @@ public interface IPrismTransmissionNode extends ILocatable {
     //If needsUpdate returns true and it is added to the UpdateHandler,
     //this method will be called each server-world-tick and may be used
     //like the BlockEntity's update method.
-    default public void update(World world) {}
+    default public void update(Level world) {}
 
     //Called once after reading the node from NBT
     //Use this for post-load/place logic.
-    default public void postLoad(IWorld world) {}
+    default public void postLoad(ILevel world) {}
 
     //Flags the world's LightNetworkBuffer as dirty,
     //which causes it to be recalculated and saved
     //whenever the world saves the next time.
-    default public void markDirty(World world) {
+    default public void markDirty(Level world) {
         DataAS.DOMAIN_AS.getData(world, DataAS.KEY_STARLIGHT_NETWORK).markDirty(this.getLocationPos());
     }
 

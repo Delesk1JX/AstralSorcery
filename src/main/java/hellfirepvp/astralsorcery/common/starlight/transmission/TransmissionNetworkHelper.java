@@ -82,7 +82,7 @@ public class TransmissionNetworkHelper {
         handler.markDirty(transmission.getTrPos(), to);
     }
 
-    private static void removeLink(IPrismTransmissionNode thisNode, IPrismTransmissionNode nextNode, World world, BlockPos from, BlockPos to) {
+    private static void removeLink(IPrismTransmissionNode thisNode, IPrismTransmissionNode nextNode, Level world, BlockPos from, BlockPos to) {
         TransmissionWorldHandler handle = StarlightTransmissionHandler.getInstance().getWorldHandler(world);
         if (nextNode != null) {
             nextNode.notifySourceUnlink(world, from);
@@ -104,7 +104,7 @@ public class TransmissionNetworkHelper {
         handler.markDirty(transmission.getTrPos(), to);
     }
 
-    private static void createLink(IPrismTransmissionNode thisNode, IPrismTransmissionNode nextNode, World world, BlockPos from, BlockPos to) {
+    private static void createLink(IPrismTransmissionNode thisNode, IPrismTransmissionNode nextNode, Level world, BlockPos from, BlockPos to) {
         TransmissionWorldHandler handle = StarlightTransmissionHandler.getInstance().getWorldHandler(world);
         if (nextNode != null) {
             nextNode.notifySourceLink(world, from);

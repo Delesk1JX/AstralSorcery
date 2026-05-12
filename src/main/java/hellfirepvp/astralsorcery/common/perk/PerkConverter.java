@@ -33,7 +33,7 @@ import java.util.Objects;
  * Created by HellFirePvP
  * Date: 08.08.2019 / 17:28
  */
-public abstract class PerkConverter extends DeferredHolder<PerkConverter> {
+public abstract class PerkConverter extends DeferredHolder<net.neoforged.neoforge.registries.RegistryKey<PerkConverter>, PerkConverter> {
 
     public PerkConverter(ResourceLocation id) {
         this.setRegistryName(id);

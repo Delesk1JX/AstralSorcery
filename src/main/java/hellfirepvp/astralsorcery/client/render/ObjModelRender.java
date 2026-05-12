@@ -14,9 +14,9 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
 import hellfirepvp.astralsorcery.client.resource.AssetLoader;
 import hellfirepvp.astralsorcery.client.util.obj.WavefrontObject;
-import hellfirepvp.observerlib.client.util.BufferDecoratorBuilder;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.Tessellator;
+// BufferDecoratorBuilder - проверить ObserverLib
+import net.minecraft.client.renderer.VertexConsumer;
+import net.minecraft.client.renderer.Tesselator;
 import net.minecraft.client.renderer.vertex.VertexBuffer;
 
 /**
@@ -43,9 +43,9 @@ public class ObjModelRender {
         }
         //if (vboCrystal == null) {
         //    int[] transparent = new int[] { 255, 255, 255, 65 };
-        //    BufferDecoratorBuilder.withColor((r, g, b, a) -> transparent)
+        //    VertexFormat.(r, g, b, a) -> transparent)
         //            .decorate(buffer,
-        //                    (BufferBuilder decorated) -> vboCrystal = crystalModel.batch(decorated));
+        //                    (VertexConsumer decorated) -> vboCrystal = crystalModel.batch(decorated));
         //}
 
         RenderSystem.pushMatrix();
@@ -68,9 +68,9 @@ public class ObjModelRender {
         }
         if (vboCelestialWings == null) {
             int[] lightGray = new int[] { 178, 178, 178, 255 };
-            BufferDecoratorBuilder.withColor((r, g, b, a) -> lightGray)
+            VertexFormat.(r, g, b, a) -> lightGray)
                     .decorate(buffer,
-                            (BufferBuilder decorated) -> vboCelestialWings = celestialWingsModel.batch(decorated));
+                            (VertexConsumer decorated) -> vboCelestialWings = celestialWingsModel.batch(decorated));
         }
         vboCelestialWings.bindBuffer();
         RenderTypesAS.POSITION_COLOR_TEX_NORMAL.setupBufferState(0L);
@@ -86,15 +86,15 @@ public class ObjModelRender {
 
         if (wraithWingsBones == null) {
             int[] gray = new int[] { 77, 77, 77, 255 };
-            BufferDecoratorBuilder.withColor((r, g, b, a) -> gray)
+            VertexFormat.(r, g, b, a) -> gray)
                     .decorate(buffer,
-                            (BufferBuilder decorated) -> wraithWingsBones = wraithWingsModel.batchOnly(decorated, "Bones"));
+                            (VertexConsumer decorated) -> wraithWingsBones = wraithWingsModel.batchOnly(decorated, "Bones"));
         }
         if (wraithWingsWing == null) {
             int[] black = new int[] { 0, 0, 0, 255 };
-            BufferDecoratorBuilder.withColor((r, g, b, a) -> black)
+            VertexFormat.(r, g, b, a) -> black)
                     .decorate(buffer,
-                            (BufferBuilder decorated) -> wraithWingsWing = wraithWingsModel.batchOnly(decorated, "Wing"));
+                            (VertexConsumer decorated) -> wraithWingsWing = wraithWingsModel.batchOnly(decorated, "Wing"));
         }
 
         wraithWingsBones.bindBuffer();

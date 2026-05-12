@@ -23,12 +23,12 @@ import net.minecraft.world.level.Level;
  */
 public interface LargeBlock {
 
-    public AxisAlignedBB getBlockSpace();
+    public AABB getBlockSpace();
 
     default public boolean canPlaceAt(BlockItemUseContext ctx) {
         BlockPos pos = ctx.getPos();
-        World world = ctx.getWorld();
-        AxisAlignedBB box = this.getBlockSpace();
+        Level world = ctx.getWorld();
+        AABB box = this.getBlockSpace();
 
         BlockPos.Mutable mPos = new BlockPos.Mutable();
         for (int xx = (int) box.minX; xx <= box.maxX; xx++) {

@@ -36,7 +36,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.event.ForgeEventFactory;
+import net.neoforged.neoforge.event.EventHooks;
 
 import java.util.Random;
 import java.util.function.Supplier;
@@ -59,7 +59,7 @@ public class BlockLiquidStarlight extends FlowingFluidBlock {
     }
 
     @Override
-    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+    public void onEntityCollision(BlockState state, Level world, BlockPos pos, Entity entity) {
         super.onEntityCollision(state, world, pos, entity);
 
         if (state.get(LEVEL) != 0) {
@@ -77,19 +77,19 @@ public class BlockLiquidStarlight extends FlowingFluidBlock {
         }
     }
 
-    public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
+    public void onBlockAdded(BlockState state, Level worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
         if (this.reactWithNeighbors(worldIn, pos, state)) {
             worldIn.getPendingFluidTicks().scheduleTick(pos, state.getFluidState().getFluid(), this.getFluid().getTickRate(worldIn));
         }
     }
 
-    public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
+    public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
         if (this.reactWithNeighbors(worldIn, pos, state)) {
             worldIn.getPendingFluidTicks().scheduleTick(pos, state.getFluidState().getFluid(), this.getFluid().getTickRate(worldIn));
         }
     }
 
-    private boolean reactWithNeighbors(World world, BlockPos pos, BlockState state) {
+    private boolean reactWithNeighbors(Level world, BlockPos pos, BlockState state) {
         for (Direction dir : Direction.values()) {
             FluidState otherState = world.getFluidState(pos.offset(dir));
             Fluid otherFluid = otherState.getFluid();
@@ -119,14 +119,14 @@ public class BlockLiquidStarlight extends FlowingFluidBlock {
                 }
             }
 
-            world.setBlockState(pos, ForgeEventFactory.fireFluidPlaceBlockEvent(world, pos, pos, generate));
+            world.setBlockState(pos, EventHooks.fireFluidPlaceBlockEvent(world, pos, pos, generate));
         }
         return true;
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState state, World world, BlockPos pos, Random rand) {
+    public void animateTick(BlockState state, Level world, BlockPos pos, Random rand) {
         Integer level = state.get(LEVEL);
         double percHeight = 1D - (((double) level + 1) / 8D);
         playLiquidStarlightBlockEffect(rand, new Vector3(pos).addY(percHeight * rand.nextFloat()), 1F);

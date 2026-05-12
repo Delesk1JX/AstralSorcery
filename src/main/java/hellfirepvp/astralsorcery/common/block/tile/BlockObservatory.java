@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
  */
 public class BlockObservatory extends ContainerBlock implements LargeBlock, CustomItemBlock {
 
-    private static final AxisAlignedBB PLACEMENT_BOX = new AxisAlignedBB(-1, 0, -1, 1, 3, 1);
+    private static final AABB PLACEMENT_BOX = new AABB(-1, 0, -1, 1, 3, 1);
 
     public BlockObservatory() {
         super(PropertiesMisc.defaultGoldMachinery()
@@ -54,7 +54,7 @@ public class BlockObservatory extends ContainerBlock implements LargeBlock, Cust
     }
 
     @Override
-    public AxisAlignedBB getBlockSpace() {
+    public AABB getBlockSpace() {
         return PLACEMENT_BOX;
     }
 
@@ -65,7 +65,7 @@ public class BlockObservatory extends ContainerBlock implements LargeBlock, Cust
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, Player player, Hand handIn, BlockHitResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, Level worldIn, BlockPos pos, Player player, Hand handIn, BlockHitResult hit) {
         if (!worldIn.isRemote()) {
             TileObservatory observatory = MiscUtils.getTileAt(worldIn, pos, TileObservatory.class, false);
             if (observatory != null && observatory.isUsable() && !player.isSneaking()) {

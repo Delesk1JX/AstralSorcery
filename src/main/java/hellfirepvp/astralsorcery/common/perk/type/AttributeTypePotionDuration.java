@@ -54,7 +54,7 @@ public class AttributeTypePotionDuration extends PerkAttributeType {
     }
 
     private void modifyPotionDuration(Player player, EffectInstance newSetEffect, EffectInstance existingEffect) {
-        if (player.getEntityWorld().isRemote() ||
+        if (player.level.isRemote() ||
                 newSetEffect.getPotion().getEffectType().equals(EffectType.HARMFUL) ||
                 existingEffect.getAmplifier() < newSetEffect.getAmplifier()) {
             return;

@@ -51,7 +51,7 @@ public class ContainerAltarConstellationProvider extends CustomContainerProvider
     private static ContainerAltarConstellation createFromPacket(int id, IInventory plInventory, FriendlyByteBuf data) {
         BlockPos at = ByteBufUtils.readPos(data);
         Player player = plInventory.player;
-        TileAltar ta = MiscUtils.getTileAt(player.getEntityWorld(), at, TileAltar.class, true);
+        TileAltar ta = MiscUtils.getTileAt(player.level, at, TileAltar.class, true);
         return new ContainerAltarConstellation(ta, plInventory, id);
     }
 

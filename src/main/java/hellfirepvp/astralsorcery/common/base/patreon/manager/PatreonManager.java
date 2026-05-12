@@ -39,7 +39,7 @@ public class PatreonManager implements ITickHandler {
     private PatreonManager() {}
 
     @Override
-    public void tick(TickEvent.Type type, Object... context) {
+    public void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
         MinecraftServer server = LogicalSidedProvider.INSTANCE.get(LogicalSide.SERVER);
         if (server == null) {
             return;
@@ -68,7 +68,7 @@ public class PatreonManager implements ITickHandler {
                         effectEntity = data.createEntity(player, effect);
                     }
 
-                    World playerWorld = player.level();
+                    Level playerWorld = player.level();
                     if (effectEntity.getLastTickedDimension() != null &&
                             !playerWorld.getDimensionKey().equals(effectEntity.getLastTickedDimension())) {
                         effectEntity.placeNear(player);
@@ -91,13 +91,13 @@ public class PatreonManager implements ITickHandler {
     }
 
     @Override
-    public EnumSet<TickEvent.Type> getHandledTypes() {
-        return EnumSet.of(TickEvent.Type.SERVER);
+    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
+        return EnumSet.of(net.neoforged.neoforge.event.tick.ClientTickEvent.SERVER);
     }
 
     @Override
-    public boolean canFire(TickEvent.Phase phase) {
-        return phase == TickEvent.Phase.END;
+    public boolean canFire(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
+        return phase == net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
     }
 
     @Override

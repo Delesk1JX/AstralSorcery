@@ -56,7 +56,7 @@ public class KeyMagnetDrops extends KeyPerk {
                 for (ItemEntity drop : event.getDrops()) {
                     ItemStack remain = ItemUtils.dropItemToPlayer(player, drop.getItem());
                     if (!remain.isEmpty()) {
-                        ItemEntity newDrop = new ItemEntity(drop.getEntityWorld(), drop.getPosX(), drop.getPosY(), drop.getPosZ());
+                        ItemEntity newDrop = new ItemEntity(drop.level, drop.getPosX(), drop.getPosY(), drop.getPosZ());
                         newDrop.copyDataFromOld(drop);
                         remaining.add(newDrop);
                     }

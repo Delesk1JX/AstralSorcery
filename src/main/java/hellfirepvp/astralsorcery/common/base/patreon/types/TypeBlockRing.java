@@ -22,7 +22,7 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormat;
+import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.core.BlockPos;
 import net.neoforged.api.distmarker.Dist;
@@ -161,7 +161,7 @@ public class TypeBlockRing extends PatreonEffect {
                     RenderingDrawUtils.renderTexturedCubeCentralColorLighted(buf, renderStack,
                             tas.getMinU(), tas.getMinV(),
                             tas.getMaxU() - tas.getMinU(), tas.getMaxV() - tas.getMinV(),
-                            255, 255, 255, alphaMultiplier, LightmapUtil.getPackedLightCoords(player.getEntityWorld(), player.getPosition()));
+                            255, 255, 255, alphaMultiplier, LightmapUtil.getPackedLightCoords(player.level, player.getPosition()));
                 });
                 renderStack.pop();
             }

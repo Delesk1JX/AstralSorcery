@@ -25,7 +25,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.ModConfigSpec;
-import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.fml.LogicalSide;
 
 /**
@@ -64,12 +64,12 @@ public class KeyStoneEnrichment extends KeyPerk implements PlayerTickPerk {
                         (rand.nextFloat() * radius * 2) - radius,
                         (rand.nextFloat() * radius * 2) - radius,
                         (rand.nextFloat() * radius * 2) - radius);
-                World world = player.getEntityWorld();
+                Level world = player.level;
                 BlockPos pos = vec.toBlockPos();
                 if (BlockTags.BASE_STONE_OVERWORLD.contains(world.getBlockState(pos).getBlock())) {
                     Block block = OreBlockRarityRegistry.STONE_ENRICHMENT.getRandomBlock(rand);
                     if (block != null) {
-                        if (world.setBlockState(pos, block.getDefaultState(), Constants.BlockFlags.DEFAULT_AND_RERENDER)) {
+                        if (world.setBlockState(pos, block.getDefaultState(), net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.DEFAULT_AND_RERENDER)) {
                             AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, CONFIG.chargeCost.get(), false);
                         }
                     }

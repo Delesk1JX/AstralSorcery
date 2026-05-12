@@ -56,7 +56,7 @@ public class AttributeTypeArrowSpeed extends PerkAttributeType {
                         .modifyValue(player, ResearchHelper.getProgress(player, side), this, 1F);
                 mul = AttributeEvent.postProcessModded(player, this, mul);
                 motion = MiscUtils.limitVelocityToMinecraftLimit(motion.multiply(mul));
-                arrow.setMotion(motion.toVector3d());
+                arrow.setMotion(motion.tonet.minecraft.world.phys.Vec3());
             }
         }
     }

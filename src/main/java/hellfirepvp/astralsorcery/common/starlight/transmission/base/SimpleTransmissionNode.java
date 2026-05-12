@@ -22,7 +22,7 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.Tags;
 
 import java.util.*;
 
@@ -55,7 +55,7 @@ public class SimpleTransmissionNode implements ITransmissionNode {
         return thisPos;
     }
 
-    public void updateIgnoreBlockCollisionState(World world, boolean ignoreBlockCollision) {
+    public void updateIgnoreBlockCollisionState(Level world, boolean ignoreBlockCollision) {
         this.ignoreBlockCollision = ignoreBlockCollision;
         TransmissionWorldHandler handle = StarlightTransmissionHandler.getInstance().getWorldHandler(world);
         if (assistNext != null && handle != null) {
@@ -72,7 +72,7 @@ public class SimpleTransmissionNode implements ITransmissionNode {
     }
 
     @Override
-    public boolean notifyUnlink(World world, BlockPos to) {
+    public boolean notifyUnlink(Level world, BlockPos to) {
         if (to.equals(nextPos)) { //cleanup
             this.nextPos = null;
             this.assistNext = null;
@@ -84,11 +84,11 @@ public class SimpleTransmissionNode implements ITransmissionNode {
     }
 
     @Override
-    public void notifyLink(World world, BlockPos pos) {
+    public void notifyLink(Level world, BlockPos pos) {
         addLink(world, pos, true, false);
     }
 
-    private void addLink(World world, BlockPos pos, boolean doRayTest, boolean oldRayState) {
+    private void addLink(Level world, BlockPos pos, boolean doRayTest, boolean oldRayState) {
         this.nextPos = pos;
         this.assistNext = new RaytraceAssist(thisPos, nextPos);
         if (doRayTest) {
@@ -96,15 +96,15 @@ public class SimpleTransmissionNode implements ITransmissionNode {
         } else {
             this.nextReachable = oldRayState;
         }
-        this.dstToNextSq = pos.distanceSq(Vector3d.copy(thisPos), false);
+        this.dstToNextSq = pos.distanceSq(net.minecraft.world.phys.Vec3.copy(thisPos), false);
     }
 
     @Override
-    public boolean notifyBlockChange(World world, BlockPos at) {
+    public boolean notifyBlockChange(Level world, BlockPos at) {
         if (nextPos == null) {
             return false;
         }
-        Vector3d bPosAt = Vector3d.copy(at);
+        net.minecraft.world.phys.Vec3 bPosAt = net.minecraft.world.phys.Vec3.copy(at);
         double dstStart = thisPos.distanceSq(bPosAt, false);
         double dstEnd = nextPos.distanceSq(bPosAt, false);
         if (dstStart > dstToNextSq || dstEnd > dstToNextSq) {
@@ -116,12 +116,12 @@ public class SimpleTransmissionNode implements ITransmissionNode {
     }
 
     @Override
-    public void notifySourceLink(World world, BlockPos source) {
+    public void notifySourceLink(Level world, BlockPos source) {
         sourcesToThis.add(source);
     }
 
     @Override
-    public void notifySourceUnlink(World world, BlockPos source) {
+    public void notifySourceUnlink(Level world, BlockPos source) {
         sourcesToThis.remove(source);
     }
 
@@ -149,7 +149,7 @@ public class SimpleTransmissionNode implements ITransmissionNode {
         this.sourcesToThis.clear();
         this.ignoreBlockCollision = compound.getBoolean("ignoreBlockCollision");
 
-        ListTag list = compound.getList("sources", Constants.NBT.TAG_COMPOUND);
+        ListTag list = compound.getList("sources", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
         for (int i = 0; i < list.size(); i++) {
             sourcesToThis.add(NBTHelper.readBlockPosFromNBT(list.getCompound(i)));
         }

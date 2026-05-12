@@ -46,7 +46,7 @@ public class CrystalPrismTransmissionNode extends SimplePrismTransmissionNode {
     }
 
     @Override
-    public void onTransmissionTick(World world, float starlightAmt, IWeakConstellation type) {
+    public void onTransmissionTick(Level world, float starlightAmt, IWeakConstellation type) {
         TilePrism prism = MiscUtils.getTileAt(world, getLocationPos(), TilePrism.class, false);
         if (prism != null) {
             prism.transmissionTick(starlightAmt, type);

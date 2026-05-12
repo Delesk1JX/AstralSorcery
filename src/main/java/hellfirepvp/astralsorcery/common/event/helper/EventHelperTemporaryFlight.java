@@ -32,7 +32,7 @@ public class EventHelperTemporaryFlight {
             player.abilities.isFlying = false;
             player.sendPlayerAbilities();
         }
-    }, TickEvent.Type.SERVER);
+    }, net.neoforged.neoforge.event.tick.ClientTickEvent.SERVER);
 
     private EventHelperTemporaryFlight() {}
 

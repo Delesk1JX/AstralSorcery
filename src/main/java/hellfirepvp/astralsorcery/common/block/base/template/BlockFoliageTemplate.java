@@ -16,7 +16,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.IWorldReader;
+import net.minecraft.world.LevelAccessor;
 import net.neoforged.neoforge.common.IPlantable;
 
 /**
@@ -35,7 +35,7 @@ public abstract class BlockFoliageTemplate extends Block implements CustomItemBl
     protected abstract boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos);
 
     @Override
-    public BlockState updatePostPlacement(BlockState state, Direction dir, BlockState facingState, IWorld world, BlockPos pos, BlockPos facingPos) {
+    public BlockState updatePostPlacement(BlockState state, Direction dir, BlockState facingState, ILevel world, BlockPos pos, BlockPos facingPos) {
         if (!state.isValidPosition(world, pos)) {
             return Blocks.AIR.getDefaultState();
         }
@@ -43,7 +43,7 @@ public abstract class BlockFoliageTemplate extends Block implements CustomItemBl
     }
 
     @Override
-    public boolean isValidPosition(BlockState state, IWorldReader world, BlockPos pos) {
+    public boolean isValidPosition(BlockState state, LevelAccessor world, BlockPos pos) {
         BlockPos blockpos = pos.down();
         if (state.getBlock() == this) {
             return world.getBlockState(blockpos).canSustainPlant(world, blockpos, Direction.UP, this);

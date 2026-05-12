@@ -43,7 +43,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
@@ -70,7 +70,7 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         super.addInformation(stack, worldIn, tooltip, flagIn);
 
         DyeColor color = getConfiguredColor(stack);
@@ -88,7 +88,7 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
 
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
-        World world = context.getWorld();
+        Level world = context.getWorld();
         Direction dir = context.getFace();
         BlockPos pos = context.getPos();
         Player player = context.getPlayer();
@@ -115,7 +115,7 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
                         player.canPlayerEdit(pos, dir, stack) &&
                         VoxelShapes.fullCube().equals(world.getBlockState(pos).getShape(world, pos))) {
                     if (AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, COST_PER_ILLUMINATION, false)) {
-                        if (world.setBlockState(pos, BlocksAS.TRANSLUCENT_BLOCK.getDefaultState(), Constants.BlockFlags.DEFAULT_AND_RERENDER)) {
+                        if (world.setBlockState(pos, BlocksAS.TRANSLUCENT_BLOCK.getDefaultState(), net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.DEFAULT_AND_RERENDER)) {
                             SoundHelper.playSoundAround(SoundsAS.ILLUMINATION_WAND_HIGHLIGHT, SoundCategory.BLOCKS, world, pos, 0.6F, 0.9F + random.nextFloat() * 0.2F);
                             TileTranslucentBlock tb = MiscUtils.getTileAt(world, pos, TileTranslucentBlock.class, true);
                             if (tb != null) {
@@ -124,7 +124,7 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
                                 tb.setPlayerUUID(player.getUniqueID());
                             } else {
                                 //Abort, we didn't get a tileentity... for some reason.
-                                world.setBlockState(pos, state, Constants.BlockFlags.DEFAULT_AND_RERENDER);
+                                world.setBlockState(pos, state, net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.DEFAULT_AND_RERENDER);
                             }
                         }
                     }
@@ -153,13 +153,13 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
 
         if (player.canPlayerEdit(placePos, dir, stack)) {
             if (world.getBlockState(placePos).equals(placeState)) {
-                if (world.setBlockState(placePos, Blocks.AIR.getDefaultState(), Constants.BlockFlags.DEFAULT_AND_RERENDER)) {
+                if (world.setBlockState(placePos, Blocks.AIR.getDefaultState(), net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.DEFAULT_AND_RERENDER)) {
                     SoundHelper.playSoundAround(SoundsAS.ILLUMINATION_WAND_LIGHT, SoundCategory.BLOCKS, world, pos, 0.6F, 1F);
                 }
             } else if (placeState.isValidPosition(world, placePos) &&
                     world.placedBlockCollides(placeState, placePos, selContext)) {
                 if (AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, COST_PER_FLARE, false)) {
-                    if (world.setBlockState(placePos, placeState, Constants.BlockFlags.DEFAULT_AND_RERENDER)) {
+                    if (world.setBlockState(placePos, placeState, net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.DEFAULT_AND_RERENDER)) {
                         SoundHelper.playSoundAround(SoundsAS.ILLUMINATION_WAND_LIGHT, SoundCategory.BLOCKS, world, pos, 0.6F, 1F);
                     }
                 }

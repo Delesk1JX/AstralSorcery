@@ -31,14 +31,14 @@ import java.util.function.Predicate;
 public class TimeoutList<V> implements ITickHandler, Iterable<V> {
 
     private final TimeoutDelegate<V> delegate;
-    private final EnumSet<TickEvent.Type> tickTypes;
+    private final EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> tickTypes;
 
     private final List<TimeoutEntry<V>> tickEntries = new LinkedList<>();
 
-    public TimeoutList(@Nullable TimeoutDelegate<V> delegate, TickEvent.Type... types) {
+    public TimeoutList(@Nullable TimeoutDelegate<V> delegate, net.neoforged.neoforge.event.tick.ClientTickEvent... types) {
         this.delegate = delegate;
-        this.tickTypes = EnumSet.noneOf(TickEvent.Type.class);
-        for (TickEvent.Type type : types) {
+        this.tickTypes = EnumSet.noneOf(net.neoforged.neoforge.event.tick.ClientTickEvent.class);
+        for (net.neoforged.neoforge.event.tick.ClientTickEvent type : types) {
             if (type != null) {
                 this.tickTypes.add(type);
             }
@@ -109,7 +109,7 @@ public class TimeoutList<V> implements ITickHandler, Iterable<V> {
     }
 
     @Override
-    public void tick(TickEvent.Type type, Object... context) {
+    public void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
         Iterator<TimeoutEntry<V>> iterator = tickEntries.iterator();
         while (iterator.hasNext()) {
             TimeoutEntry<V> entry = iterator.next();
@@ -155,13 +155,13 @@ public class TimeoutList<V> implements ITickHandler, Iterable<V> {
     }
 
     @Override
-    public EnumSet<TickEvent.Type> getHandledTypes() {
+    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
         return tickTypes;
     }
 
     @Override
-    public boolean canFire(TickEvent.Phase phase) {
-        return phase == TickEvent.Phase.END;
+    public boolean canFire(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
+        return phase == net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
     }
 
     @Override

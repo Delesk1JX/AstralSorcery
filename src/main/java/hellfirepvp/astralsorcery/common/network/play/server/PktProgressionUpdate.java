@@ -17,13 +17,13 @@ import hellfirepvp.astralsorcery.common.network.base.ASPacket;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.util.Util;
+import net.minecraft.Util;
 import net.minecraft.ChatFormatting;
 import static net.minecraft.network.chat.Component.translatable;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.network.NetworkEvent;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import javax.annotation.Nonnull;
 
@@ -78,7 +78,7 @@ public class PktProgressionUpdate extends ASPacket<PktProgressionUpdate> {
         return new Handler<PktProgressionUpdate>() {
             @Override
             @OnlyIn(Dist.CLIENT)
-            public void handleClient(PktProgressionUpdate packet, NetworkEvent.Context context) {
+            public void handleClient(PktProgressionUpdate packet, IPayloadContext context) {
                 context.enqueueWork(() -> {
                     if (packet.tier != null) {
                         Minecraft.getInstance().player.sendMessage(
@@ -95,7 +95,7 @@ public class PktProgressionUpdate extends ASPacket<PktProgressionUpdate> {
             }
 
             @Override
-            public void handle(PktProgressionUpdate packet, NetworkEvent.Context context, LogicalSide side) {}
+            public void handle(PktProgressionUpdate packet, IPayloadContext context, LogicalSide side) {}
         };
     }
 

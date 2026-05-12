@@ -58,12 +58,12 @@ public class EntitySpectralTool extends FlyingEntity {
 
     private int idleTime = 0;
 
-    public EntitySpectralTool(World worldIn) {
+    public EntitySpectralTool(Level worldIn) {
         super(EntityTypesAS.SPECTRAL_TOOL, worldIn);
         this.moveController = new FlyingMovementController(this, 10, false);
     }
 
-    public EntitySpectralTool(World worldIn, BlockPos spawnPos, LivingEntity owner, ToolTask task) {
+    public EntitySpectralTool(Level worldIn, BlockPos spawnPos, LivingEntity owner, ToolTask task) {
         this(worldIn);
         this.setPosition(spawnPos.getX() + 0.5, spawnPos.getY() + 0.5, spawnPos.getZ());
         this.setItem(task.displayStack);
@@ -110,7 +110,7 @@ public class EntitySpectralTool extends FlyingEntity {
     public void tick() {
         super.tick();
 
-        if (this.getEntityWorld().isRemote()) {
+        if (this.level.isRemote()) {
             this.tickClient();
         } else {
             if (this.startPosition == null) {

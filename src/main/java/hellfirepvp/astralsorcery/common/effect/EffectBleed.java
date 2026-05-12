@@ -42,8 +42,8 @@ public class EffectBleed extends EffectCustomTexture {
     @Override
     public void performEffect(LivingEntity entity, int amplifier) {
         if (entity instanceof Player &&
-                !entity.getEntityWorld().isRemote() &&
-                entity.getEntityWorld() instanceof ServerLevel &&
+                !entity.level.isRemote() &&
+                entity.level instanceof ServerLevel &&
                 !((MinecraftServer) LogicalSidedProvider.INSTANCE.get(LogicalSide.SERVER)).isPVPEnabled()) {
             return;
         }

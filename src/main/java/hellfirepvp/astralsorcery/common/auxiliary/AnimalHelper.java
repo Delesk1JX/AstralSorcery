@@ -63,7 +63,7 @@ public class AnimalHelper {
 
         public boolean handles(@Nonnull LivingEntity entity);
 
-        public List<ItemStack> generateDrops(@Nonnull LivingEntity entity, World world, Random rand, float luck);
+        public List<ItemStack> generateDrops(@Nonnull LivingEntity entity, Level world, Random rand, float luck);
 
     }
 
@@ -75,7 +75,7 @@ public class AnimalHelper {
         }
 
         @Override
-        public List<ItemStack> generateDrops(@Nonnull LivingEntity entity, World world, Random rand, float luck) {
+        public List<ItemStack> generateDrops(@Nonnull LivingEntity entity, Level world, Random rand, float luck) {
             return EntityUtils.generateLoot(entity, rand, CommonProxy.DAMAGE_SOURCE_STELLAR, null);
         }
     }

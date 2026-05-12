@@ -53,7 +53,7 @@ public class MantleEffectPelotrio extends MantleEffect {
     }
 
     private void onHurt(LivingAttackEvent event) {
-        World world = event.getEntityLiving().getEntityWorld();
+        Level world = event.getEntityLiving().level;
         if (world.isRemote()) {
             return;
         }
@@ -77,8 +77,8 @@ public class MantleEffectPelotrio extends MantleEffect {
     }
 
     private void onBreak(BlockEvent.BreakEvent event) {
-        IWorld world = event.getWorld();
-        if (world.isRemote() || !(world instanceof World)) {
+        ILevel world = event.getWorld();
+        if (world.isRemote() || !(world instanceof Level)) {
             return;
         }
 
@@ -95,7 +95,7 @@ public class MantleEffectPelotrio extends MantleEffect {
 
                 if (rand.nextFloat() < CONFIG.chanceSpawnAxe.get()) {
                     if (AlignmentChargeHandler.INSTANCE.hasCharge(player, LogicalSide.SERVER, CONFIG.chargeCostPerAxe.get())) {
-                        if (world.addEntity(new EntitySpectralTool((World) world, player.getPosition(), player, EntitySpectralTool.ToolTask.createLogTask()))) {
+                        if (world.addEntity(new EntitySpectralTool((Level) world, player.getPosition(), player, EntitySpectralTool.ToolTask.createLogTask()))) {
                             AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, CONFIG.chargeCostPerAxe.get(), false);
                         }
                     }
@@ -108,7 +108,7 @@ public class MantleEffectPelotrio extends MantleEffect {
 
                 if (rand.nextFloat() < CONFIG.chanceSpawnPickaxe.get()) {
                     if (AlignmentChargeHandler.INSTANCE.hasCharge(player, LogicalSide.SERVER, CONFIG.chargeCostPerPickaxe.get())) {
-                        if (world.addEntity(new EntitySpectralTool((World) world, player.getPosition(), player, EntitySpectralTool.ToolTask.createPickaxeTask()))) {
+                        if (world.addEntity(new EntitySpectralTool((Level) world, player.getPosition(), player, EntitySpectralTool.ToolTask.createPickaxeTask()))) {
                             AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, CONFIG.chargeCostPerPickaxe.get(), false);
                         }
                     }

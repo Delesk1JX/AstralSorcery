@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.world.placement.config;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.util.RegistryKey;
+import net.minecraft.util.ResourceKey;
 import net.minecraft.world.IServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.gen.placement.IPlacementConfig;
@@ -30,19 +30,19 @@ public class WorldFilterConfig implements IPlacementConfig {
     public static final Codec<WorldFilterConfig> CODEC = RecordCodecBuilder.create(codecInstance -> {
         return codecInstance.group(Codec.BOOL.fieldOf("ignoreFilter").forGetter(config -> {
             return config.ignoreFilter.get();
-        }), World.CODEC.listOf().fieldOf("worldFilter").forGetter(config -> {
+        }), Level.CODEC.listOf().fieldOf("worldFilter").forGetter(config -> {
             return config.worldFilter.get();
         })).apply(codecInstance, WorldFilterConfig::new);
     });
 
     private final Supplier<Boolean> ignoreFilter;
-    private final Supplier<List<RegistryKey<World>>> worldFilter;
+    private final Supplier<List<ResourceKey<Level>>> worldFilter;
 
-    public WorldFilterConfig(boolean ignoreFilter, List<RegistryKey<World>> worldFilter) {
+    public WorldFilterConfig(boolean ignoreFilter, List<ResourceKey<Level>> worldFilter) {
         this(() -> ignoreFilter, () -> worldFilter);
     }
 
-    public WorldFilterConfig(Supplier<Boolean> ignoreFilter, Supplier<List<RegistryKey<World>>> worldFilter) {
+    public WorldFilterConfig(Supplier<Boolean> ignoreFilter, Supplier<List<ResourceKey<Level>>> worldFilter) {
         this.ignoreFilter = ignoreFilter;
         this.worldFilter = worldFilter;
     }

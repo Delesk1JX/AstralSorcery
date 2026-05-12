@@ -96,7 +96,7 @@ public class BlockMarblePillar extends BlockMarbleTemplate implements IWaterLogg
     }
 
     @Override
-    public BlockState updatePostPlacement(BlockState thisState, Direction otherBlockFacing, BlockState otherBlockState, IWorld world, BlockPos thisPos, BlockPos otherBlockPos) {
+    public BlockState updatePostPlacement(BlockState thisState, Direction otherBlockFacing, BlockState otherBlockState, ILevel world, BlockPos thisPos, BlockPos otherBlockPos) {
         if (thisState.get(WATERLOGGED)) {
             world.getPendingFluidTicks().scheduleTick(thisPos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
@@ -107,7 +107,7 @@ public class BlockMarblePillar extends BlockMarbleTemplate implements IWaterLogg
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext ctx) {
         BlockPos blockpos = ctx.getPos();
-        World world = ctx.getWorld();
+        Level world = ctx.getWorld();
         FluidState ifluidstate = world.getFluidState(blockpos);
         return this.getThisState(world, blockpos).with(WATERLOGGED, ifluidstate.getFluid() == Fluids.WATER);
     }

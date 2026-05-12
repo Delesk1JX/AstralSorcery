@@ -45,7 +45,7 @@ public abstract class ItemAttunedCrystalBase extends ItemCrystalBase implements 
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World world, List<Component> toolTip, TooltipFlag flag) {
+    public void addInformation(ItemStack stack, @Nullable Level world, List<Component> toolTip, TooltipFlag flag) {
         CrystalAttributes.TooltipResult result = addCrystalPropertyToolTip(stack, toolTip);
         if (result != null) {
             ProgressionTier tier = ResearchHelper.getClientProgress().getTierReached();

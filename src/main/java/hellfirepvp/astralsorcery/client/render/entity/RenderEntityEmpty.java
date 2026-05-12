@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.client.render.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.texture.AtlasTexture;
@@ -31,7 +31,7 @@ public class RenderEntityEmpty extends EntityRenderer<Entity> {
     }
 
     @Override
-    public void render(Entity entity, float entityYaw, float partialTicks, PoseStack poseStack, IRenderTypeBuffer buffer, int packedLight) {}
+    public void render(Entity entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {}
 
     @Override
     public ResourceLocation getEntityTexture(Entity entity) {

@@ -80,10 +80,10 @@ public class FountainEffectVortex extends FountainEffect<VortexContext> {
         Vector3 at = new Vector3(fountain).add(0.5, 0.5, 0.5);
         Vector3 vortexAt = at.clone().addY(-4);
 
-        AxisAlignedBB captureBox = new AxisAlignedBB(0, 0, 0, 1, 1, 1)
+        AABB captureBox = new AABB(0, 0, 0, 1, 1, 1)
                 .offset(fountain.getPos().down(4))
                 .grow(2);
-        AxisAlignedBB pullBox = captureBox.grow(14);
+        AABB pullBox = captureBox.grow(14);
 
         float boxCapacity = 5 * 5 * 5;
         float density = 0;
@@ -109,7 +109,7 @@ public class FountainEffectVortex extends FountainEffect<VortexContext> {
                     rules.get(GameRules.MOB_GRIEFING).set(prev, null);
                 }
             } else {
-                le.setMotion(Vector3d.ZERO);
+                le.setMotion(net.minecraft.world.phys.Vec3.ZERO);
             }
 
             EventHelperEntityFreeze.freeze(le);
@@ -135,7 +135,7 @@ public class FountainEffectVortex extends FountainEffect<VortexContext> {
                     } else {
                         le.setPositionAndRotation(nextPos.getX(), nextPos.getY(), nextPos.getZ(), le.rotationYaw, le.rotationPitch);
                     }
-                    le.setMotion(Vector3d.ZERO);
+                    le.setMotion(net.minecraft.world.phys.Vec3.ZERO);
                 } else {
                     le.setMotion(le.getMotion().add(v.getX(), v.getY() * 2.5, v.getZ()));
                     le.velocityChanged = true;

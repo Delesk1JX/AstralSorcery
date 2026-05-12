@@ -34,7 +34,7 @@ import java.util.function.Consumer;
  */
 public class EventHelperSpawnDeny {
 
-    public static TickTokenMap<WorldBlockPos, TickTokenMap.SimpleTickToken<Double>> spawnDenyRegions = new TickTokenMap<>(TickEvent.Type.SERVER);
+    public static TickTokenMap<WorldBlockPos, TickTokenMap.SimpleTickToken<Double>> spawnDenyRegions = new TickTokenMap<>(net.neoforged.neoforge.event.tick.ClientTickEvent.SERVER);
 
     public static void clearServer() {
         spawnDenyRegions.clear();
@@ -63,7 +63,7 @@ public class EventHelperSpawnDeny {
         if (GeneralConfig.CONFIG.mobSpawningDenyAllTypes.get() || entity.getClassification(false) == EntityClassification.MONSTER) {
             Vector3 entityPos = Vector3.atEntityCorner(entity);
             for (Map.Entry<WorldBlockPos, TickTokenMap.SimpleTickToken<Double>> entry : spawnDenyRegions.entrySet()) {
-                if (!entry.getKey().getWorldKey().equals(entity.getEntityWorld().getDimensionKey())) {
+                if (!entry.getKey().getWorldKey().equals(entity.level.getDimensionKey())) {
                     continue;
                 }
 

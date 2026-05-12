@@ -60,7 +60,7 @@ public class RegistryPerkCustomModifiers {
 
             @Override
             public float getValue(Player player, PlayerProgress progress) {
-                LogicalSide side = player.getEntityWorld().isRemote() ? LogicalSide.CLIENT : LogicalSide.SERVER;
+                LogicalSide side = player.level.isRemote() ? LogicalSide.CLIENT : LogicalSide.SERVER;
                 return 1F + (0.05F * progress.getPerkData().getAvailablePerkPoints(player, side));
             }
 

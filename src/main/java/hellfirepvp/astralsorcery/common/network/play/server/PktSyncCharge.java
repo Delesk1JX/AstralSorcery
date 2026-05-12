@@ -15,7 +15,7 @@ import net.minecraft.world.entity.player.Player;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.network.NetworkEvent;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import javax.annotation.Nonnull;
 
@@ -72,14 +72,14 @@ public class PktSyncCharge extends ASPacket<PktSyncCharge> {
         return new Handler<PktSyncCharge>() {
             @Override
             @OnlyIn(Dist.CLIENT)
-            public void handleClient(PktSyncCharge packet, NetworkEvent.Context context) {
+            public void handleClient(PktSyncCharge packet, IPayloadContext context) {
                 context.enqueueWork(() -> {
                     AlignmentChargeHandler.INSTANCE.receiveCharge(packet, Minecraft.getInstance().player);
                 });
             }
 
             @Override
-            public void handle(PktSyncCharge packet, NetworkEvent.Context context, LogicalSide side) {}
+            public void handle(PktSyncCharge packet, IPayloadContext context, LogicalSide side) {}
         };
     }
 }

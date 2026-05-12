@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.client.util.Blending;
 import hellfirepvp.astralsorcery.common.event.EventFlags;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.DimensionRenderInfo;
-import net.minecraft.util.RegistryKey;
+import net.minecraft.util.ResourceKey;
 import net.minecraft.util.vector.Vector3f;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.world.level.Level;
@@ -38,9 +38,9 @@ public class ChainingSkyRenderer implements ISkyRenderHandler {
     }
 
     @Override
-    public void render(int ticks, float partialTicks, PoseStack renderStack, ClientWorld world, Minecraft mc) {
+    public void render(int ticks, float partialTicks, PoseStack renderStack, ClientLevel world, Minecraft mc) {
         EventFlags.SKY_RENDERING.executeWithFlag(() -> {
-            RegistryKey<World> dim = world.getDimensionKey();
+            ResourceKey<Level> dim = world.getDimensionKey();
             if (world.func_239132_a_().func_241683_c_() == DimensionRenderInfo.FogType.NORMAL) {
                 if (RenderingConfig.CONFIG.dimensionsWithOnlyConstellationRendering.get().contains(dim.getLocation())) {
                     if (existingSkyRenderer != null) {
@@ -66,7 +66,7 @@ public class ChainingSkyRenderer implements ISkyRenderHandler {
         });
     }
 
-    private void renderConstellations(ClientWorld world, PoseStack renderStack, float pTicks) {
+    private void renderConstellations(ClientLevel world, PoseStack renderStack, float pTicks) {
         RenderSystem.disableAlphaTest();
         RenderSystem.enableBlend();
         Blending.ADDITIVE_ALPHA.apply();

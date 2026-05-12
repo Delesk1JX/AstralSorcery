@@ -31,7 +31,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.Tags;
 
 import java.util.*;
 
@@ -69,7 +69,7 @@ public class MergeCrystalsRecipe extends LiquidStarlightRecipe {
     }
 
     @Override
-    public boolean matches(ItemEntity trigger, World world, BlockPos at) {
+    public boolean matches(ItemEntity trigger, Level world, BlockPos at) {
         List<Entity> otherEntities = getEntitiesInBlock(world, at);
         otherEntities.remove(trigger);
         Optional<Entity> crystalEntity = otherEntities.stream()
@@ -80,13 +80,13 @@ public class MergeCrystalsRecipe extends LiquidStarlightRecipe {
     }
 
     @Override
-    public void doServerCraftTick(ItemEntity trigger, World world, BlockPos at) {
+    public void doServerCraftTick(ItemEntity trigger, Level world, BlockPos at) {
         Random r = new Random(Mth.getPositionRandom(at));
         if (!world.isRemote() && getAndIncrementCraftingTick(trigger) > 40 + r.nextInt(20)) {
             ItemStack crystalFoundOne, crystalFoundTwo;
             if ((crystalFoundOne = consumeItemEntityInBlock(world, at, 1, stack -> stack.getItem() instanceof ItemCrystalBase)) != null &&
                     (crystalFoundTwo = consumeItemEntityInBlock(world, at, 1, stack -> stack.getItem() instanceof ItemCrystalBase)) != null &&
-                    world.setBlockState(at, Blocks.AIR.getDefaultState(), Constants.BlockFlags.DEFAULT_AND_RERENDER)) {
+                    world.setBlockState(at, Blocks.AIR.getDefaultState(), net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.DEFAULT_AND_RERENDER)) {
 
                 ItemCrystalBase crystalOne = (ItemCrystalBase) crystalFoundOne.getItem();
                 CrystalAttributes attrOne = crystalOne.getAttributes(crystalFoundOne);
@@ -124,7 +124,7 @@ public class MergeCrystalsRecipe extends LiquidStarlightRecipe {
     }
 
     @Override
-    public void doClientEffectTick(ItemEntity trigger, World world, BlockPos at) {
+    public void doClientEffectTick(ItemEntity trigger, Level world, BlockPos at) {
         for (int i = 0; i < 3; i++) {
             Vector3 pos = Vector3.atEntityCenter(trigger);
             MiscUtils.applyRandomOffset(pos, rand, 0.15F);

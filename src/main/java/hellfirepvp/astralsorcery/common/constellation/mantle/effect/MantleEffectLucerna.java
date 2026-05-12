@@ -26,7 +26,7 @@ import net.minecraft.core.BlockPos;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.ModConfigSpec;
-import net.neoforged.neoforge.items.CapabilityItemHandler;
+
 
 import java.awt.*;
 import java.util.List;
@@ -62,14 +62,14 @@ public class MantleEffectLucerna extends MantleEffect {
             this.playBlockHighlight(player, ColorsAS.MANTLE_LUCERNA_SPAWNER, (tileEntity) -> tileEntity instanceof MobSpawnerTileEntity);
         }
         if (CONFIG.findChests.get() && rand.nextInt(10) == 0) {
-            this.playBlockHighlight(player, ColorsAS.MANTLE_LUCERNA_INVENTORY, (tileEntity) -> tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).isPresent());
+            this.playBlockHighlight(player, ColorsAS.MANTLE_LUCERNA_INVENTORY, (tileEntity) -> tileEntity.getnet.neoforged.neoforge.capabilities(net.neoforged.neoforge.capabilitiesItemHandler.ITEM_HANDLER_CAPABILITY).isPresent());
         }
     }
 
     @OnlyIn(Dist.CLIENT)
     private void playBlockHighlight(Player player, Color highlightColor, Predicate<BlockEntity> test) {
         float chance = 0.9F;
-        Set<BlockPos> positions = BlockDiscoverer.searchForTileEntitiesAround(player.getEntityWorld(), player.getPosition(), CONFIG.range.get(), test);
+        Set<BlockPos> positions = BlockDiscoverer.searchForTileEntitiesAround(player.level, player.getPosition(), CONFIG.range.get(), test);
         for (BlockPos pos : positions) {
             if (rand.nextFloat() > chance) {
                 continue;
@@ -103,10 +103,10 @@ public class MantleEffectLucerna extends MantleEffect {
 
     @OnlyIn(Dist.CLIENT)
     private void playEntityHighlight(Player player) {
-        AxisAlignedBB box = new AxisAlignedBB(0, 0, 0, 0, 0, 0)
+        AABB box = new AABB(0, 0, 0, 0, 0, 0)
                 .grow(CONFIG.range.get())
                 .offset(player.getPosition());
-        List<LivingEntity> entities = player.getEntityWorld().getEntitiesWithinAABB(LivingEntity.class, box);
+        List<LivingEntity> entities = player.level.getEntitiesWithinAABB(LivingEntity.class, box);
         for (LivingEntity entity : entities) {
             if (!entity.isAlive() || entity.equals(player) || rand.nextInt(8) != 0) {
                 continue;

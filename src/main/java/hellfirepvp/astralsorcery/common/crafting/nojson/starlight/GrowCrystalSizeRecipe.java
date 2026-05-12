@@ -72,14 +72,14 @@ public class GrowCrystalSizeRecipe extends LiquidStarlightRecipe {
     }
 
     @Override
-    public boolean matches(ItemEntity trigger, World world, BlockPos at) {
+    public boolean matches(ItemEntity trigger, Level world, BlockPos at) {
         List<Entity> otherEntities = getEntitiesInBlock(world, at);
         otherEntities.remove(trigger);
         return otherEntities.isEmpty();
     }
 
     @Override
-    public void doServerCraftTick(ItemEntity trigger, World world, BlockPos at) {
+    public void doServerCraftTick(ItemEntity trigger, Level world, BlockPos at) {
         Random r = new Random(Mth.getPositionRandom(at));
         if (!world.isRemote() && getAndIncrementCraftingTick(trigger) > 80 + r.nextInt(40)) {
             ItemStack stack = trigger.getItem();
@@ -102,7 +102,7 @@ public class GrowCrystalSizeRecipe extends LiquidStarlightRecipe {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void doClientEffectTick(ItemEntity trigger, World world, BlockPos at) {
+    public void doClientEffectTick(ItemEntity trigger, Level world, BlockPos at) {
         Color c = ColorsAS.DEFAULT_GENERIC_PARTICLE;
         if (trigger.getItem().getItem() instanceof ItemRockCrystal ||
                 trigger.getItem().getItem() instanceof ItemAttunedRockCrystal) {

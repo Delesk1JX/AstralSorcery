@@ -24,7 +24,7 @@ import net.minecraft.world.phys.Vec3;
 public class RenderingVectorUtils {
 
     public static Vector3 getStandardTranslationRemovalVector(float partialTicks) {
-        Vector3d view = RenderInfo.getInstance().getARI().getProjectedView();
+        net.minecraft.world.phys.Vec3 view = RenderInfo.getInstance().getARI().getProjectedView();
         return new Vector3(view);
     }
 

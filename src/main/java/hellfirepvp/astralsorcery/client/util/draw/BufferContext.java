@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.client.util.draw;
 
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
-import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.VertexConsumer;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 
 /**
@@ -19,7 +19,7 @@ import net.minecraft.client.renderer.vertex.VertexFormat;
  * Created by HellFirePvP
  * Date: 08.07.2019 / 20:39
  */
-public class BufferContext extends BufferBuilder {
+public class BufferContext extends VertexConsumer {
 
     private boolean inDrawing = false;
 

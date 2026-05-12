@@ -56,7 +56,7 @@ public class ItemMeltableRecipe extends WorldMeltableRecipe {
     }
 
     @Override
-    public void doOutput(World world, BlockPos pos, BlockState state, Consumer<ItemStack> itemOutput) {
+    public void doOutput(Level world, BlockPos pos, BlockState state, Consumer<ItemStack> itemOutput) {
         if (world.removeBlock(pos, false)) {
             ItemStack generated = this.outputGenerator.apply(WorldBlockPos.wrapServer(world, pos), state);
             if (!generated.isEmpty()) {

@@ -51,7 +51,7 @@ public class ContainerObservatoryProvider extends CustomContainerProvider<Contai
     private static ContainerObservatory createFromPacket(int windowId, IInventory plInventory, FriendlyByteBuf data) {
         BlockPos at = ByteBufUtils.readPos(data);
         Player player = plInventory.player;
-        TileObservatory observatory = MiscUtils.getTileAt(player.getEntityWorld(), at, TileObservatory.class, true);
+        TileObservatory observatory = MiscUtils.getTileAt(player.level, at, TileObservatory.class, true);
         return new ContainerObservatory(observatory, windowId);
     }
 

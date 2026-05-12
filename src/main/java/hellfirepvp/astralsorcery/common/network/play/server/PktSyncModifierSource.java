@@ -17,7 +17,7 @@ import net.minecraft.world.entity.player.Player;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.network.NetworkEvent;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import javax.annotation.Nonnull;
 
@@ -82,7 +82,7 @@ public class PktSyncModifierSource extends ASPacket<PktSyncModifierSource> {
         return new Handler<PktSyncModifierSource>() {
             @Override
             @OnlyIn(Dist.CLIENT)
-            public void handleClient(PktSyncModifierSource packet, NetworkEvent.Context context) {
+            public void handleClient(PktSyncModifierSource packet, IPayloadContext context) {
                 context.enqueueWork(() -> {
                     Player player = Minecraft.getInstance().player;
                     if (player == null) {
@@ -103,7 +103,7 @@ public class PktSyncModifierSource extends ASPacket<PktSyncModifierSource> {
             }
 
             @Override
-            public void handle(PktSyncModifierSource packet, NetworkEvent.Context context, LogicalSide side) {}
+            public void handle(PktSyncModifierSource packet, IPayloadContext context, LogicalSide side) {}
         };
     }
 

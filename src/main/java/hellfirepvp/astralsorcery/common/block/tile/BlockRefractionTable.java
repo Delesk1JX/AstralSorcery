@@ -56,7 +56,7 @@ import java.util.Random;
 public class BlockRefractionTable extends ContainerBlock implements CustomItemBlock, LargeBlock {
 
     private static final VoxelShape REFRACTION_TABLE = Block.makeCuboidShape(-6, 0, -4, 22, 24, 20);
-    private static final AxisAlignedBB PLACEMENT_BOX = new AxisAlignedBB(-1, 0, -1, 1, 1, 1);
+    private static final AABB PLACEMENT_BOX = new AABB(-1, 0, -1, 1, 1, 1);
 
     public BlockRefractionTable() {
         super(PropertiesWood.defaultInfusedWood()
@@ -69,7 +69,7 @@ public class BlockRefractionTable extends ContainerBlock implements CustomItemBl
     }
 
     @Override
-    public AxisAlignedBB getBlockSpace() {
+    public AABB getBlockSpace() {
         return PLACEMENT_BOX;
     }
 
@@ -80,7 +80,7 @@ public class BlockRefractionTable extends ContainerBlock implements CustomItemBl
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
         for (int i = 0; i < rand.nextInt(3); i++) {
             Vector3 offset = new Vector3(-5.0 / 16.0, 1.505, -3.0 / 16.0);
             int random = rand.nextInt(ColorsAS.REFRACTION_TABLE_COLORS.length);
@@ -100,7 +100,7 @@ public class BlockRefractionTable extends ContainerBlock implements CustomItemBl
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, Player player, Hand hand, BlockHitResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, Hand hand, BlockHitResult hit) {
         ItemStack held = player.getHeldItem(hand);
         if (!world.isRemote()) {
             TileRefractionTable tft = MiscUtils.getTileAt(world, pos, TileRefractionTable.class, true);
@@ -172,7 +172,7 @@ public class BlockRefractionTable extends ContainerBlock implements CustomItemBl
     }
 
     @Override
-    public void onReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean isMoving) {
+    public void onReplaced(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
         TileRefractionTable te = MiscUtils.getTileAt(world, pos, TileRefractionTable.class, true);
         if (te != null && !world.isRemote) {
             te.dropContents();
