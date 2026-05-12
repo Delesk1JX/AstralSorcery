@@ -31,7 +31,7 @@ import hellfirepvp.observerlib.common.data.base.WorldSection;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.tileentity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
 import net.minecraft.core.BlockPos;

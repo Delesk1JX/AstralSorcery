@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.Direction;
+import net.minecraft.core.Direction;
 import net.neoforged.neoforge.common.capabilities.Capability;
 import net.neoforged.neoforge.common.util.LazyOptional;
 import net.neoforged.neoforge.items.CapabilityItemHandler;

@@ -23,7 +23,7 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.ChunkPos;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 
 import java.util.*;

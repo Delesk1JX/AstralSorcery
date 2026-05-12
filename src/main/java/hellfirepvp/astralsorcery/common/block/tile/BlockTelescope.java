@@ -23,11 +23,11 @@ import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.tileentity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.BlockRayTraceResult;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.util.shapes.ISelectionContext;
 import net.minecraft.util.shapes.VoxelShape;
 import net.minecraft.util.shapes.VoxelShapes;
@@ -66,7 +66,7 @@ public class BlockTelescope extends ContainerBlock implements CustomItemBlock {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, Player player, Hand hand, BlockRayTraceResult rayTraceResult) {
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, Player player, Hand hand, BlockHitResult rayTraceResult) {
         if (world.isRemote()) {
             AstralSorcery.getProxy().openGui(player, GuiType.TELESCOPE, pos);
         }

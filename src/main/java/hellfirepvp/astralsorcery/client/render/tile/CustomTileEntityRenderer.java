@@ -12,7 +12,7 @@ import com.mojang.blaze3d.matrix.PoseStack;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.tileentity.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
-import net.minecraft.tileentity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 
 /**
  * This class is part of the Astral Sorcery Mod

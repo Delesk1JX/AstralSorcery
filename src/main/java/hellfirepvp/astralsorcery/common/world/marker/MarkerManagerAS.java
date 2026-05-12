@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.tile.TileCollectorCrystal;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.tileentity.LockableLootTileEntity;
+import net.minecraft.world.level.block.entity.LockableLootTileEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.MutableBoundingBox;

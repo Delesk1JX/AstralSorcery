@@ -19,13 +19,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.pathfinding.PathType;
-import net.minecraft.tileentity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.BlockRayTraceResult;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.util.shapes.ISelectionContext;
 import net.minecraft.util.shapes.VoxelShape;
 import net.minecraft.util.shapes.VoxelShapes;
@@ -57,7 +57,7 @@ public class BlockInfuser extends BlockInventory implements CustomItemBlock {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, Player player, Hand hand, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, Player player, Hand hand, BlockHitResult hit) {
         if (!world.isRemote) {
             ItemStack held = player.getHeldItem(hand);
             TileInfuser ti = MiscUtils.getTileAt(world, pos, TileInfuser.class, true);

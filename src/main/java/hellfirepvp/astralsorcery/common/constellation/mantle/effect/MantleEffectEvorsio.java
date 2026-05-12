@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.fml.config.ModConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.event.world.BlockEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;

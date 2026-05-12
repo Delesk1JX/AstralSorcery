@@ -29,8 +29,8 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.DamageSource;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.util.*;
 import net.minecraft.util.vector.Vector3d;
 import net.minecraft.world.level.Level;
@@ -319,12 +319,12 @@ public class EntityGrapplingHook extends ThrowableEntity implements IEntityAddit
                 setPulling(true, null);
                 break;
             case ENTITY:
-                Entity e = ((EntityRayTraceResult) result).getEntity();
+                Entity e = ((EntityHitResult) result).getEntity();
                 if (!(e instanceof LivingEntity) || (func_234616_v_() != null && e.equals(func_234616_v_()))) {
                     return;
                 }
-                setPulling(true, (LivingEntity) ((EntityRayTraceResult) result).getEntity());
-                hit = new Vector3d(hit.x, hit.y + ((EntityRayTraceResult) result).getEntity().getHeight() * 3 / 4, hit.z);
+                setPulling(true, (LivingEntity) ((EntityHitResult) result).getEntity());
+                hit = new Vector3d(hit.x, hit.y + ((EntityHitResult) result).getEntity().getHeight() * 3 / 4, hit.z);
                 break;
             default:
                 break;

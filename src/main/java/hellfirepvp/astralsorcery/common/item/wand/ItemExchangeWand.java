@@ -42,14 +42,14 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ItemUseContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.*;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.BlockRayTraceResult;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.util.RayTraceContext;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.level.Level;
@@ -113,7 +113,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
 
     @Override
     public float getAlignmentChargeCost(Player player, ItemStack stack) {
-        BlockRayTraceResult hitResult = MiscUtils.rayTraceLookBlock(player, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.NONE);
+        BlockHitResult hitResult = MiscUtils.rayTraceLookBlock(player, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.NONE);
         if (hitResult == null) {
             return 0F;
         }
@@ -123,7 +123,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
     @Override
     @OnlyIn(Dist.CLIENT)
     public boolean renderInHand(ItemStack stack, PoseStack renderStack, float pTicks) {
-        BlockRayTraceResult hitResult = MiscUtils.rayTraceLookBlock(Minecraft.getInstance().player, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.NONE);
+        BlockHitResult hitResult = MiscUtils.rayTraceLookBlock(Minecraft.getInstance().player, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.NONE);
         if (hitResult == null) {
             return true;
         }

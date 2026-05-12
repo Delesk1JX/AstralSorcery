@@ -27,7 +27,7 @@ import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
-import net.neoforged.fml.config.ModConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.util.Constants;
 
 import javax.annotation.Nonnull;

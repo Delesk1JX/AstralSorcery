@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.data.config.base;
 
 import com.google.common.base.Splitter;
 import hellfirepvp.astralsorcery.AstralSorcery;
-import net.neoforged.fml.config.ModConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.config.ModConfig;
 

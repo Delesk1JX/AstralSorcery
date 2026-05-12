@@ -20,7 +20,7 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.world.entity.AreaEffectCloudEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.tileentity.LecternTileEntity;
+import net.minecraft.world.level.block.entity.LecternTileEntity;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.chunk.Chunk;

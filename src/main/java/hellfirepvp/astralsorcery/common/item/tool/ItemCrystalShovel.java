@@ -22,7 +22,7 @@ import net.minecraft.world.item.enchantment.EnchantmentType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ItemUseContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.util.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;

@@ -20,14 +20,14 @@ import net.minecraft.world.level.block.FlowingFluidBlock;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tileentity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.*;
 import net.minecraft.util.vector.Vector3d;
@@ -482,7 +482,7 @@ public class MiscUtils {
     }
 
     @Nullable
-    public static BlockRayTraceResult rayTraceLookBlock(Player player) {
+    public static BlockHitResult rayTraceLookBlock(Player player) {
         return rayTraceLookBlock(player, player.getAttribute(NeoForgeMod.REACH_DISTANCE.get()).getValue());
     }
 
@@ -492,7 +492,7 @@ public class MiscUtils {
     }
 
     @Nullable
-    public static BlockRayTraceResult rayTraceLookBlock(Player player, RayTraceContext.BlockMode blockMode, RayTraceContext.FluidMode fluidMode) {
+    public static BlockHitResult rayTraceLookBlock(Player player, RayTraceContext.BlockMode blockMode, RayTraceContext.FluidMode fluidMode) {
         return rayTraceLookBlock(player, blockMode, fluidMode, player.getAttribute(NeoForgeMod.REACH_DISTANCE.get()).getValue());
     }
 
@@ -502,7 +502,7 @@ public class MiscUtils {
     }
 
     @Nullable
-    public static BlockRayTraceResult rayTraceLookBlock(Player player, double reachDst) {
+    public static BlockHitResult rayTraceLookBlock(Player player, double reachDst) {
         return rayTraceLookBlock(player, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.ANY, reachDst);
     }
 
@@ -512,10 +512,10 @@ public class MiscUtils {
     }
 
     @Nullable
-    public static BlockRayTraceResult rayTraceLookBlock(Entity entity, RayTraceContext.BlockMode blockMode, RayTraceContext.FluidMode fluidMode, double reachDst) {
+    public static BlockHitResult rayTraceLookBlock(Entity entity, RayTraceContext.BlockMode blockMode, RayTraceContext.FluidMode fluidMode, double reachDst) {
         RayTraceResult rtr = rayTraceLook(entity, blockMode, fluidMode, reachDst);
-        if (rtr.getType() == RayTraceResult.Type.BLOCK && rtr instanceof BlockRayTraceResult) {
-            return (BlockRayTraceResult) rtr;
+        if (rtr.getType() == HitResult.Type.BLOCK && rtr instanceof BlockHitResult) {
+            return (BlockHitResult) rtr;
         }
         return null;
     }

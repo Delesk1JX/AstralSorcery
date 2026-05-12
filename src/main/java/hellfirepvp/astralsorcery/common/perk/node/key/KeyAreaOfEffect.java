@@ -23,7 +23,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.TridentEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.util.IndirectEntityDamageSource;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;

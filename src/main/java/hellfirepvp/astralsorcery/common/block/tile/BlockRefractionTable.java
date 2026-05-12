@@ -30,12 +30,12 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItemUseContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.pathfinding.PathType;
-import net.minecraft.tileentity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.BlockRayTraceResult;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.util.shapes.ISelectionContext;
 import net.minecraft.util.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
@@ -100,7 +100,7 @@ public class BlockRefractionTable extends ContainerBlock implements CustomItemBl
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, Player player, Hand hand, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, Player player, Hand hand, BlockHitResult hit) {
         ItemStack held = player.getHeldItem(hand);
         if (!world.isRemote()) {
             TileRefractionTable tft = MiscUtils.getTileAt(world, pos, TileRefractionTable.class, true);

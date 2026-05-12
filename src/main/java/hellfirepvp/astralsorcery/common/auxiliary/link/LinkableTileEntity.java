@@ -12,7 +12,7 @@ import com.google.common.collect.Lists;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.tileentity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.util.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Style;

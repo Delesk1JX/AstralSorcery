@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.world;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
-import net.neoforged.fml.config.ModConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 /**
  * This class is part of the Astral Sorcery Mod

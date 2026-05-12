@@ -22,12 +22,12 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ThrowableEntity;
 import net.minecraft.world.item.BlockItemUseContext;
-import net.minecraft.world.item.ItemUseContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.network.IPacket;
-import net.minecraft.util.Hand;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.BlockRayTraceResult;
-import net.minecraft.util.RayTraceResult;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -122,14 +122,14 @@ public class EntityIlluminationSpark extends ThrowableEntity {
         if (world.isRemote()) {
             return;
         }
-        if (!(result instanceof BlockRayTraceResult) || !(this.func_234616_v_() instanceof Player)) {
+        if (!(result instanceof BlockHitResult) || !(this.func_234616_v_() instanceof Player)) {
             remove();
             return;
         }
         Player player = (Player) this.func_234616_v_();
-        BlockRayTraceResult brtr = (BlockRayTraceResult) result;
+        BlockHitResult brtr = (BlockHitResult) result;
 
-        BlockItemUseContext bCtx = new BlockItemUseContext(new ItemUseContext(player, Hand.MAIN_HAND, brtr));
+        BlockItemUseContext bCtx = new BlockItemUseContext(new UseOnContext(player, Hand.MAIN_HAND, brtr));
 
         BlockPos pos = bCtx.getPos();
         if (!BlockUtils.isReplaceable(world, pos)) {

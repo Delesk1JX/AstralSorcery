@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.ContainerBlock;
 import net.minecraft.world.item.BlockItemUseContext;
 import net.minecraft.pathfinding.PathType;
-import net.minecraft.tileentity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.shapes.ISelectionContext;

@@ -25,7 +25,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.RayTraceResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.fml.network.NetworkHooks;
 

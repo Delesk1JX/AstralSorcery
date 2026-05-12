@@ -11,10 +11,10 @@ package hellfirepvp.astralsorcery.common.util.block;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.BlockItemUseContext;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
+import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.BlockRayTraceResult;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.util.vector.Vector3d;
 import net.minecraft.world.level.Level;
 
@@ -32,7 +32,7 @@ public class TestBlockUseContext extends BlockItemUseContext {
     private final Entity entity;
 
     private TestBlockUseContext(World worldIn, @Nullable Entity usingEntity, Hand hand, ItemStack stack, BlockPos at, Direction side) {
-        super(worldIn, null, hand, stack, new BlockRayTraceResult(Vector3d.copyCentered(at), side, at, false));
+        super(worldIn, null, hand, stack, new BlockHitResult(Vector3d.copyCentered(at), side, at, false));
         this.entity = usingEntity;
     }
 

@@ -19,13 +19,13 @@ import hellfirepvp.astralsorcery.common.util.block.BlockDiscoverer;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.tileentity.MobSpawnerTileEntity;
-import net.minecraft.tileentity.BlockEntity;
+import net.minecraft.world.level.block.entity.MobSpawnerTileEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.core.BlockPos;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.fml.config.ModConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.items.CapabilityItemHandler;
 
 import java.awt.*;

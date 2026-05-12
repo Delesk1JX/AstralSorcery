@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.client.effect.function;
 import hellfirepvp.astralsorcery.client.effect.EntityComplexFX;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.tileentity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.DimensionType;

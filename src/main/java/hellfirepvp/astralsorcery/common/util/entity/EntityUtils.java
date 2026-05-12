@@ -25,7 +25,7 @@ import net.minecraft.loot.LootParameters;
 import net.minecraft.loot.LootTable;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.core.BlockPos;

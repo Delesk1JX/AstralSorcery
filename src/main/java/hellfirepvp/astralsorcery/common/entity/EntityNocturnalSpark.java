@@ -33,7 +33,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.RayTraceResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.util.vector.Vector3d;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
@@ -228,7 +228,7 @@ public class EntityNocturnalSpark extends ThrowableEntity {
 
     @Override
     protected void onImpact(RayTraceResult result) {
-        if (RayTraceResult.Type.ENTITY.equals(result.getType())) {
+        if (HitResult.Type.ENTITY.equals(result.getType())) {
             return;
         }
         Vector3d hit = result.getHitVec();

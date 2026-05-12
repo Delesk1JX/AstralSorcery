@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.util.sound;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.SoundEvent;
 
 /**

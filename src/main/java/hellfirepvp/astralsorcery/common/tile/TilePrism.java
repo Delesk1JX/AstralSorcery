@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import hellfirepvp.astralsorcery.common.starlight.transmission.IPrismTransmissionNode;
 import hellfirepvp.astralsorcery.common.tile.network.StarlightTransmissionPrism;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.util.Direction;
+import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;

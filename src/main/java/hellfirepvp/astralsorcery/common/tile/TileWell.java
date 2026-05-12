@@ -36,7 +36,7 @@ import hellfirepvp.astralsorcery.common.util.world.SkyCollectionHelper;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.Direction;
+import net.minecraft.core.Direction;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.ISeedReader;

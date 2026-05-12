@@ -41,16 +41,16 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ItemUseContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.*;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.BlockRayTraceResult;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.util.RayTraceContext;
-import net.minecraft.util.RayTraceResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
@@ -222,7 +222,7 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
         PlaceMode mode = getPlaceMode(stack);
         World world = player.getEntityWorld();
 
-        BlockRayTraceResult rtr = MiscUtils.rayTraceLookBlock(player, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.ANY, 60F);
+        BlockHitResult rtr = MiscUtils.rayTraceLookBlock(player, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.ANY, 60F);
         if (rtr == null && mode.needsOffset()) {
             return new HashMap<>();
         }
@@ -352,8 +352,8 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
                 BlockPos origin = player.getPosition().down();
                 RayTraceResult result = player.pick(60F, 1F, false);
                 BlockPos hit;
-                if (result instanceof BlockRayTraceResult) {
-                    hit = ((BlockRayTraceResult) result).getPos();
+                if (result instanceof BlockHitResult) {
+                    hit = ((BlockHitResult) result).getPos();
                 } else {
                     hit = new BlockPos(result.getHitVec());
                 }

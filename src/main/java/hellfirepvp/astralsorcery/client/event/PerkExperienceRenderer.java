@@ -23,7 +23,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.Hand;
+import net.minecraft.world.InteractionHand;
 import static net.minecraft.network.chat.Component.literal;
 import net.neoforged.neoforge.client.event.RenderGameOverlayEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;

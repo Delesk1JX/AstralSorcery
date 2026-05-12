@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.data.config.registry.sets;
 
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigDataSet;
-import net.minecraft.tileentity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.resources.ResourceLocation;
 
 import javax.annotation.Nonnull;

@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.container.ContainerTileEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.world.entity.player.IInventory;
-import net.minecraft.tileentity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.network.chat.Component;
 
 /**

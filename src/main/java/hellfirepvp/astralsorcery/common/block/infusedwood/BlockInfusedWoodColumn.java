@@ -22,7 +22,7 @@ import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.Direction;
+import net.minecraft.core.Direction;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.shapes.IBooleanFunction;

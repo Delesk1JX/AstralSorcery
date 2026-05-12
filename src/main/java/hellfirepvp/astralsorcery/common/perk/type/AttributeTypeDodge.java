@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
 import hellfirepvp.astralsorcery.common.perk.modifier.AttributeModifierDodge;
 import hellfirepvp.astralsorcery.common.perk.modifier.PerkAttributeModifier;
 import net.minecraft.world.entity.player.Player;
-import net.neoforged.fml.config.ModConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;

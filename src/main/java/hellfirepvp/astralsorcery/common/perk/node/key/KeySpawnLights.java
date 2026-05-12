@@ -20,7 +20,7 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
-import net.neoforged.fml.config.ModConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.fml.LogicalSide;
 
 /**

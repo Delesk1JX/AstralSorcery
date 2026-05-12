@@ -37,7 +37,7 @@ import net.minecraft.world.entity.monster.PhantomEntity;
 import net.minecraft.world.entity.passive.BatEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.vector.Vector3d;

@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.data.config.base;
 
-import net.neoforged.fml.config.ModConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 import java.util.ArrayList;
 import java.util.List;
