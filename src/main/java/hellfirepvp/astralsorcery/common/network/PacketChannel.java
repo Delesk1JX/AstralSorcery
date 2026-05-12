@@ -21,7 +21,7 @@ import hellfirepvp.astralsorcery.common.network.play.client.*;
 import hellfirepvp.astralsorcery.common.network.play.server.*;
 import hellfirepvp.observerlib.common.util.RegistryUtil;
 import net.minecraft.util.RegistryKey;
-import net.minecraft.util.vector.Vector3i;
+import net.minecraft.core.Vec3i;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.level.Level;
 import net.neoforged.fml.LogicalSide;

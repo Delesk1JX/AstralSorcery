@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.util.collision;
 
 import net.minecraft.world.entity.Entity;
-import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.phys.AABB;
 
 import java.util.List;
 

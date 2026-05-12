@@ -14,7 +14,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.vector.Vector3i;
+import net.minecraft.core.Vec3i;
 import net.minecraft.world.level.Level;
 import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;

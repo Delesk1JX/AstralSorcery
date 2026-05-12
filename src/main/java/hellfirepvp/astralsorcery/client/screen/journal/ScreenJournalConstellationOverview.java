@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.screen.journal;
 
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
@@ -22,9 +22,9 @@ import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormat;
 import net.minecraft.util.Mth;
-import net.minecraft.util.vector.Matrix4f;
+import org.joml.Matrix4f;
 import net.minecraft.network.chat.FormattedText;
 import static net.minecraft.network.chat.Component.translatable;
 import org.lwjgl.opengl.GL11;

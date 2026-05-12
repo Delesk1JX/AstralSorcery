@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.client.resource.query.TextureQuery;
 import hellfirepvp.astralsorcery.common.auxiliary.book.BookLookupRegistry;
 import hellfirepvp.astralsorcery.common.data.journal.JournalPage;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.IItemProvider;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
 import static net.minecraft.network.chat.Component.translatable;

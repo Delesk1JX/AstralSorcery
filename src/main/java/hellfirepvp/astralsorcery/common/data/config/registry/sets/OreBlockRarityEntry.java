@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.data.config.entry.GeneralConfig;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ITag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.resources.ResourceLocation;
 
 import javax.annotation.Nonnull;

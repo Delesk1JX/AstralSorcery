@@ -28,12 +28,12 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.Direction;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.vector.Vector3d;
-import net.minecraft.util.shapes.ISelectionContext;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.util.shapes.VoxelShape;
-import net.minecraft.util.shapes.VoxelShapes;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.level.Level;
 

@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.entity.EntityIlluminationSpark;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.common.util.block.BlockUtils;
 import net.minecraft.world.level.block.DispenserBlock;
-import net.minecraft.dispenser.IBlockSource;
+import net.minecraft.core.BlockSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;

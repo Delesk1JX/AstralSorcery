@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.util;
 
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
@@ -21,14 +21,14 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.*;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormat;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.Mth;
 import net.minecraft.util.vector.Matrix3f;
-import net.minecraft.util.vector.Matrix4f;
-import net.minecraft.util.vector.Vector3d;
+import org.joml.Matrix4f;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.util.vector.Vector3f;
 import net.minecraft.network.chat.FormattedText;
 import net.minecraft.client.resources.language.LanguageManager;

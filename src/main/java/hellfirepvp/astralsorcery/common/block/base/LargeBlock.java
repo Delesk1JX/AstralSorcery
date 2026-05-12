@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.block.base;
 
 import net.minecraft.world.item.BlockItemUseContext;
 import net.minecraft.core.Direction;
-import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 

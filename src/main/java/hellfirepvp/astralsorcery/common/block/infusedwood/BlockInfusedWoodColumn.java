@@ -26,10 +26,10 @@ import net.minecraft.core.Direction;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.shapes.IBooleanFunction;
-import net.minecraft.util.shapes.ISelectionContext;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.util.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;

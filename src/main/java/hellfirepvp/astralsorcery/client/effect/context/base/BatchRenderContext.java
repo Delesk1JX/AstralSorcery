@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.effect.context.base;
 
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.effect.EntityDynamicFX;
@@ -24,7 +24,7 @@ import hellfirepvp.astralsorcery.common.util.order.OrderSortable;
 import hellfirepvp.observerlib.client.util.RenderTypeDecorator;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.util.vector.Vector3d;
+import net.minecraft.world.phys.Vec3;
 import org.lwjgl.opengl.GL11;
 
 import java.util.List;
