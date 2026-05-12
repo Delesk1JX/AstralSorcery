@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.util.tick.TimeoutList;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.ServerPlayer;
-import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.neoforge.event.tick.TickEvent;
 
 import java.util.function.Consumer;
 

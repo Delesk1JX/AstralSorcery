@@ -9,11 +9,11 @@
 package hellfirepvp.astralsorcery.common.integration;
 
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
-import net.minecraft.block.Block;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.items.CapabilityItemHandler;
 import net.neoforged.neoforge.items.IItemHandler;
 

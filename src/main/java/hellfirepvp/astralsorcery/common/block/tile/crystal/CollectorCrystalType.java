@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.block.tile.crystal;
 
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
-import net.minecraft.block.material.MaterialColor;
+import net.minecraft.world.level.material.MaterialColor;
 
 import java.awt.*;
 

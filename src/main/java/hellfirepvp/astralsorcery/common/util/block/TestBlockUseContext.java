@@ -9,8 +9,8 @@
 package hellfirepvp.astralsorcery.common.util.block;
 
 import net.minecraft.world.entity.Entity;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.BlockItemUseContext;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.BlockPos;

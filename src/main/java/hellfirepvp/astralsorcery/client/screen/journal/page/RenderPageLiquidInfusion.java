@@ -21,7 +21,7 @@ import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import static net.minecraft.network.chat.Component.translatable;
 import net.neoforged.neoforge.fluids.FluidAttributes;
 import net.neoforged.neoforge.fluids.FluidStack;

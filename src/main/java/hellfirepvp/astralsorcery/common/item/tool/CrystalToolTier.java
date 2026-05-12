@@ -8,8 +8,8 @@
 
 package hellfirepvp.astralsorcery.common.item.tool;
 
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.world.item.IItemTier;
+import net.minecraft.world.item.crafting.Ingredient;
 
 /**
  * This class is part of the Astral Sorcery Mod

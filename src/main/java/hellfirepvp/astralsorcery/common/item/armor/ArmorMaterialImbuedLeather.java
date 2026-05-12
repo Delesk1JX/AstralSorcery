@@ -10,9 +10,9 @@ package hellfirepvp.astralsorcery.common.item.armor;
 
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.item.ArmorMaterial;
 import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.util.SoundEvent;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;

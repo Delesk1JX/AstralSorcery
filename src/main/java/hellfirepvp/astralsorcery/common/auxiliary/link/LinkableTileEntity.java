@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.auxiliary.link;
 
 import com.google.common.collect.Lists;
-import net.minecraft.block.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.tileentity.BlockEntity;

@@ -15,12 +15,12 @@ import hellfirepvp.astralsorcery.common.enchantment.amulet.AmuletEnchantmentHelp
 import hellfirepvp.astralsorcery.common.event.DynamicEnchantmentEvent;
 import hellfirepvp.astralsorcery.common.event.EventFlags;
 import hellfirepvp.astralsorcery.common.util.object.ObjectReference;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.QuickChargeEnchantment;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.QuickChargeEnchantment;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.item.BookItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.BookItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.resources.ResourceLocation;

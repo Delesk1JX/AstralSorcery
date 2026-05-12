@@ -16,10 +16,10 @@ import hellfirepvp.astralsorcery.common.util.tick.TickTokenMap;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.world.entity.EntityClassification;
 import net.minecraft.world.entity.LivingEntity;
-import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.neoforge.event.tick.TickEvent;
 import net.neoforged.neoforge.event.entity.living.LivingSpawnEvent;
 import net.neoforged.neoforge.eventbus.api.Event;
-import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.bus.api.IEventBus;
 
 import java.util.Map;
 import java.util.function.Consumer;

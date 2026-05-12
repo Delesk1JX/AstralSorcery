@@ -23,7 +23,7 @@ import net.minecraft.potion.EffectType;
 import net.minecraft.util.Tuple;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.bus.api.IEventBus;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;

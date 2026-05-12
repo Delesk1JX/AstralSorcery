@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.crafting.nojson;
 import hellfirepvp.astralsorcery.common.crafting.nojson.freezing.BlockFreezingRecipe;
 import hellfirepvp.astralsorcery.common.crafting.nojson.freezing.FluidFreezingRecipe;
 import hellfirepvp.astralsorcery.common.crafting.nojson.freezing.WorldFreezingRecipe;
-import net.minecraft.block.Blocks;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 

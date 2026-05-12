@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.util.tick;
 
-import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.neoforge.event.tick.TickEvent;
 
 import java.util.EnumSet;
 

@@ -26,7 +26,7 @@ import mezz.jei.transfer.RecipeTransferUtil;
 import mezz.jei.util.Translator;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

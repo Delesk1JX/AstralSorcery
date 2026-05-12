@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.world.feature;
 
 import hellfirepvp.astralsorcery.common.world.feature.config.ReplaceBlockConfig;
-import net.minecraft.block.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IServerLevel;

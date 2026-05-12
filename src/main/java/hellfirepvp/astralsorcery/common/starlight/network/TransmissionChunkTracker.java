@@ -12,7 +12,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.event.world.ChunkEvent;
 import net.neoforged.neoforge.event.world.WorldEvent;
-import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.bus.api.IEventBus;
 
 /**
  * This class is part of the Astral Sorcery Mod

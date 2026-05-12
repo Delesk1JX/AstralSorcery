@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.entity.item;
 
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;

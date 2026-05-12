@@ -11,20 +11,20 @@ package hellfirepvp.astralsorcery.common.item.tool;
 import com.google.common.collect.Sets;
 import hellfirepvp.astralsorcery.common.item.base.TypeEnchantableItem;
 import hellfirepvp.astralsorcery.common.lib.CrystalPropertiesAS;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.material.Material;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUseContext;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.core.NonNullList;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.ToolType;
 
 /**
@@ -76,14 +76,14 @@ public class ItemCrystalAxe extends ItemCrystalTierItem implements TypeEnchantab
     }
 
     @Override
-    public ActionResultType onItemUse(ItemUseContext context) {
+    public InteractionResult onItemUse(ItemUseContext context) {
         World world = context.getWorld();
         BlockPos blockpos = context.getPos();
         BlockState blockstate = world.getBlockState(blockpos);
         BlockState block = blockstate.getToolModifiedState(world, blockpos, context.getPlayer(), context.getItem(), ToolType.AXE);
         if (block != null) {
             Player playerentity = context.getPlayer();
-            world.playSound(playerentity, blockpos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            world.playSound(playerentity, blockpos, SoundEvents.ITEM_AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
             if (!world.isRemote()) {
                 world.setBlockState(blockpos, block, 11);
                 if (playerentity != null) {
@@ -92,9 +92,9 @@ public class ItemCrystalAxe extends ItemCrystalTierItem implements TypeEnchantab
                 }
             }
 
-            return ActionResultType.func_233537_a_(world.isRemote());
+            return InteractionResult.sidedSuccess(world.isClientSide());
         } else {
-            return ActionResultType.PASS;
+            return InteractionResult.CONSUME;
         }
     }
 }

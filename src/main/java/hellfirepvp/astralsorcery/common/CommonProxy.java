@@ -77,21 +77,22 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.ChatFormatting;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.storage.LevelResource;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.util.FakePlayer;
 import net.neoforged.neoforge.common.util.FakePlayerFactory;
 import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
-import net.neoforged.neoforge.eventbus.api.EventPriority;
-import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.bus.api.EventPriority;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.api.distmarker.LogicalSide;
-import net.neoforged.neoforge.fml.LogicalSidedProvider;
-import net.neoforged.neoforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.neoforged.neoforge.fml.event.server.FMLServerStartedEvent;
-import net.neoforged.neoforge.fml.event.server.FMLServerStartingEvent;
-import net.neoforged.neoforge.fml.event.server.FMLServerStoppedEvent;
-import net.neoforged.neoforge.fml.event.server.FMLServerStoppingEvent;
+import net.neoforged.neoforge.common.util.LogicalSidedProvider;
+import net.neoforged.neoforge.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.event.lifecycle.InterModEnqueueEvent;
+import net.neoforged.neoforge.event.server.FMLServerStartedEvent;
+import net.neoforged.neoforge.event.server.FMLServerStartingEvent;
+import net.neoforged.neoforge.event.server.FMLServerStoppedEvent;
+import net.neoforged.neoforge.event.server.FMLServerStoppingEvent;
 
 import java.io.File;
 import java.util.List;
@@ -127,9 +128,10 @@ public class CommonProxy {
             .title(Component.translatable("itemGroup." + AstralSorcery.MODID + ".crystals"))
             .icon(() -> new ItemStack(ROCK_CRYSTAL))
             .build();
-    public static final Rarity RARITY_CELESTIAL = Rarity.create("AS_CELESTIAL", ChatFormatting.BLUE);
-    public static final Rarity RARITY_ARTIFACT = Rarity.create("AS_ARTIFACT", ChatFormatting.GOLD);
-    public static final Rarity RARITY_VESTIGE = Rarity.create("AS_VESTIGE", ChatFormatting.RED);
+    // Custom rarities - TODO: Register using DeferredRegister<Rarity> once registry is set up
+    // public static final Rarity RARITY_CELESTIAL = Rarity.create("AS_CELESTIAL", ChatFormatting.BLUE);
+    // public static final Rarity RARITY_ARTIFACT = Rarity.create("AS_ARTIFACT", ChatFormatting.GOLD);
+    // public static final Rarity RARITY_VESTIGE = Rarity.create("AS_VESTIGE", ChatFormatting.RED);
 
     public static final ArmorMaterial ARMOR_MATERIAL_IMBUED_LEATHER = new ArmorMaterialImbuedLeather();
 
@@ -297,7 +299,7 @@ public class CommonProxy {
             return null;
         }
 
-        File asDataDir = server.getWorldPath(ResourceLocation.parse(AstralSorcery.MODID)).toFile();
+        File asDataDir = server.getWorldPath(LevelResource.ROOT).toFile();
         if (!asDataDir.exists()) {
             asDataDir.mkdirs();
         }

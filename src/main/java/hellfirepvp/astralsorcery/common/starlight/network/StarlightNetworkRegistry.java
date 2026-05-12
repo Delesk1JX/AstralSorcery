@@ -11,8 +11,8 @@ package hellfirepvp.astralsorcery.common.starlight.network;
 import hellfirepvp.astralsorcery.common.block.base.BlockStarlightRecipient;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 import hellfirepvp.astralsorcery.common.starlight.network.handler.BlockTransmutationHandler;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 

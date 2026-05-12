@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.entity.item;
 import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.network.IPacket;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;

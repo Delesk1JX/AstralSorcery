@@ -20,12 +20,12 @@ import hellfirepvp.astralsorcery.common.tile.TileTelescope;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -69,7 +69,7 @@ public enum GuiType {
     @Nullable
     @OnlyIn(Dist.CLIENT)
     public Screen deserialize(CompoundTag data) {
-        World clWorld = Minecraft.getInstance().world;
+        Level clWorld = Minecraft.getInstance().level;
         Player clPlayer = Minecraft.getInstance().player;
         if (clWorld == null || clPlayer == null) {
             return null;

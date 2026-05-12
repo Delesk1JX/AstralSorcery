@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.perk.source.provider.equipment;
 import hellfirepvp.astralsorcery.common.perk.modifier.PerkAttributeModifier;
 import hellfirepvp.astralsorcery.common.perk.source.AttributeModifierProvider;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.LogicalSide;
 
 import java.util.Collection;

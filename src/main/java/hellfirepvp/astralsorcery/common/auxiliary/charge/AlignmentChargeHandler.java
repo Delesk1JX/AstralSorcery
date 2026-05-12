@@ -23,7 +23,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.gen.Heightmap;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.neoforge.event.tick.TickEvent;
 import net.neoforged.api.distmarker.LogicalSide;
 
 import java.util.EnumSet;

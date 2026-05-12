@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.client.util;
 import net.minecraft.client.Minecraft;
 import net.neoforged.neoforge.client.event.GuiOpenEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
-import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.bus.api.IEventBus;
 
 /**
  * This class is part of the Astral Sorcery Mod

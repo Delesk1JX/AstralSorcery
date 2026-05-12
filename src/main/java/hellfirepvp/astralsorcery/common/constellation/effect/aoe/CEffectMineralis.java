@@ -29,9 +29,9 @@ import hellfirepvp.astralsorcery.common.util.block.iterator.BlockLayerPositionGe
 import hellfirepvp.astralsorcery.common.util.block.iterator.BlockPositionGenerator;
 import hellfirepvp.astralsorcery.common.util.block.iterator.BlockRandomPositionGenerator;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;

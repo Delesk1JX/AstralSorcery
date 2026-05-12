@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.crafting.nojson;
 import hellfirepvp.astralsorcery.common.crafting.nojson.meltable.BlockMeltableRecipe;
 import hellfirepvp.astralsorcery.common.crafting.nojson.meltable.FurnaceMeltableRecipe;
 import hellfirepvp.astralsorcery.common.crafting.nojson.meltable.WorldMeltableRecipe;
-import net.minecraft.block.Blocks;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;

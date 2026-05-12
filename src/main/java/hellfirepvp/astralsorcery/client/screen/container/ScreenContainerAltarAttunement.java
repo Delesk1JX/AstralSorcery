@@ -18,7 +18,7 @@ import hellfirepvp.astralsorcery.common.container.ContainerAltarAttunement;
 import hellfirepvp.astralsorcery.common.crafting.recipe.SimpleAltarRecipe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.IInventory;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.network.chat.Component;
 
 /**

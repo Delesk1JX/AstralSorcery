@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.crystal.source.Ritual;
 import hellfirepvp.astralsorcery.common.starlight.transmission.base.crystal.IndependentCrystalSource;
 import hellfirepvp.astralsorcery.common.tile.TileRitualPedestal;
 import hellfirepvp.astralsorcery.common.tile.network.StarlightReceiverRitualPedestal;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.Mth;
 
 import static hellfirepvp.astralsorcery.common.lib.CrystalPropertiesAS.Properties.PROPERTY_SIZE;
