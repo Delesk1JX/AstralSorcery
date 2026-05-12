@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.sky;
 
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.data.config.entry.RenderingConfig;
 import hellfirepvp.astralsorcery.client.sky.astral.AstralSkyRenderer;

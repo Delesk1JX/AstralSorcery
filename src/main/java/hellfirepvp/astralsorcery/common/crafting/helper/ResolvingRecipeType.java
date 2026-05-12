@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.crafting.helper;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.RecipeHelper;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.world.Container;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.IRecipeType;
 import net.minecraft.world.item.crafting.RecipeManager;

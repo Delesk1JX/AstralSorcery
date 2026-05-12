@@ -17,7 +17,7 @@ import net.minecraft.client.entity.player.ClientPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.vector.Vector3i;
+import net.minecraft.core.Vec3i;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;

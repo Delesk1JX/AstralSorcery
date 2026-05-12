@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.client.effect;
 
 import com.google.common.collect.Lists;
 import hellfirepvp.astralsorcery.client.effect.context.base.BatchRenderContext;
-import net.minecraft.util.vector.Vector3i;
+import net.minecraft.core.Vec3i;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

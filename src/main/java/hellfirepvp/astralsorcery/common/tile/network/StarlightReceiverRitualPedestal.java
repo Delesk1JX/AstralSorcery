@@ -37,7 +37,7 @@ import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.vector.Vector3d;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.util.Constants;

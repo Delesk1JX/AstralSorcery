@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.util.block.ILocatable;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.Level;
 
 import java.util.List;

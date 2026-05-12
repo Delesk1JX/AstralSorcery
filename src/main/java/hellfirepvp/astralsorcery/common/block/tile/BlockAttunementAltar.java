@@ -18,9 +18,9 @@ import net.minecraft.world.level.block.ContainerBlock;
 import net.minecraft.world.item.BlockItemUseContext;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.shapes.ISelectionContext;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.util.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 

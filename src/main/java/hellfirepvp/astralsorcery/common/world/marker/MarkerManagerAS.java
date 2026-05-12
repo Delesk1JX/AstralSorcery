@@ -21,7 +21,7 @@ import net.minecraft.world.level.block.entity.LockableLootTileEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.MutableBoundingBox;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
 import net.neoforged.neoforge.common.util.Constants;
 

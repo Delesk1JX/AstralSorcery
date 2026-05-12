@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.base.Mods;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.item.Item;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ITag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.tags.ItemTags;
 
 import static hellfirepvp.astralsorcery.common.base.Mods.ASTRAL_SORCERY;

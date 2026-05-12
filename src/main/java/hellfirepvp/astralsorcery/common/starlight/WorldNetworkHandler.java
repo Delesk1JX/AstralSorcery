@@ -20,8 +20,8 @@ import net.minecraft.util.Tuple;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.util.Mth;
-import net.minecraft.util.vector.Vector3d;
-import net.minecraft.util.vector.Vector3i;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.core.Vec3i;
 import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;

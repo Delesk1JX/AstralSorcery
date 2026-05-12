@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.render.tile;
 
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.client.model.builtin.ModelTelescope;
 import hellfirepvp.astralsorcery.common.tile.TileTelescope;
 import net.minecraft.client.renderer.IRenderTypeBuffer;

@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.sky.astral;
 
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
@@ -28,12 +28,12 @@ import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.FogRenderer;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormat;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.util.vector.Matrix4f;
-import net.minecraft.util.vector.Vector3d;
+import org.joml.Matrix4f;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.util.vector.Vector3f;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;

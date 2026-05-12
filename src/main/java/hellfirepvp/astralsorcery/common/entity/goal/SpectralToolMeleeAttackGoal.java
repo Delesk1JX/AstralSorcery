@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
 import net.minecraft.world.entity.EntityClassification;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.controller.MovementController;
-import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.phys.AABB;
 
 import java.util.List;
 

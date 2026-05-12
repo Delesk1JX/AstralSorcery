@@ -10,12 +10,12 @@ package hellfirepvp.astralsorcery.common.util.collision;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraft.core.Direction;
-import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.util.shapes.IBooleanFunction;
 import net.minecraft.util.shapes.VoxelShape;
 import net.minecraft.util.shapes.VoxelShapeSpliterator;
-import net.minecraft.util.shapes.VoxelShapes;
-import net.minecraft.util.vector.Vector3d;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
 import java.util.List;

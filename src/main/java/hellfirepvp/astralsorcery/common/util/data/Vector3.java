@@ -12,13 +12,13 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.util.Mth;
-import net.minecraft.util.vector.Matrix4f;
-import net.minecraft.util.vector.Vector3d;
-import net.minecraft.util.vector.Vector3i;
+import org.joml.Matrix4f;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.core.Vec3i;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
