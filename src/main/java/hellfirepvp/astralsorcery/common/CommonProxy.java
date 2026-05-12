@@ -66,7 +66,7 @@ import hellfirepvp.astralsorcery.common.util.tick.ITickHandler;
 import hellfirepvp.astralsorcery.common.util.tick.TickManager;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -294,7 +294,7 @@ public class CommonProxy {
     }
 
     public File getASServerDataDirectory() {
-        MinecraftServer server = LogicalSidedProvider.INSTANCE.get(LogicalSide.SERVER);
+        MinecraftServer server = LogicalSidedProvider.INSTANCE.get(Dist.SERVER);
         if (server == null) {
             return null;
         }
