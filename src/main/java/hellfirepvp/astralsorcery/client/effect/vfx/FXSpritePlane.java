@@ -102,8 +102,9 @@ public class FXSpritePlane extends EntityVisualFX implements EntityDynamicFX {
             deg = fixDegree;
         }
 
-        RenderTypeDecorator decorated = RenderType.ctx.getRenderType(), ssr::bindTexture, () -> BlockAtlasTexture.getInstance().bindTexture());
-        VertexConsumer buf = drawBuffer.getBuffer(decorated);
+        // TODO: Fix RenderTypeDecorator for 1.21+
+        VertexConsumer buf = drawBuffer.getBuffer(ctx.getRenderType());
+        ssr.bindTexture();
         RenderingDrawUtils.renderAngleRotatedTexturedRectVB(buf, renderStack, vec,
                 axis, (float) Math.toRadians(deg), scale,
                 uvOffset.getA(), uvOffset.getB(), ssr.getULength(), ssr.getVLength(),

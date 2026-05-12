@@ -94,13 +94,9 @@ public class BatchRenderContext<T extends EntityVisualFX> extends OrderSortable 
 
         RenderType drawType = this.getRenderType();
         if (this.drawWithTexture) {
-            drawType = RenderType.this.getRenderType(), () -> {
-                RenderSystem.enableTexture();
-                this.getSprite().bindTexture();
-            }, () -> {
-                BlockAtlasTexture.getInstance().bindTexture();
-                RenderSystem.disableTexture();
-            });
+            // TODO: Fix RenderType creation for 1.21+
+            // Original code attempted to create a decorated RenderType
+            drawType = RenderType.entityTranslucent(this.getSprite().getLocation());
         }
         VertexConsumer buf = drawBuffer.getBuffer(drawType);
         effects.forEach(effect -> effect.getEffect().render(this, renderStack, buf, pTicks));

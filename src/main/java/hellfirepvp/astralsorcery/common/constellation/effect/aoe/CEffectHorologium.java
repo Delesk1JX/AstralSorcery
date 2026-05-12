@@ -30,7 +30,6 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.time.TimeStopController;
 import hellfirepvp.astralsorcery.common.util.time.TimeStopZone;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.block.entity.;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
@@ -127,7 +126,7 @@ public class CEffectHorologium extends CEffectAbstractList<ListEntries.PosEntry>
                         long startNs = System.nanoTime();
                         int times = 4 + rand.nextInt(2);
                         while (times > 0) {
-                            (() tile).tick();
+                            tile.tick();
                             if ((System.nanoTime() - startNs) >= 80_000) {
                                 break;
                             }

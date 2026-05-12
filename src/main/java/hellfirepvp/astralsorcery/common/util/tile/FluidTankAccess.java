@@ -14,7 +14,6 @@ import net.minecraft.core.Direction;
 import net.neoforged.neoforge.common.util.Lazy;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.IFluidTank;
-import net.neoforged.neoforge.fluids.capability.net.neoforged.neoforge.capabilitiesFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 
 import javax.annotation.Nonnull;
@@ -49,11 +48,12 @@ public class FluidTankAccess {
         return dir == null || MiscUtils.contains(this.tanks, tank -> tank.accessibleSides.test(dir));
     }
 
-    public boolean hasnet.neoforged.neoforge.capabilities(net.neoforged.neoforge.capabilities<?> capability, @Nullable Direction facing) {
-        return net.neoforged.neoforge.capabilitiesFluidHandler.FLUID_HANDLER_CAPABILITY == capability && hasTanksForSide(facing);
+    public boolean hasCapability(Class<?> capability, @Nullable Direction facing) {
+        // TODO: Update to new NeoForge capabilities system for 1.21+
+        return IFluidHandler.class.isAssignableFrom(capability) && hasTanksForSide(facing);
     }
 
-    public Lazy<IFluidHandler> getnet.neoforged.neoforge.capabilities(@Nullable Direction facing) {
+    public Lazy<IFluidHandler> getCapability(@Nullable Direction facing) {
         Set<AccessibleTank> available = facing == null ? this.tanks :
                 this.tanks.stream().filter(t -> t.isAccessible(facing)).collect(Collectors.toSet());
         return available.isEmpty() ? Lazy.empty() : Lazy.of(() -> new SidedAccess(available));

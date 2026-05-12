@@ -66,10 +66,9 @@ public class ObjModelRender {
             celestialWingsModel = AssetLoader.loadObjModel(AssetLoader.ModelLocation.OBJ, "celestial_wings");
         }
         if (vboCelestialWings == null) {
+            // TODO: Fix VertexFormat decorator for 1.21+
             int[] lightGray = new int[] { 178, 178, 178, 255 };
-            VertexFormat.(r, g, b, a) -> lightGray)
-                    .decorate(buffer,
-                            (VertexConsumer decorated) -> vboCelestialWings = celestialWingsModel.batch(decorated));
+            vboCelestialWings = celestialWingsModel.batch(buffer);
         }
         vboCelestialWings.bindBuffer();
         RenderTypesAS.POSITION_COLOR_TEX_NORMAL.setupBufferState(0L);
@@ -84,16 +83,14 @@ public class ObjModelRender {
         }
 
         if (wraithWingsBones == null) {
+            // TODO: Fix VertexFormat decorator for 1.21+
             int[] gray = new int[] { 77, 77, 77, 255 };
-            VertexFormat.(r, g, b, a) -> gray)
-                    .decorate(buffer,
-                            (VertexConsumer decorated) -> wraithWingsBones = wraithWingsModel.batchOnly(decorated, "Bones"));
+            wraithWingsBones = wraithWingsModel.batchOnly(buffer, "Bones");
         }
         if (wraithWingsWing == null) {
+            // TODO: Fix VertexFormat decorator for 1.21+
             int[] black = new int[] { 0, 0, 0, 255 };
-            VertexFormat.(r, g, b, a) -> black)
-                    .decorate(buffer,
-                            (VertexConsumer decorated) -> wraithWingsWing = wraithWingsModel.batchOnly(decorated, "Wing"));
+            wraithWingsWing = wraithWingsModel.batchOnly(buffer, "Wing");
         }
 
         wraithWingsBones.bindBuffer();

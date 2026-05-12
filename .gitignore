@@ -8,13 +8,11 @@
 *.so
 *.a
 *.out
-build/
-target/
 
 # Dependencies
-.gradle/
-libs/
 lib/
+deps/
+target/
 
 # Logs and temp files
 *.log
@@ -22,10 +20,8 @@ lib/
 *.swp
 
 # Editors
-.idea/
-*.iml
-*.iws
 .vscode/
+.idea/
 
 # System files
 .DS_Store
@@ -36,15 +32,7 @@ coverage/
 htmlcov/
 .coverage
 
-# Package manager
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Testing
-.mypy_cache/
-.pytest_cache/
-.nyc_output/
-coverage.xml
+# Gradle specific
+.gradle/
+build/
 ```

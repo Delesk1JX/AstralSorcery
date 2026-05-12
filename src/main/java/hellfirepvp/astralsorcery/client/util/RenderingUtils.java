@@ -333,14 +333,8 @@ public class RenderingUtils {
 
         MultiBufferSource.Impl buffer = Minecraft.getInstance().getRenderTypeBuffers().getBufferSource();
         renderItemModelWithColor(stack, ItemCameraTransforms.TransformType.GROUND, bakedModel, renderStack, (renderType) -> {
-            RenderTypeDecorator decorated = RenderType.renderType, () -> {
-                RenderSystem.enableBlend();
-                blendMode.apply();
-            }, () -> {
-                Blending.DEFAULT.apply();
-                RenderSystem.disableBlend();
-            });
-            return buffer.getBuffer(decorated);
+            // TODO: Fix RenderTypeDecorator for 1.21+
+            return buffer.getBuffer(renderType);
         }, LightmapUtil.getPackedFullbrightCoords(), OverlayTexture.NO_OVERLAY, overlayColor, alpha);
         buffer.finish();
     }
@@ -465,7 +459,8 @@ public class RenderingUtils {
 
             if (model.isBuiltInRenderer() || (stack.getItem() == Items.TRIDENT && !renderThirdPersonView)) {
                 int[] colors = new int[] { c.getRed(), c.getGreen(), c.getBlue(), alpha };
-                MultiBufferSource decoratedBuffer = type -> VertexFormat.(r, g, b, a) -> colors).decorate(buffer.getBuffer(type));
+                // TODO: Fix VertexFormat decorator for 1.21+
+                VertexConsumer decoratedBuffer = buffer.getBuffer(RenderType.entityTranslucent(AtlasTexture.LOCATION_BLOCKS_TEXTURE));
                 stack.getItem().getItemStackTileEntityRenderer().func_239207_a_(stack, transformType, renderStack, decoratedBuffer, combinedLight, combinedOverlay);
             } else if (model.isLayered()) {
                 for (Pair<IBakedModel, RenderType> layerModel : model.getLayerModels(stack, true)) {
