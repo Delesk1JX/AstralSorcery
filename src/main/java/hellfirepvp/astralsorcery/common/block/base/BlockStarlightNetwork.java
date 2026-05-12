@@ -10,8 +10,8 @@ package hellfirepvp.astralsorcery.common.block.base;
 
 import hellfirepvp.astralsorcery.common.tile.base.TileNetwork;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 

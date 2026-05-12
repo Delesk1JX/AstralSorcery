@@ -12,11 +12,11 @@ import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.common.item.base.client.ItemHeldRender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.client.event.RenderWorldLastEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
-import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.bus.api.IEventBus;
 
 /**
  * This class is part of the Astral Sorcery Mod

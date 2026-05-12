@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.IInventory;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.Util;

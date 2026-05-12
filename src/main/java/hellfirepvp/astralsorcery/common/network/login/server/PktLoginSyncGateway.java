@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.auxiliary.gateway.CelestialGatewayHandle
 import hellfirepvp.astralsorcery.common.data.world.GatewayCache;
 import hellfirepvp.astralsorcery.common.network.base.ASLoginPacket;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
-import net.minecraft.item.DyeColor;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.World;

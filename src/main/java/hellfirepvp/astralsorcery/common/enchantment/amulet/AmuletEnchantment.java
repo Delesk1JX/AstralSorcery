@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.enchantment.amulet;
 import hellfirepvp.astralsorcery.common.enchantment.dynamic.DynamicEnchantment;
 import hellfirepvp.astralsorcery.common.enchantment.dynamic.DynamicEnchantmentType;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.MutableComponent;

@@ -18,9 +18,9 @@ import hellfirepvp.astralsorcery.datagen.data.recipes.builder.SimpleShapelessRec
 import hellfirepvp.astralsorcery.datagen.data.recipes.builder.StoneCuttingRecipeBuilder;
 import net.minecraft.data.CustomRecipeBuilder;
 import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
 import net.neoforged.neoforge.common.Tags;
 

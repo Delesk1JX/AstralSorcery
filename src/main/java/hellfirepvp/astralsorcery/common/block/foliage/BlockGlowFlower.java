@@ -10,8 +10,8 @@ package hellfirepvp.astralsorcery.common.block.foliage;
 
 import hellfirepvp.astralsorcery.common.block.base.template.BlockFlowerTemplate;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesMisc;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.BlockPos;

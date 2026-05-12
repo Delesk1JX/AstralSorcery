@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.event.AttributeEvent;
 import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;
 import hellfirepvp.astralsorcery.common.perk.source.ModifierSource;
 import net.minecraft.world.entity.player.Player;
-import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.api.distmarker.LogicalSide;
 
 /**

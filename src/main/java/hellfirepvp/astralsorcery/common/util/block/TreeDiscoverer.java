@@ -9,8 +9,8 @@
 package hellfirepvp.astralsorcery.common.util.block;
 
 import hellfirepvp.observerlib.api.util.BlockArray;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.BlockPos;

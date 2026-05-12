@@ -9,12 +9,12 @@
 package hellfirepvp.astralsorcery.common.util.dispenser;
 
 import hellfirepvp.astralsorcery.AstralSorcery;
-import net.minecraft.block.DispenserBlock;
+import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.dispenser.IDispenseItemBehavior;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.tileentity.DispenserTileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;

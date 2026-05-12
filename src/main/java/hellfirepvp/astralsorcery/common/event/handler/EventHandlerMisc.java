@@ -19,7 +19,7 @@ import hellfirepvp.astralsorcery.common.lib.CapabilitiesAS;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.world.entity.AreaEffectCloudEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.tileentity.LecternTileEntity;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IWorld;
@@ -30,7 +30,7 @@ import net.neoforged.neoforge.event.entity.item.ItemTossEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerSleepInBedEvent;
 import net.neoforged.neoforge.event.world.ChunkEvent;
-import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.bus.api.IEventBus;
 
 /**
  * This class is part of the Astral Sorcery Mod

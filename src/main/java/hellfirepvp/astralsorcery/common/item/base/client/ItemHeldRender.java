@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.item.base.client;
 
 import com.mojang.blaze3d.matrix.PoseStack;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 

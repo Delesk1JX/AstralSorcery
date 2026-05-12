@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.item.base;
 
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 
 /**
  * This class is part of the Astral Sorcery Mod

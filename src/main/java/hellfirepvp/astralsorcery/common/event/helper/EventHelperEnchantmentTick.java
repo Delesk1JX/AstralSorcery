@@ -10,9 +10,9 @@ package hellfirepvp.astralsorcery.common.event.helper;
 
 import hellfirepvp.astralsorcery.common.enchantment.EnchantmentPlayerTick;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
-import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.entity.player.Player;
-import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.neoforge.event.tick.TickEvent;
 import net.neoforged.api.distmarker.LogicalSide;
 import net.minecraft.core.registries.BuiltInRegistries;
 

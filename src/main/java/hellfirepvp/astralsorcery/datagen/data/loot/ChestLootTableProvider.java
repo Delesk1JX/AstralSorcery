@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.datagen.data.loot;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
 import hellfirepvp.astralsorcery.common.lib.LootAS;
 import net.minecraft.data.loot.ChestLootTables;
-import net.minecraft.item.Items;
+import net.minecraft.world.item.Items;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.loot.ItemLootEntry;
 import net.minecraft.loot.LootPool;

@@ -18,7 +18,7 @@ import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
-import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.neoforge.event.tick.TickEvent;
 import net.neoforged.api.distmarker.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;
 

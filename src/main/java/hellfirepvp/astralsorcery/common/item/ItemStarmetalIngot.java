@@ -13,8 +13,8 @@ import hellfirepvp.astralsorcery.common.entity.item.EntityStarmetal;
 import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.World;
 

@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.auxiliary.link.LinkHandler;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.BlockPos;

@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.crystal;
 import com.google.common.collect.Lists;
 import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.Mth;
 
 import javax.annotation.Nonnull;

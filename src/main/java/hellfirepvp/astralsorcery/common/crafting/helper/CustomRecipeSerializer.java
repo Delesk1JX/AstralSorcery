@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.crafting.helper;
 
 import com.google.gson.JsonObject;
-import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.world.item.crafting.IRecipeSerializer;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.registries.DeferredHolder;
 

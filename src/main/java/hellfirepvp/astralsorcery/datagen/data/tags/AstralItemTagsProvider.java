@@ -15,7 +15,7 @@ import net.minecraft.data.BlockTagsProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.minecraft.data.ItemTagsProvider;
 import net.minecraft.data.TagsProvider;
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.neoforged.neoforge.common.Tags;

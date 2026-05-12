@@ -25,7 +25,7 @@ import net.minecraft.util.RegistryKey;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
-import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.neoforge.event.tick.TickEvent;
 
 import java.awt.*;
 import java.util.EnumSet;

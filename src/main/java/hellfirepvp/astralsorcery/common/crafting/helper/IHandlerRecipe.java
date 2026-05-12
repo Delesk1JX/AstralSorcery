@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.crafting.helper;
 
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.World;
 import net.neoforged.neoforge.items.IItemHandler;
 

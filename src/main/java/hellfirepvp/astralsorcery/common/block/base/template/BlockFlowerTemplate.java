@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.block.base.template;
 
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
-import net.minecraft.block.FlowerBlock;
+import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.Effects;
 

@@ -12,7 +12,7 @@ import com.google.common.collect.Lists;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigDataAdapter;
 import hellfirepvp.astralsorcery.common.data.config.registry.sets.OreItemRarityEntry;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.common.Tags;
 
 import javax.annotation.Nullable;

@@ -10,11 +10,11 @@ package hellfirepvp.astralsorcery.common.base;
 
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.TriFunction;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.SaplingBlock;
-import net.minecraft.block.VineBlock;
-import net.minecraft.block.trees.Tree;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.SaplingBlock;
+import net.minecraft.world.level.block.VineBlock;
+import net.minecraft.world.level.block.trees.Tree;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;

@@ -33,7 +33,7 @@ import hellfirepvp.astralsorcery.common.starlight.network.StarlightUpdateHandler
 import hellfirepvp.astralsorcery.common.util.time.TimeStopController;
 import hellfirepvp.astralsorcery.common.util.world.WorldSeedCache;
 import net.minecraft.world.entity.player.ServerPlayer;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.neoforged.api.distmarker.Dist;
@@ -41,7 +41,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.world.WorldEvent;
-import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.eventbus.api.SubscribeEvent;
 import net.neoforged.api.distmarker.LogicalSide;
 

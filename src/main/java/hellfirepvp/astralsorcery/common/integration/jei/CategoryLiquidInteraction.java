@@ -25,7 +25,7 @@ import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.network.chat.MutableComponent;
 import static net.minecraft.network.chat.Component.translatable;
 import net.neoforged.neoforge.fluids.FluidAttributes;

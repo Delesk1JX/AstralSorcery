@@ -9,11 +9,11 @@
 package hellfirepvp.astralsorcery.common.block.tile;
 
 import hellfirepvp.astralsorcery.common.tile.TileVanishing;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ContainerBlock;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.ContainerBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.world.entity.EntityType;

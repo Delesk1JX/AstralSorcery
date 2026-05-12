@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.integration;
 
 import hellfirepvp.astralsorcery.common.base.Mods;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.fml.InterModComms;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import top.theillusivec4.curios.api.CuriosApi;

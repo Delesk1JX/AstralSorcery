@@ -19,7 +19,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.ChatFormatting;
 import static net.minecraft.network.chat.Component.translatable;
 import net.minecraft.world.World;
-import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.neoforge.event.tick.TickEvent;
 import net.neoforged.api.distmarker.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;
 

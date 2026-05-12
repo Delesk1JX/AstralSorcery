@@ -18,7 +18,7 @@ import net.neoforged.neoforge.common.capabilities.ICapabilitySerializable;
 import net.neoforged.neoforge.common.util.INBTSerializable;
 import net.neoforged.neoforge.common.util.LazyOptional;
 import net.neoforged.neoforge.event.AttachCapabilitiesEvent;
-import net.neoforged.neoforge.eventbus.api.IEventBus;
+import net.neoforged.bus.api.IEventBus;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

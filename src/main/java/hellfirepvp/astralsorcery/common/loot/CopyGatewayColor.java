@@ -14,7 +14,7 @@ import com.google.gson.JsonObject;
 import hellfirepvp.astralsorcery.common.block.tile.BlockCelestialGateway;
 import hellfirepvp.astralsorcery.common.lib.LootAS;
 import hellfirepvp.astralsorcery.common.tile.TileCelestialGateway;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.loot.*;
 import net.minecraft.loot.conditions.ILootCondition;
 import net.minecraft.tileentity.BlockEntity;

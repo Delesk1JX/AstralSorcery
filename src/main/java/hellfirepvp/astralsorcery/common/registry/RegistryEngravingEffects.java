@@ -15,8 +15,8 @@ import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
 import hellfirepvp.astralsorcery.common.lib.EnchantmentsAS;
 import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;
 import hellfirepvp.astralsorcery.common.perk.type.ModifierType;
-import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.enchantment.Enchantments;
+import net.minecraft.world.item.enchantment.EnchantmentType;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.potion.Effects;
 
 import static hellfirepvp.astralsorcery.common.lib.EngravingEffectsAS.*;
