@@ -9,16 +9,29 @@ target/
 
 # Dependencies
 .gradle/
-lib/
-libs/
+node_modules/
+venv/
+.venv/
+__pycache__/
 
 # Logs and temp files
 *.log
 *.tmp
+*.swp
 
 # Editors
-.idea/
 .vscode/
+.idea/
+
+# Environment
+.env
+.env.local
+*.env.*
+
+# Coverage
+coverage/
+htmlcov/
+.coverage
 
 # System files
 .DS_Store
