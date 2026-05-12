@@ -41,7 +41,7 @@ import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.fluids.FluidActionResult;
 import net.neoforged.neoforge.fluids.FluidAttributes;
 import net.neoforged.neoforge.fluids.FluidUtil;
-import net.neoforged.neoforge.fluids.capability.net.neoforged.neoforge.capabilitiesFluidHandler;
+import net.neoforged.neoforge.fluids.capability.net.neoforged.neoforge.fluids.capability.CapabilityFluidHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
 
@@ -116,7 +116,7 @@ public class BlockWell extends BlockStarlightNetwork implements CustomItemBlock 
                     }
                 }
 
-                tw.getnet.neoforged.neoforge.capabilities(net.neoforged.neoforge.capabilitiesFluidHandler.FLUID_HANDLER_CAPABILITY, null)
+                tw.getCapability(net.neoforged.neoforge.fluids.capability.CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)
                         .ifPresent((handler) -> {
                             FluidActionResult far = FluidUtil.tryFillContainerAndStow(heldItem,
                                     handler, new InvWrapper(player.inventory), FluidAttributes.BUCKET_VOLUME, player, true);

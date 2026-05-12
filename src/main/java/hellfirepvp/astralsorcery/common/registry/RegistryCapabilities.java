@@ -83,12 +83,12 @@ public class RegistryCapabilities {
         return new net.neoforged.neoforge.capabilities.IStorage<T>() {
             @Nullable
             @Override
-            public Tag writeNBT(net.neoforged.neoforge.capabilities<T> capability, T instance, Direction side) {
+            public Tag writeNBT(net.neoforged.neoforge.common.capabilities.Capability<T> capability, T instance, Direction side) {
                 return instance.serializeNBT();
             }
 
             @Override
-            public void readNBT(net.neoforged.neoforge.capabilities<T> capability, T instance, Direction side, Tag nbt) {
+            public void readNBT(net.neoforged.neoforge.common.capabilities.Capability<T> capability, T instance, Direction side, Tag nbt) {
                 instance.deserializeNBT((CompoundTag) nbt);
             }
         };

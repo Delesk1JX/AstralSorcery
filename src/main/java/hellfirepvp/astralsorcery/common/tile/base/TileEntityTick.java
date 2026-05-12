@@ -15,7 +15,7 @@ import hellfirepvp.observerlib.api.ChangeSubscriber;
 import hellfirepvp.observerlib.api.ObserverHelper;
 import hellfirepvp.observerlib.common.change.ChangeObserverStructure;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.block.entity.;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.resources.ResourceLocation;
 
@@ -28,7 +28,7 @@ import javax.annotation.Nullable;
  * Created by HellFirePvP
  * Date: 02.08.2016 / 17:34
  */
-public abstract class TileEntityTick extends TileEntitySynchronized implements , TileRequiresMultiblock {
+public abstract class TileEntityTick extends TileEntitySynchronized implements TileRequiresMultiblock {
 
     private boolean doesSeeSky = false;
     private int lastUpdateTick = -1;

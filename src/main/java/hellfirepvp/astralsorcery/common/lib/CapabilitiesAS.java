@@ -28,6 +28,6 @@ public class CapabilitiesAS {
     public static final ResourceLocation CHUNK_FLUID_KEY = AstralSorcery.key("chunk_fluid");
 
     // @net.neoforged.neoforge.capabilitiesInject(ChunkFluidEntry.class) - migrated to RegisterCapabilitiesEvent
-    public static net.neoforged.neoforge.capabilities<ChunkFluidEntry> CHUNK_FLUID = null;
+    public static net.neoforged.neoforge.common.capabilities.Capability<ChunkFluidEntry> CHUNK_FLUID = null;
 
 }

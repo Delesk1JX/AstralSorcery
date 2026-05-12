@@ -16,7 +16,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.core.Direction;
 
 import net.neoforged.neoforge.common.util.Lazy;
-
+import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
@@ -110,11 +110,11 @@ public class TileInventory extends ItemStackHandler implements Iterable<ItemStac
         return facing == null || applicableSides.contains(facing);
     }
 
-    public boolean hasnet.neoforged.neoforge.capabilities(net.neoforged.neoforge.capabilities<?> capability, @Nullable Direction facing) {
-        return hasHandlerForSide(facing) && net.neoforged.neoforge.capabilitiesItemHandler.ITEM_HANDLER_CAPABILITY == capability;
+    public boolean hasCapability(IItemHandler capability, @Nullable Direction facing) {
+        return hasHandlerForSide(facing);
     }
 
-    public Lazy<TileInventory> getnet.neoforged.neoforge.capabilities() {
+    public Lazy<TileInventory> getCapability() {
         return Lazy.of(() -> this);
     }
 

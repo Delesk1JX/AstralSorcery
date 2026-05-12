@@ -37,7 +37,7 @@ public class TileAccelerationBlacklistRegistry extends ConfigDataAdapter<TileAcc
     private TileAccelerationBlacklistRegistry() {}
 
     public boolean canBeInfluenced(BlockEntity tile) {
-        if (!(tile instanceof )) {
+        if (!(tile instanceof BlockEntity)) {
             return false;
         }
 

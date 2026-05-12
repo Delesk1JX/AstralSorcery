@@ -167,7 +167,7 @@ public class ItemBlinkWand extends Item implements AlignmentChargeConsumer {
                         motion.setY(Mth.clamp(motion.getY() + (0.2F * strength), 0.2F * strength, Float.MAX_VALUE));
                     }
 
-                    player.setMotion(motion.tonet.minecraft.world.phys.Vec3());
+                    player.setMotion(motion.toVec3());
                     player.fallDistance = 0F;
 
                     if (ItemMantle.getEffect(player, ConstellationsAS.vicio) != null) {

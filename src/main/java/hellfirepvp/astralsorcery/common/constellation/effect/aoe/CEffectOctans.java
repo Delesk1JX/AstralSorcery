@@ -212,7 +212,7 @@ public class CEffectOctans extends CEffectAbstractList<ListEntries.CounterMaxEnt
             ItemEntity ei = ItemUtils.dropItemNaturally(world, dropLoc.getX(), dropLoc.getY(), dropLoc.getZ(), loot);
             Vector3 motion = new Vector3(ei.getMotion());
             motion.setY(Math.abs(motion.getY()));
-            ei.setMotion(motion.tonet.minecraft.world.phys.Vec3());
+            ei.setMotion(motion.toVec3());
         }
     }
 

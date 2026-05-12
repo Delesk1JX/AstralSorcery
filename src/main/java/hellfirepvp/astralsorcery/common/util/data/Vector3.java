@@ -454,7 +454,7 @@ public class Vector3 {
         return (difX * difX + difY * difY + difZ * difZ) <= (radius * radius);
     }
 
-    public net.minecraft.world.phys.Vec3 tonet.minecraft.world.phys.Vec3() {
+    public net.minecraft.world.phys.Vec3 toVec3() {
         return new net.minecraft.world.phys.Vec3(x, y, z);
     }
 

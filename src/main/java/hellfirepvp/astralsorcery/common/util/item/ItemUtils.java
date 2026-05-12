@@ -200,7 +200,7 @@ public class ItemUtils {
     }
 
     public static Collection<ItemStack> findItemsInIInventory(Player player, ItemStack match, boolean strict) {
-        IItemHandler handler = player.getnet.neoforged.neoforge.capabilities(net.neoforged.neoforge.capabilitiesItemHandler.ITEM_HANDLER_CAPABILITY).orElse(EMPTY_INVENTORY);
+        IItemHandler handler = player.getCapability(net.neoforged.neoforge.items.capability.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(EMPTY_INVENTORY);
         Collection<ItemStack> results = findItemsInInventory(handler, match, strict);
 
         if (Mods.BOTANIA.isPresent()) {
@@ -224,7 +224,7 @@ public class ItemUtils {
     }
 
     public static Map<Integer, ItemStack> findItemsIndexedInIInventory(Player player, Predicate<ItemStack> match) {
-        return findItemsIndexedInInventory(player.getnet.neoforged.neoforge.capabilities(net.neoforged.neoforge.capabilitiesItemHandler.ITEM_HANDLER_CAPABILITY).orElse(EMPTY_INVENTORY), match);
+        return findItemsIndexedInInventory(player.getCapability(net.neoforged.neoforge.items.capability.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(EMPTY_INVENTORY), match);
     }
 
     public static Map<Integer, ItemStack> findItemsIndexedInInventory(IItemHandler handler, ItemStack match, boolean strict) {
@@ -253,7 +253,7 @@ public class ItemUtils {
             return true;
         }
 
-        IItemHandlerModifiable handler = (IItemHandlerModifiable) player.getnet.neoforged.neoforge.capabilities(net.neoforged.neoforge.capabilitiesItemHandler.ITEM_HANDLER_CAPABILITY, null).orElse(EMPTY_INVENTORY);
+        IItemHandlerModifiable handler = (IItemHandlerModifiable) player.getCapability(net.neoforged.neoforge.items.capability.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).orElse(EMPTY_INVENTORY);
         if (consumeFromInventory(handler, tryConsume, simulate)) {
             return true;
         }

@@ -303,7 +303,7 @@ public class TileChalice extends TileEntityTick {
 
     @Nonnull
     public IFluidHandler getTankAccess() {
-        return this.access.getnet.neoforged.neoforge.capabilities(Direction.DOWN).orElse(null);
+        return this.access.getCapability(Direction.DOWN).orElse(null);
     }
 
     @Nonnull
@@ -332,10 +332,10 @@ public class TileChalice extends TileEntityTick {
 
     @Nonnull
     @Override
-    public <T> Lazy<T> getnet.neoforged.neoforge.capabilities(@Nonnull net.neoforged.neoforge.capabilities<T> cap, @Nullable Direction side) {
-        if (this.access.hasnet.neoforged.neoforge.capabilities(cap, side)) {
-            return this.access.getnet.neoforged.neoforge.capabilities(side).cast();
+    public <T> Lazy<T> getCapability(@Nonnull net.neoforged.neoforge.common.capabilities.Capability<T> cap, @Nullable Direction side) {
+        if (this.access.hasCapability(cap, side)) {
+            return this.access.getCapability(side).cast();
         }
-        return super.getnet.neoforged.neoforge.capabilities(cap, side);
+        return super.getCapability(cap, side);
     }
 }

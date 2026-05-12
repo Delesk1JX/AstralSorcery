@@ -76,7 +76,7 @@ public class EventHandlerMisc {
     private static void onChunkLoad(ChunkEvent.Load event) {
         IChunk ch = event.getChunk();
         if (ch instanceof Chunk && !event.getWorld().isRemote()) {
-            ((Chunk) ch).getnet.neoforged.neoforge.capabilities(CapabilitiesAS.CHUNK_FLUID).ifPresent(entry -> {
+            ((Chunk) ch).getCapability(CapabilitiesAS.CHUNK_FLUID).ifPresent(entry -> {
                 if (!entry.isInitialized()) {
                     IWorld w = event.getWorld();
                     if (w instanceof WorldGenLevel) {
