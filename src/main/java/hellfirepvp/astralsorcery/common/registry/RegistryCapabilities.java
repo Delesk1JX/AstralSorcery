@@ -14,7 +14,7 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.chunk.LevelChunk;
 
-import net.neoforged.neoforge.common.capabilities.Inet.neoforged.neoforge.capabilitiesSerializable;
+import net.neoforged.neoforge.common.capabilities.ICapabilitySerializable;
 import net.neoforged.neoforge.common.util.TagSerializable;
 import net.neoforged.neoforge.common.util.Lazy;
 import net.neoforged.neoforge.event.AttachCapabilitiesEvent;
@@ -41,11 +41,11 @@ public class RegistryCapabilities {
     public static void init(IEventBus eventBus) {
         registerDefault(ChunkFluidEntry.class, ChunkFluidEntry::new);
 
-        eventBus.addGenericListener(Chunk.class, RegistryCapabilities::attachChunknet.neoforged.neoforge.capabilities);
+        eventBus.addGenericListener(LevelChunk.class, RegistryCapabilities::attachChunkCapability);
     }
 
-    private static void attachChunknet.neoforged.neoforge.capabilities(AttachCapabilitiesEvent<Chunk> chunkEvent) {
-        chunkEvent.addnet.neoforged.neoforge.capabilities(CHUNK_FLUID_KEY, serializeableProvider(CHUNK_FLUID.getDefaultInstance()));
+    private static void attachChunkCapability(AttachCapabilitiesEvent<LevelChunk> chunkEvent) {
+        chunkEvent.addCapability(CHUNK_FLUID_KEY, serializeableProvider(CHUNK_FLUID.getDefaultInstance()));
     }
 
     private static <T extends TagSerializable<CompoundTag>> void registerDefault(Class<T> capabilityClass, Supplier<T> capProvider) {
@@ -56,12 +56,12 @@ public class RegistryCapabilities {
         net.neoforged.neoforge.capabilitiesManager.INSTANCE.register(capabilityClass, capStorage, capProvider::get);
     }
 
-    private static <E extends TagSerializable<CompoundTag>> Inet.neoforged.neoforge.capabilitiesSerializable<CompoundTag> serializeableProvider(E defaultInstance) {
-        return new Inet.neoforged.neoforge.capabilitiesSerializable<CompoundTag>() {
+    private static <E extends TagSerializable<CompoundTag>> ICapabilitySerializable<CompoundTag> serializeableProvider(E defaultInstance) {
+        return new ICapabilitySerializable<CompoundTag>() {
             @Nonnull
             @Override
-            public <T> Lazy<T> getnet.neoforged.neoforge.capabilities(@Nonnull net.neoforged.neoforge.capabilities<T> cap, @Nullable Direction side) {
-                if (cap == CHUNK_FLUID) {
+            public <T> Lazy<T> getCapability(@Nonnull Class<T> cap, @Nullable Direction side) {
+                if (cap == CHUNK_FLUID.getClass()) {
                     return Lazy.of(() -> (T) defaultInstance);
                 }
                 return Lazy.empty();

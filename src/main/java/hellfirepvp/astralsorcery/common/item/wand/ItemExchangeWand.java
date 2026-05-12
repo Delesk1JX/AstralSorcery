@@ -136,8 +136,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
         RenderSystem.enableTexture();
         BlockAtlasTexture.getInstance().bindTexture();
 
-        int[] fullBright = new int[] { 15, 15 };
-        BufferDecoratorBuilder decorator = VertexFormat.(skyLight, blockLight) -> fullBright);
+        // TODO: Fix BufferDecoratorBuilder for 1.21+
         Vector3 offset = RenderingVectorUtils.getStandardTranslationRemovalVector(pTicks);
 
         RenderSystem.enableBlend();

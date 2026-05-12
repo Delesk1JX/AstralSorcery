@@ -44,18 +44,9 @@ public class RenderTileFakedState extends CustomTileEntityRenderer<TileFakedStat
         Color blendColor = tile.getOverlayColor();
         int[] color = new int[] { blendColor.getRed(), blendColor.getGreen(), blendColor.getBlue(), 128 };
 
-        RenderType type = RenderTypeLookup.func_239221_b_(fakedState);
-        RenderTypeDecorator decorated = RenderType.type, () -> {
-            RenderSystem.enableBlend();
-            RenderSystem.defaultBlendFunc();
-            RenderSystem.depthMask(false);
-        }, () -> {
-            RenderSystem.depthMask(true);
-            RenderSystem.defaultBlendFunc();
-            RenderSystem.disableBlend();
-        });
-        BufferDecoratorBuilder decorator = VertexFormat.((r, g, b, a) -> color));
-        VertexConsumer buf = renderTypeBuffer.getBuffer(decorated);
-        RenderingUtils.renderSimpleBlockModel(fakedState, renderStack, decorator.decorate(buf), tile.getPos(), tile, true);
+        // TODO: Fix RenderTypeDecorator and BufferDecoratorBuilder for 1.21+
+        RenderType type = RenderType.translucent();
+        VertexConsumer buf = renderTypeBuffer.getBuffer(type);
+        RenderingUtils.renderSimpleBlockModel(fakedState, renderStack, buf, tile.getPos(), tile, true);
     }
 }
