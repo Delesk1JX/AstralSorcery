@@ -19,7 +19,7 @@ import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import hellfirepvp.astralsorcery.common.util.ReadWriteLockable;
 import hellfirepvp.astralsorcery.common.util.log.LogCategory;
 import net.minecraft.world.entity.player.Player;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

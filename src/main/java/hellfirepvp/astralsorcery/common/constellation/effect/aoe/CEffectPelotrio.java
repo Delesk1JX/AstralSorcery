@@ -27,13 +27,13 @@ import net.minecraft.world.entity.SpawnReason;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.fml.config.ModConfigSpec;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -159,15 +159,15 @@ public class CEffectPelotrio extends CEffectAbstractList<ListEntries.EntitySpawn
         private final double defaultSpawnChance = 0.05D;
         private final int defaultProximityAmount = 24;
 
-        public NeoForgeConfigSpec.DoubleValue spawnChance;
-        public NeoForgeConfigSpec.IntValue proximityAmount;
+        public ModConfigSpec.DoubleValue spawnChance;
+        public ModConfigSpec.IntValue proximityAmount;
 
         public PelotrioConfig() {
             super("pelotrio", 12D, 0D, 5);
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.spawnChance = cfgBuilder

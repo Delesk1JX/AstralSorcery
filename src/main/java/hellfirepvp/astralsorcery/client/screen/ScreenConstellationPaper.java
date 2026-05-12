@@ -27,7 +27,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.FormattedText;
 import static net.minecraft.network.chat.Component.translatable;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import java.util.ArrayList;
 import java.util.Collections;

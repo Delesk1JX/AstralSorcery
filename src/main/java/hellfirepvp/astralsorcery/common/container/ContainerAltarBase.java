@@ -17,7 +17,7 @@ import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 
 import javax.annotation.Nullable;
 import java.util.Optional;

@@ -13,9 +13,9 @@ import hellfirepvp.astralsorcery.common.world.placement.config.WorldFilterConfig
 import net.minecraft.util.RegistryKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.biome.Biome;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.fml.config.ModConfigSpec;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,11 +35,11 @@ public class FeatureGenerationConfig extends ConfigEntry {
     private List<RegistryKey<World>> worlds = new ArrayList<>();
     private boolean defaultEveryBiome = false, defaultEveryWorld = false;
 
-    private NeoForgeConfigSpec.BooleanValue enabled;
-    private NeoForgeConfigSpec.BooleanValue everyBiome;
-    private NeoForgeConfigSpec.BooleanValue everyWorld;
-    private NeoForgeConfigSpec.ConfigValue<List<String>> biomeCategoryNames;
-    private NeoForgeConfigSpec.ConfigValue<List<String>> worldNames;
+    private ModConfigSpec.BooleanValue enabled;
+    private ModConfigSpec.BooleanValue everyBiome;
+    private ModConfigSpec.BooleanValue everyWorld;
+    private ModConfigSpec.ConfigValue<List<String>> biomeCategoryNames;
+    private ModConfigSpec.ConfigValue<List<String>> worldNames;
 
     public FeatureGenerationConfig(ResourceLocation featureName) {
         this(featureName.getPath());
@@ -70,7 +70,7 @@ public class FeatureGenerationConfig extends ConfigEntry {
     }
 
     @Override
-    public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+    public void createEntries(ModConfigSpec.Builder cfgBuilder) {
         this.enabled = cfgBuilder
                 .comment("Set this to false to disable this worldgen feature.")
                 .translation(translationKey("enabled"))

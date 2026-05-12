@@ -17,12 +17,12 @@ import hellfirepvp.astralsorcery.common.starlight.transmission.IPrismTransmissio
 import hellfirepvp.astralsorcery.common.starlight.transmission.ITransmissionSource;
 import hellfirepvp.astralsorcery.common.starlight.transmission.NodeConnection;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.ChunkPos;
 import net.minecraft.util.Mth;
 import net.minecraft.util.vector.Vector3d;
 import net.minecraft.util.vector.Vector3i;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 import java.util.Collection;

@@ -13,10 +13,10 @@ import net.minecraft.world.item.BlockItemUseContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.BlockRayTraceResult;
 import net.minecraft.util.vector.Vector3d;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 

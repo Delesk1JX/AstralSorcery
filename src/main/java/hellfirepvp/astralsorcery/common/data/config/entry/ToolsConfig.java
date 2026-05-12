@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.data.config.entry;
 
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigEntry;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.fml.config.ModConfigSpec;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -22,14 +22,14 @@ public class ToolsConfig extends ConfigEntry {
 
     public static final ToolsConfig CONFIG = new ToolsConfig();
 
-    public NeoForgeConfigSpec.DoubleValue capeChaosResistance;
+    public ModConfigSpec.DoubleValue capeChaosResistance;
 
     private ToolsConfig() {
         super("tools");
     }
 
     @Override
-    public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+    public void createEntries(ModConfigSpec.Builder cfgBuilder) {
         capeChaosResistance = cfgBuilder
                 .comment("Sets the amount of damage reduction a player gets when being hit by a DE chaos-damage-related damagetype.")
                 .translation(translationKey("capeChaosResistance"))

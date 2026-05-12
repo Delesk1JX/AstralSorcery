@@ -88,10 +88,10 @@ import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.event.lifecycle.InterModEnqueueEvent;
-import net.neoforged.fml.event.server.FMLServerStartedEvent;
-import net.neoforged.fml.event.server.FMLServerStartingEvent;
-import net.neoforged.fml.event.server.FMLServerStoppedEvent;
-import net.neoforged.fml.event.server.FMLServerStoppingEvent;
+import net.neoforged.neoforge.event.server.ServerStartedEvent;
+import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import net.neoforged.neoforge.event.server.ServerStoppedEvent;
+import net.neoforged.neoforge.event.server.ServerStoppingEvent;
 
 import java.io.File;
 import java.util.List;
@@ -360,18 +360,18 @@ public class CommonProxy {
         event.addListener(PerkTreeLoader.INSTANCE);
     }
 
-    private void onServerStarted(FMLServerStartedEvent event) {
+    private void onServerStarted(ServerStartedEvent event) {
         this.serverLifecycleListeners.forEach(ServerLifecycleListener::onServerStart);
     }
 
-    private void onServerStarting(FMLServerStartingEvent event) {
+    private void onServerStarting(ServerStartingEvent event) {
 
     }
 
-    private void onServerStopping(FMLServerStoppingEvent event) {
+    private void onServerStopping(ServerStoppingEvent event) {
         this.serverLifecycleListeners.forEach(ServerLifecycleListener::onServerStop);
     }
 
-    private void onServerStop(FMLServerStoppedEvent event) {
+    private void onServerStop(ServerStoppedEvent event) {
     }
 }

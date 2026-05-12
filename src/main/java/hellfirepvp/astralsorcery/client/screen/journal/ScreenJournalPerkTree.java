@@ -55,7 +55,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.SoundEvents;
@@ -64,7 +64,7 @@ import net.minecraft.util.Util;
 import net.minecraft.util.Mth;
 import net.minecraft.util.vector.Matrix4f;
 import net.minecraft.network.chat.*;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nullable;
@@ -301,7 +301,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
         if (!this.foundSeals.isEmpty() && rectSealBox.contains(mouseX - guiLeft, mouseY - guiTop)) {
             List<ITextProperties> toolTip = new ArrayList<>();
             toolTip.addAll(this.foundSeals.getTooltip(Minecraft.getInstance().player,
-                    Minecraft.getInstance().gameSettings.advancedItemTooltips ? ITooltipFlag.TooltipFlags.ADVANCED : ITooltipFlag.TooltipFlags.NORMAL));
+                    Minecraft.getInstance().gameSettings.advancedItemTooltips ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL));
             toolTip.add(Component.literal.EMPTY);
             toolTip.add(new Component.translatable("perk.info.astralsorcery.sealed.usage").withStyle(ChatFormatting.GRAY));
 

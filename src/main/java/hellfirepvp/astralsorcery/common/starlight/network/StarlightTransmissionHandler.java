@@ -10,9 +10,10 @@ package hellfirepvp.astralsorcery.common.starlight.network;
 
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.util.RegistryKey;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
-import net.neoforged.neoforge.event.tick.TickEvent;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
+import net.neoforged.neoforge.event.tick.ClientTickEvent;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;

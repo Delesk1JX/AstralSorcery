@@ -16,10 +16,10 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.ServerPlayer;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.fml.config.ModConfigSpec;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.bus.api.IEventBus;
 
@@ -99,16 +99,16 @@ public class MantleEffectFornax extends MantleEffect {
         private final double defaultDamageIncreaseInFire = 1.6F;
         private final double defaultHealPercentFromFireDamage = 0.6F;
 
-        public NeoForgeConfigSpec.DoubleValue damageReductionInFire;
-        public NeoForgeConfigSpec.DoubleValue damageIncreaseInFire;
-        public NeoForgeConfigSpec.DoubleValue healPercentFromFireDamage;
+        public ModConfigSpec.DoubleValue damageReductionInFire;
+        public ModConfigSpec.DoubleValue damageIncreaseInFire;
+        public ModConfigSpec.DoubleValue healPercentFromFireDamage;
 
         public FornaxConfig() {
             super("fornax");
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.damageReductionInFire = cfgBuilder

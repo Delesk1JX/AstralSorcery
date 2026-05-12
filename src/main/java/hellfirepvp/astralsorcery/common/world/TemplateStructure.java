@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.world;
 import hellfirepvp.astralsorcery.common.world.marker.MarkerManagerAS;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.ChunkPos;
 import net.minecraft.util.MutableBoundingBox;
 import net.minecraft.world.ISeedReader;

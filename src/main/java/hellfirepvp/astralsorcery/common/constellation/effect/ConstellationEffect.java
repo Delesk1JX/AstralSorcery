@@ -30,11 +30,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.fml.config.ModConfigSpec;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -167,9 +167,9 @@ public abstract class ConstellationEffect {
         private final double  defaultRange;
         private final double  defaultRangePerLens;
 
-        public NeoForgeConfigSpec.BooleanValue enabled;
-        public NeoForgeConfigSpec.DoubleValue  range;
-        public NeoForgeConfigSpec.DoubleValue  rangePerLens;
+        public ModConfigSpec.BooleanValue enabled;
+        public ModConfigSpec.DoubleValue  range;
+        public ModConfigSpec.DoubleValue  rangePerLens;
 
         public Config(String constellationName, double defaultRange, double defaultRangePerLens) {
             super(String.format("constellation.effect.%s", constellationName));
@@ -178,7 +178,7 @@ public abstract class ConstellationEffect {
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             this.enabled = cfgBuilder
                     .comment("Set this to false to disable this ritual effect")
                     .translation(translationKey("enabled"))

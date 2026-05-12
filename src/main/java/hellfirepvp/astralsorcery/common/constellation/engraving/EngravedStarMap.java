@@ -20,7 +20,7 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.Mth;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.util.Constants;
 
 import javax.annotation.Nonnull;

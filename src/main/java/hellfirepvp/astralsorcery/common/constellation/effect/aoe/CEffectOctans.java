@@ -30,7 +30,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BubbleColumnBlock;
 import net.minecraft.world.level.block.FlowingFluidBlock;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
@@ -38,14 +38,14 @@ import net.minecraft.world.item.Items;
 import net.minecraft.loot.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.vector.Vector3d;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.fml.config.ModConfigSpec;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -231,15 +231,15 @@ public class CEffectOctans extends CEffectAbstractList<ListEntries.CounterMaxEnt
         private final int defaultMinFishTickTime = 20;
         private final int defaultMaxFishTickTime = 60;
 
-        public NeoForgeConfigSpec.IntValue minFishTickTime;
-        public NeoForgeConfigSpec.IntValue maxFishTickTime;
+        public ModConfigSpec.IntValue minFishTickTime;
+        public ModConfigSpec.IntValue maxFishTickTime;
 
         public OctansConfig() {
             super("octans", 8D, 1D, 64);
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.minFishTickTime = cfgBuilder

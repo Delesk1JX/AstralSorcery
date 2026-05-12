@@ -22,7 +22,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.Tags;
 
 import static hellfirepvp.astralsorcery.common.lib.ColorsAS.*;

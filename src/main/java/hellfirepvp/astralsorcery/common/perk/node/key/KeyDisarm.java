@@ -22,11 +22,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.fml.config.ModConfigSpec;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -80,14 +80,14 @@ public class KeyDisarm extends KeyPerk {
 
     public static class Config extends ConfigEntry {
 
-        private NeoForgeConfigSpec.DoubleValue dropChance;
+        private ModConfigSpec.DoubleValue dropChance;
 
         private Config(String section) {
             super(section);
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             this.dropChance = cfgBuilder
                     .comment("Defines the chance (in percent) per hit to make the attacked entity drop its armor.")
                     .translation(translationKey("dropChance"))

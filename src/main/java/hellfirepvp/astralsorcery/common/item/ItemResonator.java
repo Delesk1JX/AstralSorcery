@@ -31,7 +31,7 @@ import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import hellfirepvp.astralsorcery.common.util.world.SkyCollectionHelper;
 import hellfirepvp.astralsorcery.common.util.world.WorldSeedCache;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -45,13 +45,13 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 import static net.minecraft.network.chat.Component.translatable;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.Heightmap;
@@ -61,7 +61,7 @@ import net.neoforged.neoforge.common.util.Constants;
 import net.neoforged.neoforge.common.util.TriPredicate;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.fml.common.thread.EffectiveSide;
 
 import javax.annotation.Nonnull;
@@ -98,7 +98,7 @@ public class ItemResonator extends Item implements OverrideInteractItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World world, List<Component> tooltip, ITooltipFlag extended) {
+    public void addInformation(ItemStack stack, @Nullable World world, List<Component> tooltip, TooltipFlag extended) {
         ResonatorUpgrade current = getCurrentUpgrade(Minecraft.getInstance().player, stack);
         for (ResonatorUpgrade upgrade : getUpgrades(stack)) {
             TextFormatting color = upgrade.equals(current) ? ChatFormatting.GOLD : ChatFormatting.BLUE;

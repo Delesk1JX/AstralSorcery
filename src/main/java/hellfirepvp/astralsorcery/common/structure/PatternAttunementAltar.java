@@ -15,7 +15,7 @@ import hellfirepvp.observerlib.api.block.MatchableState;
 import hellfirepvp.observerlib.api.block.SimpleMatchableBlock;
 import hellfirepvp.observerlib.api.util.PatternBlockArray;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 
 import javax.annotation.Nonnull;
 

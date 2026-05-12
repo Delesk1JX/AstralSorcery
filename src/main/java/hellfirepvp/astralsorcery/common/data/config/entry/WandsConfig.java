@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.data.config.entry;
 
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigEntry;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.fml.config.ModConfigSpec;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -22,19 +22,19 @@ public class WandsConfig extends ConfigEntry {
 
     public static final WandsConfig CONFIG = new WandsConfig();
 
-    public NeoForgeConfigSpec.DoubleValue illuminationWandCost;
-    public NeoForgeConfigSpec.DoubleValue architectWandCost;
-    public NeoForgeConfigSpec.DoubleValue exchangeWandCost;
-    public NeoForgeConfigSpec.DoubleValue grappleWandCost;
+    public ModConfigSpec.DoubleValue illuminationWandCost;
+    public ModConfigSpec.DoubleValue architectWandCost;
+    public ModConfigSpec.DoubleValue exchangeWandCost;
+    public ModConfigSpec.DoubleValue grappleWandCost;
 
-    public NeoForgeConfigSpec.IntValue exchangeWandMaxHardness;
+    public ModConfigSpec.IntValue exchangeWandMaxHardness;
 
     private WandsConfig() {
         super("wands");
     }
 
     @Override
-    public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+    public void createEntries(ModConfigSpec.Builder cfgBuilder) {
         illuminationWandCost = cfgBuilder
                 .comment("Sets the quick-charge cost for one usage of the illumination wand")
                 .translation(translationKey("illuminationWandCost"))

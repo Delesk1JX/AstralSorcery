@@ -10,8 +10,8 @@ package hellfirepvp.astralsorcery.common.crafting.nojson;
 
 import hellfirepvp.astralsorcery.common.crafting.nojson.starlight.*;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 

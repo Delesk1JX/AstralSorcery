@@ -14,9 +14,9 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.Direction;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.chunk.Chunk;
 
 import javax.annotation.Nullable;

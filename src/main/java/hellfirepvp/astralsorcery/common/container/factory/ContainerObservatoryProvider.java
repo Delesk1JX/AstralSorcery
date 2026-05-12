@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.IInventory;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.neoforged.neoforge.fml.network.IContainerFactory;
 
 import javax.annotation.Nonnull;

@@ -34,12 +34,12 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.DamageSource;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.world.World;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.minecraft.world.level.Level;
+import net.neoforged.fml.config.ModConfigSpec;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.fml.network.PacketDistributor;
 
 import java.util.List;
@@ -103,19 +103,19 @@ public class KeyLightningArc extends KeyPerk {
 
     public static class Config extends ConfigEntry {
 
-        private NeoForgeConfigSpec.DoubleValue arcChance;
-        private NeoForgeConfigSpec.DoubleValue arcPercent;
-        private NeoForgeConfigSpec.DoubleValue arcDistance;
-        private NeoForgeConfigSpec.IntValue arcTicks;
+        private ModConfigSpec.DoubleValue arcChance;
+        private ModConfigSpec.DoubleValue arcPercent;
+        private ModConfigSpec.DoubleValue arcDistance;
+        private ModConfigSpec.IntValue arcTicks;
 
-        private NeoForgeConfigSpec.IntValue chargeCost;
+        private ModConfigSpec.IntValue chargeCost;
 
         public Config(String section) {
             super(section);
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             this.arcChance = cfgBuilder
                     .comment("Sets the chance to spawn a damage-arc effect when an enemy is hit (value is in percent).")
                     .translation(translationKey("arcChance"))

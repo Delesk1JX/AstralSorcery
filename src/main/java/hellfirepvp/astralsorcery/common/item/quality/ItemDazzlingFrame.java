@@ -10,12 +10,12 @@ package hellfirepvp.astralsorcery.common.item.quality;
 
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.util.Constants;
@@ -41,7 +41,7 @@ public class ItemDazzlingFrame extends Item {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<Component> tooltip, ITooltipFlag flag) {
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<Component> tooltip, TooltipFlag flag) {
         getQuality(stack).ifPresent(quality -> tooltip.add(quality.getDisplayName()));
     }
 

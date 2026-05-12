@@ -4,13 +4,10 @@
 *.o
 *.obj
 *.out
-build/
 target/
 
 # Dependencies
 .gradle/
-lib/
-libs/
 
 # Logs and temp files
 *.log
@@ -18,9 +15,16 @@ libs/
 
 # Editors
 .idea/
-.vscode/
 
 # System files
 .DS_Store
 Thumbs.db
+
+# Configuration and cache
+.mypy_cache/
+.pytest_cache/
+coverage/
+htmlcov/
+.coverage
+
 ```

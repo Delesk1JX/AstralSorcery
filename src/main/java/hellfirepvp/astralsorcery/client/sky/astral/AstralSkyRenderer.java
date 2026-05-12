@@ -35,11 +35,11 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.vector.Matrix4f;
 import net.minecraft.util.vector.Vector3d;
 import net.minecraft.util.vector.Vector3f;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.ISkyRenderHandler;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 import org.lwjgl.opengl.GL11;
 
 import java.util.LinkedList;

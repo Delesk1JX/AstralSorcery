@@ -34,7 +34,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.network.chat.FormattedText;
 import static net.minecraft.network.chat.Component.literal;
 import static net.minecraft.network.chat.Component.translatable;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import java.awt.*;
 import java.util.Comparator;

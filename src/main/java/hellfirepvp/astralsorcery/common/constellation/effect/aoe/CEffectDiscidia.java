@@ -33,11 +33,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.fml.config.ModConfigSpec;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -130,14 +130,14 @@ public class CEffectDiscidia extends ConstellationEffectEntityCollect<LivingEnti
 
         private final double defaultDamage = 3D;
 
-        public NeoForgeConfigSpec.DoubleValue damage;
+        public ModConfigSpec.DoubleValue damage;
 
         public DiscidiaConfig() {
             super("discidia", 10D, 2D);
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.damage = cfgBuilder

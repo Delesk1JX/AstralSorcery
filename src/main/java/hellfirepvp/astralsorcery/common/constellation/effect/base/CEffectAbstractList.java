@@ -25,9 +25,9 @@ import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+import net.neoforged.fml.config.ModConfigSpec;
 import net.neoforged.neoforge.common.util.Constants;
 
 import javax.annotation.Nonnull;
@@ -253,7 +253,7 @@ public abstract class CEffectAbstractList<T extends CEffectAbstractList.ListEntr
 
         private final int defaultMaxAmount;
 
-        public NeoForgeConfigSpec.IntValue maxAmount;
+        public ModConfigSpec.IntValue maxAmount;
 
         public CountConfig(String constellationName, double defaultRange, double defaultRangePerLens, int defaultMaxAmount) {
             super(constellationName, defaultRange, defaultRangePerLens);
@@ -261,7 +261,7 @@ public abstract class CEffectAbstractList<T extends CEffectAbstractList.ListEntr
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.maxAmount = cfgBuilder

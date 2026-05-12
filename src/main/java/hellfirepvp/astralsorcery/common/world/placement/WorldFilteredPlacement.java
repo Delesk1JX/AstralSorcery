@@ -10,8 +10,8 @@ package hellfirepvp.astralsorcery.common.world.placement;
 
 import hellfirepvp.astralsorcery.common.world.placement.config.WorldFilterConfig;
 import net.minecraft.util.RegistryKey;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.gen.feature.WorldDecoratingHelper;
 import net.minecraft.world.gen.placement.ConfiguredPlacement;
 import net.minecraft.world.gen.placement.Placement;

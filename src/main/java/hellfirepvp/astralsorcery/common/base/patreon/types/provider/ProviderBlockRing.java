@@ -18,7 +18,7 @@ import hellfirepvp.astralsorcery.common.base.patreon.types.TypeBlockRing;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 
 import java.util.HashMap;

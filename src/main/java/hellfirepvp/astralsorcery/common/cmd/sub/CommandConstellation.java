@@ -24,7 +24,7 @@ import net.minecraft.util.Util;
 import net.minecraft.network.chat.Component;
 import static net.minecraft.network.chat.Component.literal;
 import net.minecraft.ChatFormatting;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nullable;
 

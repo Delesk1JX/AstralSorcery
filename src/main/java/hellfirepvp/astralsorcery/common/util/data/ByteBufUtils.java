@@ -25,7 +25,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.state.Property;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Component;
 import net.neoforged.neoforge.fluids.FluidStack;

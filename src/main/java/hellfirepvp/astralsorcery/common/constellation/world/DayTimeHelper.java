@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.constellation.world;
 
 import hellfirepvp.astralsorcery.common.data.config.entry.GeneralConfig;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 
 /**
  * This class is part of the Astral Sorcery Mod

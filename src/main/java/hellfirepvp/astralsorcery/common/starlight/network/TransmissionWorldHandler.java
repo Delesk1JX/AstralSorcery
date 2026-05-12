@@ -23,9 +23,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.ChunkPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 
 import java.util.*;

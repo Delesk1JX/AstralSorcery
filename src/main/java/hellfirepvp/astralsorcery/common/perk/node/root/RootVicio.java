@@ -23,7 +23,7 @@ import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.stats.StatisticsManager;
 import net.minecraft.stats.Stats;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import java.util.HashMap;

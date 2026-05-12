@@ -19,7 +19,7 @@ import hellfirepvp.astralsorcery.common.item.base.TypeEnchantableItem;
 import hellfirepvp.astralsorcery.common.lib.CrystalPropertiesAS;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.WebBlock;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentType;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -29,9 +29,9 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
-import net.minecraft.util.NonNullList;
+import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -68,7 +68,7 @@ public class ItemCrystalSword extends SwordItem implements CrystalAttributeItem,
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World world, List<Component> tooltip, ITooltipFlag flag) {
+    public void addInformation(ItemStack stack, @Nullable World world, List<Component> tooltip, TooltipFlag flag) {
         CrystalAttributes attr = getAttributes(stack);
         if (attr != null) {
             attr.addTooltip(tooltip, CalculationContext.Builder.newBuilder()

@@ -18,12 +18,12 @@ import hellfirepvp.astralsorcery.common.data.research.ProgressionTier;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.item.base.IConstellationFocus;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 import static net.minecraft.network.chat.Component.translatable;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -45,7 +45,7 @@ public abstract class ItemAttunedCrystalBase extends ItemCrystalBase implements 
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World world, List<Component> toolTip, ITooltipFlag flag) {
+    public void addInformation(ItemStack stack, @Nullable World world, List<Component> toolTip, TooltipFlag flag) {
         CrystalAttributes.TooltipResult result = addCrystalPropertyToolTip(stack, toolTip);
         if (result != null) {
             ProgressionTier tier = ResearchHelper.getClientProgress().getTierReached();

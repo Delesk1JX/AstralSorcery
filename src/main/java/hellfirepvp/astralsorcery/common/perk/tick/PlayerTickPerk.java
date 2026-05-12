@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.perk.tick;
 
 import net.minecraft.world.entity.player.Player;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod

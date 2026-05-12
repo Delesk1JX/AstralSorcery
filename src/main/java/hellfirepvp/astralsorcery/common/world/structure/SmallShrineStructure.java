@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.lib.WorldGenerationAS;
 import hellfirepvp.astralsorcery.common.world.TemplateStructure;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
 /**

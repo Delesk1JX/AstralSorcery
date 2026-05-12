@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.util.block.BlockGeometry;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Direction;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 
 import java.util.Collection;

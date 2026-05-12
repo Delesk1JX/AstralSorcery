@@ -14,9 +14,9 @@ import hellfirepvp.observerlib.common.data.base.SectionWorldData;
 import hellfirepvp.observerlib.common.data.base.WorldSection;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.ChunkPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.util.Constants;
 
 import java.util.HashSet;

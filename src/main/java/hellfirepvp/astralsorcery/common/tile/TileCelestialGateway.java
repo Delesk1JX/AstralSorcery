@@ -40,7 +40,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.INameable;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.Util;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;

@@ -17,11 +17,11 @@ import hellfirepvp.astralsorcery.common.perk.node.KeyPerk;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.DamageSource;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.fml.config.ModConfigSpec;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -78,15 +78,15 @@ public class KeyLastBreath extends KeyPerk {
 
     public static class Config extends ConfigEntry {
 
-        private NeoForgeConfigSpec.DoubleValue digSpeedMultiplier;
-        private NeoForgeConfigSpec.DoubleValue damageMultiplier;
+        private ModConfigSpec.DoubleValue digSpeedMultiplier;
+        private ModConfigSpec.DoubleValue damageMultiplier;
 
         private Config(String section) {
             super(section);
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             this.digSpeedMultiplier = cfgBuilder
                     .comment("Defines the dig speed multiplier you get additionally to your normal dig speed when being low on health (25% health = 75% of this additional multiplier)")
                     .translation(translationKey("digSpeedMultiplier"))

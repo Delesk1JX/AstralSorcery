@@ -33,7 +33,7 @@ import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.*;
 import net.minecraft.util.vector.Vector3d;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.fml.common.registry.IEntityAdditionalSpawnData;

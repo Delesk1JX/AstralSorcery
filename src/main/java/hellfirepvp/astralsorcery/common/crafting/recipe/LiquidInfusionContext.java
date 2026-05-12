@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.crafting.recipe;
 import hellfirepvp.astralsorcery.common.crafting.helper.RecipeCraftingContext;
 import hellfirepvp.astralsorcery.common.tile.TileInfuser;
 import net.minecraft.world.entity.player.Player;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.items.IItemHandler;
 
 /**
