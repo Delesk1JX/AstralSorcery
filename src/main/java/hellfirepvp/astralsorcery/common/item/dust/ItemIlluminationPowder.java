@@ -32,7 +32,7 @@ import net.neoforged.neoforge.event.EventHooks;
 public class ItemIlluminationPowder extends ItemUsableDust {
 
     @Override
-    boolean dispense(IBlockSource dispenser) {
+    boolean dispense(net.minecraft.core.BlockSource dispenser) {
         BlockPos at = dispenser.getBlockPos();
         Direction face = dispenser.getBlockState().get(DispenserBlock.FACING);
         EntityIlluminationSpark nocSpark = new EntityIlluminationSpark(at.getX(), at.getY(), at.getZ(), dispenser.getWorld());

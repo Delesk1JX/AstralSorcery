@@ -85,7 +85,7 @@ public class TickTokenMap<K, V extends TickTokenMap.TickMapToken<?>> extends Tok
         }
 
         @Override
-        public void tick() {
+    public void tick() {
             timeout--;
         }
 
