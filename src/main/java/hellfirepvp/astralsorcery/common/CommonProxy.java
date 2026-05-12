@@ -81,18 +81,17 @@ import net.minecraft.world.level.storage.LevelResource;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.util.FakePlayer;
 import net.neoforged.neoforge.common.util.FakePlayerFactory;
+import net.neoforged.neoforge.common.util.LogicalSidedProvider;
 import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.api.distmarker.LogicalSide;
-import net.neoforged.neoforge.common.util.LogicalSidedProvider;
-import net.neoforged.neoforge.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.event.lifecycle.InterModEnqueueEvent;
-import net.neoforged.neoforge.event.server.FMLServerStartedEvent;
-import net.neoforged.neoforge.event.server.FMLServerStartingEvent;
-import net.neoforged.neoforge.event.server.FMLServerStoppedEvent;
-import net.neoforged.neoforge.event.server.FMLServerStoppingEvent;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.event.lifecycle.InterModEnqueueEvent;
+import net.neoforged.fml.event.server.FMLServerStartedEvent;
+import net.neoforged.fml.event.server.FMLServerStartingEvent;
+import net.neoforged.fml.event.server.FMLServerStoppedEvent;
+import net.neoforged.fml.event.server.FMLServerStoppingEvent;
 
 import java.io.File;
 import java.util.List;
@@ -294,7 +293,7 @@ public class CommonProxy {
     }
 
     public File getASServerDataDirectory() {
-        MinecraftServer server = LogicalSidedProvider.INSTANCE.get(Dist.SERVER);
+        MinecraftServer server = LogicalSidedProvider.WORKING_SERVER.get();
         if (server == null) {
             return null;
         }
