@@ -62,8 +62,9 @@ import hellfirepvp.astralsorcery.common.util.ServerLifecycleListener;
 import hellfirepvp.astralsorcery.common.util.collision.CollisionManager;
 import hellfirepvp.astralsorcery.common.util.time.TimeStopController;
 import hellfirepvp.observerlib.common.event.BlockChangeNotifier;
-import hellfirepvp.observerlib.common.util.tick.ITickHandler;
-import hellfirepvp.observerlib.common.util.tick.TickManager;
+import hellfirepvp.astralsorcery.common.util.tick.ITickHandler;
+import hellfirepvp.astralsorcery.common.util.tick.TickManager;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.ServerPlayer;
 import net.minecraft.world.item.ArmorMaterial;
@@ -110,12 +111,9 @@ public class CommonProxy {
 
     public static final UUID FAKEPLAYER_UUID = UUID.fromString("b0c3097f-8391-4b4b-a89a-553ef730b13a");
 
-    public static DamageSource DAMAGE_SOURCE_BLEED   = DamageSourceUtil.newType("astralsorcery.bleed")
-            .setDamageBypassesArmor();
-    public static DamageSource DAMAGE_SOURCE_STELLAR = DamageSourceUtil.newType("astralsorcery.stellar")
-            .setDamageBypassesArmor().setMagicDamage();
-    public static DamageSource DAMAGE_SOURCE_REFLECT = DamageSourceUtil.newType("thorns")
-            .setDamageBypassesArmor().setDamageIsAbsolute();
+    public static DamageSource DAMAGE_SOURCE_BLEED   = DamageSourceUtil.setToBypassArmor(DamageSourceUtil.newType("astralsorcery.bleed"));
+    public static DamageSource DAMAGE_SOURCE_STELLAR = DamageSourceUtil.setToBypassArmor(DamageSourceUtil.setToFireDamage(DamageSourceUtil.newType("astralsorcery.stellar")));
+    public static DamageSource DAMAGE_SOURCE_REFLECT = DamageSourceUtil.setToBypassArmor(DamageSourceUtil.newType("thorns"));
 
     public static final CreativeModeTab ITEM_GROUP_AS = CreativeModeTab.builder()
             .title(Component.translatable("itemGroup." + AstralSorcery.MODID))
@@ -139,6 +137,8 @@ public class CommonProxy {
 
     private CommonConfig commonConfig;
     private ServerConfig serverConfig;
+    private CommonScheduler commonScheduler;
+    private TickManager tickManager;
 
     public void initialize() {
         this.commonScheduler = new CommonScheduler();
