@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.screen.journal.page;
 
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.render.IDrawRenderTypeBuffer;
@@ -30,21 +30,21 @@ import hellfirepvp.astralsorcery.common.util.IngredientHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.tags.ITag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.Util;
+import net.minecraft.Util;
 import net.minecraft.util.Mth;
 import net.minecraft.network.chat.FormattedText;
 import static net.minecraft.network.chat.Component.literal;
 import net.minecraft.ChatFormatting;
 import static net.minecraft.network.chat.Component.translatable;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.awt.*;
@@ -325,7 +325,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage {
 
     protected void addInputInformation(ItemStack stack, @Nullable Ingredient stackIngredient, List<ITextProperties> tooltip) {
         try {
-            tooltip.addAll(stack.getTooltip(Minecraft.getInstance().player, Minecraft.getInstance().gameSettings.advancedItemTooltips ? ITooltipFlag.TooltipFlags.ADVANCED : ITooltipFlag.TooltipFlags.NORMAL));
+            tooltip.addAll(stack.getTooltip(Minecraft.getInstance().player, Minecraft.getInstance().gameSettings.advancedItemTooltips ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL));
         } catch (Exception exc) {
             tooltip.add(new Component.translatable("astralsorcery.misc.tooltipError").withStyle(ChatFormatting.RED));
         }

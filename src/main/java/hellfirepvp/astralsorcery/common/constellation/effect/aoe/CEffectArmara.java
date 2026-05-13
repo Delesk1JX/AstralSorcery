@@ -34,12 +34,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -65,7 +66,7 @@ public class CEffectArmara extends ConstellationEffectEntityCollect<LivingEntity
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void playClientEffect(World world, BlockPos pos, TileRitualPedestal pedestal, float alphaMultiplier, boolean extended) {
+    public void playClientEffect(Level world, BlockPos pos, TileRitualPedestal pedestal, float alphaMultiplier, boolean extended) {
         if (pedestal.getTicksExisted() % 20 == 0) {
             EffectHelper.spawnSource(new FXOrbitalArmara(new Vector3(pos).add(0.5, 0.5, 0.5))
                     .setOrbitRadius(0.8 + rand.nextFloat() * 0.7)
@@ -107,7 +108,7 @@ public class CEffectArmara extends ConstellationEffectEntityCollect<LivingEntity
     }
 
     @Override
-    public boolean playEffect(World world, BlockPos pos, ConstellationEffectProperties properties, @Nullable IMinorConstellation trait) {
+    public boolean playEffect(Level world, BlockPos pos, ConstellationEffectProperties properties, @Nullable IMinorConstellation trait) {
         int toAdd = 2 + rand.nextInt(5);
         WorldBlockPos at = WorldBlockPos.wrapServer(world, pos);
         TickTokenMap.SimpleTickToken<Double> token = EventHelperSpawnDeny.spawnDenyRegions.get(at);
@@ -201,14 +202,14 @@ public class CEffectArmara extends ConstellationEffectEntityCollect<LivingEntity
 
         private final int defaultPotionAmplifier = 1;
 
-        public NeoForgeConfigSpec.IntValue potionAmplifier;
+        public ModConfigSpec.IntValue potionAmplifier;
 
         public ArmaraConfig() {
             super("armara", 16, 2);
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.potionAmplifier = cfgBuilder

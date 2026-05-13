@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.util;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.tags.ITag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.tags.TagCollectionManager;

@@ -23,12 +23,12 @@ import hellfirepvp.astralsorcery.common.util.block.iterator.BlockRandomPositionG
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.INBT;
+import net.minecraft.nbt.Tag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
-import net.neoforged.neoforge.common.util.Constants;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.common.ModConfigSpec;
+import net.neoforged.neoforge.common.Tags;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -91,7 +91,7 @@ public abstract class CEffectAbstractList<T extends CEffectAbstractList.ListEntr
     public abstract T recreateElement(CompoundTag tag, BlockPos pos);
 
     @Nullable
-    public abstract T createElement(World world, BlockPos pos);
+    public abstract T createElement(Level world, BlockPos pos);
 
     @Nonnull
     protected BlockPositionGenerator createPositionStrategy() {
@@ -129,7 +129,7 @@ public abstract class CEffectAbstractList<T extends CEffectAbstractList.ListEntr
         this.elements.clear();
     }
 
-    public boolean isValid(World world, T element) {
+    public boolean isValid(Level world, T element) {
         return this.verifier.test(world, element.getPos(), world.getBlockState(element.getPos()));
     }
 
@@ -152,7 +152,7 @@ public abstract class CEffectAbstractList<T extends CEffectAbstractList.ListEntr
     }
 
     @Nonnull
-    public Either<T, BlockPos> peekNewPosition(World world, BlockPos pos, ConstellationEffectProperties prop) {
+    public Either<T, BlockPos> peekNewPosition(Level world, BlockPos pos, ConstellationEffectProperties prop) {
         if (this.excludesRitual || this.excludeRitualColumn) {
             MiscUtils.executeWithChunk(world, pos, () -> {
                 this.isLinkedRitual = MiscUtils.getTileAt(world, pos, TileRitualLink.class, true) != null;
@@ -182,7 +182,7 @@ public abstract class CEffectAbstractList<T extends CEffectAbstractList.ListEntr
     }
 
     @Nonnull
-    public Either<T, BlockPos> findNewPosition(World world, BlockPos pos, ConstellationEffectProperties prop) {
+    public Either<T, BlockPos> findNewPosition(Level world, BlockPos pos, ConstellationEffectProperties prop) {
         return this.peekNewPosition(world, pos, prop).ifLeft(entry -> {
             if (!this.hasElement(entry.getPos())) {
                 this.elements.add(entry);
@@ -208,8 +208,8 @@ public abstract class CEffectAbstractList<T extends CEffectAbstractList.ListEntr
 
         this.elements.clear();
 
-        ListTag list = cmp.getList("elements", Constants.NBT.TAG_COMPOUND);
-        for (INBT nbt : list) {
+        ListTag list = cmp.getList("elements", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
+        for (Tag nbt : list) {
             CompoundTag tag = (CompoundTag) nbt;
             BlockPos pos = NBTHelper.readBlockPosFromNBT(tag);
             CompoundTag tagData = tag.getCompound("data");
@@ -253,7 +253,7 @@ public abstract class CEffectAbstractList<T extends CEffectAbstractList.ListEntr
 
         private final int defaultMaxAmount;
 
-        public NeoForgeConfigSpec.IntValue maxAmount;
+        public ModConfigSpec.IntValue maxAmount;
 
         public CountConfig(String constellationName, double defaultRange, double defaultRangePerLens, int defaultMaxAmount) {
             super(constellationName, defaultRange, defaultRangePerLens);
@@ -261,7 +261,7 @@ public abstract class CEffectAbstractList<T extends CEffectAbstractList.ListEntr
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.maxAmount = cfgBuilder

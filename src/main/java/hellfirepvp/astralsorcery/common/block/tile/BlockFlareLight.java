@@ -23,14 +23,14 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.RayTraceResult;
-import net.minecraft.util.shapes.ISelectionContext;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.util.shapes.VoxelShape;
-import net.minecraft.util.shapes.VoxelShapes;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
+import net.minecraft.world.LevelAccessor;
+import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -58,7 +58,7 @@ public class BlockFlareLight extends Block {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState state, World world, BlockPos pos, Random rand) {
+    public void animateTick(BlockState state, Level world, BlockPos pos, Random rand) {
         Color c = ColorUtils.flareColorFromDye(state.get(COLOR));
         for (int i = 0; i < 2; i++) {
             EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE)
@@ -89,19 +89,19 @@ public class BlockFlareLight extends Block {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public boolean addDestroyEffects(BlockState state, World world, BlockPos pos, ParticleManager manager) {
+    public boolean addDestroyEffects(BlockState state, Level world, BlockPos pos, ParticleManager manager) {
         return true;
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public boolean addHitEffects(BlockState state, World worldObj, RayTraceResult target, ParticleManager manager) {
+    public boolean addHitEffects(BlockState state, Level worldObj, RayTraceResult target, ParticleManager manager) {
         return true;
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public boolean addRunningEffects(BlockState state, World world, BlockPos pos, Entity entity) {
+    public boolean addRunningEffects(BlockState state, Level world, BlockPos pos, Entity entity) {
         return true;
     }
 
@@ -122,12 +122,12 @@ public class BlockFlareLight extends Block {
     }
 
     @Override
-    public boolean canBeReplacedByLogs(BlockState state, IWorldReader world, BlockPos pos) {
+    public boolean canBeReplacedByLogs(BlockState state, LevelAccessor world, BlockPos pos) {
         return true;
     }
 
     @Override
-    public boolean canBeReplacedByLeaves(BlockState state, IWorldReader world, BlockPos pos) {
+    public boolean canBeReplacedByLeaves(BlockState state, LevelAccessor world, BlockPos pos) {
         return true;
     }
 

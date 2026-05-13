@@ -14,11 +14,11 @@ import hellfirepvp.astralsorcery.client.util.sound.PositionedLoopSound;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayer;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.vector.Vector3i;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Vec3i;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -33,23 +33,23 @@ import java.util.function.Predicate;
  */
 public class SoundHelper {
 
-    public static void playSoundAround(SoundEvent sound, World world, Vector3i position, float volume, float pitch) {
+    public static void playSoundAround(SoundEvent sound, Level world, net.minecraft.core.Vec3i position, float volume, float pitch) {
         playSoundAround(sound, SoundCategory.MASTER, world, position.getX(), position.getY(), position.getZ(), volume, pitch);
     }
 
-    public static void playSoundAround(SoundEvent sound, SoundCategory category, World world, Vector3i position, float volume, float pitch) {
+    public static void playSoundAround(SoundEvent sound, SoundCategory category, Level world, net.minecraft.core.Vec3i position, float volume, float pitch) {
         playSoundAround(sound, category, world, position.getX(), position.getY(), position.getZ(), volume, pitch);
     }
 
-    public static void playSoundAround(SoundEvent sound, World world, Vector3 position, float volume, float pitch) {
+    public static void playSoundAround(SoundEvent sound, Level world, Vector3 position, float volume, float pitch) {
         playSoundAround(sound, SoundCategory.MASTER, world, position.getX(), position.getY(), position.getZ(), volume, pitch);
     }
 
-    public static void playSoundAround(SoundEvent sound, SoundCategory category, World world, Vector3 position, float volume, float pitch) {
+    public static void playSoundAround(SoundEvent sound, SoundCategory category, Level world, Vector3 position, float volume, float pitch) {
         playSoundAround(sound, category, world, position.getX(), position.getY(), position.getZ(), volume, pitch);
     }
 
-    public static void playSoundAround(SoundEvent sound, SoundCategory category, World world, double posX, double posY, double posZ, float volume, float pitch) {
+    public static void playSoundAround(SoundEvent sound, SoundCategory category, Level world, double posX, double posY, double posZ, float volume, float pitch) {
         if (sound instanceof CategorizedSoundEvent) {
             category = ((CategorizedSoundEvent) sound).getCategory();
         }

@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.effect;
 
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.effect.context.base.BatchRenderContext;
 import hellfirepvp.astralsorcery.client.effect.function.*;

@@ -9,7 +9,8 @@
 package hellfirepvp.astralsorcery.common.util.tick;
 
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
-import net.neoforged.neoforge.event.tick.TickEvent;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
+import net.neoforged.neoforge.event.tick.ClientTickEvent;
 
 import javax.annotation.Nonnull;
 import java.util.EnumSet;
@@ -25,14 +26,14 @@ import java.util.Map;
  */
 public class TickTokenMap<K, V extends TickTokenMap.TickMapToken<?>> extends TokenMap<K, V> implements ITickHandler {
 
-    private final EnumSet<TickEvent.Type> tickTypes;
+    private final EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> tickTypes;
 
-    public TickTokenMap(@Nonnull TickEvent.Type first, TickEvent.Type... restTypes) {
+    public TickTokenMap(@Nonnull net.neoforged.neoforge.event.tick.ClientTickEvent first, net.neoforged.neoforge.event.tick.ClientTickEvent... restTypes) {
         this.tickTypes = EnumSet.of(first, restTypes);
     }
 
     @Override
-    public void tick(TickEvent.Type type, Object... context) {
+    public void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
         Iterator<Map.Entry<K, V>> iteratorEntries = entrySet().iterator();
         while (iteratorEntries.hasNext()) {
             Map.Entry<K, V> entry = iteratorEntries.next();
@@ -45,13 +46,13 @@ public class TickTokenMap<K, V extends TickTokenMap.TickMapToken<?>> extends Tok
     }
 
     @Override
-    public EnumSet<TickEvent.Type> getHandledTypes() {
+    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
         return tickTypes;
     }
 
     @Override
-    public boolean canFire(TickEvent.Phase phase) {
-        return phase == TickEvent.Phase.END;
+    public boolean canFire(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
+        return phase == net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
     }
 
     @Override
@@ -84,7 +85,7 @@ public class TickTokenMap<K, V extends TickTokenMap.TickMapToken<?>> extends Tok
         }
 
         @Override
-        public void tick() {
+    public void tick() {
             timeout--;
         }
 

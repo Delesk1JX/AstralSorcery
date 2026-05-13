@@ -17,10 +17,10 @@ import hellfirepvp.astralsorcery.common.data.sync.client.ClientPatreonFlares;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.util.RegistryKey;
+import net.minecraft.util.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.DimensionType;
-import net.minecraft.world.World;
+import net.minecraft.world.level.dimension.DimensionType;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -94,7 +94,7 @@ public class DataPatreonFlares extends AbstractData {
     }
 
     @Override
-    public void clear(RegistryKey<World> dim) {}
+    public void clear(ResourceKey<Level> dim) {}
 
     @Override
     public void clearServer() {

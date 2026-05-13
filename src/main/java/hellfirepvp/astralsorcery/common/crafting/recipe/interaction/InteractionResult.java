@@ -16,7 +16,7 @@ import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -39,7 +39,7 @@ public abstract class InteractionResult {
         return id;
     }
 
-    public abstract void doResult(World world, Vector3 at);
+    public abstract void doResult(Level world, Vector3 at);
 
     public abstract void read(JsonObject json) throws JsonParseException;
 

@@ -17,13 +17,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.ContainerBlock;
 import net.minecraft.world.item.BlockItemUseContext;
 import net.minecraft.pathfinding.PathType;
-import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.shapes.ISelectionContext;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.util.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-import net.neoforged.neoforge.common.ToolType;
 
 import javax.annotation.Nullable;
 
@@ -36,7 +35,7 @@ import javax.annotation.Nullable;
  */
 public class BlockAttunementAltar extends ContainerBlock implements CustomItemBlock, LargeBlock {
 
-    private static final AxisAlignedBB PLACEMENT_BOX = new AxisAlignedBB(-1, 0, -1, 1, 1, 1);
+    private static final AABB PLACEMENT_BOX = new AABB(-1, 0, -1, 1, 1, 1);
     private static final VoxelShape ATTUNEMENT_ALTAR = Block.makeCuboidShape(-2, 0, -2, 18, 6, 18);
     private static final VoxelShape ATTUNEMENT_ALTAR_COLLISION = Block.makeCuboidShape(0, 0, 0, 16, 6, 16);
 
@@ -48,7 +47,7 @@ public class BlockAttunementAltar extends ContainerBlock implements CustomItemBl
     }
 
     @Override
-    public AxisAlignedBB getBlockSpace() {
+    public AABB getBlockSpace() {
         return PLACEMENT_BOX;
     }
 

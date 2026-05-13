@@ -32,10 +32,10 @@ import hellfirepvp.astralsorcery.common.starlight.network.StarlightTransmissionH
 import hellfirepvp.astralsorcery.common.starlight.network.StarlightUpdateHandler;
 import hellfirepvp.astralsorcery.common.util.time.TimeStopController;
 import hellfirepvp.astralsorcery.common.util.world.WorldSeedCache;
-import net.minecraft.world.entity.player.ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
@@ -43,7 +43,7 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.world.WorldEvent;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.eventbus.api.SubscribeEvent;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -105,8 +105,8 @@ public class EventHandlerCache {
     @SubscribeEvent
     public static void onUnload(WorldEvent.Unload event) {
         IWorld w = event.getWorld();
-        if (w instanceof World) {
-            World world = (World) w;
+        if (w instanceof Level) {
+            Level world = (Level) w;
 
             SyncDataHolder.clearWorld(world);
             StarlightTransmissionHandler.getInstance().informWorldUnload(world);

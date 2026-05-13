@@ -19,17 +19,17 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.ServerPlayer;
-import net.minecraft.util.DamageSource;
-import net.minecraft.world.World;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.event.entity.living.LivingAttackEvent;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -73,7 +73,7 @@ public class MantleEffectDiscidia extends MantleEffect {
 
     private void onAttack(LivingAttackEvent event) {
         LivingEntity attacked = event.getEntityLiving();
-        World world = attacked.getEntityWorld();
+        Level world = attacked.level;
         DamageSource source = event.getSource();
         Entity attacker = source.getTrueSource();
 
@@ -103,7 +103,7 @@ public class MantleEffectDiscidia extends MantleEffect {
     }
 
     private void onHurt(LivingHurtEvent event) {
-        World world = event.getEntity().getEntityWorld();
+        Level world = event.getEntity().level;
         LivingEntity hurt = event.getEntityLiving();
 
         if (world.isRemote()) {
@@ -134,16 +134,16 @@ public class MantleEffectDiscidia extends MantleEffect {
 
         private final int defaultChargeCostPerAttack = 100;
 
-        public NeoForgeConfigSpec.DoubleValue damageMultiplier;
+        public ModConfigSpec.DoubleValue damageMultiplier;
 
-        public NeoForgeConfigSpec.IntValue chargeCostPerAttack;
+        public ModConfigSpec.IntValue chargeCostPerAttack;
 
         public DiscidiaConfig() {
             super("discidia");
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.damageMultiplier = cfgBuilder

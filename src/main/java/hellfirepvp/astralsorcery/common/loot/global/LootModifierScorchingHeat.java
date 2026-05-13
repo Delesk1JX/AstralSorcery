@@ -24,7 +24,7 @@ import net.minecraft.loot.LootParameters;
 import net.minecraft.loot.conditions.ILootCondition;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.vector.Vector3d;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.server.level.ServerLevel;
 import net.neoforged.neoforge.common.loot.GlobalLootModifierSerializer;
 import net.neoforged.neoforge.common.loot.LootModifier;
@@ -87,7 +87,7 @@ public class LootModifierScorchingHeat extends LootModifier {
                                         iExp += 1;
                                     }
                                     if (iExp >= 1) {
-                                        Vector3d blockPos = context.get(LootParameters.field_237457_g_);
+                                        net.minecraft.world.phys.Vec3 blockPos = context.get(LootParameters.field_237457_g_);
                                         if (blockPos != null) {
                                             ServerLevel world = context.getWorld();
                                             world.addEntity(new ExperienceOrbEntity(world, blockPos.getX(), blockPos.getY(), blockPos.getZ(), iExp));

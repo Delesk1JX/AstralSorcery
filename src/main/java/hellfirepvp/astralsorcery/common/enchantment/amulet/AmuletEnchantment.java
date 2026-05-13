@@ -32,11 +32,11 @@ import javax.annotation.Nullable;
  */
 public class AmuletEnchantment extends DynamicEnchantment {
 
-    public AmuletEnchantment(DynamicEnchantmentType type, @Nonnull Enchantment enchantment, int levelAddition) {
+    public AmuletEnchantment(Dynamicnet.minecraft.world.item.enchantment.Enchantment type, @Nonnull Enchantment enchantment, int levelAddition) {
         super(type, enchantment, levelAddition);
     }
 
-    public AmuletEnchantment(DynamicEnchantmentType type, int levelAddition) {
+    public AmuletEnchantment(Dynamicnet.minecraft.world.item.enchantment.Enchantment type, int levelAddition) {
         super(type, levelAddition);
     }
 
@@ -77,7 +77,7 @@ public class AmuletEnchantment extends DynamicEnchantment {
     @Nullable
     public static AmuletEnchantment deserialize(CompoundTag cmp) {
         int typeId = cmp.getInt("type");
-        DynamicEnchantmentType type = DynamicEnchantmentType.values()[typeId];
+        Dynamicnet.minecraft.world.item.enchantment.Enchantment type = Dynamicnet.minecraft.world.item.enchantment.Enchantment.values()[typeId];
         int level = Math.max(0, cmp.getInt("level"));
         if (type.isEnchantmentSpecific()) {
             ResourceLocation res = new ResourceLocation(cmp.getString("ench"));

@@ -28,8 +28,9 @@ import net.minecraft.potion.Effects;
 import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.event.tick.TickEvent;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
+import net.neoforged.neoforge.event.tick.ClientTickEvent;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -61,7 +62,7 @@ public class TypeStarHalo extends PatreonEffect implements ITickHandler {
     }
 
     @Override
-    public void tick(TickEvent.Type type, Object... context) {
+    public void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
         Player player = (Player) context[0];
         LogicalSide side = (LogicalSide) context[1];
 
@@ -158,13 +159,13 @@ public class TypeStarHalo extends PatreonEffect implements ITickHandler {
     }
 
     @Override
-    public EnumSet<TickEvent.Type> getHandledTypes() {
-        return EnumSet.of(TickEvent.Type.PLAYER);
+    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
+        return EnumSet.of(net.neoforged.neoforge.event.tick.ClientTickEvent.PLAYER);
     }
 
     @Override
-    public boolean canFire(TickEvent.Phase phase) {
-        return phase == TickEvent.Phase.END;
+    public boolean canFire(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
+        return phase == net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
     }
 
     @Override

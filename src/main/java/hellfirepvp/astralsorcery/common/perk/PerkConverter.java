@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.common.perk.type.ModifierType;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 import javax.annotation.Nonnull;
@@ -33,7 +33,7 @@ import java.util.Objects;
  * Created by HellFirePvP
  * Date: 08.08.2019 / 17:28
  */
-public abstract class PerkConverter extends DeferredHolder<PerkConverter> {
+public abstract class PerkConverter extends DeferredHolder<net.neoforged.neoforge.registries.RegistryKey<PerkConverter>, PerkConverter> {
 
     public PerkConverter(ResourceLocation id) {
         this.setRegistryName(id);

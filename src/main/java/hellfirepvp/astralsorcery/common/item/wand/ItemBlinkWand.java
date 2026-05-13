@@ -29,24 +29,25 @@ import hellfirepvp.astralsorcery.common.util.RaytraceAssist;
 import hellfirepvp.astralsorcery.common.util.block.BlockUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.UseAction;
+import net.minecraft.world.item.UseAnim;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.Hand;
-import net.minecraft.util.BlockPos;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.network.chat.*;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -73,7 +74,7 @@ public class ItemBlinkWand extends Item implements AlignmentChargeConsumer {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<Component> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         tooltip.add(getBlinkMode(stack).getDisplay().withStyle(ChatFormatting.GOLD));
     }
 
@@ -96,7 +97,7 @@ public class ItemBlinkWand extends Item implements AlignmentChargeConsumer {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, Player player, Hand hand) {
+    public ActionResult<ItemStack> onItemRightClick(Level world, Player player, Hand hand) {
         ItemStack held = player.getHeldItem(hand);
         if (player.isSneaking()) {
             BlinkMode nextMode = getBlinkMode(held).next();
@@ -119,7 +120,7 @@ public class ItemBlinkWand extends Item implements AlignmentChargeConsumer {
     }
 
     @Override
-    public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
+    public void onPlayerStoppedUsing(ItemStack stack, Level worldIn, LivingEntity entityLiving, int timeLeft) {
         if (worldIn.isRemote() || !(entityLiving instanceof ServerPlayer)) {
             return;
         }
@@ -132,8 +133,8 @@ public class ItemBlinkWand extends Item implements AlignmentChargeConsumer {
             List<BlockPos> blockLine = new ArrayList<>();
             RaytraceAssist rta = new RaytraceAssist(origin, look);
             rta.forEachBlockPos(pos -> {
-                return MiscUtils.executeWithChunk(player.getEntityWorld(), pos, () -> {
-                    if (BlockUtils.isReplaceable(player.getEntityWorld(), pos) && BlockUtils.isReplaceable(player.getEntityWorld(), pos.up())) {
+                return MiscUtils.executeWithChunk(player.level, pos, () -> {
+                    if (BlockUtils.isReplaceable(player.level, pos) && BlockUtils.isReplaceable(player.level, pos.up())) {
                         blockLine.add(pos);
                         return true;
                     }
@@ -166,7 +167,7 @@ public class ItemBlinkWand extends Item implements AlignmentChargeConsumer {
                         motion.setY(Mth.clamp(motion.getY() + (0.2F * strength), 0.2F * strength, Float.MAX_VALUE));
                     }
 
-                    player.setMotion(motion.toVector3d());
+                    player.setMotion(motion.toVec3());
                     player.fallDistance = 0F;
 
                     if (ItemMantle.getEffect(player, ConstellationsAS.vicio) != null) {
@@ -187,7 +188,7 @@ public class ItemBlinkWand extends Item implements AlignmentChargeConsumer {
 
     @Override
     public void onUsingTick(ItemStack stack, LivingEntity entity, int count) {
-        if (entity.getEntityWorld().isRemote()) {
+        if (entity.level.isRemote()) {
             float perc = 0.2F + Math.min(1F, Math.min(50, stack.getUseDuration() - count) / 50F) * 0.8F;
             playUseParticles(stack, entity, count, perc);
         }
@@ -238,8 +239,8 @@ public class ItemBlinkWand extends Item implements AlignmentChargeConsumer {
             RaytraceAssist rta = new RaytraceAssist(origin, look);
             boolean clearLine = rta.forEachStep(v -> {
                 BlockPos pos = v.toBlockPos();
-                return MiscUtils.executeWithChunk(entity.getEntityWorld(), pos, () -> {
-                    if (BlockUtils.isReplaceable(entity.getEntityWorld(), pos) && BlockUtils.isReplaceable(entity.getEntityWorld(), pos.up())) {
+                return MiscUtils.executeWithChunk(entity.level, pos, () -> {
+                    if (BlockUtils.isReplaceable(entity.level, pos) && BlockUtils.isReplaceable(entity.level, pos.up())) {
                         line.add(v);
                         return true;
                     }

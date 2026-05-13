@@ -19,12 +19,12 @@ import hellfirepvp.astralsorcery.common.perk.node.RootPerk;
 import hellfirepvp.astralsorcery.common.util.DiminishingMultiplier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.CombatTracker;
-import net.minecraft.util.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 

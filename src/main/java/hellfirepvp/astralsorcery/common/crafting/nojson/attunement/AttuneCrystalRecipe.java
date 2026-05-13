@@ -22,8 +22,8 @@ import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.world.World;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -38,7 +38,7 @@ import java.util.List;
  */
 public class AttuneCrystalRecipe extends AttunementRecipe<ActiveCrystalAttunementRecipe> {
 
-    private static final AxisAlignedBB BOX = new AxisAlignedBB(0, 0, 0, 1, 1, 1);
+    private static final AABB BOX = new AABB(0, 0, 0, 1, 1, 1);
 
     public AttuneCrystalRecipe() {
         super(AstralSorcery.key("attune_crystal"));
@@ -46,7 +46,7 @@ public class AttuneCrystalRecipe extends AttunementRecipe<ActiveCrystalAttunemen
 
     @Override
     public boolean canStartCrafting(TileAttunementAltar altar) {
-        World world = altar.getWorld();
+        Level world = altar.getWorld();
         if (DayTimeHelper.isNight(world)) {
             return findApplicableCrystal(altar) != null;
         }
@@ -73,7 +73,7 @@ public class AttuneCrystalRecipe extends AttunementRecipe<ActiveCrystalAttunemen
             return null;
         }
 
-        AxisAlignedBB boxAt = BOX.offset(altar.getPos().up()).grow(1);
+        AABB boxAt = BOX.offset(altar.getPos().up()).grow(1);
 
         Vector3 thisVec = new Vector3(altar).add(0.5, 1.5, 0.5);
         List<ItemEntity> items = altar.getWorld().getEntitiesWithinAABB(ItemEntity.class, boxAt);

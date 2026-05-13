@@ -38,15 +38,15 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.fluids.FluidAttributes;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;
 
 import javax.annotation.Nonnull;
@@ -78,7 +78,7 @@ public class ActiveLiquidInfusionRecipe {
 
     private Object orbitalLiquid = null;
 
-    public ActiveLiquidInfusionRecipe(World world, BlockPos center, LiquidInfusion recipeToCraft, UUID playerCraftingUUID) {
+    public ActiveLiquidInfusionRecipe(Level world, BlockPos center, LiquidInfusion recipeToCraft, UUID playerCraftingUUID) {
         this(recipeToCraft, playerCraftingUUID);
 
         if (this.recipeToCraft.acceptsChaliceInput()) {
@@ -91,7 +91,7 @@ public class ActiveLiquidInfusionRecipe {
         this.playerCraftingUUID = playerCraftingUUID;
     }
 
-    private void findChalices(World world, BlockPos center) {
+    private void findChalices(Level world, BlockPos center) {
         ChaliceHelper.findNearbyChalicesCombined(world, center, this.getChaliceRequiredFluidInput(), CHALICE_DISTANCE)
                 .ifPresent(chalices -> chalices.forEach(chalice -> this.supportingChalices.add(chalice.getPos())));
     }
@@ -272,13 +272,13 @@ public class ActiveLiquidInfusionRecipe {
         if (infusion.doesConsumeMultipleFluids()) {
             for (BlockPos at : TileInfuser.getLiquidOffsets()) {
                 if (rand.nextFloat() < chance) {
-                    infuser.getWorld().setBlockState(at.add(infuser.getPos()), Blocks.AIR.getDefaultState(), Constants.BlockFlags.DEFAULT_AND_RERENDER);
+                    infuser.getWorld().setBlockState(at.add(infuser.getPos()), Blocks.AIR.getDefaultState(), net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.DEFAULT_AND_RERENDER);
                 }
             }
         } else {
             BlockPos at = MiscUtils.getRandomEntry(TileInfuser.getLiquidOffsets(), rand).add(infuser.getPos());
             if (rand.nextFloat() < chance) {
-                infuser.getWorld().setBlockState(at, Blocks.AIR.getDefaultState(), Constants.BlockFlags.DEFAULT_AND_RERENDER);
+                infuser.getWorld().setBlockState(at, Blocks.AIR.getDefaultState(), net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.DEFAULT_AND_RERENDER);
             }
         }
     }
@@ -344,7 +344,7 @@ public class ActiveLiquidInfusionRecipe {
 
         UUID uuidCraft = compound.getUniqueId("playerCraftingUUID");
         int tick = compound.getInt("ticksCrafting");
-        ListTag chalices = compound.getList("supportingChalices", Constants.NBT.TAG_COMPOUND);
+        ListTag chalices = compound.getList("supportingChalices", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
 
         Set<BlockPos> chalicePositions = new HashSet<>();
         for (int i = 0; i < chalices.size(); i++) {

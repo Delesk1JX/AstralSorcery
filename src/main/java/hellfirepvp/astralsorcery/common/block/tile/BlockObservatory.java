@@ -18,20 +18,19 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.ContainerBlock;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.BlockItemUseContext;
-import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.BlockRayTraceResult;
-import net.minecraft.util.shapes.ISelectionContext;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.util.shapes.VoxelShape;
-import net.minecraft.util.shapes.VoxelShapes;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
-import net.neoforged.neoforge.common.ToolType;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 
@@ -44,7 +43,7 @@ import javax.annotation.Nullable;
  */
 public class BlockObservatory extends ContainerBlock implements LargeBlock, CustomItemBlock {
 
-    private static final AxisAlignedBB PLACEMENT_BOX = new AxisAlignedBB(-1, 0, -1, 1, 3, 1);
+    private static final AABB PLACEMENT_BOX = new AABB(-1, 0, -1, 1, 3, 1);
 
     public BlockObservatory() {
         super(PropertiesMisc.defaultGoldMachinery()
@@ -55,7 +54,7 @@ public class BlockObservatory extends ContainerBlock implements LargeBlock, Cust
     }
 
     @Override
-    public AxisAlignedBB getBlockSpace() {
+    public AABB getBlockSpace() {
         return PLACEMENT_BOX;
     }
 
@@ -66,7 +65,7 @@ public class BlockObservatory extends ContainerBlock implements LargeBlock, Cust
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, Player player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, Level worldIn, BlockPos pos, Player player, Hand handIn, BlockHitResult hit) {
         if (!worldIn.isRemote()) {
             TileObservatory observatory = MiscUtils.getTileAt(worldIn, pos, TileObservatory.class, false);
             if (observatory != null && observatory.isUsable() && !player.isSneaking()) {

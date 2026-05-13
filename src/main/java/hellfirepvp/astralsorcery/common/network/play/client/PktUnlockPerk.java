@@ -20,8 +20,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.api.distmarker.LogicalSide;
-import net.neoforged.neoforge.network.NetworkEvent;
+import net.neoforged.fml.LogicalSide;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import javax.annotation.Nonnull;
 
@@ -72,7 +72,7 @@ public class PktUnlockPerk extends ASPacket<PktUnlockPerk> {
         return new Handler<PktUnlockPerk>() {
             @Override
             @OnlyIn(Dist.CLIENT)
-            public void handleClient(PktUnlockPerk packet, NetworkEvent.Context context) {
+            public void handleClient(PktUnlockPerk packet, IPayloadContext context) {
                 context.enqueueWork(() -> {
                     if (packet.serverAccept) {
                         PerkTree.PERK_TREE.getPerk(LogicalSide.CLIENT, packet.perkKey).ifPresent(perk -> {
@@ -86,7 +86,7 @@ public class PktUnlockPerk extends ASPacket<PktUnlockPerk> {
             }
 
             @Override
-            public void handle(PktUnlockPerk packet, NetworkEvent.Context context, LogicalSide side) {
+            public void handle(PktUnlockPerk packet, IPayloadContext context, LogicalSide side) {
                 context.enqueueWork(() -> {
                     PerkTree.PERK_TREE.getPerk(side, packet.perkKey).ifPresent(perk -> {
                         Player player = context.getSender();

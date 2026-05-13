@@ -16,17 +16,16 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CampfireBlock;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentType;
+
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ItemUseContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.util.*;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
-import net.neoforged.neoforge.common.ToolType;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 import java.util.Map;
 
@@ -57,14 +56,14 @@ public class ItemCrystalShovel extends ItemCrystalTierItem implements TypeEnchan
     }
 
     @Override
-    public boolean canEnchantItem(ItemStack stack, EnchantmentType type) {
-        return type == EnchantmentType.BREAKABLE || type == EnchantmentType.DIGGER;
+    public boolean canEnchantItem(ItemStack stack, net.minecraft.world.item.enchantment.Enchantment type) {
+        return type == net.minecraft.world.item.enchantment.Enchantment.BREAKABLE || type == net.minecraft.world.item.enchantment.Enchantment.DIGGER;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        EnchantmentType type = enchantment.type;
-        return type == EnchantmentType.DIGGER || type == EnchantmentType.BREAKABLE;
+        net.minecraft.world.item.enchantment.Enchantment type = enchantment.type;
+        return type == net.minecraft.world.item.enchantment.Enchantment.DIGGER || type == net.minecraft.world.item.enchantment.Enchantment.BREAKABLE;
     }
 
     @Override
@@ -79,7 +78,7 @@ public class ItemCrystalShovel extends ItemCrystalTierItem implements TypeEnchan
 
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
-        World world = context.getWorld();
+        Level world = context.getWorld();
         BlockPos pos = context.getPos();
         BlockState state = world.getBlockState(pos);
         if (context.getFace() == Direction.DOWN) {

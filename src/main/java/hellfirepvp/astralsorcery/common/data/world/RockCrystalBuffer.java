@@ -14,10 +14,10 @@ import hellfirepvp.observerlib.common.data.base.SectionWorldData;
 import hellfirepvp.observerlib.common.data.base.WorldSection;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.ChunkPos;
-import net.minecraft.world.World;
-import net.neoforged.neoforge.common.util.Constants;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.common.Tags;
 
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -77,7 +77,7 @@ public class RockCrystalBuffer extends SectionWorldData<RockCrystalBuffer.Buffer
     public void readFromNBT(CompoundTag nbt) {}
 
     @Override
-    public void updateTick(World world) {}
+    public void updateTick(Level world) {}
 
     public static class BufferSection extends WorldSection {
 
@@ -100,7 +100,7 @@ public class RockCrystalBuffer extends SectionWorldData<RockCrystalBuffer.Buffer
         public void readFromNBT(CompoundTag tag) {
             crystalPositions.clear();
 
-            ListTag entries = tag.getList("posList", Constants.NBT.TAG_COMPOUND);
+            ListTag entries = tag.getList("posList", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
             for (int j = 0; j < entries.size(); j++) {
                 crystalPositions.add(NBTHelper.readBlockPosFromNBT(entries.getCompound(j)));
             }

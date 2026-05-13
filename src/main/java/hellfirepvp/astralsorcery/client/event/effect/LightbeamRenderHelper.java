@@ -21,11 +21,12 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.DimensionType;
-import net.minecraft.world.World;
-import net.neoforged.neoforge.event.tick.TickEvent;
+import net.minecraft.util.ResourceKey;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.dimension.DimensionType;
+import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
+import net.neoforged.neoforge.event.tick.ClientTickEvent;
 
 import java.awt.*;
 import java.util.EnumSet;
@@ -52,7 +53,7 @@ public class LightbeamRenderHelper implements ITickHandler {
     }
 
     @Override
-    public void tick(TickEvent.Type type, Object... context) {
+    public void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
         ticksExisted++;
         if (ticksExisted % 48 == 0) {
             ticksExisted = 0;
@@ -62,7 +63,7 @@ public class LightbeamRenderHelper implements ITickHandler {
             }
             if (rView != null) {
                 Entity renderView = rView;
-                RegistryKey<World> dimKey = renderView.getEntityWorld().getDimensionKey();
+                ResourceKey<Level> dimKey = renderView.level.getDimensionKey();
 
                 SyncDataHolder.executeClient(SyncDataHolder.DATA_LIGHT_CONNECTIONS, ClientLightConnections.class, (data) -> {
                     for (Map.Entry<BlockPos, Set<BlockPos>> entry : data.getClientConnections(dimKey).entrySet()) {
@@ -71,7 +72,7 @@ public class LightbeamRenderHelper implements ITickHandler {
                         if (renderView.getDistanceSq(at.getX(), at.getY(), at.getZ()) <= RenderingConfig.CONFIG.getMaxEffectRenderDistanceSq()) {
                             Vector3 source = new Vector3(at).add(0.5, 0.5, 0.5);
                             Color overlay = null;
-                            TileLens lens = MiscUtils.getTileAt(renderView.getEntityWorld(), at, TileLens.class, true);
+                            TileLens lens = MiscUtils.getTileAt(renderView.level, at, TileLens.class, true);
                             if (lens != null) {
                                 if (lens.getColorType() != null) {
                                     overlay = lens.getColorType().getColor();
@@ -95,13 +96,13 @@ public class LightbeamRenderHelper implements ITickHandler {
     }
 
     @Override
-    public EnumSet<TickEvent.Type> getHandledTypes() {
-        return EnumSet.of(TickEvent.Type.CLIENT);
+    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
+        return EnumSet.of(net.neoforged.neoforge.event.tick.ClientTickEvent.CLIENT);
     }
 
     @Override
-    public boolean canFire(TickEvent.Phase phase) {
-        return phase == TickEvent.Phase.END;
+    public boolean canFire(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
+        return phase == net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
     }
 
     @Override

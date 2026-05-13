@@ -25,17 +25,17 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.loot.LootContext;
 import net.minecraft.state.StateContainer;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.BlockRayTraceResult;
-import net.minecraft.util.RayTraceResult;
-import net.minecraft.util.shapes.ISelectionContext;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.util.shapes.VoxelShape;
-import net.minecraft.util.vector.Vector3d;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
+import net.minecraft.world.LevelAccessor;
+import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -64,7 +64,7 @@ public abstract class BlockFakedState extends ContainerBlock {
     }
 
     @OnlyIn(Dist.CLIENT)
-    protected void playParticles(World world, BlockPos pos, Random rand) {
+    protected void playParticles(Level world, BlockPos pos, Random rand) {
         if (rand.nextInt(8) == 0) {
             VFXColorFunction<?> colorFn = VFXColorFunction.WHITE;
             TileFakedState fakedState = MiscUtils.getTileAt(world, pos, TileFakedState.class, false);
@@ -82,7 +82,7 @@ public abstract class BlockFakedState extends ContainerBlock {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public boolean addDestroyEffects(BlockState state, World world, BlockPos pos, ParticleManager manager) {
+    public boolean addDestroyEffects(BlockState state, Level world, BlockPos pos, ParticleManager manager) {
         BlockState fakeState = this.getFakedState(world, pos);
         RenderingUtils.playBlockBreakParticles(pos, state, fakeState);
         return true;
@@ -90,7 +90,7 @@ public abstract class BlockFakedState extends ContainerBlock {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public boolean addHitEffects(BlockState state, World worldObj, RayTraceResult target, ParticleManager manager) {
+    public boolean addHitEffects(BlockState state, Level worldObj, RayTraceResult target, ParticleManager manager) {
         return true;
     }
 
@@ -100,12 +100,12 @@ public abstract class BlockFakedState extends ContainerBlock {
     }
 
     @Override
-    public boolean addRunningEffects(BlockState state, World world, BlockPos pos, Entity entity) {
+    public boolean addRunningEffects(BlockState state, Level world, BlockPos pos, Entity entity) {
         return true;
     }
 
     @Override
-    public SoundType getSoundType(BlockState state, IWorldReader world, BlockPos pos, @Nullable Entity entity) {
+    public SoundType getSoundType(BlockState state, LevelAccessor world, BlockPos pos, @Nullable Entity entity) {
         BlockState fakeState = this.getFakedState(world, pos);
         return fakeState.getSoundType(world, pos, entity);
     }
@@ -133,7 +133,7 @@ public abstract class BlockFakedState extends ContainerBlock {
 
     //TODO custom states via state container
     //@Override
-    //public Vector3d getOffset(BlockState state, IBlockReader worldIn, BlockPos pos) {
+    //public net.minecraft.world.phys.Vec3 getOffset(BlockState state, IBlockReader worldIn, BlockPos pos) {
     //    BlockState fakeState = this.getFakedState(worldIn, pos);
     //    try {
     //        //if (fakeState.getBlock().getOffsetType())
@@ -141,7 +141,7 @@ public abstract class BlockFakedState extends ContainerBlock {
     //    } catch (Exception exc) {
     //        //Ignore the result if this happens to be more complex than expected
     //    }
-    //    return Vector3d.ZERO;
+    //    return net.minecraft.world.phys.Vec3.ZERO;
     //}
 
     @Override
@@ -167,7 +167,7 @@ public abstract class BlockFakedState extends ContainerBlock {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, Player player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, Hand handIn, BlockHitResult hit) {
         BlockState fakeState = this.getFakedState(world, pos);
         try {
             return fakeState.onBlockActivated(world, player, handIn, hit);

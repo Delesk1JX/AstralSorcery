@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.sky.astral;
 
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
@@ -28,18 +28,18 @@ import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.FogRenderer;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.util.vector.Matrix4f;
-import net.minecraft.util.vector.Vector3d;
+import org.joml.Matrix4f;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.util.vector.Vector3f;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.ISkyRenderHandler;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 import org.lwjgl.opengl.GL11;
 
 import java.util.LinkedList;
@@ -96,7 +96,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler {
     }
 
     @Override
-    public void render(int ticks, float pTicks, PoseStack renderStack, ClientWorld world, Minecraft mc) {
+    public void render(int ticks, float pTicks, PoseStack renderStack, ClientLevel world, Minecraft mc) {
         if (AssetLibrary.isReloading()) {
             return;
         }
@@ -104,7 +104,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler {
             initialize();
         }
 
-        Vector3d color = world.getSkyColor(mc.gameRenderer.getActiveRenderInfo().getBlockPos(), pTicks);
+        net.minecraft.world.phys.Vec3 color = world.getSkyColor(mc.gameRenderer.getActiveRenderInfo().getBlockPos(), pTicks);
         float skyR = (float) color.x;
         float skyG = (float) color.y;
         float skyB = (float) color.z;
@@ -189,8 +189,8 @@ public class AstralSkyRenderer implements ISkyRenderHandler {
         RenderSystem.pushMatrix();
         RenderSystem.rotatef(180F, 1F, 0F, 0F);
 
-        Tessellator tes = Tesselator.getInstance();
-        BufferBuilder vb = tes.getBuffer();
+        Tesselator tes = Tesselator.getInstance();
+        VertexConsumer vb = tes.getBuffer();
         GL11.glColor4f(1F, 0, 0, 1F);
 
         List<double[]> poss = ActiveCelestialsHandler.getDisplayPos();
@@ -230,7 +230,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler {
     }
     */
 
-    public static void renderConstellationsSky(ClientWorld world, PoseStack renderStack, float pTicks) {
+    public static void renderConstellationsSky(ClientLevel world, PoseStack renderStack, float pTicks) {
         WorldContext ctx = SkyHandler.getContext(world, LogicalSide.CLIENT);
         if (ctx == null) {
             return;
@@ -263,7 +263,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler {
         }
     }
 
-    private void renderStars(ClientWorld world, PoseStack renderStack, float pTicks) {
+    private void renderStars(ClientLevel world, PoseStack renderStack, float pTicks) {
         float starBrightness = world.getStarBrightness(pTicks) * (1.0F - world.getRainStrength(pTicks));
         if (starBrightness > 0) {
             this.starLists.forEach((list) -> {
@@ -275,7 +275,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler {
         }
     }
 
-    private void renderCelestials(ClientWorld world, PoseStack renderStack, float pTicks) {
+    private void renderCelestials(ClientLevel world, PoseStack renderStack, float pTicks) {
         WorldContext ctx = SkyHandler.getContext(world, LogicalSide.CLIENT);
 
         float rainAlpha = 1F - world.getRainStrength(pTicks);
@@ -347,7 +347,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler {
         });
     }
 
-    private void renderMoon(PoseStack renderStack, World world) {
+    private void renderMoon(PoseStack renderStack, Level world) {
         float moonSize = 20F;
 
         //Don't ask me.. i'm just copying this and be done with it
@@ -370,7 +370,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler {
         });
     }
 
-    private void renderDuskDawn(float[] duskDawnColors, PoseStack renderStack, ClientWorld world, float pTicks) {
+    private void renderDuskDawn(float[] duskDawnColors, PoseStack renderStack, ClientLevel world, float pTicks) {
         float f3 = Mth.sin(world.getCelestialAngleRadians(pTicks)) < 0.0F ? 180.0F : 0.0F;
 
         renderStack.push();

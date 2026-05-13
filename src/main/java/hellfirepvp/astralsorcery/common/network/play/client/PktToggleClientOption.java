@@ -13,15 +13,15 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.data.research.ResearchManager;
 import hellfirepvp.astralsorcery.common.network.base.ASPacket;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
-import net.minecraft.world.entity.player.ServerPlayer;
-import net.minecraft.util.Util;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.Util;
 import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 import static net.minecraft.network.chat.Component.translatable;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.api.distmarker.LogicalSide;
-import net.neoforged.neoforge.network.NetworkEvent;
+import net.neoforged.fml.LogicalSide;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import javax.annotation.Nonnull;
 
@@ -60,10 +60,10 @@ public class PktToggleClientOption extends ASPacket<PktToggleClientOption> {
         return new Handler<PktToggleClientOption>() {
             @Override
             @OnlyIn(Dist.CLIENT)
-            public void handleClient(PktToggleClientOption packet, NetworkEvent.Context context) {}
+            public void handleClient(PktToggleClientOption packet, IPayloadContext context) {}
 
             @Override
-            public void handleServer(PktToggleClientOption packet, NetworkEvent.Context context) {
+            public void handleServer(PktToggleClientOption packet, IPayloadContext context) {
                 ServerPlayer player = context.getSender();
                 switch (packet.option) {
                     case DISABLE_PERK_ABILITIES:
@@ -84,7 +84,7 @@ public class PktToggleClientOption extends ASPacket<PktToggleClientOption> {
             }
 
             @Override
-            public void handle(PktToggleClientOption packet, NetworkEvent.Context context, LogicalSide side) {}
+            public void handle(PktToggleClientOption packet, IPayloadContext context, LogicalSide side) {}
         };
     }
 

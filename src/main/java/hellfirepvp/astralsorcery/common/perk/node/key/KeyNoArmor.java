@@ -17,10 +17,10 @@ import hellfirepvp.astralsorcery.common.perk.node.KeyPerk;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -71,14 +71,14 @@ public class KeyNoArmor extends KeyPerk {
 
     public static class Config extends ConfigEntry {
 
-        private NeoForgeConfigSpec.DoubleValue damageTakenMultiplier;
+        private ModConfigSpec.DoubleValue damageTakenMultiplier;
 
         private Config(String section) {
             super(section);
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             this.damageTakenMultiplier = cfgBuilder
                     .comment("The multiplier that is applied to damage the player receives. The lower the more damage is negated.")
                     .translation(translationKey("damageTakenMultiplier"))

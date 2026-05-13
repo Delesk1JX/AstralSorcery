@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.data.config.entry;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigEntry;
 import hellfirepvp.astralsorcery.common.util.block.BlockStateHelper;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -24,24 +24,24 @@ public class CraftingConfig extends ConfigEntry {
 
     public static final CraftingConfig CONFIG = new CraftingConfig();
 
-    public NeoForgeConfigSpec.BooleanValue liquidStarlightCrystalGrowth;
-    public NeoForgeConfigSpec.BooleanValue liquidStarlightFormCelestialCrystalCluster;
-    public NeoForgeConfigSpec.BooleanValue liquidStarlightFormGemCrystalCluster;
-    public NeoForgeConfigSpec.BooleanValue liquidStarlightDropInfusedWood;
-    public NeoForgeConfigSpec.BooleanValue liquidStarlightMergeCrystals;
+    public ModConfigSpec.BooleanValue liquidStarlightCrystalGrowth;
+    public ModConfigSpec.BooleanValue liquidStarlightFormCelestialCrystalCluster;
+    public ModConfigSpec.BooleanValue liquidStarlightFormGemCrystalCluster;
+    public ModConfigSpec.BooleanValue liquidStarlightDropInfusedWood;
+    public ModConfigSpec.BooleanValue liquidStarlightMergeCrystals;
 
-    public NeoForgeConfigSpec.BooleanValue liquidStarlightInteractionAquamarine;
-    public NeoForgeConfigSpec.BooleanValue liquidStarlightInteractionSand;
-    public NeoForgeConfigSpec.BooleanValue liquidStarlightInteractionIce;
+    public ModConfigSpec.BooleanValue liquidStarlightInteractionAquamarine;
+    public ModConfigSpec.BooleanValue liquidStarlightInteractionSand;
+    public ModConfigSpec.BooleanValue liquidStarlightInteractionIce;
 
-    public NeoForgeConfigSpec.ConfigValue<String> starmetalRevertState;
+    public ModConfigSpec.ConfigValue<String> starmetalRevertState;
 
     private CraftingConfig() {
         super("crafting");
     }
 
     @Override
-    public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+    public void createEntries(ModConfigSpec.Builder cfgBuilder) {
         liquidStarlightCrystalGrowth = cfgBuilder
                 .comment("Set this to false to disable Rock/Celestial Crystal growing in liquid starlight.")
                 .translation(translationKey("liquidStarlightCrystalGrowth"))

@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.event.effect;
 
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
@@ -22,17 +22,18 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.BlockRayTraceResult;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.util.Mth;
-import net.minecraft.util.RayTraceResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.client.event.RenderWorldLastEvent;
-import net.neoforged.neoforge.event.tick.TickEvent;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
+import net.neoforged.neoforge.event.tick.ClientTickEvent;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL11C;
 
@@ -61,7 +62,7 @@ public class GatewayUIRenderHandler implements ITickHandler {
         return INSTANCE;
     }
 
-    public GatewayUI getOrCreateUI(World world, BlockPos pos, Vector3 renderPos) {
+    public GatewayUI getOrCreateUI(Level world, BlockPos pos, Vector3 renderPos) {
         if (currentUI == null ||
                 !currentUI.getDimType().equals(world.getDimensionKey()) ||
                 !currentUI.getPos().equals(pos)) {
@@ -81,7 +82,7 @@ public class GatewayUIRenderHandler implements ITickHandler {
         if (this.currentUI == null) {
             return true;
         }
-        World world = Minecraft.getInstance().world;
+        Level world = Minecraft.getInstance().world;
         TileCelestialGateway gateway;
         if (world == null ||
                 this.currentUI.getVisibleTicks() <= 0 ||
@@ -127,8 +128,8 @@ public class GatewayUIRenderHandler implements ITickHandler {
         UUID currentUUID = Minecraft.getInstance().player != null ? Minecraft.getInstance().player.getUniqueID() : null;
         RayTraceResult mouseOverRtr = Minecraft.getInstance().objectMouseOver;
         BlockPos blockSelected;
-        if (mouseOverRtr != null && mouseOverRtr.getType() == RayTraceResult.Type.BLOCK && mouseOverRtr instanceof BlockRayTraceResult) {
-            blockSelected = ((BlockRayTraceResult) mouseOverRtr).getPos().up();
+        if (mouseOverRtr != null && mouseOverRtr.getType() == HitResult.Type.BLOCK && mouseOverRtr instanceof BlockHitResult) {
+            blockSelected = ((BlockHitResult) mouseOverRtr).getPos().up();
         } else {
             blockSelected = null;
         }
@@ -249,20 +250,20 @@ public class GatewayUIRenderHandler implements ITickHandler {
     }
 
     @Override
-    public void tick(TickEvent.Type type, Object... context) {
+    public void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
         if (this.currentUI != null) {
             this.currentUI.decrementVisibleTicks();
         }
     }
 
     @Override
-    public EnumSet<TickEvent.Type> getHandledTypes() {
-        return EnumSet.of(TickEvent.Type.CLIENT);
+    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
+        return EnumSet.of(net.neoforged.neoforge.event.tick.ClientTickEvent.CLIENT);
     }
 
     @Override
-    public boolean canFire(TickEvent.Phase phase) {
-        return phase == TickEvent.Phase.END;
+    public boolean canFire(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
+        return phase == net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
     }
 
     @Override

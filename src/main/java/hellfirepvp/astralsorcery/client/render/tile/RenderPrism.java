@@ -8,9 +8,9 @@
 
 package hellfirepvp.astralsorcery.client.render.tile;
 
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.common.tile.TilePrism;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 
 /**
@@ -27,6 +27,6 @@ public class RenderPrism extends CustomTileEntityRenderer<TilePrism> {
     }
 
     @Override
-    public void render(TilePrism tile, float pTicks, PoseStack renderStack, IRenderTypeBuffer renderTypeBuffer, int combinedLight, int combinedOverlay) {}
+    public void render(TilePrism tile, float pTicks, PoseStack renderStack, MultiBufferSource renderTypeBuffer, int combinedLight, int combinedOverlay) {}
 
 }

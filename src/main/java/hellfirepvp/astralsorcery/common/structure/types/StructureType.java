@@ -14,10 +14,10 @@ import hellfirepvp.observerlib.api.util.BlockArray;
 import hellfirepvp.observerlib.common.change.ChangeObserverStructure;
 import hellfirepvp.observerlib.common.change.ObserverProviderStructure;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import static net.minecraft.network.chat.Component.translatable;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.minecraft.core.Holder;
 
 import javax.annotation.Nullable;
@@ -30,7 +30,7 @@ import java.util.function.Supplier;
  * Created by HellFirePvP
  * Date: 30.05.2019 / 15:07
  */
-public class StructureType implements IRegistryObject<StructureType> {
+public class StructureType implements IForgeRegistryEntry<StructureType> {
 
     private final ResourceLocation name;
     private final Supplier<BlockArray> structureSupplier;
@@ -48,7 +48,7 @@ public class StructureType implements IRegistryObject<StructureType> {
         return new Component.translatable(String.format("structure.%s.%s.name", name.getNamespace(), name.getPath()));
     }
 
-    public ChangeSubscriber<ChangeObserverStructure> observe(World world, BlockPos pos) {
+    public ChangeSubscriber<ChangeObserverStructure> observe(Level world, BlockPos pos) {
         return ObserverHelper.getHelper().observeArea(world, pos, new ObserverProviderStructure(getRegistryName()));
     }
 

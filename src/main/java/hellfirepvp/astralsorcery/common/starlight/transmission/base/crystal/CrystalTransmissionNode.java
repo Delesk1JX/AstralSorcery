@@ -16,8 +16,8 @@ import hellfirepvp.astralsorcery.common.starlight.transmission.registry.Transmis
 import hellfirepvp.astralsorcery.common.tile.TileLens;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -47,7 +47,7 @@ public class CrystalTransmissionNode extends SimpleTransmissionNode {
     }
 
     @Override
-    public void onTransmissionTick(World world, float starlightAmt, IWeakConstellation type) {
+    public void onTransmissionTick(Level world, float starlightAmt, IWeakConstellation type) {
         TileLens lens = MiscUtils.getTileAt(world, getLocationPos(), TileLens.class, false);
         if (lens != null) {
             lens.transmissionTick(starlightAmt, type);

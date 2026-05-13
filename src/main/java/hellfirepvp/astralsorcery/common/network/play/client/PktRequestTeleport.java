@@ -18,10 +18,10 @@ import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.minecraft.util.ResourceKey;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;
 
 import javax.annotation.Nonnull;
@@ -35,12 +35,12 @@ import javax.annotation.Nonnull;
  */
 public class PktRequestTeleport extends ASPacket<PktRequestTeleport> {
 
-    private RegistryKey<World> dim;
+    private ResourceKey<Level> dim;
     private BlockPos pos;
 
     public PktRequestTeleport() {}
 
-    public PktRequestTeleport(RegistryKey<World> dim, BlockPos pos) {
+    public PktRequestTeleport(ResourceKey<Level> dim, BlockPos pos) {
         this.dim = dim;
         this.pos = pos;
     }
@@ -77,7 +77,7 @@ public class PktRequestTeleport extends ASPacket<PktRequestTeleport> {
                 if (gate != null && gate.hasMultiblock() && gate.doesSeeSky()) {
                     MinecraftServer server = LogicalSidedProvider.INSTANCE.get(LogicalSide.SERVER);
                     if (server != null) {
-                        World to = server.getWorld(packet.dim);
+                        Level to = server.getWorld(packet.dim);
                         if (to != null) {
                             GatewayCache.GatewayNode node = DataAS.DOMAIN_AS.getData(to, DataAS.KEY_GATEWAY_CACHE).getGatewayNode(packet.pos);
                             if (node != null && node.hasAccess(player)) {

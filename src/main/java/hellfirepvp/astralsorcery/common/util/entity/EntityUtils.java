@@ -25,12 +25,12 @@ import net.minecraft.loot.LootParameters;
 import net.minecraft.loot.LootTable;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.GameRules;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.feature.structure.StructureManager;
@@ -39,9 +39,9 @@ import net.minecraft.world.spawner.WorldEntitySpawner;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.ForgeHooks;
-import net.neoforged.neoforge.event.ForgeEventFactory;
+import net.neoforged.neoforge.event.EventHooks;
 import net.neoforged.neoforge.eventbus.api.Event;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;
 
 import javax.annotation.Nonnull;
@@ -118,7 +118,7 @@ public class EntityUtils {
         Biome b = world.getBiome(pos);
         StructureManager mgr = world.func_241112_a_();
         List<MobSpawnInfo.Spawners> spawnList = world.getChunkProvider().getChunkGenerator().func_230353_a_(b, mgr, EntityClassification.MONSTER, pos);
-        spawnList = ForgeEventFactory.getPotentialSpawns(world, category, pos, spawnList);
+        spawnList = EventHooks.getPotentialSpawns(world, category, pos, spawnList);
         spawnList.removeIf(s -> !s.type.isSummonable());
         MobSpawnInfo.Spawners entry;
         if (ignoreWeighting) {
@@ -150,7 +150,7 @@ public class EntityUtils {
                     return null;
                 }
 
-                if (!ForgeEventFactory.doSpecialSpawn(entity, world, x, y, z, null, reason)) {
+                if (!EventHooks.doSpecialSpawn(entity, world, x, y, z, null, reason)) {
                     entity.onInitialSpawn(world, world.getDifficultyForLocation(pos), reason, null, null);
                 }
 
@@ -192,7 +192,7 @@ public class EntityUtils {
         if (entity instanceof LivingEntity) {
             if (entity instanceof MobEntity) {
                 MobEntity mobEntity = (MobEntity) entity;
-                Event.Result canSpawn = ForgeEventFactory.canEntitySpawn(mobEntity, world, entity.getPosX(), entity.getPosY(), entity.getPosZ(), null, spawnReason);
+                Event.Result canSpawn = EventHooks.canEntitySpawn(mobEntity, world, entity.getPosX(), entity.getPosY(), entity.getPosZ(), null, spawnReason);
                 if (canSpawn == Event.Result.DENY) {
                     return false;
                 } else if (canSpawn == Event.Result.DEFAULT) {
@@ -215,7 +215,7 @@ public class EntityUtils {
     @Nonnull
     public static List<ItemStack> generateLoot(LivingEntity entity, Random rand, DamageSource srcDeath, @Nullable LivingEntity lastAttacker) {
         MinecraftServer srv = LogicalSidedProvider.INSTANCE.get(LogicalSide.SERVER);
-        ServerLevel sw = (ServerLevel) entity.getEntityWorld();
+        ServerLevel sw = (ServerLevel) entity.level;
 
         if (!sw.getGameRules().getBoolean(GameRules.DO_MOB_LOOT)) {
             return Collections.emptyList();
@@ -241,7 +241,7 @@ public class EntityUtils {
     }
 
     @Nullable
-    public static <T extends Entity> T getClosestEntity(IWorld world, Class<T> type, AxisAlignedBB box, Vector3 closestTo) {
+    public static <T extends Entity> T getClosestEntity(ILevel world, Class<T> type, AABB box, Vector3 closestTo) {
         List<T> entities = world.getEntitiesWithinAABB(type, box, Entity::isAlive);
         return selectClosest(entities, closestTo::distanceSquared);
     }

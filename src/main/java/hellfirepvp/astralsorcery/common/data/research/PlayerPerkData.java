@@ -25,8 +25,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.util.Constants;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -276,10 +276,10 @@ public class PlayerPerkData {
         }
 
         //TODO Remove .replace("-", "_") in 1.17
-        this.freePointTokens.addAll(NBTHelper.readList(tag, "tokens", Constants.NBT.TAG_STRING,
+        this.freePointTokens.addAll(NBTHelper.readList(tag, "tokens", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_STRING,
                 nbt -> new ResourceLocation(nbt.getString().replace("-", "_"))));
 
-        ListTag list = tag.getList("perks", Constants.NBT.TAG_COMPOUND);
+        ListTag list = tag.getList("perks", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
         for (int i = 0; i < list.size(); i++) {
             CompoundTag nbt = list.getCompound(i);
             AppliedPerk.deserialize(nbt).ifPresent(perk -> this.perks.put(perk.getPerk(), perk));
@@ -359,7 +359,7 @@ public class PlayerPerkData {
             }
         } else {
             if (compound.contains("perks")) {
-                ListTag list = compound.getList("perks", Constants.NBT.TAG_COMPOUND);
+                ListTag list = compound.getList("perks", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
                 for (int i = 0; i < list.size(); i++) {
                     CompoundTag tag = list.getCompound(i);
                     String perkRegName = tag.getString("perkName");
@@ -373,7 +373,7 @@ public class PlayerPerkData {
                 }
             }
             if (compound.contains("sealedPerks")) {
-                ListTag list = compound.getList("sealedPerks", Constants.NBT.TAG_COMPOUND);
+                ListTag list = compound.getList("sealedPerks", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
                 for (int i = 0; i < list.size(); i++) {
                     CompoundTag tag = list.getCompound(i);
                     String perkRegName = tag.getString("perkName");
@@ -387,7 +387,7 @@ public class PlayerPerkData {
             }
 
             if (compound.contains("pointTokens")) {
-                ListTag list = compound.getList("pointTokens", Constants.NBT.TAG_STRING);
+                ListTag list = compound.getList("pointTokens", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_STRING);
                 for (int i = 0; i < list.size(); i++) {
                     String[] resource = legacySplitKey(list.getString(i).toLowerCase(Locale.ROOT));
                     resource[1] = resource[1].replace("-", "_").replace(":", "_");
@@ -459,11 +459,11 @@ public class PlayerPerkData {
 
         private int getAllocationCount(PerkAllocationType type) {
             CompoundTag metaData = this.getApplicationData();
-            if (!metaData.contains(APPLICATION_KEYS, Constants.NBT.TAG_COMPOUND)) {
+            if (!metaData.contains(APPLICATION_KEYS, net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND)) {
                 return 0;
             }
             CompoundTag applicationMeta = metaData.getCompound(APPLICATION_KEYS);
-            ListTag allocations = applicationMeta.getList(type.getSaveKey(), Constants.NBT.TAG_COMPOUND);
+            ListTag allocations = applicationMeta.getList(type.getSaveKey(), net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
             return allocations.size();
         }
 
@@ -473,11 +473,11 @@ public class PlayerPerkData {
 
         private PerkRemovalResult removeAllocation(PlayerPerkAllocation type, boolean simulate) {
             CompoundTag metaData = this.getApplicationData();
-            if (!metaData.contains(APPLICATION_KEYS, Constants.NBT.TAG_COMPOUND)) {
+            if (!metaData.contains(APPLICATION_KEYS, net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND)) {
                 return PerkRemovalResult.FAILURE;
             }
             CompoundTag applicationMeta = metaData.getCompound(APPLICATION_KEYS);
-            ListTag allocations = applicationMeta.getList(type.getType().getSaveKey(), Constants.NBT.TAG_COMPOUND);
+            ListTag allocations = applicationMeta.getList(type.getType().getSaveKey(), net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
             if (allocations.isEmpty()) {
                 return PerkRemovalResult.FAILURE;
             }
@@ -522,7 +522,7 @@ public class PlayerPerkData {
             }
 
             CompoundTag metaData = this.getApplicationData();
-            if (!metaData.contains(APPLICATION_KEYS, Constants.NBT.TAG_COMPOUND)) {
+            if (!metaData.contains(APPLICATION_KEYS, net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND)) {
                 if (simulate) {
                     return true;
                 }
@@ -531,13 +531,13 @@ public class PlayerPerkData {
             CompoundTag applicationMeta = metaData.getCompound(APPLICATION_KEYS);
 
             String key = type.getType().getSaveKey();
-            if (!applicationMeta.contains(key, Constants.NBT.TAG_LIST)) {
+            if (!applicationMeta.contains(key, net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_LIST)) {
                 if (simulate) {
                     return true;
                 }
                 applicationMeta.put(key, new ListTag());
             }
-            ListTag allocations = applicationMeta.getList(key, Constants.NBT.TAG_COMPOUND);
+            ListTag allocations = applicationMeta.getList(key, net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
 
             UUID newUUID = type.getLockUUID();
             CompoundTag newKeyTag = new CompoundTag();

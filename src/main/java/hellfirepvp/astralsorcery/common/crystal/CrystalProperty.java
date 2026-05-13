@@ -15,6 +15,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Component;
 import static net.minecraft.network.chat.Component.translatable;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import net.minecraft.world.item.Item;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ import java.util.function.Predicate;
  * Created by HellFirePvP
  * Date: 29.01.2019 / 21:23
  */
-public abstract class CrystalProperty extends DeferredHolder<CrystalProperty> implements Comparable<CrystalProperty> {
+public abstract class CrystalProperty extends DeferredHolder<Item, CrystalProperty> implements Comparable<CrystalProperty> {
 
     private static int counter = 0;
     private final int sortingId;
@@ -38,8 +39,8 @@ public abstract class CrystalProperty extends DeferredHolder<CrystalProperty> im
     private Predicate<CalculationContext> usageTests = (ctx) -> false;
 
     public CrystalProperty(ResourceLocation registryName) {
+        super(registryName);
         this.sortingId = counter++;
-        this.setRegistryName(registryName);
     }
 
     /**

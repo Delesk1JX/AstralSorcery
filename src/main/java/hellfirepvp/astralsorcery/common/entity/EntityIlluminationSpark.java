@@ -22,17 +22,17 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ThrowableEntity;
 import net.minecraft.world.item.BlockItemUseContext;
-import net.minecraft.world.item.ItemUseContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.network.IPacket;
-import net.minecraft.util.Hand;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.BlockRayTraceResult;
-import net.minecraft.util.RayTraceResult;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.util.BlockSnapshot;
-import net.neoforged.neoforge.event.ForgeEventFactory;
+import net.neoforged.neoforge.event.EventHooks;
 import net.neoforged.neoforge.fml.network.NetworkHooks;
 
 /**
@@ -44,15 +44,15 @@ import net.neoforged.neoforge.fml.network.NetworkHooks;
  */
 public class EntityIlluminationSpark extends ThrowableEntity {
 
-    public EntityIlluminationSpark(World world) {
+    public EntityIlluminationSpark(Level world) {
         super(EntityTypesAS.ILLUMINATION_SPARK, world);
     }
 
-    public EntityIlluminationSpark(double x, double y, double z, World world) {
+    public EntityIlluminationSpark(double x, double y, double z, Level world) {
         super(EntityTypesAS.ILLUMINATION_SPARK, x, y, z, world);
     }
 
-    public EntityIlluminationSpark(LivingEntity thrower, World world) {
+    public EntityIlluminationSpark(LivingEntity thrower, Level world) {
         super(EntityTypesAS.ILLUMINATION_SPARK, thrower, world);
         this.func_234612_a_(thrower, thrower.rotationPitch, thrower.rotationYaw, 0F, 0.7F, 0.9F);
     }
@@ -122,21 +122,21 @@ public class EntityIlluminationSpark extends ThrowableEntity {
         if (world.isRemote()) {
             return;
         }
-        if (!(result instanceof BlockRayTraceResult) || !(this.func_234616_v_() instanceof Player)) {
+        if (!(result instanceof BlockHitResult) || !(this.func_234616_v_() instanceof Player)) {
             remove();
             return;
         }
         Player player = (Player) this.func_234616_v_();
-        BlockRayTraceResult brtr = (BlockRayTraceResult) result;
+        BlockHitResult brtr = (BlockHitResult) result;
 
-        BlockItemUseContext bCtx = new BlockItemUseContext(new ItemUseContext(player, Hand.MAIN_HAND, brtr));
+        BlockItemUseContext bCtx = new BlockItemUseContext(new UseOnContext(player, Hand.MAIN_HAND, brtr));
 
         BlockPos pos = bCtx.getPos();
         if (!BlockUtils.isReplaceable(world, pos)) {
             pos = pos.offset(bCtx.getFace());
         }
 
-        if (!ForgeEventFactory.onBlockPlace(player, BlockSnapshot.create(world.getDimensionKey(), world, pos), bCtx.getFace())) {
+        if (!EventHooks.onBlockPlace(player, BlockSnapshot.create(world.getDimensionKey(), world, pos), bCtx.getFace())) {
             world.setBlockState(pos, BlocksAS.FLARE_LIGHT.getDefaultState());
         }
         remove();

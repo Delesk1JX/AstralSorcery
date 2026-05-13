@@ -20,8 +20,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.potion.Effects;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.event.tick.TickEvent;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
+import net.neoforged.neoforge.event.tick.ClientTickEvent;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.awt.*;
@@ -55,7 +56,7 @@ public class TypeCrystalFootprints extends PatreonEffect implements ITickHandler
     }
 
     @Override
-    public void tick(TickEvent.Type type, Object... context) {
+    public void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
         Player player = (Player) context[0];
         LogicalSide side = (LogicalSide) context[1];
 
@@ -79,7 +80,7 @@ public class TypeCrystalFootprints extends PatreonEffect implements ITickHandler
                 .subtract(player.getWidth() / 2, 0.1, player.getWidth() / 2)
                 .add(player.getWidth() * rand.nextFloat(), 0, player.getWidth() * rand.nextFloat());
 
-        if (player.getEntityWorld().isAirBlock(pos.toBlockPos())) {
+        if (player.level.isAirBlock(pos.toBlockPos())) {
             return;
         }
 
@@ -95,13 +96,13 @@ public class TypeCrystalFootprints extends PatreonEffect implements ITickHandler
     }
 
     @Override
-    public EnumSet<TickEvent.Type> getHandledTypes() {
-        return EnumSet.of(TickEvent.Type.PLAYER);
+    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
+        return EnumSet.of(net.neoforged.neoforge.event.tick.ClientTickEvent.PLAYER);
     }
 
     @Override
-    public boolean canFire(TickEvent.Phase phase) {
-        return phase == TickEvent.Phase.END;
+    public boolean canFire(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
+        return phase == net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
     }
 
     @Override

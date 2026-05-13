@@ -26,14 +26,14 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.SpawnReason;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -49,7 +49,7 @@ import java.util.List;
 public class CEffectPelotrio extends CEffectAbstractList<ListEntries.EntitySpawnEntry> {
 
     public static PlayerAffectionFlags.AffectionFlag FLAG = makeAffectionFlag("pelotrio");
-    private static final AxisAlignedBB PROXIMITY_BOX = new AxisAlignedBB(0, 0, 0, 0, 0, 0);
+    private static final AABB PROXIMITY_BOX = new AABB(0, 0, 0, 0, 0, 0);
 
     public static PelotrioConfig CONFIG = new PelotrioConfig();
 
@@ -71,7 +71,7 @@ public class CEffectPelotrio extends CEffectAbstractList<ListEntries.EntitySpawn
 
     @Nullable
     @Override
-    public ListEntries.EntitySpawnEntry createElement(World world, BlockPos pos) {
+    public ListEntries.EntitySpawnEntry createElement(Level world, BlockPos pos) {
         if (!(world instanceof ServerLevel)) {
             return null;
         }
@@ -81,7 +81,7 @@ public class CEffectPelotrio extends CEffectAbstractList<ListEntries.EntitySpawn
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void playClientEffect(World world, BlockPos pos, TileRitualPedestal pedestal, float alphaMultiplier, boolean extended) {
+    public void playClientEffect(Level world, BlockPos pos, TileRitualPedestal pedestal, float alphaMultiplier, boolean extended) {
         ConstellationEffectProperties prop = this.createProperties(pedestal.getMirrorCount());
 
         if (rand.nextFloat() < 0.2F) {
@@ -95,7 +95,7 @@ public class CEffectPelotrio extends CEffectAbstractList<ListEntries.EntitySpawn
     }
 
     @Override
-    public boolean playEffect(World world, BlockPos pos, ConstellationEffectProperties properties, @Nullable IMinorConstellation trait) {
+    public boolean playEffect(Level world, BlockPos pos, ConstellationEffectProperties properties, @Nullable IMinorConstellation trait) {
         if (!(world instanceof ServerLevel)) {
             return false;
         }
@@ -159,15 +159,15 @@ public class CEffectPelotrio extends CEffectAbstractList<ListEntries.EntitySpawn
         private final double defaultSpawnChance = 0.05D;
         private final int defaultProximityAmount = 24;
 
-        public NeoForgeConfigSpec.DoubleValue spawnChance;
-        public NeoForgeConfigSpec.IntValue proximityAmount;
+        public ModConfigSpec.DoubleValue spawnChance;
+        public ModConfigSpec.IntValue proximityAmount;
 
         public PelotrioConfig() {
             super("pelotrio", 12D, 0D, 5);
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.spawnChance = cfgBuilder

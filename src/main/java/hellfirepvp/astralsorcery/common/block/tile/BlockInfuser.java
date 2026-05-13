@@ -19,19 +19,18 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.pathfinding.PathType;
-import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.BlockRayTraceResult;
-import net.minecraft.util.shapes.ISelectionContext;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.util.shapes.VoxelShape;
-import net.minecraft.util.shapes.VoxelShapes;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
-import net.neoforged.neoforge.common.ToolType;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 
@@ -58,7 +57,7 @@ public class BlockInfuser extends BlockInventory implements CustomItemBlock {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, Player player, Hand hand, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, Hand hand, BlockHitResult hit) {
         if (!world.isRemote) {
             ItemStack held = player.getHeldItem(hand);
             TileInfuser ti = MiscUtils.getTileAt(world, pos, TileInfuser.class, true);
@@ -99,7 +98,7 @@ public class BlockInfuser extends BlockInventory implements CustomItemBlock {
     }
 
     @Override
-    public int getComparatorInputOverride(BlockState state, World world, BlockPos pos) {
+    public int getComparatorInputOverride(BlockState state, Level world, BlockPos pos) {
         TileInfuser ti = MiscUtils.getTileAt(world, pos, TileInfuser.class, false);
         if (ti != null) {
             return ti.getItemInput().isEmpty() ? 0 : 15;

@@ -16,8 +16,8 @@ import hellfirepvp.astralsorcery.common.perk.tree.PerkTreePoint;
 import hellfirepvp.astralsorcery.common.util.DiminishingMultiplier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.neoforge.common.ModConfigSpec;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import java.util.HashMap;
@@ -78,14 +78,14 @@ public abstract class RootPerk extends AttributeModifierPerk {
 
     public static class Config extends ConfigEntry {
 
-        private NeoForgeConfigSpec.DoubleValue expMultiplier;
+        private ModConfigSpec.DoubleValue expMultiplier;
 
         public Config(String section) {
             super(section);
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             this.expMultiplier = cfgBuilder
                     .comment("Defines the general exp multiplier for this root perk. Can be used for balancing in a pack environment.")
                     .translation(translationKey("expMultiplier"))

@@ -12,15 +12,15 @@ import hellfirepvp.astralsorcery.common.entity.EntityIlluminationSpark;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.common.util.block.BlockUtils;
 import net.minecraft.world.level.block.DispenserBlock;
-import net.minecraft.dispenser.IBlockSource;
+import net.minecraft.core.dispenser.DispenseItemContext;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ItemUseContext;
-import net.minecraft.util.Direction;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.util.BlockSnapshot;
-import net.neoforged.neoforge.event.ForgeEventFactory;
+import net.neoforged.neoforge.event.EventHooks;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -32,7 +32,7 @@ import net.neoforged.neoforge.event.ForgeEventFactory;
 public class ItemIlluminationPowder extends ItemUsableDust {
 
     @Override
-    boolean dispense(IBlockSource dispenser) {
+    boolean dispense(net.minecraft.core.BlockSource dispenser) {
         BlockPos at = dispenser.getBlockPos();
         Direction face = dispenser.getBlockState().get(DispenserBlock.FACING);
         EntityIlluminationSpark nocSpark = new EntityIlluminationSpark(at.getX(), at.getY(), at.getZ(), dispenser.getWorld());
@@ -41,13 +41,13 @@ public class ItemIlluminationPowder extends ItemUsableDust {
     }
 
     @Override
-    boolean rightClickAir(World world, Player player, ItemStack dust) {
+    boolean rightClickAir(Level world, Player player, ItemStack dust) {
         return world.addEntity(new EntityIlluminationSpark(player, world));
     }
 
     @Override
     boolean rightClickBlock(ItemUseContext ctx) {
-        World world = ctx.getWorld();
+        Level world = ctx.getWorld();
         BlockPos pos = ctx.getPos();
         Player player = ctx.getPlayer();
         if (player == null) {
@@ -62,7 +62,7 @@ public class ItemIlluminationPowder extends ItemUsableDust {
             return false;
         }
 
-        if (player.canPlayerEdit(pos, ctx.getFace(), ctx.getItem()) && !ForgeEventFactory.onBlockPlace(player, BlockSnapshot.create(world.getDimensionKey(), world, pos), ctx.getFace())) {
+        if (player.canPlayerEdit(pos, ctx.getFace(), ctx.getItem()) && !EventHooks.onBlockPlace(player, BlockSnapshot.create(world.getDimensionKey(), world, pos), ctx.getFace())) {
             return world.setBlockState(pos, BlocksAS.FLARE_LIGHT.getDefaultState());
         }
         return false;

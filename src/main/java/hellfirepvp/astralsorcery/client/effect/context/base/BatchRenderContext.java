@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.effect.context.base;
 
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.effect.EntityDynamicFX;
@@ -21,10 +21,9 @@ import hellfirepvp.astralsorcery.client.resource.SpriteSheetResource;
 import hellfirepvp.astralsorcery.client.util.draw.RenderInfo;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.order.OrderSortable;
-import hellfirepvp.observerlib.client.util.RenderTypeDecorator;
-import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.VertexConsumer;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.util.vector.Vector3d;
+import net.minecraft.world.phys.Vec3;
 import org.lwjgl.opengl.GL11;
 
 import java.util.List;
@@ -95,13 +94,9 @@ public class BatchRenderContext<T extends EntityVisualFX> extends OrderSortable 
 
         RenderType drawType = this.getRenderType();
         if (this.drawWithTexture) {
-            drawType = RenderTypeDecorator.wrapSetup(this.getRenderType(), () -> {
-                RenderSystem.enableTexture();
-                this.getSprite().bindTexture();
-            }, () -> {
-                BlockAtlasTexture.getInstance().bindTexture();
-                RenderSystem.disableTexture();
-            });
+            // TODO: Fix RenderType creation for 1.21+
+            // Original code attempted to create a decorated RenderType
+            drawType = RenderType.entityTranslucent(this.getSprite().getLocation());
         }
         VertexConsumer buf = drawBuffer.getBuffer(drawType);
         effects.forEach(effect -> effect.getEffect().render(this, renderStack, buf, pTicks));
@@ -109,9 +104,9 @@ public class BatchRenderContext<T extends EntityVisualFX> extends OrderSortable 
     }
 
     private void drawBatched(VertexConsumer buf, IDrawRenderTypeBuffer renderTypeBuffer) {
-        if (buf instanceof BufferBuilder && this.getRenderType().getDrawMode() == GL11.GL_QUADS) {
-            Vector3d view = RenderInfo.getInstance().getARI().getProjectedView();
-            ((BufferBuilder) buf).sortVertexData((float) view.x, (float) view.y, (float) view.z);
+        if (buf instanceof VertexConsumer && this.getRenderType().getDrawMode() == GL11.GL_QUADS) {
+            net.minecraft.world.phys.Vec3 view = RenderInfo.getInstance().getARI().getProjectedView();
+            ((VertexConsumer) buf).sortVertexData((float) view.x, (float) view.y, (float) view.z);
         }
         renderTypeBuffer.draw();
     }

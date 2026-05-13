@@ -21,13 +21,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.EntitySize;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.tileentity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.util.EntityPredicates;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
-import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.chunk.LevelChunk;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -102,13 +102,13 @@ public class TimeStopEffectHelper {
 
     @OnlyIn(Dist.CLIENT)
     public void playClientTickEffect() {
-        World world = Minecraft.getInstance().world;
+        Level world = Minecraft.getInstance().world;
         if (world == null) {
             return;
         }
 
         List<LivingEntity> entities = world.getEntitiesWithinAABB(LivingEntity.class,
-                new AxisAlignedBB(-range, -range, -range, range, range, range).offset(position.getX(), position.getY(), position.getZ()),
+                new AABB(-range, -range, -range, range, range, range).offset(position.getX(), position.getY(), position.getZ()),
                 EntityPredicates.withinRange(position.getX(), position.getY(), position.getZ(), range));
 
         for (LivingEntity e : entities) {

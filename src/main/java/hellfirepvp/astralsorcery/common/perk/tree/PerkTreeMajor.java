@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.perk.tree;
 
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.client.resource.SpriteSheetResource;
 import hellfirepvp.astralsorcery.client.screen.journal.perk.BatchPerkContext;
 import hellfirepvp.astralsorcery.client.screen.journal.perk.PerkRenderGroup;
@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.client.screen.journal.perk.group.PerkPointHaloR
 import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import hellfirepvp.astralsorcery.common.perk.AllocationStatus;
 import hellfirepvp.astralsorcery.common.perk.node.MajorPerk;
-import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.VertexConsumer;
 import net.minecraft.util.Tuple;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -57,7 +57,7 @@ public class PerkTreeMajor<T extends MajorPerk> extends PerkTreePoint<T> {
         if (grp == null) {
             return new Rectangle.Float();
         }
-        BufferBuilder buf = drawCtx.getContext(grp);
+        VertexConsumer buf = drawCtx.getContext(grp);
 
         float haloSize = getRenderSize() * 0.8F * scale;
         if (status.isAllocated()) {

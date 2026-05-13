@@ -8,9 +8,9 @@
 
 package hellfirepvp.astralsorcery.client.util;
 
-import com.mojang.blaze3d.matrix.PoseStack;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.Tessellator;
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.renderer.VertexConsumer;
+import net.minecraft.client.renderer.Tesselator;
 import net.minecraft.client.renderer.vertex.VertexBuffer;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import org.lwjgl.opengl.GL11;
@@ -34,12 +34,12 @@ public class BatchedVertexList {
         this.vFormat = vFormat;
     }
 
-    public void batch(Consumer<BufferBuilder> batchFn) {
+    public void batch(Consumer<VertexConsumer> batchFn) {
         if (this.initialized) {
             return;
         }
 
-        BufferBuilder buf = buffer;
+        VertexConsumer buf = buffer;
         this.vbo = new VertexBuffer(this.vFormat);
         batchFn.accept(buf);
         buf.finishDrawing();

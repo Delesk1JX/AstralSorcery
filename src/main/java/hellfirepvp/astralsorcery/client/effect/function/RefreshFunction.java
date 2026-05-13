@@ -11,11 +11,11 @@ package hellfirepvp.astralsorcery.client.effect.function;
 import hellfirepvp.astralsorcery.client.effect.EntityComplexFX;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.DimensionType;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.util.ResourceKey;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.dimension.DimensionType;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -46,7 +46,7 @@ public interface RefreshFunction<T extends EntityComplexFX> {
 
     public static class TileExists<E extends BlockEntity, T extends EntityComplexFX> implements RefreshFunction<T> {
 
-        private final RegistryKey<World> dimType;
+        private final ResourceKey<Level> dimType;
         private final BlockPos pos;
         private final Class<E> clazzExpected;
 
@@ -63,7 +63,7 @@ public interface RefreshFunction<T extends EntityComplexFX> {
 
         @Nullable
         protected E getTileIfValid() {
-            World clWorld = Minecraft.getInstance().world;
+            Level clWorld = Minecraft.getInstance().world;
             E tile;
             if (clWorld != null &&
                     clWorld.getDimensionKey().equals(dimType) &&

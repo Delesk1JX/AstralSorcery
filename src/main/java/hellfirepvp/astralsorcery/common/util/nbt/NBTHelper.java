@@ -19,9 +19,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.*;
 import net.minecraft.state.Property;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
-import net.neoforged.neoforge.common.util.Constants;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.core.BlockPos;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.minecraft.core.registries.BuiltInRegistries;
 import org.apache.commons.lang3.ObjectUtils;
@@ -94,15 +94,15 @@ public class NBTHelper {
 
     public static void deepMerge(CompoundTag dst, CompoundTag src, boolean uniqueArrayEntries) {
         for (String s : src.keySet()) {
-            INBT nbtElement = src.get(s);
-            if (nbtElement.getId() == Constants.NBT.TAG_COMPOUND) {
-                if (dst.contains(s, Constants.NBT.TAG_COMPOUND)) {
+            Tag nbtElement = src.get(s);
+            if (nbtElement.getId() == net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND) {
+                if (dst.contains(s, net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND)) {
                     deepMerge(dst.getCompound(s), (CompoundTag) nbtElement, uniqueArrayEntries);
                 } else {
                     dst.put(s, nbtElement.copy());
                 }
-            } else if (nbtElement.getId() == Constants.NBT.TAG_LIST) {
-                if (dst.contains(s, Constants.NBT.TAG_LIST)) {
+            } else if (nbtElement.getId() == net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_LIST) {
+                if (dst.contains(s, net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_LIST)) {
                     ListTag dstList = (ListTag) dst.get(s);
                     ListTag srcList = (ListTag) nbtElement;
                     if (dstList.getTagType() == srcList.getTagType()) {
@@ -113,8 +113,8 @@ public class NBTHelper {
                 } else {
                     dst.put(s, nbtElement.copy());
                 }
-            } else if (nbtElement.getId() == Constants.NBT.TAG_INT_ARRAY) {
-                if (dst.contains(s, Constants.NBT.TAG_INT_ARRAY)) {
+            } else if (nbtElement.getId() == net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_INT_ARRAY) {
+                if (dst.contains(s, net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_INT_ARRAY)) {
                     IntArrayNBT dstArr = (IntArrayNBT) dst.get(s);
                     IntArrayNBT srcArr = (IntArrayNBT) nbtElement;
                     if (uniqueArrayEntries) {
@@ -129,8 +129,8 @@ public class NBTHelper {
                 } else {
                     dst.put(s, nbtElement.copy());
                 }
-            } else if (nbtElement.getId() == Constants.NBT.TAG_LONG_ARRAY) {
-                if (dst.contains(s, Constants.NBT.TAG_LONG_ARRAY)) {
+            } else if (nbtElement.getId() == net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_LONG_ARRAY) {
+                if (dst.contains(s, net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_LONG_ARRAY)) {
                     LongArrayNBT dstArr = (LongArrayNBT) dst.get(s);
                     LongArrayNBT srcArr = (LongArrayNBT) nbtElement;
                     if (uniqueArrayEntries) {
@@ -145,8 +145,8 @@ public class NBTHelper {
                 } else {
                     dst.put(s, nbtElement.copy());
                 }
-            } else if (nbtElement.getId() == Constants.NBT.TAG_BYTE_ARRAY) {
-                if (dst.contains(s, Constants.NBT.TAG_BYTE_ARRAY)) {
+            } else if (nbtElement.getId() == net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_BYTE_ARRAY) {
+                if (dst.contains(s, net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_BYTE_ARRAY)) {
                     ByteArrayNBT dstArr = (ByteArrayNBT) dst.get(s);
                     ByteArrayNBT srcArr = (ByteArrayNBT) nbtElement;
                     if (uniqueArrayEntries) {
@@ -171,11 +171,11 @@ public class NBTHelper {
     //Don't use the iterator on ListTag...
     private static void deepMergeList(ListTag dst, ListTag src) {
         for (int j = 0; j < src.size(); j++) {
-            INBT toAdd = src.get(j);
+            Tag toAdd = src.get(j);
 
             boolean found = false;
             for (int i = 0; i < dst.size(); i++) {
-                INBT existing = dst.get(i);
+                Tag existing = dst.get(i);
                 if (existing.equals(toAdd)) {
                     found = true;
                     break;
@@ -188,40 +188,40 @@ public class NBTHelper {
     }
 
     @Nonnull
-    public static <E, N extends INBT> List<E> readList(CompoundTag nbt, String key, int type, Function<N, E> deserializer) {
-        if (!nbt.contains(key, Constants.NBT.TAG_LIST)) {
+    public static <E, N extends Tag> List<E> readList(CompoundTag nbt, String key, int type, Function<N, E> deserializer) {
+        if (!nbt.contains(key, net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_LIST)) {
             return new ArrayList<>();
         }
         return readList(nbt.getList(key, type), deserializer);
     }
 
     @Nonnull
-    public static <E, N extends INBT> List<E> readList(ListTag nbt, Function<N, E> deserializer) {
+    public static <E, N extends Tag> List<E> readList(ListTag nbt, Function<N, E> deserializer) {
         return nbt.stream()
                 .map(n -> deserializer.apply((N) n))
                 .collect(Collectors.toList());
     }
 
     @Nonnull
-    public static <E, N extends INBT> Set<E> readSet(CompoundTag nbt, String key, int type, Function<N, E> deserializer) {
-        if (!nbt.contains(key, Constants.NBT.TAG_LIST)) {
+    public static <E, N extends Tag> Set<E> readSet(CompoundTag nbt, String key, int type, Function<N, E> deserializer) {
+        if (!nbt.contains(key, net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_LIST)) {
             return new HashSet<>();
         }
         return readSet(nbt.getList(key, type), deserializer);
     }
 
     @Nonnull
-    public static <E, N extends INBT> Set<E> readSet(ListTag nbt, Function<N, E> deserializer) {
+    public static <E, N extends Tag> Set<E> readSet(ListTag nbt, Function<N, E> deserializer) {
         return nbt.stream()
                 .map(n -> deserializer.apply((N) n))
                 .collect(Collectors.toSet());
     }
 
-    public static <E> void writeList(CompoundTag tag, String key, Collection<E> collection, Function<E, INBT> serializer) {
+    public static <E> void writeList(CompoundTag tag, String key, Collection<E> collection, Function<E, Tag> serializer) {
         tag.put(key, writeList(collection, serializer));
     }
 
-    public static <E> ListTag writeList(Collection<E> collection, Function<E, INBT> serializer) {
+    public static <E> ListTag writeList(Collection<E> collection, Function<E, Tag> serializer) {
         ListTag nbt = new ListTag();
         nbt.addAll(collection.stream()
                 .map(serializer)
@@ -269,7 +269,7 @@ public class NBTHelper {
         if (!enumClazz.isEnum()) {
             throw new IllegalArgumentException("Passed class is not an enum!");
         }
-        return enumClazz.getEnumConstants()[nbt.getInt(key)];
+        return enumClazz.getEnumnet.neoforged.neoforge.common.util.FakePlayerFactory()[nbt.getInt(key)];
     }
 
     public static void setBlockState(CompoundTag cmp, String key, BlockState state) {
@@ -316,7 +316,7 @@ public class NBTHelper {
         if (block == null || block == Blocks.AIR) return _default;
         BlockState state = block.defaultBlockState();
         Collection<Property<?>> properties = state.getProperties();
-        ListTag list = cmp.getList("properties", Constants.NBT.TAG_COMPOUND);
+        ListTag list = cmp.getList("properties", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
         for (int i = 0; i < list.size(); i++) {
             CompoundTag propertyTag = list.getCompound(i);
             String valueStr = propertyTag.getString("value");
@@ -342,7 +342,7 @@ public class NBTHelper {
 
     @Nullable
     public static <T> T readFromSubTag(CompoundTag compound, String tag, Function<CompoundTag, T> readFct) {
-        if (compound.contains(tag, Constants.NBT.TAG_COMPOUND)) {
+        if (compound.contains(tag, net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND)) {
             return readFct.apply(compound.getCompound(tag));
         }
         return null;
@@ -444,7 +444,7 @@ public class NBTHelper {
                 compound.getDouble("vecPosZ"));
     }
 
-    public static CompoundTag writeBoundingBox(AxisAlignedBB box, CompoundTag tag) {
+    public static CompoundTag writeBoundingBox(AABB box, CompoundTag tag) {
         tag.putDouble("boxMinX", box.minX);
         tag.putDouble("boxMinY", box.minY);
         tag.putDouble("boxMinZ", box.minZ);
@@ -454,8 +454,8 @@ public class NBTHelper {
         return tag;
     }
 
-    public static AxisAlignedBB readBoundingBox(CompoundTag tag) {
-        return new AxisAlignedBB(
+    public static AABB readBoundingBox(CompoundTag tag) {
+        return new AABB(
                 tag.getDouble("boxMinX"),
                 tag.getDouble("boxMinY"),
                 tag.getDouble("boxMinZ"),

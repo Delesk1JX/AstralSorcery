@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.screen;
 
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import hellfirepvp.astralsorcery.client.screen.base.WidthHeightScreen;
@@ -27,7 +27,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.FormattedText;
 import static net.minecraft.network.chat.Component.translatable;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import java.util.ArrayList;
 import java.util.Collections;

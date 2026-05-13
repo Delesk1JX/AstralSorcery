@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.render.tile;
 
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
 import hellfirepvp.astralsorcery.client.model.builtin.ModelLens;
@@ -16,10 +16,10 @@ import hellfirepvp.astralsorcery.client.model.builtin.ModelLensColored;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.common.tile.TileLens;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.util.vector.Vector3f;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 
 import java.awt.*;
 import java.util.List;
@@ -41,7 +41,7 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens> {
     }
 
     @Override
-    public void render(TileLens tile, float pTicks, PoseStack renderStack, IRenderTypeBuffer renderTypeBuffer, int combinedLight, int combinedOverlay) {
+    public void render(TileLens tile, float pTicks, PoseStack renderStack, MultiBufferSource renderTypeBuffer, int combinedLight, int combinedOverlay) {
         List<BlockPos> linked = tile.getLinkedPositions();
         float degYaw = 0;
         float degPitch = 0;
@@ -215,7 +215,7 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens> {
         renderStack.pop();
     }
 
-    private void renderLensColored(PoseStack renderStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay, Color c, float pitch) {
+    private void renderLensColored(PoseStack renderStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay, Color c, float pitch) {
         MODEL_LENS_COLORED.glass.    rotateAngleX = pitch * 0.017453292F;
         MODEL_LENS_COLORED.fitting1. rotateAngleX = pitch * 0.017453292F;
         MODEL_LENS_COLORED.fitting2. rotateAngleX = pitch * 0.017453292F;
@@ -228,7 +228,7 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens> {
         MODEL_LENS_COLORED.render(renderStack, buffer, combinedLight, combinedOverlay);
     }
 
-    private void renderLens(PoseStack renderStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay, float pitch) {
+    private void renderLens(PoseStack renderStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay, float pitch) {
         MODEL_LENS.lens.rotateAngleX = pitch * 0.017453292F;
 
         MODEL_LENS.render(renderStack, buffer, combinedLight, combinedOverlay);

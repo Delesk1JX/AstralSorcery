@@ -12,19 +12,19 @@ import hellfirepvp.astralsorcery.common.tile.TileVanishing;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.ContainerBlock;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.shapes.ISelectionContext;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.util.shapes.VoxelShape;
-import net.minecraft.util.shapes.VoxelShapes;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -48,7 +48,7 @@ public class BlockVanishing extends ContainerBlock {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState state, World world, BlockPos pos, Random random) {
+    public void animateTick(BlockState state, Level world, BlockPos pos, Random random) {
     }
 
     @Override

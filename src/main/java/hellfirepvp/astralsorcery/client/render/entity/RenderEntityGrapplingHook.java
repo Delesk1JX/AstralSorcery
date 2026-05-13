@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.render.entity;
 
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.lib.SpritesAS;
@@ -19,11 +19,11 @@ import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import hellfirepvp.astralsorcery.common.entity.technical.EntityGrapplingHook;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.texture.AtlasTexture;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.neoforged.neoforge.fml.client.registry.IRenderFactory;
@@ -45,7 +45,7 @@ public class RenderEntityGrapplingHook extends EntityRenderer<EntityGrapplingHoo
     }
 
     @Override
-    public void render(EntityGrapplingHook entity, float entityYaw, float partialTicks, PoseStack poseStack, IRenderTypeBuffer buffer, int packedLight) {
+    public void render(EntityGrapplingHook entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
         int alphaMultiplier;
         if (entity.isDespawning()) {
             alphaMultiplier = Mth.clamp(127 - ((int) (entity.despawnPercentage(partialTicks) * 255F)), 0, 255);

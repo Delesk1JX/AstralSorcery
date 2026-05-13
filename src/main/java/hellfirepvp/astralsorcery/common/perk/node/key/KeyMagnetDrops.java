@@ -15,12 +15,12 @@ import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +56,7 @@ public class KeyMagnetDrops extends KeyPerk {
                 for (ItemEntity drop : event.getDrops()) {
                     ItemStack remain = ItemUtils.dropItemToPlayer(player, drop.getItem());
                     if (!remain.isEmpty()) {
-                        ItemEntity newDrop = new ItemEntity(drop.getEntityWorld(), drop.getPosX(), drop.getPosY(), drop.getPosZ());
+                        ItemEntity newDrop = new ItemEntity(drop.level, drop.getPosX(), drop.getPosY(), drop.getPosZ());
                         newDrop.copyDataFromOld(drop);
                         remaining.add(newDrop);
                     }

@@ -8,12 +8,12 @@
 
 package hellfirepvp.astralsorcery.common.tile;
 
-import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
 import hellfirepvp.astralsorcery.common.tile.base.TileFakedState;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 
 import javax.annotation.Nonnull;
 
@@ -29,7 +29,7 @@ public class TileTreeBeaconComponent extends TileFakedState {
     private BlockPos treeBeaconPos = BlockPos.ZERO;
 
     public TileTreeBeaconComponent() {
-        super(TileEntityTypesAS.TREE_BEACON_COMPONENT);
+        super(BlockEntityTypesAS.TREE_BEACON_COMPONENT);
     }
 
     @Override

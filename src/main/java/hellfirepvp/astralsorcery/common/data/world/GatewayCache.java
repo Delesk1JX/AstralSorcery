@@ -24,13 +24,13 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Component;
 import static net.minecraft.network.chat.Component.literal;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
-import net.neoforged.neoforge.common.util.Constants;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.common.Tags;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -81,7 +81,7 @@ public class GatewayCache extends GlobalWorldData {
         CelestialGatewayHandler.INSTANCE.syncToAll();
     }
 
-    public boolean offerPosition(World world, BlockPos pos) {
+    public boolean offerPosition(Level world, BlockPos pos) {
         TileCelestialGateway te = MiscUtils.getTileAt(world, pos, TileCelestialGateway.class, false);
         if (te == null) {
             return false;
@@ -96,7 +96,7 @@ public class GatewayCache extends GlobalWorldData {
         return true;
     }
 
-    public void removePosition(World world, BlockPos pos) {
+    public void removePosition(Level world, BlockPos pos) {
         if (gatewayPositions.removeIf(node -> node.getPos().equals(pos))) {
             markDirty();
             CelestialGatewayHandler.INSTANCE.removePosition(world, pos);
@@ -105,10 +105,10 @@ public class GatewayCache extends GlobalWorldData {
     }
 
     @Override
-    public void updateTick(World world) {}
+    public void updateTick(Level world) {}
 
     @Override
-    public void onLoad(World world) {
+    public void onLoad(Level world) {
         super.onLoad(world);
 
         LogUtil.info(LogCategory.GATEWAY_CACHE, () -> "Checking GatewayCache integrity for dimension " + world.getDimensionKey().getLocation());
@@ -148,7 +148,7 @@ public class GatewayCache extends GlobalWorldData {
 
     @Override
     public void readFromNBT(CompoundTag compound) {
-        ListTag list = compound.getList("posList", Constants.NBT.TAG_COMPOUND);
+        ListTag list = compound.getList("posList", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
         for (int i = 0; i < list.size(); i++) {
             CompoundTag tag = list.getCompound(i);
             gatewayPositions.add(GatewayNode.read(tag));
@@ -248,7 +248,7 @@ public class GatewayCache extends GlobalWorldData {
 
             node.locked = tag.getBoolean("locked");
             node.owner = NBTHelper.readOptional(tag, "owningPlayer", PlayerReference::deserialize);
-            NBTHelper.readList(tag, "allowedUsers", Constants.NBT.TAG_COMPOUND, nbt -> {
+            NBTHelper.readList(tag, "allowedUsers", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND, nbt -> {
                 CompoundTag compound = (CompoundTag) nbt;
                 return new Tuple<>(compound.getInt("index"), PlayerReference.deserialize(compound.getCompound("player")));
             }).forEach(tpl -> node.allowedUsers.put(tpl.getA(), tpl.getB()));

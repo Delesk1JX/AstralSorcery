@@ -30,27 +30,26 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BlockRenderType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.pathfinding.PathType;
-import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.shapes.ISelectionContext;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.util.shapes.VoxelShape;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.ChatFormatting;
 import static net.minecraft.network.chat.Component.translatable;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.ForgeHooks;
-import net.neoforged.neoforge.common.ToolType;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -82,7 +81,7 @@ public abstract class BlockCollectorCrystal extends BlockStarlightNetwork implem
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable IBlockReader world, List<Component> toolTip, ITooltipFlag flag) {
+    public void addInformation(ItemStack stack, @Nullable IBlockReader world, List<Component> toolTip, TooltipFlag flag) {
         super.addInformation(stack, world, toolTip, flag);
 
         CrystalAttributes attr = CrystalAttributes.getCrystalAttributes(stack);
@@ -142,7 +141,7 @@ public abstract class BlockCollectorCrystal extends BlockStarlightNetwork implem
     }
 
     @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, BlockState state, @Nullable LivingEntity entity, ItemStack stack) {
+    public void onBlockPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity entity, ItemStack stack) {
         TileCollectorCrystal tcc = MiscUtils.getTileAt(world, pos, TileCollectorCrystal.class, true);
         Item i = stack.getItem();
         if (tcc != null && i instanceof ItemBlockCollectorCrystal) {

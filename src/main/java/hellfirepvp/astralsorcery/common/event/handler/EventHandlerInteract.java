@@ -13,9 +13,9 @@ import hellfirepvp.astralsorcery.common.tile.base.TileOwned;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelAccessor;
 import net.neoforged.neoforge.common.util.BlockSnapshot;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.world.BlockEvent;
@@ -67,7 +67,7 @@ public class EventHandlerInteract {
         if (event instanceof BlockEvent.EntityMultiPlaceEvent) {
             return; //Handled 1 method below.
         }
-        IWorld world = event.getWorld();
+        ILevel world = event.getWorld();
         if (world.isRemote() || !(event.getEntity() instanceof Player)) {
             return;
         }
@@ -75,7 +75,7 @@ public class EventHandlerInteract {
     }
 
     private static void onMultiPlace(BlockEvent.EntityMultiPlaceEvent event) {
-        IWorld world = event.getWorld();
+        ILevel world = event.getWorld();
         if (world.isRemote() || !(event.getEntity() instanceof Player)) {
             return;
         }
@@ -85,7 +85,7 @@ public class EventHandlerInteract {
         }
     }
 
-    private static void handleOwnerPlacement(IWorld world, BlockPos pos, Player placer) {
+    private static void handleOwnerPlacement(ILevel world, BlockPos pos, Player placer) {
         TileOwned owned = MiscUtils.getTileAt(world, pos, TileOwned.class, true);
         if (owned != null) {
             owned.setOwner(placer);

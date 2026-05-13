@@ -14,10 +14,10 @@ import hellfirepvp.astralsorcery.common.util.VoxelUtils;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.item.BlockItemUseContext;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.shapes.IBooleanFunction;
-import net.minecraft.util.shapes.ISelectionContext;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.util.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 
@@ -32,7 +32,7 @@ import javax.annotation.Nullable;
  */
 public class BlockAltarRadiance extends BlockAltar implements LargeBlock {
 
-    private static final AxisAlignedBB PLACEMENT_BOX = new AxisAlignedBB(-1, 0, -1, 1, 1, 1);
+    private static final AABB PLACEMENT_BOX = new AABB(-1, 0, -1, 1, 1, 1);
 
     private final VoxelShape shape;
 
@@ -42,7 +42,7 @@ public class BlockAltarRadiance extends BlockAltar implements LargeBlock {
     }
 
     @Override
-    public AxisAlignedBB getBlockSpace() {
+    public AABB getBlockSpace() {
         return PLACEMENT_BOX;
     }
 

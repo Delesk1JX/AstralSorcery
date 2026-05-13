@@ -13,14 +13,15 @@ import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.Util;
-import net.minecraft.util.BlockPos;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.Util;
+import net.minecraft.core.BlockPos;
 import net.minecraft.ChatFormatting;
 import static net.minecraft.network.chat.Component.translatable;
-import net.minecraft.world.World;
-import net.neoforged.neoforge.event.tick.TickEvent;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
+import net.neoforged.neoforge.event.tick.ClientTickEvent;
+import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;
 
 import javax.annotation.Nonnull;
@@ -59,7 +60,7 @@ public class LinkHandler implements ITickHandler {
     }
 
     @Nonnull
-    public static RightClickResult onInteractBlock(Player clicked, World world, BlockPos pos, boolean sneak) {
+    public static RightClickResult onInteractBlock(Player clicked, Level world, BlockPos pos, boolean sneak) {
         UUID playerUUID = clicked.getUniqueID();
         if (!players.containsKey(playerUUID)) {
             LinkableTileEntity tile = MiscUtils.getTileAt(world, pos, LinkableTileEntity.class, true);
@@ -89,7 +90,7 @@ public class LinkHandler implements ITickHandler {
         }
     }
 
-    public static void processInteraction(RightClickResult result, Player playerIn, World world, BlockPos pos) {
+    public static void processInteraction(RightClickResult result, Player playerIn, Level world, BlockPos pos) {
         LinkSession session = result.getLinkingSession();
         LinkableTileEntity tile = session.getSelectedTile();
         String linkedToName;
@@ -166,7 +167,7 @@ public class LinkHandler implements ITickHandler {
         }
     }
     @Override
-    public void tick(TickEvent.Type type, Object... context) {
+    public void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
         MinecraftServer server = LogicalSidedProvider.INSTANCE.get(LogicalSide.SERVER);
         if (server == null) {
             return;
@@ -187,12 +188,12 @@ public class LinkHandler implements ITickHandler {
             switch (session.getType()) {
                 case ENTITY:
                     LivingEntity entity = session.getSelectedEntity();
-                    if (!entity.isAlive() || !entity.getEntityWorld().getDimensionKey().equals(player.getEntityWorld().getDimensionKey())) {
+                    if (!entity.isAlive() || !entity.level.getDimensionKey().equals(player.level.getDimensionKey())) {
                         needsRemoval = true;
                     }
                     break;
                 case BLOCK:
-                    if (!session.getSelectedTile().getLinkWorld().getDimensionKey().equals(player.getEntityWorld().getDimensionKey())) {
+                    if (!session.getSelectedTile().getLinkWorld().getDimensionKey().equals(player.level.getDimensionKey())) {
                         needsRemoval = true;
                     }
                     break;
@@ -206,13 +207,13 @@ public class LinkHandler implements ITickHandler {
     }
 
     @Override
-    public EnumSet<TickEvent.Type> getHandledTypes() {
-        return EnumSet.of(TickEvent.Type.SERVER);
+    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
+        return EnumSet.of(net.neoforged.neoforge.event.tick.ClientTickEvent.SERVER);
     }
 
     @Override
-    public boolean canFire(TickEvent.Phase phase) {
-        return phase == TickEvent.Phase.END;
+    public boolean canFire(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
+        return phase == net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
     }
 
     @Override

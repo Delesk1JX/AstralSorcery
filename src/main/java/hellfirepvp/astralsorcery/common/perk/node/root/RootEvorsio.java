@@ -20,11 +20,11 @@ import hellfirepvp.astralsorcery.common.util.DiminishingMultiplier;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.level.LevelAccessor;
 import net.neoforged.neoforge.event.world.BlockEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 
@@ -70,7 +70,7 @@ public class RootEvorsio extends RootPerk {
         }
 
         BlockState broken = event.getState();
-        IWorld world = event.getWorld();
+        ILevel world = event.getWorld();
         float gainedExp;
         try {
             gainedExp = broken.getBlockHardness(world, event.getPos());

@@ -23,13 +23,13 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.TridentEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.util.IndirectEntityDamageSource;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -81,7 +81,7 @@ public class KeyAreaOfEffect extends KeyAddEnchantment {
 
                     float range = 2.5F * PerkAttributeHelper.getOrCreateMap(player, side).getModifier(player, prog, PerkAttributeTypesAS.ATTR_TYPE_INC_PERK_EFFECT);
                     EventFlags.SWEEP_ATTACK.executeWithFlag(() -> {
-                        for (LivingEntity target : attacked.getEntityWorld().getEntitiesWithinAABB(LivingEntity.class,
+                        for (LivingEntity target : attacked.level.getEntitiesWithinAABB(LivingEntity.class,
                                 attacked.getBoundingBox().grow(range, range / 2F, range))) {
                             if (MiscUtils.canPlayerAttackServer(player, target) && !player.equals(target)) {
                                 DamageUtil.attackEntityFrom(target, source, toApply);

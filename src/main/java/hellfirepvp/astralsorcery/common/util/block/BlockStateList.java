@@ -13,9 +13,9 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfiguredBlockStateList;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +58,7 @@ public class BlockStateList implements BlockPredicate, Predicate<BlockState> {
         return this;
     }
 
-    public ConfiguredBlockStateList getAsConfig(NeoForgeConfigSpec.Builder cfgBuilder, String key, String translationKey, String comment) {
+    public ConfiguredBlockStateList getAsConfig(ModConfigSpec.Builder cfgBuilder, String key, String translationKey, String comment) {
         List<String> out = new ArrayList<>();
         configuredMatches.stream().map(SimpleBlockPredicate::getAsConfigList).forEach(out::addAll);
         return new ConfiguredBlockStateList(cfgBuilder
@@ -84,7 +84,7 @@ public class BlockStateList implements BlockPredicate, Predicate<BlockState> {
     }
 
     @Override
-    public boolean test(World world, BlockPos pos, BlockState state) {
+    public boolean test(Level world, BlockPos pos, BlockState state) {
         return configuredMatches.stream().anyMatch(predicate -> predicate.test(world, pos, state));
     }
 }

@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.client.util.sound;
 
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.sound.CategorizedSoundEvent;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.Mth;
 

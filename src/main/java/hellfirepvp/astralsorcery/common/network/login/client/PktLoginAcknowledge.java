@@ -11,8 +11,8 @@ package hellfirepvp.astralsorcery.common.network.login.client;
 import hellfirepvp.astralsorcery.common.network.base.ASLoginPacket;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.api.distmarker.LogicalSide;
-import net.neoforged.neoforge.network.NetworkEvent;
+import net.neoforged.fml.LogicalSide;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import javax.annotation.Nonnull;
 
@@ -45,13 +45,13 @@ public class PktLoginAcknowledge extends ASLoginPacket<PktLoginAcknowledge> {
         return new Handler<PktLoginAcknowledge>() {
             @Override
             @OnlyIn(Dist.CLIENT)
-            public void handleClient(PktLoginAcknowledge packet, NetworkEvent.Context context) {
+            public void handleClient(PktLoginAcknowledge packet, IPayloadContext context) {
                 //ping
                 acknowledge(context); //pong
             }
 
             @Override
-            public void handle(PktLoginAcknowledge packet, NetworkEvent.Context context, LogicalSide side) {}
+            public void handle(PktLoginAcknowledge packet, IPayloadContext context, LogicalSide side) {}
         };
     }
 }

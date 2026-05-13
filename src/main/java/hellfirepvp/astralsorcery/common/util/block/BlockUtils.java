@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.item.BlockItemUseContext;
 import net.minecraft.world.item.ItemStack;
@@ -25,16 +25,15 @@ import net.minecraft.potion.EffectUtils;
 import net.minecraft.potion.Effects;
 import net.minecraft.state.Property;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.vector.Vector3d;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.common.ToolType;
 import net.neoforged.neoforge.common.util.BlockSnapshot;
 import net.neoforged.neoforge.common.util.FakePlayer;
 import net.neoforged.neoforge.event.world.BlockEvent;
@@ -68,7 +67,7 @@ public class BlockUtils {
     @Nonnull
     public static List<ItemStack> getDrops(ServerLevel world, BlockPos pos, BlockState state, int harvestFortune, Random rand, ItemStack tool) {
         LootContext.Builder builder = new LootContext.Builder(world)
-                .withParameter(LootParameters.field_237457_g_, Vector3d.copyCentered(pos))
+                .withParameter(LootParameters.field_237457_g_, net.minecraft.world.phys.Vec3.copyCentered(pos))
                 .withParameter(LootParameters.BLOCK_STATE, state)
                 .withParameter(LootParameters.TOOL, tool)
                 .withNullableParameter(LootParameters.BLOCK_ENTITY, MiscUtils.getTileAt(world, pos, BlockEntity.class, true))
@@ -80,7 +79,7 @@ public class BlockUtils {
     @Nonnull
     public static BlockPos getWorldTopPos(BlockPos at) {
         BlockPos it = at;
-        while (!World.isOutsideBuildHeight(it)) {
+        while (!Level.isOutsideBuildHeight(it)) {
             it = it.up();
         }
         return it;
@@ -95,11 +94,11 @@ public class BlockUtils {
         return at;
     }
 
-    public static boolean isReplaceable(World world, BlockPos pos) {
+    public static boolean isReplaceable(Level world, BlockPos pos) {
         return isReplaceable(world, pos, world.getBlockState(pos));
     }
 
-    public static boolean isReplaceable(World world, BlockPos pos, BlockState state) {
+    public static boolean isReplaceable(Level world, BlockPos pos, BlockState state) {
         if (world.isAirBlock(pos)) {
             return true;
         }
@@ -151,7 +150,7 @@ public class BlockUtils {
         return breakSpeed;
     }
 
-    public static boolean isFluidBlock(World world, BlockPos pos) {
+    public static boolean isFluidBlock(Level world, BlockPos pos) {
         return isFluidBlock(world.getBlockState(pos));
     }
 
@@ -194,7 +193,7 @@ public class BlockUtils {
         return true;
     }
 
-    public static boolean canToolBreakBlockWithoutPlayer(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull BlockState state, @Nonnull ItemStack stack) {
+    public static boolean canToolBreakBlockWithoutPlayer(@Nonnull Level world, @Nonnull BlockPos pos, @Nonnull BlockState state, @Nonnull ItemStack stack) {
         if (state.getBlockHardness(world, pos) == -1) {
             return false;
         }
@@ -327,7 +326,7 @@ public class BlockUtils {
         return true;
     }
 
-    private static void restoreWorldState(World world, boolean prevCaptureFlag, List<BlockSnapshot> prevSnapshots) {
+    private static void restoreWorldState(Level world, boolean prevCaptureFlag, List<BlockSnapshot> prevSnapshots) {
         world.captureBlockSnapshots = false;
 
         world.restoringBlockSnapshots = true;

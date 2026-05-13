@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.starlight.transmission;
 import hellfirepvp.astralsorcery.common.starlight.IIndependentStarlightSource;
 import hellfirepvp.astralsorcery.common.starlight.IStarlightSource;
 import hellfirepvp.astralsorcery.common.starlight.WorldNetworkHandler;
-import net.minecraft.tileentity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 
 /**
  * This class is part of the Astral Sorcery Mod

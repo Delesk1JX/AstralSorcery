@@ -23,7 +23,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.network.chat.*;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.Tags;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -301,7 +301,7 @@ public final class CrystalAttributes {
 
     public static CrystalAttributes deserialize(CompoundTag tag) {
         CrystalAttributes attributes = new CrystalAttributes();
-        ListTag list = tag.getList("attributes", Constants.NBT.TAG_COMPOUND);
+        ListTag list = tag.getList("attributes", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
         for (int i = 0; i < list.size(); i++) {
             Attribute attr = Attribute.deserialize(list.getCompound(i));
             if (attr != null) {

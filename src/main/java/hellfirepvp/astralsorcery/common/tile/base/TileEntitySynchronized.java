@@ -15,12 +15,12 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.network.Connection;
+import net.minecraft.network.play.server.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.core.BlockPos;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -36,9 +36,9 @@ import java.util.Random;
 public abstract class TileEntitySynchronized extends BlockEntity implements ILocatable {
 
     protected static final Random rand = new Random();
-    protected static final AxisAlignedBB BOX = new AxisAlignedBB(0, 0, 0, 1, 1, 1);
+    protected static final AABB BOX = new AABB(0, 0, 0, 1, 1, 1);
 
-    protected TileEntitySynchronized(TileEntityType<?> tileEntityTypeIn) {
+    protected TileEntitySynchronized(BlockEntityType<?> tileEntityTypeIn) {
         super(tileEntityTypeIn);
     }
 
@@ -81,12 +81,12 @@ public abstract class TileEntitySynchronized extends BlockEntity implements ILoc
     public void writeSaveNBT(CompoundTag compound) {}
 
     @Override
-    public final SUpdateTileEntityPacket getUpdatePacket() {
+    public final ClientboundBlockEntityDataPacket getUpdatePacket() {
         CompoundTag compound = new CompoundTag();
         super.write(compound);
         writeCustomNBT(compound);
         writeNetNBT(compound);
-        return new SUpdateTileEntityPacket(getPos(), 255, compound);
+        return new ClientboundBlockEntityDataPacket(getPos(), 255, compound);
     }
 
     @Override
@@ -97,7 +97,7 @@ public abstract class TileEntitySynchronized extends BlockEntity implements ILoc
         return compound;
     }
 
-    public final void onDataPacket(NetworkManager manager, SUpdateTileEntityPacket packet) {
+    public final void onDataPacket(Connection manager, ClientboundBlockEntityDataPacket packet) {
         super.onDataPacket(manager, packet);
         readCustomNBT(packet.getNbtCompound());
         readNetNBT(packet.getNbtCompound());

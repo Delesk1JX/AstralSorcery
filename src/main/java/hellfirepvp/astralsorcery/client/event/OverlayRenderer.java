@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.event;
 
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.common.item.base.client.ItemOverlayRender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;

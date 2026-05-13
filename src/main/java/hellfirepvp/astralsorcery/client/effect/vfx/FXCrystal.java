@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.effect.vfx;
 
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.effect.EntityDynamicFX;
@@ -21,7 +21,6 @@ import hellfirepvp.astralsorcery.client.resource.query.TextureQuery;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import hellfirepvp.observerlib.client.util.BufferDecoratorBuilder;
 import net.minecraft.util.vector.Vector3f;
 
 import java.awt.*;
@@ -86,13 +85,14 @@ public class FXCrystal extends EntityVisualFX implements EntityDynamicFX {
         renderStack.push();
         renderStack.translate(vec.getX(), vec.getY() - 0.05F, vec.getZ());
         renderStack.scale(scale, scale, scale);
-        renderStack.rotate(Vector3f.XP.rotationDegrees((float) rotation.getX()));
-        renderStack.rotate(Vector3f.YP.rotationDegrees((float) rotation.getY()));
-        renderStack.rotate(Vector3f.ZP.rotationDegrees((float) rotation.getZ()));
+        // TODO: Update rotation for 1.21+ (Matrix4f instead of PoseStack.rotate)
+        renderStack.mulPose(Vector3f.XP.rotationDegrees((float) rotation.getX()));
+        renderStack.mulPose(Vector3f.YP.rotationDegrees((float) rotation.getY()));
+        renderStack.mulPose(Vector3f.ZP.rotationDegrees((float) rotation.getZ()));
 
-        BufferDecoratorBuilder.withColor((r, g, b, a) -> new int[] { c.getRed(), c.getGreen(), c.getBlue(), alpha})
-                .decorate(drawBuffer.getBuffer(ctx.getRenderType()),
-                        decorated -> ObjModelRender.renderCrystal(renderStack, decorated, drawBuffer::draw));
+        // TODO: Fix VertexFormat decorator for 1.21+
+        VertexConsumer decorated = drawBuffer.getBuffer(ctx.getRenderType());
+        ObjModelRender.renderCrystal(renderStack, decorated, drawBuffer::draw);
 
         renderStack.pop();
 

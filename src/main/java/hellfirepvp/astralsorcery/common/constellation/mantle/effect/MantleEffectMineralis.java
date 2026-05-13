@@ -20,15 +20,15 @@ import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraft.world.level.block.AirBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.util.Hand;
-import net.minecraft.util.BlockPos;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.core.BlockPos;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.event.world.BlockEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import java.util.List;
 
@@ -56,7 +56,7 @@ public class MantleEffectMineralis extends MantleEffect {
     private void onBreak(BlockEvent.BreakEvent event) {
         Player player = event.getPlayer();
         if (ItemMantle.getEffect(player, ConstellationsAS.mineralis) != null) {
-            LogicalSide side = player.getEntityWorld().isRemote() ? LogicalSide.CLIENT : LogicalSide.SERVER;
+            LogicalSide side = player.level.isRemote() ? LogicalSide.CLIENT : LogicalSide.SERVER;
             if (side.isServer()) {
                 float charge = Math.min(AlignmentChargeHandler.INSTANCE.getCurrentCharge(player, side), CONFIG.chargeCostPerBreak.get());
                 AlignmentChargeHandler.INSTANCE.drainCharge(player, side, charge, false);
@@ -91,7 +91,7 @@ public class MantleEffectMineralis extends MantleEffect {
         BlockState fState = state;
 
         BlockPredicate search = (world, pos, foundState) -> foundState == fState;
-        List<BlockPos> positions = BlockDiscoverer.searchForBlocksAround(player.getEntityWorld(), player.getPosition(), CONFIG.highlightRange.get(), search);
+        List<BlockPos> positions = BlockDiscoverer.searchForBlocksAround(player.level, player.getPosition(), CONFIG.highlightRange.get(), search);
         if (positions.isEmpty()) {
             return;
         }
@@ -101,7 +101,7 @@ public class MantleEffectMineralis extends MantleEffect {
         }
 
         BlockPos at = positions.get(index);
-        BlockState displayState = player.getEntityWorld().getBlockState(at);
+        BlockState displayState = player.level.getBlockState(at);
         MiscPlayEffect.playSingleBlockTumbleDepthEffect(new Vector3(at).add(0.5, 0.5, 0.5), displayState);
     }
 
@@ -121,16 +121,16 @@ public class MantleEffectMineralis extends MantleEffect {
 
         private final int defaultChargeCostPerBreak = 2;
 
-        public NeoForgeConfigSpec.IntValue highlightRange;
+        public ModConfigSpec.IntValue highlightRange;
 
-        public NeoForgeConfigSpec.IntValue chargeCostPerBreak;
+        public ModConfigSpec.IntValue chargeCostPerBreak;
 
         public MineralisConfig() {
             super("mineralis");
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.highlightRange = cfgBuilder

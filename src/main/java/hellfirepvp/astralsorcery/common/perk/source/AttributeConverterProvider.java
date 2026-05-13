@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.perk.source;
 
 import hellfirepvp.astralsorcery.common.perk.PerkConverter;
 import net.minecraft.world.entity.player.Player;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import java.util.Collection;
 

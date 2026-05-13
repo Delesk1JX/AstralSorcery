@@ -10,11 +10,11 @@ package hellfirepvp.astralsorcery.common.enchantment.amulet;
 
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigEntry;
 import hellfirepvp.astralsorcery.common.data.config.registry.AmuletEnchantmentRegistry;
-import hellfirepvp.astralsorcery.common.enchantment.dynamic.DynamicEnchantmentType;
+import hellfirepvp.astralsorcery.common.enchantment.dynamic.Dynamicnet.minecraft.world.item.enchantment.Enchantment;
 import hellfirepvp.astralsorcery.common.item.ItemEnchantmentAmulet;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -34,11 +34,11 @@ public class AmuletRandomizeHelper {
     public static final Config CONFIG = new Config();
     private static final Random rand = new Random();
 
-    private static NeoForgeConfigSpec.DoubleValue chance2nd;
-    private static NeoForgeConfigSpec.DoubleValue chance3rd;
-    private static NeoForgeConfigSpec.DoubleValue chance2Level;
-    private static NeoForgeConfigSpec.DoubleValue chanceToAll;
-    private static NeoForgeConfigSpec.DoubleValue chanceToNonExisting;
+    private static ModConfigSpec.DoubleValue chance2nd;
+    private static ModConfigSpec.DoubleValue chance3rd;
+    private static ModConfigSpec.DoubleValue chance2Level;
+    private static ModConfigSpec.DoubleValue chanceToAll;
+    private static ModConfigSpec.DoubleValue chanceToNonExisting;
 
     public static void rollAmulet(ItemStack stack) {
         if (stack.isEmpty() || !(stack.getItem() instanceof ItemEnchantmentAmulet)) {
@@ -47,7 +47,7 @@ public class AmuletRandomizeHelper {
 
         List<AmuletEnchantment> ench = new ArrayList<>();
         while (mayGetAdditionalRoll(ench)) {
-            DynamicEnchantmentType type = getRollType(ench);
+            Dynamicnet.minecraft.world.item.enchantment.Enchantment type = getRollType(ench);
             if (type != null) {
                 int lvl = getRollLevel();
                 if (type.isEnchantmentSpecific()) {
@@ -64,34 +64,34 @@ public class AmuletRandomizeHelper {
     }
 
     @Nullable
-    private static DynamicEnchantmentType getRollType(List<AmuletEnchantment> existing) {
+    private static Dynamicnet.minecraft.world.item.enchantment.Enchantment getRollType(List<AmuletEnchantment> existing) {
         int exAll = getAdditionAll(existing);
         switch (existing.size()) {
             case 0:
             case 1:
                 if (rand.nextFloat() < chanceToAll.get()) {
-                    return DynamicEnchantmentType.ADD_TO_EXISTING_ALL;
+                    return Dynamicnet.minecraft.world.item.enchantment.Enchantment.ADD_TO_EXISTING_ALL;
                 }
                 if (rand.nextFloat() < chanceToNonExisting.get()) {
-                    return DynamicEnchantmentType.ADD_TO_SPECIFIC;
+                    return Dynamicnet.minecraft.world.item.enchantment.Enchantment.ADD_TO_SPECIFIC;
                 }
-                return DynamicEnchantmentType.ADD_TO_EXISTING_SPECIFIC;
+                return Dynamicnet.minecraft.world.item.enchantment.Enchantment.ADD_TO_EXISTING_SPECIFIC;
             case 2:
                 if (exAll > 1) {
                     return null;
                 } else if (exAll == 1) {
                     if (rand.nextFloat() < chanceToNonExisting.get()) {
-                        return DynamicEnchantmentType.ADD_TO_SPECIFIC;
+                        return Dynamicnet.minecraft.world.item.enchantment.Enchantment.ADD_TO_SPECIFIC;
                     }
-                    return DynamicEnchantmentType.ADD_TO_EXISTING_SPECIFIC;
+                    return Dynamicnet.minecraft.world.item.enchantment.Enchantment.ADD_TO_EXISTING_SPECIFIC;
                 } else {
                     if (rand.nextFloat() < chanceToAll.get()) {
-                        return DynamicEnchantmentType.ADD_TO_EXISTING_ALL;
+                        return Dynamicnet.minecraft.world.item.enchantment.Enchantment.ADD_TO_EXISTING_ALL;
                     }
                     if (rand.nextFloat() < chanceToNonExisting.get()) {
-                        return DynamicEnchantmentType.ADD_TO_SPECIFIC;
+                        return Dynamicnet.minecraft.world.item.enchantment.Enchantment.ADD_TO_SPECIFIC;
                     }
-                    return DynamicEnchantmentType.ADD_TO_EXISTING_SPECIFIC;
+                    return Dynamicnet.minecraft.world.item.enchantment.Enchantment.ADD_TO_EXISTING_SPECIFIC;
                 }
             default:
                 break;
@@ -122,7 +122,7 @@ public class AmuletRandomizeHelper {
     private static int getAdditionAll(List<AmuletEnchantment> ench) {
         int i = 0;
         for (AmuletEnchantment e : ench) {
-            if (e.getType().equals(DynamicEnchantmentType.ADD_TO_EXISTING_ALL)) {
+            if (e.getType().equals(Dynamicnet.minecraft.world.item.enchantment.Enchantment.ADD_TO_EXISTING_ALL)) {
                 i++;
             }
         }
@@ -154,7 +154,7 @@ public class AmuletRandomizeHelper {
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             chance2nd = cfgBuilder
                     .comment("Defines the chance to roll a 2nd-enchantment-manipulating roll on the amulet. Value defines a percent chance from 0% to 100%. Setting this to 0 also prevents a 3rd roll")
                     .translation(translationKey("chance2nd"))

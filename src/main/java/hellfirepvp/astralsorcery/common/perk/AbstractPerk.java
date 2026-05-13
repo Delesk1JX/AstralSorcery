@@ -31,8 +31,8 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.api.distmarker.LogicalSide;
-import net.neoforged.neoforge.fml.ModContainer;
+import net.neoforged.fml.LogicalSide;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 
 import javax.annotation.Nonnull;
@@ -140,7 +140,7 @@ public class AbstractPerk implements ModifierSource {
     protected void removePerkLogic(Player player, LogicalSide dist) {}
 
     protected LogicalSide getSide(Entity entity) {
-        return entity.getEntityWorld().isRemote() ? LogicalSide.CLIENT : LogicalSide.SERVER;
+        return entity.level.isRemote() ? LogicalSide.CLIENT : LogicalSide.SERVER;
     }
 
     @Nullable

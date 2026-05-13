@@ -20,8 +20,8 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.Mth;
-import net.minecraft.world.World;
-import net.neoforged.neoforge.common.util.Constants;
+import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.common.Tags;
 
 import javax.annotation.Nonnull;
 import java.awt.*;
@@ -47,7 +47,7 @@ public class EngravedStarMap {
         this.drawInformation = drawnConstellations;
     }
 
-    public static EngravedStarMap buildStarMap(World world, List<DrawnConstellation> constellations) {
+    public static EngravedStarMap buildStarMap(Level world, List<DrawnConstellation> constellations) {
         float nightPerc = DayTimeHelper.getCurrentDaytimeDistribution(world);
 
         Map<DrawnConstellation, List<Rectangle.Double>> cstCoordinates = new HashMap<>();
@@ -195,7 +195,7 @@ public class EngravedStarMap {
 
     public static EngravedStarMap deserialize(CompoundTag tag) {
         Map<ResourceLocation, Float> distributionMap = new HashMap<>();
-        ListTag list = tag.getList("distributions", Constants.NBT.TAG_COMPOUND);
+        ListTag list = tag.getList("distributions", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
         for (int i = 0; i < list.size(); i++) {
             CompoundTag cstTag = list.getCompound(i);
             ResourceLocation constellationKey = new ResourceLocation(cstTag.getString("cst"));
@@ -205,7 +205,7 @@ public class EngravedStarMap {
             }
         }
         List<DrawnConstellation> drawnConstellations = new ArrayList<>();
-        ListTag listDrawn = tag.getList("drawInformation", Constants.NBT.TAG_COMPOUND);
+        ListTag listDrawn = tag.getList("drawInformation", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
         for (int i = 0; i < listDrawn.size(); i++) {
             CompoundTag cstTag = listDrawn.getCompound(i);
             IConstellation cst = ConstellationRegistry.getConstellation(new ResourceLocation(cstTag.getString("cst")));

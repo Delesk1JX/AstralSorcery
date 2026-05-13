@@ -14,13 +14,14 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.world.WorldSeedCache;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.world.World;
+import net.minecraft.util.ResourceKey;
+import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.event.tick.TickEvent;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
+import net.neoforged.neoforge.event.tick.ClientTickEvent;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
@@ -38,10 +39,10 @@ public class SkyHandler implements ITickHandler {
     
     private static final SkyHandler instance = new SkyHandler();
 
-    private final Map<RegistryKey<World>, WorldContext> worldHandlersServer = Maps.newHashMap();
-    private final Map<RegistryKey<World>, WorldContext> worldHandlersClient = Maps.newHashMap();
+    private final Map<ResourceKey<Level>, WorldContext> worldHandlersServer = Maps.newHashMap();
+    private final Map<ResourceKey<Level>, WorldContext> worldHandlersClient = Maps.newHashMap();
 
-    private final Map<RegistryKey<World>, Boolean> skyRevertMap = Maps.newHashMap();
+    private final Map<ResourceKey<Level>, Boolean> skyRevertMap = Maps.newHashMap();
 
     private SkyHandler() {}
 
@@ -50,11 +51,11 @@ public class SkyHandler implements ITickHandler {
     }
 
     @Override
-    public void tick(TickEvent.Type type, Object... context) {
-        if (type == TickEvent.Type.WORLD) {
-            World w = (World) context[0];
+    public void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
+        if (type == net.neoforged.neoforge.event.tick.ClientTickEvent.WORLD) {
+            Level w = (Level) context[0];
             if (!w.isRemote() && w instanceof ServerLevel) {
-                RegistryKey<World> dimKey = w.getDimensionKey();
+                ResourceKey<Level> dimKey = w.getDimensionKey();
                 skyRevertMap.put(dimKey, false);
 
                 WorldContext ctx = worldHandlersServer.get(dimKey);
@@ -71,9 +72,9 @@ public class SkyHandler implements ITickHandler {
 
     @OnlyIn(Dist.CLIENT)
     private void handleClientTick() {
-        World w = Minecraft.getInstance().world;
+        Level w = Minecraft.getInstance().world;
         if (w != null) {
-            RegistryKey<World> dimKey = w.getDimensionKey();
+            ResourceKey<Level> dimKey = w.getDimensionKey();
             WorldContext ctx = worldHandlersClient.get(dimKey);
             if (ctx == null) {
                 Optional<Long> seedOpt = WorldSeedCache.getSeedIfPresent(dimKey);
@@ -92,16 +93,16 @@ public class SkyHandler implements ITickHandler {
     }
 
     @Nullable
-    public static WorldContext getContext(World world) {
+    public static WorldContext getContext(Level world) {
         return getContext(world, world.isRemote() ? LogicalSide.CLIENT : LogicalSide.SERVER);
     }
 
     @Nullable
-    public static WorldContext getContext(World world, LogicalSide dist) {
+    public static WorldContext getContext(Level world, LogicalSide dist) {
         if (world == null) {
             return null;
         }
-        RegistryKey<World> dimKey = world.getDimensionKey();
+        ResourceKey<Level> dimKey = world.getDimensionKey();
         if (dist.isClient()) {
             return getInstance().worldHandlersClient.getOrDefault(dimKey, null);
         } else {
@@ -110,7 +111,7 @@ public class SkyHandler implements ITickHandler {
     }
 
     public void revertWorldTimeTick(ServerLevel world) {
-        RegistryKey<World> dimKey = world.getDimensionKey();
+        ResourceKey<Level> dimKey = world.getDimensionKey();
         Boolean state = skyRevertMap.get(dimKey);
         if (!world.isRemote && state != null && !state) {
             skyRevertMap.put(dimKey, true);
@@ -122,19 +123,19 @@ public class SkyHandler implements ITickHandler {
         worldHandlersClient.clear();
     }
 
-    public void informWorldUnload(World world) {
+    public void informWorldUnload(Level world) {
         worldHandlersServer.remove(world.getDimensionKey());
         worldHandlersClient.remove(world.getDimensionKey());
     }
 
     @Override
-    public EnumSet<TickEvent.Type> getHandledTypes() {
-        return EnumSet.of(TickEvent.Type.WORLD, TickEvent.Type.CLIENT);
+    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
+        return EnumSet.of(net.neoforged.neoforge.event.tick.ClientTickEvent.WORLD, net.neoforged.neoforge.event.tick.ClientTickEvent.CLIENT);
     }
 
     @Override
-    public boolean canFire(TickEvent.Phase phase) {
-        return phase == TickEvent.Phase.END;
+    public boolean canFire(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
+        return phase == net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
     }
 
     @Override

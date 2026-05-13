@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.data.config.base.ConfigDataSet;
 import hellfirepvp.astralsorcery.common.data.config.entry.GeneralConfig;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.world.item.Item;
-import net.minecraft.tags.ITag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.resources.ResourceLocation;
 

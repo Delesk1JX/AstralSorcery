@@ -11,17 +11,17 @@ package hellfirepvp.astralsorcery.common.util.dispenser;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.dispenser.DefaultDispenseItemBehavior;
-import net.minecraft.dispenser.IBlockSource;
-import net.minecraft.dispenser.IDispenseItemBehavior;
+import net.minecraft.core.dispenser.DispenseItemContext;
+import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.tileentity.DispenserTileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.entity.DispenserTileEntity;
+import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
-import net.neoforged.neoforge.common.util.LazyOptional;
+import net.neoforged.neoforge.common.util.Lazy;
 import net.neoforged.neoforge.fluids.FluidActionResult;
 import net.neoforged.neoforge.fluids.FluidAttributes;
 import net.neoforged.neoforge.fluids.FluidStack;
@@ -51,7 +51,7 @@ public class FluidContainerDispenseBehavior extends DefaultDispenseItemBehavior 
     }
 
     @Override
-    protected ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
+    protected ItemStack dispenseStack(net.minecraft.core.BlockSource source, ItemStack stack) {
         if (FluidUtil.getFluidContained(stack).isPresent()) {
             return dumpContainer(source, stack);
         } else {
@@ -60,8 +60,8 @@ public class FluidContainerDispenseBehavior extends DefaultDispenseItemBehavior 
     }
 
     @Nonnull
-    private ItemStack fillContainer(IBlockSource source, ItemStack stack) {
-        World world = source.getWorld();
+    private ItemStack fillContainer(net.minecraft.core.BlockSource source, ItemStack stack) {
+        Level world = source.getWorld();
         Direction dispenserFacing = source.getBlockState().get(DispenserBlock.FACING);
         BlockPos blockpos = source.getBlockPos().offset(dispenserFacing);
 
@@ -84,11 +84,11 @@ public class FluidContainerDispenseBehavior extends DefaultDispenseItemBehavior 
     }
 
     @Nonnull
-    private ItemStack dumpContainer(IBlockSource source, @Nonnull ItemStack stack) {
+    private ItemStack dumpContainer(net.minecraft.core.BlockSource source, @Nonnull ItemStack stack) {
         ServerLevel world = source.getWorld();
         ItemStack singleStack = stack.copy();
         singleStack.setCount(1);
-        LazyOptional<IFluidHandlerItem> itemFluidHandler = FluidUtil.getFluidHandler(singleStack);
+        Lazy<IFluidHandlerItem> itemFluidHandler = FluidUtil.getFluidHandler(singleStack);
         if (!itemFluidHandler.isPresent()) {
             return super.dispenseStack(source, stack);
         }

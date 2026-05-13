@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.starlight.WorldNetworkHandler;
 import hellfirepvp.astralsorcery.common.starlight.transmission.IPrismTransmissionNode;
 import hellfirepvp.astralsorcery.common.starlight.transmission.TransmissionNetworkHelper;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -32,7 +32,7 @@ public abstract class TileNetwork<T extends IPrismTransmissionNode> extends Tile
     private T cachedNetworkNode = null;
     private boolean needsNetworkSync = false;
 
-    protected TileNetwork(TileEntityType<?> tileEntityTypeIn) {
+    protected TileNetwork(BlockEntityType<?> tileEntityTypeIn) {
         super(tileEntityTypeIn);
     }
 

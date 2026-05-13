@@ -23,17 +23,17 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.IntTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.util.DamageSource;
-import net.minecraft.world.World;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
-import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.ModConfigSpec;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.event.entity.living.LivingAttackEvent;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,12 +71,12 @@ public class MantleEffectBootes extends MantleEffect {
             return;
         }
 
-        World world = player.getEntityWorld();
+        Level world = player.level;
         List<EntityFlare> flares = gatherFlares(world, mantle);
         if (flares.size() < CONFIG.maxFlareCount.get()) {
             if (player.ticksExisted % 80 == 0) {
                 if (AlignmentChargeHandler.INSTANCE.hasCharge(player, LogicalSide.SERVER, CONFIG.chargeCostPerFlare.get()) && rand.nextInt(4) == 0) {
-                    EntityFlare flare = EntityTypesAS.FLARE.create(player.getEntityWorld());
+                    EntityFlare flare = EntityTypesAS.FLARE.create(player.level);
                     flare.setPosition(player.getPosX(), player.getPosY(), player.getPosZ());
                     flare.setFollowingTarget(player);
                     if (world.addEntity(flare)) {
@@ -106,7 +106,7 @@ public class MantleEffectBootes extends MantleEffect {
     private void onAttacked(LivingAttackEvent event) {
         LivingEntity attacked = event.getEntityLiving();
         DamageSource src = event.getSource();
-        if (!attacked.getEntityWorld().isRemote() && src.getTrueSource() instanceof LivingEntity) {
+        if (!attacked.level.isRemote() && src.getTrueSource() instanceof LivingEntity) {
             LivingEntity attacker = (LivingEntity) src.getTrueSource();
             if (ItemMantle.getEffect(attacker, ConstellationsAS.bootes) != null && attacked.isAlive()) {
                 if (attacked instanceof Player && !MiscUtils.canPlayerAttackServer(attacker, attacked)) {
@@ -119,7 +119,7 @@ public class MantleEffectBootes extends MantleEffect {
 
     private void onHurt(LivingHurtEvent event) {
         LivingEntity hurt = event.getEntityLiving();
-        if (!hurt.getEntityWorld().isRemote() && ItemMantle.getEffect(hurt, ConstellationsAS.bootes) != null) {
+        if (!hurt.level.isRemote() && ItemMantle.getEffect(hurt, ConstellationsAS.bootes) != null) {
             Entity source = event.getSource().getTrueSource();
             if (source instanceof LivingEntity) {
                 this.forEachFlare(hurt, flare -> flare.setAttackTarget((LivingEntity) source));
@@ -133,10 +133,10 @@ public class MantleEffectBootes extends MantleEffect {
             return;
         }
 
-        this.gatherFlares(owner.getEntityWorld(), mantle).forEach(fn);
+        this.gatherFlares(owner.level, mantle).forEach(fn);
     }
 
-    protected List<EntityFlare> gatherFlares(World world, ItemStack mantleStack) {
+    protected List<EntityFlare> gatherFlares(Level world, ItemStack mantleStack) {
         List<EntityFlare> flares = new ArrayList<>();
         for (int flareId : getEntityIds(mantleStack)) {
             Entity e = world.getEntityByID(flareId);
@@ -155,7 +155,7 @@ public class MantleEffectBootes extends MantleEffect {
 
     protected List<Integer> getEntityIds(ItemStack mantleStack) {
         List<Integer> ids = new ArrayList<>();
-        ListTag nbtIds = NBTHelper.getPersistentData(mantleStack).getList("flareIds", Constants.NBT.TAG_INT);
+        ListTag nbtIds = NBTHelper.getPersistentData(mantleStack).getList("flareIds", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_INT);
         for (int i = 0; i < nbtIds.size(); i++) {
             ids.add(nbtIds.getInt(i));
         }
@@ -178,16 +178,16 @@ public class MantleEffectBootes extends MantleEffect {
 
         private final int defaultChargeCostPerFlare = 400;
 
-        public NeoForgeConfigSpec.IntValue maxFlareCount;
+        public ModConfigSpec.IntValue maxFlareCount;
 
-        public NeoForgeConfigSpec.IntValue chargeCostPerFlare;
+        public ModConfigSpec.IntValue chargeCostPerFlare;
 
         public BootesConfig() {
             super("bootes");
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.maxFlareCount = cfgBuilder

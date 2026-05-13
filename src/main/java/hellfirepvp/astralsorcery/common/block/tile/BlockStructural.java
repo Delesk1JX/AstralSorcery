@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.GuiType;
 import hellfirepvp.astralsorcery.common.event.EventFlags;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.world.entity.Entity;
@@ -24,20 +24,19 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.loot.LootContext;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.BlockRayTraceResult;
-import net.minecraft.util.RayTraceResult;
-import net.minecraft.util.shapes.ISelectionContext;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.util.shapes.VoxelShape;
-import net.minecraft.util.shapes.VoxelShapes;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.*;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.ToolType;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -92,7 +91,7 @@ public class BlockStructural extends Block {
     }
 
     @Override
-    public SoundType getSoundType(BlockState state, IWorldReader world, BlockPos pos, @Nullable Entity entity) {
+    public SoundType getSoundType(BlockState state, LevelAccessor world, BlockPos pos, @Nullable Entity entity) {
         switch (state.get(BLOCK_TYPE)) {
             case TELESCOPE:
                 return SoundType.WOOD;
@@ -102,7 +101,7 @@ public class BlockStructural extends Block {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public boolean addDestroyEffects(BlockState state, World world, BlockPos pos, ParticleManager manager) {
+    public boolean addDestroyEffects(BlockState state, Level world, BlockPos pos, ParticleManager manager) {
         EventFlags.PLAY_BLOCK_BREAK_EFFECTS.executeWithFlag(() -> {
             switch (state.get(BLOCK_TYPE)) {
                 case TELESCOPE:
@@ -115,12 +114,12 @@ public class BlockStructural extends Block {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public boolean addHitEffects(BlockState state, World world, RayTraceResult target, ParticleManager manager) {
-        if (target instanceof BlockRayTraceResult) {
+    public boolean addHitEffects(BlockState state, Level world, RayTraceResult target, ParticleManager manager) {
+        if (target instanceof BlockHitResult) {
             EventFlags.PLAY_BLOCK_BREAK_EFFECTS.executeWithFlag(() -> {
                 switch (state.get(BLOCK_TYPE)) {
                     case TELESCOPE:
-                        manager.addBlockDestroyEffects(((BlockRayTraceResult) target).getPos().down(), BlocksAS.TELESCOPE.getDefaultState());
+                        manager.addBlockDestroyEffects(((BlockHitResult) target).getPos().down(), BlocksAS.TELESCOPE.getDefaultState());
                         break;
                 }
             });
@@ -129,7 +128,7 @@ public class BlockStructural extends Block {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, Player entity, Hand hand, BlockRayTraceResult rayTraceResult) {
+    public ActionResultType onBlockActivated(BlockState state, Level world, BlockPos pos, Player entity, Hand hand, BlockHitResult rayTraceResult) {
         switch (state.get(BLOCK_TYPE)) {
             case TELESCOPE:
                 if (world.isRemote()) {
@@ -169,7 +168,7 @@ public class BlockStructural extends Block {
     }
 
     @Override
-    public float getExplosionResistance(BlockState state, IWorldReader world, BlockPos pos, @Nullable Entity exploder, Explosion explosion) {
+    public float getExplosionResistance(BlockState state, LevelAccessor world, BlockPos pos, @Nullable Entity exploder, Explosion explosion) {
         switch (state.get(BLOCK_TYPE)) {
             case TELESCOPE:
                 return BlockType.TELESCOPE.getSupportedState().getExplosionResistance(world, pos.down(), exploder, explosion);
@@ -187,7 +186,7 @@ public class BlockStructural extends Block {
     }
 
     @Override
-    public void neighborChanged(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
+    public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
         switch (state.get(BLOCK_TYPE)) {
             case TELESCOPE:
                 if (world.isAirBlock(pos.down())) {
@@ -199,7 +198,7 @@ public class BlockStructural extends Block {
     }
 
     @Override
-    public void onNeighborChange(BlockState state, IWorldReader world, BlockPos pos, BlockPos neighbor) {
+    public void onNeighborChange(BlockState state, LevelAccessor world, BlockPos pos, BlockPos neighbor) {
         if (!(world instanceof IWorldWriter)) {
             return;
         }

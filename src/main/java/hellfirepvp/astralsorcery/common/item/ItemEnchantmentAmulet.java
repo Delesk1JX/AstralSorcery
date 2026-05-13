@@ -15,17 +15,17 @@ import hellfirepvp.astralsorcery.common.enchantment.amulet.AmuletEnchantment;
 import hellfirepvp.astralsorcery.common.enchantment.amulet.AmuletRandomizeHelper;
 import hellfirepvp.astralsorcery.common.item.base.client.ItemDynamicColor;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.*;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.Tags;
 
 import javax.annotation.Nullable;
 import java.awt.Color;
@@ -51,7 +51,7 @@ public class ItemEnchantmentAmulet extends Item implements ItemDynamicColor {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<Component> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         super.addInformation(stack, worldIn, tooltip, flagIn);
 
         List<AmuletEnchantment> enchantments = getAmuletEnchantments(stack);
@@ -67,7 +67,7 @@ public class ItemEnchantmentAmulet extends Item implements ItemDynamicColor {
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+    public void inventoryTick(ItemStack stack, Level worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         if (!worldIn.isRemote() && !getAmuletColor(stack).isPresent()) {
             freezeAmuletColor(stack);
         }
@@ -126,7 +126,7 @@ public class ItemEnchantmentAmulet extends Item implements ItemDynamicColor {
         if (!tag.contains("amuletEnchantments")) {
             return Lists.newArrayList();
         }
-        ListTag enchants = tag.getList("amuletEnchantments", Constants.NBT.TAG_COMPOUND);
+        ListTag enchants = tag.getList("amuletEnchantments", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
         List<AmuletEnchantment> enchantments = new ArrayList<>(enchants.size());
         for (int i = 0; i < enchants.size(); i++) {
             AmuletEnchantment ench = AmuletEnchantment.deserialize(enchants.getCompound(i));

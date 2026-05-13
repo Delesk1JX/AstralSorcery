@@ -28,7 +28,7 @@ import hellfirepvp.astralsorcery.common.crystal.CrystalAttributes;
 import hellfirepvp.astralsorcery.common.crystal.CrystalCalculations;
 import hellfirepvp.astralsorcery.common.item.crystal.ItemAttunedCrystalBase;
 import hellfirepvp.astralsorcery.common.lib.StructureTypesAS;
-import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
 import hellfirepvp.astralsorcery.common.structure.types.StructureType;
 import hellfirepvp.astralsorcery.common.tile.base.TileAreaOfInfluence;
 import hellfirepvp.astralsorcery.common.tile.base.network.TileReceiverBase;
@@ -45,17 +45,17 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.INBT;
+import net.minecraft.nbt.Tag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.util.Direction;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.Direction;
+import net.minecraft.util.ResourceKey;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.capabilities.Capability;
-import net.neoforged.neoforge.common.util.Constants;
-import net.neoforged.neoforge.common.util.LazyOptional;
+
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.util.Lazy;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -94,7 +94,7 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
     private Object ritualHaloEffect = null;
 
     public TileRitualPedestal() {
-        super(TileEntityTypesAS.RITUAL_PEDESTAL);
+        super(BlockEntityTypesAS.RITUAL_PEDESTAL);
 
         this.inventory = new TileInventoryFiltered(this, () -> 1, Direction.DOWN);
         this.inventory.canExtract((slot, amount, existing) -> !existing.isEmpty());
@@ -237,7 +237,7 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
 
     @Nonnull
     @Override
-    public RegistryKey<World> getDimension() {
+    public ResourceKey<Level> getDimension() {
         return this.getWorld().getDimensionKey();
     }
 
@@ -577,15 +577,15 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
         this.working = compound.getBoolean("working");
 
         this.offsetMirrors.clear();
-        ListTag tagList = compound.getList("mirrors", Constants.NBT.TAG_COMPOUND);
-        for (INBT nbt : tagList) {
+        ListTag tagList = compound.getList("mirrors", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
+        for (Tag nbt : tagList) {
             CompoundTag tag = (CompoundTag) nbt;
             this.offsetMirrors.put(NBTHelper.readBlockPosFromNBT(tag), tag.getBoolean("connect"));
         }
 
         this.offsetConfigurations.clear();
-        ListTag tagBlocks = compound.getList("blockConfiguration", Constants.NBT.TAG_COMPOUND);
-        for (INBT nbt : tagBlocks) {
+        ListTag tagBlocks = compound.getList("blockConfiguration", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
+        for (Tag nbt : tagBlocks) {
             CompoundTag tag = (CompoundTag) nbt;
             this.offsetConfigurations.put(NBTHelper.readBlockPosFromNBT(tag), NBTHelper.getBlockState(tag, "state"));
         }
@@ -625,7 +625,7 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
 
     @Nonnull
     @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+    public <T> Lazy<T> getCapability(@Nonnull net.neoforged.neoforge.common.capabilities.Capability<T> cap, @Nullable Direction side) {
         if (this.inventory.hasCapability(cap, side)) {
             return this.inventory.getCapability().cast();
         }

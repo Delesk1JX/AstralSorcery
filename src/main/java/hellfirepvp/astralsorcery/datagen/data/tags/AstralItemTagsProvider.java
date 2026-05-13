@@ -16,7 +16,7 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.minecraft.data.ItemTagsProvider;
 import net.minecraft.data.TagsProvider;
 import net.minecraft.world.item.Item;
-import net.minecraft.tags.ITag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.tags.ItemTags;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;

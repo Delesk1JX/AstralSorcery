@@ -17,21 +17,21 @@ import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.network.play.server.PktProgressionUpdate;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ItemUseContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.*;
 import net.minecraft.network.chat.*;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -65,7 +65,7 @@ public class ItemKnowledgeShare extends Item {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World world, List<Component> tooltip, ITooltipFlag flag) {
+    public void addInformation(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
         if (isCreative(stack)) {
             tooltip.add(new Component.translatable("astralsorcery.misc.knowledge.inscribed.creative").withStyle(ChatFormatting.LIGHT_PURPLE));
             return;
@@ -81,7 +81,7 @@ public class ItemKnowledgeShare extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, Player player, Hand hand) {
+    public ActionResult<ItemStack> onItemRightClick(Level world, Player player, Hand hand) {
         ItemStack held = player.getHeldItem(hand);
         if (held.isEmpty() || world.isRemote() || !(held.getItem() instanceof ItemKnowledgeShare)) {
             return ActionResult.resultSuccess(held);

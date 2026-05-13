@@ -24,7 +24,7 @@ import net.minecraft.network.chat.MutableComponent;
 import static net.minecraft.network.chat.Component.literal;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;

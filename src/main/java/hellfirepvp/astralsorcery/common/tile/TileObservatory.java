@@ -10,15 +10,15 @@ package hellfirepvp.astralsorcery.common.tile;
 
 import hellfirepvp.astralsorcery.common.entity.technical.EntityObservatoryHelper;
 import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
-import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
 import hellfirepvp.astralsorcery.common.tile.base.TileEntityTick;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import hellfirepvp.astralsorcery.common.util.tile.NamedInventoryTile;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import static net.minecraft.network.chat.Component.translatable;
 import net.neoforged.api.distmarker.Dist;
@@ -43,7 +43,7 @@ public class TileObservatory extends TileEntityTick implements NamedInventoryTil
     public float observatoryPitch = -45, prevObservatoryPitch = -45;
 
     public TileObservatory() {
-        super(TileEntityTypesAS.OBSERVATORY);
+        super(BlockEntityTypesAS.OBSERVATORY);
     }
 
     @Override
@@ -101,7 +101,7 @@ public class TileObservatory extends TileEntityTick implements NamedInventoryTil
         if (entityUUID == null) {
             return null;
         }
-        for (Entity e : world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(pos.add(-3, -1, -3), pos.add(3, 2, 3)))) {
+        for (Entity e : world.getEntitiesWithinAABB(Entity.class, new AABB(pos.add(-3, -1, -3), pos.add(3, 2, 3)))) {
             if (e.getUniqueID().equals(entityUUID)) {
                 this.entityIdServerRef = e.getEntityId();
                 return e;
@@ -137,7 +137,7 @@ public class TileObservatory extends TileEntityTick implements NamedInventoryTil
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public AxisAlignedBB getRenderBoundingBox() {
+    public AABB getRenderBoundingBox() {
         return TileObservatory.INFINITE_EXTENT_AABB;
     }
 

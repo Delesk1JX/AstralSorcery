@@ -16,15 +16,15 @@ import hellfirepvp.astralsorcery.common.crystal.CrystalGenerator;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.BlockItemUseContext;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.NonNullList;
+import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -46,7 +46,7 @@ public class ItemBlockCelestialCrystalCluster extends ItemBlockCustom implements
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean isSelected) {
+    public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean isSelected) {
         if (!world.isRemote()) {
             CrystalAttributes attributes = getAttributes(stack);
 
@@ -59,7 +59,7 @@ public class ItemBlockCelestialCrystalCluster extends ItemBlockCustom implements
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<Component> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         super.addInformation(stack, worldIn, tooltip, flagIn);
         CrystalAttributes attr = getAttributes(stack);
         if (attr != null) {

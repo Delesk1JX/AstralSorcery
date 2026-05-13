@@ -8,10 +8,10 @@
 
 package hellfirepvp.astralsorcery.common.crafting.helper;
 
-import net.minecraft.inventory.IInventory;
+import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.items.IItemHandler;
 
 /**
@@ -33,7 +33,7 @@ public abstract class CustomMatcherRecipe extends BaseHandlerRecipe<IItemHandler
     }
 
     @Override
-    public final boolean matches(IItemHandler handler, World world) {
+    public final boolean matches(IItemHandler handler, Level world) {
         return false;
     }
 

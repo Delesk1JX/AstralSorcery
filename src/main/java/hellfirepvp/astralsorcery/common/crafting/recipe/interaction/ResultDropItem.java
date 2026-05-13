@@ -18,7 +18,7 @@ import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -48,7 +48,7 @@ public class ResultDropItem extends InteractionResult {
     }
 
     @Override
-    public void doResult(World world, Vector3 at) {
+    public void doResult(Level world, Vector3 at) {
         ItemUtils.dropItemNaturally(world, at.getX(), at.getY(), at.getZ(), this.output.copy());
     }
 

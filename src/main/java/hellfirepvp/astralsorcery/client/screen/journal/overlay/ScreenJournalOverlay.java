@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.screen.journal.overlay;
 
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.client.screen.journal.ScreenJournal;
 import hellfirepvp.astralsorcery.client.screen.journal.ScreenJournalPerkTree;
 import hellfirepvp.astralsorcery.client.screen.journal.ScreenJournalProgression;

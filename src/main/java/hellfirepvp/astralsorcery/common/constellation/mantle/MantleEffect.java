@@ -21,22 +21,22 @@ import hellfirepvp.astralsorcery.common.item.armor.ItemMantle;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
-import hellfirepvp.observerlib.common.util.tick.ITickHandler;
+import hellfirepvp.astralsorcery.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.tick.TickEvent;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import net.minecraft.world.item.Item;
 
 import javax.annotation.Nonnull;
 import java.awt.*;
@@ -51,7 +51,7 @@ import java.util.function.Consumer;
  * Created by HellFirePvP
  * Date: 17.02.2020 / 20:13
  */
-public abstract class MantleEffect extends DeferredHolder<MantleEffect> implements ITickHandler {
+public abstract class MantleEffect extends DeferredHolder<Item, MantleEffect> implements ITickHandler {
 
     protected static final Random rand = new Random();
 
@@ -59,8 +59,8 @@ public abstract class MantleEffect extends DeferredHolder<MantleEffect> implemen
     private final IWeakConstellation constellation;
 
     public MantleEffect(IWeakConstellation constellation) {
+        super(constellation.getRegistryName());
         this.constellation = constellation;
-        this.setRegistryName(this.constellation.getRegistryName());
         this.playerAffectionFlag = new PlayerAffectionFlags.NoOpAffectionFlag(AstralSorcery.key("mantle_effect_" + constellation.getSimpleName()));
 
         this.attachEventListeners(NeoForge.EVENT_BUS);
@@ -137,7 +137,7 @@ public abstract class MantleEffect extends DeferredHolder<MantleEffect> implemen
     }
 
     @Override
-    public final void tick(TickEvent.Type type, Object... context) {
+    public final void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
         if (!this.getConfig().enabled.get()) {
             return;
         }
@@ -173,13 +173,13 @@ public abstract class MantleEffect extends DeferredHolder<MantleEffect> implemen
     }
 
     @Override
-    public EnumSet<TickEvent.Type> getHandledTypes() {
-        return EnumSet.of(TickEvent.Type.PLAYER);
+    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
+        return EnumSet.of(net.neoforged.neoforge.event.tick.ClientTickEvent.PLAYER);
     }
 
     @Override
-    public boolean canFire(TickEvent.Phase phase) {
-        return phase == TickEvent.Phase.END;
+    public boolean canFire(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
+        return phase == net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
     }
 
     @Override
@@ -191,14 +191,14 @@ public abstract class MantleEffect extends DeferredHolder<MantleEffect> implemen
 
         private final boolean defaultEnabled = true;
 
-        public NeoForgeConfigSpec.BooleanValue enabled;
+        public ModConfigSpec.BooleanValue enabled;
 
         public Config(String constellationName) {
             super(String.format("constellation.mantle.%s", constellationName));
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             this.enabled = cfgBuilder
                     .comment("Set this to false to disable this mantle effect")
                     .translation(translationKey("enabled"))

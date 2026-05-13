@@ -17,8 +17,8 @@ import hellfirepvp.astralsorcery.common.perk.data.PerkTreeLoader;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.api.distmarker.LogicalSide;
-import net.neoforged.neoforge.network.NetworkEvent;
+import net.neoforged.fml.LogicalSide;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -73,7 +73,7 @@ public class PktLoginSyncPerkInformation extends ASLoginPacket<PktLoginSyncPerkI
         return new Handler<PktLoginSyncPerkInformation>() {
             @Override
             @OnlyIn(Dist.CLIENT)
-            public void handleClient(PktLoginSyncPerkInformation packet, NetworkEvent.Context context) {
+            public void handleClient(PktLoginSyncPerkInformation packet, IPayloadContext context) {
                 context.enqueueWork(() -> {
                     PerkTreeData treeData = PerkTreeLoader.loadPerkTree(packet.rawPerkTreeData);
                     PerkTree.PERK_TREE.receivePerkTree(treeData.prepare());
@@ -83,7 +83,7 @@ public class PktLoginSyncPerkInformation extends ASLoginPacket<PktLoginSyncPerkI
             }
 
             @Override
-            public void handle(PktLoginSyncPerkInformation packet, NetworkEvent.Context context, LogicalSide side) {}
+            public void handle(PktLoginSyncPerkInformation packet, IPayloadContext context, LogicalSide side) {}
         };
     }
 }

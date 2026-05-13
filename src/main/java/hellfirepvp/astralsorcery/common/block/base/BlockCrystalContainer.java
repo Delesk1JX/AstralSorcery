@@ -19,10 +19,10 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.RayTraceResult;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 
@@ -59,7 +59,7 @@ public abstract class BlockCrystalContainer extends ContainerBlock {
     }
 
     @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+    public void onBlockPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
         Item i = stack.getItem();
         if (i instanceof CrystalAttributeItem) {
             CrystalAttributeTile cat = MiscUtils.getTileAt(world, pos, CrystalAttributeTile.class, true);

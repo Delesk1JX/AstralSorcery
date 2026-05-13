@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.event.effect;
 
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
@@ -18,12 +18,12 @@ import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import hellfirepvp.astralsorcery.client.util.obj.WavefrontObject;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.Tesselator;
 import net.minecraft.client.renderer.vertex.VertexBuffer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.util.vector.Vector3d;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.util.vector.Vector3f;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -68,7 +68,7 @@ public class ClientMiscEventHandler {
 
         if (player.isPassenger() || player.isElytraFlying()) return;
 
-        Vector3d motion = player.getMotion();
+        net.minecraft.world.phys.Vec3 motion = player.getMotion();
 
         boolean f = player.abilities.isFlying;
         float ma = f ? 15 : 5;

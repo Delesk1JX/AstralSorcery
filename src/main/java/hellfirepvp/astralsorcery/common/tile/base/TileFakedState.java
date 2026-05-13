@@ -12,10 +12,10 @@ import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.Tags;
 
 import javax.annotation.Nonnull;
 import java.awt.*;
@@ -32,7 +32,7 @@ public abstract class TileFakedState extends TileEntityTick {
     private BlockState fakedState = Blocks.AIR.getDefaultState();
     private Color overlayColor = Color.WHITE;
 
-    protected TileFakedState(TileEntityType<?> tileEntityTypeIn) {
+    protected TileFakedState(BlockEntityType<?> tileEntityTypeIn) {
         super(tileEntityTypeIn);
     }
 
@@ -40,7 +40,7 @@ public abstract class TileFakedState extends TileEntityTick {
         if (this.getWorld().isRemote()) {
             return false;
         }
-        return this.getWorld().setBlockState(this.getPos(), this.getFakedState(), Constants.BlockFlags.DEFAULT_AND_RERENDER);
+        return this.getWorld().setBlockState(this.getPos(), this.getFakedState(), net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.DEFAULT_AND_RERENDER);
     }
 
     @Nonnull

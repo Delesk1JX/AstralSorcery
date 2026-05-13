@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.util;
 
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.datafixers.util.Pair;
@@ -17,8 +17,6 @@ import hellfirepvp.astralsorcery.client.data.config.entry.RenderingConfig;
 import hellfirepvp.astralsorcery.client.effect.EntityComplexFX;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.reflection.ReflectionHelper;
-import hellfirepvp.observerlib.client.util.BufferDecoratorBuilder;
-import hellfirepvp.observerlib.client.util.RenderTypeDecorator;
 import hellfirepvp.observerlib.common.util.RegistryUtil;
 import net.minecraft.world.level.block.BlockRenderType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -44,18 +42,18 @@ import net.minecraft.world.item.Items;
 import net.minecraft.tileentity.BlockEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.util.shapes.VoxelShape;
-import net.minecraft.util.shapes.VoxelShapes;
-import net.minecraft.util.vector.Matrix4f;
+import net.minecraft.world.level.block.Blocks;
+import org.joml.Matrix4f;
 import net.minecraft.util.vector.Vector3f;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.network.chat.FormattedText;
 import net.minecraft.client.resources.language.LanguageManager;
 import static net.minecraft.network.chat.Component.literal;
 import net.minecraft.world.IBlockDisplayReader;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.biome.Biomes;
 import net.neoforged.neoforge.client.ForgeHooksClient;
 import net.neoforged.neoforge.client.model.data.EmptyModelData;
@@ -118,7 +116,7 @@ public class RenderingUtils {
 
     @Nullable
     public static TextureAtlasSprite getParticleTexture(BlockState state, @Nullable BlockPos positionHint) {
-        World world = Minecraft.getInstance().world;
+        Level world = Minecraft.getInstance().world;
         if (world == null) {
             return null;
         }
@@ -135,7 +133,7 @@ public class RenderingUtils {
 
     //Straight up ripped off of MC code.
     public static void playBlockBreakParticles(BlockPos pos, @Nullable BlockState actualState, BlockState particleState) {
-        ClientWorld world = Minecraft.getInstance().world;
+        ClientLevel world = Minecraft.getInstance().world;
         ParticleManager mgr = Minecraft.getInstance().particles;
 
         VoxelShape voxelshape;
@@ -216,26 +214,26 @@ public class RenderingUtils {
         renderStack.pop();
     }
 
-    public static void draw(int drawMode, VertexFormat format, Consumer<BufferBuilder> fn) {
+    public static void draw(int drawMode, VertexFormat format, Consumer<VertexConsumer> fn) {
         draw(drawMode, format, bufferBuilder -> {
             fn.accept(bufferBuilder);
             return null;
         });
     }
 
-    public static <R> R draw(int drawMode, VertexFormat format, Function<BufferBuilder, R> fn) {
-        BufferBuilder buf = buffer;
+    public static <R> R draw(int drawMode, VertexFormat format, Function<VertexConsumer, R> fn) {
+        VertexConsumer buf = buffer;
         buf.begin(drawMode, format);
         R result = fn.apply(buf);
         finishDrawing(buf);
         return result;
     }
 
-    public static void finishDrawing(BufferBuilder buf) {
+    public static void finishDrawing(VertexConsumer buf) {
         finishDrawing(buf, null);
     }
 
-    public static void finishDrawing(BufferBuilder buf, @Nullable RenderType type) {
+    public static void finishDrawing(VertexConsumer buf, @Nullable RenderType type) {
         if (buf.isDrawing()) {
             if (type != null) {
                 type.finish(buf, 0, 0, 0);
@@ -247,9 +245,9 @@ public class RenderingUtils {
     }
 
     public static void refreshDrawing(VertexConsumer vb, RenderType type) {
-        if (vb instanceof BufferBuilder) {
-            type.finish((BufferBuilder) vb, 0, 0, 0);
-            ((BufferBuilder) vb).begin(type.getDrawMode(), type.getVertexFormat());
+        if (vb instanceof VertexConsumer) {
+            type.finish((VertexConsumer) vb, 0, 0, 0);
+            ((VertexConsumer) vb).begin(type.getDrawMode(), type.getVertexFormat());
         }
     }
 
@@ -276,7 +274,7 @@ public class RenderingUtils {
 
         Matrix4f matr = renderStack.getLast().getMatrix();
         int length = fr.getStringPropertyWidth(text);
-        IRenderTypeBuffer.Impl buffers = IRenderTypeBuffer.getImpl(buffer);
+        MultiBufferSource.Impl buffers = MultiBufferSource.getImpl(buffer);
         IReorderingProcessor processedText = LanguageMap.getInstance().func_241870_a(text);
         int drawnLength = fr.func_238416_a_(processedText, -(length / 2F), 0, color.getRGB(), false, matr, buffers, true, 0, LightmapUtil.getPackedFullbrightCoords());
         buffers.finish();
@@ -285,7 +283,7 @@ public class RenderingUtils {
         return drawnLength;
     }
 
-    public static void renderItemAsEntity(ItemStack stack, PoseStack renderStack, IRenderTypeBuffer buffers, double x, double y, double z, int combinedLight, float pTicks, int age) {
+    public static void renderItemAsEntity(ItemStack stack, PoseStack renderStack, MultiBufferSource buffers, double x, double y, double z, int combinedLight, float pTicks, int age) {
         ItemEntity ei = new ItemEntity(Minecraft.getInstance().world, x, y, z, stack);
         ei.age = age;
         ei.hoverStart = 0;
@@ -332,16 +330,10 @@ public class RenderingUtils {
         textureManager.bindTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);
         textureManager.getTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE).setBlurMipmap(false, false);
 
-        IRenderTypeBuffer.Impl buffer = Minecraft.getInstance().getRenderTypeBuffers().getBufferSource();
+        MultiBufferSource.Impl buffer = Minecraft.getInstance().getRenderTypeBuffers().getBufferSource();
         renderItemModelWithColor(stack, ItemCameraTransforms.TransformType.GROUND, bakedModel, renderStack, (renderType) -> {
-            RenderTypeDecorator decorated = RenderTypeDecorator.wrapSetup(renderType, () -> {
-                RenderSystem.enableBlend();
-                blendMode.apply();
-            }, () -> {
-                Blending.DEFAULT.apply();
-                RenderSystem.disableBlend();
-            });
-            return buffer.getBuffer(decorated);
+            // TODO: Fix RenderTypeDecorator for 1.21+
+            return buffer.getBuffer(renderType);
         }, LightmapUtil.getPackedFullbrightCoords(), OverlayTexture.NO_OVERLAY, overlayColor, alpha);
         buffer.finish();
     }
@@ -368,7 +360,7 @@ public class RenderingUtils {
             RenderHelper.setupGuiFlatDiffuseLighting();
         }
 
-        IRenderTypeBuffer.Impl buffer = Minecraft.getInstance().getRenderTypeBuffers().getBufferSource();
+        MultiBufferSource.Impl buffer = Minecraft.getInstance().getRenderTypeBuffers().getBufferSource();
         renderItemModelWithColor(stack, ItemCameraTransforms.TransformType.GUI, bakedModel, renderStack, buffer,
                 LightmapUtil.getPackedFullbrightCoords(), OverlayTexture.NO_OVERLAY, overlayColor, Mth.clamp(alpha, 0, 255));
         buffer.finish();
@@ -455,7 +447,7 @@ public class RenderingUtils {
         return Minecraft.getInstance().getItemRenderer().getItemModelWithOverrides(stack, Minecraft.getInstance().world, Minecraft.getInstance().player);
     }
 
-    private static void renderItemModelWithColor(ItemStack stack, ItemCameraTransforms.TransformType transformType, IBakedModel model, PoseStack renderStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay, Color c, int alpha) {
+    private static void renderItemModelWithColor(ItemStack stack, ItemCameraTransforms.TransformType transformType, IBakedModel model, PoseStack renderStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay, Color c, int alpha) {
         if (!stack.isEmpty()) {
             renderStack.push();
             renderStack.translate(-0.5, -0.5, -0.5);
@@ -466,7 +458,8 @@ public class RenderingUtils {
 
             if (model.isBuiltInRenderer() || (stack.getItem() == Items.TRIDENT && !renderThirdPersonView)) {
                 int[] colors = new int[] { c.getRed(), c.getGreen(), c.getBlue(), alpha };
-                IRenderTypeBuffer decoratedBuffer = type -> BufferDecoratorBuilder.withColor((r, g, b, a) -> colors).decorate(buffer.getBuffer(type));
+                // TODO: Fix VertexFormat decorator for 1.21+
+                VertexConsumer decoratedBuffer = buffer.getBuffer(RenderType.entityTranslucent(AtlasTexture.LOCATION_BLOCKS_TEXTURE));
                 stack.getItem().getItemStackTileEntityRenderer().func_239207_a_(stack, transformType, renderStack, decoratedBuffer, combinedLight, combinedOverlay);
             } else if (model.isLayered()) {
                 for (Pair<IBakedModel, RenderType> layerModel : model.getLayerModels(stack, true)) {

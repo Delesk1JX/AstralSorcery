@@ -24,9 +24,9 @@ import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.RayTraceResult;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
@@ -43,7 +43,7 @@ public class EntityObservatoryHelper extends Entity {
 
     private static final DataParameter<BlockPos> FIXED = EntityDataManager.createKey(EntityObservatoryHelper.class, DataSerializers.BLOCK_POS);
 
-    public EntityObservatoryHelper(World worldIn) {
+    public EntityObservatoryHelper(Level worldIn) {
         super(EntityTypesAS.OBSERVATORY_HELPER, worldIn);
     }
 

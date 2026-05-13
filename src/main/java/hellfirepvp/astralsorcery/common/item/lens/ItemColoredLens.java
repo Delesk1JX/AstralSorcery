@@ -17,9 +17,9 @@ import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ItemUseContext;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.world.World;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -46,7 +46,7 @@ public abstract class ItemColoredLens extends Item implements ItemDynamicColor {
     @Override
     public ActionResultType onItemUse(ItemUseContext ctx) {
         Player player = ctx.getPlayer();
-        World world = ctx.getWorld();
+        Level world = ctx.getWorld();
         if (!world.isRemote() && player != null) {
             TileLens lens = MiscUtils.getTileAt(world, ctx.getPos(), TileLens.class, false);
             if (lens != null) {

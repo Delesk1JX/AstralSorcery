@@ -23,7 +23,7 @@ import net.minecraft.world.item.crafting.SpecialRecipe;
 import net.minecraft.world.item.crafting.SpecialRecipeSerializer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 import java.util.function.BiConsumer;
@@ -50,7 +50,7 @@ public class RecipeDyeableChangeColor extends SpecialRecipe {
     }
 
     @Override
-    public boolean matches(CraftingInventory inv, World worldIn) {
+    public boolean matches(CraftingInventory inv, Level worldIn) {
         return tryFindValidRecipeAndDye(inv) != null;
     }
 

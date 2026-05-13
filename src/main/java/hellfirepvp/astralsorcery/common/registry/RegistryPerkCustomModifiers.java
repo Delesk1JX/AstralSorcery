@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;
 import hellfirepvp.astralsorcery.common.perk.modifier.PerkAttributeModifier;
 import hellfirepvp.astralsorcery.common.perk.type.ModifierType;
 import net.minecraft.world.entity.player.Player;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import static hellfirepvp.astralsorcery.common.lib.PerkCustomModifiersAS.*;
 
@@ -60,7 +60,7 @@ public class RegistryPerkCustomModifiers {
 
             @Override
             public float getValue(Player player, PlayerProgress progress) {
-                LogicalSide side = player.getEntityWorld().isRemote() ? LogicalSide.CLIENT : LogicalSide.SERVER;
+                LogicalSide side = player.level.isRemote() ? LogicalSide.CLIENT : LogicalSide.SERVER;
                 return 1F + (0.05F * progress.getPerkData().getAvailablePerkPoints(player, side));
             }
 

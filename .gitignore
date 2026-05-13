@@ -4,23 +4,33 @@
 *.o
 *.obj
 *.out
-build/
-target/
+*.dll
+*.so
+*.a
+*.exe
 
 # Dependencies
 .gradle/
-lib/
-libs/
+target/
 
 # Logs and temp files
 *.log
 *.tmp
 
 # Editors
-.idea/
 .vscode/
+.idea/
 
 # System files
 .DS_Store
 Thumbs.db
+
+# Coverage reports
+coverage/
+htmlcov/
+.coverage
+
+# Package distributions
+dist/
+build/
 ```

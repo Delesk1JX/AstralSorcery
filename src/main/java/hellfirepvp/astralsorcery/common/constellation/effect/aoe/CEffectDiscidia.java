@@ -32,12 +32,12 @@ import net.minecraft.world.entity.MobEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -62,7 +62,7 @@ public class CEffectDiscidia extends ConstellationEffectEntityCollect<LivingEnti
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void playClientEffect(World world, BlockPos pos, TileRitualPedestal pedestal, float alphaMultiplier, boolean extended) {
+    public void playClientEffect(Level world, BlockPos pos, TileRitualPedestal pedestal, float alphaMultiplier, boolean extended) {
         Vector3 playAt = new Vector3(pos).add(0.5, 0.5, 0.5);
         if (pos.equals(pedestal.getPos())) {
             playAt.add(
@@ -82,7 +82,7 @@ public class CEffectDiscidia extends ConstellationEffectEntityCollect<LivingEnti
     }
 
     @Override
-    public boolean playEffect(World world, BlockPos pos, ConstellationEffectProperties properties, @Nullable IMinorConstellation trait) {
+    public boolean playEffect(Level world, BlockPos pos, ConstellationEffectProperties properties, @Nullable IMinorConstellation trait) {
         boolean didEffect = false;
 
         float damage = CONFIG.damage.get().floatValue(); //Randomize?..
@@ -130,14 +130,14 @@ public class CEffectDiscidia extends ConstellationEffectEntityCollect<LivingEnti
 
         private final double defaultDamage = 3D;
 
-        public NeoForgeConfigSpec.DoubleValue damage;
+        public ModConfigSpec.DoubleValue damage;
 
         public DiscidiaConfig() {
             super("discidia", 10D, 2D);
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.damage = cfgBuilder

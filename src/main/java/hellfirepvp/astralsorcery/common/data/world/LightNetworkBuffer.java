@@ -31,13 +31,13 @@ import hellfirepvp.observerlib.common.data.base.WorldSection;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.tileentity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
-import net.neoforged.neoforge.common.util.Constants;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.common.Tags;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -60,7 +60,7 @@ public class LightNetworkBuffer extends SectionWorldData<LightNetworkBuffer.Chun
         super(key, PRECISION_CHUNK);
     }
 
-    public WorldNetworkHandler getNetworkHandler(World world) {
+    public WorldNetworkHandler getNetworkHandler(Level world) {
         return new WorldNetworkHandler(this, world);
     }
 
@@ -70,7 +70,7 @@ public class LightNetworkBuffer extends SectionWorldData<LightNetworkBuffer.Chun
     }
 
     @Override
-    public void updateTick(World world) {
+    public void updateTick(Level world) {
         cleanupQueuedChunks();
 
         TransmissionWorldHandler handle = StarlightTransmissionHandler.getInstance().getWorldHandler(world);
@@ -108,7 +108,7 @@ public class LightNetworkBuffer extends SectionWorldData<LightNetworkBuffer.Chun
     }
 
     @Override
-    public void onLoad(World world) {
+    public void onLoad(Level world) {
         super.onLoad(world);
 
         if (LightNetworkConfig.CONFIG.performNetworkIntegrityCheck.get()) {
@@ -196,7 +196,7 @@ public class LightNetworkBuffer extends SectionWorldData<LightNetworkBuffer.Chun
         cachedSourceTuples = null;
 
         if (nbt.contains("sources")) {
-            ListTag list = nbt.getList("sources", Constants.NBT.TAG_COMPOUND);
+            ListTag list = nbt.getList("sources", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
             for (int i = 0; i < list.size(); i++) {
                 CompoundTag sourcePos = list.getCompound(i);
                 BlockPos at = NBTHelper.readBlockPosFromNBT(sourcePos);
@@ -344,7 +344,7 @@ public class LightNetworkBuffer extends SectionWorldData<LightNetworkBuffer.Chun
                 } catch (NumberFormatException exc) {
                     continue;
                 }
-                ListTag yData = tag.getList(key, Constants.NBT.TAG_COMPOUND);
+                ListTag yData = tag.getList(key, net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
                 ChunkSectionNetworkData sectionNetData = ChunkSectionNetworkData.loadFromNBT(yData);
                 this.sections.put(yLevel, sectionNetData);
             }

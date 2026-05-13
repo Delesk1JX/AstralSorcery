@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.client.screen.journal;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
@@ -58,13 +58,13 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.Util;
+import net.minecraft.Util;
 import net.minecraft.util.Mth;
-import net.minecraft.util.vector.Matrix4f;
+import org.joml.Matrix4f;
 import net.minecraft.network.chat.*;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nullable;
@@ -301,7 +301,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
         if (!this.foundSeals.isEmpty() && rectSealBox.contains(mouseX - guiLeft, mouseY - guiTop)) {
             List<ITextProperties> toolTip = new ArrayList<>();
             toolTip.addAll(this.foundSeals.getTooltip(Minecraft.getInstance().player,
-                    Minecraft.getInstance().gameSettings.advancedItemTooltips ? ITooltipFlag.TooltipFlags.ADVANCED : ITooltipFlag.TooltipFlags.NORMAL));
+                    Minecraft.getInstance().gameSettings.advancedItemTooltips ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL));
             toolTip.add(Component.literal.EMPTY);
             toolTip.add(new Component.translatable("perk.info.astralsorcery.sealed.usage").withStyle(ChatFormatting.GRAY));
 
@@ -671,7 +671,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
         drawSeal(batch, renderStack, size, x, y, spriteOffsetTick, 1F);
     }
 
-    private void drawSeal(BufferBuilder vb, PoseStack renderStack, double size, double x, double y, long spriteOffsetTick, float alpha) {
+    private void drawSeal(VertexConsumer vb, PoseStack renderStack, double size, double x, double y, long spriteOffsetTick, float alpha) {
         SpriteSheetResource tex = SpritesAS.SPR_PERK_SEAL;
         if (tex == null) {
             return;
@@ -722,7 +722,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
         }
     }
 
-    private void drawConnection(BufferBuilder vb, PoseStack renderStack, AllocationStatus status, Point.Float source, Point.Float target, long effectTick) {
+    private void drawConnection(VertexConsumer vb, PoseStack renderStack, AllocationStatus status, Point.Float source, Point.Float target, long effectTick) {
         Point.Float offsetSrc = this.sizeHandler.scalePointToGui(this, this.mousePosition, source);
         Point.Float offsetDst = this.sizeHandler.scalePointToGui(this, this.mousePosition, target);
         Color overlay = status.getPerkConnectionColor();

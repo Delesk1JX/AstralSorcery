@@ -16,11 +16,11 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BlockRenderType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.ContainerBlock;
-import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.BlockPos;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.shapes.IBooleanFunction;
-import net.minecraft.util.shapes.ISelectionContext;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.util.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 

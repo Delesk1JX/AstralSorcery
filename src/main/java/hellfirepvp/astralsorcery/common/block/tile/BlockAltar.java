@@ -23,18 +23,17 @@ import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraft.world.level.block.BlockRenderType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.pathfinding.PathType;
-import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.BlockRayTraceResult;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
-import net.neoforged.neoforge.common.ToolType;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.minecraft.world.level.Level;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nullable;
 
@@ -62,7 +61,7 @@ public abstract class BlockAltar extends BlockStarlightNetwork implements Custom
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, Player player, Hand hand, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, Hand hand, BlockHitResult hit) {
         if (!world.isRemote() && player instanceof ServerPlayer) {
             TileAltar altar = MiscUtils.getTileAt(world, pos, TileAltar.class, true);
             if (altar != null) {
@@ -99,7 +98,7 @@ public abstract class BlockAltar extends BlockStarlightNetwork implements Custom
     }
 
     @Override
-    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+    public void onReplaced(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         if (!(newState.getBlock() instanceof BlockAltar)) {
             TileAltar ta = MiscUtils.getTileAt(worldIn, pos, TileAltar.class, true);
             if (ta != null && !worldIn.isRemote) {

@@ -17,8 +17,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.api.distmarker.LogicalSide;
-import net.neoforged.neoforge.network.NetworkEvent;
+import net.neoforged.fml.LogicalSide;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -110,7 +110,7 @@ public class PktSyncKnowledge extends ASPacket<PktSyncKnowledge> {
         return new Handler<PktSyncKnowledge>() {
             @Override
             @OnlyIn(Dist.CLIENT)
-            public void handleClient(PktSyncKnowledge packet, NetworkEvent.Context context) {
+            public void handleClient(PktSyncKnowledge packet, IPayloadContext context) {
                 context.enqueueWork(() -> {
                     Player player = Minecraft.getInstance().player;
                     if (player != null) {
@@ -124,7 +124,7 @@ public class PktSyncKnowledge extends ASPacket<PktSyncKnowledge> {
             }
 
             @Override
-            public void handle(PktSyncKnowledge packet, NetworkEvent.Context context, LogicalSide side) {}
+            public void handle(PktSyncKnowledge packet, IPayloadContext context, LogicalSide side) {}
         };
     }
 }

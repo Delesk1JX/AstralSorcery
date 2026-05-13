@@ -14,7 +14,7 @@ import com.google.gson.JsonObject;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.enchantment.dynamic.DynamicEnchantment;
-import hellfirepvp.astralsorcery.common.enchantment.dynamic.DynamicEnchantmentType;
+import hellfirepvp.astralsorcery.common.enchantment.dynamic.Dynamicnet.minecraft.world.item.enchantment.Enchantment;
 import hellfirepvp.astralsorcery.common.event.DynamicEnchantmentEvent;
 import hellfirepvp.astralsorcery.common.perk.node.KeyPerk;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
@@ -23,7 +23,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 import net.minecraft.core.registries.BuiltInRegistries;
 
 import java.util.List;
@@ -54,16 +54,16 @@ public class KeyAddEnchantment extends KeyPerk {
     }
 
     public KeyAddEnchantment addEnchantment(Enchantment ench, int level) {
-        return addEnchantment(DynamicEnchantmentType.ADD_TO_SPECIFIC, ench, level);
+        return addEnchantment(Dynamicnet.minecraft.world.item.enchantment.Enchantment.ADD_TO_SPECIFIC, ench, level);
     }
 
-    public KeyAddEnchantment addEnchantment(DynamicEnchantmentType type, Enchantment ench, int level) {
+    public KeyAddEnchantment addEnchantment(Dynamicnet.minecraft.world.item.enchantment.Enchantment type, Enchantment ench, int level) {
         this.enchantments.add(new DynamicEnchantment(type, ench, level));
         return this;
     }
 
     public KeyAddEnchantment addAllEnchantmentIncrease(int level) {
-        this.enchantments.add(new DynamicEnchantment(DynamicEnchantmentType.ADD_TO_EXISTING_ALL, level));
+        this.enchantments.add(new DynamicEnchantment(Dynamicnet.minecraft.world.item.enchantment.Enchantment.ADD_TO_EXISTING_ALL, level));
         return this;
     }
     private void onEnchantmentAddClient(DynamicEnchantmentEvent.Add event) {
@@ -111,9 +111,9 @@ public class KeyAddEnchantment extends KeyPerk {
                 JsonObject serializedEnchantment = JSONUtils.getJsonObject(array.get(i), "enchantments[%s]");
 
                 String typeKey = JSONUtils.getString(serializedEnchantment, "type");
-                DynamicEnchantmentType type;
+                Dynamicnet.minecraft.world.item.enchantment.Enchantment type;
                 try {
-                    type = DynamicEnchantmentType.valueOf(typeKey);
+                    type = Dynamicnet.minecraft.world.item.enchantment.Enchantment.valueOf(typeKey);
                 } catch (Exception exc) {
                     throw new IllegalArgumentException("Unknown dynamic enchantment type: " + typeKey);
                 }

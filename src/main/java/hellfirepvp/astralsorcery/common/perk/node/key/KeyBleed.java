@@ -18,12 +18,12 @@ import hellfirepvp.astralsorcery.common.perk.node.KeyPerk;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -85,15 +85,15 @@ public class KeyBleed extends KeyPerk {
 
     private static class Config extends ConfigEntry {
 
-        private NeoForgeConfigSpec.IntValue bleedDuration;
-        private NeoForgeConfigSpec.DoubleValue bleedChance;
+        private ModConfigSpec.IntValue bleedDuration;
+        private ModConfigSpec.DoubleValue bleedChance;
 
         private Config(String section) {
             super(section);
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             bleedDuration = cfgBuilder
                     .comment("Defines the duration of the bleeding effect when applied. Refreshes this duration when a it is applied again")
                     .translation(translationKey("bleedDuration"))

@@ -23,15 +23,15 @@ import hellfirepvp.astralsorcery.common.util.block.BlockDiscoverer;
 import hellfirepvp.astralsorcery.common.util.block.BlockPredicates;
 import hellfirepvp.astralsorcery.common.util.object.CacheReference;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ItemUseContext;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+import net.neoforged.fml.LogicalSide;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -52,7 +52,7 @@ public class ItemInfusedCrystalPickaxe extends ItemCrystalPickaxe implements Equ
             new CacheReference<>(() -> new DynamicAttributeModifier(MODIFIER_ID, PerkAttributeTypesAS.ATTR_TYPE_MINING_SIZE, ModifierType.ADDITION, 1F));
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, Player player, Hand hand) {
+    public ActionResult<ItemStack> onItemRightClick(Level world, Player player, Hand hand) {
         ItemStack held = player.getHeldItem(hand);
         if (this.doOreScan(world, player.getPosition(), player, held)) {
             return ActionResult.resultSuccess(held);
@@ -71,7 +71,7 @@ public class ItemInfusedCrystalPickaxe extends ItemCrystalPickaxe implements Equ
         return super.onItemUse(ctx);
     }
 
-    private boolean doOreScan(World world, BlockPos origin, Player player, ItemStack stack) {
+    private boolean doOreScan(Level world, BlockPos origin, Player player, ItemStack stack) {
         if (!world.isRemote() && player instanceof ServerPlayer && !MiscUtils.isPlayerFakeMP((ServerPlayer) player)) {
             if (stack.getItem() instanceof ItemInfusedCrystalPickaxe && !player.getCooldownTracker().hasCooldown(stack.getItem())) {
                 PlayerProgress prog = ResearchHelper.getProgress(player, LogicalSide.SERVER);

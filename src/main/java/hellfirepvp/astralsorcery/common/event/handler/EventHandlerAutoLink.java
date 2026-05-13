@@ -14,9 +14,9 @@ import hellfirepvp.observerlib.common.event.BlockChangeNotifier;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.chunk.ChunkStatus;
 
 /**
@@ -29,7 +29,7 @@ import net.minecraft.world.chunk.ChunkStatus;
 public class EventHandlerAutoLink implements BlockChangeNotifier.Listener {
 
     @Override
-    public void onChange(World world, Chunk chunk, BlockPos pos, BlockState oldState, BlockState newState) {
+    public void onChange(Level world, Chunk chunk, BlockPos pos, BlockState oldState, BlockState newState) {
         if (world.isRemote() || !chunk.getStatus().isAtLeast(ChunkStatus.FULL)) {
             return;
         }

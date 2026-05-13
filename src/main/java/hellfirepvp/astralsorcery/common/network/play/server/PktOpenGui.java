@@ -16,8 +16,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.api.distmarker.LogicalSide;
-import net.neoforged.neoforge.network.NetworkEvent;
+import net.neoforged.fml.LogicalSide;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import javax.annotation.Nonnull;
 
@@ -63,14 +63,14 @@ public class PktOpenGui extends ASPacket<PktOpenGui> {
         return new Handler<PktOpenGui>() {
             @Override
             @OnlyIn(Dist.CLIENT)
-            public void handleClient(PktOpenGui packet, NetworkEvent.Context context) {
+            public void handleClient(PktOpenGui packet, IPayloadContext context) {
                 if (Minecraft.getInstance().player != null) {
                     context.enqueueWork(() -> AstralSorcery.getProxy().openGuiClient(packet.type, packet.data));
                 }
             }
 
             @Override
-            public void handle(PktOpenGui packet, NetworkEvent.Context context, LogicalSide side) {}
+            public void handle(PktOpenGui packet, IPayloadContext context, LogicalSide side) {}
         };
     }
 }

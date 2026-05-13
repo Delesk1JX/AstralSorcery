@@ -22,9 +22,9 @@ import net.minecraft.world.entity.ai.controller.MovementController;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 
 import java.util.EnumSet;
@@ -64,7 +64,7 @@ public class SpectralToolBreakBlockGoal extends SpectralToolGoal {
             return true;
         } else {
             BlockPos validPos = BlockDiscoverer.searchAreaForFirst(
-                    this.getEntity().getEntityWorld(),
+                    this.getEntity().level,
                     this.getEntity().getStartPosition(),
                     8,
                     Vector3.atEntityCorner(this.getEntity()),
@@ -83,7 +83,7 @@ public class SpectralToolBreakBlockGoal extends SpectralToolGoal {
         super.startExecuting();
 
         BlockPos validPos = BlockDiscoverer.searchAreaForFirst(
-                this.getEntity().getEntityWorld(),
+                this.getEntity().level,
                 this.getEntity().getStartPosition(),
                 8,
                 Vector3.atEntityCorner(this.getEntity()),
@@ -120,7 +120,7 @@ public class SpectralToolBreakBlockGoal extends SpectralToolGoal {
             this.actionCooldown = 0; //lol. wtf.
         }
 
-        World world = this.getEntity().getEntityWorld();
+        Level world = this.getEntity().level;
         boolean resetTimer = false;
 
         if (world.isAirBlock(this.selectedBreakPos)) {

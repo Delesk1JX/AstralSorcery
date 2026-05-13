@@ -15,11 +15,11 @@ import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.event.world.BlockEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -45,7 +45,7 @@ public class MantleEffectEvorsio extends MantleEffect {
     private void onBreak(BlockEvent.BreakEvent event) {
         Player player = event.getPlayer();
         if (ItemMantle.getEffect(player, ConstellationsAS.evorsio) != null) {
-            LogicalSide side = player.getEntityWorld().isRemote() ? LogicalSide.CLIENT : LogicalSide.SERVER;
+            LogicalSide side = player.level.isRemote() ? LogicalSide.CLIENT : LogicalSide.SERVER;
             if (side.isServer()) {
                 float charge = Math.min(AlignmentChargeHandler.INSTANCE.getCurrentCharge(player, side), CONFIG.chargeCostPerBreak.get());
                 AlignmentChargeHandler.INSTANCE.drainCharge(player, side, charge, false);
@@ -75,14 +75,14 @@ public class MantleEffectEvorsio extends MantleEffect {
 
         private final int defaultChargeCostPerBreak = 2;
 
-        public NeoForgeConfigSpec.IntValue chargeCostPerBreak;
+        public ModConfigSpec.IntValue chargeCostPerBreak;
 
         public EvorsioConfig() {
             super("evorsio");
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.chargeCostPerBreak = cfgBuilder

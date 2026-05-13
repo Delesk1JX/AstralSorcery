@@ -25,26 +25,26 @@ import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ItemUseContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.shapes.ISelectionContext;
-import net.minecraft.util.shapes.VoxelShapes;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.util.Constants;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -70,7 +70,7 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<Component> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         super.addInformation(stack, worldIn, tooltip, flagIn);
 
         DyeColor color = getConfiguredColor(stack);
@@ -88,7 +88,7 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
 
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
-        World world = context.getWorld();
+        Level world = context.getWorld();
         Direction dir = context.getFace();
         BlockPos pos = context.getPos();
         Player player = context.getPlayer();
@@ -115,7 +115,7 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
                         player.canPlayerEdit(pos, dir, stack) &&
                         VoxelShapes.fullCube().equals(world.getBlockState(pos).getShape(world, pos))) {
                     if (AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, COST_PER_ILLUMINATION, false)) {
-                        if (world.setBlockState(pos, BlocksAS.TRANSLUCENT_BLOCK.getDefaultState(), Constants.BlockFlags.DEFAULT_AND_RERENDER)) {
+                        if (world.setBlockState(pos, BlocksAS.TRANSLUCENT_BLOCK.getDefaultState(), net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.DEFAULT_AND_RERENDER)) {
                             SoundHelper.playSoundAround(SoundsAS.ILLUMINATION_WAND_HIGHLIGHT, SoundCategory.BLOCKS, world, pos, 0.6F, 0.9F + random.nextFloat() * 0.2F);
                             TileTranslucentBlock tb = MiscUtils.getTileAt(world, pos, TileTranslucentBlock.class, true);
                             if (tb != null) {
@@ -124,7 +124,7 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
                                 tb.setPlayerUUID(player.getUniqueID());
                             } else {
                                 //Abort, we didn't get a tileentity... for some reason.
-                                world.setBlockState(pos, state, Constants.BlockFlags.DEFAULT_AND_RERENDER);
+                                world.setBlockState(pos, state, net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.DEFAULT_AND_RERENDER);
                             }
                         }
                     }
@@ -153,13 +153,13 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
 
         if (player.canPlayerEdit(placePos, dir, stack)) {
             if (world.getBlockState(placePos).equals(placeState)) {
-                if (world.setBlockState(placePos, Blocks.AIR.getDefaultState(), Constants.BlockFlags.DEFAULT_AND_RERENDER)) {
+                if (world.setBlockState(placePos, Blocks.AIR.getDefaultState(), net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.DEFAULT_AND_RERENDER)) {
                     SoundHelper.playSoundAround(SoundsAS.ILLUMINATION_WAND_LIGHT, SoundCategory.BLOCKS, world, pos, 0.6F, 1F);
                 }
             } else if (placeState.isValidPosition(world, placePos) &&
                     world.placedBlockCollides(placeState, placePos, selContext)) {
                 if (AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, COST_PER_FLARE, false)) {
-                    if (world.setBlockState(placePos, placeState, Constants.BlockFlags.DEFAULT_AND_RERENDER)) {
+                    if (world.setBlockState(placePos, placeState, net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.DEFAULT_AND_RERENDER)) {
                         SoundHelper.playSoundAround(SoundsAS.ILLUMINATION_WAND_LIGHT, SoundCategory.BLOCKS, world, pos, 0.6F, 1F);
                     }
                 }

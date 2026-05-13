@@ -17,13 +17,14 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
-import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.RegistryKey;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.util.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
-import net.minecraft.world.World;
-import net.neoforged.neoforge.event.tick.TickEvent;
+import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
+import net.neoforged.neoforge.event.tick.ClientTickEvent;
 
 import javax.annotation.Nullable;
 import java.awt.*;
@@ -44,7 +45,7 @@ public class AreaOfInfluencePreview implements ITickHandler {
     private static final float alphaTick = 1F / MAX_LIFE;
     private static final float sizeCube1 = 1.25F, sizeCube2 = 1.35F;
 
-    private RegistryKey<World> tileDimension = null;
+    private ResourceKey<Level> tileDimension = null;
     private BlockPos tilePosition = null;
     private FXCube effect1 = null, effect2 = null;
 
@@ -72,18 +73,18 @@ public class AreaOfInfluencePreview implements ITickHandler {
     }
 
     @Override
-    public void tick(TickEvent.Type type, Object... context) {
+    public void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
         if (tileDimension == null || tilePosition == null) {
             this.removeEffects();
             return;
         }
-        World clientWorld = Minecraft.getInstance().world;
+        Level clientWorld = Minecraft.getInstance().world;
         if (clientWorld == null) {
             this.clearClient();
             this.removeEffects();
             return;
         }
-        RegistryKey<World> clientDimType = clientWorld.getDimensionKey();
+        ResourceKey<Level> clientDimType = clientWorld.getDimensionKey();
         if (!clientDimType.equals(this.tileDimension)) {
             this.clearClient();
             this.removeEffects();
@@ -184,13 +185,13 @@ public class AreaOfInfluencePreview implements ITickHandler {
     }
 
     @Override
-    public EnumSet<TickEvent.Type> getHandledTypes() {
-        return EnumSet.of(TickEvent.Type.CLIENT);
+    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
+        return EnumSet.of(net.neoforged.neoforge.event.tick.ClientTickEvent.CLIENT);
     }
 
     @Override
-    public boolean canFire(TickEvent.Phase phase) {
-        return phase == TickEvent.Phase.END;
+    public boolean canFire(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
+        return phase == net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
     }
 
     @Override

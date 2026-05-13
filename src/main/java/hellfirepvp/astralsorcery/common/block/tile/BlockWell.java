@@ -25,24 +25,23 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.pathfinding.PathType;
-import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.BlockRayTraceResult;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.util.Mth;
 import net.minecraft.util.shapes.IBooleanFunction;
-import net.minecraft.util.shapes.ISelectionContext;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.util.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
-import net.neoforged.neoforge.common.ToolType;
+import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.fluids.FluidActionResult;
 import net.neoforged.neoforge.fluids.FluidAttributes;
 import net.neoforged.neoforge.fluids.FluidUtil;
-import net.neoforged.neoforge.fluids.capability.CapabilityFluidHandler;
+import net.neoforged.neoforge.fluids.capability.net.neoforged.neoforge.fluids.capability.CapabilityFluidHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
 
@@ -85,7 +84,7 @@ public class BlockWell extends BlockStarlightNetwork implements CustomItemBlock 
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, Player player, Hand hand, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, Hand hand, BlockHitResult hit) {
         if (!world.isRemote()) {
             ItemStack heldItem = player.getHeldItem(hand);
             if (!heldItem.isEmpty()) {
@@ -117,7 +116,7 @@ public class BlockWell extends BlockStarlightNetwork implements CustomItemBlock 
                     }
                 }
 
-                tw.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)
+                tw.getCapability(net.neoforged.neoforge.fluids.capability.CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)
                         .ifPresent((handler) -> {
                             FluidActionResult far = FluidUtil.tryFillContainerAndStow(heldItem,
                                     handler, new InvWrapper(player.inventory), FluidAttributes.BUCKET_VOLUME, player, true);
@@ -133,7 +132,7 @@ public class BlockWell extends BlockStarlightNetwork implements CustomItemBlock 
     }
 
     @Override
-    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+    public void onReplaced(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         TileWell tw = MiscUtils.getTileAt(worldIn, pos, TileWell.class, true);
         if (tw != null && !worldIn.isRemote) {
             ItemStack stack = tw.getInventory().getStackInSlot(0);
@@ -151,7 +150,7 @@ public class BlockWell extends BlockStarlightNetwork implements CustomItemBlock 
     }
 
     @Override
-    public int getComparatorInputOverride(BlockState state, World world, BlockPos pos) {
+    public int getComparatorInputOverride(BlockState state, Level world, BlockPos pos) {
         TileWell tw = MiscUtils.getTileAt(world, pos, TileWell.class, false);
         if (tw != null) {
             int fluidPart = Mth.ceil(tw.getTank().getPercentageFilled() * 8F);

@@ -29,16 +29,16 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.vector.Vector3i;
-import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Vec3i;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -77,7 +77,7 @@ public class FountainEffectLiquid extends FountainEffect<LiquidContext> {
         }
 
         if (currentSegment.isLaterOrEqualTo(OperationSegment.RUNNING)) {
-            World w = fountain.getWorld();
+            Level w = fountain.getWorld();
             if (fountain.getTicksExisted() % 32 == 0) {
                 digCone(w, ctx);
             }
@@ -108,7 +108,7 @@ public class FountainEffectLiquid extends FountainEffect<LiquidContext> {
         });
     }
 
-    private void digCone(World world, LiquidContext ctx) {
+    private void digCone(Level world, LiquidContext ctx) {
         if (world instanceof ServerLevel) {
             dig((ServerLevel) world, ctx.getDigPositions());
         }
@@ -177,7 +177,7 @@ public class FountainEffectLiquid extends FountainEffect<LiquidContext> {
     }
 
     @OnlyIn(Dist.CLIENT)
-    private void playDigPreparation(Vector3i pos, float chance) {
+    private void playDigPreparation(net.minecraft.core.Vec3i pos, float chance) {
         Vector3 at = new Vector3(pos).add(0.5, 0.5, 0.5);
         for (int i = 0; i < 12; i++) {
             if (rand.nextFloat() >= chance) {
@@ -206,7 +206,7 @@ public class FountainEffectLiquid extends FountainEffect<LiquidContext> {
     }
 
     @OnlyIn(Dist.CLIENT)
-    private void playDigParticles(Vector3i pos) {
+    private void playDigParticles(net.minecraft.core.Vec3i pos) {
         for (int i = 0; i < 2; i++) {
             Vector3 at = new Vector3(pos).add(
                     0.3 + rand.nextFloat() * 0.4,
@@ -222,7 +222,7 @@ public class FountainEffectLiquid extends FountainEffect<LiquidContext> {
     }
 
     @OnlyIn(Dist.CLIENT)
-    private void playDigLightbeam(Vector3i pos) {
+    private void playDigLightbeam(net.minecraft.core.Vec3i pos) {
         Vector3 from = new Vector3(pos).add(0.5, 1.5, 0.5);
         MiscUtils.applyRandomOffset(from, rand, 0.1F);
         Vector3 to = from.clone().setY(0);

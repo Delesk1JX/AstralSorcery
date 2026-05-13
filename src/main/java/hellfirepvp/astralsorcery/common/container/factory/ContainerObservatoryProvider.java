@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.IInventory;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.neoforged.neoforge.fml.network.IContainerFactory;
 
 import javax.annotation.Nonnull;
@@ -51,7 +51,7 @@ public class ContainerObservatoryProvider extends CustomContainerProvider<Contai
     private static ContainerObservatory createFromPacket(int windowId, IInventory plInventory, FriendlyByteBuf data) {
         BlockPos at = ByteBufUtils.readPos(data);
         Player player = plInventory.player;
-        TileObservatory observatory = MiscUtils.getTileAt(player.getEntityWorld(), at, TileObservatory.class, true);
+        TileObservatory observatory = MiscUtils.getTileAt(player.level, at, TileObservatory.class, true);
         return new ContainerObservatory(observatory, windowId);
     }
 

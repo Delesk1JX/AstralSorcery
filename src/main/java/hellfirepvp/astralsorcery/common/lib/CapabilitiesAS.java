@@ -11,8 +11,8 @@ package hellfirepvp.astralsorcery.common.lib;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.capability.ChunkFluidEntry;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.neoforge.common.capabilities.Capability;
-import net.neoforged.neoforge.common.capabilities.CapabilityInject;
+
+import net.neoforged.neoforge.common.capabilities.net.neoforged.neoforge.capabilitiesInject;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -27,7 +27,7 @@ public class CapabilitiesAS {
 
     public static final ResourceLocation CHUNK_FLUID_KEY = AstralSorcery.key("chunk_fluid");
 
-    // @CapabilityInject(ChunkFluidEntry.class) - migrated to RegisterCapabilitiesEvent
-    public static Capability<ChunkFluidEntry> CHUNK_FLUID = null;
+    // @net.neoforged.neoforge.capabilitiesInject(ChunkFluidEntry.class) - migrated to RegisterCapabilitiesEvent
+    public static net.neoforged.neoforge.common.capabilities.Capability<ChunkFluidEntry> CHUNK_FLUID = null;
 
 }

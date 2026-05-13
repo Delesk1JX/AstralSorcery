@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.util;
 
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.NonNullList;
+import net.minecraft.core.NonNullList;
 import net.minecraft.server.level.ServerLevel;
 import net.neoforged.neoforge.event.entity.EntityJoinWorldEvent;
 

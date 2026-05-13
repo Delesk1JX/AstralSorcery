@@ -31,11 +31,11 @@ import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -61,7 +61,7 @@ public class CEffectBootes extends ConstellationEffectEntityCollect<LivingEntity
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void playClientEffect(World world, BlockPos pos, TileRitualPedestal pedestal, float alphaMultiplier, boolean extended) {
+    public void playClientEffect(Level world, BlockPos pos, TileRitualPedestal pedestal, float alphaMultiplier, boolean extended) {
         if (rand.nextInt(3) == 0) {
             ConstellationEffectProperties prop = this.createProperties(pedestal.getMirrorCount());
 
@@ -89,7 +89,7 @@ public class CEffectBootes extends ConstellationEffectEntityCollect<LivingEntity
     }
 
     @Override
-    public boolean playEffect(World world, BlockPos pos, ConstellationEffectProperties properties, @Nullable IMinorConstellation trait) {
+    public boolean playEffect(Level world, BlockPos pos, ConstellationEffectProperties properties, @Nullable IMinorConstellation trait) {
         boolean didEffect = false;
 
         List<LivingEntity> entities = this.collectEntities(world, pos, properties);
@@ -151,15 +151,15 @@ public class CEffectBootes extends ConstellationEffectEntityCollect<LivingEntity
         private final double defaultHerdingChance = 0.05;
         private final double defaultHerdingLootChance = 0.01;
 
-        public NeoForgeConfigSpec.DoubleValue herdingChance;
-        public NeoForgeConfigSpec.DoubleValue herdingLootChance;
+        public ModConfigSpec.DoubleValue herdingChance;
+        public ModConfigSpec.DoubleValue herdingLootChance;
 
         public BootesConfig() {
             super("bootes", 12D, 4D);
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.herdingChance = cfgBuilder

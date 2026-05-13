@@ -15,11 +15,11 @@ import hellfirepvp.astralsorcery.common.item.base.AlignmentChargeConsumer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.world.World;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.level.Level;
+import net.neoforged.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -44,7 +44,7 @@ public class ItemGrappleWand extends Item implements AlignmentChargeConsumer {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, Player playerIn, Hand handIn) {
+    public ActionResult<ItemStack> onItemRightClick(Level worldIn, Player playerIn, Hand handIn) {
         ItemStack held = playerIn.getHeldItem(handIn);
         if (worldIn.isRemote() || held.isEmpty()) {
             return new ActionResult<>(ActionResultType.SUCCESS, held);

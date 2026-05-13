@@ -17,10 +17,10 @@ import hellfirepvp.astralsorcery.common.tile.TileFountain;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.vector.Vector3i;
+import net.minecraft.core.Vec3i;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -61,7 +61,7 @@ public abstract class FountainEffect<E extends FountainEffect.EffectContext> {
     public abstract void onReplace(TileFountain fountain, E context, @Nullable FountainEffect<?> newEffect, LogicalSide side);
 
     @OnlyIn(Dist.CLIENT)
-    protected void playFountainVortexParticles(Vector3i pos, float chance) {
+    protected void playFountainVortexParticles(net.minecraft.core.Vec3i pos, float chance) {
         Vector3 at = new Vector3(pos).add(0.5, 0.5, 0.5);
         for (int i = 0; i < 18; i++) {
             if (rand.nextFloat() >= chance) {
@@ -86,7 +86,7 @@ public abstract class FountainEffect<E extends FountainEffect.EffectContext> {
     }
 
     @OnlyIn(Dist.CLIENT)
-    protected void playFountainArcs(Vector3i pos, float chance) {
+    protected void playFountainArcs(net.minecraft.core.Vec3i pos, float chance) {
         if (rand.nextFloat() < chance && rand.nextInt(8) == 0) {
             Vector3 at = new Vector3(pos).add(0.5, 0.5, 0.5);
 

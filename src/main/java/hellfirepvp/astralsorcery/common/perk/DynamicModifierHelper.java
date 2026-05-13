@@ -27,8 +27,8 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.ChatFormatting;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.util.Constants;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.fml.LogicalSide;
 
 import java.util.Collections;
 import java.util.List;
@@ -55,7 +55,7 @@ public class DynamicModifierHelper {
 
     public static void addModifiers(ItemStack stack, Iterable<DynamicAttributeModifier> modifiers) {
         CompoundTag tag = NBTHelper.getPersistentData(stack);
-        ListTag modifierList = tag.getList(KEY_MODIFIERS, Constants.NBT.TAG_COMPOUND);
+        ListTag modifierList = tag.getList(KEY_MODIFIERS, net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
         modifiers.forEach(modifier -> modifierList.add(modifier.serialize()));
         tag.put(KEY_MODIFIERS, modifierList);
     }
@@ -76,7 +76,7 @@ public class DynamicModifierHelper {
         List<DynamicAttributeModifier> modifiers = Lists.newArrayList();
         if (NBTHelper.hasPersistentData(stack)) {
             CompoundTag tag = NBTHelper.getPersistentData(stack);
-            ListTag modifierList = tag.getList(KEY_MODIFIERS, Constants.NBT.TAG_COMPOUND);
+            ListTag modifierList = tag.getList(KEY_MODIFIERS, net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
             for (int i = 0; i < modifierList.size(); i++) {
                 CompoundTag modifierTag = modifierList.getCompound(i);
                 modifiers.add(DynamicAttributeModifier.deserialize(modifierTag));

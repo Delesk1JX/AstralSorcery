@@ -15,11 +15,11 @@ import hellfirepvp.astralsorcery.common.perk.type.AttributeTypeBreakSpeed;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 import org.apache.commons.lang3.tuple.Pair;
 
 /**

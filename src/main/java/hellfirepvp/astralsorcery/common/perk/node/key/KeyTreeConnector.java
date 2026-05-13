@@ -19,8 +19,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.neoforge.common.util.Constants;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nullable;
 
@@ -85,7 +85,7 @@ public class KeyTreeConnector extends MajorPerk {
         super.onRemovePerkServer(player, allocationType, progress, dataStorage);
 
         if (allocationType == PerkAllocationType.UNLOCKED) {
-            ListTag list = dataStorage.getList("pointtokens", Constants.NBT.TAG_STRING);
+            ListTag list = dataStorage.getList("pointtokens", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_STRING);
             for (int i = 0; i < list.size(); i++) {
                 ResearchManager.revokeFreePoint(player, new ResourceLocation(list.getString(i)));
             }

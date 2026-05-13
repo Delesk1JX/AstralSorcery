@@ -16,11 +16,11 @@ import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
 import hellfirepvp.astralsorcery.common.item.armor.ItemMantle;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
-import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
 import hellfirepvp.astralsorcery.common.tile.base.TileEntityTick;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.phys.AABB;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -35,10 +35,10 @@ import java.util.List;
  */
 public class TileVanishing extends TileEntityTick {
 
-    private static final AxisAlignedBB SEARCH_BOX = new AxisAlignedBB(-4,0, -4, 4, 3, 4);
+    private static final AABB SEARCH_BOX = new AABB(-4,0, -4, 4, 3, 4);
 
     public TileVanishing() {
-        super(TileEntityTypesAS.VANISHING);
+        super(BlockEntityTypesAS.VANISHING);
     }
 
     @Override

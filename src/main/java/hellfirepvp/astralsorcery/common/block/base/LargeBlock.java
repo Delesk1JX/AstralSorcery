@@ -9,10 +9,10 @@
 package hellfirepvp.astralsorcery.common.block.base;
 
 import net.minecraft.world.item.BlockItemUseContext;
-import net.minecraft.util.Direction;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.Direction;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -23,12 +23,12 @@ import net.minecraft.world.World;
  */
 public interface LargeBlock {
 
-    public AxisAlignedBB getBlockSpace();
+    public AABB getBlockSpace();
 
     default public boolean canPlaceAt(BlockItemUseContext ctx) {
         BlockPos pos = ctx.getPos();
-        World world = ctx.getWorld();
-        AxisAlignedBB box = this.getBlockSpace();
+        Level world = ctx.getWorld();
+        AABB box = this.getBlockSpace();
 
         BlockPos.Mutable mPos = new BlockPos.Mutable();
         for (int xx = (int) box.minX; xx <= box.maxX; xx++) {

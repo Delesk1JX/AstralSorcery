@@ -9,16 +9,16 @@
 package hellfirepvp.astralsorcery.common.item.dust;
 
 import hellfirepvp.astralsorcery.common.CommonProxy;
-import net.minecraft.dispenser.IBlockSource;
-import net.minecraft.dispenser.IDispenseItemBehavior;
+import net.minecraft.core.dispenser.DispenseItemContext;
+import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ItemUseContext;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.world.World;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.level.Level;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -27,15 +27,15 @@ import net.minecraft.world.World;
  * Created by HellFirePvP
  * Date: 17.08.2019 / 08:44
  */
-public abstract class ItemUsableDust extends Item implements IDispenseItemBehavior {
+public abstract class ItemUsableDust extends Item implements DispenseItemBehavior {
 
     public ItemUsableDust() {
         super(new Properties().group(CommonProxy.ITEM_GROUP_AS));
     }
 
-    abstract boolean dispense(IBlockSource dispenser);
+    abstract boolean dispense(net.minecraft.core.BlockSource dispenser);
 
-    abstract boolean rightClickAir(World world, Player player, ItemStack dust);
+    abstract boolean rightClickAir(Level world, Player player, ItemStack dust);
 
     abstract boolean rightClickBlock(ItemUseContext ctx);
 
@@ -52,7 +52,7 @@ public abstract class ItemUsableDust extends Item implements IDispenseItemBehavi
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, Player player, Hand hand) {
+    public ActionResult<ItemStack> onItemRightClick(Level world, Player player, Hand hand) {
         ItemStack held = player.getHeldItem(hand);
         if (!held.isEmpty() && !world.isRemote()) {
             if (this.rightClickAir(world, player, held)) {
@@ -66,7 +66,7 @@ public abstract class ItemUsableDust extends Item implements IDispenseItemBehavi
     }
 
     @Override
-    public ItemStack dispense(IBlockSource src, ItemStack stack) {
+    public ItemStack execute(net.minecraft.core.BlockSource src, ItemStack stack) {
         if (this.dispense(src)) {
             stack.shrink(1);
         }

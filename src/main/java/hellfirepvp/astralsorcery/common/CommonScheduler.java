@@ -10,8 +10,8 @@ package hellfirepvp.astralsorcery.common;
 
 import hellfirepvp.astralsorcery.common.util.Counter;
 import hellfirepvp.astralsorcery.common.util.tick.ITickHandler;
+import hellfirepvp.astralsorcery.common.util.tick.TickEvent;
 import net.minecraft.util.Tuple;
-import net.neoforged.neoforge.event.tick.TickEvent;
 
 import java.util.EnumSet;
 import java.util.Iterator;
@@ -33,10 +33,9 @@ public class CommonScheduler implements ITickHandler {
     private final LinkedList<Tuple<Runnable, Integer>> waiting = new LinkedList<>();
 
     @Override
-    public void tick(TickEvent.Type type, Object... context) {
+    public void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
         inTick = true;
         synchronized (lock) {
-            inTick = true;
             Iterator<Tuple<Runnable, Counter>> iterator = queue.iterator();
             while (iterator.hasNext()) {
                 Tuple<Runnable, Counter> r = iterator.next();
@@ -55,13 +54,13 @@ public class CommonScheduler implements ITickHandler {
     }
 
     @Override
-    public EnumSet<TickEvent.Type> getHandledTypes() {
-        return EnumSet.of(TickEvent.Type.SERVER);
+    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
+        return EnumSet.of(net.neoforged.neoforge.event.tick.ClientTickEvent.SERVER);
     }
 
     @Override
-    public boolean canFire(TickEvent.Phase phase) {
-        return phase == TickEvent.Phase.END;
+    public boolean canFire(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
+        return phase == net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
     }
 
     @Override

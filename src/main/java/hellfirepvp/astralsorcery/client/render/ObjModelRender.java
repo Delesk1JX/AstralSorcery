@@ -8,15 +8,14 @@
 
 package hellfirepvp.astralsorcery.client.render;
 
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
 import hellfirepvp.astralsorcery.client.resource.AssetLoader;
 import hellfirepvp.astralsorcery.client.util.obj.WavefrontObject;
-import hellfirepvp.observerlib.client.util.BufferDecoratorBuilder;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.VertexConsumer;
+import net.minecraft.client.renderer.Tesselator;
 import net.minecraft.client.renderer.vertex.VertexBuffer;
 
 /**
@@ -43,9 +42,9 @@ public class ObjModelRender {
         }
         //if (vboCrystal == null) {
         //    int[] transparent = new int[] { 255, 255, 255, 65 };
-        //    BufferDecoratorBuilder.withColor((r, g, b, a) -> transparent)
+        //    VertexFormat.(r, g, b, a) -> transparent)
         //            .decorate(buffer,
-        //                    (BufferBuilder decorated) -> vboCrystal = crystalModel.batch(decorated));
+        //                    (VertexConsumer decorated) -> vboCrystal = crystalModel.batch(decorated));
         //}
 
         RenderSystem.pushMatrix();
@@ -67,10 +66,9 @@ public class ObjModelRender {
             celestialWingsModel = AssetLoader.loadObjModel(AssetLoader.ModelLocation.OBJ, "celestial_wings");
         }
         if (vboCelestialWings == null) {
+            // TODO: Fix VertexFormat decorator for 1.21+
             int[] lightGray = new int[] { 178, 178, 178, 255 };
-            BufferDecoratorBuilder.withColor((r, g, b, a) -> lightGray)
-                    .decorate(buffer,
-                            (BufferBuilder decorated) -> vboCelestialWings = celestialWingsModel.batch(decorated));
+            vboCelestialWings = celestialWingsModel.batch(buffer);
         }
         vboCelestialWings.bindBuffer();
         RenderTypesAS.POSITION_COLOR_TEX_NORMAL.setupBufferState(0L);
@@ -85,16 +83,14 @@ public class ObjModelRender {
         }
 
         if (wraithWingsBones == null) {
+            // TODO: Fix VertexFormat decorator for 1.21+
             int[] gray = new int[] { 77, 77, 77, 255 };
-            BufferDecoratorBuilder.withColor((r, g, b, a) -> gray)
-                    .decorate(buffer,
-                            (BufferBuilder decorated) -> wraithWingsBones = wraithWingsModel.batchOnly(decorated, "Bones"));
+            wraithWingsBones = wraithWingsModel.batchOnly(buffer, "Bones");
         }
         if (wraithWingsWing == null) {
+            // TODO: Fix VertexFormat decorator for 1.21+
             int[] black = new int[] { 0, 0, 0, 255 };
-            BufferDecoratorBuilder.withColor((r, g, b, a) -> black)
-                    .decorate(buffer,
-                            (BufferBuilder decorated) -> wraithWingsWing = wraithWingsModel.batchOnly(decorated, "Wing"));
+            wraithWingsWing = wraithWingsModel.batchOnly(buffer, "Wing");
         }
 
         wraithWingsBones.bindBuffer();

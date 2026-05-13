@@ -21,7 +21,7 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.BlockRayTraceResult;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.network.chat.MutableComponent;
 import static net.minecraft.network.chat.Component.literal;
 import net.minecraft.network.chat.Style;
@@ -66,8 +66,8 @@ public class CommandSerialize {
 
     private static int serializeLook(CommandContext<CommandSource> context) throws CommandSyntaxException {
         Player player = context.getSource().asPlayer();
-        BlockRayTraceResult result = MiscUtils.rayTraceLookBlock(player);
-        BlockState state = result == null ? Blocks.AIR.getDefaultState() : player.getEntityWorld().getBlockState(result.getPos());
+        BlockHitResult result = MiscUtils.rayTraceLookBlock(player);
+        BlockState state = result == null ? Blocks.AIR.getDefaultState() : player.level.getBlockState(result.getPos());
         String serialized = BlockStateHelper.serialize(state);
 
         net.minecraft.network.chat.Component msg = new Component.literal(serialized);

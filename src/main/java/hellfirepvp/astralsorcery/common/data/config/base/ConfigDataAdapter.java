@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.data.config.base;
 
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.fml.config.ModConfig;
 
 import javax.annotation.Nullable;
@@ -28,7 +28,7 @@ import java.util.function.Predicate;
  */
 public abstract class ConfigDataAdapter<T extends ConfigDataSet> {
 
-    private NeoForgeConfigSpec.ConfigValue<List<? extends String>> registryStore = null;
+    private ModConfigSpec.ConfigValue<List<? extends String>> registryStore = null;
     private final ModConfig.Type registryConfigType;
 
     List<T> configuredValues = null;
@@ -45,7 +45,7 @@ public abstract class ConfigDataAdapter<T extends ConfigDataSet> {
         return String.format("config.registry.%s.%s", this.getSectionName(), key);
     }
 
-    public final void configBuilt(NeoForgeConfigSpec.ConfigValue<List<? extends String>> createdValue) {
+    public final void configBuilt(ModConfigSpec.ConfigValue<List<? extends String>> createdValue) {
         this.registryStore = createdValue;
     }
 

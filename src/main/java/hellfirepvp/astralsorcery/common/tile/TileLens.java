@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 import hellfirepvp.astralsorcery.common.crystal.CrystalAttributeTile;
 import hellfirepvp.astralsorcery.common.crystal.CrystalAttributes;
 import hellfirepvp.astralsorcery.common.item.lens.LensColorType;
-import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
 import hellfirepvp.astralsorcery.common.starlight.transmission.IPrismTransmissionNode;
 import hellfirepvp.astralsorcery.common.tile.base.network.TileTransmissionBase;
 import hellfirepvp.astralsorcery.common.tile.network.StarlightTransmissionLens;
@@ -27,14 +27,14 @@ import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.Direction;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.Tags;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -59,12 +59,12 @@ public class TileLens extends TileTransmissionBase<IPrismTransmissionNode> imple
     //So we can tell the client to render beams eventhough the actual connection doesn't exist.
     private List<BlockPos> occupiedConnections = new LinkedList<>();
 
-    protected TileLens(TileEntityType<?> tileEntityTypeIn) {
+    protected TileLens(BlockEntityType<?> tileEntityTypeIn) {
         super(tileEntityTypeIn);
     }
 
     public TileLens() {
-        super(TileEntityTypesAS.LENS);
+        super(BlockEntityTypesAS.LENS);
     }
 
     @Override
@@ -96,7 +96,7 @@ public class TileLens extends TileTransmissionBase<IPrismTransmissionNode> imple
     }
 
     private void doColorEffects() {
-        World world = this.getWorld();
+        Level world = this.getWorld();
         if (!world.isRemote() && !this.occupiedConnections.isEmpty()) {
             this.occupiedConnections.clear();
             markForUpdate();
@@ -220,7 +220,7 @@ public class TileLens extends TileTransmissionBase<IPrismTransmissionNode> imple
         } else {
             this.colorType = null;
         }
-        this.occupiedConnections = NBTHelper.readList(compound, "occupiedConnections", Constants.NBT.TAG_COMPOUND,
+        this.occupiedConnections = NBTHelper.readList(compound, "occupiedConnections", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND,
                 nbt -> NBTHelper.readBlockPosFromNBT((CompoundTag) nbt));
     }
 

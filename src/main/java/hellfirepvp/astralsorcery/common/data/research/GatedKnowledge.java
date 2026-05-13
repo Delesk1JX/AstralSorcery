@@ -37,8 +37,8 @@ public enum GatedKnowledge {
         return canSee(progress.getTierReached());
     }
 
-    public boolean canSee(ProgressionTier compCapability) {
-        return capability.ordinal() <= compCapability.ordinal();
+    public boolean canSee(ProgressionTier comp) {
+        return capability.ordinal() <= comp.ordinal();
     }
 
 }

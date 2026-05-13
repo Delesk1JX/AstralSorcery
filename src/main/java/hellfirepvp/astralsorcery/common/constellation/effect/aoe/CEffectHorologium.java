@@ -30,10 +30,9 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.time.TimeStopController;
 import hellfirepvp.astralsorcery.common.util.time.TimeStopZone;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -71,13 +70,13 @@ public class CEffectHorologium extends CEffectAbstractList<ListEntries.PosEntry>
 
     @Nullable
     @Override
-    public ListEntries.PosEntry createElement(World world, BlockPos pos) {
+    public ListEntries.PosEntry createElement(Level world, BlockPos pos) {
         return new ListEntries.PosEntry(pos);
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void playClientEffect(World world, BlockPos pos, TileRitualPedestal pedestal, float alphaMultiplier, boolean extended) {
+    public void playClientEffect(Level world, BlockPos pos, TileRitualPedestal pedestal, float alphaMultiplier, boolean extended) {
         ConstellationEffectProperties prop = this.createProperties(pedestal.getMirrorCount());
 
         for (int i = 0; i < 2; i++) {
@@ -104,7 +103,7 @@ public class CEffectHorologium extends CEffectAbstractList<ListEntries.PosEntry>
     }
 
     @Override
-    public boolean playEffect(World world, BlockPos pos, ConstellationEffectProperties properties, @Nullable IMinorConstellation trait) {
+    public boolean playEffect(Level world, BlockPos pos, ConstellationEffectProperties properties, @Nullable IMinorConstellation trait) {
         boolean changed = false;
 
         if (properties.isCorrupted()) {
@@ -127,7 +126,7 @@ public class CEffectHorologium extends CEffectAbstractList<ListEntries.PosEntry>
                         long startNs = System.nanoTime();
                         int times = 4 + rand.nextInt(2);
                         while (times > 0) {
-                            ((ITickableTileEntity) tile).tick();
+                            tile.tick();
                             if ((System.nanoTime() - startNs) >= 80_000) {
                                 break;
                             }

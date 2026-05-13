@@ -26,12 +26,12 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import hellfirepvp.astralsorcery.common.util.world.SkyCollectionHelper;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.tileentity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.vector.Vector3d;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.server.level.ServerLevel;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -129,7 +129,7 @@ public class IndependentCrystalSource implements IIndependentStarlightSource {
             if (other.equals(thisPos)) {
                 continue;
             }
-            double dstSq = thisPos.distanceSq(Vector3d.copy(other), false);
+            double dstSq = thisPos.distanceSq(net.minecraft.world.phys.Vec3.copy(other), false);
             if (dstSq < minDstSq) {
                 minDstSq = dstSq;
                 closest = other;

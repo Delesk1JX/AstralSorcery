@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.screen;
 
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.lib.SpritesAS;
@@ -34,10 +34,10 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.Mth;
-import net.minecraft.util.vector.Matrix4f;
+import org.joml.Matrix4f;
 import net.minecraft.network.chat.FormattedText;
-import net.minecraft.world.World;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.minecraft.world.level.Level;
+import net.neoforged.fml.LogicalSide;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
@@ -203,7 +203,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         if (glass.isEmpty()) {
             return;
         }
-        World world = this.getTile().getWorld();
+        Level world = this.getTile().getWorld();
         float nightPerc = DayTimeHelper.getCurrentDaytimeDistribution(world);
         WorldContext ctx = SkyHandler.getContext(world, LogicalSide.CLIENT);
         if (ctx == null || !this.getTile().doesSeeSky() || nightPerc <= 0.05F) {
@@ -235,7 +235,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         if (glass.isEmpty()) {
             return;
         }
-        World world = this.getTile().getWorld();
+        Level world = this.getTile().getWorld();
         float nightPerc = DayTimeHelper.getCurrentDaytimeDistribution(world);
         WorldContext ctx = SkyHandler.getContext(world, LogicalSide.CLIENT);
         if (ctx == null || !this.getTile().doesSeeSky() || nightPerc <= 0.05F) {
@@ -291,7 +291,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
                     tooltipRenderer = custom;
                 }
                 tooltip.addAll(input.getTooltip(getMinecraft().player, Minecraft.getInstance().gameSettings.advancedItemTooltips ?
-                        ITooltipFlag.TooltipFlags.ADVANCED : ITooltipFlag.TooltipFlags.NORMAL));
+                        TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL));
             }
         }
         ItemStack glass = this.getTile().getGlassStack();
@@ -308,7 +308,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
                     tooltipRenderer = custom;
                 }
                 tooltip.addAll(glass.getTooltip(getMinecraft().player, Minecraft.getInstance().gameSettings.advancedItemTooltips ?
-                        ITooltipFlag.TooltipFlags.ADVANCED : ITooltipFlag.TooltipFlags.NORMAL));
+                        TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL));
             }
         }
 

@@ -12,7 +12,7 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.resource.BlockAtlasTexture;
 import hellfirepvp.astralsorcery.client.util.Blending;
@@ -36,27 +36,25 @@ import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
-import hellfirepvp.observerlib.client.util.BufferDecoratorBuilder;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.client.renderer.vertex.VertexFormat;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ItemUseContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.*;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.BlockRayTraceResult;
-import net.minecraft.util.RayTraceContext;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.network.chat.*;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.ToolType;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nonnull;
@@ -83,7 +81,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<Component> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         tooltip.add(getSizeMode(stack).getDisplay().withStyle(ChatFormatting.GOLD));
     }
 
@@ -114,21 +112,21 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
 
     @Override
     public float getAlignmentChargeCost(Player player, ItemStack stack) {
-        BlockRayTraceResult hitResult = MiscUtils.rayTraceLookBlock(player, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.NONE);
+        BlockHitResult hitResult = MiscUtils.rayTraceLookBlock(player, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.NONE);
         if (hitResult == null) {
             return 0F;
         }
-        return getPlaceStates(player, player.getEntityWorld(), hitResult.getPos(), stack).size() * COST_PER_EXCHANGE;
+        return getPlaceStates(player, player.level, hitResult.getPos(), stack).size() * COST_PER_EXCHANGE;
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
     public boolean renderInHand(ItemStack stack, PoseStack renderStack, float pTicks) {
-        BlockRayTraceResult hitResult = MiscUtils.rayTraceLookBlock(Minecraft.getInstance().player, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.NONE);
+        BlockHitResult hitResult = MiscUtils.rayTraceLookBlock(Minecraft.getInstance().player, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.NONE);
         if (hitResult == null) {
             return true;
         }
-        World world = Minecraft.getInstance().world;
+        Level world = Minecraft.getInstance().world;
         BlockPos at = hitResult.getPos();
         Map<BlockPos, BlockState> placeStates = getPlaceStates(Minecraft.getInstance().player, world, at, stack);
         if (placeStates.isEmpty()) {
@@ -138,8 +136,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
         RenderSystem.enableTexture();
         BlockAtlasTexture.getInstance().bindTexture();
 
-        int[] fullBright = new int[] { 15, 15 };
-        BufferDecoratorBuilder decorator = BufferDecoratorBuilder.withLightmap((skyLight, blockLight) -> fullBright);
+        // TODO: Fix BufferDecoratorBuilder for 1.21+
         Vector3 offset = RenderingVectorUtils.getStandardTranslationRemovalVector(pTicks);
 
         RenderSystem.enableBlend();
@@ -174,7 +171,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
 
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
-        World world = context.getWorld();
+        Level world = context.getWorld();
         ItemStack stack = context.getItem();
         Player player = context.getPlayer();
         BlockPos pos = context.getPos();
@@ -230,7 +227,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, Player playerIn, Hand handIn) {
+    public ActionResult<ItemStack> onItemRightClick(Level worldIn, Player playerIn, Hand handIn) {
         ItemStack held = playerIn.getHeldItem(handIn);
         if (playerIn.isSneaking()) {
             SizeMode nextMode = getSizeMode(held).next();
@@ -241,7 +238,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
     }
 
     @Nonnull
-    private Map<BlockPos, BlockState> getPlaceStates(Player placer, World world, BlockPos origin, ItemStack refStack) {
+    private Map<BlockPos, BlockState> getPlaceStates(Player placer, Level world, BlockPos origin, ItemStack refStack) {
         Map<BlockState, Tuple<ItemStack, Integer>> tplStates = ItemBlockStorage.getInventoryMatching(placer, refStack);
         BlockState atState = world.getBlockState(origin);
         SizeMode mode = getSizeMode(refStack);

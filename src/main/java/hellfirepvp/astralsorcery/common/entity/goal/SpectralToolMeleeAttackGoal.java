@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
 import net.minecraft.world.entity.EntityClassification;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.controller.MovementController;
-import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.phys.AABB;
 
 import java.util.List;
 
@@ -37,9 +37,9 @@ public class SpectralToolMeleeAttackGoal extends SpectralToolGoal {
     }
 
     private LivingEntity findClosestAttackableEntity() {
-        List<LivingEntity> entities = this.getEntity().getEntityWorld().getEntitiesWithinAABB(
+        List<LivingEntity> entities = this.getEntity().level.getEntitiesWithinAABB(
                 LivingEntity.class,
-                new AxisAlignedBB(0, 0, 0, 0, 0, 0).grow(8).offset(this.getEntity().getPosition()),
+                new AABB(0, 0, 0, 0, 0, 0).grow(8).offset(this.getEntity().getPosition()),
                 e -> e != null && e.isAlive() && e.getType().getClassification() == EntityClassification.MONSTER
         );
         return EntityUtils.selectClosest(entities, entity -> (double) entity.getDistance(this.getEntity()));

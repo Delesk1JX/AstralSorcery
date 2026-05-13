@@ -8,11 +8,11 @@
 
 package hellfirepvp.astralsorcery.client.model.builtin;
 
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.model.ModelRenderer;
 
 /**
@@ -49,7 +49,7 @@ public class ModelLens extends CustomModel {
         this.lens.addBox(-6.0F, -6.0F, -0.5F, 12, 12, 1, 0.0F);
     }
 
-    public void renderFrame(PoseStack matrixStackIn, IRenderTypeBuffer buffer, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
+    public void renderFrame(PoseStack matrixStackIn, MultiBufferSource buffer, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
         VertexConsumer vb = buffer.getBuffer(RenderTypesAS.MODEL_LENS_SOLID);
         this.base.render(matrixStackIn, vb, packedLightIn, packedOverlayIn, red, green, blue, alpha);
         this.frame1.render(matrixStackIn, vb, packedLightIn, packedOverlayIn, red, green, blue, alpha);
@@ -57,7 +57,7 @@ public class ModelLens extends CustomModel {
         RenderingUtils.refreshDrawing(vb, RenderTypesAS.MODEL_LENS_SOLID);
     }
 
-    public void renderGlass(PoseStack matrixStackIn, IRenderTypeBuffer buffer, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
+    public void renderGlass(PoseStack matrixStackIn, MultiBufferSource buffer, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
         VertexConsumer vb = buffer.getBuffer(RenderTypesAS.MODEL_LENS_GLASS);
         this.lens.render(matrixStackIn, vb, packedLightIn, packedOverlayIn, red, green, blue, alpha);
 
@@ -66,7 +66,7 @@ public class ModelLens extends CustomModel {
     }
 
     @Override
-    public void render(PoseStack matrixStackIn, IRenderTypeBuffer buffer, int packedLightIn, int packedOverlayIn) {
+    public void render(PoseStack matrixStackIn, MultiBufferSource buffer, int packedLightIn, int packedOverlayIn) {
         super.render(matrixStackIn, buffer, packedLightIn, packedOverlayIn);
         this.renderFrame(matrixStackIn, buffer, packedLightIn, packedOverlayIn, 1F, 1F, 1F, 1F);
         this.renderGlass(matrixStackIn, buffer, packedLightIn, packedOverlayIn, 1F, 1F, 1F, 1F);

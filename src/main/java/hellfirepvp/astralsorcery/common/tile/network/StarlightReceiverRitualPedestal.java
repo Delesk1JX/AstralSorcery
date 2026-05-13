@@ -33,15 +33,15 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import hellfirepvp.astralsorcery.common.util.world.SkyCollectionHelper;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.INBT;
+import net.minecraft.nbt.Tag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.vector.Vector3d;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.World;
-import net.neoforged.neoforge.common.util.Constants;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.WorldGenLevel;
+import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -79,7 +79,7 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
     }
 
     @Override
-    public void update(World world) {
+    public void update(Level world) {
         super.update(world);
         this.ticksExisted++;
 
@@ -100,7 +100,7 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
         }
     }
 
-    private void doRitualEffect(World world) {
+    private void doRitualEffect(Level world) {
         ConstellationEffectProperties properties = this.effect.createProperties(this.getMirrorCount());
         if (this.channelingTrait != null) {
             this.channelingTrait.affectConstellationEffect(properties);
@@ -153,7 +153,7 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
         this.collectedStarlight = 0F;
     }
 
-    private void collectStarlight(World world) {
+    private void collectStarlight(Level world) {
         WorldContext ctx = SkyHandler.getContext(world, LogicalSide.SERVER);
         if (ctx == null) {
             return;
@@ -163,8 +163,8 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
         collected *= 0.25 + (0.75 * DayTimeHelper.getCurrentDaytimeDistribution(world));
 
         if (this.noiseDistribution == -1) {
-            if (world instanceof ISeedReader) {
-                this.noiseDistribution = SkyCollectionHelper.getSkyNoiseDistribution((ISeedReader) world, this.getLocationPos());
+            if (world instanceof WorldGenLevel) {
+                this.noiseDistribution = SkyCollectionHelper.getSkyNoiseDistribution((WorldGenLevel) world, this.getLocationPos());
             } else {
                 this.noiseDistribution = 0.3F;
             }
@@ -178,7 +178,7 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
     }
 
     @Override
-    public void onStarlightReceive(World world, IWeakConstellation type, double amount) {
+    public void onStarlightReceive(Level world, IWeakConstellation type, double amount) {
         if (this.channelingType != null && this.hasMultiblock && this.channelingType.equals(type)) {
             this.collectedStarlight += amount / 2;
             this.findNextMirror(world);
@@ -191,7 +191,7 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
 
 
     @Override
-    public boolean syncTileData(World world, TileRitualPedestal tile) {
+    public boolean syncTileData(Level world, TileRitualPedestal tile) {
         tile.setReceiverData(this.effect != null, this.offsetMirrors, this.attributes);
         this.markDirty(world);
         return true;
@@ -251,7 +251,7 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
     // Stuff surrounding lenses
     //=========================================================================================
 
-    private void findNextMirror(World world) {
+    private void findNextMirror(Level world) {
         if (this.offsetMirrors.size() >= TileRitualPedestal.MAX_MIRROR_COUNT || this.effect == null || this.channelingType == null) {
             return;
         }
@@ -278,7 +278,7 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
                 if (Math.toDegrees(toDir.angle(newDir)) <= 30) {
                     continue lblWhile;
                 }
-                if (from.distanceSquared(Vector3d.copyCentered(p)) <= 3) {
+                if (from.distanceSquared(net.minecraft.world.phys.Vec3.copyCentered(p)) <= 3) {
                     continue lblWhile;
                 }
             }
@@ -296,7 +296,7 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
         }
     }
 
-    private void validateMirrorPositions(World world) {
+    private void validateMirrorPositions(Level world) {
         WorldNetworkHandler handle = WorldNetworkHandler.getNetworkHandler(world);
         List<BlockPos> srcLinkingToThis = this.getSources();
 
@@ -404,8 +404,8 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
         }
 
         this.offsetMirrors.clear();
-        ListTag tagList = compound.getList("mirrors", Constants.NBT.TAG_COMPOUND);
-        for (INBT nbt : tagList) {
+        ListTag tagList = compound.getList("mirrors", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
+        for (Tag nbt : tagList) {
             CompoundTag tag = (CompoundTag) nbt;
             this.offsetMirrors.put(NBTHelper.readBlockPosFromNBT(tag), tag.getBoolean("connect"));
         }

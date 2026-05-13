@@ -27,8 +27,8 @@ import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.Mth;
-import net.minecraft.util.vector.Vector3d;
-import net.minecraft.world.World;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.fml.network.NetworkHooks;
@@ -47,12 +47,12 @@ public class EntityShootingStar extends ThrowableEntity {
 
     private static final DataParameter<Long> EFFECT_SEED = EntityDataManager.createKey(EntityShootingStar.class, ASDataSerializers.LONG);
 
-    protected EntityShootingStar(World worldIn) {
+    protected EntityShootingStar(Level worldIn) {
         super(EntityTypesAS.SHOOTING_STAR, worldIn);
         this.dataManager.set(EFFECT_SEED, rand.nextLong());
     }
 
-    protected EntityShootingStar(double x, double y, double z, World worldIn) {
+    protected EntityShootingStar(double x, double y, double z, Level worldIn) {
         this(worldIn);
         this.setPosition(x, y, z);
     }
@@ -82,9 +82,9 @@ public class EntityShootingStar extends ThrowableEntity {
     }
 
     private void adjustMotion() {
-        Vector3d motion = getMotion();
+        net.minecraft.world.phys.Vec3 motion = getMotion();
         double y = Math.min(-0.7F, motion.getY());
-        setMotion(new Vector3d(motion.getX(), y, motion.getZ()));
+        setMotion(new net.minecraft.world.phys.Vec3(motion.getX(), y, motion.getZ()));
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -160,7 +160,7 @@ public class EntityShootingStar extends ThrowableEntity {
         int newChunkX = Mth.floor(x / 16.0D);
         int newChunkZ = Mth.floor(z / 16.0D);
         if (chunkX != newChunkX || chunkZ != newChunkZ) {
-            if (!this.getEntityWorld().chunkExists(newChunkX, newChunkZ)) {
+            if (!this.level.chunkExists(newChunkX, newChunkZ)) {
                 this.remove();
                 return;
             }

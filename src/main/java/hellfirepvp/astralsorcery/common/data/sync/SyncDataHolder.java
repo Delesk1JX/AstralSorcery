@@ -19,11 +19,12 @@ import hellfirepvp.astralsorcery.common.network.play.server.PktSyncData;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.RegistryKey;
+import net.minecraft.util.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.World;
-import net.neoforged.neoforge.event.tick.TickEvent;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
+import net.neoforged.neoforge.event.tick.ClientTickEvent;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -104,8 +105,8 @@ public class SyncDataHolder implements ITickHandler {
         }
     }
 
-    public static void clearWorld(World world) {
-        RegistryKey<World> dim = world.getDimensionKey();
+    public static void clearWorld(Level world) {
+        ResourceKey<Level> dim = world.getDimensionKey();
         for (ResourceLocation key : SyncDataRegistry.getKnownKeys()) {
             if (!world.isRemote()) {
                 executeServer(key, AbstractData.class, data -> data.clear(dim));
@@ -132,7 +133,7 @@ public class SyncDataHolder implements ITickHandler {
     }
 
     @Override
-    public void tick(TickEvent.Type type, Object... context) {
+    public void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
         if (dirtyData.isEmpty()) {
             return;
         }
@@ -153,13 +154,13 @@ public class SyncDataHolder implements ITickHandler {
     }
 
     @Override
-    public EnumSet<TickEvent.Type> getHandledTypes() {
-        return EnumSet.of(TickEvent.Type.SERVER);
+    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
+        return EnumSet.of(net.neoforged.neoforge.event.tick.ClientTickEvent.SERVER);
     }
 
     @Override
-    public boolean canFire(TickEvent.Phase phase) {
-        return phase == TickEvent.Phase.END;
+    public boolean canFire(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
+        return phase == net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
     }
 
     @Override

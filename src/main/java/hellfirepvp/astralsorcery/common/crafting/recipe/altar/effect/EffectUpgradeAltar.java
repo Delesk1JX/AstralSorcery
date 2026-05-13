@@ -8,13 +8,13 @@
 
 package hellfirepvp.astralsorcery.common.crafting.recipe.altar.effect;
 
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.common.crafting.recipe.altar.ActiveSimpleAltarRecipe;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ParticleManager;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -39,7 +39,7 @@ public class EffectUpgradeAltar extends AltarRecipeEffect {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void onTESR(TileAltar altar, ActiveSimpleAltarRecipe.CraftingState state, PoseStack renderStack, IRenderTypeBuffer buffer, float pTicks, int combinedLight) {}
+    public void onTESR(TileAltar altar, ActiveSimpleAltarRecipe.CraftingState state, PoseStack renderStack, MultiBufferSource buffer, float pTicks, int combinedLight) {}
 
     @Override
     @OnlyIn(Dist.CLIENT)

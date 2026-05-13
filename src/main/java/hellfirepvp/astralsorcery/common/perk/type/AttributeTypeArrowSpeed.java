@@ -19,7 +19,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ArrowEntity;
 import net.neoforged.neoforge.event.entity.EntityJoinWorldEvent;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -56,7 +56,7 @@ public class AttributeTypeArrowSpeed extends PerkAttributeType {
                         .modifyValue(player, ResearchHelper.getProgress(player, side), this, 1F);
                 mul = AttributeEvent.postProcessModded(player, this, mul);
                 motion = MiscUtils.limitVelocityToMinecraftLimit(motion.multiply(mul));
-                arrow.setMotion(motion.toVector3d());
+                arrow.setMotion(motion.toVec3());
             }
         }
     }

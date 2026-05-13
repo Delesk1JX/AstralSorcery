@@ -66,7 +66,7 @@ import hellfirepvp.astralsorcery.common.util.tick.ITickHandler;
 import hellfirepvp.astralsorcery.common.util.tick.TickManager;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -81,18 +81,17 @@ import net.minecraft.world.level.storage.LevelResource;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.util.FakePlayer;
 import net.neoforged.neoforge.common.util.FakePlayerFactory;
+import net.neoforged.neoforge.common.util.LogicalSidedProvider;
 import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.api.distmarker.LogicalSide;
-import net.neoforged.neoforge.common.util.LogicalSidedProvider;
-import net.neoforged.neoforge.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.event.lifecycle.InterModEnqueueEvent;
-import net.neoforged.neoforge.event.server.FMLServerStartedEvent;
-import net.neoforged.neoforge.event.server.FMLServerStartingEvent;
-import net.neoforged.neoforge.event.server.FMLServerStoppedEvent;
-import net.neoforged.neoforge.event.server.FMLServerStoppingEvent;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.event.lifecycle.InterModEnqueueEvent;
+import net.neoforged.neoforge.event.server.ServerStartedEvent;
+import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import net.neoforged.neoforge.event.server.ServerStoppedEvent;
+import net.neoforged.neoforge.event.server.ServerStoppingEvent;
 
 import java.io.File;
 import java.util.List;
@@ -294,7 +293,7 @@ public class CommonProxy {
     }
 
     public File getASServerDataDirectory() {
-        MinecraftServer server = LogicalSidedProvider.INSTANCE.get(LogicalSide.SERVER);
+        MinecraftServer server = LogicalSidedProvider.WORKING_SERVER.get();
         if (server == null) {
             return null;
         }
@@ -361,18 +360,18 @@ public class CommonProxy {
         event.addListener(PerkTreeLoader.INSTANCE);
     }
 
-    private void onServerStarted(FMLServerStartedEvent event) {
+    private void onServerStarted(ServerStartedEvent event) {
         this.serverLifecycleListeners.forEach(ServerLifecycleListener::onServerStart);
     }
 
-    private void onServerStarting(FMLServerStartingEvent event) {
+    private void onServerStarting(ServerStartingEvent event) {
 
     }
 
-    private void onServerStopping(FMLServerStoppingEvent event) {
+    private void onServerStopping(ServerStoppingEvent event) {
         this.serverLifecycleListeners.forEach(ServerLifecycleListener::onServerStop);
     }
 
-    private void onServerStop(FMLServerStoppedEvent event) {
+    private void onServerStop(ServerStoppedEvent event) {
     }
 }

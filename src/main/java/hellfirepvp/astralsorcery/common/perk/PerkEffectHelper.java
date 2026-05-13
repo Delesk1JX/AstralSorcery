@@ -21,12 +21,12 @@ import hellfirepvp.astralsorcery.common.perk.source.ModifierSource;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.nbt.CompoundTag;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.util.Constants;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.fml.LogicalSide;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -47,7 +47,7 @@ public class PerkEffectHelper {
 
         //Restore current overscaled health
         CompoundTag asData = NBTHelper.getPersistentData(player);
-        if (asData.contains("health", Constants.NBT.TAG_FLOAT)) {
+        if (asData.contains("health", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_FLOAT)) {
             player.setHealth(asData.getFloat("health"));
         }
 

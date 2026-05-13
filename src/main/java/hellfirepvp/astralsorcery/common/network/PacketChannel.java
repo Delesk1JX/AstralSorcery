@@ -20,13 +20,13 @@ import hellfirepvp.astralsorcery.common.network.login.server.PktLoginSyncPerkInf
 import hellfirepvp.astralsorcery.common.network.play.client.*;
 import hellfirepvp.astralsorcery.common.network.play.server.*;
 import hellfirepvp.observerlib.common.util.RegistryUtil;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.vector.Vector3i;
+import net.minecraft.util.ResourceKey;
+import net.minecraft.core.Vec3i;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.minecraft.world.level.Level;
+import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.fml.network.FMLHandshakeHandler;
-import net.neoforged.neoforge.network.NetworkEvent;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.neoforged.neoforge.fml.network.NetworkRegistry;
 import net.neoforged.neoforge.fml.network.PacketDistributor;
 import org.apache.commons.lang3.tuple.Pair;
@@ -99,7 +99,7 @@ public class PacketChannel {
                 .encoder(packet.encoder())
                 .decoder(packet.decoder())
                 .consumer((t, contextSupplier) -> {
-                    BiConsumer<T, Supplier<NetworkEvent.Context>> handler;
+                    BiConsumer<T, Supplier<IPayloadContext>> handler;
                     if (contextSupplier.get().getDirection().getReceptionSide().isServer()) {
                         handler = FMLHandshakeHandler.indexFirst((handshakeHandler, pkt, ctxSupplier) -> packet.handler().accept(pkt, ctxSupplier));
                     } else {
@@ -121,11 +121,11 @@ public class PacketChannel {
                 .add();
     }
 
-    public static PacketDistributor.TargetPoint pointFromPos(World world, Vector3i pos, double range) {
+    public static PacketDistributor.TargetPoint pointFromPos(Level world, net.minecraft.core.Vec3i pos, double range) {
         return pointFromPos(world.getDimensionKey(), pos, range);
     }
 
-    public static PacketDistributor.TargetPoint pointFromPos(RegistryKey<World> world, Vector3i pos, double range) {
+    public static PacketDistributor.TargetPoint pointFromPos(ResourceKey<Level> world, net.minecraft.core.Vec3i pos, double range) {
         return new PacketDistributor.TargetPoint(pos.getX(), pos.getY(), pos.getZ(), range, world);
     }
 }

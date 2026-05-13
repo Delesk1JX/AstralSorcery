@@ -17,8 +17,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.api.distmarker.LogicalSide;
-import net.neoforged.neoforge.network.NetworkEvent;
+import net.neoforged.fml.LogicalSide;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import javax.annotation.Nonnull;
 import java.util.HashMap;
@@ -76,7 +76,7 @@ public class PktSyncData extends ASPacket<PktSyncData> {
         return new Handler<PktSyncData>() {
             @Override
             @OnlyIn(Dist.CLIENT)
-            public void handleClient(PktSyncData packet, NetworkEvent.Context context) {
+            public void handleClient(PktSyncData packet, IPayloadContext context) {
                 context.enqueueWork(() -> {
                     for (ResourceLocation key : packet.diffData.keySet()) {
                         ClientDataReader reader = SyncDataHolder.getReader(key);
@@ -89,7 +89,7 @@ public class PktSyncData extends ASPacket<PktSyncData> {
             }
 
             @Override
-            public void handle(PktSyncData packet, NetworkEvent.Context context, LogicalSide side) {}
+            public void handle(PktSyncData packet, IPayloadContext context, LogicalSide side) {}
         };
     }
 }

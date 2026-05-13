@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.client.screen.journal.page;
 
 import com.google.common.collect.Lists;
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import hellfirepvp.astralsorcery.client.render.IDrawRenderTypeBuffer;

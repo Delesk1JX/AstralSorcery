@@ -8,8 +8,8 @@
 
 package hellfirepvp.astralsorcery.client.sky.astral;
 
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.renderer.VertexConsumer;
+import net.minecraft.client.renderer.vertex.VertexFormat;
 import org.lwjgl.opengl.GL11;
 
 import java.util.Random;
@@ -25,15 +25,15 @@ class AstralSkyRendererSetup {
 
     private static final Random RAND = new Random();
 
-    static void generateSky(BufferBuilder skyBuffer) {
+    static void generateSky(VertexConsumer skyBuffer) {
         prepareSky(skyBuffer, 16F, false);
     }
 
-    static void generateSkyHorizon(BufferBuilder skyBuffer) {
+    static void generateSkyHorizon(VertexConsumer skyBuffer) {
         prepareSky(skyBuffer, -16F, true);
     }
 
-    private static void prepareSky(BufferBuilder buf, float offsetY, boolean flip) {
+    private static void prepareSky(VertexConsumer buf, float offsetY, boolean flip) {
         int scale = 64;
         int segments = 6;
         int width = segments * scale;
@@ -56,7 +56,7 @@ class AstralSkyRendererSetup {
         }
     }
 
-    static void generateStars(BufferBuilder starBuffer, int amount, float sizeMultiplier) {
+    static void generateStars(VertexConsumer starBuffer, int amount, float sizeMultiplier) {
         starBuffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
 
         for (int i = 0; i < amount; ++i) { //Amount of stars.

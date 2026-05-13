@@ -9,10 +9,10 @@
 package hellfirepvp.astralsorcery.common.enchantment;
 
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentType;
+
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -23,7 +23,7 @@ import net.neoforged.api.distmarker.LogicalSide;
  */
 public abstract class EnchantmentPlayerTick extends Enchantment {
 
-    protected EnchantmentPlayerTick(Rarity rarityIn, EnchantmentType typeIn, EquipmentSlot[] slots) {
+    protected EnchantmentPlayerTick(Rarity rarityIn, net.minecraft.world.item.enchantment.Enchantment typeIn, EquipmentSlot[] slots) {
         super(rarityIn, typeIn, slots);
     }
 

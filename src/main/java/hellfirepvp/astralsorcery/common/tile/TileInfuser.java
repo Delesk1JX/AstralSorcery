@@ -22,7 +22,7 @@ import hellfirepvp.astralsorcery.common.item.wand.WandInteractable;
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
 import hellfirepvp.astralsorcery.common.lib.SoundsAS;
 import hellfirepvp.astralsorcery.common.lib.StructureTypesAS;
-import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.network.play.server.PktPlayEffect;
 import hellfirepvp.astralsorcery.common.structure.types.StructureType;
@@ -43,20 +43,20 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.StringTag;
-import net.minecraft.util.Direction;
+import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.ForgeHooks;
-import net.neoforged.neoforge.common.capabilities.Capability;
-import net.neoforged.neoforge.common.util.Constants;
-import net.neoforged.neoforge.common.util.LazyOptional;
+
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.util.Lazy;
 import net.neoforged.neoforge.fluids.FluidAttributes;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -100,7 +100,7 @@ public class TileInfuser extends TileEntityTick implements WandInteractable {
     private Object clientCraftSound = null;
 
     public TileInfuser() {
-        super(TileEntityTypesAS.INFUSER);
+        super(BlockEntityTypesAS.INFUSER);
         this.inventory = new TileInventory(this, () -> 1);
     }
 
@@ -151,7 +151,7 @@ public class TileInfuser extends TileEntityTick implements WandInteractable {
         ResourceLocation recipeName = ByteBufUtils.readResourceLocation(pkt.getExtraData());
         BlockPos at = ByteBufUtils.readPos(pkt.getExtraData());
 
-        World world = Minecraft.getInstance().world;
+        Level world = Minecraft.getInstance().world;
         if (world == null) {
             return;
         }
@@ -251,7 +251,7 @@ public class TileInfuser extends TileEntityTick implements WandInteractable {
     }
 
     @Override
-    public boolean onInteract(World world, BlockPos pos, Player player, Direction side, boolean sneak) {
+    public boolean onInteract(Level world, BlockPos pos, Player player, Direction side, boolean sneak) {
         if (!world.isRemote() && this.hasMultiblock() && !this.getItemInput().isEmpty()) {
             if (this.getActiveRecipe() != null) {
                 if (this.getActiveRecipe().matches(this)) {
@@ -321,9 +321,9 @@ public class TileInfuser extends TileEntityTick implements WandInteractable {
         super.readCustomNBT(compound);
 
         this.inventory = this.inventory.deserialize(compound.getCompound("inventory"));
-        this.knownRecipes = NBTHelper.readSet(compound, "knownRecipes", Constants.NBT.TAG_STRING, nbt -> new ResourceLocation(nbt.getString()));
+        this.knownRecipes = NBTHelper.readSet(compound, "knownRecipes", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_STRING, nbt -> new ResourceLocation(nbt.getString()));
 
-        if (compound.contains("activeRecipe", Constants.NBT.TAG_COMPOUND)) {
+        if (compound.contains("activeRecipe", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND)) {
             this.activeRecipe = ActiveLiquidInfusionRecipe.deserialize(compound.getCompound("activeRecipe"), this.activeRecipe);
         } else {
             if (this.activeRecipe != null) {
@@ -347,7 +347,7 @@ public class TileInfuser extends TileEntityTick implements WandInteractable {
 
     @Nonnull
     @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+    public <T> Lazy<T> getCapability(@Nonnull net.neoforged.neoforge.common.capabilities.Capability<T> cap, @Nullable Direction side) {
         if (this.inventory.hasCapability(cap, side)) {
             return this.inventory.getCapability().cast();
         }

@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.common.block.tile.BlockFlareLight;
 import hellfirepvp.astralsorcery.common.entity.EntityFlare;
 import hellfirepvp.astralsorcery.common.item.wand.ItemIlluminationWand;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
-import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
 import hellfirepvp.astralsorcery.common.tile.base.TileEntityTick;
 import hellfirepvp.astralsorcery.common.util.ColorUtils;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
@@ -26,10 +26,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.Direction;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.LightType;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -61,7 +61,7 @@ public class TileIlluminator extends TileEntityTick {
     private DyeColor color = DyeColor.YELLOW;
 
     public TileIlluminator() {
-        super(TileEntityTypesAS.ILLUMINATOR);
+        super(BlockEntityTypesAS.ILLUMINATOR);
     }
 
     @Override
@@ -240,7 +240,7 @@ public class TileIlluminator extends TileEntityTick {
     public static class LightCheck implements BlockPredicate {
 
         @Override
-        public boolean test(World world, BlockPos pos, BlockState state) {
+        public boolean test(Level world, BlockPos pos, BlockState state) {
             return world.isAirBlock(pos) &&
                     !MiscUtils.canSeeSky(world, pos, false, false) &&
                     world.getLight(pos) < 8 &&

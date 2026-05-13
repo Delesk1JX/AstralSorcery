@@ -20,20 +20,20 @@ import net.minecraft.world.level.block.FlowingFluidBlock;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tileentity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.*;
-import net.minecraft.util.vector.Vector3d;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.*;
 import net.minecraft.world.chunk.AbstractChunkProvider;
-import net.minecraft.world.chunk.IChunk;
+import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.server.ServerChunkProvider;
 import net.minecraft.server.level.ServerLevel;
 import net.neoforged.neoforge.common.ForgeHooks;
@@ -41,11 +41,11 @@ import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.util.BlockSnapshot;
 import net.neoforged.neoforge.common.util.FakePlayer;
-import net.neoforged.neoforge.event.ForgeEventFactory;
+import net.neoforged.neoforge.event.EventHooks;
 import net.neoforged.neoforge.event.world.BlockEvent;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;
-import net.neoforged.neoforge.fml.ModContainer;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.neoforge.fml.ModLoadingContext;
 import org.apache.logging.log4j.util.TriConsumer;
 
@@ -80,7 +80,7 @@ public class MiscUtils {
         return null;
     }
 
-    public static boolean canEntityTickAt(IWorld world, BlockPos pos) {
+    public static boolean canEntityTickAt(ILevel world, BlockPos pos) {
         ChunkPos chPos = new ChunkPos(pos);
         if (!world.getChunkProvider().isChunkLoaded(chPos)) {
             return false;
@@ -93,7 +93,7 @@ public class MiscUtils {
         return !chunkProvider.chunkManager.isOutsideSpawningRadius(chPos);
     }
 
-    public static List<BlockSnapshot> captureBlockChanges(World world, Runnable r) {
+    public static List<BlockSnapshot> captureBlockChanges(Level world, Runnable r) {
         world.captureBlockSnapshots = true;
         r.run();
         world.captureBlockSnapshots = false;
@@ -129,7 +129,7 @@ public class MiscUtils {
         if (!enumClazz.isEnum()) {
             throw new IllegalArgumentException("Called getEnumEntry on class " + enumClazz.getName() + " which isn't an enum.");
         }
-        T[] values = enumClazz.getEnumConstants();
+        T[] values = enumClazz.getEnumnet.neoforged.neoforge.common.util.FakePlayerFactory();
         if (values.length == 0) {
             throw new IllegalArgumentException(enumClazz.getName() + " has no enum constants.");
         }
@@ -177,11 +177,11 @@ public class MiscUtils {
         return minElement;
     }
 
-    public static boolean canSeeSky(World world, BlockPos at, boolean loadChunk, boolean defaultValue) {
+    public static boolean canSeeSky(Level world, BlockPos at, boolean loadChunk, boolean defaultValue) {
         return canSeeSky(world, at, loadChunk, false, defaultValue);
     }
 
-    public static boolean canSeeSky(World world, BlockPos at, boolean loadChunk, boolean allowInNoSkyWorlds, boolean defaultValue) {
+    public static boolean canSeeSky(Level world, BlockPos at, boolean loadChunk, boolean allowInNoSkyWorlds, boolean defaultValue) {
         if (world.getGameRules().getBoolean(GameRulesAS.IGNORE_SKYLIGHT_CHECK_RULE)) {
             return true;
         }
@@ -323,9 +323,9 @@ public class MiscUtils {
         }
         if (target instanceof Player) {
             Player plTarget = (Player) target;
-            if (target.getEntityWorld() instanceof ServerLevel &&
-                    target.getEntityWorld().getServer() != null &&
-                    target.getEntityWorld().getServer().isPVPEnabled()) {
+            if (target.level instanceof ServerLevel &&
+                    target.level.getServer() != null &&
+                    target.level.getServer().isPVPEnabled()) {
                 return false;
             }
             if (plTarget.isSpectator() || plTarget.isCreative()) {
@@ -340,13 +340,13 @@ public class MiscUtils {
     }
 
     public static boolean canPlayerBreakBlockPos(Player player, BlockPos tryBreak) {
-        BlockEvent.BreakEvent ev = new BlockEvent.BreakEvent(player.getEntityWorld(), tryBreak, player.getEntityWorld().getBlockState(tryBreak), player);
+        BlockEvent.BreakEvent ev = new BlockEvent.BreakEvent(player.level, tryBreak, player.level.getBlockState(tryBreak), player);
         NeoForge.EVENT_BUS.post(ev);
         return !ev.isCanceled();
     }
 
     public static boolean canPlayerPlaceBlockPos(Player player, BlockState tryPlace, BlockPos pos, Direction againstSide) {
-        World world = player.getEntityWorld();
+        Level world = player.level;
         world.captureBlockSnapshots = true;
         world.setBlockState(pos, tryPlace);
         world.captureBlockSnapshots = false;
@@ -356,9 +356,9 @@ public class MiscUtils {
 
         boolean cancelPlacement = false;
         if (blockSnapshots.size() > 1) {
-            cancelPlacement = ForgeEventFactory.onMultiBlockPlace(player, blockSnapshots, againstSide);
+            cancelPlacement = EventHooks.onMultiBlockPlace(player, blockSnapshots, againstSide);
         } else if (blockSnapshots.size() == 1) {
-            cancelPlacement = ForgeEventFactory.onBlockPlace(player, blockSnapshots.get(0), againstSide);
+            cancelPlacement = EventHooks.onBlockPlace(player, blockSnapshots.get(0), againstSide);
         }
         for (BlockSnapshot blocksnapshot : Lists.reverse(blockSnapshots)) {
             world.restoringBlockSnapshots = true;
@@ -372,7 +372,7 @@ public class MiscUtils {
         return player.connection != null && player.connection.netManager != null && player.connection.netManager.isChannelOpen();
     }
 
-    public static long getRandomWorldSeed(ISeedReader world) {
+    public static long getRandomWorldSeed(WorldGenLevel world) {
         return new Random(world.getSeed()).nextLong();
     }
 
@@ -403,12 +403,12 @@ public class MiscUtils {
     }
 
     @Nullable
-    public static <T extends Entity> T transferEntityTo(T entity, RegistryKey<World> target, BlockPos targetPos) {
-        if (entity.getEntityWorld().isRemote) {
+    public static <T extends Entity> T transferEntityTo(T entity, ResourceKey<Level> target, BlockPos targetPos) {
+        if (entity.level.isRemote) {
             return null; //No transfers on clientside.
         }
         entity.setSneaking(false);
-        RegistryKey<World> src = entity.getEntityWorld().getDimensionKey();
+        ResourceKey<Level> src = entity.level.getDimensionKey();
         if (!src.equals(target)) {
             if (!ForgeHooks.onTravelToDimension(entity, target)) {
                 return null;
@@ -438,7 +438,7 @@ public class MiscUtils {
     }
 
     @Nullable
-    public static BlockPos itDownTopBlock(World world, BlockPos at) {
+    public static BlockPos itDownTopBlock(Level world, BlockPos at) {
         IChunk chunk = world.getChunk(at);
         BlockPos downPos = null;
 
@@ -482,7 +482,7 @@ public class MiscUtils {
     }
 
     @Nullable
-    public static BlockRayTraceResult rayTraceLookBlock(Player player) {
+    public static BlockHitResult rayTraceLookBlock(Player player) {
         return rayTraceLookBlock(player, player.getAttribute(NeoForgeMod.REACH_DISTANCE.get()).getValue());
     }
 
@@ -492,7 +492,7 @@ public class MiscUtils {
     }
 
     @Nullable
-    public static BlockRayTraceResult rayTraceLookBlock(Player player, RayTraceContext.BlockMode blockMode, RayTraceContext.FluidMode fluidMode) {
+    public static BlockHitResult rayTraceLookBlock(Player player, RayTraceContext.BlockMode blockMode, RayTraceContext.FluidMode fluidMode) {
         return rayTraceLookBlock(player, blockMode, fluidMode, player.getAttribute(NeoForgeMod.REACH_DISTANCE.get()).getValue());
     }
 
@@ -502,7 +502,7 @@ public class MiscUtils {
     }
 
     @Nullable
-    public static BlockRayTraceResult rayTraceLookBlock(Player player, double reachDst) {
+    public static BlockHitResult rayTraceLookBlock(Player player, double reachDst) {
         return rayTraceLookBlock(player, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.ANY, reachDst);
     }
 
@@ -512,19 +512,19 @@ public class MiscUtils {
     }
 
     @Nullable
-    public static BlockRayTraceResult rayTraceLookBlock(Entity entity, RayTraceContext.BlockMode blockMode, RayTraceContext.FluidMode fluidMode, double reachDst) {
+    public static BlockHitResult rayTraceLookBlock(Entity entity, RayTraceContext.BlockMode blockMode, RayTraceContext.FluidMode fluidMode, double reachDst) {
         RayTraceResult rtr = rayTraceLook(entity, blockMode, fluidMode, reachDst);
-        if (rtr.getType() == RayTraceResult.Type.BLOCK && rtr instanceof BlockRayTraceResult) {
-            return (BlockRayTraceResult) rtr;
+        if (rtr.getType() == HitResult.Type.BLOCK && rtr instanceof BlockHitResult) {
+            return (BlockHitResult) rtr;
         }
         return null;
     }
 
     @Nonnull
     public static RayTraceResult rayTraceLook(Entity entity, RayTraceContext.BlockMode blockMode, RayTraceContext.FluidMode fluidMode, double reachDst) {
-        Vector3d pos = new Vector3d(entity.getPosX(), entity.getPosY() + entity.getEyeHeight(), entity.getPosZ());
-        Vector3d lookVec = entity.getLookVec();
-        Vector3d end = pos.add(lookVec.x * reachDst, lookVec.y * reachDst, lookVec.z * reachDst);
+        net.minecraft.world.phys.Vec3 pos = new net.minecraft.world.phys.Vec3(entity.getPosX(), entity.getPosY() + entity.getEyeHeight(), entity.getPosZ());
+        net.minecraft.world.phys.Vec3 lookVec = entity.getLookVec();
+        net.minecraft.world.phys.Vec3 end = pos.add(lookVec.x * reachDst, lookVec.y * reachDst, lookVec.z * reachDst);
         RayTraceContext ctx = new RayTraceContext(pos, end, blockMode, fluidMode, entity);
         return entity.world.rayTraceBlocks(ctx);
     }
@@ -554,19 +554,19 @@ public class MiscUtils {
         target.addZ(v.getZ() * (rand.nextBoolean() ? 1 : -1));
     }
 
-    public static void executeWithChunk(IWorldReader world, ChunkPos pos, Runnable run) {
+    public static void executeWithChunk(LevelAccessor world, ChunkPos pos, Runnable run) {
         executeWithChunk(world, pos.asBlockPos(), nullSupplier(run));
     }
 
-    public static void executeWithChunk(IWorldReader world, BlockPos pos, Runnable run) {
+    public static void executeWithChunk(LevelAccessor world, BlockPos pos, Runnable run) {
         executeWithChunk(world, pos, nullSupplier(run));
     }
 
-    public static <T> T executeWithChunk(IWorldReader world, BlockPos pos, Supplier<T> run) {
+    public static <T> T executeWithChunk(LevelAccessor world, BlockPos pos, Supplier<T> run) {
         return executeWithChunk(world, pos, run, (T) null);
     }
 
-    public static <T> T executeWithChunk(IWorldReader world, BlockPos pos, Supplier<T> run, T defaultValue) {
+    public static <T> T executeWithChunk(LevelAccessor world, BlockPos pos, Supplier<T> run, T defaultValue) {
         if (world instanceof ServerLevel && LogCategory.UNINTENDED_CHUNK_LOADING.isEnabled()) {
             ServerChunkProvider provider = ((ServerLevel) world).getChunkProvider();
             int prev = provider.getLoadedChunkCount();
@@ -597,23 +597,23 @@ public class MiscUtils {
         return defaultValue;
     }
 
-    public static <T> void executeWithChunk(IWorldReader world, BlockPos pos, T obj, Consumer<T> run) {
+    public static <T> void executeWithChunk(LevelAccessor world, BlockPos pos, T obj, Consumer<T> run) {
         executeWithChunk(world, pos, nullSupplier(apply(run, () -> obj)));
     }
 
-    public static <T, U> void executeWithChunk(IWorldReader world, BlockPos pos, T obj, U obj1, BiConsumer<T, U> run) {
+    public static <T, U> void executeWithChunk(LevelAccessor world, BlockPos pos, T obj, U obj1, BiConsumer<T, U> run) {
         executeWithChunk(world, pos, obj, apply(run, () -> obj1));
     }
 
-    public static <T, R> R executeWithChunk(IWorldReader world, BlockPos pos, T obj, Function<T, R> run) {
+    public static <T, R> R executeWithChunk(LevelAccessor world, BlockPos pos, T obj, Function<T, R> run) {
         return executeWithChunk(world, pos, apply(run, () -> obj));
     }
 
-    public static <T, R> R executeWithChunk(IWorldReader world, BlockPos pos, T obj, Function<T, R> run, R _default) {
+    public static <T, R> R executeWithChunk(LevelAccessor world, BlockPos pos, T obj, Function<T, R> run, R _default) {
         return executeWithChunk(world, pos, apply(run, () -> obj), _default);
     }
 
-    public static <T> Function<T, T> mapWithChunk(IWorldReader world, Function<T, BlockPos> posFn) {
+    public static <T> Function<T, T> mapWithChunk(LevelAccessor world, Function<T, BlockPos> posFn) {
         return (val) -> executeWithChunk(world, posFn.apply(val), val, Function.identity());
     }
 

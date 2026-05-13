@@ -15,11 +15,11 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.api.distmarker.LogicalSide;
-import net.neoforged.neoforge.network.NetworkEvent;
+import net.neoforged.fml.LogicalSide;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -64,7 +64,7 @@ public class PktOreScan extends ASPacket<PktOreScan> {
         return new Handler<PktOreScan>() {
             @Override
             @OnlyIn(Dist.CLIENT)
-            public void handleClient(PktOreScan packet, NetworkEvent.Context context) {
+            public void handleClient(PktOreScan packet, IPayloadContext context) {
                 context.enqueueWork(() -> {
                     Player player = Minecraft.getInstance().player;
                     if (player == null) {
@@ -87,7 +87,7 @@ public class PktOreScan extends ASPacket<PktOreScan> {
             }
 
             @Override
-            public void handle(PktOreScan packet, NetworkEvent.Context context, LogicalSide side) {}
+            public void handle(PktOreScan packet, IPayloadContext context, LogicalSide side) {}
         };
     }
 }

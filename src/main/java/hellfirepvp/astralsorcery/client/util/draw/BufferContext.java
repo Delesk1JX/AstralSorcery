@@ -19,7 +19,7 @@ import com.mojang.blaze3d.vertex.VertexFormat;
  * Created by HellFirePvP
  * Date: 08.07.2019 / 20:39
  */
-public class BufferContext extends BufferBuilder {
+public class BufferContext extends VertexConsumer {
 
     private boolean inDrawing = false;
 

@@ -22,7 +22,7 @@ import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 import hellfirepvp.astralsorcery.common.crystal.CrystalAttributeTile;
 import hellfirepvp.astralsorcery.common.crystal.CrystalAttributes;
 import hellfirepvp.astralsorcery.common.lib.StructureTypesAS;
-import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
 import hellfirepvp.astralsorcery.common.starlight.IIndependentStarlightSource;
 import hellfirepvp.astralsorcery.common.starlight.transmission.base.SimpleTransmissionSourceNode;
 import hellfirepvp.astralsorcery.common.starlight.transmission.base.crystal.IndependentCrystalSource;
@@ -32,8 +32,8 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.core.BlockPos;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -71,7 +71,7 @@ public class TileCollectorCrystal extends TileSourceBase<SimpleTransmissionSourc
     private Object[] effectOrbitals = new Object[4];
 
     public TileCollectorCrystal() {
-        super(TileEntityTypesAS.COLLECTOR_CRYSTAL);
+        super(BlockEntityTypesAS.COLLECTOR_CRYSTAL);
     }
 
     @Override
@@ -277,7 +277,7 @@ public class TileCollectorCrystal extends TileSourceBase<SimpleTransmissionSourc
     }
 
     @Override
-    public AxisAlignedBB getRenderBoundingBox() {
+    public AABB getRenderBoundingBox() {
         return BOX.grow(1).offset(getPos());
     }
 

@@ -19,8 +19,8 @@ import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.neoforge.common.util.Constants;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import java.util.Collections;
@@ -61,6 +61,6 @@ public class TraitUpgradeRecipe extends SimpleAltarRecipe {
         super.onRecipeCompletion(altar, activeRecipe);
 
         ResearchManager.informCraftedAltar(altar, activeRecipe, new ItemStack(BlocksAS.ALTAR_RADIANCE));
-        altar.getWorld().setBlockState(altar.getPos(), BlocksAS.ALTAR_RADIANCE.getDefaultState(), Constants.BlockFlags.DEFAULT);
+        altar.getWorld().setBlockState(altar.getPos(), BlocksAS.ALTAR_RADIANCE.getDefaultState(), net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.DEFAULT);
     }
 }

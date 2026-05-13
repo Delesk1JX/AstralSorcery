@@ -22,7 +22,7 @@ import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairsBlock;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.minecraft.state.Property;
-import net.minecraft.util.Direction;
+import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.client.model.generators.*;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -234,7 +234,7 @@ public class AstralBlockStateMappingProvider extends BlockStateProvider {
         return model(AstralSorcery.key(name));
     }
 
-    private ModelFile model(IRegistryObject<?> entry) {
+    private ModelFile model(IForgeRegistryEntry<?> entry) {
         return model(entry.getRegistryName());
     }
 

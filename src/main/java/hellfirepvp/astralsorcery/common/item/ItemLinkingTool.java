@@ -15,11 +15,11 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+import net.neoforged.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -48,7 +48,7 @@ public class ItemLinkingTool extends Item implements IItemLinkingTool {
 
     @Override
     public boolean doBlockInteract(LogicalSide side, Player player, Hand hand, BlockPos pos, Direction face) {
-        World world = player.getEntityWorld();
+        Level world = player.level;
         if (!world.isRemote()) {
             LinkHandler.LinkSession session = LinkHandler.getActiveSession(player);
             if (session != null && session.getType() == LinkHandler.LinkType.ENTITY) {
@@ -74,7 +74,7 @@ public class ItemLinkingTool extends Item implements IItemLinkingTool {
             return false;
         }
         LivingEntity target = (LivingEntity) interacted;
-        World world = player.getEntityWorld();
+        Level world = player.level;
         if (!world.isRemote()) {
             LinkHandler.LinkSession session = LinkHandler.getActiveSession(player);
             if (session == null || session.getType() == LinkHandler.LinkType.ENTITY) {

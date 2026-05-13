@@ -19,14 +19,14 @@ import hellfirepvp.astralsorcery.common.util.block.BlockDiscoverer;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.tileentity.MobSpawnerTileEntity;
-import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.world.level.block.entity.MobSpawnerTileEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.core.BlockPos;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
-import net.neoforged.neoforge.items.CapabilityItemHandler;
+import net.neoforged.neoforge.common.ModConfigSpec;
+
 
 import java.awt.*;
 import java.util.List;
@@ -62,14 +62,14 @@ public class MantleEffectLucerna extends MantleEffect {
             this.playBlockHighlight(player, ColorsAS.MANTLE_LUCERNA_SPAWNER, (tileEntity) -> tileEntity instanceof MobSpawnerTileEntity);
         }
         if (CONFIG.findChests.get() && rand.nextInt(10) == 0) {
-            this.playBlockHighlight(player, ColorsAS.MANTLE_LUCERNA_INVENTORY, (tileEntity) -> tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).isPresent());
+            this.playBlockHighlight(player, ColorsAS.MANTLE_LUCERNA_INVENTORY, (tileEntity) -> tileEntity.getCapability(net.neoforged.neoforge.items.capability.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).isPresent());
         }
     }
 
     @OnlyIn(Dist.CLIENT)
     private void playBlockHighlight(Player player, Color highlightColor, Predicate<BlockEntity> test) {
         float chance = 0.9F;
-        Set<BlockPos> positions = BlockDiscoverer.searchForTileEntitiesAround(player.getEntityWorld(), player.getPosition(), CONFIG.range.get(), test);
+        Set<BlockPos> positions = BlockDiscoverer.searchForTileEntitiesAround(player.level, player.getPosition(), CONFIG.range.get(), test);
         for (BlockPos pos : positions) {
             if (rand.nextFloat() > chance) {
                 continue;
@@ -103,10 +103,10 @@ public class MantleEffectLucerna extends MantleEffect {
 
     @OnlyIn(Dist.CLIENT)
     private void playEntityHighlight(Player player) {
-        AxisAlignedBB box = new AxisAlignedBB(0, 0, 0, 0, 0, 0)
+        AABB box = new AABB(0, 0, 0, 0, 0, 0)
                 .grow(CONFIG.range.get())
                 .offset(player.getPosition());
-        List<LivingEntity> entities = player.getEntityWorld().getEntitiesWithinAABB(LivingEntity.class, box);
+        List<LivingEntity> entities = player.level.getEntitiesWithinAABB(LivingEntity.class, box);
         for (LivingEntity entity : entities) {
             if (!entity.isAlive() || entity.equals(player) || rand.nextInt(8) != 0) {
                 continue;
@@ -154,16 +154,16 @@ public class MantleEffectLucerna extends MantleEffect {
         private final boolean defaultFindSpawners = true;
         private final boolean defaultFindChests = true;
 
-        public NeoForgeConfigSpec.IntValue range;
-        public NeoForgeConfigSpec.BooleanValue findSpawners;
-        public NeoForgeConfigSpec.BooleanValue findChests;
+        public ModConfigSpec.IntValue range;
+        public ModConfigSpec.BooleanValue findSpawners;
+        public ModConfigSpec.BooleanValue findChests;
 
         public LucernaConfig() {
             super("lucerna");
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.range = cfgBuilder

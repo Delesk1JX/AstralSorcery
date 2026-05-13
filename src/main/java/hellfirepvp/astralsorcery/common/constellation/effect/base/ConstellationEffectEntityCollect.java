@@ -13,8 +13,9 @@ import hellfirepvp.astralsorcery.common.constellation.effect.ConstellationEffect
 import hellfirepvp.astralsorcery.common.constellation.effect.ConstellationEffectProperties;
 import hellfirepvp.astralsorcery.common.util.block.ILocatable;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -39,7 +40,7 @@ public abstract class ConstellationEffectEntityCollect<T extends Entity> extends
     }
 
     @Nonnull
-    protected List<T> collectEntities(World world, BlockPos center, ConstellationEffectProperties properties) {
+    protected List<T> collectEntities(Level world, BlockPos center, ConstellationEffectProperties properties) {
         return world.getEntitiesWithinAABB(this.entityClazz, BOX.grow(properties.getSize()).offset(center), this.filter);
     }
 

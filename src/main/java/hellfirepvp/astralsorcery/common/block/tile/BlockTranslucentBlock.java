@@ -11,12 +11,12 @@ package hellfirepvp.astralsorcery.common.block.tile;
 import hellfirepvp.astralsorcery.common.block.base.BlockFakedState;
 import hellfirepvp.astralsorcery.common.tile.TileTranslucentBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MaterialColor;
-import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -40,7 +40,7 @@ public class BlockTranslucentBlock extends BlockFakedState {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState state, World world, BlockPos pos, Random rand) {
+    public void animateTick(BlockState state, Level world, BlockPos pos, Random rand) {
         this.playParticles(world, pos, rand);
     }
 

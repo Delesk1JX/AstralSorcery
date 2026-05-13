@@ -24,7 +24,7 @@ import net.minecraft.world.level.block.BlockRenderType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ContainerBlock;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
@@ -32,25 +32,24 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.pathfinding.PathType;
-import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.BlockRayTraceResult;
-import net.minecraft.util.RayTraceResult;
-import net.minecraft.util.shapes.ISelectionContext;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.util.shapes.VoxelShape;
-import net.minecraft.util.shapes.VoxelShapes;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.LevelAccessor;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.ForgeHooks;
-import net.neoforged.neoforge.common.ToolType;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -76,7 +75,7 @@ public class BlockCelestialGateway extends ContainerBlock implements CustomItemB
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<Component> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         super.addInformation(stack, worldIn, tooltip, flagIn);
 
         DyeColor color = getColor(stack);
@@ -104,7 +103,7 @@ public class BlockCelestialGateway extends ContainerBlock implements CustomItemB
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, Player player, Hand hand, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, Hand hand, BlockHitResult hit) {
         TileCelestialGateway gateway = MiscUtils.getTileAt(world, pos, TileCelestialGateway.class, false);
         if (gateway != null &&
                 gateway.getOwner() != null &&
@@ -134,7 +133,7 @@ public class BlockCelestialGateway extends ContainerBlock implements CustomItemB
     }
 
     @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+    public void onBlockPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
         super.onBlockPlacedBy(world, pos, state, placer, stack);
 
         TileCelestialGateway gateway = MiscUtils.getTileAt(world, pos, TileCelestialGateway.class, true);
@@ -173,7 +172,7 @@ public class BlockCelestialGateway extends ContainerBlock implements CustomItemB
     //}
 
     @Override
-    public void onReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moving) {
+    public void onReplaced(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moving) {
         if (state != newState && !world.isRemote()) {
             DataAS.DOMAIN_AS.getData(world, DataAS.KEY_GATEWAY_CACHE).removePosition(world, pos);
             TileCelestialGateway gateway = MiscUtils.getTileAt(world, pos, TileCelestialGateway.class, true);
@@ -186,7 +185,7 @@ public class BlockCelestialGateway extends ContainerBlock implements CustomItemB
     }
 
     @Override
-    public BlockState updatePostPlacement(BlockState state, Direction placedAgainst, BlockState facingState, IWorld world, BlockPos pos, BlockPos facingPos) {
+    public BlockState updatePostPlacement(BlockState state, Direction placedAgainst, BlockState facingState, ILevel world, BlockPos pos, BlockPos facingPos) {
         if (!this.isValidPosition(state, world, pos)) {
             return Blocks.AIR.getDefaultState();
         }
@@ -194,7 +193,7 @@ public class BlockCelestialGateway extends ContainerBlock implements CustomItemB
     }
 
     @Override
-    public boolean isValidPosition(BlockState state, IWorldReader world, BlockPos pos) {
+    public boolean isValidPosition(BlockState state, LevelAccessor world, BlockPos pos) {
         TileCelestialGateway gateway = MiscUtils.getTileAt(world, pos, TileCelestialGateway.class, true);
         if (gateway != null && gateway.isLocked()) {
             return true;

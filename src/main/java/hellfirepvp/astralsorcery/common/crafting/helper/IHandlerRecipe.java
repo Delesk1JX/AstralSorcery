@@ -8,9 +8,9 @@
 
 package hellfirepvp.astralsorcery.common.crafting.helper;
 
-import net.minecraft.inventory.IInventory;
+import net.minecraft.world.Container;
 import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.items.IItemHandler;
 
 /**
@@ -22,10 +22,10 @@ import net.neoforged.neoforge.items.IItemHandler;
  */
 public interface IHandlerRecipe<I extends IItemHandler> extends Recipe<IInventory> {
 
-    boolean matches(I handler, World world);
+    boolean matches(I handler, Level world);
 
     @Override
-    default boolean matches(IInventory inv, World worldIn) {
+    default boolean matches(IInventory inv, Level worldIn) {
         return false;
     }
 }

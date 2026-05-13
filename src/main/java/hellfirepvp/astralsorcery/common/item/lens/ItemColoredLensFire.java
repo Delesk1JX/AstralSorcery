@@ -29,14 +29,14 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.Tags;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -77,14 +77,14 @@ public class ItemColoredLensFire extends ItemColoredLens {
         }
 
         @Override
-        public void entityInBeam(World world, Vector3 origin, Vector3 target, Entity entity, PartialEffectExecutor executor) {
+        public void entityInBeam(Level world, Vector3 origin, Vector3 target, Entity entity, PartialEffectExecutor executor) {
             if (world.isRemote()) {
                 return;
             }
             if (entity instanceof ItemEntity) {
                 ItemStack current = ((ItemEntity) entity).getItem();
 
-                ItemStack result = RecipeHelper.findSmeltingResult(entity.getEntityWorld(), current).map(Tuple::getA).orElse(ItemStack.EMPTY);
+                ItemStack result = RecipeHelper.findSmeltingResult(entity.level, current).map(Tuple::getA).orElse(ItemStack.EMPTY);
                 if (result.isEmpty()) {
                     return;
                 }
@@ -95,7 +95,7 @@ public class ItemColoredLensFire extends ItemColoredLens {
                         continue;
                     }
                     Vector3 entityPos = Vector3.atEntityCorner(entity);
-                    ItemUtils.dropItemNaturally(entity.getEntityWorld(), entityPos.getX(), entityPos.getY(), entityPos.getZ(), ItemUtils.copyStackWithSize(result, result.getCount()));
+                    ItemUtils.dropItemNaturally(entity.level, entityPos.getX(), entityPos.getY(), entityPos.getZ(), ItemUtils.copyStackWithSize(result, result.getCount()));
                     if (current.getCount() > 1) {
                         current.shrink(1);
                         ((ItemEntity) entity).setItem(current);
@@ -118,7 +118,7 @@ public class ItemColoredLensFire extends ItemColoredLens {
         }
 
         @Override
-        public void blockInBeam(World world, BlockPos pos, BlockState state, PartialEffectExecutor executor) {
+        public void blockInBeam(Level world, BlockPos pos, BlockState state, PartialEffectExecutor executor) {
             if (!(world instanceof ServerLevel)) {
                 return;
             }
@@ -144,8 +144,8 @@ public class ItemColoredLensFire extends ItemColoredLens {
 
                 BlockState resState = ItemUtils.createBlockState(result);
                 if (resState != null) {
-                    world.setBlockState(pos, resState, Constants.BlockFlags.DEFAULT);
-                } else if (world.setBlockState(pos, Blocks.AIR.getDefaultState(), Constants.BlockFlags.DEFAULT)) {
+                    world.setBlockState(pos, resState, net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.DEFAULT);
+                } else if (world.setBlockState(pos, Blocks.AIR.getDefaultState(), net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.DEFAULT)) {
                     ItemUtils.dropItemNaturally(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, result);
                 }
                 return;

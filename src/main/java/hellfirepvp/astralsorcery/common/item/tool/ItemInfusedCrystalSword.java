@@ -21,10 +21,10 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.object.CacheReference;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.Hand;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.minecraft.world.InteractionHand;
+import net.neoforged.fml.LogicalSide;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -45,7 +45,7 @@ public class ItemInfusedCrystalSword extends ItemCrystalSword implements Equipme
 
     @Override
     public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
-        if (!player.getEntityWorld().isRemote() && player instanceof ServerPlayer) {
+        if (!player.level.isRemote() && player instanceof ServerPlayer) {
             ServerPlayer serverPlayer = (ServerPlayer) player;
             ItemStack sword = serverPlayer.getHeldItem(Hand.MAIN_HAND);
             if (!MiscUtils.isPlayerFakeMP(serverPlayer) &&

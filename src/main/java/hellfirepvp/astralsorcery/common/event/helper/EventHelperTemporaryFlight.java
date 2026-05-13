@@ -11,8 +11,9 @@ package hellfirepvp.astralsorcery.common.event.helper;
 import hellfirepvp.astralsorcery.common.util.tick.TimeoutList;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.ServerPlayer;
-import net.neoforged.neoforge.event.tick.TickEvent;
+import net.minecraft.server.level.ServerPlayer;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
+import net.neoforged.neoforge.event.tick.ClientTickEvent;
 
 import java.util.function.Consumer;
 
@@ -31,7 +32,7 @@ public class EventHelperTemporaryFlight {
             player.abilities.isFlying = false;
             player.sendPlayerAbilities();
         }
-    }, TickEvent.Type.SERVER);
+    }, net.neoforged.neoforge.event.tick.ClientTickEvent.SERVER);
 
     private EventHelperTemporaryFlight() {}
 

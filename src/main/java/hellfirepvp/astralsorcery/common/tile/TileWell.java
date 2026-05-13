@@ -21,7 +21,7 @@ import hellfirepvp.astralsorcery.common.entity.EntityFlare;
 import hellfirepvp.astralsorcery.common.fluid.BlockLiquidStarlight;
 import hellfirepvp.astralsorcery.common.fluid.FluidLiquidStarlight;
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
-import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.network.play.server.PktPlayEffect;
 import hellfirepvp.astralsorcery.common.tile.base.network.TileReceiverBase;
@@ -36,14 +36,14 @@ import hellfirepvp.astralsorcery.common.util.world.SkyCollectionHelper;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.Direction;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.ISeedReader;
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.WorldGenLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.capabilities.Capability;
-import net.neoforged.neoforge.common.util.LazyOptional;
+
+import net.neoforged.neoforge.common.util.Lazy;
 import net.neoforged.neoforge.fluids.FluidAttributes;
 
 import javax.annotation.Nonnull;
@@ -71,7 +71,7 @@ public class TileWell extends TileReceiverBase<StarlightReceiverWell> {
     private float posDistribution = -1;
 
     public TileWell() {
-        super(TileEntityTypesAS.WELL);
+        super(BlockEntityTypesAS.WELL);
 
         this.tank = new PrecisionSingleFluidTank(TANK_SIZE);
         this.tank.setAllowInput(false);
@@ -224,8 +224,8 @@ public class TileWell extends TileReceiverBase<StarlightReceiverWell> {
             dstr = yLevel / 120F;
         }
         if (posDistribution == -1) {
-            if (world instanceof ISeedReader) {
-                posDistribution = SkyCollectionHelper.getSkyNoiseDistribution((ISeedReader) world, getPos());
+            if (world instanceof WorldGenLevel) {
+                posDistribution = SkyCollectionHelper.getSkyNoiseDistribution((WorldGenLevel) world, getPos());
             } else {
                 posDistribution = 0.3F;
             }
@@ -275,7 +275,7 @@ public class TileWell extends TileReceiverBase<StarlightReceiverWell> {
 
     @Nonnull
     @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+    public <T> Lazy<T> getCapability(@Nonnull net.neoforged.neoforge.common.capabilities.Capability<T> cap, @Nullable Direction side) {
         if (this.access.hasCapability(cap, side)) {
             return this.access.getCapability(side).cast();
         }

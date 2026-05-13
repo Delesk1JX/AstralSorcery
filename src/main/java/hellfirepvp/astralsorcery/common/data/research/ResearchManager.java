@@ -27,12 +27,12 @@ import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import hellfirepvp.astralsorcery.common.tile.TileInfuser;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 import net.minecraft.core.Holder;
 
 import javax.annotation.Nonnull;
@@ -155,7 +155,7 @@ public class ResearchManager {
         PlayerProgress progress = ResearchHelper.getProgress(player, LogicalSide.SERVER);
         if (!progress.isValid()) return false;
 
-        progress.setStoredConstellationPapers(papers.stream().map(IRegistryObject::getRegistryName).collect(Collectors.toList()));
+        progress.setStoredConstellationPapers(papers.stream().map(IForgeRegistryEntry::getRegistryName).collect(Collectors.toList()));
 
         ResearchSyncHelper.pushProgressToClientUnsafe(progress, player);
         ResearchHelper.savePlayerKnowledge(player);

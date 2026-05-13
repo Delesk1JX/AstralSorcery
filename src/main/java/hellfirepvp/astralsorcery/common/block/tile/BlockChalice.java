@@ -18,18 +18,17 @@ import net.minecraft.world.level.block.ContainerBlock;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.pathfinding.PathType;
-import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.BlockRayTraceResult;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.util.Mth;
-import net.minecraft.util.shapes.ISelectionContext;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.util.shapes.VoxelShape;
-import net.minecraft.util.shapes.VoxelShapes;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
-import net.neoforged.neoforge.common.ToolType;
+import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.fluids.FluidActionResult;
 import net.neoforged.neoforge.fluids.FluidAttributes;
 import net.neoforged.neoforge.fluids.FluidStack;
@@ -61,7 +60,7 @@ public class BlockChalice extends ContainerBlock implements CustomItemBlock {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, Player player, Hand hand, BlockRayTraceResult brtr) {
+    public ActionResultType onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, Hand hand, BlockHitResult brtr) {
         ItemStack interact = player.getHeldItem(hand);
         TileChalice tc = MiscUtils.getTileAt(world, pos, TileChalice.class, true);
         if (tc != null) {
@@ -103,7 +102,7 @@ public class BlockChalice extends ContainerBlock implements CustomItemBlock {
     }
 
     @Override
-    public int getComparatorInputOverride(BlockState state, World world, BlockPos pos) {
+    public int getComparatorInputOverride(BlockState state, Level world, BlockPos pos) {
         TileChalice tc = MiscUtils.getTileAt(world, pos, TileChalice.class, false);
         if (tc != null) {
             return Mth.ceil(tc.getTank().getPercentageFilled() * 15F);

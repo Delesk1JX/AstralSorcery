@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.render.tile;
 
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.util.ColorizationHelper;
 import hellfirepvp.astralsorcery.client.util.RenderingConstellationUtils;
@@ -21,7 +21,7 @@ import hellfirepvp.astralsorcery.common.crafting.recipe.altar.ActiveSimpleAltarR
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.world.item.ItemStack;
 
@@ -42,7 +42,7 @@ public class RenderAltar extends CustomTileEntityRenderer<TileAltar> {
     }
 
     @Override
-    public void render(TileAltar tile, float pTicks, PoseStack renderStack, IRenderTypeBuffer renderTypeBuffer, int combinedLight, int combinedOverlay) {
+    public void render(TileAltar tile, float pTicks, PoseStack renderStack, MultiBufferSource renderTypeBuffer, int combinedLight, int combinedOverlay) {
         if (tile.getAltarType().isThisGEThan(AltarType.RADIANCE) && tile.hasMultiblock()) {
             IConstellation cst = tile.getFocusedConstellation();
             if (cst != null) {

@@ -23,8 +23,8 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -65,12 +65,12 @@ public class InfusedWoodRecipe extends LiquidStarlightRecipe {
     }
 
     @Override
-    public boolean matches(ItemEntity trigger, World world, BlockPos at) {
+    public boolean matches(ItemEntity trigger, Level world, BlockPos at) {
         return true;
     }
 
     @Override
-    public void doServerCraftTick(ItemEntity trigger, World world, BlockPos at) {
+    public void doServerCraftTick(ItemEntity trigger, Level world, BlockPos at) {
         if (getAndIncrementCraftingTick(trigger) > 5) {
             if (consumeItemEntityInBlock(world, at, 1, (ItemStack stack) -> !stack.isEmpty() && stack.getItem().isIn(ItemTags.LOGS)) != null) {
                 ItemUtils.dropItemNaturally(world, trigger.getPosX(), trigger.getPosY(), trigger.getPosZ(), new ItemStack(BlocksAS.INFUSED_WOOD));
@@ -80,7 +80,7 @@ public class InfusedWoodRecipe extends LiquidStarlightRecipe {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void doClientEffectTick(ItemEntity trigger, World world, BlockPos at) {
+    public void doClientEffectTick(ItemEntity trigger, Level world, BlockPos at) {
         for (int i = 0; i < 4; i++) {
             Vector3 pos = new Vector3(at).add(0.5, 0.5, 0.5);
             MiscUtils.applyRandomOffset(pos, rand, 0.5F);

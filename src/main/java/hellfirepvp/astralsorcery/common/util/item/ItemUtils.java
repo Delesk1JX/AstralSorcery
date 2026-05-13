@@ -21,13 +21,13 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.tags.ITag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.vector.Vector3d;
-import net.minecraft.world.World;
-import net.neoforged.neoforge.items.CapabilityItemHandler;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.Level;
+
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.IItemHandlerModifiable;
 import net.neoforged.neoforge.items.ItemStackHandler;
@@ -54,18 +54,18 @@ public class ItemUtils {
     public static final IItemHandler EMPTY_INVENTORY = new ItemHandlerEmpty();
     private static final Random rand = new Random();
 
-    public static ItemEntity dropItem(World world, double x, double y, double z, ItemStack stack) {
+    public static ItemEntity dropItem(Level world, double x, double y, double z, ItemStack stack) {
         if (world.isRemote) {
             return null;
         }
         ItemEntity ei = new ItemEntity(world, x, y, z, stack);
-        ei.setMotion(new Vector3d(0, 0, 0));
+        ei.setMotion(new net.minecraft.world.phys.Vec3(0, 0, 0));
         world.addEntity(ei);
         ei.setPickupDelay(20);
         return ei;
     }
 
-    public static ItemEntity dropItemNaturally(World world, double x, double y, double z, ItemStack stack) {
+    public static ItemEntity dropItemNaturally(Level world, double x, double y, double z, ItemStack stack) {
         if (world.isRemote) {
             return null;
         }
@@ -126,7 +126,7 @@ public class ItemUtils {
     }
 
     public static ItemStack dropItemToPlayer(Player player, ItemStack stack) {
-        World world = player.getEntityWorld();
+        Level world = player.level;
         if (world.isRemote() || stack.isEmpty()) {
             return stack;
         }
@@ -200,7 +200,7 @@ public class ItemUtils {
     }
 
     public static Collection<ItemStack> findItemsInIInventory(Player player, ItemStack match, boolean strict) {
-        IItemHandler handler = player.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(EMPTY_INVENTORY);
+        IItemHandler handler = player.getCapability(net.neoforged.neoforge.items.capability.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(EMPTY_INVENTORY);
         Collection<ItemStack> results = findItemsInInventory(handler, match, strict);
 
         if (Mods.BOTANIA.isPresent()) {
@@ -224,7 +224,7 @@ public class ItemUtils {
     }
 
     public static Map<Integer, ItemStack> findItemsIndexedInIInventory(Player player, Predicate<ItemStack> match) {
-        return findItemsIndexedInInventory(player.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(EMPTY_INVENTORY), match);
+        return findItemsIndexedInInventory(player.getCapability(net.neoforged.neoforge.items.capability.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(EMPTY_INVENTORY), match);
     }
 
     public static Map<Integer, ItemStack> findItemsIndexedInInventory(IItemHandler handler, ItemStack match, boolean strict) {
@@ -253,7 +253,7 @@ public class ItemUtils {
             return true;
         }
 
-        IItemHandlerModifiable handler = (IItemHandlerModifiable) player.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).orElse(EMPTY_INVENTORY);
+        IItemHandlerModifiable handler = (IItemHandlerModifiable) player.getCapability(net.neoforged.neoforge.items.capability.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).orElse(EMPTY_INVENTORY);
         if (consumeFromInventory(handler, tryConsume, simulate)) {
             return true;
         }
@@ -290,7 +290,7 @@ public class ItemUtils {
         return cAmt <= 0;
     }
 
-    public static void dropInventory(IItemHandler handle, World worldIn, BlockPos pos) {
+    public static void dropInventory(IItemHandler handle, Level worldIn, BlockPos pos) {
         if (worldIn.isRemote) {
             return;
         }

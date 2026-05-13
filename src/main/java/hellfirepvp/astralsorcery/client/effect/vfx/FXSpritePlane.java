@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.effect.vfx;
 
-import com.mojang.blaze3d.matrix.PoseStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.effect.EntityDynamicFX;
 import hellfirepvp.astralsorcery.client.effect.EntityVisualFX;
@@ -20,7 +20,6 @@ import hellfirepvp.astralsorcery.client.resource.SpriteSheetResource;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import hellfirepvp.observerlib.client.util.RenderTypeDecorator;
 import net.minecraft.util.Tuple;
 
 import java.awt.*;
@@ -103,8 +102,9 @@ public class FXSpritePlane extends EntityVisualFX implements EntityDynamicFX {
             deg = fixDegree;
         }
 
-        RenderTypeDecorator decorated = RenderTypeDecorator.wrapSetup(ctx.getRenderType(), ssr::bindTexture, () -> BlockAtlasTexture.getInstance().bindTexture());
-        VertexConsumer buf = drawBuffer.getBuffer(decorated);
+        // TODO: Fix RenderTypeDecorator for 1.21+
+        VertexConsumer buf = drawBuffer.getBuffer(ctx.getRenderType());
+        ssr.bindTexture();
         RenderingDrawUtils.renderAngleRotatedTexturedRectVB(buf, renderStack, vec,
                 axis, (float) Math.toRadians(deg), scale,
                 uvOffset.getA(), uvOffset.getB(), ssr.getULength(), ssr.getVLength(),

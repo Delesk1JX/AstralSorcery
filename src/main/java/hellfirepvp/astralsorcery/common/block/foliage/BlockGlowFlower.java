@@ -14,13 +14,13 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.Effects;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
-import net.minecraft.util.vector.Vector3d;
-import net.minecraft.util.shapes.ISelectionContext;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.util.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorldReader;
+import net.minecraft.world.LevelAccessor;
 import net.neoforged.neoforge.common.IPlantable;
 import net.neoforged.neoforge.common.PlantType;
 
@@ -49,7 +49,7 @@ public class BlockGlowFlower extends BlockFlowerTemplate implements IPlantable {
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext ctx) {
-        Vector3d offset = state.getOffset(world, pos);
+        net.minecraft.world.phys.Vec3 offset = state.getOffset(world, pos);
         return this.shape.withOffset(offset.x, offset.y, offset.z);
     }
 
@@ -65,7 +65,7 @@ public class BlockGlowFlower extends BlockFlowerTemplate implements IPlantable {
     }
 
     @Override
-    public int getExpDrop(BlockState state, IWorldReader world, BlockPos pos, int fortune, int silktouch) {
+    public int getExpDrop(BlockState state, LevelAccessor world, BlockPos pos, int fortune, int silktouch) {
         if (silktouch == 0) {
             return 0;
         }

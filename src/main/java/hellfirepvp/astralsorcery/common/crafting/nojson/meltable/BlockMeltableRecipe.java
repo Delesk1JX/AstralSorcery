@@ -15,12 +15,12 @@ import hellfirepvp.astralsorcery.common.util.block.WorldBlockPos;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.tags.ITag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.tags.Tag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
-import net.neoforged.neoforge.common.util.Constants;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.common.Tags;
 
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
@@ -56,10 +56,10 @@ public class BlockMeltableRecipe extends WorldMeltableRecipe {
     }
 
     @Override
-    public void doOutput(World world, BlockPos pos, BlockState state, Consumer<ItemStack> itemOutput) {
+    public void doOutput(Level world, BlockPos pos, BlockState state, Consumer<ItemStack> itemOutput) {
         BlockState generated = this.outputGenerator.apply(WorldBlockPos.wrapServer(world, pos), state);
         if (generated != state) {
-            world.setBlockState(pos, generated, Constants.BlockFlags.DEFAULT);
+            world.setBlockState(pos, generated, net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.DEFAULT);
         }
     }
 }

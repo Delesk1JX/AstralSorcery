@@ -25,7 +25,7 @@ import net.minecraft.ChatFormatting;
 import static net.minecraft.network.chat.Component.translatable;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -120,7 +120,7 @@ public interface GemSocketPerk {
             throw new UnsupportedOperationException("Cannot do perk-specific socketing logic on something that's not a perk!");
         }
 
-        if (player.getEntityWorld().isRemote()) {
+        if (player.level.isRemote()) {
             return;
         }
 
@@ -136,7 +136,7 @@ public interface GemSocketPerk {
         ItemStack contained = getContainedItem(player, LogicalSide.SERVER, data);
         if (!contained.isEmpty()) {
             if (!player.addItemStackToInventory(contained)) {
-                ItemUtils.dropItem(player.getEntityWorld(), player.getPosX(), player.getPosY(), player.getPosZ(), contained);
+                ItemUtils.dropItem(player.level, player.getPosX(), player.getPosY(), player.getPosZ(), contained);
             }
         }
         setContainedItem(player, LogicalSide.SERVER, data, ItemStack.EMPTY);

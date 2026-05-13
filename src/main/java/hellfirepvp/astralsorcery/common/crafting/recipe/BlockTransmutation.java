@@ -20,8 +20,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.IRecipeType;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.IWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelAccessor;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -65,7 +65,7 @@ public class BlockTransmutation extends CustomMatcherRecipe implements GatedReci
         return ResearchProgression.ATTUNEMENT;
     }
 
-    public boolean matches(@Nonnull IWorld world, @Nonnull BlockPos pos, @Nonnull BlockState state, @Nonnull IWeakConstellation constellation) {
+    public boolean matches(@Nonnull ILevel world, @Nonnull BlockPos pos, @Nonnull BlockState state, @Nonnull IWeakConstellation constellation) {
         if (this.matcher == null) {
             this.matcher = PredicateBuilder.joinOr(stateCheck);
         }

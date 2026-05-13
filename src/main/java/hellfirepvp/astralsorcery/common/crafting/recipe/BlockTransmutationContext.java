@@ -11,8 +11,8 @@ package hellfirepvp.astralsorcery.common.crafting.recipe;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 import hellfirepvp.astralsorcery.common.crafting.helper.RecipeCraftingContext;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.IWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelAccessor;
 import net.neoforged.neoforge.items.IItemHandler;
 
 /**
@@ -24,12 +24,12 @@ import net.neoforged.neoforge.items.IItemHandler;
  */
 public class BlockTransmutationContext extends RecipeCraftingContext<BlockTransmutation, IItemHandler> {
 
-    private final IWorld world;
+    private final ILevel world;
     private final BlockPos pos;
     private final BlockState state;
     private final IWeakConstellation constellation;
 
-    public BlockTransmutationContext(IWorld world, BlockPos pos, BlockState state, IWeakConstellation constellation) {
+    public BlockTransmutationContext(ILevel world, BlockPos pos, BlockState state, IWeakConstellation constellation) {
         this.world = world;
         this.pos = pos;
         this.state = state;

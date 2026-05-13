@@ -14,7 +14,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.items.CapabilityItemHandler;
+
 import net.neoforged.neoforge.items.IItemHandler;
 
 import vazkii.botania.api.item.IBlockProvider;
@@ -39,7 +39,7 @@ public class IntegrationBotania {
         }
         Block matchBlock = ((BlockItem) match.getItem()).getBlock();
 
-        IItemHandler handler = player.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(ItemUtils.EMPTY_INVENTORY);
+        IItemHandler handler = player.getCapability(net.neoforged.neoforge.items.capability.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(ItemUtils.EMPTY_INVENTORY);
         for (int j = 0; j < handler.getSlots(); j++) {
             ItemStack s = handler.getStackInSlot(j);
             Item sItem = s.getItem();
@@ -65,7 +65,7 @@ public class IntegrationBotania {
         }
 
         Block consumeBlock = ((BlockItem) toConsume.getItem()).getBlock();
-        IItemHandler handler = player.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(ItemUtils.EMPTY_INVENTORY);
+        IItemHandler handler = player.getCapability(net.neoforged.neoforge.items.capability.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(ItemUtils.EMPTY_INVENTORY);
         for (int j = 0; j < handler.getSlots(); j++) {
             ItemStack s = handler.getStackInSlot(j);
             Item sItem = s.getItem();

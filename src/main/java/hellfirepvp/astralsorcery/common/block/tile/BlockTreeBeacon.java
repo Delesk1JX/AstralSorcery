@@ -18,20 +18,19 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.pathfinding.PathType;
-import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.shapes.ISelectionContext;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.util.shapes.VoxelShape;
-import net.minecraft.util.shapes.VoxelShapes;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
-import net.neoforged.neoforge.common.ToolType;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.LevelAccessor;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 
@@ -56,7 +55,7 @@ public class BlockTreeBeacon extends BlockStarlightNetwork implements CustomItem
     }
 
     @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+    public void onBlockPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
         super.onBlockPlacedBy(world, pos, state, placer, stack);
 
         TileTreeBeacon ttb = MiscUtils.getTileAt(world, pos, TileTreeBeacon.class, true);
@@ -71,7 +70,7 @@ public class BlockTreeBeacon extends BlockStarlightNetwork implements CustomItem
     }
 
     @Override
-    public BlockState updatePostPlacement(BlockState state, Direction placedAgainst, BlockState facingState, IWorld world, BlockPos pos, BlockPos facingPos) {
+    public BlockState updatePostPlacement(BlockState state, Direction placedAgainst, BlockState facingState, ILevel world, BlockPos pos, BlockPos facingPos) {
         if (!this.isValidPosition(state, world, pos)) {
             return Blocks.AIR.getDefaultState();
         }
@@ -79,7 +78,7 @@ public class BlockTreeBeacon extends BlockStarlightNetwork implements CustomItem
     }
 
     @Override
-    public boolean isValidPosition(BlockState state, IWorldReader world, BlockPos pos) {
+    public boolean isValidPosition(BlockState state, LevelAccessor world, BlockPos pos) {
         return hasSolidSideOnTop(world, pos.down());
     }
 

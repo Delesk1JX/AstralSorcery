@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.tile;
 
-import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
 import hellfirepvp.astralsorcery.common.tile.base.TileEntitySynchronized;
 import hellfirepvp.astralsorcery.common.util.tile.NamedInventoryTile;
 import net.minecraft.nbt.CompoundTag;
@@ -27,7 +27,7 @@ public class TileTelescope extends TileEntitySynchronized implements NamedInvent
     private TelescopeRotation rotation = TelescopeRotation.N;
 
     public TileTelescope() {
-        super(TileEntityTypesAS.TELESCOPE);
+        super(BlockEntityTypesAS.TELESCOPE);
     }
 
     public TelescopeRotation getRotation() {

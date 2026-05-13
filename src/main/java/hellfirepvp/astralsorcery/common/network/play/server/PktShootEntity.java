@@ -18,12 +18,13 @@ import hellfirepvp.astralsorcery.common.network.base.ASPacket;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;
-import net.neoforged.neoforge.network.NetworkEvent;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import javax.annotation.Nonnull;
 import java.util.Optional;
@@ -86,12 +87,12 @@ public class PktShootEntity extends ASPacket<PktShootEntity> {
         return new Handler<PktShootEntity>() {
             @Override
             @OnlyIn(Dist.CLIENT)
-            public void handleClient(PktShootEntity packet, NetworkEvent.Context context) {
+            public void handleClient(PktShootEntity packet, IPayloadContext context) {
                 context.enqueueWork(() -> {
-                    Optional<World> world = LogicalSidedProvider.CLIENTWORLD.get(LogicalSide.CLIENT);
+                    Optional<Level> world = LogicalSidedProvider.CLIENTWORLD.get(LogicalSide.CLIENT);
                     Entity entity = world.map(w -> w.getEntityByID(packet.entityId)).orElse(null);
                     if (entity != null) {
-                        entity.setMotion(packet.motionVector.toVector3d());
+                        entity.setMotion(packet.motionVector.toVec3());
 
                         if (packet.hasEffect) {
                             Vector3 origin = Vector3.atEntityCenter(entity)
@@ -127,7 +128,7 @@ public class PktShootEntity extends ASPacket<PktShootEntity> {
             }
 
             @Override
-            public void handle(PktShootEntity packet, NetworkEvent.Context context, LogicalSide side) {}
+            public void handle(PktShootEntity packet, IPayloadContext context, LogicalSide side) {}
         };
     }
 }

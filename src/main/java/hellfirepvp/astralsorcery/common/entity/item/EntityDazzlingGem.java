@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -23,15 +23,15 @@ import net.minecraft.world.World;
  */
 public class EntityDazzlingGem extends EntityItemExplosionResistant {
 
-    public EntityDazzlingGem(EntityType<? extends ItemEntity> type, World world) {
+    public EntityDazzlingGem(EntityType<? extends ItemEntity> type, Level world) {
         super(type, world);
     }
 
-    public EntityDazzlingGem(EntityType<? extends ItemEntity> type, World world, double x, double y, double z) {
+    public EntityDazzlingGem(EntityType<? extends ItemEntity> type, Level world, double x, double y, double z) {
         super(type, world, x, y, z);
     }
 
-    public EntityDazzlingGem(EntityType<? extends ItemEntity> type, World world, double x, double y, double z, ItemStack stack) {
+    public EntityDazzlingGem(EntityType<? extends ItemEntity> type, Level world, double x, double y, double z, ItemStack stack) {
         super(type, world, x, y, z, stack);
     }
 

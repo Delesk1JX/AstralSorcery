@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.data.config.entry;
 
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigEntry;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -22,16 +22,16 @@ public class EntityConfig extends ConfigEntry {
 
     public static final EntityConfig CONFIG = new EntityConfig();
 
-    public NeoForgeConfigSpec.IntValue flareAmbientSpawnChance;
-    public NeoForgeConfigSpec.BooleanValue flareAttackBats;
-    public NeoForgeConfigSpec.BooleanValue flareAttackPhantoms;
+    public ModConfigSpec.IntValue flareAmbientSpawnChance;
+    public ModConfigSpec.BooleanValue flareAttackBats;
+    public ModConfigSpec.BooleanValue flareAttackPhantoms;
 
     private EntityConfig() {
         super("entities");
     }
 
     @Override
-    public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+    public void createEntries(ModConfigSpec.Builder cfgBuilder) {
         flareAmbientSpawnChance = cfgBuilder
                 .comment("Defines how common ***ambient*** flares are. the lower the more common. 0 = ambient ones don't appear/disable")
                 .translation(translationKey("flareAmbientSpawnChance"))

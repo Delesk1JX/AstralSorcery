@@ -11,7 +11,8 @@ package hellfirepvp.astralsorcery.common.util.tick;
 import com.google.common.collect.Lists;
 import hellfirepvp.astralsorcery.common.CommonProxy;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.event.tick.TickEvent;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
+import net.neoforged.neoforge.event.tick.ClientTickEvent;
 import net.neoforged.bus.api.IEventBus;
 
 import java.util.EnumSet;
@@ -37,11 +38,11 @@ public class TickManager {
      * @param handler the handler to register
      */
     public void register(ITickHandler handler) {
-        EnumSet<TickEvent.Type> types = handler.getHandledTypes();
-        if (types.contains(TickEvent.Type.SERVER)) {
+        EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> types = handler.getHandledTypes();
+        if (types.contains(net.neoforged.neoforge.event.tick.ClientTickEvent.SERVER)) {
             serverTickHandlers.add(handler);
         }
-        if (types.contains(TickEvent.Type.CLIENT)) {
+        if (types.contains(net.neoforged.neoforge.event.tick.ClientTickEvent.CLIENT)) {
             clientTickHandlers.add(handler);
         }
     }
@@ -56,38 +57,34 @@ public class TickManager {
     }
     
     @SubscribeEvent
-    public void onServerTick(TickEvent.ServerTickEvent event) {
-        if (!canFireForPhase(event.getPhase())) {
-            return;
-        }
-        for (ITickHandler handler : serverTickHandlers) {
-            if (handler.canFire(event.getPhase())) {
-                try {
-                    handler.tick(TickEvent.Type.SERVER, event.getServer());
-                } catch (Exception e) {
-                    CommonProxy.LOGGER.error("Error during tick in handler: " + handler.getName(), e);
-                }
-            }
-        }
+    public void onServerTick(ServerTickEvent.Pre event) {
+        fireTicks(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.START, serverTickHandlers, net.neoforged.neoforge.event.tick.ClientTickEvent.SERVER);
     }
     
     @SubscribeEvent
-    public void onClientTick(TickEvent.ClientTickEvent event) {
-        if (!canFireForPhase(event.getPhase())) {
-            return;
-        }
-        for (ITickHandler handler : clientTickHandlers) {
-            if (handler.canFire(event.getPhase())) {
+    public void onServerTickPost(ServerTickEvent.Post event) {
+        fireTicks(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END, serverTickHandlers, net.neoforged.neoforge.event.tick.ClientTickEvent.SERVER);
+    }
+    
+    @SubscribeEvent
+    public void onClientTick(ClientTickEvent event) {
+        fireTicks(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.START, clientTickHandlers, net.neoforged.neoforge.event.tick.ClientTickEvent.CLIENT);
+    }
+    
+    @SubscribeEvent
+    public void onClientTickPost(ClientTickEvent event) {
+        fireTicks(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END, clientTickHandlers, net.neoforged.neoforge.event.tick.ClientTickEvent.CLIENT);
+    }
+    
+    private void fireTicks(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase, List<ITickHandler> handlers, net.neoforged.neoforge.event.tick.ClientTickEvent type) {
+        for (ITickHandler handler : handlers) {
+            if (handler.canFire(phase)) {
                 try {
-                    handler.tick(TickEvent.Type.CLIENT, event.getMinecraft());
+                    handler.tick(type);
                 } catch (Exception e) {
                     CommonProxy.LOGGER.error("Error during tick in handler: " + handler.getName(), e);
                 }
             }
         }
-    }
-    
-    private boolean canFireForPhase(TickEvent.Phase phase) {
-        return phase == TickEvent.Phase.END;
     }
 }

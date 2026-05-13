@@ -18,10 +18,11 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.world.World;
-import net.neoforged.neoforge.event.tick.TickEvent;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.minecraft.util.ResourceKey;
+import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
+import net.neoforged.neoforge.event.tick.ClientTickEvent;
+import net.neoforged.fml.LogicalSide;
 
 import java.util.Collection;
 import java.util.EnumSet;
@@ -40,13 +41,13 @@ public class PatreonManagerClient implements ITickHandler {
     private PatreonManagerClient() {}
 
     @Override
-    public void tick(TickEvent.Type type, Object... context) {
-        World clWorld = Minecraft.getInstance().world;
+    public void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
+        Level clWorld = Minecraft.getInstance().world;
         Player thisPlayer = Minecraft.getInstance().player;
         if (clWorld == null || thisPlayer == null) {
             return;
         }
-        RegistryKey<World> clientWorld = clWorld.getDimensionKey();
+        ResourceKey<Level> clientWorld = clWorld.getDimensionKey();
         Vector3 thisPlayerPos = Vector3.atEntityCenter(thisPlayer);
 
         SyncDataHolder.executeClient(SyncDataHolder.DATA_PATREON_FLARES, ClientPatreonFlares.class, data -> {
@@ -73,13 +74,13 @@ public class PatreonManagerClient implements ITickHandler {
     }
 
     @Override
-    public EnumSet<TickEvent.Type> getHandledTypes() {
-        return EnumSet.of(TickEvent.Type.CLIENT);
+    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
+        return EnumSet.of(net.neoforged.neoforge.event.tick.ClientTickEvent.CLIENT);
     }
 
     @Override
-    public boolean canFire(TickEvent.Phase phase) {
-        return phase == TickEvent.Phase.END;
+    public boolean canFire(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
+        return phase == net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
     }
 
     @Override

@@ -19,8 +19,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.tags.ITag;
-import net.minecraft.util.IItemProvider;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.MutableComponent;
 import static net.minecraft.network.chat.Component.translatable;
@@ -38,7 +38,7 @@ import java.util.function.Supplier;
  * Created by HellFirePvP
  * Date: 16.11.2016 / 23:04
  */
-public interface IConstellation extends IRegistryObject<IConstellation>, Comparable<IConstellation> {
+public interface IConstellation extends Comparable<IConstellation> {
 
     // 0-indexed
     public static final int STAR_GRID_INDEX = 31;
@@ -150,9 +150,4 @@ public interface IConstellation extends IRegistryObject<IConstellation>, Compara
         return ConstellationRegistry.getConstellation(new ResourceLocation(compound.getString(key)));
     }
 
-    @Override
-    default Class<IConstellation> getRegistryType() {
-        return IConstellation.class;
     }
-
-}

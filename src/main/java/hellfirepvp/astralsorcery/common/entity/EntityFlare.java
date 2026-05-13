@@ -37,12 +37,12 @@ import net.minecraft.world.entity.monster.PhantomEntity;
 import net.minecraft.world.entity.passive.BatEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.vector.Vector3d;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -68,7 +68,7 @@ public class EntityFlare extends FlyingEntity {
 
     private Object texClientSprite = null;
 
-    public EntityFlare(World worldIn) {
+    public EntityFlare(Level worldIn) {
         super(EntityTypesAS.FLARE, worldIn);
     }
 
@@ -81,7 +81,7 @@ public class EntityFlare extends FlyingEntity {
                 .createMutableAttribute(Attributes.MAX_HEALTH, 1);
     }
 
-    public static void spawnAmbientFlare(World world, BlockPos at) {
+    public static void spawnAmbientFlare(Level world, BlockPos at) {
         if (world.isRemote() || EntityConfig.CONFIG.flareAmbientSpawnChance.get() <= 0) {
             return;
         }
@@ -130,7 +130,7 @@ public class EntityFlare extends FlyingEntity {
 
         this.entityAge++;
 
-        if (this.getEntityWorld().isRemote()) {
+        if (this.level.isRemote()) {
             this.tickClient();
         } else {
             if (this.isAmbient() && this.entityAge > 600 && rand.nextInt(600) == 0) {
@@ -139,13 +139,13 @@ public class EntityFlare extends FlyingEntity {
 
             if (this.isAlive()) {
                 if (EntityConfig.CONFIG.flareAttackBats.get() && rand.nextInt(30) == 0) {
-                    BatEntity closest = EntityUtils.getClosestEntity(this.getEntityWorld(), BatEntity.class, this.getBoundingBox().grow(10), Vector3.atEntityCenter(this));
+                    BatEntity closest = EntityUtils.getClosestEntity(this.level, BatEntity.class, this.getBoundingBox().grow(10), Vector3.atEntityCenter(this));
                     if (closest != null) {
                         this.doLightningAttack(closest, 100F);
                     }
                 }
                 if (EntityConfig.CONFIG.flareAttackPhantoms.get() && rand.nextInt(30) == 0) {
-                    PhantomEntity closest = EntityUtils.getClosestEntity(this.getEntityWorld(), PhantomEntity.class, this.getBoundingBox().grow(10), Vector3.atEntityCenter(this));
+                    PhantomEntity closest = EntityUtils.getClosestEntity(this.level, PhantomEntity.class, this.getBoundingBox().grow(10), Vector3.atEntityCenter(this));
                     if (closest != null) {
                         this.doLightningAttack(closest, 100F);
                     }
@@ -163,7 +163,7 @@ public class EntityFlare extends FlyingEntity {
                                         rand.nextInt(RANDOM_WANDER_RANGE) * (rand.nextBoolean() ? 1 : -1));
 
                         if (newTarget.getY() > 1 && newTarget.getY() < 254 && new Vector3(newTarget).distance(this) >= 5.0) {
-                            MiscUtils.executeWithChunk(this.getEntityWorld(), newTarget, () -> {
+                            MiscUtils.executeWithChunk(this.level, newTarget, () -> {
                                 this.currentMoveTarget = new Vector3(newTarget);
                             });
                         }
@@ -255,12 +255,12 @@ public class EntityFlare extends FlyingEntity {
                     ByteBufUtils.writeVector(buf, Vector3.atEntityCorner(target).addY(target.getHeight() / 2F));
                     buf.writeInt(ColorsAS.EFFECT_LIGHTNING.getRGB());
                 });
-        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.getEntityWorld(), this.getPosition(), 32));
+        PacketChannel.CHANNEL.sendToAllAround(pkt, PacketChannel.pointFromPos(this.level, this.getPosition(), 32));
     }
 
     private void doMovement() {
         if (this.currentMoveTarget != null) {
-            Vector3d motion = this.getMotion();
+            net.minecraft.world.phys.Vec3 motion = this.getMotion();
             double motionX = (Math.signum(this.currentMoveTarget.getX() - this.getPosX()) * 0.5D - motion.getX()) * (this.isAmbient() ? 0.01D : 0.025D);
             double motionY = (Math.signum(this.currentMoveTarget.getY() - this.getPosY()) * 0.7D - motion.getY()) * (this.isAmbient() ? 0.01D : 0.025D);
             double motionZ = (Math.signum(this.currentMoveTarget.getZ() - this.getPosZ()) * 0.5D - motion.getZ()) * (this.isAmbient() ? 0.01D : 0.025D);
@@ -290,7 +290,7 @@ public class EntityFlare extends FlyingEntity {
     }
 
     @Override
-    public boolean canSpawn(IWorld worldIn, SpawnReason spawnReasonIn) {
+    public boolean canSpawn(ILevel worldIn, SpawnReason spawnReasonIn) {
         return false;
     }
 
@@ -310,7 +310,7 @@ public class EntityFlare extends FlyingEntity {
     protected void onDeathUpdate() {
         this.remove();
 
-        if (this.getEntityWorld().isRemote()) {
+        if (this.level.isRemote()) {
             this.tickClientDeathEffects();
         }
     }

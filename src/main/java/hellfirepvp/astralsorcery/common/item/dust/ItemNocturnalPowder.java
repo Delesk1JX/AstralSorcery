@@ -10,13 +10,13 @@ package hellfirepvp.astralsorcery.common.item.dust;
 
 import hellfirepvp.astralsorcery.common.entity.EntityNocturnalSpark;
 import net.minecraft.world.level.block.DispenserBlock;
-import net.minecraft.dispenser.IBlockSource;
+import net.minecraft.core.dispenser.DispenseItemContext;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ItemUseContext;
-import net.minecraft.util.Direction;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -28,7 +28,7 @@ import net.minecraft.world.World;
 public class ItemNocturnalPowder extends ItemUsableDust {
 
     @Override
-    boolean dispense(IBlockSource dispenser) {
+    boolean dispense(net.minecraft.core.BlockSource dispenser) {
         BlockPos at = dispenser.getBlockPos();
         Direction face = dispenser.getBlockState().get(DispenserBlock.FACING);
         EntityNocturnalSpark nocSpark = new EntityNocturnalSpark(at.getX(), at.getY(), at.getZ(), dispenser.getWorld());
@@ -37,7 +37,7 @@ public class ItemNocturnalPowder extends ItemUsableDust {
     }
 
     @Override
-    boolean rightClickAir(World world, Player player, ItemStack dust) {
+    boolean rightClickAir(Level world, Player player, ItemStack dust) {
         return world.addEntity(new EntityNocturnalSpark(player, world));
     }
 

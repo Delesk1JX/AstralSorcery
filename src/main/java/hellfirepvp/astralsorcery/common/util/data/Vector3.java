@@ -11,14 +11,14 @@ package hellfirepvp.astralsorcery.common.util.data;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.ChunkPos;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.util.Mth;
-import net.minecraft.util.vector.Matrix4f;
-import net.minecraft.util.vector.Vector3d;
-import net.minecraft.util.vector.Vector3i;
+import org.joml.Matrix4f;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.core.Vec3i;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -70,11 +70,11 @@ public class Vector3 {
         this.z = z;
     }
 
-    public Vector3(Vector3i pos) {
+    public Vector3(net.minecraft.core.Vec3i pos) {
         this(pos.getX(), pos.getY(), pos.getZ());
     }
 
-    public Vector3(Vector3d vec) {
+    public Vector3(net.minecraft.world.phys.Vec3 vec) {
         this(vec.x, vec.y, vec.z);
     }
 
@@ -91,11 +91,11 @@ public class Vector3 {
         return atEntityCorner(entity).addY(entity.getHeight() / 2F);
     }
 
-    public static Vector3 getMin(AxisAlignedBB box) {
+    public static Vector3 getMin(AABB box) {
         return new Vector3(box.minX, box.minY, box.minZ);
     }
 
-    public static Vector3 getMax(AxisAlignedBB box) {
+    public static Vector3 getMax(AABB box) {
         return new Vector3(box.maxX, box.maxY, box.maxZ);
     }
 
@@ -108,14 +108,14 @@ public class Vector3 {
         return new Vector3(x, y, z);
     }
 
-    public Vector3 add(Vector3i vec) {
+    public Vector3 add(net.minecraft.core.Vec3i vec) {
         this.x += vec.getX();
         this.y += vec.getY();
         this.z += vec.getZ();
         return this;
     }
 
-    public Vector3 add(Vector3d vec) {
+    public Vector3 add(net.minecraft.world.phys.Vec3 vec) {
         this.x += vec.getX();
         this.y += vec.getY();
         this.z += vec.getZ();
@@ -172,14 +172,14 @@ public class Vector3 {
         return this;
     }
 
-    public Vector3 subtract(Vector3i vec) {
+    public Vector3 subtract(net.minecraft.core.Vec3i vec) {
         this.x -= vec.getX();
         this.y -= vec.getY();
         this.z -= vec.getZ();
         return this;
     }
 
-    public Vector3 subtract(Vector3d vec) {
+    public Vector3 subtract(net.minecraft.world.phys.Vec3 vec) {
         this.x -= vec.getX();
         this.y -= vec.getY();
         this.z -= vec.getZ();
@@ -252,22 +252,22 @@ public class Vector3 {
         return difX * difX + difY * difY + difZ * difZ;
     }
 
-    public double distance(Vector3i o) {
+    public double distance(net.minecraft.core.Vec3i o) {
         return Math.sqrt(distanceSquared(o));
     }
 
-    public double distanceSquared(Vector3i o) {
+    public double distanceSquared(net.minecraft.core.Vec3i o) {
         double difX = x - o.getX();
         double difY = y - o.getY();
         double difZ = z - o.getZ();
         return difX * difX + difY * difY + difZ * difZ;
     }
 
-    public double distance(Vector3d o) {
+    public double distance(net.minecraft.world.phys.Vec3 o) {
         return Math.sqrt(distanceSquared(o));
     }
 
-    public double distanceSquared(Vector3d o) {
+    public double distanceSquared(net.minecraft.world.phys.Vec3 o) {
         double difX = x - o.x;
         double difY = y - o.y;
         double difZ = z - o.z;
@@ -454,8 +454,8 @@ public class Vector3 {
         return (difX * difX + difY * difY + difZ * difZ) <= (radius * radius);
     }
 
-    public Vector3d toVector3d() {
-        return new Vector3d(x, y, z);
+    public net.minecraft.world.phys.Vec3 toVec3() {
+        return new net.minecraft.world.phys.Vec3(x, y, z);
     }
 
     public BlockPos toBlockPos() {

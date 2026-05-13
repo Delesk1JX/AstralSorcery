@@ -35,13 +35,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -66,7 +67,7 @@ public class CEffectAevitas extends CEffectAbstractList<CropHelper.GrowablePlant
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void playClientEffect(World world, BlockPos pos, TileRitualPedestal pedestal, float alphaMultiplier, boolean extended) {
+    public void playClientEffect(Level world, BlockPos pos, TileRitualPedestal pedestal, float alphaMultiplier, boolean extended) {
         if (rand.nextBoolean()) {
             ConstellationEffectProperties prop = this.createProperties(pedestal.getMirrorCount());
 
@@ -83,7 +84,7 @@ public class CEffectAevitas extends CEffectAbstractList<CropHelper.GrowablePlant
     }
 
     @Override
-    public boolean playEffect(World world, BlockPos pos, ConstellationEffectProperties properties, @Nullable IMinorConstellation trait) {
+    public boolean playEffect(Level world, BlockPos pos, ConstellationEffectProperties properties, @Nullable IMinorConstellation trait) {
         boolean changed = false;
         CropHelper.GrowablePlant plant = getRandomElementChanced();
         if (plant != null) {
@@ -156,7 +157,7 @@ public class CEffectAevitas extends CEffectAbstractList<CropHelper.GrowablePlant
 
     @Nullable
     @Override
-    public CropHelper.GrowablePlant createElement(World world, BlockPos pos) {
+    public CropHelper.GrowablePlant createElement(Level world, BlockPos pos) {
         return CropHelper.wrapPlant(world, pos);
     }
 
@@ -186,14 +187,14 @@ public class CEffectAevitas extends CEffectAbstractList<CropHelper.GrowablePlant
 
         private final int defaultPotionAmplifier = 1;
 
-        public NeoForgeConfigSpec.IntValue potionAmplifier;
+        public ModConfigSpec.IntValue potionAmplifier;
 
         public AevitasConfig() {
             super("aevitas", 10D, 4D, 200);
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.potionAmplifier = cfgBuilder

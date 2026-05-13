@@ -10,12 +10,12 @@ package hellfirepvp.astralsorcery.common.world.feature;
 
 import hellfirepvp.astralsorcery.common.world.feature.config.ReplaceBlockConfig;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.ISeedReader;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.WorldGenLevel;
 import net.minecraft.world.IServerLevel;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
-import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.Tags;
 
 import java.util.Random;
 
@@ -33,7 +33,7 @@ public class ReplaceBlockFeature extends Feature<ReplaceBlockConfig> {
     }
 
     @Override
-    public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, ReplaceBlockConfig config) {
+    public boolean generate(WorldGenLevel reader, ChunkGenerator generator, Random rand, BlockPos pos, ReplaceBlockConfig config) {
         if (config.target.test(reader.getBlockState(pos), rand)) {
             return setBlockState(reader, pos, config.state);
         }
@@ -41,6 +41,6 @@ public class ReplaceBlockFeature extends Feature<ReplaceBlockConfig> {
     }
 
     protected boolean setBlockState(IServerLevel world, BlockPos pos, BlockState state) {
-        return world.setBlockState(pos, state, Constants.BlockFlags.BLOCK_UPDATE);
+        return world.setBlockState(pos, state, net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.BLOCK_UPDATE);
     }
 }

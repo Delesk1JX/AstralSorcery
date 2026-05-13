@@ -30,21 +30,20 @@ import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.BlockRayTraceResult;
-import net.minecraft.util.shapes.ISelectionContext;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.util.shapes.VoxelShape;
-import net.minecraft.util.shapes.VoxelShapes;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.IBlockDisplayReader;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.ToolType;
 
 import javax.annotation.Nullable;
 
@@ -79,7 +78,7 @@ public class BlockPrism extends BlockStarlightNetwork implements CustomItemBlock
     }
 
     @Override
-    public void onBlockHarvested(World world, BlockPos pos, BlockState state, Player player) {
+    public void onBlockHarvested(Level world, BlockPos pos, BlockState state, Player player) {
         TilePrism lens = MiscUtils.getTileAt(world, pos, TilePrism.class, true);
         if (lens != null && !world.isRemote() && !player.isCreative()) {
             if (lens.getColorType() != null) {
@@ -91,7 +90,7 @@ public class BlockPrism extends BlockStarlightNetwork implements CustomItemBlock
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, Player player, Hand hand, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, Hand hand, BlockHitResult hit) {
         if (!world.isRemote() && player.isSneaking()) {
             TilePrism lens = MiscUtils.getTileAt(world, pos, TilePrism.class, true);
             if (lens != null && lens.getColorType() != null) {
@@ -125,7 +124,7 @@ public class BlockPrism extends BlockStarlightNetwork implements CustomItemBlock
     }
 
     @Override
-    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+    public void onReplaced(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {
             super.onReplaced(state, worldIn, pos, newState, isMoving);
         }

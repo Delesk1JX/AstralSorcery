@@ -16,7 +16,8 @@ import hellfirepvp.astralsorcery.common.util.tick.TickTokenMap;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.world.entity.EntityClassification;
 import net.minecraft.world.entity.LivingEntity;
-import net.neoforged.neoforge.event.tick.TickEvent;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
+import net.neoforged.neoforge.event.tick.ClientTickEvent;
 import net.neoforged.neoforge.event.entity.living.LivingSpawnEvent;
 import net.neoforged.neoforge.eventbus.api.Event;
 import net.neoforged.bus.api.IEventBus;
@@ -33,7 +34,7 @@ import java.util.function.Consumer;
  */
 public class EventHelperSpawnDeny {
 
-    public static TickTokenMap<WorldBlockPos, TickTokenMap.SimpleTickToken<Double>> spawnDenyRegions = new TickTokenMap<>(TickEvent.Type.SERVER);
+    public static TickTokenMap<WorldBlockPos, TickTokenMap.SimpleTickToken<Double>> spawnDenyRegions = new TickTokenMap<>(net.neoforged.neoforge.event.tick.ClientTickEvent.SERVER);
 
     public static void clearServer() {
         spawnDenyRegions.clear();
@@ -62,7 +63,7 @@ public class EventHelperSpawnDeny {
         if (GeneralConfig.CONFIG.mobSpawningDenyAllTypes.get() || entity.getClassification(false) == EntityClassification.MONSTER) {
             Vector3 entityPos = Vector3.atEntityCorner(entity);
             for (Map.Entry<WorldBlockPos, TickTokenMap.SimpleTickToken<Double>> entry : spawnDenyRegions.entrySet()) {
-                if (!entry.getKey().getWorldKey().equals(entity.getEntityWorld().getDimensionKey())) {
+                if (!entry.getKey().getWorldKey().equals(entity.level.getDimensionKey())) {
                     continue;
                 }
 

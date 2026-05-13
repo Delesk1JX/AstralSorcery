@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.container.slot;
 
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.world.Container;
 import net.minecraft.inventory.container.Slot;
 
 /**

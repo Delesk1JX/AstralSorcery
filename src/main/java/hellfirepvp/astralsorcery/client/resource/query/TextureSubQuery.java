@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.client.resource.query;
 
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import hellfirepvp.astralsorcery.client.resource.AssetLoader;
-import net.minecraft.client.renderer.RenderState;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.util.Tuple;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -47,7 +47,7 @@ public class TextureSubQuery extends TextureQuery {
             }
 
             @Override
-            public RenderState.TextureState asState() {
+            public RenderType.CompositeState asState() {
                 return res.asState();
             }
 

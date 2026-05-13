@@ -30,7 +30,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BubbleColumnBlock;
 import net.minecraft.world.level.block.FlowingFluidBlock;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
@@ -38,14 +38,14 @@ import net.minecraft.world.item.Items;
 import net.minecraft.loot.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.vector.Vector3d;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.Heightmap;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -89,14 +89,14 @@ public class CEffectOctans extends CEffectAbstractList<ListEntries.CounterMaxEnt
 
     @Nullable
     @Override
-    public ListEntries.CounterMaxEntry createElement(World world, BlockPos pos) {
+    public ListEntries.CounterMaxEntry createElement(Level world, BlockPos pos) {
         pos = world.getHeight(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, pos).down();
         return new ListEntries.CounterMaxEntry(pos, 1);
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void playClientEffect(World world, BlockPos pos, TileRitualPedestal pedestal, float alphaMultiplier, boolean extended) {
+    public void playClientEffect(Level world, BlockPos pos, TileRitualPedestal pedestal, float alphaMultiplier, boolean extended) {
         ConstellationEffectProperties prop = this.createProperties(pedestal.getMirrorCount());
 
         Vector3 at = new Vector3(pos).add(0.5, 0.5, 0.5);
@@ -118,7 +118,7 @@ public class CEffectOctans extends CEffectAbstractList<ListEntries.CounterMaxEnt
     }
 
     @Override
-    public boolean playEffect(World world, BlockPos pos, ConstellationEffectProperties properties, @Nullable IMinorConstellation trait) {
+    public boolean playEffect(Level world, BlockPos pos, ConstellationEffectProperties properties, @Nullable IMinorConstellation trait) {
         if (!(world instanceof ServerLevel)) {
             return false;
         }
@@ -206,13 +206,13 @@ public class CEffectOctans extends CEffectAbstractList<ListEntries.CounterMaxEnt
         builder.withLuck(rand.nextInt(2) * rand.nextFloat());
         builder.withRandom(rand);
         builder.withParameter(LootParameters.TOOL, tool);
-        builder.withParameter(LootParameters.field_237457_g_, Vector3d.copyCentered(pos));
+        builder.withParameter(LootParameters.field_237457_g_, net.minecraft.world.phys.Vec3.copyCentered(pos));
         LootTable lootTable = world.getServer().getLootTableManager().getLootTableFromLocation(fromTable);
         for (ItemStack loot : lootTable.generate(builder.build(LootParameterSets.FISHING))) {
             ItemEntity ei = ItemUtils.dropItemNaturally(world, dropLoc.getX(), dropLoc.getY(), dropLoc.getZ(), loot);
             Vector3 motion = new Vector3(ei.getMotion());
             motion.setY(Math.abs(motion.getY()));
-            ei.setMotion(motion.toVector3d());
+            ei.setMotion(motion.toVec3());
         }
     }
 
@@ -231,15 +231,15 @@ public class CEffectOctans extends CEffectAbstractList<ListEntries.CounterMaxEnt
         private final int defaultMinFishTickTime = 20;
         private final int defaultMaxFishTickTime = 60;
 
-        public NeoForgeConfigSpec.IntValue minFishTickTime;
-        public NeoForgeConfigSpec.IntValue maxFishTickTime;
+        public ModConfigSpec.IntValue minFishTickTime;
+        public ModConfigSpec.IntValue maxFishTickTime;
 
         public OctansConfig() {
             super("octans", 8D, 1D, 64);
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.minFishTickTime = cfgBuilder

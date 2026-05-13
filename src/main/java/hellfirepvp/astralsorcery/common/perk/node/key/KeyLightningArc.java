@@ -31,15 +31,15 @@ import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.util.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.world.World;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.fml.network.PacketDistributor;
 
 import java.util.List;
@@ -103,19 +103,19 @@ public class KeyLightningArc extends KeyPerk {
 
     public static class Config extends ConfigEntry {
 
-        private NeoForgeConfigSpec.DoubleValue arcChance;
-        private NeoForgeConfigSpec.DoubleValue arcPercent;
-        private NeoForgeConfigSpec.DoubleValue arcDistance;
-        private NeoForgeConfigSpec.IntValue arcTicks;
+        private ModConfigSpec.DoubleValue arcChance;
+        private ModConfigSpec.DoubleValue arcPercent;
+        private ModConfigSpec.DoubleValue arcDistance;
+        private ModConfigSpec.IntValue arcTicks;
 
-        private NeoForgeConfigSpec.IntValue chargeCost;
+        private ModConfigSpec.IntValue chargeCost;
 
         public Config(String section) {
             super(section);
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             this.arcChance = cfgBuilder
                     .comment("Sets the chance to spawn a damage-arc effect when an enemy is hit (value is in percent).")
                     .translation(translationKey("arcChance"))
@@ -139,7 +139,7 @@ public class KeyLightningArc extends KeyPerk {
 
     static class RepetitiveArcEffect {
 
-        private final World world;
+        private final Level world;
         private final Player player;
         private final int entityStartId;
         private final float damage;
@@ -147,7 +147,7 @@ public class KeyLightningArc extends KeyPerk {
 
         private int count;
 
-        public RepetitiveArcEffect(World world, Player player, int count, int entityStartId, float damage, double distance) {
+        public RepetitiveArcEffect(Level world, Player player, int count, int entityStartId, float damage, double distance) {
             this.world = world;
             this.player = player;
             this.count = count;
@@ -167,7 +167,7 @@ public class KeyLightningArc extends KeyPerk {
             Entity start = world.getEntityByID(entityStartId);
 
             if (start instanceof LivingEntity && start.isAlive()) {
-                AxisAlignedBB box = new AxisAlignedBB(-distance, -distance, -distance, distance, distance, distance);
+                AABB box = new AABB(-distance, -distance, -distance, distance, distance, distance);
 
                 LivingEntity last = null;
                 LivingEntity entity = (LivingEntity) start;
@@ -192,7 +192,7 @@ public class KeyLightningArc extends KeyPerk {
                                     buf.writeInt(ColorsAS.EFFECT_LIGHTNING.getRGB());
                                 }), target);
                     }
-                    List<LivingEntity> entities = entity.getEntityWorld().getEntitiesWithinAABB(LivingEntity.class, box.offset(entity.getPositionVec()), EntityUtils.selectEntities(LivingEntity.class));
+                    List<LivingEntity> entities = entity.level.getEntitiesWithinAABB(LivingEntity.class, box.offset(entity.getPositionVec()), EntityUtils.selectEntities(LivingEntity.class));
                     entities.remove(entity);
                     if (last != null) {
                         entities.remove(last);

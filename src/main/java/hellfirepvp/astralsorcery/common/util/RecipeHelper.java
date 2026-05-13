@@ -14,8 +14,8 @@ import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.network.play.ClientPlayNetHandler;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Inventory;
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Recipe;
@@ -23,12 +23,12 @@ import net.minecraft.world.item.crafting.IRecipeType;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Tuple;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;
-import net.neoforged.neoforge.fml.common.thread.EffectiveSide;
+import net.neoforged.neoforge.fml.common.thread.LogicalSide;
 import org.apache.commons.lang3.ObjectUtils;
 
 import javax.annotation.Nonnull;
@@ -57,7 +57,7 @@ public class RecipeHelper {
     }
 
     @Nonnull
-    public static Optional<Tuple<ItemStack, Float>> findSmeltingResult(World world, BlockState input) {
+    public static Optional<Tuple<ItemStack, Float>> findSmeltingResult(Level world, BlockState input) {
         ItemStack stack = ItemUtils.createBlockStack(input);
         if (stack.isEmpty()) {
             return Optional.empty();
@@ -66,7 +66,7 @@ public class RecipeHelper {
     }
 
     @Nonnull
-    public static Optional<Tuple<ItemStack, Float>> findSmeltingResult(World world, ItemStack input) {
+    public static Optional<Tuple<ItemStack, Float>> findSmeltingResult(Level world, ItemStack input) {
         RecipeManager mgr = world.getRecipeManager();
         IInventory inv = new Inventory(input);
         Optional<Recipe<IInventory>> optRecipe = (Optional<Recipe<IInventory>>) ObjectUtils.firstNonNull(
@@ -86,7 +86,7 @@ public class RecipeHelper {
 
     @Nullable
     public static RecipeManager getRecipeManager() {
-        if (EffectiveSide.get() == LogicalSide.CLIENT) {
+        if (LogicalSide.get() == LogicalSide.CLIENT) {
             return getClientManager();
         } else {
             MinecraftServer srv = LogicalSidedProvider.INSTANCE.get(LogicalSide.SERVER);

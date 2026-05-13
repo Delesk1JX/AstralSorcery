@@ -18,7 +18,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.potion.EffectType;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;
 
 /**
@@ -42,8 +42,8 @@ public class EffectBleed extends EffectCustomTexture {
     @Override
     public void performEffect(LivingEntity entity, int amplifier) {
         if (entity instanceof Player &&
-                !entity.getEntityWorld().isRemote() &&
-                entity.getEntityWorld() instanceof ServerLevel &&
+                !entity.level.isRemote() &&
+                entity.level instanceof ServerLevel &&
                 !((MinecraftServer) LogicalSidedProvider.INSTANCE.get(LogicalSide.SERVER)).isPVPEnabled()) {
             return;
         }

@@ -16,11 +16,11 @@ import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -44,7 +44,7 @@ public class AttributeTypeCooldown extends PerkAttributeType {
 
     private void onCooldown(CooldownSetEvent event) {
         Player player = event.getPlayer();
-        World world = player.getEntityWorld();
+        Level world = player.level;
 
         if (world.isRemote()) {
             return;

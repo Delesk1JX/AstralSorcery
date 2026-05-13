@@ -9,9 +9,9 @@
 package hellfirepvp.astralsorcery.client.render;
 
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.Tesselator;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -20,17 +20,17 @@ import net.minecraft.client.renderer.Tessellator;
  * Created by HellFirePvP
  * Date: 06.06.2020 / 09:38
  */
-public interface IDrawRenderTypeBuffer extends IRenderTypeBuffer {
+public interface IDrawRenderTypeBuffer extends MultiBufferSource {
 
     public void draw();
 
     public void draw(RenderType type);
 
     public static IDrawRenderTypeBuffer defaultBuffer() {
-        return of(IRenderTypeBuffer.getImpl(buffer));
+        return of(MultiBufferSource.getImpl(buffer));
     }
 
-    public static IDrawRenderTypeBuffer of(IRenderTypeBuffer.Impl drawBuffer) {
+    public static IDrawRenderTypeBuffer of(MultiBufferSource.Impl drawBuffer) {
         return new IDrawRenderTypeBuffer() {
             @Override
             public void draw() {

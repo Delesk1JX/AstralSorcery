@@ -10,8 +10,8 @@ package hellfirepvp.astralsorcery.client.screen.base;
 
 import hellfirepvp.astralsorcery.common.util.tile.NamedInventoryTile;
 import net.minecraft.client.Minecraft;
-import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.Level;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -38,7 +38,7 @@ public abstract class TileConstellationDiscoveryScreen<T extends BlockEntity & N
         super.tick();
 
 
-        World clWorld = Minecraft.getInstance().world;
+        Level clWorld = Minecraft.getInstance().world;
         if (tile.isRemoved() ||
                 clWorld == null ||
                 !clWorld.getDimensionKey().equals(tile.getWorld().getDimensionKey())) {

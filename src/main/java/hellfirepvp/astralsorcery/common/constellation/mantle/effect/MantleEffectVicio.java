@@ -25,8 +25,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.neoforge.common.ModConfigSpec;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 
@@ -97,7 +97,7 @@ public class MantleEffectVicio extends MantleEffect {
         if (elytraStack.getItem() instanceof ItemMantle) {
             MantleEffect effect = ItemMantle.getEffect(wearingEntity, ConstellationsAS.vicio);
             PlayerProgress progress;
-            if (wearingEntity.getEntityWorld().isRemote()) {
+            if (wearingEntity.level.isRemote()) {
                 progress = ResearchHelper.getClientProgress();
             } else {
                 progress = ResearchHelper.getProgress(wearingEntity, LogicalSide.SERVER);
@@ -121,14 +121,14 @@ public class MantleEffectVicio extends MantleEffect {
 
         private static final int defaultChargeCost = 100;
 
-        private NeoForgeConfigSpec.IntValue chargeCost;
+        private ModConfigSpec.IntValue chargeCost;
 
         public VicioConfig() {
             super("vicio");
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.chargeCost = cfgBuilder

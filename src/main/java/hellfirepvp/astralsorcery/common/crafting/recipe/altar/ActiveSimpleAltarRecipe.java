@@ -28,15 +28,15 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.util.Constants;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.fluids.FluidActionResult;
 import net.neoforged.neoforge.fluids.FluidAttributes;
 import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.templates.VoidFluidHandler;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;
 
 import javax.annotation.Nonnull;
@@ -287,7 +287,7 @@ public class ActiveSimpleAltarRecipe {
         int total = compound.getInt("totalCraftingTime");
         CraftingState state = CraftingState.values()[compound.getInt("state")];
         List<CraftingFocusStack> stacks = new LinkedList<>();
-        ListTag listStacks = compound.getList("focusStacks", Constants.NBT.TAG_COMPOUND);
+        ListTag listStacks = compound.getList("focusStacks", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
         for (int i = 0; i < listStacks.size(); i++) {
             stacks.add(new CraftingFocusStack(listStacks.getCompound(i)));
         }

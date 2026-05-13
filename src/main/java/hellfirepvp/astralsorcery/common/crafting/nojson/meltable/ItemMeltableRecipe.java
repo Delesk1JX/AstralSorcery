@@ -16,11 +16,11 @@ import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.tags.ITag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.tags.Tag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
@@ -56,7 +56,7 @@ public class ItemMeltableRecipe extends WorldMeltableRecipe {
     }
 
     @Override
-    public void doOutput(World world, BlockPos pos, BlockState state, Consumer<ItemStack> itemOutput) {
+    public void doOutput(Level world, BlockPos pos, BlockState state, Consumer<ItemStack> itemOutput) {
         if (world.removeBlock(pos, false)) {
             ItemStack generated = this.outputGenerator.apply(WorldBlockPos.wrapServer(world, pos), state);
             if (!generated.isEmpty()) {

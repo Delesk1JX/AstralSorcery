@@ -17,8 +17,8 @@ import hellfirepvp.astralsorcery.common.crystal.CrystalAttributes;
 import hellfirepvp.astralsorcery.common.crystal.CrystalCalculations;
 import hellfirepvp.astralsorcery.common.lib.CrystalPropertiesAS;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -26,12 +26,11 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.ToolType;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -71,7 +70,7 @@ public abstract class ItemCrystalTierItem extends Item implements CrystalAttribu
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World world, List<Component> tooltip, ITooltipFlag flag) {
+    public void addInformation(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
         CrystalAttributes attr = getAttributes(stack);
         if (attr != null) {
             attr.addTooltip(tooltip, CalculationContext.Builder.newBuilder()
@@ -127,7 +126,7 @@ public abstract class ItemCrystalTierItem extends Item implements CrystalAttribu
     }
 
     @Override
-    public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
+    public boolean onBlockDestroyed(ItemStack stack, Level worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
         if (!worldIn.isRemote && state.getBlockHardness(worldIn, pos) != 0.0F) {
             stack.damageItem(1, entityLiving, (p_220038_0_) -> p_220038_0_.sendBreakAnimation(EquipmentSlot.MAINHAND));
         }

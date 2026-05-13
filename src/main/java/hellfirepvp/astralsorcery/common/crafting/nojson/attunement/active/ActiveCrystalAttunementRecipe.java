@@ -37,16 +37,16 @@ import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
@@ -348,7 +348,7 @@ public class ActiveCrystalAttunementRecipe extends AttunementRecipe.Active<Attun
     }
 
     @Nullable
-    private ItemEntity getEntity(World world) {
+    private ItemEntity getEntity(Level world) {
         Entity entity = world.getEntityByID(this.entityId);
         if (entity != null && entity.isAlive() && entity instanceof ItemEntity) {
             return (ItemEntity) entity;

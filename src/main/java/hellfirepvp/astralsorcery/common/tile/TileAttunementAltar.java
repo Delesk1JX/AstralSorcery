@@ -48,17 +48,17 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.Hand;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.vector.Vector3d;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -92,7 +92,7 @@ public class TileAttunementAltar extends TileEntityTick {
     public boolean animate = false, tesrLocked = true;
 
     public TileAttunementAltar() {
-        super(TileEntityTypesAS.ATTUNEMENT_ALTAR);
+        super(BlockEntityTypesAS.ATTUNEMENT_ALTAR);
     }
 
     @Override
@@ -360,7 +360,7 @@ public class TileAttunementAltar extends TileEntityTick {
         }
 
         Player player = Minecraft.getInstance().player;
-        if (player == null || player.getDistanceSq(Vector3d.copyCentered(getPos())) >= 256) {
+        if (player == null || player.getDistanceSq(net.minecraft.world.phys.Vec3.copyCentered(getPos())) >= 256) {
             return;
         }
         Tuple<Hand, ItemStack> heldTpl = MiscUtils.getMainOrOffHand(player, stack -> stack.getItem() instanceof ItemConstellationPaper);
@@ -519,7 +519,7 @@ public class TileAttunementAltar extends TileEntityTick {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public AxisAlignedBB getRenderBoundingBox() {
+    public AABB getRenderBoundingBox() {
         return super.getRenderBoundingBox().expand(3.5, 2, 3.5);
     }
 

@@ -12,12 +12,12 @@ import com.google.common.collect.Lists;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.BlockPos;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
-import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.chunk.LevelChunk;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -33,7 +33,7 @@ import java.util.stream.Collectors;
  */
 public class BlockDiscoverer {
 
-    public static Set<BlockPos> discoverBlocksWithSameStateAroundChain(World world, BlockPos origin, BlockState match, int length, @Nullable Direction originalBreakDirection, BlockPredicate addCheck) {
+    public static Set<BlockPos> discoverBlocksWithSameStateAroundChain(Level world, BlockPos origin, BlockState match, int length, @Nullable Direction originalBreakDirection, BlockPredicate addCheck) {
         Set<BlockPos> out = new HashSet<>();
 
         BlockPos offset = new BlockPos(origin);
@@ -64,7 +64,7 @@ public class BlockDiscoverer {
         return out;
     }
 
-    public static Set<BlockPos> searchForTileEntitiesAround(World world, BlockPos origin, int distance, Predicate<BlockEntity> match) {
+    public static Set<BlockPos> searchForTileEntitiesAround(Level world, BlockPos origin, int distance, Predicate<BlockEntity> match) {
         Set<BlockPos> out = new HashSet<>();
 
         int minChX = (origin.getX() - distance) >> 4;
@@ -91,7 +91,7 @@ public class BlockDiscoverer {
         return out;
     }
 
-    public static List<BlockPos> searchForBlocksAround(World world, BlockPos origin, int cubeSize, BlockPredicate match) {
+    public static List<BlockPos> searchForBlocksAround(Level world, BlockPos origin, int cubeSize, BlockPredicate match) {
         List<BlockPos> out = new ArrayList<>();
 
         BlockPos.Mutable offset = new BlockPos.Mutable();
@@ -112,7 +112,7 @@ public class BlockDiscoverer {
     }
 
     @Nullable
-    public static BlockPos searchAreaForFirst(World world, BlockPos center, int radius, @Nullable Vector3 offsetFrom, BlockPredicate acceptor) {
+    public static BlockPos searchAreaForFirst(Level world, BlockPos center, int radius, @Nullable Vector3 offsetFrom, BlockPredicate acceptor) {
         for (int r = 0; r <= radius; r++) {
             Set<BlockPos> posList = new HashSet<>();
             for (int xx = -r; xx <= r; xx++) {
@@ -148,7 +148,7 @@ public class BlockDiscoverer {
         return null;
     }
 
-    public static List<BlockPos> discoverBlocksWithSameStateAround(World world, BlockPos origin, boolean onlyExposed, int cubeSize, int limit, boolean searchCorners) {
+    public static List<BlockPos> discoverBlocksWithSameStateAround(Level world, BlockPos origin, boolean onlyExposed, int cubeSize, int limit, boolean searchCorners) {
         return MiscUtils.executeWithChunk(world, origin,
                 () -> {
                     BlockState state = world.getBlockState(origin);
@@ -157,7 +157,7 @@ public class BlockDiscoverer {
                 Lists.newArrayList());
     }
 
-    public static List<BlockPos> discoverBlocksWithSameStateAround(BlockPredicate match, World world, BlockPos origin, boolean onlyExposed, int cubeSize, int limit, boolean searchCorners) {
+    public static List<BlockPos> discoverBlocksWithSameStateAround(BlockPredicate match, Level world, BlockPos origin, boolean onlyExposed, int cubeSize, int limit, boolean searchCorners) {
         List<BlockPos> foundResult = new ArrayList<>();
         foundResult.add(origin);
         List<BlockPos> visited = new LinkedList<>();
@@ -223,7 +223,7 @@ public class BlockDiscoverer {
         return (int) Mth.absMax(Mth.absMax(p1.getX() - p2.getX(), p1.getY() - p2.getY()), p1.getZ() - p2.getZ());
     }
 
-    private static boolean isExposedToAir(World world, BlockPos pos) {
+    private static boolean isExposedToAir(Level world, BlockPos pos) {
         for (Direction face : Direction.values()) {
             BlockPos offset = pos.offset(face);
             if (MiscUtils.executeWithChunk(world, offset, () -> BlockUtils.isReplaceable(world, offset), false)) {

@@ -21,14 +21,15 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.util.ResourceKey;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.event.tick.TickEvent;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
+import net.neoforged.neoforge.event.tick.ClientTickEvent;
 
 import javax.annotation.Nonnull;
 import java.util.HashMap;
@@ -44,11 +45,11 @@ import java.util.function.Supplier;
  */
 public class BlockBreakHelper {
 
-    private static final Map<RegistryKey<World>, TickTokenMap<BlockPos, BreakEntry>> breakMap = new HashMap<>();
+    private static final Map<ResourceKey<Level>, TickTokenMap<BlockPos, BreakEntry>> breakMap = new HashMap<>();
 
-    public static void addProgress(World world, BlockPos pos, float percStrength, Supplier<Float> expectedHardness) {
+    public static void addProgress(Level world, BlockPos pos, float percStrength, Supplier<Float> expectedHardness) {
         TickTokenMap<BlockPos, BreakEntry> map = breakMap.computeIfAbsent(world.getDimensionKey(), key -> {
-            TickTokenMap<BlockPos, BreakEntry> tkMap = new TickTokenMap<>(TickEvent.Type.SERVER);
+            TickTokenMap<BlockPos, BreakEntry> tkMap = new TickTokenMap<>(net.neoforged.neoforge.event.tick.ClientTickEvent.SERVER);
             AstralSorcery.getProxy().getTickManager().register(tkMap);
             return tkMap;
         });
@@ -85,13 +86,13 @@ public class BlockBreakHelper {
     public static class BreakEntry implements TickTokenMap.TickMapToken<Float>, CEffectAbstractList.ListEntry {
 
         private float breakProgress;
-        private final IWorld world;
+        private final ILevel world;
         private BlockPos pos;
         private BlockState expected;
 
         private int idleTimeout;
 
-        public BreakEntry(@Nonnull Float value, IWorld world, BlockPos at, BlockState expectedToBreak) {
+        public BreakEntry(@Nonnull Float value, ILevel world, BlockPos at, BlockState expectedToBreak) {
             this.breakProgress = value;
             this.world = world;
             this.pos = at;
@@ -104,7 +105,7 @@ public class BlockBreakHelper {
         }
 
         @Override
-        public void tick() {
+    public void tick() {
             idleTimeout++;
         }
 

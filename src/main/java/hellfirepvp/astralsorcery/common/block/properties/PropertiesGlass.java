@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.block.properties;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 
 /**
  * This class is part of the Astral Sorcery Mod

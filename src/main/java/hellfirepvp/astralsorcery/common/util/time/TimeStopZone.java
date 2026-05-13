@@ -18,12 +18,12 @@ import net.minecraft.world.entity.boss.dragon.phase.IPhase;
 import net.minecraft.world.entity.boss.dragon.phase.PhaseType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.tileentity.BlockEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
-import net.minecraft.util.vector.Vector3d;
-import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.chunk.LevelChunk;
 
 import javax.annotation.Nonnull;
 import java.util.LinkedList;
@@ -43,14 +43,14 @@ public class TimeStopZone {
 
     final float range;
     final BlockPos offset;
-    private final World world;
+    private final Level world;
     private int ticksToLive;
 
     private boolean active = true;
 
     private final List<BlockEntity> cachedTiles = new LinkedList<>();
 
-    TimeStopZone(EntityTargetController ctrl, float range, BlockPos offset, World world, int tickLivespan) {
+    TimeStopZone(EntityTargetController ctrl, float range, BlockPos offset, Level world, int tickLivespan) {
         this.targetController = ctrl;
         this.range = range;
         this.offset = offset;
@@ -142,8 +142,8 @@ public class TimeStopZone {
         e.prevSwingProgress = e.swingProgress;
         e.prevDistanceWalkedModified = e.distanceWalkedModified;
 
-        if (!e.getEntityWorld().isRemote()) {
-            e.travel(Vector3d.ZERO);
+        if (!e.level.isRemote()) {
+            e.travel(net.minecraft.world.phys.Vec3.ZERO);
         }
 
         if (e instanceof EnderDragonEntity) {

@@ -12,7 +12,6 @@ import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Rarity;
-import net.neoforged.neoforge.common.ToolType;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

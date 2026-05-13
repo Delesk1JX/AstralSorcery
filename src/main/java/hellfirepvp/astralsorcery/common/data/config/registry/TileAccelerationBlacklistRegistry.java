@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.common.tile.*;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import hellfirepvp.astralsorcery.common.tile.base.network.TileSourceBase;
 import hellfirepvp.astralsorcery.common.tile.base.network.TileTransmissionBase;
-import net.minecraft.tileentity.*;
+import net.minecraft.world.level.block.entity.*;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -37,7 +37,7 @@ public class TileAccelerationBlacklistRegistry extends ConfigDataAdapter<TileAcc
     private TileAccelerationBlacklistRegistry() {}
 
     public boolean canBeInfluenced(BlockEntity tile) {
-        if (!(tile instanceof ITickableTileEntity)) {
+        if (!(tile instanceof BlockEntity)) {
             return false;
         }
 

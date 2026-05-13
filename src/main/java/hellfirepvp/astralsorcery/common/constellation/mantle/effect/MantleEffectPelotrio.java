@@ -18,18 +18,17 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
-import net.neoforged.neoforge.common.ToolType;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.event.entity.living.LivingAttackEvent;
 import net.neoforged.neoforge.event.world.BlockEvent;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.api.distmarker.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -54,7 +53,7 @@ public class MantleEffectPelotrio extends MantleEffect {
     }
 
     private void onHurt(LivingAttackEvent event) {
-        World world = event.getEntityLiving().getEntityWorld();
+        Level world = event.getEntityLiving().level;
         if (world.isRemote()) {
             return;
         }
@@ -78,8 +77,8 @@ public class MantleEffectPelotrio extends MantleEffect {
     }
 
     private void onBreak(BlockEvent.BreakEvent event) {
-        IWorld world = event.getWorld();
-        if (world.isRemote() || !(world instanceof World)) {
+        ILevel world = event.getWorld();
+        if (world.isRemote() || !(world instanceof Level)) {
             return;
         }
 
@@ -96,7 +95,7 @@ public class MantleEffectPelotrio extends MantleEffect {
 
                 if (rand.nextFloat() < CONFIG.chanceSpawnAxe.get()) {
                     if (AlignmentChargeHandler.INSTANCE.hasCharge(player, LogicalSide.SERVER, CONFIG.chargeCostPerAxe.get())) {
-                        if (world.addEntity(new EntitySpectralTool((World) world, player.getPosition(), player, EntitySpectralTool.ToolTask.createLogTask()))) {
+                        if (world.addEntity(new EntitySpectralTool((Level) world, player.getPosition(), player, EntitySpectralTool.ToolTask.createLogTask()))) {
                             AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, CONFIG.chargeCostPerAxe.get(), false);
                         }
                     }
@@ -109,7 +108,7 @@ public class MantleEffectPelotrio extends MantleEffect {
 
                 if (rand.nextFloat() < CONFIG.chanceSpawnPickaxe.get()) {
                     if (AlignmentChargeHandler.INSTANCE.hasCharge(player, LogicalSide.SERVER, CONFIG.chargeCostPerPickaxe.get())) {
-                        if (world.addEntity(new EntitySpectralTool((World) world, player.getPosition(), player, EntitySpectralTool.ToolTask.createPickaxeTask()))) {
+                        if (world.addEntity(new EntitySpectralTool((Level) world, player.getPosition(), player, EntitySpectralTool.ToolTask.createPickaxeTask()))) {
                             AlignmentChargeHandler.INSTANCE.drainCharge(player, LogicalSide.SERVER, CONFIG.chargeCostPerPickaxe.get(), false);
                         }
                     }
@@ -160,34 +159,34 @@ public class MantleEffectPelotrio extends MantleEffect {
         private final int defaultChargeCostPerPickaxe = 250;
         private final int defaultChargeCostPerAxe = 250;
 
-        public NeoForgeConfigSpec.DoubleValue chanceSpawnSword;
-        public NeoForgeConfigSpec.DoubleValue chanceSpawnPickaxe;
-        public NeoForgeConfigSpec.DoubleValue chanceSpawnAxe;
+        public ModConfigSpec.DoubleValue chanceSpawnSword;
+        public ModConfigSpec.DoubleValue chanceSpawnPickaxe;
+        public ModConfigSpec.DoubleValue chanceSpawnAxe;
 
-        public NeoForgeConfigSpec.DoubleValue speedSword;
-        public NeoForgeConfigSpec.DoubleValue speedPickaxe;
-        public NeoForgeConfigSpec.DoubleValue speedAxe;
+        public ModConfigSpec.DoubleValue speedSword;
+        public ModConfigSpec.DoubleValue speedPickaxe;
+        public ModConfigSpec.DoubleValue speedAxe;
 
-        public NeoForgeConfigSpec.DoubleValue swordDamage;
+        public ModConfigSpec.DoubleValue swordDamage;
 
-        public NeoForgeConfigSpec.IntValue durationSword;
-        public NeoForgeConfigSpec.IntValue durationPickaxe;
-        public NeoForgeConfigSpec.IntValue durationAxe;
+        public ModConfigSpec.IntValue durationSword;
+        public ModConfigSpec.IntValue durationPickaxe;
+        public ModConfigSpec.IntValue durationAxe;
 
-        public NeoForgeConfigSpec.IntValue ticksPerSwordAttack;
-        public NeoForgeConfigSpec.IntValue ticksPerPickaxeBlockBreak;
-        public NeoForgeConfigSpec.IntValue ticksPerAxeLogBreak;
+        public ModConfigSpec.IntValue ticksPerSwordAttack;
+        public ModConfigSpec.IntValue ticksPerPickaxeBlockBreak;
+        public ModConfigSpec.IntValue ticksPerAxeLogBreak;
 
-        public NeoForgeConfigSpec.IntValue chargeCostPerSword;
-        public NeoForgeConfigSpec.IntValue chargeCostPerPickaxe;
-        public NeoForgeConfigSpec.IntValue chargeCostPerAxe;
+        public ModConfigSpec.IntValue chargeCostPerSword;
+        public ModConfigSpec.IntValue chargeCostPerPickaxe;
+        public ModConfigSpec.IntValue chargeCostPerAxe;
 
         public PelotrioConfig() {
             super("pelotrio");
         }
 
         @Override
-        public void createEntries(NeoForgeConfigSpec.Builder cfgBuilder) {
+        public void createEntries(ModConfigSpec.Builder cfgBuilder) {
             super.createEntries(cfgBuilder);
 
             this.chanceSpawnSword = cfgBuilder
