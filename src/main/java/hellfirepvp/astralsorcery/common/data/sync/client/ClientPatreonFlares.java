@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.common.data.sync.base.ClientDataReader;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.Tags;
@@ -52,7 +52,7 @@ public class ClientPatreonFlares extends ClientData<ClientPatreonFlares> {
     }
 
     @Override
-    public void clear(ResourceKey<Level> dim) {}
+    public void clear(net.minecraft.resources.ResourceKey<Level> dim) {}
 
     @Override
     public void clearClient() {

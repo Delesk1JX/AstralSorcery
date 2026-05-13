@@ -70,7 +70,7 @@ public class RootEvorsio extends RootPerk {
         }
 
         BlockState broken = event.getState();
-        ILevel world = event.getWorld();
+        LevelAccessor world = event.getWorld();
         float gainedExp;
         try {
             gainedExp = broken.getBlockHardness(world, event.getPos());

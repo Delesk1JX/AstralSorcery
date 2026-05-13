@@ -9,10 +9,10 @@
 package hellfirepvp.astralsorcery.common.util.world;
 
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
-import net.minecraft.world.WorldGenLevel;
+import net.minecraft.world.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -33,11 +33,11 @@ public class SkyCollectionHelper {
     private static final Random sharedRand = new Random();
 
     @OnlyIn(Dist.CLIENT)
-    public static Optional<Float> getSkyNoiseDistributionClient(ResourceKey<Level> dim, BlockPos pos) {
+    public static Optional<Float> getSkyNoiseDistributionClient(net.minecraft.resources.ResourceKey<Level> dim, BlockPos pos) {
         return WorldSeedCache.getSeedIfPresent(dim).map(seed -> getDistributionInternal(seed, pos));
     }
 
-    public static float getSkyNoiseDistribution(WorldGenLevel world, BlockPos pos) {
+    public static float getSkyNoiseDistribution(ServerLevel world, BlockPos pos) {
         return getDistributionInternal(MiscUtils.getRandomWorldSeed(world), pos);
     }
 

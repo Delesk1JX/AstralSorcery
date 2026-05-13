@@ -38,7 +38,7 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.WorldGenLevel;
+import net.minecraft.world.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.fml.LogicalSide;
@@ -163,8 +163,8 @@ public class StarlightReceiverRitualPedestal extends SimpleTransmissionReceiver<
         collected *= 0.25 + (0.75 * DayTimeHelper.getCurrentDaytimeDistribution(world));
 
         if (this.noiseDistribution == -1) {
-            if (world instanceof WorldGenLevel) {
-                this.noiseDistribution = SkyCollectionHelper.getSkyNoiseDistribution((WorldGenLevel) world, this.getLocationPos());
+            if (world instanceof ServerLevel) {
+                this.noiseDistribution = SkyCollectionHelper.getSkyNoiseDistribution((ServerLevel) world, this.getLocationPos());
             } else {
                 this.noiseDistribution = 0.3F;
             }

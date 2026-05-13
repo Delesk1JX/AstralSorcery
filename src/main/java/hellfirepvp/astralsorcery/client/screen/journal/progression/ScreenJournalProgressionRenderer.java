@@ -285,7 +285,7 @@ public class ScreenJournalProgressionRenderer {
                 br = 1F - ((scale - 6F) / 2F);
             }
 
-            ITextProperties name = focusedClusterMouse.getName();
+            Component name = focusedClusterMouse.getName();
             float length = Minecraft.getInstance().fontRenderer.getStringPropertyWidth(name) * 1.4F;
             int alpha = 0xCC;
             alpha *= br;

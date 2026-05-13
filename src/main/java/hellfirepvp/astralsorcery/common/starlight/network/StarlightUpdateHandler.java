@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.starlight.network;
 
 import hellfirepvp.astralsorcery.common.starlight.transmission.IPrismTransmissionNode;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
@@ -28,7 +28,7 @@ import java.util.*;
 public class StarlightUpdateHandler implements ITickHandler {
 
     private static final StarlightUpdateHandler instance = new StarlightUpdateHandler();
-    private static final Map<ResourceKey<Level>, List<IPrismTransmissionNode>> updateRequired = new HashMap<>();
+    private static final Map<net.minecraft.resources.ResourceKey<Level>, List<IPrismTransmissionNode>> updateRequired = new HashMap<>();
     private static final Object accessLock = new Object();
 
     private StarlightUpdateHandler() {}
@@ -86,8 +86,8 @@ public class StarlightUpdateHandler implements ITickHandler {
     }
 
     @Override
-    public boolean canFire(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
-        return phase == net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
+    public boolean canFire(net.neoforged.neoforge.event.tick.net.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
+        return phase == net.neoforged.neoforge.event.tick.net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
     }
 
     @Override

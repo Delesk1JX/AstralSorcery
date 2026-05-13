@@ -19,11 +19,11 @@ import hellfirepvp.astralsorcery.client.util.draw.RenderInfo;
 import hellfirepvp.astralsorcery.common.util.MapStream;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.IReorderingProcessor;
+import net.minecraft.util.FormattedText;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.Mth;
 import net.minecraft.util.vector.Matrix3f;
@@ -52,7 +52,7 @@ public class RenderingDrawUtils {
     private static final Random rand = new Random();
     private static final PoseStack EMPTY = new PoseStack();
 
-    public static void renderStringCentered(@Nullable FontRenderer fr, PoseStack renderStack, ITextProperties text, int x, int y, float scale, int color) {
+    public static void renderStringCentered(@Nullable Font fr, PoseStack renderStack, Component text, int x, int y, float scale, int color) {
         if (fr == null) {
             fr = Minecraft.getInstance().fontRenderer;
         }
@@ -67,43 +67,43 @@ public class RenderingDrawUtils {
         renderStack.pop();
     }
 
-    public static float renderString(ITextProperties text) {
+    public static float renderString(Component text) {
         return renderStringAt(text, EMPTY, Minecraft.getInstance().fontRenderer, Color.WHITE.getRGB(), false);
     }
 
-    public static float renderString(IReorderingProcessor text) {
+    public static float renderString(FormattedText text) {
         return renderStringAt(text, EMPTY, Minecraft.getInstance().fontRenderer, Color.WHITE.getRGB(), false);
     }
 
-    public static float renderString(ITextProperties text, int color) {
+    public static float renderString(Component text, int color) {
         return renderStringAt(text, EMPTY, Minecraft.getInstance().fontRenderer, color, false);
     }
 
-    public static float renderString(IReorderingProcessor text, int color) {
+    public static float renderString(FormattedText text, int color) {
         return renderStringAt(text, EMPTY, Minecraft.getInstance().fontRenderer, color, false);
     }
 
-    public static float renderString(@Nullable FontRenderer fr, ITextProperties text, int color) {
+    public static float renderString(@Nullable Font fr, Component text, int color) {
         return renderStringAt(text, EMPTY, fr, color, false);
     }
 
-    public static float renderString(@Nullable FontRenderer fr, IReorderingProcessor text, int color) {
+    public static float renderString(@Nullable Font fr, FormattedText text, int color) {
         return renderStringAt(text, EMPTY, fr, color, false);
     }
 
-    public static float renderStringAt(@Nullable FontRenderer fr, PoseStack renderStack, ITextProperties text, int color) {
+    public static float renderStringAt(@Nullable Font fr, PoseStack renderStack, Component text, int color) {
         return renderStringAt(text, renderStack, fr, color, true);
     }
 
-    public static float renderStringAt(@Nullable FontRenderer fr, PoseStack renderStack, IReorderingProcessor text, int color) {
+    public static float renderStringAt(@Nullable Font fr, PoseStack renderStack, FormattedText text, int color) {
         return renderStringAt(text, renderStack, fr, color, true);
     }
 
-    public static float renderStringAt(ITextProperties text, PoseStack renderStack, @Nullable FontRenderer fr, int color, boolean dropShadow) {
+    public static float renderStringAt(Component text, PoseStack renderStack, @Nullable Font fr, int color, boolean dropShadow) {
         return renderStringAt(LanguageMap.getInstance().func_241870_a(text), renderStack, fr, color, dropShadow);
     }
 
-    public static float renderStringAt(IReorderingProcessor text, PoseStack renderStack, @Nullable FontRenderer fr, int color, boolean dropShadow) {
+    public static float renderStringAt(FormattedText text, PoseStack renderStack, @Nullable Font fr, int color, boolean dropShadow) {
         if (fr == null) {
             fr = Minecraft.getInstance().fontRenderer;
         }
@@ -144,18 +144,18 @@ public class RenderingDrawUtils {
     }
 
     public static void renderBlueTooltipComponents(PoseStack renderStack, float x, float y, float zLevel,
-                                                   List<ITextProperties> tooltipData, FontRenderer fontRenderer, boolean isFirstLineHeadline) {
-        List<Tuple<ItemStack, ITextProperties>> stackTooltip = MapStream.ofValues(tooltipData, t -> ItemStack.EMPTY).toTupleList();
+                                                   List<Component> tooltipData, Font fontRenderer, boolean isFirstLineHeadline) {
+        List<Tuple<ItemStack, Component>> stackTooltip = MapStream.ofValues(tooltipData, t -> ItemStack.EMPTY).toTupleList();
         renderBlueTooltip(renderStack, x, y, zLevel, stackTooltip, fontRenderer, isFirstLineHeadline);
     }
 
     public static void renderBlueTooltip(PoseStack renderStack, float x, float y, float zLevel,
-                                         List<Tuple<ItemStack, ITextProperties>> tooltipData, FontRenderer fontRenderer, boolean isFirstLineHeadline) {
+                                         List<Tuple<ItemStack, Component>> tooltipData, Font fontRenderer, boolean isFirstLineHeadline) {
         renderTooltip(renderStack, x, y, zLevel, tooltipData, fontRenderer, isFirstLineHeadline, 0xFF000027, 0xFF000044, Color.WHITE);
     }
 
     public static void renderTooltip(PoseStack renderStack, float x, float y, float zLevel,
-                                     List<Tuple<ItemStack, ITextProperties>> tooltipData, FontRenderer fontRenderer, boolean isFirstLineHeadline,
+                                     List<Tuple<ItemStack, Component>> tooltipData, Font fontRenderer, boolean isFirstLineHeadline,
                                      int color, int colorFade, Color strColor) {
         int stackBoxSize = 18;
 
@@ -163,8 +163,8 @@ public class RenderingDrawUtils {
             boolean anyItemFound = false;
 
             int maxWidth = 0;
-            for (Tuple<ItemStack, ITextProperties> toolTip : tooltipData) {
-                FontRenderer customFR = toolTip.getA().getItem().getFontRenderer(toolTip.getA());
+            for (Tuple<ItemStack, Component> toolTip : tooltipData) {
+                Font customFR = toolTip.getA().getItem().getFont(toolTip.getA());
                 if (customFR == null) {
                     customFR = fontRenderer;
                 }
@@ -184,16 +184,16 @@ public class RenderingDrawUtils {
             }
 
             int formatWidth = anyItemFound ? maxWidth - stackBoxSize : maxWidth;
-            List<Tuple<ItemStack, List<IReorderingProcessor>>> lengthLimitedToolTip = new LinkedList<>();
-            for (Tuple<ItemStack, ITextProperties> toolTip : tooltipData) {
-                FontRenderer customFR = toolTip.getA().getItem().getFontRenderer(toolTip.getA());
+            List<Tuple<ItemStack, List<FormattedText>>> lengthLimitedToolTip = new LinkedList<>();
+            for (Tuple<ItemStack, Component> toolTip : tooltipData) {
+                Font customFR = toolTip.getA().getItem().getFont(toolTip.getA());
                 if (customFR == null) {
                     customFR = fontRenderer;
                 }
 
-                List<IReorderingProcessor> textLines = customFR.trimStringToWidth(toolTip.getB(), formatWidth);
+                List<FormattedText> textLines = customFR.trimStringToWidth(toolTip.getB(), formatWidth);
                 if (textLines.isEmpty()) {
-                    textLines = Collections.singletonList(IReorderingProcessor.field_242232_a);
+                    textLines = Collections.singletonList(FormattedText.field_242232_a);
                 }
                 lengthLimitedToolTip.add(new Tuple<>(toolTip.getA(), textLines));
             }
@@ -205,9 +205,9 @@ public class RenderingDrawUtils {
                 if (lengthLimitedToolTip.size() > 1 && isFirstLineHeadline) {
                     sumLineHeight += 2;
                 }
-                Iterator<Tuple<ItemStack, List<IReorderingProcessor>>> iterator = lengthLimitedToolTip.iterator();
+                Iterator<Tuple<ItemStack, List<FormattedText>>> iterator = lengthLimitedToolTip.iterator();
                 while (iterator.hasNext()) {
-                    Tuple<ItemStack, List<IReorderingProcessor>> toolTip = iterator.next();
+                    Tuple<ItemStack, List<FormattedText>> toolTip = iterator.next();
                     int segmentHeight = 0;
                     if (!toolTip.getA().isEmpty()) {
                         segmentHeight += 2;
@@ -240,7 +240,7 @@ public class RenderingDrawUtils {
             renderStack.push();
             renderStack.translate(pX, pY, 0);
             boolean first = true;
-            for (Tuple<ItemStack, List<IReorderingProcessor>> toolTip : lengthLimitedToolTip) {
+            for (Tuple<ItemStack, List<FormattedText>> toolTip : lengthLimitedToolTip) {
                 int minYShift = 10;
                 if (!toolTip.getA().isEmpty()) {
                     renderStack.push();
@@ -251,8 +251,8 @@ public class RenderingDrawUtils {
                     minYShift = stackBoxSize;
                     renderStack.translate(0, 2, 0);
                 }
-                for (IReorderingProcessor text : toolTip.getB()) {
-                    FontRenderer customFR = toolTip.getA().getItem().getFontRenderer(toolTip.getA());
+                for (FormattedText text : toolTip.getB()) {
+                    Font customFR = toolTip.getA().getItem().getFont(toolTip.getA());
                     if (customFR == null) {
                         customFR = fontRenderer;
                     }

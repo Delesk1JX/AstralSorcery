@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.enchantment.amulet;
 
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigEntry;
 import hellfirepvp.astralsorcery.common.data.config.registry.AmuletEnchantmentRegistry;
-import hellfirepvp.astralsorcery.common.enchantment.dynamic.Dynamicnet.minecraft.world.item.enchantment.Enchantment;
+import hellfirepvp.astralsorcery.common.enchantment.dynamic.DynamicEnchantmentType;
 import hellfirepvp.astralsorcery.common.item.ItemEnchantmentAmulet;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.ItemStack;
@@ -47,7 +47,7 @@ public class AmuletRandomizeHelper {
 
         List<AmuletEnchantment> ench = new ArrayList<>();
         while (mayGetAdditionalRoll(ench)) {
-            Dynamicnet.minecraft.world.item.enchantment.Enchantment type = getRollType(ench);
+            DynamicEnchantmentType type = getRollType(ench);
             if (type != null) {
                 int lvl = getRollLevel();
                 if (type.isEnchantmentSpecific()) {
@@ -64,34 +64,34 @@ public class AmuletRandomizeHelper {
     }
 
     @Nullable
-    private static Dynamicnet.minecraft.world.item.enchantment.Enchantment getRollType(List<AmuletEnchantment> existing) {
+    private static DynamicEnchantmentType getRollType(List<AmuletEnchantment> existing) {
         int exAll = getAdditionAll(existing);
         switch (existing.size()) {
             case 0:
             case 1:
                 if (rand.nextFloat() < chanceToAll.get()) {
-                    return Dynamicnet.minecraft.world.item.enchantment.Enchantment.ADD_TO_EXISTING_ALL;
+                    return DynamicEnchantmentType.ADD_TO_EXISTING_ALL;
                 }
                 if (rand.nextFloat() < chanceToNonExisting.get()) {
-                    return Dynamicnet.minecraft.world.item.enchantment.Enchantment.ADD_TO_SPECIFIC;
+                    return DynamicEnchantmentType.ADD_TO_SPECIFIC;
                 }
-                return Dynamicnet.minecraft.world.item.enchantment.Enchantment.ADD_TO_EXISTING_SPECIFIC;
+                return DynamicEnchantmentType.ADD_TO_EXISTING_SPECIFIC;
             case 2:
                 if (exAll > 1) {
                     return null;
                 } else if (exAll == 1) {
                     if (rand.nextFloat() < chanceToNonExisting.get()) {
-                        return Dynamicnet.minecraft.world.item.enchantment.Enchantment.ADD_TO_SPECIFIC;
+                        return DynamicEnchantmentType.ADD_TO_SPECIFIC;
                     }
-                    return Dynamicnet.minecraft.world.item.enchantment.Enchantment.ADD_TO_EXISTING_SPECIFIC;
+                    return DynamicEnchantmentType.ADD_TO_EXISTING_SPECIFIC;
                 } else {
                     if (rand.nextFloat() < chanceToAll.get()) {
-                        return Dynamicnet.minecraft.world.item.enchantment.Enchantment.ADD_TO_EXISTING_ALL;
+                        return DynamicEnchantmentType.ADD_TO_EXISTING_ALL;
                     }
                     if (rand.nextFloat() < chanceToNonExisting.get()) {
-                        return Dynamicnet.minecraft.world.item.enchantment.Enchantment.ADD_TO_SPECIFIC;
+                        return DynamicEnchantmentType.ADD_TO_SPECIFIC;
                     }
-                    return Dynamicnet.minecraft.world.item.enchantment.Enchantment.ADD_TO_EXISTING_SPECIFIC;
+                    return DynamicEnchantmentType.ADD_TO_EXISTING_SPECIFIC;
                 }
             default:
                 break;
@@ -122,7 +122,7 @@ public class AmuletRandomizeHelper {
     private static int getAdditionAll(List<AmuletEnchantment> ench) {
         int i = 0;
         for (AmuletEnchantment e : ench) {
-            if (e.getType().equals(Dynamicnet.minecraft.world.item.enchantment.Enchantment.ADD_TO_EXISTING_ALL)) {
+            if (e.getType().equals(DynamicEnchantmentType.ADD_TO_EXISTING_ALL)) {
                 i++;
             }
         }

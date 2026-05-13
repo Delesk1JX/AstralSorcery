@@ -25,7 +25,7 @@ import hellfirepvp.astralsorcery.common.crafting.recipe.LiquidInteractionContext
 import hellfirepvp.astralsorcery.common.fluid.FluidLiquidStarlight;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
-import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.network.play.server.PktPlayEffect;
 import hellfirepvp.astralsorcery.common.tile.base.TileEntityTick;
@@ -81,7 +81,7 @@ public class TileChalice extends TileEntityTick {
     private Vector3 rotationVec = null;
 
     public TileChalice() {
-        super(BlockEntityTypesAS.CHALICE);
+        super(TileEntityTypesAS.CHALICE);
 
         this.tank = new SimpleSingleFluidTank(TANK_SIZE);
         this.tank.addUpdateFunction(this::markForUpdate);

@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.object.ObjectReference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
@@ -35,7 +35,7 @@ import java.util.*;
  */
 public class GatewayUI {
 
-    private final ResourceKey<Level> dimType;
+    private final net.minecraft.resources.ResourceKey<Level> dimType;
     private final BlockPos pos;
     private final Vector3 renderCenter;
     private final double sphereRadius;
@@ -44,7 +44,7 @@ public class GatewayUI {
 
     private int visibleTicks = 20;
 
-    private GatewayUI(ResourceKey<Level> dimType, BlockPos pos, Vector3 renderCenter, double sphereRadius) {
+    private GatewayUI(net.minecraft.resources.ResourceKey<Level> dimType, BlockPos pos, Vector3 renderCenter, double sphereRadius) {
         this.dimType = dimType;
         this.pos = pos;
         this.renderCenter = renderCenter;
@@ -72,7 +72,7 @@ public class GatewayUI {
         if (gatewayNode == null) {
             return null;
         }
-        ResourceKey<Level> dimType = world.getDimensionKey();
+        net.minecraft.resources.ResourceKey<Level> dimType = world.getDimensionKey();
         GatewayUI ui = new GatewayUI(dimType, tilePos, renderPos, sphereRadius);
         Player thisPlayer = Minecraft.getInstance().player;
 
@@ -97,7 +97,7 @@ public class GatewayUI {
         return ui;
     }
 
-    private static void appendEntry(GatewayUI ui, GatewayCache.GatewayNode node, ResourceKey<Level> nodeDimType, boolean sameWorld, double sphereRadius) {
+    private static void appendEntry(GatewayUI ui, GatewayCache.GatewayNode node, net.minecraft.resources.ResourceKey<Level> nodeDimType, boolean sameWorld, double sphereRadius) {
         Vector3 renderPos = ui.getRenderCenter();
 
         Vector3 nodePos = new Vector3(node.getPos());
@@ -161,7 +161,7 @@ public class GatewayUI {
         }
     }
 
-    public ResourceKey<Level> getDimType() {
+    public net.minecraft.resources.ResourceKey<Level> getDimType() {
         return dimType;
     }
 
@@ -206,13 +206,13 @@ public class GatewayUI {
     public static class GatewayEntry {
 
         private final GatewayCache.GatewayNode node;
-        private final ResourceKey<Level> nodeDimension;
+        private final net.minecraft.resources.ResourceKey<Level> nodeDimension;
 
         private final Vector3 relativePos;
 
         private final float yaw, pitch;
 
-        private GatewayEntry(GatewayCache.GatewayNode node, ResourceKey<Level> nodeDimension, Vector3 relativePos) {
+        private GatewayEntry(GatewayCache.GatewayNode node, net.minecraft.resources.ResourceKey<Level> nodeDimension, Vector3 relativePos) {
             this.node = node;
             this.nodeDimension = nodeDimension;
             this.relativePos = relativePos.clone();
@@ -229,7 +229,7 @@ public class GatewayUI {
             return node;
         }
 
-        public ResourceKey<Level> getNodeDimension() {
+        public net.minecraft.resources.ResourceKey<Level> getNodeDimension() {
             return nodeDimension;
         }
 

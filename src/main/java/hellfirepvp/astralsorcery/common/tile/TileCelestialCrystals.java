@@ -20,7 +20,7 @@ import hellfirepvp.astralsorcery.common.crystal.CrystalAttributes;
 import hellfirepvp.astralsorcery.common.data.config.entry.CraftingConfig;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
-import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import hellfirepvp.astralsorcery.common.tile.base.TileEntityTick;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.world.level.block.state.BlockState;
@@ -44,7 +44,7 @@ public class TileCelestialCrystals extends TileEntityTick implements CrystalAttr
     private CrystalAttributes attributes = null;
 
     public TileCelestialCrystals() {
-        super(BlockEntityTypesAS.CELESTIAL_CRYSTAL_CLUSTER);
+        super(TileEntityTypesAS.CELESTIAL_CRYSTAL_CLUSTER);
     }
 
     @Override

@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.common.tile.TileAttunementAltar;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.level.dimension.DimensionType;
@@ -36,12 +36,12 @@ import javax.annotation.Nonnull;
 public class PktAttunePlayerConstellation extends ASPacket<PktAttunePlayerConstellation> {
 
     private IMajorConstellation attunement = null;
-    private ResourceKey<Level> world = null;
+    private net.minecraft.resources.ResourceKey<Level> world = null;
     private BlockPos at = BlockPos.ZERO;
 
     public PktAttunePlayerConstellation() {}
 
-    public PktAttunePlayerConstellation(IMajorConstellation attunement, ResourceKey<Level> world, BlockPos at) {
+    public PktAttunePlayerConstellation(IMajorConstellation attunement, net.minecraft.resources.ResourceKey<Level> world, BlockPos at) {
         this.attunement = attunement;
         this.world = world;
         this.at = at;

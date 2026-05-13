@@ -18,7 +18,7 @@ import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.neoforged.fml.LogicalSide;
@@ -35,12 +35,12 @@ import javax.annotation.Nonnull;
  */
 public class PktRequestTeleport extends ASPacket<PktRequestTeleport> {
 
-    private ResourceKey<Level> dim;
+    private net.minecraft.resources.ResourceKey<Level> dim;
     private BlockPos pos;
 
     public PktRequestTeleport() {}
 
-    public PktRequestTeleport(ResourceKey<Level> dim, BlockPos pos) {
+    public PktRequestTeleport(net.minecraft.resources.ResourceKey<Level> dim, BlockPos pos) {
         this.dim = dim;
         this.pos = pos;
     }

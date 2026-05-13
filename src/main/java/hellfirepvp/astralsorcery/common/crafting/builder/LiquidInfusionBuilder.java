@@ -63,7 +63,7 @@ public class LiquidInfusionBuilder extends CustomRecipeBuilder<LiquidInfusion> {
         return this;
     }
 
-    public LiquidInfusionBuilder setItemInput(IItemProvider item) {
+    public LiquidInfusionBuilder setItemInput(ItemLike item) {
         this.itemInput = Ingredient.fromItems(item);
         return this;
     }
@@ -78,7 +78,7 @@ public class LiquidInfusionBuilder extends CustomRecipeBuilder<LiquidInfusion> {
         return this;
     }
 
-    public LiquidInfusionBuilder setOutput(IItemProvider output) {
+    public LiquidInfusionBuilder setOutput(ItemLike output) {
         return this.setOutput(new ItemStack(output));
     }
 

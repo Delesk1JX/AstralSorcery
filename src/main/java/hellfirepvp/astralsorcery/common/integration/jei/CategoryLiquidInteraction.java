@@ -24,7 +24,7 @@ import mezz.jei.api.gui.ingredient.IGuiFluidStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Font;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.network.chat.MutableComponent;
 import static net.minecraft.network.chat.Component.translatable;
@@ -91,7 +91,7 @@ public class CategoryLiquidInteraction extends JEICategory<LiquidInteraction> {
             int totalWeight = sameInteractions.stream().mapToInt(LiquidInteraction::getWeight).sum();
             float perc = ((float) recipe.getWeight() / totalWeight) * 100;
 
-            FontRenderer fr = Minecraft.getInstance().fontRenderer;
+            Font fr = Minecraft.getInstance().fontRenderer;
             IFormattableTextComponent txt = new Component.translatable("jei.astralsorcery.tip.chance", FORMAT_CHANCE.format(perc));
             int width = fr.getStringPropertyWidth(txt);
             fr.func_243248_b(renderStack, txt, 74 - width, 44, 0x333333);

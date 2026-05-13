@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.crafting.nojson.FountainEffectRegistry;
 import hellfirepvp.astralsorcery.common.crafting.nojson.fountain.FountainEffect;
 import hellfirepvp.astralsorcery.common.fluid.FluidLiquidStarlight;
 import hellfirepvp.astralsorcery.common.lib.StructureTypesAS;
-import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.network.play.server.PktPlayEffect;
 import hellfirepvp.astralsorcery.common.structure.types.StructureType;
@@ -65,7 +65,7 @@ public class TileFountain extends TileEntityTick {
     private final SimpleSingleFluidTank tank;
 
     public TileFountain() {
-        super(BlockEntityTypesAS.FOUNTAIN);
+        super(TileEntityTypesAS.FOUNTAIN);
 
         this.tank = new SimpleSingleFluidTank(TANK_SIZE);
         this.tank.addUpdateFunction(this::markForUpdate);

@@ -35,7 +35,7 @@ public abstract class BlockFoliageTemplate extends Block implements CustomItemBl
     protected abstract boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos);
 
     @Override
-    public BlockState updatePostPlacement(BlockState state, Direction dir, BlockState facingState, ILevel world, BlockPos pos, BlockPos facingPos) {
+    public BlockState updatePostPlacement(BlockState state, Direction dir, BlockState facingState, LevelAccessor world, BlockPos pos, BlockPos facingPos) {
         if (!state.isValidPosition(world, pos)) {
             return Blocks.AIR.getDefaultState();
         }

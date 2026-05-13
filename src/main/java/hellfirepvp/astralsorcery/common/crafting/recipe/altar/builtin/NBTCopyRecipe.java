@@ -61,7 +61,7 @@ public class NBTCopyRecipe extends SimpleAltarRecipe {
         return this.addNBTCopyMatchIngredient(Ingredient.fromStacks(items));
     }
 
-    public <T extends NBTCopyRecipe> T addNBTCopyMatchIngredient(IItemProvider... items) {
+    public <T extends NBTCopyRecipe> T addNBTCopyMatchIngredient(ItemLike... items) {
         return this.addNBTCopyMatchIngredient(Ingredient.fromItems(items));
     }
 

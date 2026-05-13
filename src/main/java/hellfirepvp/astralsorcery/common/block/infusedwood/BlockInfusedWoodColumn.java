@@ -96,7 +96,7 @@ public class BlockInfusedWoodColumn extends BlockInfusedWoodTemplate implements 
     }
 
     @Override
-    public BlockState updatePostPlacement(BlockState thisState, Direction otherBlockFacing, BlockState otherBlockState, ILevel world, BlockPos thisPos, BlockPos otherBlockPos) {
+    public BlockState updatePostPlacement(BlockState thisState, Direction otherBlockFacing, BlockState otherBlockState, LevelAccessor world, BlockPos thisPos, BlockPos otherBlockPos) {
         if (thisState.get(WATERLOGGED)) {
             world.getPendingFluidTicks().scheduleTick(thisPos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }

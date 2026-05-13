@@ -16,7 +16,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.tags.Tag;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.neoforged.fml.LogicalSide;
@@ -50,7 +50,7 @@ public class BlockPredicates {
     }
 
     public static <T extends BlockEntity> BlockPredicate doesTileExist(T tile, boolean loadTileWorldAndChunk) {
-        ResourceKey<Level> dim = tile.getWorld().getDimensionKey();
+        net.minecraft.resources.ResourceKey<Level> dim = tile.getWorld().getDimensionKey();
         BlockEntityType<?> tileType = tile.getType();
         MinecraftServer srv = LogicalSidedProvider.INSTANCE.get(LogicalSide.SERVER);
 

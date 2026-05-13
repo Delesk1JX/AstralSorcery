@@ -13,7 +13,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.level.Level;
@@ -34,7 +34,7 @@ import java.util.Set;
 public class CelestialGatewayFilter {
 
     private final File gatewayFilter;
-    private Set<ResourceKey<Level>> cache = new HashSet<>();
+    private Set<net.minecraft.resources.ResourceKey<Level>> cache = new HashSet<>();
 
     CelestialGatewayFilter() {
         this.gatewayFilter = this.loadFilter();
@@ -58,13 +58,13 @@ public class CelestialGatewayFilter {
         return this.cache.contains(worldKey);
     }
 
-    void addDim(ResourceKey<Level> worldKey) {
+    void addDim(net.minecraft.resources.ResourceKey<Level> worldKey) {
         if (cache.add(worldKey)) {
             this.saveCache();
         }
     }
 
-    void removeDim(ResourceKey<Level> worldKey) {
+    void removeDim(net.minecraft.resources.ResourceKey<Level> worldKey) {
         if (cache.remove(worldKey)) {
             this.saveCache();
         }
@@ -77,7 +77,7 @@ public class CelestialGatewayFilter {
             this.cache = new HashSet<>();
             for (int i = 0; i < list.size(); i++) {
                 ResourceLocation location = new ResourceLocation(list.getString(i));
-                this.cache.add(ResourceKey.getOrCreateKey(Registry.WORLD_KEY, location));
+                this.cache.add(net.minecraft.resources.ResourceKey.getOrCreateKey(Registry.WORLD_KEY, location));
             }
         } catch (IOException ignored) {
             this.cache = new HashSet<>();
@@ -87,7 +87,7 @@ public class CelestialGatewayFilter {
     private void saveCache() {
         try {
             ListTag list = new ListTag();
-            for (ResourceKey<Level> dimType : cache) {
+            for (net.minecraft.resources.ResourceKey<Level> dimType : cache) {
                 list.add(StringTag.valueOf(dimType.getLocation().toString()));
             }
             CompoundTag cmp = new CompoundTag();

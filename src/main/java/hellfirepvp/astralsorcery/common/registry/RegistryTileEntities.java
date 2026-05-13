@@ -19,7 +19,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-import static hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS.*;
+import static hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS.*;
 
 /**
  * This class is part of the Astral Sorcery Mod

@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.auxiliary.gateway.CelestialGatewayHandle
 import hellfirepvp.astralsorcery.common.data.world.GatewayCache;
 import hellfirepvp.astralsorcery.common.network.base.ASPacket;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
@@ -32,11 +32,11 @@ import java.util.*;
  */
 public class PktUpdateGateways extends ASPacket<PktUpdateGateways> {
 
-    private Map<ResourceKey<Level>, Collection<GatewayCache.GatewayNode>> positions = new HashMap<>();
+    private Map<net.minecraft.resources.ResourceKey<Level>, Collection<GatewayCache.GatewayNode>> positions = new HashMap<>();
 
     public PktUpdateGateways() {}
 
-    public PktUpdateGateways(Map<ResourceKey<Level>, Collection<GatewayCache.GatewayNode>> positions) {
+    public PktUpdateGateways(Map<net.minecraft.resources.ResourceKey<Level>, Collection<GatewayCache.GatewayNode>> positions) {
         this.positions = positions;
     }
 
@@ -45,7 +45,7 @@ public class PktUpdateGateways extends ASPacket<PktUpdateGateways> {
     public Encoder<PktUpdateGateways> encoder() {
         return (packet, buffer) -> {
             buffer.writeInt(packet.positions.size());
-            for (ResourceKey<Level> dim : packet.positions.keySet()) {
+            for (net.minecraft.resources.ResourceKey<Level> dim : packet.positions.keySet()) {
                 ByteBufUtils.writeVanillaRegistryEntry(buffer, dim);
                 ByteBufUtils.writeCollection(buffer, packet.positions.get(dim), (buf, node) -> node.write(buf));
             }
@@ -59,7 +59,7 @@ public class PktUpdateGateways extends ASPacket<PktUpdateGateways> {
             PktUpdateGateways pkt = new PktUpdateGateways();
             int dimSize = buffer.readInt();
             for (int i = 0; i < dimSize; i++) {
-                ResourceKey<Level> dim = ByteBufUtils.readVanillaRegistryEntry(buffer);
+                net.minecraft.resources.ResourceKey<Level> dim = ByteBufUtils.readVanillaRegistryEntry(buffer);
                 pkt.positions.put(dim, ByteBufUtils.readList(buffer, GatewayCache.GatewayNode::read));
             }
             return pkt;

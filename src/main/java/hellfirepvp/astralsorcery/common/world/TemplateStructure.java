@@ -14,7 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.util.MutableBoundingBox;
-import net.minecraft.world.WorldGenLevel;
+import net.minecraft.world.ServerLevel;
 import net.minecraft.world.IServerLevel;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.structure.IStructurePieceType;
@@ -65,7 +65,7 @@ public abstract class TemplateStructure extends TemplateStructurePiece {
     public abstract ResourceLocation getStructureName();
 
     @Override
-    public boolean func_230383_a_(WorldGenLevel world, StructureManager mgr, ChunkGenerator gen, Random rand, MutableBoundingBox box, ChunkPos chunkPos, BlockPos structCenter) {
+    public boolean func_230383_a_(ServerLevel world, StructureManager mgr, ChunkGenerator gen, Random rand, MutableBoundingBox box, ChunkPos chunkPos, BlockPos structCenter) {
         MutableBoundingBox genBox = new MutableBoundingBox(box);
         genBox.offset(0, this.yOffset, 0);
 

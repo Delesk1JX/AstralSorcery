@@ -62,7 +62,7 @@ public class CropHelper {
     }
 
     @Nullable
-    public static GrowablePlant wrapPlant(ILevel world, BlockPos pos) {
+    public static GrowablePlant wrapPlant(LevelAccessor world, BlockPos pos) {
         BlockState state = world.getBlockState(pos);
         Block b = state.getBlock();
         if (b instanceof CropsBlock) {
@@ -91,7 +91,7 @@ public class CropHelper {
     }
 
     @Nullable
-    public static HarvestablePlant wrapHarvestablePlant(ILevel world, BlockPos pos) {
+    public static HarvestablePlant wrapHarvestablePlant(LevelAccessor world, BlockPos pos) {
         GrowablePlant growable = wrapPlant(world, pos);
         if (growable == null) return null; //Every plant has to be growable.
         Block block = world.getBlockState(growable.getPos()).getBlock();
@@ -113,11 +113,11 @@ public class CropHelper {
         return null;
     }
 
-    private static boolean isReedBase(ILevel world, BlockPos pos) {
+    private static boolean isReedBase(LevelAccessor world, BlockPos pos) {
         return !world.getBlockState(pos.down()).getBlock().equals(Blocks.SUGAR_CANE);
     }
 
-    private static boolean isCactusBase(ILevel world, BlockPos pos) {
+    private static boolean isCactusBase(LevelAccessor world, BlockPos pos) {
         return !world.getBlockState(pos.down()).getBlock().equals(Blocks.CACTUS);
     }
 
@@ -125,11 +125,11 @@ public class CropHelper {
 
         public String getIdentifier();
 
-        public boolean isValid(ILevel world);
+        public boolean isValid(LevelAccessor world);
 
-        public boolean canGrow(ILevel world);
+        public boolean canGrow(LevelAccessor world);
 
-        public boolean tryGrow(ILevel world, Random rand);
+        public boolean tryGrow(LevelAccessor world, Random rand);
 
         @Override
         default void readFromNBT(CompoundTag nbt) {}
@@ -142,7 +142,7 @@ public class CropHelper {
 
     public static interface HarvestablePlant extends GrowablePlant {
 
-        public boolean canHarvest(ILevel world);
+        public boolean canHarvest(LevelAccessor world);
 
         public NonNullList<ItemStack> harvestDropsAndReplant(ServerLevel world, Random rand, int harvestFortune);
 
@@ -157,7 +157,7 @@ public class CropHelper {
         }
 
         @Override
-        public boolean canHarvest(ILevel world) {
+        public boolean canHarvest(LevelAccessor world) {
             BlockState at = world.getBlockState(pos);
             if (!(at.getBlock() instanceof IGrowable)) return false;
             if (at.getBlock() instanceof StemBlock) return false;
@@ -189,12 +189,12 @@ public class CropHelper {
         }
 
         @Override
-        public boolean isValid(ILevel world) {
+        public boolean isValid(LevelAccessor world) {
             return wrapHarvestablePlant(world, getPos()) instanceof HarvestableWrapper;
         }
 
         @Override
-        public boolean canGrow(ILevel world) {
+        public boolean canGrow(LevelAccessor world) {
             BlockState at = world.getBlockState(pos);
             if (at.getBlock() instanceof IGrowable) {
                 if (((IGrowable) at.getBlock()).canGrow(world, pos, at, false)) {
@@ -208,7 +208,7 @@ public class CropHelper {
         }
 
         @Override
-        public boolean tryGrow(ILevel world, Random rand) {
+        public boolean tryGrow(LevelAccessor world, Random rand) {
             if (!(world instanceof ServerLevel)) {
                 return false;
             }
@@ -236,18 +236,18 @@ public class CropHelper {
         }
 
         @Override
-        public boolean isValid(ILevel world) {
+        public boolean isValid(LevelAccessor world) {
             return world.getBlockState(pos).getBlock() instanceof NetherWartBlock;
         }
 
         @Override
-        public boolean canGrow(ILevel world) {
+        public boolean canGrow(LevelAccessor world) {
             BlockState at = world.getBlockState(pos);
             return at.getBlock() instanceof NetherWartBlock && at.get(NetherWartBlock.AGE) < 3;
         }
 
         @Override
-        public boolean tryGrow(ILevel world, Random rand) {
+        public boolean tryGrow(LevelAccessor world, Random rand) {
             if (rand.nextBoolean()) {
                 BlockState current = world.getBlockState(pos);
                 return world.setBlockState(pos, current.with(NetherWartBlock.AGE, (Math.min(3, current.get(NetherWartBlock.AGE) + 1))), net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.DEFAULT);
@@ -256,7 +256,7 @@ public class CropHelper {
         }
 
         @Override
-        public boolean canHarvest(ILevel world) {
+        public boolean canHarvest(LevelAccessor world) {
             BlockState current = world.getBlockState(pos);
             return current.getBlock() instanceof NetherWartBlock && current.get(NetherWartBlock.AGE) >= 3;
         }
@@ -290,12 +290,12 @@ public class CropHelper {
         }
 
         @Override
-        public boolean canHarvest(ILevel world) {
+        public boolean canHarvest(LevelAccessor world) {
             return world.getBlockState(pos.up()).getBlock() instanceof CactusBlock;
         }
 
         @Override
-        public boolean isValid(ILevel world) {
+        public boolean isValid(LevelAccessor world) {
             return world.getBlockState(pos).getBlock() instanceof CactusBlock;
         }
 
@@ -314,7 +314,7 @@ public class CropHelper {
         }
 
         @Override
-        public boolean canGrow(ILevel world) {
+        public boolean canGrow(LevelAccessor world) {
             BlockPos cache = pos;
             for (int i = 1; i < 3; i++) {
                 cache = cache.up();
@@ -329,7 +329,7 @@ public class CropHelper {
         }
 
         @Override
-        public boolean tryGrow(ILevel world, Random rand) {
+        public boolean tryGrow(LevelAccessor world, Random rand) {
             BlockPos cache = pos;
             for (int i = 1; i < 3; i++) {
                 cache = cache.up();
@@ -367,7 +367,7 @@ public class CropHelper {
         }
 
         @Override
-        public boolean canHarvest(ILevel world) {
+        public boolean canHarvest(LevelAccessor world) {
             return world.getBlockState(pos.up()).getBlock() instanceof SugarCaneBlock;
         }
 
@@ -386,12 +386,12 @@ public class CropHelper {
         }
 
         @Override
-        public boolean isValid(ILevel world) {
+        public boolean isValid(LevelAccessor world) {
             return world.getBlockState(pos).getBlock() instanceof SugarCaneBlock;
         }
 
         @Override
-        public boolean canGrow(ILevel world) {
+        public boolean canGrow(LevelAccessor world) {
             BlockPos cache = pos;
             for (int i = 1; i < 3; i++) {
                 cache = cache.up();
@@ -406,7 +406,7 @@ public class CropHelper {
         }
 
         @Override
-        public boolean tryGrow(ILevel world, Random rand) {
+        public boolean tryGrow(LevelAccessor world, Random rand) {
             BlockPos cache = pos;
             for (int i = 1; i < 3; i++) {
                 cache = cache.up();
@@ -445,12 +445,12 @@ public class CropHelper {
         }
 
         @Override
-        public boolean isValid(ILevel world) {
+        public boolean isValid(LevelAccessor world) {
             return wrapPlant(world, this.pos) instanceof GrowableCropWrapper;
         }
 
         @Override
-        public boolean canGrow(ILevel world) {
+        public boolean canGrow(LevelAccessor world) {
             BlockState state = world.getBlockState(this.pos);
             if (state.getBlock() instanceof CropsBlock) {
                 return ((CropsBlock) state.getBlock()).canGrow(world, pos, state, false);
@@ -459,7 +459,7 @@ public class CropHelper {
         }
 
         @Override
-        public boolean tryGrow(ILevel world, Random rand) {
+        public boolean tryGrow(LevelAccessor world, Random rand) {
             BlockState state = world.getBlockState(this.pos);
             if (state.getBlock() instanceof CropsBlock) {
                 CropsBlock block = (CropsBlock) state.getBlock();
@@ -473,7 +473,7 @@ public class CropHelper {
         }
 
         @Override
-        public boolean canHarvest(ILevel world) {
+        public boolean canHarvest(LevelAccessor world) {
             BlockState state = world.getBlockState(this.pos);
             if (state.getBlock() instanceof CropsBlock) {
                 return !((CropsBlock) state.getBlock()).canGrow(world, pos, state, false);
@@ -525,12 +525,12 @@ public class CropHelper {
         }
 
         @Override
-        public boolean isValid(ILevel world) {
+        public boolean isValid(LevelAccessor world) {
             return wrapPlant(world, pos) instanceof GrowableWrapper;
         }
 
         @Override
-        public boolean canGrow(ILevel world) {
+        public boolean canGrow(LevelAccessor world) {
             BlockState at = world.getBlockState(pos);
             return at.getBlock() instanceof IGrowable && (
                     ((IGrowable) at.getBlock()).canGrow(world, pos, at, false) ||
@@ -538,7 +538,7 @@ public class CropHelper {
             );
         }
 
-        private boolean stemHasCrop(ILevel world, Block stemGrownBlock) {
+        private boolean stemHasCrop(LevelAccessor world, Block stemGrownBlock) {
             for (Direction enumfacing : Direction.Plane.HORIZONTAL) {
                 Block offset = world.getBlockState(pos.offset(enumfacing)).getBlock();
                 if (offset.equals(stemGrownBlock)) {
@@ -549,7 +549,7 @@ public class CropHelper {
         }
 
         @Override
-        public boolean tryGrow(ILevel world, Random rand) {
+        public boolean tryGrow(LevelAccessor world, Random rand) {
             BlockState at = world.getBlockState(pos);
             if (at.getBlock() instanceof IGrowable && world instanceof ServerLevel) {
                 if (((IGrowable) at.getBlock()).canGrow(world, pos, at, false)) {

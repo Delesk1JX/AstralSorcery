@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.client.util.Blending;
 import hellfirepvp.astralsorcery.common.event.EventFlags;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.DimensionRenderInfo;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.util.vector.Vector3f;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.world.level.Level;
@@ -40,7 +40,7 @@ public class ChainingSkyRenderer implements ISkyRenderHandler {
     @Override
     public void render(int ticks, float partialTicks, PoseStack renderStack, ClientLevel world, Minecraft mc) {
         EventFlags.SKY_RENDERING.executeWithFlag(() -> {
-            ResourceKey<Level> dim = world.getDimensionKey();
+            net.minecraft.resources.ResourceKey<Level> dim = world.getDimensionKey();
             if (world.func_239132_a_().func_241683_c_() == DimensionRenderInfo.FogType.NORMAL) {
                 if (RenderingConfig.CONFIG.dimensionsWithOnlyConstellationRendering.get().contains(dim.getLocation())) {
                     if (existingSkyRenderer != null) {

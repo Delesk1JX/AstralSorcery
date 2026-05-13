@@ -73,7 +73,7 @@ public enum Mods {
         return null;
     }
 
-    public boolean owns(IForgeRegistryEntry<?> entry) {
+    public boolean owns(RegistryObject<?> entry) {
         return this.isPresent() &&
                 entry.getRegistryName() != null &&
                 entry.getRegistryName().getNamespace().equals(this.modid);

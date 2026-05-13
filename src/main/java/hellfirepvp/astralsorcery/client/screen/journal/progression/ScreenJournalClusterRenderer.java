@@ -98,7 +98,7 @@ public class ScreenJournalClusterRenderer {
         if (frame.contains(mouseX, mouseY)) {
             for (Rectangle r : clickableNodes.keySet()) {
                 if (r.contains(mouseX, mouseY)) {
-                    ITextProperties name = clickableNodes.get(r).getName();
+                    Component name = clickableNodes.get(r).getName();
 
                     renderStack.push();
                     renderStack.translate(r.getX(), r.getY(), zLevel + 200);

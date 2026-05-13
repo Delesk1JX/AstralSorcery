@@ -22,7 +22,7 @@ import hellfirepvp.astralsorcery.common.item.wand.WandInteractable;
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
 import hellfirepvp.astralsorcery.common.lib.SoundsAS;
 import hellfirepvp.astralsorcery.common.lib.StructureTypesAS;
-import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.network.play.server.PktPlayEffect;
 import hellfirepvp.astralsorcery.common.structure.types.StructureType;
@@ -100,7 +100,7 @@ public class TileInfuser extends TileEntityTick implements WandInteractable {
     private Object clientCraftSound = null;
 
     public TileInfuser() {
-        super(BlockEntityTypesAS.INFUSER);
+        super(TileEntityTypesAS.INFUSER);
         this.inventory = new TileInventory(this, () -> 1);
     }
 

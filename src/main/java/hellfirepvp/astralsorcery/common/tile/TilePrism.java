@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.tile;
 
 import hellfirepvp.astralsorcery.common.block.tile.BlockPrism;
 import hellfirepvp.astralsorcery.common.item.lens.LensColorType;
-import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import hellfirepvp.astralsorcery.common.starlight.transmission.IPrismTransmissionNode;
 import hellfirepvp.astralsorcery.common.tile.network.StarlightTransmissionPrism;
 import net.minecraft.world.level.block.state.BlockState;
@@ -33,7 +33,7 @@ import javax.annotation.Nullable;
 public class TilePrism extends TileLens {
 
     public TilePrism() {
-        super(BlockEntityTypesAS.PRISM);
+        super(TileEntityTypesAS.PRISM);
     }
 
     @Override

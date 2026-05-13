@@ -22,7 +22,7 @@ import net.minecraft.world.level.block.BlockRenderType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayer;
-import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.particle.DiggingParticle;
 import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.client.renderer.*;
@@ -41,7 +41,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.Direction;
-import net.minecraft.util.IReorderingProcessor;
+import net.minecraft.util.FormattedText;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
@@ -252,13 +252,13 @@ public class RenderingUtils {
         }
     }
 
-    public static int renderInWorldText(ITextProperties text, Color color, Vector3 at, PoseStack renderStack, float pTicks, boolean facePlayer) {
+    public static int renderInWorldText(Component text, Color color, Vector3 at, PoseStack renderStack, float pTicks, boolean facePlayer) {
         float scale = (float) Minecraft.getInstance().getMainWindow().getGuiScaleFactor();
         return renderInWorldText(text, color, 0.02F * (Minecraft.getInstance().gameSettings.guiScale / scale), at, renderStack, pTicks, facePlayer);
     }
 
-    public static int renderInWorldText(ITextProperties text, Color color, float scale, Vector3 at, PoseStack renderStack, float pTicks, boolean facePlayer) {
-        FontRenderer fr = Minecraft.getInstance().fontRenderer;
+    public static int renderInWorldText(Component text, Color color, float scale, Vector3 at, PoseStack renderStack, float pTicks, boolean facePlayer) {
+        Font fr = Minecraft.getInstance().fontRenderer;
 
         renderStack.push();
         renderStack.translate(at.getX(), at.getY(), at.getZ());
@@ -276,7 +276,7 @@ public class RenderingUtils {
         Matrix4f matr = renderStack.getLast().getMatrix();
         int length = fr.getStringPropertyWidth(text);
         MultiBufferSource.Impl buffers = MultiBufferSource.getImpl(buffer);
-        IReorderingProcessor processedText = LanguageMap.getInstance().func_241870_a(text);
+        FormattedText processedText = LanguageMap.getInstance().func_241870_a(text);
         int drawnLength = fr.func_238416_a_(processedText, -(length / 2F), 0, color.getRGB(), false, matr, buffers, true, 0, LightmapUtil.getPackedFullbrightCoords());
         buffers.finish();
 
@@ -295,7 +295,7 @@ public class RenderingUtils {
     public static void renderItemStackGUI(PoseStack renderStack, ItemStack stack, @Nullable String alternativeText) {
         renderStack.push();
         renderStack.translate(0, 0, 100F);
-        FontRenderer font = stack.getItem().getFontRenderer(stack);
+        Font font = stack.getItem().getFont(stack);
         if (font == null) {
             font = Minecraft.getInstance().fontRenderer;
         }
@@ -380,7 +380,7 @@ public class RenderingUtils {
 
     //TODO wait for mojang to do their work and actually port this method so i don't have to do this myself
     @Deprecated
-    public static void mcdefault_renderItemOverlayIntoGUI(FontRenderer fr, PoseStack renderStack, ItemStack stack, float pTicks, @Nullable String text) {
+    public static void mcdefault_renderItemOverlayIntoGUI(Font fr, PoseStack renderStack, ItemStack stack, float pTicks, @Nullable String text) {
         if (stack.isEmpty()) {
             return;
         }
@@ -390,7 +390,7 @@ public class RenderingUtils {
         renderStack.push();
         renderStack.translate(0, 0, 100F);
         if (stack.getCount() > 1 || text != null) {
-            ITextProperties display = new Component.literal(ObjectUtils.firstNonNull(text, String.valueOf(stack.getCount())));
+            Component display = new Component.literal(ObjectUtils.firstNonNull(text, String.valueOf(stack.getCount())));
             int length = fr.getStringPropertyWidth(display);
 
             renderStack.push();

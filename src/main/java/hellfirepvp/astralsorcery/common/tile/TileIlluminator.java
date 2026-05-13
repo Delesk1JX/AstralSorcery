@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.common.block.tile.BlockFlareLight;
 import hellfirepvp.astralsorcery.common.entity.EntityFlare;
 import hellfirepvp.astralsorcery.common.item.wand.ItemIlluminationWand;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
-import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import hellfirepvp.astralsorcery.common.tile.base.TileEntityTick;
 import hellfirepvp.astralsorcery.common.util.ColorUtils;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
@@ -61,7 +61,7 @@ public class TileIlluminator extends TileEntityTick {
     private DyeColor color = DyeColor.YELLOW;
 
     public TileIlluminator() {
-        super(BlockEntityTypesAS.ILLUMINATOR);
+        super(TileEntityTypesAS.ILLUMINATOR);
     }
 
     @Override

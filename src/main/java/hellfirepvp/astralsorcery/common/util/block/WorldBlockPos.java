@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.object.TransformReference;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.world.level.Level;
@@ -32,14 +32,14 @@ import java.util.function.Function;
  */
 public class WorldBlockPos extends BlockPos {
 
-    private final TransformReference<ResourceKey<Level>, Level> worldReference;
+    private final TransformReference<net.minecraft.resources.ResourceKey<Level>, Level> worldReference;
 
-    private WorldBlockPos(TransformReference<ResourceKey<Level>, Level> worldReference, BlockPos pos) {
+    private WorldBlockPos(TransformReference<net.minecraft.resources.ResourceKey<Level>, Level> worldReference, BlockPos pos) {
         super(pos);
         this.worldReference = worldReference;
     }
 
-    private WorldBlockPos(ResourceKey<Level> type, BlockPos pos, Function<ResourceKey<Level>, Level> worldProvider) {
+    private WorldBlockPos(net.minecraft.resources.ResourceKey<Level> type, BlockPos pos, Function<net.minecraft.resources.ResourceKey<Level>, Level> worldProvider) {
         super(pos);
         this.worldReference = new TransformReference<>(type, worldProvider);
     }
@@ -55,7 +55,7 @@ public class WorldBlockPos extends BlockPos {
         return new WorldBlockPos(tile.getWorld().getDimensionKey(), tile.getPos(), type -> tile.getWorld());
     }
 
-    public ResourceKey<Level> getWorldKey() {
+    public net.minecraft.resources.ResourceKey<Level> getWorldKey() {
         return this.worldReference.getReference();
     }
 

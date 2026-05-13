@@ -24,12 +24,12 @@ import net.neoforged.neoforge.items.IItemHandler;
  */
 public class BlockTransmutationContext extends RecipeCraftingContext<BlockTransmutation, IItemHandler> {
 
-    private final ILevel world;
+    private final LevelAccessor world;
     private final BlockPos pos;
     private final BlockState state;
     private final IWeakConstellation constellation;
 
-    public BlockTransmutationContext(ILevel world, BlockPos pos, BlockState state, IWeakConstellation constellation) {
+    public BlockTransmutationContext(LevelAccessor world, BlockPos pos, BlockState state, IWeakConstellation constellation) {
         this.world = world;
         this.pos = pos;
         this.state = state;

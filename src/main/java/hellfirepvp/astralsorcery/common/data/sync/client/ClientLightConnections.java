@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.data.sync.base.ClientDataReader;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.registry.Registry;
@@ -35,15 +35,15 @@ import java.util.Set;
  */
 public class ClientLightConnections extends ClientData<ClientLightConnections> {
 
-    private final Map<ResourceKey<Level>, Map<BlockPos, Set<BlockPos>>> clientPosBuffer = new HashMap<>();
+    private final Map<net.minecraft.resources.ResourceKey<Level>, Map<BlockPos, Set<BlockPos>>> clientPosBuffer = new HashMap<>();
 
     @Nonnull
-    public Map<BlockPos, Set<BlockPos>> getClientConnections(ResourceKey<Level> dim) {
+    public Map<BlockPos, Set<BlockPos>> getClientConnections(net.minecraft.resources.ResourceKey<Level> dim) {
         return this.clientPosBuffer.getOrDefault(dim, new HashMap<>());
     }
 
     @Override
-    public void clear(ResourceKey<Level> dim) {
+    public void clear(net.minecraft.resources.ResourceKey<Level> dim) {
         this.clientPosBuffer.remove(dim);
     }
 
@@ -59,7 +59,7 @@ public class ClientLightConnections extends ClientData<ClientLightConnections> {
             cl.clientPosBuffer.clear();
 
             for (String dimKey : compound.keySet()) {
-                ResourceKey<Level> dim = ResourceKey.getOrCreateKey(Registry.WORLD_KEY, new ResourceLocation(dimKey));
+                net.minecraft.resources.ResourceKey<Level> dim = net.minecraft.resources.ResourceKey.getOrCreateKey(Registry.WORLD_KEY, new ResourceLocation(dimKey));
 
                 Map<BlockPos, Set<BlockPos>> posMap = new HashMap<>();
                 ListTag list = compound.getList(dimKey, net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);
@@ -81,7 +81,7 @@ public class ClientLightConnections extends ClientData<ClientLightConnections> {
             Set<String> clearedDimensions = new HashSet<>();
             for (Tag dimKeyNBT : compound.getList("clear", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_STRING)) {
                 String dimKey = dimKeyNBT.getString();
-                ResourceKey<Level> dim = ResourceKey.getOrCreateKey(Registry.WORLD_KEY, new ResourceLocation(dimKey));
+                net.minecraft.resources.ResourceKey<Level> dim = net.minecraft.resources.ResourceKey.getOrCreateKey(Registry.WORLD_KEY, new ResourceLocation(dimKey));
                 cl.clientPosBuffer.remove(dim);
 
                 clearedDimensions.add(dimKey);
@@ -91,7 +91,7 @@ public class ClientLightConnections extends ClientData<ClientLightConnections> {
                 if (clearedDimensions.contains(dimKey)) {
                     continue;
                 }
-                ResourceKey<Level> dim = ResourceKey.getOrCreateKey(Registry.WORLD_KEY, new ResourceLocation(dimKey));
+                net.minecraft.resources.ResourceKey<Level> dim = net.minecraft.resources.ResourceKey.getOrCreateKey(Registry.WORLD_KEY, new ResourceLocation(dimKey));
 
                 Map<BlockPos, Set<BlockPos>> posMap = cl.clientPosBuffer.computeIfAbsent(dim, d -> new HashMap<>());
 

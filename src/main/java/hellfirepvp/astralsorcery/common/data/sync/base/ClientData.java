@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.data.sync.base;
 
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.Level;
 
 /**
@@ -20,7 +20,7 @@ import net.minecraft.world.level.Level;
  */
 public abstract class ClientData<C extends ClientData<C>> {
 
-    public abstract void clear(ResourceKey<Level> dim);
+    public abstract void clear(net.minecraft.resources.ResourceKey<Level> dim);
 
     public abstract void clearClient();
 }

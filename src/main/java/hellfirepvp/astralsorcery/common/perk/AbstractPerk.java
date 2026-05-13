@@ -211,7 +211,7 @@ public class AbstractPerk implements ModifierSource {
 
     public IFormattableTextComponent getName() {
         return new Component.translatable(this.unlocalizedKey + ".name")
-                .withStyle(this.getCategory().getTextFormatting());
+                .withStyle(this.getCategory().getChatFormatting());
     }
 
     @Nonnull
@@ -354,14 +354,14 @@ public class AbstractPerk implements ModifierSource {
     public static class PerkCategory {
 
         private final IFormattableTextComponent name;
-        private final TextFormatting color;
+        private final ChatFormatting color;
 
-        public PerkCategory(@Nonnull String unlocName, @Nonnull TextFormatting color) {
+        public PerkCategory(@Nonnull String unlocName, @Nonnull ChatFormatting color) {
             this.name = new Component.translatable("perk.category.astralsorcery." + unlocName + ".name");
             this.color = color;
         }
 
-        public TextFormatting getTextFormatting() {
+        public ChatFormatting getChatFormatting() {
             return color;
         }
 

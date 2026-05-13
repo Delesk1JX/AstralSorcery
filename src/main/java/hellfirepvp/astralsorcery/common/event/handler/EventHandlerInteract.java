@@ -67,7 +67,7 @@ public class EventHandlerInteract {
         if (event instanceof BlockEvent.EntityMultiPlaceEvent) {
             return; //Handled 1 method below.
         }
-        ILevel world = event.getWorld();
+        LevelAccessor world = event.getWorld();
         if (world.isRemote() || !(event.getEntity() instanceof Player)) {
             return;
         }
@@ -75,7 +75,7 @@ public class EventHandlerInteract {
     }
 
     private static void onMultiPlace(BlockEvent.EntityMultiPlaceEvent event) {
-        ILevel world = event.getWorld();
+        LevelAccessor world = event.getWorld();
         if (world.isRemote() || !(event.getEntity() instanceof Player)) {
             return;
         }
@@ -85,7 +85,7 @@ public class EventHandlerInteract {
         }
     }
 
-    private static void handleOwnerPlacement(ILevel world, BlockPos pos, Player placer) {
+    private static void handleOwnerPlacement(LevelAccessor world, BlockPos pos, Player placer) {
         TileOwned owned = MiscUtils.getTileAt(world, pos, TileOwned.class, true);
         if (owned != null) {
             owned.setOwner(placer);

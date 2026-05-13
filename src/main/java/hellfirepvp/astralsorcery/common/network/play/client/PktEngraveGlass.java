@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.tile.TileRefractionTable;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.registry.Registry;
@@ -36,13 +36,13 @@ import java.util.List;
  */
 public class PktEngraveGlass extends ASPacket<PktEngraveGlass> {
 
-    private ResourceKey<Level> dim;
+    private net.minecraft.resources.ResourceKey<Level> dim;
     private BlockPos pos;
     private List<DrawnConstellation> constellations = new LinkedList<>();
 
     public PktEngraveGlass() {}
 
-    public PktEngraveGlass(ResourceKey<Level> dim, BlockPos pos, List<DrawnConstellation> constellations) {
+    public PktEngraveGlass(net.minecraft.resources.ResourceKey<Level> dim, BlockPos pos, List<DrawnConstellation> constellations) {
         this.dim = dim;
         this.pos = pos;
         this.constellations = constellations;

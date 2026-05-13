@@ -58,7 +58,7 @@ public class ResearchNode {
         this.unlocName = unlocName;
     }
 
-    public ResearchNode(IItemProvider item, String unlocName, float renderPosX, float renderPosZ) {
+    public ResearchNode(ItemLike item, String unlocName, float renderPosX, float renderPosZ) {
         this(new ItemStack(item), unlocName, renderPosX, renderPosZ);
     }
 
@@ -67,7 +67,7 @@ public class ResearchNode {
         this.renderItemStacks = new ItemStack[] { itemStack };
     }
 
-    public ResearchNode(IItemProvider[] items, String unlocName, float renderPosX, float renderPosZ) {
+    public ResearchNode(ItemLike[] items, String unlocName, float renderPosX, float renderPosZ) {
         this(NodeRenderType.ITEMSTACK, unlocName, renderPosX, renderPosZ);
         this.renderItemStacks = new ItemStack[items.length];
         for (int i = 0; i < items.length; i++) {
@@ -122,7 +122,7 @@ public class ResearchNode {
         return this;
     }
 
-    public ResearchNode addTomeLookup(IItemProvider item, int nodePage, ResearchProgression progression) {
+    public ResearchNode addTomeLookup(ItemLike item, int nodePage, ResearchProgression progression) {
         BookLookupRegistry.registerItemLookup(item, this, nodePage, progression);
         return this;
     }

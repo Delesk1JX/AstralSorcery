@@ -22,7 +22,7 @@ import hellfirepvp.astralsorcery.common.item.base.IConstellationFocus;
 import hellfirepvp.astralsorcery.common.item.wand.WandInteractable;
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
 import hellfirepvp.astralsorcery.common.lib.SoundsAS;
-import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.network.play.server.PktPlayEffect;
 import hellfirepvp.astralsorcery.common.structure.types.StructureType;
@@ -51,7 +51,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
-import net.minecraft.world.WorldGenLevel;
+import net.minecraft.world.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -89,7 +89,7 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
     private Object clientWaitSound = null;
 
     public TileAltar() {
-        super(BlockEntityTypesAS.ALTAR);
+        super(TileEntityTypesAS.ALTAR);
         this.inventory = new TileInventoryFiltered(this, () -> 25);
     }
 
@@ -306,8 +306,8 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
             this.collectStarlight(heightAmount * altarTier * 60F, AltarCollectionCategory.HEIGHT);
 
             if (posDistribution == -1) {
-                if (world instanceof WorldGenLevel) {
-                    posDistribution = SkyCollectionHelper.getSkyNoiseDistribution((WorldGenLevel) world, pos);
+                if (world instanceof ServerLevel) {
+                    posDistribution = SkyCollectionHelper.getSkyNoiseDistribution((ServerLevel) world, pos);
                 } else {
                     posDistribution = 0.3F;
                 }

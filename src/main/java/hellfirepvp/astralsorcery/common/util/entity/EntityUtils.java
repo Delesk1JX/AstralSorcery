@@ -241,7 +241,7 @@ public class EntityUtils {
     }
 
     @Nullable
-    public static <T extends Entity> T getClosestEntity(ILevel world, Class<T> type, AABB box, Vector3 closestTo) {
+    public static <T extends Entity> T getClosestEntity(LevelAccessor world, Class<T> type, AABB box, Vector3 closestTo) {
         List<T> entities = world.getEntitiesWithinAABB(type, box, Entity::isAlive);
         return selectClosest(entities, closestTo::distanceSquared);
     }

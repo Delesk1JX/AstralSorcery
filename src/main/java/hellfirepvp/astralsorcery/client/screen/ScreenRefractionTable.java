@@ -28,7 +28,7 @@ import hellfirepvp.astralsorcery.common.network.play.client.PktEngraveGlass;
 import hellfirepvp.astralsorcery.common.tile.TileRefractionTable;
 import hellfirepvp.astralsorcery.common.util.world.WorldSeedCache;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.ItemStack;
@@ -85,8 +85,8 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
             this.dragging = null;
         }
 
-        List<ITextProperties> tooltip = new ArrayList<>();
-        FontRenderer tooltipRenderer = Minecraft.getInstance().fontRenderer;
+        List<Component> tooltip = new ArrayList<>();
+        Font tooltipRenderer = Minecraft.getInstance().fontRenderer;
 
         tooltipRenderer = this.renderTileItems(renderStack, mouseX, mouseY, tooltip, tooltipRenderer);
         this.renderConstellationOptions(renderStack, mouseX, mouseY, tooltip);
@@ -198,7 +198,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         RenderSystem.disableBlend();
     }
 
-    private void renderDrawnConstellations(PoseStack renderStack, int mouseX, int mouseY, List<ITextProperties> tooltip) {
+    private void renderDrawnConstellations(PoseStack renderStack, int mouseX, int mouseY, List<Component> tooltip) {
         ItemStack glass = this.getTile().getGlassStack();
         if (glass.isEmpty()) {
             return;
@@ -230,7 +230,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         }
     }
 
-    private void renderConstellationOptions(PoseStack renderStack, int mouseX, int mouseY, List<ITextProperties> tooltip) {
+    private void renderConstellationOptions(PoseStack renderStack, int mouseX, int mouseY, List<Component> tooltip) {
         ItemStack glass = this.getTile().getGlassStack();
         if (glass.isEmpty()) {
             return;
@@ -274,7 +274,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         }
     }
 
-    private FontRenderer renderTileItems(PoseStack renderStack, int mouseX, int mouseY, List<ITextProperties> tooltip, FontRenderer tooltipRenderer) {
+    private Font renderTileItems(PoseStack renderStack, int mouseX, int mouseY, List<Component> tooltip, Font tooltipRenderer) {
         this.setBlitOffset(100);
 
         ItemStack input = this.getTile().getInputStack();
@@ -286,7 +286,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
             renderStack.pop();
 
             if (itemRct.contains(mouseX, mouseY)) {
-                FontRenderer custom = input.getItem().getFontRenderer(input);
+                Font custom = input.getItem().getFont(input);
                 if (custom != null) {
                     tooltipRenderer = custom;
                 }
@@ -303,7 +303,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
             renderStack.pop();
 
             if (itemRct.contains(mouseX, mouseY)) {
-                FontRenderer custom = glass.getItem().getFontRenderer(glass);
+                Font custom = glass.getItem().getFont(glass);
                 if (custom != null) {
                     tooltipRenderer = custom;
                 }

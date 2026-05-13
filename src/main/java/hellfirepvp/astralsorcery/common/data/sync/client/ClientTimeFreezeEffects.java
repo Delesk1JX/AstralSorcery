@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.common.util.time.TimeStopEffectHelper;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.level.Level;
@@ -33,7 +33,7 @@ import java.util.*;
  */
 public class ClientTimeFreezeEffects extends ClientData<ClientTimeFreezeEffects> {
 
-    private final Map<ResourceKey<Level>, List<TimeStopEffectHelper>> clientActiveFreezeZones = new HashMap<>();
+    private final Map<net.minecraft.resources.ResourceKey<Level>, List<TimeStopEffectHelper>> clientActiveFreezeZones = new HashMap<>();
 
     @Nonnull
     public List<TimeStopEffectHelper> getTimeStopEffects(Level world) {
@@ -41,12 +41,12 @@ public class ClientTimeFreezeEffects extends ClientData<ClientTimeFreezeEffects>
     }
 
     @Nonnull
-    public List<TimeStopEffectHelper> getTimeStopEffects(ResourceKey<Level> dim) {
+    public List<TimeStopEffectHelper> getTimeStopEffects(net.minecraft.resources.ResourceKey<Level> dim) {
         return clientActiveFreezeZones.getOrDefault(dim, Collections.emptyList());
     }
 
     private void applyChange(DataTimeFreezeEffects.ServerSyncAction action) {
-        ResourceKey<Level> worldKey = action.getDimKey();
+        net.minecraft.resources.ResourceKey<Level> worldKey = action.getDimKey();
         switch (action.getType()) {
             case ADD:
                 List<TimeStopEffectHelper> zones = clientActiveFreezeZones.computeIfAbsent(worldKey, (id) -> new LinkedList<>());
@@ -66,7 +66,7 @@ public class ClientTimeFreezeEffects extends ClientData<ClientTimeFreezeEffects>
     }
 
     @Override
-    public void clear(ResourceKey<Level> dim) {
+    public void clear(net.minecraft.resources.ResourceKey<Level> dim) {
         this.clientActiveFreezeZones.remove(dim);
     }
 
@@ -83,7 +83,7 @@ public class ClientTimeFreezeEffects extends ClientData<ClientTimeFreezeEffects>
 
             CompoundTag dimTag = compound.getCompound("dimTypes");
             for (String dimKey : dimTag.keySet()) {
-                ResourceKey<Level> dim = ResourceKey.getOrCreateKey(Registry.WORLD_KEY, new ResourceLocation(dimKey));
+                net.minecraft.resources.ResourceKey<Level> dim = net.minecraft.resources.ResourceKey.getOrCreateKey(Registry.WORLD_KEY, new ResourceLocation(dimKey));
 
                 List<TimeStopEffectHelper> effects = new LinkedList<>();
                 ListTag listEffects = dimTag.getList(dimKey, net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_COMPOUND);

@@ -115,7 +115,7 @@ public class DynamicEnchantmentHelper {
         }
 
         for (DynamicEnchantment mod : context) {
-            if (mod.getType() == Dynamicnet.minecraft.world.item.enchantment.Enchantment.ADD_TO_SPECIFIC) {
+            if (mod.getType() == DynamicEnchantmentType.ADD_TO_SPECIFIC) {
                 Enchantment ench = mod.getEnchantment();
                 if (ench == null || !AmuletEnchantmentRegistry.canBeInfluenced(ench)) {
                     continue;
@@ -153,7 +153,7 @@ public class DynamicEnchantmentHelper {
         }
 
         for (DynamicEnchantment mod : context) {
-            if (mod.getType() == Dynamicnet.minecraft.world.item.enchantment.Enchantment.ADD_TO_SPECIFIC) {
+            if (mod.getType() == DynamicEnchantmentType.ADD_TO_SPECIFIC) {
                 Enchantment ench = mod.getEnchantment();
                 if (ench == null || !AmuletEnchantmentRegistry.canBeInfluenced(ench)) {
                     continue;

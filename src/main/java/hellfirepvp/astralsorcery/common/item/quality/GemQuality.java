@@ -31,10 +31,10 @@ public enum GemQuality {
     GLEAMING(ChatFormatting.GOLD,  0.8F),
     FLAWLESS(ChatFormatting.GOLD,  1.0F);
 
-    private final TextFormatting color;
+    private final ChatFormatting color;
     private final float degree;
 
-    GemQuality(TextFormatting color, float degree) {
+    GemQuality(ChatFormatting color, float degree) {
         this.color = color;
         this.degree = degree;
     }

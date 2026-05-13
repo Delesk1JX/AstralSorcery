@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.world.placement;
 
 import hellfirepvp.astralsorcery.common.world.placement.config.WorldFilterConfig;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.gen.feature.WorldDecoratingHelper;
@@ -34,11 +34,11 @@ public class WorldFilteredPlacement extends Placement<WorldFilterConfig> {
         super(WorldFilterConfig.CODEC);
     }
 
-    public ConfiguredPlacement<WorldFilterConfig> inWorlds(boolean ignoreFilter, List<ResourceKey<Level>> worlds) {
+    public ConfiguredPlacement<WorldFilterConfig> inWorlds(boolean ignoreFilter, List<net.minecraft.resources.ResourceKey<Level>> worlds) {
         return inWorlds(() -> ignoreFilter, () -> worlds);
     }
 
-    public ConfiguredPlacement<WorldFilterConfig> inWorlds(Supplier<Boolean> ignoreFilter, Supplier<List<ResourceKey<Level>>> worlds) {
+    public ConfiguredPlacement<WorldFilterConfig> inWorlds(Supplier<Boolean> ignoreFilter, Supplier<List<net.minecraft.resources.ResourceKey<Level>>> worlds) {
         return this.configure(new WorldFilterConfig(ignoreFilter, worlds));
     }
 

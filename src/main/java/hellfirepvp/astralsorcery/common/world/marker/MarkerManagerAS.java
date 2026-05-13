@@ -65,7 +65,7 @@ public class MarkerManagerAS {
         }
     }
 
-    private static void makeCollectorCrystal(ILevel world, BlockPos pos, Random rand, MutableBoundingBox box) {
+    private static void makeCollectorCrystal(LevelAccessor world, BlockPos pos, Random rand, MutableBoundingBox box) {
         if (box.isVecInside(pos) && world.getBlockState(pos).getBlock() != BlocksAS.ROCK_COLLECTOR_CRYSTAL) {
             world.setBlockState(pos, BlocksAS.ROCK_COLLECTOR_CRYSTAL.getDefaultState(), net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.BLOCK_UPDATE);
 
@@ -78,7 +78,7 @@ public class MarkerManagerAS {
         }
     }
 
-    private static void makeChest(ILevel world, BlockPos pos, ResourceLocation tableName, Random rand, MutableBoundingBox box) {
+    private static void makeChest(LevelAccessor world, BlockPos pos, ResourceLocation tableName, Random rand, MutableBoundingBox box) {
         if (box.isVecInside(pos) && world.getBlockState(pos).getBlock() != Blocks.CHEST) {
             BlockState chest = StructurePiece.correctFacing(world, pos, Blocks.CHEST.getDefaultState());
 

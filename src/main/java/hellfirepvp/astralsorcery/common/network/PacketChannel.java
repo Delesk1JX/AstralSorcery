@@ -20,7 +20,7 @@ import hellfirepvp.astralsorcery.common.network.login.server.PktLoginSyncPerkInf
 import hellfirepvp.astralsorcery.common.network.play.client.*;
 import hellfirepvp.astralsorcery.common.network.play.server.*;
 import hellfirepvp.observerlib.common.util.RegistryUtil;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.core.Vec3i;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.level.Level;
@@ -125,7 +125,7 @@ public class PacketChannel {
         return pointFromPos(world.getDimensionKey(), pos, range);
     }
 
-    public static PacketDistributor.TargetPoint pointFromPos(ResourceKey<Level> world, net.minecraft.core.Vec3i pos, double range) {
+    public static PacketDistributor.TargetPoint pointFromPos(net.minecraft.resources.ResourceKey<Level> world, net.minecraft.core.Vec3i pos, double range) {
         return new PacketDistributor.TargetPoint(pos.getX(), pos.getY(), pos.getZ(), range, world);
     }
 }

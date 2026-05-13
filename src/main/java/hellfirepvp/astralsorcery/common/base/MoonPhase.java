@@ -30,7 +30,7 @@ public enum MoonPhase {
     FULL, WANING_3_4, WANING_1_2, WANING_1_4,
     NEW, WAXING_1_4, WAXING_1_2, WAXING_3_4;
 
-    public static MoonPhase fromWorld(ILevel world) {
+    public static MoonPhase fromWorld(LevelAccessor world) {
         return MiscUtils.getEnumEntry(MoonPhase.class, world.getDimensionType().getMoonPhase(world.func_241851_ab()));
     }
 

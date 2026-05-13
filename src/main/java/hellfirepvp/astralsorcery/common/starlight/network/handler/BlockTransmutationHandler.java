@@ -122,7 +122,7 @@ public class BlockTransmutationHandler implements StarlightNetworkRegistry.IStar
             return this.accumulatedStarlight >= this.recipe.getStarlightRequired();
         }
 
-        private boolean finish(ILevel world, BlockPos pos) {
+        private boolean finish(LevelAccessor world, BlockPos pos) {
             BlockState out = this.recipe.getOutput();
             if (world.setBlockState(pos, out, net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.DEFAULT_AND_RERENDER)) {
 

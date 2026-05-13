@@ -16,7 +16,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.IntTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 
@@ -31,16 +31,16 @@ import java.util.*;
  */
 public class DataTimeFreezeEntities extends AbstractData {
 
-    private final Map<ResourceKey<Level>, Set<Integer>> serverActiveEntityFreeze = new HashMap<>();
+    private final Map<net.minecraft.resources.ResourceKey<Level>, Set<Integer>> serverActiveEntityFreeze = new HashMap<>();
 
-    private final Set<ResourceKey<Level>> serverSyncTypes = new HashSet<>();
+    private final Set<net.minecraft.resources.ResourceKey<Level>> serverSyncTypes = new HashSet<>();
 
     private DataTimeFreezeEntities(ResourceLocation key) {
         super(key);
     }
 
     public void freezeEntity(Entity e) {
-        ResourceKey<Level> dim = e.level.getDimensionKey();
+        net.minecraft.resources.ResourceKey<Level> dim = e.level.getDimensionKey();
         if (this.serverActiveEntityFreeze.computeIfAbsent(dim, dimType -> new HashSet<>()).add(e.getEntityId())) {
             this.serverSyncTypes.add(dim);
             this.markDirty();
@@ -48,7 +48,7 @@ public class DataTimeFreezeEntities extends AbstractData {
     }
 
     public void unfreezeEntity(Entity e) {
-        ResourceKey<Level> dim = e.level.getDimensionKey();
+        net.minecraft.resources.ResourceKey<Level> dim = e.level.getDimensionKey();
         if (this.serverActiveEntityFreeze.getOrDefault(dim, Collections.emptySet()).remove(e.getEntityId())) {
             this.serverSyncTypes.add(dim);
             this.markDirty();
@@ -56,12 +56,12 @@ public class DataTimeFreezeEntities extends AbstractData {
     }
 
     public boolean isFrozen(Entity e) {
-        ResourceKey<Level> dim = e.level.getDimensionKey();
+        net.minecraft.resources.ResourceKey<Level> dim = e.level.getDimensionKey();
         return this.serverActiveEntityFreeze.getOrDefault(dim, Collections.emptySet()).contains(e.getEntityId());
     }
 
     @Override
-    public void clear(ResourceKey<Level> dimType) {
+    public void clear(net.minecraft.resources.ResourceKey<Level> dimType) {
         this.serverActiveEntityFreeze.remove(dimType);
     }
 
@@ -78,7 +78,7 @@ public class DataTimeFreezeEntities extends AbstractData {
 
     @Override
     public void writeDiffDataToPacket(CompoundTag compound) {
-        Map<ResourceKey<Level>, Set<Integer>> entities = new HashMap<>();
+        Map<net.minecraft.resources.ResourceKey<Level>, Set<Integer>> entities = new HashMap<>();
         this.serverSyncTypes.forEach(type -> {
             entities.put(type, this.serverActiveEntityFreeze.getOrDefault(type, new HashSet<>()));
         });
@@ -86,7 +86,7 @@ public class DataTimeFreezeEntities extends AbstractData {
         this.serverSyncTypes.clear();
     }
 
-    private void writeEntityInformation(CompoundTag out, Map<ResourceKey<Level>, Set<Integer>> entities) {
+    private void writeEntityInformation(CompoundTag out, Map<net.minecraft.resources.ResourceKey<Level>, Set<Integer>> entities) {
         CompoundTag dimTag = new CompoundTag();
         entities.forEach((dim, entityIds) -> {
             ListTag nbtEntities = new ListTag();

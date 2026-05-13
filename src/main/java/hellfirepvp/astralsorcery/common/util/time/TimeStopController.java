@@ -17,7 +17,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.world.entity.boss.dragon.phase.PhaseType;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;
@@ -37,7 +37,7 @@ import java.util.*;
  */
 public class TimeStopController implements ITickHandler {
 
-    private static final Map<ResourceKey<Level>, List<TimeStopZone>> activeTimeStopZones = new HashMap<>();
+    private static final Map<net.minecraft.resources.ResourceKey<Level>, List<TimeStopZone>> activeTimeStopZones = new HashMap<>();
 
     public static final TimeStopController INSTANCE = new TimeStopController();
 
@@ -84,7 +84,7 @@ public class TimeStopController implements ITickHandler {
             return;
         }
 
-        ResourceKey<Level> dimKey = world.getDimensionKey();
+        net.minecraft.resources.ResourceKey<Level> dimKey = world.getDimensionKey();
         for (TimeStopZone stop : activeTimeStopZones.getOrDefault(dimKey, Collections.emptyList())) {
             stop.stopEffect();
         }
@@ -139,7 +139,7 @@ public class TimeStopController implements ITickHandler {
 
     @Override
     public void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
-        for (Map.Entry<ResourceKey<Level>, List<TimeStopZone>> zoneMap : activeTimeStopZones.entrySet()) {
+        for (Map.Entry<net.minecraft.resources.ResourceKey<Level>, List<TimeStopZone>> zoneMap : activeTimeStopZones.entrySet()) {
             Iterator<TimeStopZone> iterator = zoneMap.getValue().iterator();
             while (iterator.hasNext()) {
                 TimeStopZone zone = iterator.next();
@@ -169,8 +169,8 @@ public class TimeStopController implements ITickHandler {
     }
 
     @Override
-    public boolean canFire(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
-        return phase.equals(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.START);
+    public boolean canFire(net.neoforged.neoforge.event.tick.net.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
+        return phase.equals(net.neoforged.neoforge.event.tick.net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.START);
     }
 
     @Override

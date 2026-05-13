@@ -12,7 +12,7 @@ import com.google.common.collect.Lists;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import net.minecraft.network.chat.Component;
 import static net.minecraft.network.chat.Component.translatable;
-import net.neoforged.neoforge.common.IExtensibleEnum;
+import net.neoforged.neoforge.common.Enum;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -26,7 +26,7 @@ import java.util.function.Consumer;
  * Created by HellFirePvP
  * Date: 10.08.2016 / 13:38
  */
-public enum ResearchProgression implements IExtensibleEnum {
+public enum ResearchProgression implements Enum {
 
     DISCOVERY(ProgressionTier.DISCOVERY),
     BASIC_CRAFT(ProgressionTier.BASIC_CRAFT, DISCOVERY),

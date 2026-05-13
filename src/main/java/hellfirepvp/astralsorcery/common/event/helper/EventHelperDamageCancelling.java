@@ -44,7 +44,7 @@ public class EventHelperDamageCancelling {
 
     private static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         Player player = event.player;
-        if (event.phase == net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END && !player.level.isRemote()) {
+        if (event.phase == net.neoforged.neoforge.event.tick.net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END && !player.level.isRemote()) {
             if (player.isOnGround()) {
                 Set<DamageSource> sources = invulnerableTypes.getOrDefault(event.player.getUniqueID(), Collections.emptySet());
                 sources.remove(DamageSource.FALL);

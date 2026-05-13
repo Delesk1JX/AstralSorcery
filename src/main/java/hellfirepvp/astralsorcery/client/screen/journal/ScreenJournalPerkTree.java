@@ -52,7 +52,7 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.VertexConsumer;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.world.item.TooltipFlag;
@@ -280,11 +280,11 @@ public class ScreenJournalPerkTree extends ScreenJournal {
                 Integer slot = this.slotsSocketMenu.get(r);
                 ItemStack in = player.inventory.getStackInSlot(slot);
                 if (!in.isEmpty()) {
-                    FontRenderer fr = in.getItem().getFontRenderer(in);
+                    Font fr = in.getItem().getFont(in);
                     if (fr == null) {
                         fr = Minecraft.getInstance().fontRenderer;
                     }
-                    List<ITextProperties> toolTip = new ArrayList<>();
+                    List<Component> toolTip = new ArrayList<>();
                     toolTip.addAll(this.getTooltipFromItem(in));
                     RenderingDrawUtils.renderBlueTooltipComponents(renderStack, mouseX, mouseY, this.getGuiZLevel(), toolTip, fr, true);
                 }
@@ -299,7 +299,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
         }
 
         if (!this.foundSeals.isEmpty() && rectSealBox.contains(mouseX - guiLeft, mouseY - guiTop)) {
-            List<ITextProperties> toolTip = new ArrayList<>();
+            List<Component> toolTip = new ArrayList<>();
             toolTip.addAll(this.foundSeals.getTooltip(Minecraft.getInstance().player,
                     Minecraft.getInstance().gameSettings.advancedItemTooltips ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL));
             toolTip.add(Component.literal.EMPTY);
@@ -309,7 +309,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
         } else {
             for (Map.Entry<AbstractPerk, Rectangle.Float> rctPerk : this.thisFramePerks.entrySet()) {
                 if (rctPerk.getValue().contains(mouseX, mouseY) && this.guiBox.isInBox(mouseX - guiLeft, mouseY - guiTop)) {
-                    List<ITextProperties> toolTip = new LinkedList<>();
+                    List<Component> toolTip = new LinkedList<>();
                     AbstractPerk perk = rctPerk.getKey();
                     PlayerProgress prog = ResearchHelper.getClientProgress();
                     PlayerPerkData perkData = prog.getPerkData();
@@ -442,7 +442,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
         if (prog.isAttuned() && (availablePerks = prog.getPerkData().getAvailablePerkPoints(player, LogicalSide.CLIENT)) > 0) {
             renderStack.push();
             renderStack.translate(guiLeft + 50, guiTop + 18, this.getGuiZLevel());
-            ITextProperties points = new Component.translatable("perk.info.astralsorcery.points", availablePerks);
+            Component points = new Component.translatable("perk.info.astralsorcery.points", availablePerks);
             RenderingDrawUtils.renderStringAt(points, renderStack, font, 0xCCCCCC, true);
             renderStack.pop();
         }

@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.world.WorldSeedCache;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
@@ -39,10 +39,10 @@ public class SkyHandler implements ITickHandler {
     
     private static final SkyHandler instance = new SkyHandler();
 
-    private final Map<ResourceKey<Level>, WorldContext> worldHandlersServer = Maps.newHashMap();
-    private final Map<ResourceKey<Level>, WorldContext> worldHandlersClient = Maps.newHashMap();
+    private final Map<net.minecraft.resources.ResourceKey<Level>, WorldContext> worldHandlersServer = Maps.newHashMap();
+    private final Map<net.minecraft.resources.ResourceKey<Level>, WorldContext> worldHandlersClient = Maps.newHashMap();
 
-    private final Map<ResourceKey<Level>, Boolean> skyRevertMap = Maps.newHashMap();
+    private final Map<net.minecraft.resources.ResourceKey<Level>, Boolean> skyRevertMap = Maps.newHashMap();
 
     private SkyHandler() {}
 
@@ -55,7 +55,7 @@ public class SkyHandler implements ITickHandler {
         if (type == net.neoforged.neoforge.event.tick.ClientTickEvent.WORLD) {
             Level w = (Level) context[0];
             if (!w.isRemote() && w instanceof ServerLevel) {
-                ResourceKey<Level> dimKey = w.getDimensionKey();
+                net.minecraft.resources.ResourceKey<Level> dimKey = w.getDimensionKey();
                 skyRevertMap.put(dimKey, false);
 
                 WorldContext ctx = worldHandlersServer.get(dimKey);
@@ -74,7 +74,7 @@ public class SkyHandler implements ITickHandler {
     private void handleClientTick() {
         Level w = Minecraft.getInstance().world;
         if (w != null) {
-            ResourceKey<Level> dimKey = w.getDimensionKey();
+            net.minecraft.resources.ResourceKey<Level> dimKey = w.getDimensionKey();
             WorldContext ctx = worldHandlersClient.get(dimKey);
             if (ctx == null) {
                 Optional<Long> seedOpt = WorldSeedCache.getSeedIfPresent(dimKey);
@@ -102,7 +102,7 @@ public class SkyHandler implements ITickHandler {
         if (world == null) {
             return null;
         }
-        ResourceKey<Level> dimKey = world.getDimensionKey();
+        net.minecraft.resources.ResourceKey<Level> dimKey = world.getDimensionKey();
         if (dist.isClient()) {
             return getInstance().worldHandlersClient.getOrDefault(dimKey, null);
         } else {
@@ -111,7 +111,7 @@ public class SkyHandler implements ITickHandler {
     }
 
     public void revertWorldTimeTick(ServerLevel world) {
-        ResourceKey<Level> dimKey = world.getDimensionKey();
+        net.minecraft.resources.ResourceKey<Level> dimKey = world.getDimensionKey();
         Boolean state = skyRevertMap.get(dimKey);
         if (!world.isRemote && state != null && !state) {
             skyRevertMap.put(dimKey, true);
@@ -134,8 +134,8 @@ public class SkyHandler implements ITickHandler {
     }
 
     @Override
-    public boolean canFire(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
-        return phase == net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
+    public boolean canFire(net.neoforged.neoforge.event.tick.net.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
+        return phase == net.neoforged.neoforge.event.tick.net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
     }
 
     @Override

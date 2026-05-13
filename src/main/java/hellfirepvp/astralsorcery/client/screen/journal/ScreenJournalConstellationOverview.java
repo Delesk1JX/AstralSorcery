@@ -141,7 +141,7 @@ public class ScreenJournalConstellationOverview extends ScreenJournal implements
 
         RenderSystem.disableBlend();
 
-        ITextProperties cstName = display.getConstellationName();
+        Component cstName = display.getConstellationName();
         float fullLength = (width / 2F) - (font.getStringPropertyWidth(cstName) / 2F);
 
         renderStack.translate(fullLength, 90, 10);

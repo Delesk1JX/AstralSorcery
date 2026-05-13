@@ -63,18 +63,18 @@ public abstract class LiquidStarlightRecipe extends CustomRecipe {
     @OnlyIn(Dist.CLIENT)
     public abstract void doClientEffectTick(ItemEntity trigger, Level world, BlockPos at);
 
-    protected final List<Entity> getEntitiesInBlock(ILevel world, BlockPos pos) {
+    protected final List<Entity> getEntitiesInBlock(LevelAccessor world, BlockPos pos) {
         return world.getEntitiesWithinAABB(Entity.class, new AABB(pos));
     }
 
     @Nullable
-    protected final ItemStack consumeItemEntityInBlock(ILevel world, BlockPos pos, Item itemClass) {
+    protected final ItemStack consumeItemEntityInBlock(LevelAccessor world, BlockPos pos, Item itemClass) {
         return consumeItemEntityInBlock(world, pos, 1, stack ->
                 itemClass.getClass().isAssignableFrom(stack.getItem().getClass()));
     }
 
     @Nullable
-    protected final ItemStack consumeItemEntityInBlock(ILevel world, BlockPos pos, int count, Predicate<ItemStack> match) {
+    protected final ItemStack consumeItemEntityInBlock(LevelAccessor world, BlockPos pos, int count, Predicate<ItemStack> match) {
         List<Entity> entities = getEntitiesInBlock(world, pos).stream()
                 .filter(e -> e instanceof ItemEntity)
                 .collect(Collectors.toList());

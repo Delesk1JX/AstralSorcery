@@ -21,7 +21,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.Level;
@@ -45,7 +45,7 @@ import java.util.function.Supplier;
  */
 public class BlockBreakHelper {
 
-    private static final Map<ResourceKey<Level>, TickTokenMap<BlockPos, BreakEntry>> breakMap = new HashMap<>();
+    private static final Map<net.minecraft.resources.ResourceKey<Level>, TickTokenMap<BlockPos, BreakEntry>> breakMap = new HashMap<>();
 
     public static void addProgress(Level world, BlockPos pos, float percStrength, Supplier<Float> expectedHardness) {
         TickTokenMap<BlockPos, BreakEntry> map = breakMap.computeIfAbsent(world.getDimensionKey(), key -> {
@@ -86,13 +86,13 @@ public class BlockBreakHelper {
     public static class BreakEntry implements TickTokenMap.TickMapToken<Float>, CEffectAbstractList.ListEntry {
 
         private float breakProgress;
-        private final ILevel world;
+        private final LevelAccessor world;
         private BlockPos pos;
         private BlockState expected;
 
         private int idleTimeout;
 
-        public BreakEntry(@Nonnull Float value, ILevel world, BlockPos at, BlockState expectedToBreak) {
+        public BreakEntry(@Nonnull Float value, LevelAccessor world, BlockPos at, BlockState expectedToBreak) {
             this.breakProgress = value;
             this.world = world;
             this.pos = at;
