@@ -15,12 +15,12 @@ import hellfirepvp.astralsorcery.common.util.world.WorldSeedCache;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.level.Level;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level().Level;
+import net.minecraft.server.level().ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import TickEvent.ClientTickEvent;
+import hellfirepvp.observerlib.common.util.tick.TickEvent.ClientTickEvent;
 import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nullable;

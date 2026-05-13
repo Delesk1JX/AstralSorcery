@@ -9,13 +9,13 @@
 package hellfirepvp.astralsorcery.common.util.block;
 
 import hellfirepvp.observerlib.api.util.BlockArray;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level().block.Block;
+import net.minecraft.world.level().block.state.BlockState;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level().Level;
 
 import javax.annotation.Nonnull;
 import java.util.Stack;

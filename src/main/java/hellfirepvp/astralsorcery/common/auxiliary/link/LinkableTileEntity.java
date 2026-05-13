@@ -1,4 +1,5 @@
 /*******************************************************************************
+import net.minecraft.network.chat.Component;
  * HellFirePvP / Astral Sorcery 2022
  *
  * All rights reserved.
@@ -9,16 +10,16 @@
 package hellfirepvp.astralsorcery.common.auxiliary.link;
 
 import com.google.common.collect.Lists;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level().block.state.BlockState;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level().block.entity.BlockEntity;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Style;
 import net.minecraft.ChatFormatting;
 import static net.minecraft.network.chat.Component.translatable;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level().Level;
 
 import javax.annotation.Nullable;
 import java.util.List;

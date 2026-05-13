@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.crafting.nojson.freezing;
 
 import hellfirepvp.astralsorcery.AstralSorcery;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level().block.Blocks;
 import net.neoforged.neoforge.fluids.FluidAttributes;
 
 /**

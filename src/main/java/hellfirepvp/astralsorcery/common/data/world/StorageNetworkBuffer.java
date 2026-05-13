@@ -19,8 +19,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level().ChunkPos;
+import net.minecraft.world.level().Level;
 import net.neoforged.neoforge.common.Tags;
 
 import javax.annotation.Nullable;

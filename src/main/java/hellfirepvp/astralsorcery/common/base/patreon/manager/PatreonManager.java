@@ -15,11 +15,11 @@ import hellfirepvp.astralsorcery.common.data.sync.SyncDataHolder;
 import hellfirepvp.astralsorcery.common.data.sync.server.DataPatreonFlares;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.level().ServerPlayer;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level().Level;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import TickEvent.ClientTickEvent;
+import hellfirepvp.observerlib.common.util.tick.TickEvent.ClientTickEvent;
 import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;
 

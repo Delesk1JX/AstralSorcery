@@ -12,9 +12,9 @@ import hellfirepvp.astralsorcery.common.starlight.transmission.IPrismTransmissio
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level().Level;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import TickEvent.ClientTickEvent;
+import hellfirepvp.observerlib.common.util.tick.TickEvent.ClientTickEvent;
 
 import java.util.*;
 

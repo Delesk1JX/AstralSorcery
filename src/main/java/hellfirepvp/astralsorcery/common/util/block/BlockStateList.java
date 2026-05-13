@@ -11,10 +11,10 @@ package hellfirepvp.astralsorcery.common.util.block;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfiguredBlockStateList;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level().block.Block;
+import net.minecraft.world.level().block.state.BlockState;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level().Level;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
 import java.util.ArrayList;

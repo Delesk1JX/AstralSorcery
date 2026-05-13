@@ -35,11 +35,11 @@ import hellfirepvp.astralsorcery.common.util.world.SkyCollectionHelper;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level().block.entity.BlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.Level;
+import net.minecraft.server.level().ServerLevel;
+import net.minecraft.world.level().Level;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.fml.LogicalSide;
 

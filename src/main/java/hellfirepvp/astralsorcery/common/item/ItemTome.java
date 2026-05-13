@@ -22,10 +22,10 @@ import hellfirepvp.astralsorcery.common.item.base.PerkExperienceRevealer;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
 import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.LecternBlock;
+import net.minecraft.world.level().block.state.BlockState;
+import net.minecraft.world.level().block.LecternBlock;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.level().ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.Item;
@@ -37,7 +37,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level().Level;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.fml.LogicalSide;
 
@@ -97,7 +97,7 @@ public class ItemTome extends Item implements PerkExperienceRevealer {
     public static List<IConstellation> getStoredConstellations(ItemStack stack, Player player) {
         LinkedList<IConstellation> out = new LinkedList<>();
 
-        PlayerProgress prog = ResearchHelper.getProgress(player, player.level.isRemote() ? LogicalSide.CLIENT : LogicalSide.SERVER);
+        PlayerProgress prog = ResearchHelper.getProgress(player, player.level().isClientSide() ? LogicalSide.CLIENT : LogicalSide.SERVER);
         if (prog.isValid()) {
             prog.getStoredConstellationPapers().stream()
                     .map(ConstellationRegistry::getConstellation)

@@ -19,10 +19,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.potion.EffectType;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.GameRules;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level().ServerLevel;
 import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
-import net.neoforged.bus.api.EventBus;
+import net.neoforged.bus.api.IEventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,10 +53,10 @@ public class EffectDropModifier extends EffectCustomTexture {
 
     private void onDrops(LivingDropsEvent event) {
         LivingEntity le = event.getEntityLiving();
-        if (le.level.isRemote() ||
+        if (le.level().isClientSide() ||
                 !(le instanceof MobEntity) ||
                 !(le.level instanceof ServerLevel) ||
-                !le.level.getGameRules().getBoolean(GameRules.DO_MOB_LOOT)) {
+                !le.level().getGameRules().getBoolean(GameRules.DO_MOB_LOOT)) {
             return;
         }
 

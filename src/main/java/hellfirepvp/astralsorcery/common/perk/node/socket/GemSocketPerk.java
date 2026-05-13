@@ -1,4 +1,5 @@
 /*******************************************************************************
+import net.minecraft.network.chat.Component;
  * HellFirePvP / Astral Sorcery 2022
  *
  * All rights reserved.
@@ -120,7 +121,7 @@ public interface GemSocketPerk {
             throw new UnsupportedOperationException("Cannot do perk-specific socketing logic on something that's not a perk!");
         }
 
-        if (player.level.isRemote()) {
+        if (player.level().isClientSide()) {
             return;
         }
 

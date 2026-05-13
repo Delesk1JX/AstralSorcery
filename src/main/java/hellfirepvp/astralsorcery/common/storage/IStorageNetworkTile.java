@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.storage;
 
 import hellfirepvp.astralsorcery.common.util.block.ILocatable;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level().Level;
 
 import javax.annotation.Nullable;
 

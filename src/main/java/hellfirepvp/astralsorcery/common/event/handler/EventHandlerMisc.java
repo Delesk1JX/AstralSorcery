@@ -20,17 +20,17 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.world.entity.AreaEffectCloudEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.entity.LecternTileEntity;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.chunk.LevelChunk;
-import net.minecraft.world.level.chunk.ChunkAccess;
+import net.minecraft.world.level().block.entity.LecternTileEntity;
+import net.minecraft.server.level().ServerLevel;
+import net.minecraft.world.level().LevelAccessor;
+import net.minecraft.world.level().chunk.LevelChunk;
+import net.minecraft.world.level().chunk.ChunkAccess;
 import net.neoforged.neoforge.event.entity.EntityJoinWorldEvent;
 import net.neoforged.neoforge.event.entity.item.ItemTossEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerSleepInBedEvent;
 import net.neoforged.neoforge.event.world.ChunkEvent;
-import net.neoforged.bus.api.EventBus;
+import net.neoforged.bus.api.IEventBus;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -51,7 +51,7 @@ public class EventHandlerMisc {
     }
 
     private static void onCrystalToss(ItemTossEvent event) {
-        if (!event.getPlayer().level.isRemote()) {
+        if (!event.getPlayer().level().isClientSide()) {
             ItemStack thrown = event.getEntityItem().getItem();
             if (thrown.getItem() instanceof ItemCrystalBase) {
                 event.getEntityItem().setThrowerId(event.getPlayer().getUniqueID());

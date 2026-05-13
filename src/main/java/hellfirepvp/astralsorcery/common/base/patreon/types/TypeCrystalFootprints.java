@@ -21,7 +21,7 @@ import net.minecraft.potion.Effects;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import TickEvent.ClientTickEvent;
+import hellfirepvp.observerlib.common.util.tick.TickEvent.ClientTickEvent;
 import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nullable;
@@ -80,7 +80,7 @@ public class TypeCrystalFootprints extends PatreonEffect implements ITickHandler
                 .subtract(player.getWidth() / 2, 0.1, player.getWidth() / 2)
                 .add(player.getWidth() * rand.nextFloat(), 0, player.getWidth() * rand.nextFloat());
 
-        if (player.level.isAirBlock(pos.toBlockPos())) {
+        if (player.level().isAirBlock(pos.toBlockPos())) {
             return;
         }
 

@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.datagen.data.tags;
 
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level().block.Block;
 import net.minecraft.data.BlockTagsProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.minecraft.data.TagsProvider;

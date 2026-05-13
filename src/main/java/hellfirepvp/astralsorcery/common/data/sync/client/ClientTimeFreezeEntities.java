@@ -16,7 +16,7 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level().Level;
 import net.neoforged.neoforge.common.Tags;
 
 import java.util.*;
@@ -33,7 +33,7 @@ public class ClientTimeFreezeEntities extends ClientData<ClientTimeFreezeEntitie
     private final Map<net.minecraft.resources.ResourceKey<Level>, Set<Integer>> clientActiveEntityFreeze = new HashMap<>();
 
     public boolean isFrozen(Entity e) {
-        return this.clientActiveEntityFreeze.getOrDefault(e.level.getDimensionKey(), Collections.emptySet()).contains(e.getEntityId());
+        return this.clientActiveEntityFreeze.getOrDefault(e.level().getDimensionKey(), Collections.emptySet()).contains(e.getEntityId());
     }
 
     @Override

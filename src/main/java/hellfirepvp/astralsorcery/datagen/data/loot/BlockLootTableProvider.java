@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.block.tile.BlockGemCrystalCluster;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
 import hellfirepvp.astralsorcery.common.loot.*;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level().block.Block;
 import net.minecraft.data.loot.BlockLootTables;
 import net.minecraft.world.item.Items;
 import net.minecraft.loot.*;

@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.datagen.data.recipes.transmutation;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.crafting.builder.BlockTransmutationBuilder;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level().block.Blocks;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.Tags;

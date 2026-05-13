@@ -17,7 +17,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.Mth;
 import net.neoforged.neoforge.event.entity.living.PotionEvent;
-import net.neoforged.bus.api.EventBus;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.LogicalSide;
 
 /**
@@ -54,7 +54,7 @@ public class AttributeTypePotionDuration extends PerkAttributeType {
     }
 
     private void modifyPotionDuration(Player player, EffectInstance newSetEffect, EffectInstance existingEffect) {
-        if (player.level.isRemote() ||
+        if (player.level().isClientSide() ||
                 newSetEffect.getPotion().getEffectType().equals(EffectType.HARMFUL) ||
                 existingEffect.getAmplifier() < newSetEffect.getAmplifier()) {
             return;

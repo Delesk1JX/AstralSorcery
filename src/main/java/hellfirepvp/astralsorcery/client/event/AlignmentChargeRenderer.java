@@ -29,9 +29,9 @@ import net.minecraft.util.Tuple;
 import net.minecraft.world.GameType;
 import net.neoforged.neoforge.client.event.RenderGameOverlayEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import TickEvent.ClientTickEvent;
+import hellfirepvp.observerlib.common.util.tick.TickEvent.ClientTickEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
-import net.neoforged.bus.api.EventBus;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.LogicalSide;
 import org.lwjgl.opengl.GL11;
 

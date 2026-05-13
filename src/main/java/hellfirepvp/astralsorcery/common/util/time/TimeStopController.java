@@ -20,9 +20,9 @@ import net.minecraft.world.entity.boss.dragon.phase.PhaseType;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level().Level;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import TickEvent.ClientTickEvent;
+import hellfirepvp.observerlib.common.util.tick.TickEvent.ClientTickEvent;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -92,7 +92,7 @@ public class TimeStopController implements ITickHandler {
     }
 
     public static boolean isFrozenDirectly(Entity e) {
-        if (e.level.isRemote()) {
+        if (e.level().isClientSide()) {
             return SyncDataHolder.computeClient(SyncDataHolder.DATA_TIME_FREEZE_ENTITIES, ClientTimeFreezeEntities.class, data -> data.isFrozen(e)).orElse(false);
         } else {
             return SyncDataHolder.computeServer(SyncDataHolder.DATA_TIME_FREEZE_ENTITIES, DataTimeFreezeEntities.class, data -> data.isFrozen(e)).orElse(false);
@@ -117,17 +117,17 @@ public class TimeStopController implements ITickHandler {
                         }
                     }
                 }
-                if (!e.level.isRemote()) {
+                if (!e.level().isClientSide()) {
                     TimeStopZone.handleImportantEntityTicks(e);
                     return true;
                 }
             }
         }
-        List<TimeStopZone> freezeAreas = activeTimeStopZones.get(e.level.getDimensionKey());
+        List<TimeStopZone> freezeAreas = activeTimeStopZones.get(e.level().getDimensionKey());
         if (freezeAreas != null && !freezeAreas.isEmpty()) {
             for (TimeStopZone stop : freezeAreas) {
                 if (stop.interceptEntityTick(e)) {
-                    if (!e.level.isRemote()) {
+                    if (!e.level().isClientSide()) {
                         TimeStopZone.handleImportantEntityTicks(e);
                         return true;
                     }

@@ -20,11 +20,11 @@ import hellfirepvp.astralsorcery.common.perk.node.key.KeyChargeBalancing;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.Mth;
-import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level().levelgen.Heightmap;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import TickEvent.ClientTickEvent;
+import hellfirepvp.observerlib.common.util.tick.TickEvent.ClientTickEvent;
 import net.neoforged.fml.LogicalSide;
 
 import java.util.EnumSet;
@@ -130,7 +130,7 @@ public class AlignmentChargeHandler implements ITickHandler {
 
         float regenPerTick = max / (6F * 20F);
 
-        boolean underground = player.level.getHeight(Heightmap.Type.WORLD_SURFACE, player.getPosition()).getY() > player.getPosition().getY() + 1;
+        boolean underground = player.level().getHeight(Heightmap.Type.WORLD_SURFACE, player.getPosition()).getY() > player.getPosition().getY() + 1;
 
         float dayMultiplier = underground ? 0.85F : 0.3F + 0.7F * DayTimeHelper.getCurrentDaytimeDistribution(player.level);
         float caveMultiplier = underground ? 0.25F : 1F;

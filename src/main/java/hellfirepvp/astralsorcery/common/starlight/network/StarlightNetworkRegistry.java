@@ -11,10 +11,10 @@ package hellfirepvp.astralsorcery.common.starlight.network;
 import hellfirepvp.astralsorcery.common.block.base.BlockStarlightRecipient;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 import hellfirepvp.astralsorcery.common.starlight.network.handler.BlockTransmutationHandler;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level().block.Block;
+import net.minecraft.world.level().block.state.BlockState;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level().Level;
 
 import javax.annotation.Nullable;
 import java.util.LinkedList;

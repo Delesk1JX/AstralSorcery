@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.capability;
 import hellfirepvp.astralsorcery.common.data.config.registry.FluidRarityRegistry;
 import hellfirepvp.astralsorcery.common.data.config.registry.sets.FluidRarityEntry;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
-import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level().material.Fluids;
 import net.minecraft.nbt.CompoundTag;
 import net.neoforged.neoforge.common.util.TagSerializable;
 import net.neoforged.neoforge.fluids.FluidAttributes;

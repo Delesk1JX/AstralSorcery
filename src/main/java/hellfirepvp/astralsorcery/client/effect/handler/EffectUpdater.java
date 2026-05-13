@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.client.effect.handler;
 
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import TickEvent.ClientTickEvent;
+import hellfirepvp.observerlib.common.util.tick.TickEvent.ClientTickEvent;
 
 import java.io.IOException;
 import java.util.EnumSet;

@@ -20,7 +20,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.loot.ConditionArraySerializer;
 import net.minecraft.tags.Tag;
-import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level().ItemLike;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.resources.ResourceLocation;
 

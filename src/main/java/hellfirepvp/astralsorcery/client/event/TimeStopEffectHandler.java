@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.util.time.TimeStopEffectHelper;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import TickEvent.ClientTickEvent;
+import hellfirepvp.observerlib.common.util.tick.TickEvent.ClientTickEvent;
 
 import java.util.EnumSet;
 import java.util.List;

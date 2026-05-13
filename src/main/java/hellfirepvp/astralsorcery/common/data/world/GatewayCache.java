@@ -28,8 +28,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Component;
 import static net.minecraft.network.chat.Component.literal;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level().LevelAccessor;
+import net.minecraft.world.level().Level;
 import net.neoforged.neoforge.common.Tags;
 
 import javax.annotation.Nonnull;

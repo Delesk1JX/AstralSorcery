@@ -24,13 +24,12 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.MutableComponent;
-import static net.minecraft.network.chat.Component.literal;
+import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
-import static net.minecraft.network.chat.Component.translatable;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.bus.api.EventBus;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.LogicalSide;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
@@ -140,7 +139,7 @@ public class AbstractPerk implements ModifierSource {
     protected void removePerkLogic(Player player, LogicalSide dist) {}
 
     protected LogicalSide getSide(Entity entity) {
-        return entity.level.isRemote() ? LogicalSide.CLIENT : LogicalSide.SERVER;
+        return entity.level().isClientSide ? LogicalSide.CLIENT : LogicalSide.SERVER;
     }
 
     @Nullable

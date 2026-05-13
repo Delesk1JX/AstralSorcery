@@ -14,7 +14,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.ChatFormatting;
 import net.neoforged.neoforge.client.event.RenderGameOverlayEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
-import net.neoforged.bus.api.EventBus;
+import net.neoforged.bus.api.IEventBus;
 
 import java.util.function.Consumer;
 

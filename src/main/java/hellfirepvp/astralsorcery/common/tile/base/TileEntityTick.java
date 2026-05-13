@@ -15,8 +15,8 @@ import hellfirepvp.observerlib.api.ChangeSubscriber;
 import hellfirepvp.observerlib.api.ObserverHelper;
 import hellfirepvp.observerlib.common.change.ChangeObserverStructure;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level().block.entity.BlockEntity;
+import net.minecraft.world.level().block.entity.BlockEntityType;
 import net.minecraft.resources.ResourceLocation;
 
 import javax.annotation.Nullable;

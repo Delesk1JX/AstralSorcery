@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.container;
 
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level().block.entity.BlockEntity;
 
 import javax.annotation.Nullable;
 

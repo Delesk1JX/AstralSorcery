@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.tile.TileCelestialGateway;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.loot.*;
 import net.minecraft.loot.conditions.ILootCondition;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level().block.entity.BlockEntity;
 
 import java.util.Set;
 

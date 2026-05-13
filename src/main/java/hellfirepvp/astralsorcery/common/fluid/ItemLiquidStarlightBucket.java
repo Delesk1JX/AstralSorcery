@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.fluid;
 
 import hellfirepvp.astralsorcery.common.CommonProxy;
-import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level().material.Fluid;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;

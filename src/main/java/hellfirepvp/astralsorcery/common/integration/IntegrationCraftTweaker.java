@@ -1,4 +1,5 @@
 /*******************************************************************************
+import net.minecraft.network.chat.Component;
  * HellFirePvP / Astral Sorcery 2022
  *
  * All rights reserved.
@@ -13,8 +14,8 @@ import com.blamejared.crafttweaker.impl.commands.CTCommandCollectionEvent;
 import hellfirepvp.astralsorcery.common.block.tile.altar.AltarType;
 import hellfirepvp.astralsorcery.common.constellation.*;
 import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
-import net.minecraft.network.chat.*;
-import net.neoforged.bus.api.EventBus;
+import net.minecraft.network.chat.Component;
+import net.neoforged.bus.api.IEventBus;
 
 /**
  * This class is part of the Astral Sorcery Mod

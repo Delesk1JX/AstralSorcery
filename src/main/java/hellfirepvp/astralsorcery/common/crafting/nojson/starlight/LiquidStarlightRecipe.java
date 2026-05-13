@@ -20,8 +20,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level().LevelAccessor;
+import net.minecraft.world.level().Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.Tags;
@@ -103,7 +103,7 @@ public abstract class LiquidStarlightRecipe extends CustomRecipe {
     }
 
     protected final void setCraftingTick(Entity e, int tick) {
-        long wTick = e.level.getGameTime();
+        long wTick = e.level().getGameTime();
 
         CompoundTag nbt = NBTHelper.getPersistentData(e);
         nbt.putInt("craftTick", tick);
@@ -111,7 +111,7 @@ public abstract class LiquidStarlightRecipe extends CustomRecipe {
     }
 
     protected final int getCraftingTick(Entity e) {
-        long wTick = e.level.getGameTime();
+        long wTick = e.level().getGameTime();
 
         CompoundTag nbt = NBTHelper.getPersistentData(e);
         if (!nbt.contains("wCraftTick", net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_LONG)) {

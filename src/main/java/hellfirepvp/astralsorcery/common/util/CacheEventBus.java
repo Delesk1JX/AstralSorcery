@@ -8,7 +8,11 @@
 
 package hellfirepvp.astralsorcery.common.util;
 
-import net.neoforged.neoforge.eventbus.api.*;
+import net.neoforged.bus.api.Event;
+import net.neoforged.bus.api.EventPriority;
+import net.neoforged.bus.api.GenericEvent;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.IEventBusInvokeDispatcher;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -11,9 +11,9 @@ package hellfirepvp.astralsorcery.common.event.helper;
 import hellfirepvp.astralsorcery.common.util.tick.TimeoutList;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.level().ServerPlayer;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import TickEvent.ClientTickEvent;
+import hellfirepvp.observerlib.common.util.tick.TickEvent.ClientTickEvent;
 
 import java.util.function.Consumer;
 

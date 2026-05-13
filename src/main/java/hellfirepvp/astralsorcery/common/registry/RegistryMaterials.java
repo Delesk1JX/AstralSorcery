@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.registry;
 
 import hellfirepvp.astralsorcery.common.block.base.MaterialBuilderAS;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level().material.MaterialColor;
 
 import static hellfirepvp.astralsorcery.common.lib.MaterialsAS.*;
 

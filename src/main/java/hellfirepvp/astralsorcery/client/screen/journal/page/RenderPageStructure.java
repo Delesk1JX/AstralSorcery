@@ -1,4 +1,5 @@
 /*******************************************************************************
+import net.minecraft.network.chat.Component;
  * HellFirePvP / Astral Sorcery 2022
  *
  * All rights reserved.
@@ -26,7 +27,7 @@ import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import hellfirepvp.observerlib.api.block.MatchableState;
 import hellfirepvp.observerlib.api.client.StructureRenderer;
 import hellfirepvp.observerlib.api.structure.Structure;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level().block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import com.mojang.blaze3d.vertex.VertexFormat;

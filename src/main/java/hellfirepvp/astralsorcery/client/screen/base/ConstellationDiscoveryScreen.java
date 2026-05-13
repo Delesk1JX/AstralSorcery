@@ -34,7 +34,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import org.joml.Matrix4f;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level().Level;
 import net.neoforged.fml.LogicalSide;
 import org.lwjgl.opengl.GL11;
 

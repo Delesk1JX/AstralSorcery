@@ -1,4 +1,5 @@
 /*******************************************************************************
+import net.minecraft.network.chat.Component;
  * HellFirePvP / Astral Sorcery 2022
  *
  * All rights reserved.
@@ -45,7 +46,7 @@ public class AmuletEnchantment extends DynamicEnchantment {
     @OnlyIn(Dist.CLIENT)
     public net.minecraft.network.chat.Component getDisplay() {
         String typeStr = this.getType().getDisplayName();
-        String levelsStr = I18n.format(String.format("astralsorcery.amulet.enchantment.level.%s", this.levelAddition > 1 ? "more" : "one"));
+        String levelsStr = I18n.format(String.format("astralsorcery.amulet.enchantment.level().%s", this.levelAddition > 1 ? "more" : "one"));
 
         if (this.getType().isEnchantmentSpecific()) {
             return Component.translatable(typeStr,

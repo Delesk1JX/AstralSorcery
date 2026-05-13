@@ -15,27 +15,27 @@ import hellfirepvp.astralsorcery.common.base.Mods;
 import hellfirepvp.astralsorcery.common.lib.GameRulesAS;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.log.LogCategory;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.FlowingFluidBlock;
+import net.minecraft.world.level().block.state.BlockState;
+import net.minecraft.world.level().block.FlowingFluidBlock;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.level.material.FluidState;
+import net.minecraft.server.level().ServerPlayer;
+import net.minecraft.world.level().material.Fluid;
+import net.minecraft.world.level().material.FluidState;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level().block.entity.BlockEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.*;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.*;
 import net.minecraft.world.chunk.AbstractChunkProvider;
-import net.minecraft.world.level.chunk.ChunkAccess;
+import net.minecraft.world.level().chunk.ChunkAccess;
 import net.minecraft.world.server.ServerChunkProvider;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level().ServerLevel;
 import net.neoforged.neoforge.common.ForgeHooks;
 import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.common.NeoForge;
@@ -324,8 +324,8 @@ public class MiscUtils {
         if (target instanceof Player) {
             Player plTarget = (Player) target;
             if (target.level instanceof ServerLevel &&
-                    target.level.getServer() != null &&
-                    target.level.getServer().isPVPEnabled()) {
+                    target.level().getServer() != null &&
+                    target.level().getServer().isPVPEnabled()) {
                 return false;
             }
             if (plTarget.isSpectator() || plTarget.isCreative()) {
@@ -340,7 +340,7 @@ public class MiscUtils {
     }
 
     public static boolean canPlayerBreakBlockPos(Player player, BlockPos tryBreak) {
-        BlockEvent.BreakEvent ev = new BlockEvent.BreakEvent(player.level, tryBreak, player.level.getBlockState(tryBreak), player);
+        BlockEvent.BreakEvent ev = new BlockEvent.BreakEvent(player.level, tryBreak, player.level().getBlockState(tryBreak), player);
         NeoForge.EVENT_BUS.post(ev);
         return !ev.isCanceled();
     }
@@ -404,11 +404,11 @@ public class MiscUtils {
 
     @Nullable
     public static <T extends Entity> T transferEntityTo(T entity, net.minecraft.resources.ResourceKey<Level> target, BlockPos targetPos) {
-        if (entity.level.isRemote) {
+        if (entity.level().isRemote) {
             return null; //No transfers on clientside.
         }
         entity.setSneaking(false);
-        net.minecraft.resources.ResourceKey<Level> src = entity.level.getDimensionKey();
+        net.minecraft.resources.ResourceKey<Level> src = entity.level().getDimensionKey();
         if (!src.equals(target)) {
             if (!ForgeHooks.onTravelToDimension(entity, target)) {
                 return null;

@@ -15,8 +15,8 @@ import hellfirepvp.astralsorcery.common.tile.TileCollectorCrystal;
 import hellfirepvp.observerlib.api.block.MatchableState;
 import hellfirepvp.observerlib.api.block.SimpleMatchableBlock;
 import hellfirepvp.observerlib.api.util.PatternBlockArray;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level().block.state.BlockState;
+import net.minecraft.world.level().block.Blocks;
 import net.minecraft.core.BlockPos;
 
 import javax.annotation.Nonnull;

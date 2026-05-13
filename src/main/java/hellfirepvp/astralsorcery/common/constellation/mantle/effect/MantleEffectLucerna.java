@@ -19,8 +19,8 @@ import hellfirepvp.astralsorcery.common.util.block.BlockDiscoverer;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.block.entity.MobSpawnerTileEntity;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level().block.entity.MobSpawnerTileEntity;
+import net.minecraft.world.level().block.entity.BlockEntity;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.core.BlockPos;
 import net.neoforged.api.distmarker.Dist;
@@ -106,7 +106,7 @@ public class MantleEffectLucerna extends MantleEffect {
         AABB box = new AABB(0, 0, 0, 0, 0, 0)
                 .grow(CONFIG.range.get())
                 .offset(player.getPosition());
-        List<LivingEntity> entities = player.level.getEntitiesWithinAABB(LivingEntity.class, box);
+        List<LivingEntity> entities = player.level().getEntitiesWithinAABB(LivingEntity.class, box);
         for (LivingEntity entity : entities) {
             if (!entity.isAlive() || entity.equals(player) || rand.nextInt(8) != 0) {
                 continue;

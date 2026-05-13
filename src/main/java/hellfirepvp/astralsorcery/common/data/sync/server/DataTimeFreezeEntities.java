@@ -18,7 +18,7 @@ import net.minecraft.nbt.IntTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level().Level;
 
 import java.util.*;
 
@@ -40,7 +40,7 @@ public class DataTimeFreezeEntities extends AbstractData {
     }
 
     public void freezeEntity(Entity e) {
-        net.minecraft.resources.ResourceKey<Level> dim = e.level.getDimensionKey();
+        net.minecraft.resources.ResourceKey<Level> dim = e.level().getDimensionKey();
         if (this.serverActiveEntityFreeze.computeIfAbsent(dim, dimType -> new HashSet<>()).add(e.getEntityId())) {
             this.serverSyncTypes.add(dim);
             this.markDirty();
@@ -48,7 +48,7 @@ public class DataTimeFreezeEntities extends AbstractData {
     }
 
     public void unfreezeEntity(Entity e) {
-        net.minecraft.resources.ResourceKey<Level> dim = e.level.getDimensionKey();
+        net.minecraft.resources.ResourceKey<Level> dim = e.level().getDimensionKey();
         if (this.serverActiveEntityFreeze.getOrDefault(dim, Collections.emptySet()).remove(e.getEntityId())) {
             this.serverSyncTypes.add(dim);
             this.markDirty();
@@ -56,7 +56,7 @@ public class DataTimeFreezeEntities extends AbstractData {
     }
 
     public boolean isFrozen(Entity e) {
-        net.minecraft.resources.ResourceKey<Level> dim = e.level.getDimensionKey();
+        net.minecraft.resources.ResourceKey<Level> dim = e.level().getDimensionKey();
         return this.serverActiveEntityFreeze.getOrDefault(dim, Collections.emptySet()).contains(e.getEntityId());
     }
 
