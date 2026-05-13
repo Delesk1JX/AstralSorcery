@@ -14,7 +14,7 @@ import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import net.neoforged.neoforge.event.tick.ClientTickEvent;
+import TickEvent.ClientTickEvent;
 import net.neoforged.fml.LogicalSide;
 
 import java.util.UUID;
@@ -30,9 +30,9 @@ import java.util.function.Consumer;
 public class PerkCooldownHelper {
 
     private static final TimeoutListContainer<UUID, ResourceLocation> perkCooldowns =
-            new TimeoutListContainer<>(new PerkTimeoutHandler(LogicalSide.SERVER), net.neoforged.neoforge.event.tick.ClientTickEvent.SERVER);
+            new TimeoutListContainer<>(new PerkTimeoutHandler(LogicalSide.SERVER), TickEvent.ClientTickEvent.SERVER);
     private static final TimeoutListContainer<UUID, ResourceLocation> perkCooldownsClient =
-            new TimeoutListContainer<>(new PerkTimeoutHandler(LogicalSide.CLIENT), net.neoforged.neoforge.event.tick.ClientTickEvent.CLIENT);
+            new TimeoutListContainer<>(new PerkTimeoutHandler(LogicalSide.CLIENT), TickEvent.ClientTickEvent.CLIENT);
 
     private PerkCooldownHelper() {}
 

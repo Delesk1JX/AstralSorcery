@@ -22,6 +22,7 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import hellfirepvp.astralsorcery.common.util.tick.ITickHandler;
+import hellfirepvp.astralsorcery.common.util.tick.TickEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -137,7 +138,7 @@ public abstract class MantleEffect extends DeferredHolder<Item, MantleEffect> im
     }
 
     @Override
-    public final void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
+    public final void tick(TickEvent.ClientTickEvent type, Object... context) {
         if (!this.getConfig().enabled.get()) {
             return;
         }
@@ -173,13 +174,13 @@ public abstract class MantleEffect extends DeferredHolder<Item, MantleEffect> im
     }
 
     @Override
-    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
-        return EnumSet.of(net.neoforged.neoforge.event.tick.ClientTickEvent.PLAYER);
+    public EnumSet<TickEvent.ClientTickEvent.Phase> getHandledTypes() {
+        return EnumSet.of(TickEvent.ClientTickEvent.Phase.END);
     }
 
     @Override
-    public boolean canFire(net.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
-        return phase == net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
+    public boolean canFire(TickEvent.ClientTickEvent.Phase phase) {
+        return phase == TickEvent.ClientTickEvent.Phase.END;
     }
 
     @Override

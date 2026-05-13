@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.util.tick;
 import com.google.common.collect.Lists;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import net.neoforged.neoforge.event.tick.ClientTickEvent;
+import net.neoforged.neoforge.event.tick.TickEvent;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
@@ -29,17 +29,17 @@ import java.util.function.Predicate;
  */
 public class TimeoutListContainer<K, V> implements ITickHandler {
 
-    private final EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> tickTypes;
+    private final EnumSet<TickEvent.ClientTickEvent.Phase> tickTypes;
     private final ContainerTimeoutDelegate<K, V> delegate;
     private final Map<K, TimeoutList<V>> timeoutListMap = new HashMap<>();
 
-    public TimeoutListContainer(net.neoforged.neoforge.event.tick.ClientTickEvent... restTypes) {
+    public TimeoutListContainer(TickEvent.ClientTickEvent.Phase... restTypes) {
         this(null, restTypes);
     }
 
-    public TimeoutListContainer(@Nullable ContainerTimeoutDelegate<K, V> delegate, net.neoforged.neoforge.event.tick.ClientTickEvent... types) {
-        this.tickTypes = EnumSet.noneOf(net.neoforged.neoforge.event.tick.ClientTickEvent.class);
-        for (net.neoforged.neoforge.event.tick.ClientTickEvent type : types) {
+    public TimeoutListContainer(@Nullable ContainerTimeoutDelegate<K, V> delegate, TickEvent.ClientTickEvent.Phase... types) {
+        this.tickTypes = EnumSet.noneOf(TickEvent.ClientTickEvent.Phase.class);
+        for (TickEvent.ClientTickEvent.Phase type : types) {
             if (type != null) this.tickTypes.add(type);
         }
         this.delegate = delegate;
@@ -82,7 +82,7 @@ public class TimeoutListContainer<K, V> implements ITickHandler {
     }
 
     @Override
-    public void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
+    public void tick(TickEvent.ClientTickEvent type, Object... context) {
         Iterator<Map.Entry<K, TimeoutList<V>>> it = timeoutListMap.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<K, TimeoutList<V>> entry = it.next();
@@ -99,13 +99,13 @@ public class TimeoutListContainer<K, V> implements ITickHandler {
     }
 
     @Override
-    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
+    public EnumSet<TickEvent.ClientTickEvent.Phase> getHandledTypes() {
         return tickTypes;
     }
 
     @Override
-    public boolean canFire(net.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
-        return phase == net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
+    public boolean canFire(TickEvent.ClientTickEvent.Phase phase) {
+        return phase == TickEvent.ClientTickEvent.Phase.END;
     }
 
     @Override

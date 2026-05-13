@@ -20,7 +20,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import net.neoforged.neoforge.event.tick.ClientTickEvent;
+import TickEvent.ClientTickEvent;
 import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nullable;
@@ -51,8 +51,8 @@ public class SkyHandler implements ITickHandler {
     }
 
     @Override
-    public void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
-        if (type == net.neoforged.neoforge.event.tick.ClientTickEvent.WORLD) {
+    public void tick(TickEvent.ClientTickEvent type, Object... context) {
+        if (type == TickEvent.ClientTickEvent.WORLD) {
             Level w = (Level) context[0];
             if (!w.isRemote() && w instanceof ServerLevel) {
                 net.minecraft.resources.ResourceKey<Level> dimKey = w.getDimensionKey();
@@ -129,13 +129,13 @@ public class SkyHandler implements ITickHandler {
     }
 
     @Override
-    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
-        return EnumSet.of(net.neoforged.neoforge.event.tick.ClientTickEvent.WORLD, net.neoforged.neoforge.event.tick.ClientTickEvent.CLIENT);
+    public EnumSet<TickEvent.ClientTickEvent> getHandledTypes() {
+        return EnumSet.of(TickEvent.ClientTickEvent.WORLD, TickEvent.ClientTickEvent.CLIENT);
     }
 
     @Override
-    public boolean canFire(net.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
-        return phase == net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
+    public boolean canFire(TickEvent.ClientTickEvent.Phase phase) {
+        return phase == TickEvent.ClientTickEvent.Phase.END;
     }
 
     @Override

@@ -13,7 +13,7 @@ import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import net.neoforged.neoforge.event.tick.ClientTickEvent;
+import TickEvent.ClientTickEvent;
 
 import java.util.function.Consumer;
 
@@ -32,7 +32,7 @@ public class EventHelperTemporaryFlight {
             player.abilities.isFlying = false;
             player.sendPlayerAbilities();
         }
-    }, net.neoforged.neoforge.event.tick.ClientTickEvent.SERVER);
+    }, TickEvent.ClientTickEvent.SERVER);
 
     private EventHelperTemporaryFlight() {}
 

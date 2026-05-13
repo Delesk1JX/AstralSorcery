@@ -22,7 +22,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import net.neoforged.neoforge.event.tick.ClientTickEvent;
+import TickEvent.ClientTickEvent;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -138,7 +138,7 @@ public class TimeStopController implements ITickHandler {
     }
 
     @Override
-    public void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
+    public void tick(TickEvent.ClientTickEvent type, Object... context) {
         for (Map.Entry<net.minecraft.resources.ResourceKey<Level>, List<TimeStopZone>> zoneMap : activeTimeStopZones.entrySet()) {
             Iterator<TimeStopZone> iterator = zoneMap.getValue().iterator();
             while (iterator.hasNext()) {
@@ -164,13 +164,13 @@ public class TimeStopController implements ITickHandler {
     }
 
     @Override
-    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
-        return EnumSet.of(net.neoforged.neoforge.event.tick.ClientTickEvent.SERVER);
+    public EnumSet<TickEvent.ClientTickEvent> getHandledTypes() {
+        return EnumSet.of(TickEvent.ClientTickEvent.SERVER);
     }
 
     @Override
-    public boolean canFire(net.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
-        return phase.equals(net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.START);
+    public boolean canFire(TickEvent.ClientTickEvent.Phase phase) {
+        return phase.equals(TickEvent.ClientTickEvent.Phase.START);
     }
 
     @Override

@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.util.tick;
 
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import net.neoforged.neoforge.event.tick.ClientTickEvent;
+import TickEvent.ClientTickEvent;
 
 import javax.annotation.Nonnull;
 import java.util.EnumSet;
@@ -26,14 +26,14 @@ import java.util.Map;
  */
 public class TickTokenMap<K, V extends TickTokenMap.TickMapToken<?>> extends TokenMap<K, V> implements ITickHandler {
 
-    private final EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> tickTypes;
+    private final EnumSet<TickEvent.ClientTickEvent> tickTypes;
 
-    public TickTokenMap(@Nonnull net.neoforged.neoforge.event.tick.ClientTickEvent first, net.neoforged.neoforge.event.tick.ClientTickEvent... restTypes) {
+    public TickTokenMap(@Nonnull TickEvent.ClientTickEvent first, TickEvent.ClientTickEvent... restTypes) {
         this.tickTypes = EnumSet.of(first, restTypes);
     }
 
     @Override
-    public void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
+    public void tick(TickEvent.ClientTickEvent type, Object... context) {
         Iterator<Map.Entry<K, V>> iteratorEntries = entrySet().iterator();
         while (iteratorEntries.hasNext()) {
             Map.Entry<K, V> entry = iteratorEntries.next();
@@ -46,13 +46,13 @@ public class TickTokenMap<K, V extends TickTokenMap.TickMapToken<?>> extends Tok
     }
 
     @Override
-    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
+    public EnumSet<TickEvent.ClientTickEvent> getHandledTypes() {
         return tickTypes;
     }
 
     @Override
-    public boolean canFire(net.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
-        return phase == net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
+    public boolean canFire(TickEvent.ClientTickEvent.Phase phase) {
+        return phase == TickEvent.ClientTickEvent.Phase.END;
     }
 
     @Override
