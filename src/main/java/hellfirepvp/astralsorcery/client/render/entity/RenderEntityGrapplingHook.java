@@ -23,7 +23,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.texture.AtlasTexture;
-import net.minecraft.client.renderer.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.neoforged.neoforge.fml.client.registry.IRenderFactory;
@@ -67,7 +67,7 @@ public class RenderEntityGrapplingHook extends EntityRenderer<EntityGrapplingHoo
         //Main grappling hook sprite
         SpritesAS.SPR_GRAPPLING_HOOK.bindTexture();
 
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             RenderingDrawUtils.renderFacingSpriteVB(buf, poseStack,
                     entityPos.getX(), entityPos.getY(), entityPos.getZ(),
                     1.3F, 0F,
@@ -79,7 +79,7 @@ public class RenderEntityGrapplingHook extends EntityRenderer<EntityGrapplingHoo
         TexturesAS.TEX_PARTICLE_LARGE.bindTexture();
         Blending.ADDITIVE_ALPHA.apply();
 
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             for (Vector3 pos : line) {
                 Vector3 at = pos.multiply(2).add(entityPos);
                 RenderingDrawUtils.renderFacingFullQuadVB(buf, poseStack,

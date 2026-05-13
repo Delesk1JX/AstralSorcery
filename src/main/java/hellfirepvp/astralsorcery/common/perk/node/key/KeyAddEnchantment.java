@@ -22,7 +22,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.EventBus;
 import net.neoforged.fml.LogicalSide;
 import net.minecraft.core.registries.BuiltInRegistries;
 

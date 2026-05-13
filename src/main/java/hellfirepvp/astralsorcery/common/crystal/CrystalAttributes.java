@@ -148,12 +148,12 @@ public final class CrystalAttributes {
                 if (!prop.canSee(progress) || !attr.isDiscovered()) {
                     missing = true;
                 } else {
-                    net.minecraft.network.chat.Component enchantmentLevel = new Component.translatable(String.format("enchantment.level.%s", attr.getTier()))
+                    net.minecraft.network.chat.Component enchantmentLevel = Component.translatable(String.format("enchantment.level.%s", attr.getTier()))
                             .withStyle(ChatFormatting.GOLD);
                     net.minecraft.network.chat.Component propertyName = prop.getName(attr.getTier()).withStyle(ChatFormatting.GRAY);
 
                     tooltip.add(propertyName
-                            .append(new Component.literal(" "))
+                            .append(Component.literal(" "))
                             .append(enchantmentLevel));
                     addedAtLeastOne = true;
                 }
@@ -161,7 +161,7 @@ public final class CrystalAttributes {
         }
 
         if (missing) {
-            tooltip.add(new Component.translatable("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.translatable("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY));
         }
         return missing && !addedAtLeastOne ? TooltipResult.ALL_MISSING :
                 missing ?  TooltipResult.ADDED_ALL_WITH_MISSING : TooltipResult.ADDED_ALL;

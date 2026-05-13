@@ -37,7 +37,7 @@ import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import net.neoforged.neoforge.event.tick.ClientTickEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
-import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.EventBus;
 
 import java.awt.*;
 import java.util.Collections;

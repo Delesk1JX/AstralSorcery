@@ -109,7 +109,7 @@ public interface LinkableTileEntity {
             for (BlockPos linkTo : Lists.newArrayList(getLinkedPositions())) {
                 tryUnlink(player, linkTo);
             }
-            player.sendMessage(new Component.translatable("astralsorcery.misc.link.unlink.all").withStyle(ChatFormatting.GREEN), Util.DUMMY_UUID);
+            player.sendMessage(Component.translatable("astralsorcery.misc.link.unlink.all").withStyle(ChatFormatting.GREEN), Util.DUMMY_UUID);
             return false;
         }
         return true;

@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.client.util.draw;
 
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
-import net.minecraft.client.renderer.BufferBuilder;
+import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.VertexFormat;
 
 /**

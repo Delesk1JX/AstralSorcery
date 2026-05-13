@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.common.event.DynamicEnchantmentEvent;
 import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;
 import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
 import net.minecraft.world.entity.player.Player;
-import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.EventBus;
 import net.neoforged.fml.LogicalSide;
 
 /**

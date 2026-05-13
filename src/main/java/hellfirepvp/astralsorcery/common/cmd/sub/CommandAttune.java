@@ -52,11 +52,11 @@ public class CommandAttune implements Command<CommandSource> {
 
         if (ResearchManager.setAttunedConstellation(player, cst)) {
             context.getSource().sendFeedback(
-                    new Component.literal("Success! Player has been attuned to ").append(cst.getConstellationName().withStyle(ChatFormatting.BLUE))
+                    Component.literal("Success! Player has been attuned to ").append(cst.getConstellationName().withStyle(ChatFormatting.BLUE))
                             .withStyle(ChatFormatting.GREEN), true);
         } else {
             context.getSource().sendFeedback(
-                    new Component.literal("Failed! Player specified doesn't seem to have the research progress necessary!").withStyle(ChatFormatting.RED), true);
+                    Component.literal("Failed! Player specified doesn't seem to have the research progress necessary!").withStyle(ChatFormatting.RED), true);
         }
         return 0;
     }

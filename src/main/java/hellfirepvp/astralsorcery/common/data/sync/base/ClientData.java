@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.data.sync.base;
 
-import net.minecraft.util.net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.Level;
 
 /**

@@ -31,7 +31,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.RenderPlayerEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import net.neoforged.neoforge.event.tick.ClientTickEvent;
-import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.EventBus;
 import net.neoforged.neoforge.eventbus.api.SubscribeEvent;
 import net.neoforged.fml.LogicalSide;
 

@@ -28,8 +28,8 @@ import hellfirepvp.astralsorcery.common.network.play.client.PktDiscoverConstella
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.VertexConsumer;
-import net.minecraft.client.renderer.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import org.joml.Matrix4f;
@@ -151,7 +151,7 @@ public abstract class ConstellationDiscoveryScreen<D extends ConstellationDiscov
         Supplier<Float> brightnessFn = () -> RenderingConstellationUtils.conCFlicker(ClientScheduler.getClientTick(), pTicks, 5 + rand.nextInt(10));
         TexturesAS.TEX_STAR_CONNECTION.bindTexture();
 
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             for (DrawnLine line : drawnLines) {
                 drawLine(buf, renderStack, pTicks, line.from, line.to, brightnessFn, lineBreadth);
             }

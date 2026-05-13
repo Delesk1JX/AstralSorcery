@@ -21,7 +21,7 @@ import hellfirepvp.astralsorcery.common.starlight.transmission.ITransmissionRece
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.util.net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.Tuple;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.ChunkPos;

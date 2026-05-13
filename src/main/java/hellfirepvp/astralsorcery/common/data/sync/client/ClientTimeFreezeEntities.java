@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.data.sync.base.ClientDataReader;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.util.net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.level.Level;

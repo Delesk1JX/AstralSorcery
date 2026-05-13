@@ -27,7 +27,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.event.entity.living.LivingAttackEvent;
 import net.neoforged.neoforge.event.world.BlockEvent;
-import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.EventBus;
 import net.neoforged.fml.LogicalSide;
 
 /**

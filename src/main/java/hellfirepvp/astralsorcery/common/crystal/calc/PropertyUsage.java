@@ -31,7 +31,7 @@ public class PropertyUsage extends DeferredHolder<Item, PropertyUsage> {
     }
 
     public net.minecraft.network.chat.Component getName() {
-        return new Component.translatable(String.format("crystal.usage.%s.%s.name",
+        return Component.translatable(String.format("crystal.usage.%s.%s.name",
                 getRegistryName().getNamespace(), getRegistryName().getPath()));
     }
 

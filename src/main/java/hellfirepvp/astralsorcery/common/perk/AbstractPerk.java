@@ -30,7 +30,7 @@ import static net.minecraft.network.chat.Component.translatable;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.EventBus;
 import net.neoforged.fml.LogicalSide;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
@@ -208,8 +208,8 @@ public class AbstractPerk implements ModifierSource {
         return !this.hiddenUnlessAllocated || progress.getPerkData().hasPerkAllocation(this);
     }
 
-    public IFormattableTextComponent getName() {
-        return new Component.translatable(this.unlocalizedKey + ".name")
+    public MutableComponent getName() {
+        return Component.translatable(this.unlocalizedKey + ".name")
                 .withStyle(this.getCategory().getChatFormatting());
     }
 
@@ -253,11 +253,11 @@ public class AbstractPerk implements ModifierSource {
             int prevLength = tooltipCache.size();
             boolean shouldAdd = addLocalizedTooltip(tooltipCache);
             if (shouldAdd && prevLength != tooltipCache.size()) {
-                tooltipCache.add(new Component.literal(""));
+                tooltipCache.add(Component.literal(""));
             }
             tooltipCache.addAll(this.getDescription());
         } else {
-            tooltipCache.add(new Component.translatable("perk.info.astralsorcery.missing_progress")
+            tooltipCache.add(Component.translatable("perk.info.astralsorcery.missing_progress")
                     .withStyle(ChatFormatting.RED));
         }
         return tooltipCache;
@@ -276,7 +276,7 @@ public class AbstractPerk implements ModifierSource {
         String modid = getRegistryName().getNamespace();
         ModContainer mod = ModList.get().getModContainerById(modid).orElse(null);
         if (mod != null) {
-            return Lists.newArrayList(new Component.literal(mod.getModInfo().getDisplayName()));
+            return Lists.newArrayList(Component.literal(mod.getModInfo().getDisplayName()));
         }
         return null;
     }
@@ -356,11 +356,11 @@ public class AbstractPerk implements ModifierSource {
 
     public static class PerkCategory {
 
-        private final IFormattableTextComponent name;
+        private final MutableComponent name;
         private final ChatFormatting color;
 
         public PerkCategory(@Nonnull String unlocName, @Nonnull ChatFormatting color) {
-            this.name = new Component.translatable("perk.category.astralsorcery." + unlocName + ".name");
+            this.name = Component.translatable("perk.category.astralsorcery." + unlocName + ".name");
             this.color = color;
         }
 

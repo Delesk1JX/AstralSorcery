@@ -20,7 +20,7 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.item.base.PerkExperienceRevealer;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.InteractionHand;
@@ -29,7 +29,7 @@ import net.neoforged.neoforge.client.event.RenderGameOverlayEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import net.neoforged.neoforge.event.tick.ClientTickEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
-import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.EventBus;
 import net.neoforged.fml.LogicalSide;
 import org.lwjgl.opengl.GL11;
 
@@ -80,7 +80,7 @@ public class PerkExperienceRenderer implements ITickHandler {
         RenderSystem.disableAlphaTest();
 
         TexturesAS.TEX_OVERLAY_EXP_FRAME.bindTexture();
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             RenderingGuiUtils.rect(buf, renderStack, frameOffsetX, frameOffsetY, 10, frameWidth, frameHeight)
                     .color(1F, 1F, 1F, visibilityReveal * 0.9F)
                     .draw();
@@ -94,7 +94,7 @@ public class PerkExperienceRenderer implements ITickHandler {
         float expOffsetY =  27.5F + (1F - perc) * 78F;
 
         TexturesAS.TEX_OVERLAY_EXP_BAR.bindTexture();
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             RenderingGuiUtils.rect(buf, renderStack, expOffsetX, expOffsetY, 10, expWidth, expHeight)
                     .color(1F, 0.9F, 0F, visibilityReveal * 0.9F)
                     .tex(0, 0, 1, 1 - perc)
@@ -102,7 +102,7 @@ public class PerkExperienceRenderer implements ITickHandler {
         });
 
         String strLevel = String.valueOf(perkData.getPerkLevel(player, LogicalSide.CLIENT));
-        Component.literal txtLevel = new Component.literal(strLevel);
+        Component.literal txtLevel = Component.literal(strLevel);
         int strLength = Minecraft.getInstance().fontRenderer.getStringPropertyWidth(txtLevel);
 
         renderStack.push();

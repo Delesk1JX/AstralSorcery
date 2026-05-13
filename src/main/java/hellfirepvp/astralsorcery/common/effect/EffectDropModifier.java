@@ -22,7 +22,7 @@ import net.minecraft.world.GameRules;
 import net.minecraft.server.level.ServerLevel;
 import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
-import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;

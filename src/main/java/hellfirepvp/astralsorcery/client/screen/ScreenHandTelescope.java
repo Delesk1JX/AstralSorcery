@@ -26,7 +26,7 @@ import hellfirepvp.astralsorcery.common.constellation.world.WorldContext;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.Mth;
 import static net.minecraft.network.chat.Component.translatable;
@@ -51,7 +51,7 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<Constellat
     private final List<Point.Float> usedStars = new ArrayList<>(randomStars);
 
     public ScreenHandTelescope() {
-        super(new Component.translatable("screen.astralsorcery.hand_telescope"), 216, 216);
+        super(Component.translatable("screen.astralsorcery.hand_telescope"), 216, 216);
     }
 
     @Nonnull
@@ -143,7 +143,7 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<Constellat
             this.setBlitOffset(-9);
             float starSize = 5F;
             TexturesAS.TEX_STAR_1.bindTexture();
-            RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+            RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
                 for (Point.Float pos : this.usedStars) {
                     float brightness = 0.4F + (RenderingConstellationUtils.stdFlicker(ClientScheduler.getClientTick(), pTicks, 10 + gen.nextInt(20))) * 0.5F;
                     brightness = this.multiplyStarBrightness(pTicks, brightness);

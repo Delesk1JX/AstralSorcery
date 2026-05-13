@@ -37,14 +37,14 @@ public interface IWeakConstellation extends IConstellation {
     }
 
     default public Component getInfoRitualEffect() {
-        return new Component.translatable(this.getTranslationKey() + ".ritual");
+        return Component.translatable(this.getTranslationKey() + ".ritual");
     }
 
     default public Component getInfoCorruptedRitualEffect() {
-        return new Component.translatable(this.getTranslationKey() + ".corruption");
+        return Component.translatable(this.getTranslationKey() + ".corruption");
     }
 
     default public Component getInfoMantleEffect() {
-        return new Component.translatable(this.getTranslationKey() + ".mantle");
+        return Component.translatable(this.getTranslationKey() + ".mantle");
     }
 }

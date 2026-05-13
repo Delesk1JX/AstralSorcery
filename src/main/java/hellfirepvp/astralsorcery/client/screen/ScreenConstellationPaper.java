@@ -122,7 +122,7 @@ public class ScreenConstellationPaper extends WidthHeightScreen {
 
         List<MoonPhase> phases = this.phases == null ? Collections.emptyList() : this.phases;
         if (phases.isEmpty()) {
-            Component text = new Component.translatable("astralsorcery.journal.constellation.unknown");
+            Component text = Component.translatable("astralsorcery.journal.constellation.unknown");
             RenderingDrawUtils.renderStringCentered(Minecraft.getInstance().fontRenderer, renderStack,
                     text, guiLeft + guiWidth / 2 + 25, guiTop + 239,
                     1.8F, 0xAA4D4D4D);

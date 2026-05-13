@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import hellfirepvp.astralsorcery.client.util.draw.BufferBatchHelper;
 import hellfirepvp.astralsorcery.client.util.draw.BufferContext;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.client.renderer.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.lwjgl.opengl.GL11;
@@ -65,7 +65,7 @@ public class BatchPerkContext {
 
     public void beginDrawingPerks() {
         for (TextureObjectGroup group : bufferGroups.keySet()) {
-            bufferGroups.get(group).begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX);
+            bufferGroups.get(group).begin(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX);
         }
     }
 

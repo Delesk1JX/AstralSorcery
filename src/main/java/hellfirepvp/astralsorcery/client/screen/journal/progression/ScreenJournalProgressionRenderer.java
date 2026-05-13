@@ -24,7 +24,7 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.data.research.ResearchProgression;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.util.Mth;
 import org.joml.Matrix4f;
 import net.minecraft.network.chat.FormattedText;
@@ -344,7 +344,7 @@ public class ScreenJournalProgressionRenderer {
 
         RenderSystem.enableBlend();
         Blending.ADDITIVEDARK.apply();
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             Matrix4f offset = renderStack.getLast().getMatrix();
             buf.pos(offset, pCluster.x + 0,     pCluster.y + height, zLevel).color(br, br, br, br).tex(0, 1).endVertex();
             buf.pos(offset, pCluster.x + width, pCluster.y + height, zLevel).color(br, br, br, br).tex(1, 1).endVertex();
@@ -371,7 +371,7 @@ public class ScreenJournalProgressionRenderer {
         RenderSystem.enableBlend();
         Blending.ADDITIVEDARK.apply();
 
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             Matrix4f offset = renderStack.getLast().getMatrix();
             buf.pos(offset, realCoordLowerX,                   realCoordLowerY + realRenderHeight, zLevel).color(br, br, br, br).tex(0, 1).endVertex();
             buf.pos(offset, realCoordLowerX + realRenderWidth, realCoordLowerY + realRenderHeight, zLevel).color(br, br, br, br).tex(1, 1).endVertex();
@@ -386,7 +386,7 @@ public class ScreenJournalProgressionRenderer {
     private void drawBackground(PoseStack renderStack, float zLevel) {
         float br = 0.35F;
         TexturesAS.TEX_GUI_BACKGROUND_DEFAULT.bindTexture();
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             Matrix4f offset = renderStack.getLast().getMatrix();
             buf.pos(offset, realCoordLowerX,                   realCoordLowerY + realRenderHeight, zLevel).color(br, br, br, 1.0F).tex(0, 1).endVertex();
             buf.pos(offset, realCoordLowerX + realRenderWidth, realCoordLowerY + realRenderHeight, zLevel).color(br, br, br, 1.0F).tex(1, 1).endVertex();
@@ -403,7 +403,7 @@ public class ScreenJournalProgressionRenderer {
         float offsetX = scalePosX / 2000F;
         float offsetY = scalePosY / 1000F;
 
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             drawStarOverlay(buf, renderStack, zLevel, offsetX, offsetY, 2F);
             drawStarOverlay(buf, renderStack, zLevel, offsetX, offsetY, 1.5F);
             drawStarOverlay(buf, renderStack, zLevel, offsetX, offsetY, 1F);

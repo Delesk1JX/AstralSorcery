@@ -44,7 +44,7 @@ public enum GemQuality {
     }
 
     public net.minecraft.network.chat.Component getDisplayName() {
-        return new Component.translatable("item.astralsorcery.gem_quality.%s", this.name().toLowerCase(Locale.ROOT))
+        return Component.translatable("item.astralsorcery.gem_quality.%s", this.name().toLowerCase(Locale.ROOT))
                 .withStyle(this.color);
     }
 }

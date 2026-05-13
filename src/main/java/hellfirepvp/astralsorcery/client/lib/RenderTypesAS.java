@@ -10,9 +10,9 @@ package hellfirepvp.astralsorcery.client.lib;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.VertexFormat;
 
-import static net.minecraft.client.renderer.vertex.DefaultVertexFormats.*;
+import static net.minecraft.client.renderer.vertex.DefaultVertexFormat.*;
 
 /**
  * This class is part of the Astral Sorcery Mod

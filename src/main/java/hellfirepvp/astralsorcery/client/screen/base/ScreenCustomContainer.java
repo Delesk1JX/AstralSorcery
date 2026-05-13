@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import net.minecraft.client.gui.IHasContainer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
-import net.minecraft.client.renderer.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.world.entity.player.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.network.chat.Component;
@@ -67,7 +67,7 @@ public abstract class ScreenCustomContainer<T extends Container> extends Contain
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
 
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             RenderingGuiUtils.rect(buf, renderStack, this.guiLeft, this.guiTop, this.getBlitOffset(), this.sWidth, this.sHeight).draw();
         });
     }

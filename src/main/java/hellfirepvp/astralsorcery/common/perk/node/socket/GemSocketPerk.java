@@ -160,9 +160,9 @@ public interface GemSocketPerk {
 
         ItemStack contained = getContainedItem(Minecraft.getInstance().player, LogicalSide.CLIENT);
         if (contained.isEmpty()) {
-            tooltip.add(new Component.translatable("perk.info.astralsorcery.gem.empty").withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.translatable("perk.info.astralsorcery.gem.empty").withStyle(ChatFormatting.GRAY));
             if (perkData.hasPerkEffect(thisPerk)) {
-                tooltip.add(new Component.translatable("perk.info.astralsorcery.gem.content.empty").withStyle(ChatFormatting.GRAY));
+                tooltip.add(Component.translatable("perk.info.astralsorcery.gem.content.empty").withStyle(ChatFormatting.GRAY));
 
                 boolean has = !ItemUtils.findItemsIndexedInIInventory(Minecraft.getInstance().player, stack -> {
                     if (stack.isEmpty() || !(stack.getItem() instanceof GemSocketItem)) {
@@ -172,7 +172,7 @@ public interface GemSocketPerk {
                     return item.canBeInserted(stack, thisPerk, Minecraft.getInstance().player, ResearchHelper.getClientProgress(), LogicalSide.CLIENT);
                 }).isEmpty();
                 if (!has) {
-                    tooltip.add(new Component.translatable("perk.info.astralsorcery.gem.content.empty.none")
+                    tooltip.add(Component.translatable("perk.info.astralsorcery.gem.content.empty.none")
                             .withStyle(ChatFormatting.RED));
                 }
             }
@@ -183,14 +183,14 @@ public interface GemSocketPerk {
                 item.addTooltip(contained, thisPerk, additionalToolTip);
                 if (!additionalToolTip.isEmpty()) {
                     tooltip.addAll(additionalToolTip);
-                    tooltip.add(new Component.literal(""));
+                    tooltip.add(Component.literal(""));
                 }
             }
 
-            tooltip.add(new Component.translatable("perk.info.astralsorcery.gem.content.item", contained.getDisplayName())
+            tooltip.add(Component.translatable("perk.info.astralsorcery.gem.content.item", contained.getDisplayName())
                     .withStyle(ChatFormatting.GRAY));
             if (perkData.hasPerkEffect(thisPerk)) {
-                tooltip.add(new Component.translatable("perk.info.astralsorcery.gem.remove").withStyle(ChatFormatting.GRAY));
+                tooltip.add(Component.translatable("perk.info.astralsorcery.gem.remove").withStyle(ChatFormatting.GRAY));
             }
         }
     }

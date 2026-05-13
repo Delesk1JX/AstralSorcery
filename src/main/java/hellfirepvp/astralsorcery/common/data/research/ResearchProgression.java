@@ -95,7 +95,7 @@ public enum ResearchProgression implements Enum {
     }
 
     public Component getName() {
-        return new Component.translatable(this.unlocName);
+        return Component.translatable(this.unlocName);
     }
 
     @Nullable

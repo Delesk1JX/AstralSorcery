@@ -30,7 +30,7 @@ import net.minecraft.world.entity.EntityClassification;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.potion.EffectInstance;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.core.BlockPos;

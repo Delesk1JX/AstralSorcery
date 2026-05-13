@@ -48,7 +48,7 @@ public class TileObservatory extends TileEntityTick implements NamedInventoryTil
 
     @Override
     public Component getDisplayName() {
-        return new Component.translatable("screen.astralsorcery.observatory");
+        return Component.translatable("screen.astralsorcery.observatory");
     }
 
     @Override

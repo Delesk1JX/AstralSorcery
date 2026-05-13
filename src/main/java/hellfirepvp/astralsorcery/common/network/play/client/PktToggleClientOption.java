@@ -72,11 +72,11 @@ public class PktToggleClientOption extends ASPacket<PktToggleClientOption> {
                             if (prog.isValid()) {
                                 Component status;
                                 if (prog.doPerkAbilities()) {
-                                    status = new Component.translatable("astralsorcery.progress.perk_abilities.enable").withStyle(ChatFormatting.GREEN);
+                                    status = Component.translatable("astralsorcery.progress.perk_abilities.enable").withStyle(ChatFormatting.GREEN);
                                 } else {
-                                    status = new Component.translatable("astralsorcery.progress.perk_abilities.disable").withStyle(ChatFormatting.RED);
+                                    status = Component.translatable("astralsorcery.progress.perk_abilities.disable").withStyle(ChatFormatting.RED);
                                 }
-                                player.sendMessage(new Component.translatable("astralsorcery.progress.perk_abilities", status).withStyle(ChatFormatting.GRAY), Util.DUMMY_UUID);
+                                player.sendMessage(Component.translatable("astralsorcery.progress.perk_abilities", status).withStyle(ChatFormatting.GRAY), Util.DUMMY_UUID);
                             }
                         }
                         break;

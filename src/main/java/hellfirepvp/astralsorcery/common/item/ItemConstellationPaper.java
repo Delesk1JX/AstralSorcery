@@ -81,7 +81,7 @@ public class ItemConstellationPaper extends Item implements ItemDynamicColor, Co
         if (c != null && c.canDiscover(Minecraft.getInstance().player, ResearchHelper.getClientProgress())) {
             toolTip.add(c.getConstellationName().withStyle(ChatFormatting.BLUE));
         } else {
-            toolTip.add(new Component.translatable("astralsorcery.misc.noinformation").withStyle(ChatFormatting.GRAY));
+            toolTip.add(Component.translatable("astralsorcery.misc.noinformation").withStyle(ChatFormatting.GRAY));
         }
     }
 

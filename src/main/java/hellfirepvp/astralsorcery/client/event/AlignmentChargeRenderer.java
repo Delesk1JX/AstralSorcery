@@ -21,7 +21,7 @@ import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.MainWindow;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
@@ -31,7 +31,7 @@ import net.neoforged.neoforge.client.event.RenderGameOverlayEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import net.neoforged.neoforge.event.tick.ClientTickEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
-import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.EventBus;
 import net.neoforged.fml.LogicalSide;
 import org.lwjgl.opengl.GL11;
 
@@ -110,7 +110,7 @@ public class AlignmentChargeRenderer implements ITickHandler {
         RenderSystem.disableAlphaTest();
 
         SpritesAS.SPR_OVERLAY_CHARGE.bindTexture();
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             RenderingGuiUtils.rect(buf, renderStack, offsetLeft, offsetTop, 10, width, 54)
                     .color(1F, 1F, 1F, this.alphaReveal)
                     .tex(uvColored.getA(), uvColored.getB() + 0.002F, uLengthCharge, SpritesAS.SPR_OVERLAY_CHARGE.getVWidth() - 0.002F)
@@ -118,7 +118,7 @@ public class AlignmentChargeRenderer implements ITickHandler {
         });
 
         SpritesAS.SPR_OVERLAY_CHARGE_COLORLESS.bindTexture();
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             RenderingGuiUtils.rect(buf, renderStack, offsetLeft + width, offsetTop, 10, usageWidth, 54)
                     .color(usageColor.getRed(), usageColor.getGreen(), usageColor.getBlue(), (int) (this.alphaReveal * 255F))
                     .tex(uvColorless.getA() + uLengthCharge, uvColorless.getB() + 0.002F, uLengthUsage, SpritesAS.SPR_OVERLAY_CHARGE_COLORLESS.getVWidth() - 0.002F)

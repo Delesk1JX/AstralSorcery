@@ -13,9 +13,9 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import hellfirepvp.astralsorcery.client.resource.SpriteSheetResource;
 import hellfirepvp.astralsorcery.client.screen.base.WidthHeightScreen;
-import net.minecraft.client.renderer.VertexConsumer;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.util.Tuple;
 import org.joml.Matrix4f;
 import org.lwjgl.opengl.GL11;
@@ -35,7 +35,7 @@ public class RenderingGuiUtils {
 
     @Deprecated
     public static void drawTexturedRectAtCurrentPos(float width, float height, float zLevel, float uFrom, float vFrom, float uWidth, float vWidth) {
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             rect(buf, 0, 0, zLevel, width, height)
                     .tex(uFrom, vFrom, uWidth, vWidth)
                     .draw();
@@ -53,7 +53,7 @@ public class RenderingGuiUtils {
     }
 
     public static void drawRect(PoseStack renderStack, float offsetX, float offsetY, float zLevel, float width, float height) {
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             rect(buf, renderStack, offsetX, offsetY, zLevel, width, height)
                     .draw();
         });
@@ -74,7 +74,7 @@ public class RenderingGuiUtils {
     }
 
     public static void drawTexturedRect(PoseStack renderStack, float offsetX, float offsetY, float zLevel, float width, float height, float uFrom, float vFrom, float uWidth, float vWidth) {
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             rect(buf, renderStack, offsetX, offsetY, zLevel, width, height)
                     .tex(uFrom, vFrom, uWidth, vWidth)
                     .draw();

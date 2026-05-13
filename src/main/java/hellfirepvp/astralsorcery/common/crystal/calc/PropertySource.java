@@ -36,7 +36,7 @@ public abstract class PropertySource<T, I extends PropertySource.SourceInstance>
     public abstract I createInstance(T obj);
 
     public Component getName() {
-        return new Component.translatable(String.format("crystal.source.%s.%s.name",
+        return Component.translatable(String.format("crystal.source.%s.%s.name",
                 getRegistryName().getNamespace(), getRegistryName().getPath()));
     }
 

@@ -109,7 +109,7 @@ public class ColorUtils {
 
     @Nonnull
     public static net.minecraft.network.chat.Component getTranslation(DyeColor color) {
-        return new Component.translatable(String.format("color.minecraft.%s", color.getTranslationKey()));
+        return Component.translatable(String.format("color.minecraft.%s", color.getTranslationKey()));
     }
 
     @Nonnull

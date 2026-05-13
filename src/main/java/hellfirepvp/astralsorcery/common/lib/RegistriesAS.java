@@ -22,7 +22,7 @@ import hellfirepvp.astralsorcery.common.perk.reader.PerkAttributeReader;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import hellfirepvp.astralsorcery.common.structure.types.StructureType;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.neoforge.registries.Registry;
+
 
 /**
  * This class is part of the Astral Sorcery Mod

@@ -78,7 +78,7 @@ public class AttributeModifierPerk extends AttributeConverterPerk implements Att
             for (PerkAttributeModifier modifier : modifiers) {
                 String modifierDisplay = modifier.getLocalizedDisplayString();
                 if (modifierDisplay != null) {
-                    tooltip.add(new Component.literal(modifierDisplay));
+                    tooltip.add(Component.literal(modifierDisplay));
                 } else {
                     addEmptyLine = false;
                 }

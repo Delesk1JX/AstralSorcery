@@ -46,7 +46,7 @@ public class PlayerReference {
         if (txt instanceof net.minecraft.network.chat.Component) {
             return new PlayerReference(player.getUniqueID(), (net.minecraft.network.chat.Component) txt);
         }
-        return new PlayerReference(player.getUniqueID(), new Component.literal("").append(txt));
+        return new PlayerReference(player.getUniqueID(), Component.literal("").append(txt));
     }
 
     public boolean isPlayer(Player player) {

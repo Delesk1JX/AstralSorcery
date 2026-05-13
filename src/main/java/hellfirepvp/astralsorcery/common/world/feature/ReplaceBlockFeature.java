@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.world.feature;
 import hellfirepvp.astralsorcery.common.world.feature.config.ReplaceBlockConfig;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.ServerLevel;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.IServerLevel;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;

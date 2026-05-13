@@ -20,7 +20,7 @@ import hellfirepvp.astralsorcery.common.util.DiminishingMultiplier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.event.world.BlockEvent;
-import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.EventBus;
 import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;

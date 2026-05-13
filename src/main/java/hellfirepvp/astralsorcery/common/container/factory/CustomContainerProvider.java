@@ -40,7 +40,7 @@ public abstract class CustomContainerProvider<C extends Container> implements IN
     @Override
     public Component getDisplayName() {
         ResourceLocation key = this.type.getRegistryName();
-        return new Component.translatable("screen.%s.%s", key.getNamespace(), key.getPath());
+        return Component.translatable("screen.%s.%s", key.getNamespace(), key.getPath());
     }
 
     @Nonnull

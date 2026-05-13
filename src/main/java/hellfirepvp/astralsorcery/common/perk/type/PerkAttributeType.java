@@ -20,7 +20,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
 import static net.minecraft.network.chat.Component.translatable;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.EventBus;
 import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
@@ -68,7 +68,7 @@ public class PerkAttributeType extends DeferredHolder<net.neoforged.neoforge.reg
     }
 
     public Component getTranslatedName() {
-        return new Component.translatable(this.getUnlocalizedName());
+        return Component.translatable(this.getUnlocalizedName());
     }
 
     public String getUnlocalizedName() {

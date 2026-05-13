@@ -24,7 +24,7 @@ import hellfirepvp.astralsorcery.common.world.structure.feature.FeatureAncientSh
 import hellfirepvp.astralsorcery.common.world.structure.feature.FeatureDesertShrineStructure;
 import hellfirepvp.astralsorcery.common.world.structure.feature.FeatureSmallShrineStructure;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;

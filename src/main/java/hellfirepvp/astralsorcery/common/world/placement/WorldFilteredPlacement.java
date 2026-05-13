@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.world.placement;
 
 import hellfirepvp.astralsorcery.common.world.placement.config.WorldFilterConfig;
-import net.minecraft.util.net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.gen.feature.WorldDecoratingHelper;

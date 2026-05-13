@@ -16,14 +16,14 @@ import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.DisplayEffectsScreen;
-import net.minecraft.client.renderer.vertex.VertexFormat;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectInstance;
+import com.mojang.blaze3d.vertex.VertexFormat;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.Tuple;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.EventBus;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
@@ -64,7 +64,7 @@ public abstract class EffectCustomTexture extends Effect {
         ssr.bindTexture();
 
         Tuple<Float, Float> uvTpl = ssr.getUVOffset(ClientScheduler.getClientTick());
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             RenderingGuiUtils.rect(buf, renderStack, offsetX, offsetY, z, wh, wh)
                     .color(red, green, blue, 1F)
                     .tex(uvTpl.getA(), uvTpl.getB(), ssr.getUWidth(), ssr.getVWidth())
@@ -86,7 +86,7 @@ public abstract class EffectCustomTexture extends Effect {
         ssr.bindTexture();
 
         Tuple<Float, Float> uvTpl = ssr.getUVOffset(ClientScheduler.getClientTick());
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             RenderingGuiUtils.rect(buf, renderStack, offsetX, offsetY, z, wh, wh)
                     .color(red, green, blue, 1F)
                     .tex(uvTpl.getA(), uvTpl.getB(), ssr.getUWidth(), ssr.getVWidth())

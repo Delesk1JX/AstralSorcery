@@ -62,7 +62,7 @@ import net.neoforged.neoforge.common.util.TriPredicate;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.fml.common.thread.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -102,7 +102,7 @@ public class ItemResonator extends Item implements OverrideInteractItem {
         ResonatorUpgrade current = getCurrentUpgrade(Minecraft.getInstance().player, stack);
         for (ResonatorUpgrade upgrade : getUpgrades(stack)) {
             ChatFormatting color = upgrade.equals(current) ? ChatFormatting.GOLD : ChatFormatting.BLUE;
-            tooltip.add(new Component.translatable(upgrade.getUnlocalizedTypeName()).withStyle(color));
+            tooltip.add(Component.translatable(upgrade.getUnlocalizedTypeName()).withStyle(color));
         }
     }
 

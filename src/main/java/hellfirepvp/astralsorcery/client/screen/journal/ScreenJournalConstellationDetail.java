@@ -34,8 +34,8 @@ import hellfirepvp.astralsorcery.common.lib.SoundsAS;
 import hellfirepvp.astralsorcery.common.util.RecipeHelper;
 import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.vertex.VertexFormat;
-import net.minecraft.util.FormattedText;
+import com.mojang.blaze3d.vertex.VertexFormat;
+import net.minecraft.network.chat.FormattedText;
 import org.joml.Matrix4f;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
@@ -113,13 +113,13 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
             if (ResearchHelper.getClientProgress().getTierReached().isThisLaterOrEqual(ProgressionTier.TRAIT_CRAFT)) {
                 Component txtMantle = ((IWeakConstellation) this.constellation).getInfoMantleEffect();
 
-                Component headTxt = new Component.translatable("astralsorcery.journal.constellation.mantle");
+                Component headTxt = Component.translatable("astralsorcery.journal.constellation.mantle");
                 locTextMantle.add(localize(headTxt));
                 locTextMantle.add(FormattedText.field_242232_a);
 
                 List<FormattedText> lines = new LinkedList<>();
                 for (String segment : txtMantle.getString().split("<NL>")) {
-                    lines.addAll(font.trimStringToWidth(new Component.literal(segment), JournalPage.DEFAULT_WIDTH));
+                    lines.addAll(font.trimStringToWidth(Component.literal(segment), JournalPage.DEFAULT_WIDTH));
                     lines.add(FormattedText.field_242232_a);
                 }
                 locTextMantle.addAll(lines);
@@ -132,13 +132,13 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
         if (ResearchHelper.getClientProgress().getTierReached().isThisLaterOrEqual(ProgressionTier.CONSTELLATION_CRAFT)) {
             Component txtEnchantments = this.constellation.getConstellationEnchantmentDescription();
 
-            Component headTxt = new Component.translatable("astralsorcery.journal.constellation.enchantments");
+            Component headTxt = Component.translatable("astralsorcery.journal.constellation.enchantments");
             locTextRefraction.add(localize(headTxt));
             locTextRefraction.add(FormattedText.field_242232_a);
 
             List<FormattedText> lines = new LinkedList<>();
             for (String segment : txtEnchantments.getString().split("<NL>")) {
-                lines.addAll(font.trimStringToWidth(new Component.literal(segment), JournalPage.DEFAULT_WIDTH));
+                lines.addAll(font.trimStringToWidth(Component.literal(segment), JournalPage.DEFAULT_WIDTH));
                 lines.add(FormattedText.field_242232_a);
             }
             locTextRefraction.addAll(lines);
@@ -151,13 +151,13 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
             if (ResearchHelper.getClientProgress().getTierReached().isThisLaterOrEqual(ProgressionTier.TRAIT_CRAFT)) {
                 Component txtRitual = ((IMinorConstellation) this.constellation).getInfoTraitEffect();
 
-                Component headTxt = new Component.translatable("astralsorcery.journal.constellation.ritual.trait");
+                Component headTxt = Component.translatable("astralsorcery.journal.constellation.ritual.trait");
                 locTextRitual.add(localize(headTxt));
                 locTextRitual.add(FormattedText.field_242232_a);
 
                 List<FormattedText> lines = new LinkedList<>();
                 for (String segment : txtRitual.getString().split("<NL>")) {
-                    lines.addAll(font.trimStringToWidth(new Component.literal(segment), JournalPage.DEFAULT_WIDTH));
+                    lines.addAll(font.trimStringToWidth(Component.literal(segment), JournalPage.DEFAULT_WIDTH));
                     lines.add(FormattedText.field_242232_a);
                 }
                 locTextRitual.addAll(lines);
@@ -166,13 +166,13 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
             if (ResearchHelper.getClientProgress().getTierReached().isThisLaterOrEqual(ProgressionTier.ATTUNEMENT)) {
                 Component txtRitual = ((IWeakConstellation) this.constellation).getInfoRitualEffect();
 
-                Component headTxt = new Component.translatable("astralsorcery.journal.constellation.ritual");
+                Component headTxt = Component.translatable("astralsorcery.journal.constellation.ritual");
                 locTextRitual.add(localize(headTxt));
                 locTextRitual.add(FormattedText.field_242232_a);
 
                 List<FormattedText> lines = new LinkedList<>();
                 for (String segment : txtRitual.getString().split("<NL>")) {
-                    lines.addAll(font.trimStringToWidth(new Component.literal(segment), JournalPage.DEFAULT_WIDTH));
+                    lines.addAll(font.trimStringToWidth(Component.literal(segment), JournalPage.DEFAULT_WIDTH));
                     lines.add(FormattedText.field_242232_a);
                 }
                 locTextRitual.addAll(lines);
@@ -181,13 +181,13 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
             if (ResearchHelper.getClientProgress().getTierReached().isThisLaterOrEqual(ProgressionTier.TRAIT_CRAFT)) {
                 Component txtCorruptedRitual = ((IWeakConstellation) this.constellation).getInfoCorruptedRitualEffect();
 
-                Component headTxt = new Component.translatable("astralsorcery.journal.constellation.corruption");
+                Component headTxt = Component.translatable("astralsorcery.journal.constellation.corruption");
                 locTextRitual.add(localize(headTxt));
                 locTextRitual.add(FormattedText.field_242232_a);
 
                 List<FormattedText> lines = new LinkedList<>();
                 for (String segment : txtCorruptedRitual.getString().split("<NL>")) {
-                    lines.addAll(font.trimStringToWidth(new Component.literal(segment), JournalPage.DEFAULT_WIDTH));
+                    lines.addAll(font.trimStringToWidth(Component.literal(segment), JournalPage.DEFAULT_WIDTH));
                     lines.add(FormattedText.field_242232_a);
                 }
                 locTextRitual.addAll(lines);
@@ -201,7 +201,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
 
         List<FormattedText> lines = new LinkedList<>();
         for (String segment : txtDescription.getString().split("<NL>")) {
-            lines.addAll(font.trimStringToWidth(new Component.literal(segment), JournalPage.DEFAULT_WIDTH));
+            lines.addAll(font.trimStringToWidth(Component.literal(segment), JournalPage.DEFAULT_WIDTH));
             lines.add(FormattedText.field_242232_a);
         }
         locTextMain.addAll(lines);
@@ -314,7 +314,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
     private void drawPageExtendedInformation(PoseStack renderStack) {
         Component info = this.getConstellation().getConstellationTag();
         if (!detailed) {
-            info = new Component.translatable("astralsorcery.journal.constellation.unknown");
+            info = Component.translatable("astralsorcery.journal.constellation.unknown");
         }
 
         int width = font.getStringPropertyWidth(info);
@@ -347,7 +347,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
         List<MoonPhase> phases = this.activePhases;
         if (phases.isEmpty()) {
 
-            Component none = new Component.translatable("astralsorcery.journal.constellation.unknown");
+            Component none = Component.translatable("astralsorcery.journal.constellation.unknown");
             float scale = 1.8F;
             float length = font.getStringPropertyWidth(none) * scale;
             float offsetLeft = guiLeft + 296 - length / 2;
@@ -382,7 +382,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
                     RenderSystem.defaultBlendFunc();
                     brightness = 0.7F;
                 }
-                RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+                RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
                     RenderingGuiUtils.rect(buf, renderStack, offsetX + (index * (size + 2)), offsetY, this.getGuiZLevel(), size, size)
                             .color(brightness, brightness, brightness, brightness)
                             .draw();
@@ -405,7 +405,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
 
         Component dstInfo = constellation.getConstellationTypeDescription();
         if (!detailed) {
-            dstInfo = new Component.translatable("astralsorcery.journal.constellation.unknown");
+            dstInfo = Component.translatable("astralsorcery.journal.constellation.unknown");
         }
         width = font.getStringPropertyWidth(dstInfo);
 
@@ -448,7 +448,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
 
     private void drawCstBackground(PoseStack renderStack) {
         TexturesAS.TEX_BLACK.bindTexture();
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             Matrix4f offset = renderStack.getLast().getMatrix();
             buf.pos(offset, guiLeft + 15,  guiTop + 240, this.getGuiZLevel()).color(1F, 1F, 1F, 1F).tex(0, 1).endVertex();
             buf.pos(offset, guiLeft + 200, guiTop + 240, this.getGuiZLevel()).color(1F, 1F, 1F, 1F).tex(1, 1).endVertex();
@@ -459,7 +459,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         TexturesAS.TEX_GUI_BACKGROUND_CONSTELLATIONS.bindTexture();
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             Matrix4f offset = renderStack.getLast().getMatrix();
             buf.pos(offset, guiLeft + 15,  guiTop + 240, this.getGuiZLevel()).color(0.8F, 0.8F, 1F, 0.5F).tex(0.3F, 0.9F).endVertex();
             buf.pos(offset, guiLeft + 200, guiTop + 240, this.getGuiZLevel()).color(0.8F, 0.8F, 1F, 0.5F).tex(0.7F, 0.9F).endVertex();

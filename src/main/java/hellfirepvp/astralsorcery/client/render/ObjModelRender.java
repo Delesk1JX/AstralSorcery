@@ -14,9 +14,9 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
 import hellfirepvp.astralsorcery.client.resource.AssetLoader;
 import hellfirepvp.astralsorcery.client.util.obj.WavefrontObject;
-import net.minecraft.client.renderer.VertexConsumer;
-import net.minecraft.client.renderer.Tesselator;
-import net.minecraft.client.renderer.vertex.VertexBuffer;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.blaze3d.vertex.Tesselator;
+import com.mojang.blaze3d.vertex.VertexBuffer;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -55,9 +55,9 @@ public class ObjModelRender {
         RenderSystem.popMatrix();
 
         //vboCrystal.bindBuffer();
-        //DefaultVertexFormats.POSITION_COLOR_TEX.setupBufferState(0L);
+        //DefaultVertexFormat.POSITION_COLOR_TEX.setupBufferState(0L);
         //vboCrystal.draw(renderStack.getLast().getMatrix(), crystalModel.getGLDrawingMode());
-        //DefaultVertexFormats.POSITION_COLOR_TEX.clearBufferState();
+        //DefaultVertexFormat.POSITION_COLOR_TEX.clearBufferState();
         //VertexBuffer.unbindBuffer();
     }
 

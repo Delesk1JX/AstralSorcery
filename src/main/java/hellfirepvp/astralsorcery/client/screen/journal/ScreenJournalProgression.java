@@ -26,8 +26,8 @@ import hellfirepvp.astralsorcery.common.lib.SoundsAS;
 import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.renderer.vertex.VertexFormat;
-import net.minecraft.util.FormattedText;
+import com.mojang.blaze3d.vertex.VertexFormat;
+import net.minecraft.network.chat.FormattedText;
 import net.minecraft.util.Mth;
 import static net.minecraft.network.chat.Component.literal;
 import static net.minecraft.network.chat.Component.translatable;
@@ -66,7 +66,7 @@ public class ScreenJournalProgression extends ScreenJournal {
     private static ScreenJournalProgressionRenderer progressionRenderer;
 
     private ScreenJournalProgression() {
-        super(new Component.translatable("screen.astralsorcery.tome.progression"), 10);
+        super(Component.translatable("screen.astralsorcery.tome.progression"), 10);
 
         this.searchTextEntry.setChangeCallback(this::onSearchTextInput);
     }
@@ -265,7 +265,7 @@ public class ScreenJournalProgression extends ScreenJournal {
         TexturesAS.TEX_GUI_TEXT_FIELD.bindTexture();
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             RenderingGuiUtils.rect(buf, renderStack, guiLeft + 300, guiTop + 16, this.getGuiZLevel(), 88.5F, 15).draw();
         });
         RenderSystem.disableBlend();
@@ -288,7 +288,7 @@ public class ScreenJournalProgression extends ScreenJournal {
 
         renderStack.push();
         renderStack.translate(guiLeft + 304, guiTop + 20, this.getGuiZLevel());
-        RenderingDrawUtils.renderStringAt(font, renderStack, new Component.literal(text), 0xCCCCCC);
+        RenderingDrawUtils.renderStringAt(font, renderStack, Component.literal(text), 0xCCCCCC);
         renderStack.pop();
     }
 
@@ -311,7 +311,7 @@ public class ScreenJournalProgression extends ScreenJournal {
             }
             renderStack.translate(-(width / 2F), -(height / 2F), 0);
             TexturesAS.TEX_GUI_BOOK_ARROWS.bindTexture();
-            RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+            RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
                 RenderingGuiUtils.rect(buf, renderStack, 0, 0, 0, width, height)
                         .tex(uFrom, vFrom, 0.5F, 0.5F)
                         .color(1F, 1F, 1F, 0.8F)
@@ -339,7 +339,7 @@ public class ScreenJournalProgression extends ScreenJournal {
             }
             renderStack.translate(-(width / 2F), -(height / 2F), 0);
             TexturesAS.TEX_GUI_BOOK_ARROWS.bindTexture();
-            RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+            RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
                 RenderingGuiUtils.rect(buf, renderStack, 0, 0, 0, width, height)
                         .tex(uFrom, vFrom, 0.5F, 0.5F)
                         .color(1F, 1F, 1F, 0.8F)

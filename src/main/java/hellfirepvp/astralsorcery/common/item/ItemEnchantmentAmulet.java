@@ -60,7 +60,7 @@ public class ItemEnchantmentAmulet extends Item implements ItemDynamicColor {
         }
 
         if (getAmuletColor(stack).map(color -> color == 0xFFFFFFFF).orElse(false)) {
-            tooltip.add(new Component.translatable("astralsorcery.amulet.color.colorless")
+            tooltip.add(Component.translatable("astralsorcery.amulet.color.colorless")
                     .withStyle(ChatFormatting.ITALIC)
                     .withStyle(ChatFormatting.GRAY));
         }

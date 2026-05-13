@@ -59,7 +59,7 @@ public class CommandProgress {
         Component targetName = target.getDisplayName();
         PlayerProgress progress = ResearchHelper.getProgress(target, LogicalSide.SERVER);
         if (!progress.isValid() || progress.getTierReached().isThisLaterOrEqual(goal)) {
-            src.sendMessage(new Component.literal("Failed! ").append(targetName).appendString("'s progress is higher or equal to ").appendString(goal.name())
+            src.sendMessage(Component.literal("Failed! ").append(targetName).appendString("'s progress is higher or equal to ").appendString(goal.name())
                     .withStyle(ChatFormatting.RED), Util.DUMMY_UUID);
             return 0;
         }
@@ -87,13 +87,13 @@ public class CommandProgress {
                 break;
         }
         if (research == null) {
-            src.sendMessage(new Component.literal("Invalid progression tier: " + goal.name()).withStyle(ChatFormatting.RED), Util.DUMMY_UUID);
+            src.sendMessage(Component.literal("Invalid progression tier: " + goal.name()).withStyle(ChatFormatting.RED), Util.DUMMY_UUID);
         }
         if (ResearchManager.grantProgress(target, goal) && ResearchManager.grantResearch(target, research)) {
-            src.sendMessage(new Component.literal("Success!").withStyle(ChatFormatting.GREEN), Util.DUMMY_UUID);
+            src.sendMessage(Component.literal("Success!").withStyle(ChatFormatting.GREEN), Util.DUMMY_UUID);
             return Command.SINGLE_SUCCESS;
         } else {
-            src.sendMessage(new Component.literal("Failed!").withStyle(ChatFormatting.RED), Util.DUMMY_UUID);
+            src.sendMessage(Component.literal("Failed!").withStyle(ChatFormatting.RED), Util.DUMMY_UUID);
             return 0;
         }
     }
