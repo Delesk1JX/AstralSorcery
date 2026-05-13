@@ -17,7 +17,7 @@ import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.world.entity.EntityClassification;
 import net.minecraft.world.entity.LivingEntity;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import net.neoforged.neoforge.event.tick.ClientTickEvent;
+import TickEvent.ClientTickEvent;
 import net.neoforged.neoforge.event.entity.living.LivingSpawnEvent;
 import net.neoforged.neoforge.eventbus.api.Event;
 import net.neoforged.bus.api.EventBus;
@@ -34,7 +34,7 @@ import java.util.function.Consumer;
  */
 public class EventHelperSpawnDeny {
 
-    public static TickTokenMap<WorldBlockPos, TickTokenMap.SimpleTickToken<Double>> spawnDenyRegions = new TickTokenMap<>(net.neoforged.neoforge.event.tick.ClientTickEvent.SERVER);
+    public static TickTokenMap<WorldBlockPos, TickTokenMap.SimpleTickToken<Double>> spawnDenyRegions = new TickTokenMap<>(TickEvent.ClientTickEvent.SERVER);
 
     public static void clearServer() {
         spawnDenyRegions.clear();

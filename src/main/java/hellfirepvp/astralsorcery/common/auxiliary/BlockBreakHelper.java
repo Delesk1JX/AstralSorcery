@@ -29,7 +29,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import net.neoforged.neoforge.event.tick.ClientTickEvent;
+import TickEvent.ClientTickEvent;
 
 import javax.annotation.Nonnull;
 import java.util.HashMap;
@@ -49,7 +49,7 @@ public class BlockBreakHelper {
 
     public static void addProgress(Level world, BlockPos pos, float percStrength, Supplier<Float> expectedHardness) {
         TickTokenMap<BlockPos, BreakEntry> map = breakMap.computeIfAbsent(world.getDimensionKey(), key -> {
-            TickTokenMap<BlockPos, BreakEntry> tkMap = new TickTokenMap<>(net.neoforged.neoforge.event.tick.ClientTickEvent.SERVER);
+            TickTokenMap<BlockPos, BreakEntry> tkMap = new TickTokenMap<>(TickEvent.ClientTickEvent.SERVER);
             AstralSorcery.getProxy().getTickManager().register(tkMap);
             return tkMap;
         });

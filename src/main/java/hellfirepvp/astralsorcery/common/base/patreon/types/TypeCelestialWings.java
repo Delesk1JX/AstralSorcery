@@ -30,7 +30,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.RenderPlayerEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import net.neoforged.neoforge.event.tick.ClientTickEvent;
+import TickEvent.ClientTickEvent;
 import net.neoforged.bus.api.EventBus;
 import net.neoforged.neoforge.eventbus.api.SubscribeEvent;
 import net.neoforged.fml.LogicalSide;
@@ -72,7 +72,7 @@ public class TypeCelestialWings extends PatreonEffect implements ITickHandler {
     }
 
     @Override
-    public void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
+    public void tick(TickEvent.ClientTickEvent type, Object... context) {
         Player player = (Player) context[0];
         LogicalSide side = (LogicalSide) context[1];
 
@@ -173,13 +173,13 @@ public class TypeCelestialWings extends PatreonEffect implements ITickHandler {
     }
 
     @Override
-    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
-        return EnumSet.of(net.neoforged.neoforge.event.tick.ClientTickEvent.PLAYER);
+    public EnumSet<TickEvent.ClientTickEvent> getHandledTypes() {
+        return EnumSet.of(TickEvent.ClientTickEvent.PLAYER);
     }
 
     @Override
-    public boolean canFire(net.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
-        return phase == net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
+    public boolean canFire(TickEvent.ClientTickEvent.Phase phase) {
+        return phase == TickEvent.ClientTickEvent.Phase.END;
     }
 
     @Override

@@ -10,6 +10,8 @@ package hellfirepvp.astralsorcery.common.util.tick;
 
 import java.util.EnumSet;
 
+import net.neoforged.neoforge.event.tick.TickEvent;
+
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.
@@ -27,14 +29,14 @@ public interface ITickHandler {
      * @param type the type of tick (SERVER or CLIENT)
      * @param context additional context information (e.g., ServerLevel or ClientLevel)
      */
-    void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context);
+    void tick(TickEvent.ClientTickEvent type, Object... context);
     
     /**
      * Returns the set of tick types this handler wants to receive.
      * 
-     * @return EnumSet of net.neoforged.neoforge.event.tick.ClientTickEvent that this handler handles
+     * @return EnumSet of TickEvent.ClientTickEvent.Phase that this handler handles
      */
-    EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes();
+    EnumSet<TickEvent.ClientTickEvent.Phase> getHandledTypes();
     
     /**
      * Checks if this handler should fire for the given phase.
@@ -42,7 +44,7 @@ public interface ITickHandler {
      * @param phase the phase of the tick (START or END)
      * @return true if this handler should be called for this phase
      */
-    boolean canFire(net.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase);
+    boolean canFire(TickEvent.ClientTickEvent.Phase phase);
     
     /**
      * Returns a name for this tick handler, useful for debugging.

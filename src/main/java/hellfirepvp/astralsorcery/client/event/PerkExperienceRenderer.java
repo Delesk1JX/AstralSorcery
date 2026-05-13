@@ -27,7 +27,7 @@ import net.minecraft.world.InteractionHand;
 import static net.minecraft.network.chat.Component.literal;
 import net.neoforged.neoforge.client.event.RenderGameOverlayEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import net.neoforged.neoforge.event.tick.ClientTickEvent;
+import TickEvent.ClientTickEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
 import net.neoforged.bus.api.EventBus;
 import net.neoforged.fml.LogicalSide;
@@ -119,7 +119,7 @@ public class PerkExperienceRenderer implements ITickHandler {
     }
 
     @Override
-    public void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
+    public void tick(TickEvent.ClientTickEvent type, Object... context) {
         Player player = Minecraft.getInstance().player;
         if (player != null) {
             ItemStack held = player.getHeldItem(Hand.MAIN_HAND);
@@ -160,13 +160,13 @@ public class PerkExperienceRenderer implements ITickHandler {
     }
 
     @Override
-    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
-        return EnumSet.of(net.neoforged.neoforge.event.tick.ClientTickEvent.CLIENT);
+    public EnumSet<TickEvent.ClientTickEvent> getHandledTypes() {
+        return EnumSet.of(TickEvent.ClientTickEvent.CLIENT);
     }
 
     @Override
-    public boolean canFire(net.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
-        return phase == net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
+    public boolean canFire(TickEvent.ClientTickEvent.Phase phase) {
+        return phase == TickEvent.ClientTickEvent.Phase.END;
     }
 
     @Override

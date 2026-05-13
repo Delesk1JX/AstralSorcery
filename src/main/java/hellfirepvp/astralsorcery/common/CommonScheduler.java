@@ -33,7 +33,7 @@ public class CommonScheduler implements ITickHandler {
     private final LinkedList<Tuple<Runnable, Integer>> waiting = new LinkedList<>();
 
     @Override
-    public void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
+    public void tick(TickEvent.ClientTickEvent type, Object... context) {
         inTick = true;
         synchronized (lock) {
             Iterator<Tuple<Runnable, Counter>> iterator = queue.iterator();
@@ -54,13 +54,13 @@ public class CommonScheduler implements ITickHandler {
     }
 
     @Override
-    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
-        return EnumSet.of(net.neoforged.neoforge.event.tick.ClientTickEvent.SERVER);
+    public EnumSet<TickEvent.ClientTickEvent.Phase> getHandledTypes() {
+        return EnumSet.of(TickEvent.ClientTickEvent.Phase.END);
     }
 
     @Override
-    public boolean canFire(net.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
-        return phase == net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
+    public boolean canFire(TickEvent.ClientTickEvent.Phase phase) {
+        return phase == TickEvent.ClientTickEvent.Phase.END;
     }
 
     @Override

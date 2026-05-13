@@ -16,7 +16,7 @@ import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import net.neoforged.neoforge.event.tick.ClientTickEvent;
+import TickEvent.ClientTickEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDestroyBlockEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEvent;
 import net.neoforged.neoforge.event.entity.living.LivingKnockBackEvent;
@@ -38,7 +38,7 @@ public class EventHelperEntityFreeze {
         SyncDataHolder.executeServer(SyncDataHolder.DATA_TIME_FREEZE_ENTITIES, DataTimeFreezeEntities.class, data -> {
             data.unfreezeEntity(entity);
         });
-    }, net.neoforged.neoforge.event.tick.ClientTickEvent.SERVER);
+    }, TickEvent.ClientTickEvent.SERVER);
 
     private EventHelperEntityFreeze() {}
 

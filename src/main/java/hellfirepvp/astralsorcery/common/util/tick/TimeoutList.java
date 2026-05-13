@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.util.tick;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import net.neoforged.neoforge.event.tick.ClientTickEvent;
+import net.neoforged.neoforge.event.tick.TickEvent;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -31,14 +31,14 @@ import java.util.function.Predicate;
 public class TimeoutList<V> implements ITickHandler, Iterable<V> {
 
     private final TimeoutDelegate<V> delegate;
-    private final EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> tickTypes;
+    private final EnumSet<TickEvent.ClientTickEvent.Phase> tickTypes;
 
     private final List<TimeoutEntry<V>> tickEntries = new LinkedList<>();
 
-    public TimeoutList(@Nullable TimeoutDelegate<V> delegate, net.neoforged.neoforge.event.tick.ClientTickEvent... types) {
+    public TimeoutList(@Nullable TimeoutDelegate<V> delegate, TickEvent.ClientTickEvent.Phase... types) {
         this.delegate = delegate;
-        this.tickTypes = EnumSet.noneOf(net.neoforged.neoforge.event.tick.ClientTickEvent.class);
-        for (net.neoforged.neoforge.event.tick.ClientTickEvent type : types) {
+        this.tickTypes = EnumSet.noneOf(TickEvent.ClientTickEvent.Phase.class);
+        for (TickEvent.ClientTickEvent.Phase type : types) {
             if (type != null) {
                 this.tickTypes.add(type);
             }
@@ -109,7 +109,7 @@ public class TimeoutList<V> implements ITickHandler, Iterable<V> {
     }
 
     @Override
-    public void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
+    public void tick(TickEvent.ClientTickEvent type, Object... context) {
         Iterator<TimeoutEntry<V>> iterator = tickEntries.iterator();
         while (iterator.hasNext()) {
             TimeoutEntry<V> entry = iterator.next();
@@ -155,13 +155,13 @@ public class TimeoutList<V> implements ITickHandler, Iterable<V> {
     }
 
     @Override
-    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
+    public EnumSet<TickEvent.ClientTickEvent.Phase> getHandledTypes() {
         return tickTypes;
     }
 
     @Override
-    public boolean canFire(net.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
-        return phase == net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
+    public boolean canFire(TickEvent.ClientTickEvent.Phase phase) {
+        return phase == TickEvent.ClientTickEvent.Phase.END;
     }
 
     @Override

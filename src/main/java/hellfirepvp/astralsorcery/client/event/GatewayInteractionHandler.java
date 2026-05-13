@@ -34,7 +34,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import net.neoforged.neoforge.event.tick.ClientTickEvent;
+import TickEvent.ClientTickEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
 import net.neoforged.bus.api.EventBus;
@@ -222,7 +222,7 @@ public class GatewayInteractionHandler {
             return;
         }
 
-        if (event.phase == net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.START) {
+        if (event.phase == TickEvent.ClientTickEvent.Phase.START) {
             fovPre = Minecraft.getInstance().gameSettings.fov;
             if(focusTicks < 80) {
                 return;

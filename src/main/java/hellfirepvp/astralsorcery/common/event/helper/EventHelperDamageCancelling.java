@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.event.helper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.damagesource.DamageSource;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import net.neoforged.neoforge.event.tick.ClientTickEvent;
+import TickEvent.ClientTickEvent;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.bus.api.EventBus;
 
@@ -44,7 +44,7 @@ public class EventHelperDamageCancelling {
 
     private static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         Player player = event.player;
-        if (event.phase == net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END && !player.level.isRemote()) {
+        if (event.phase == TickEvent.ClientTickEvent.Phase.END && !player.level.isRemote()) {
             if (player.isOnGround()) {
                 Set<DamageSource> sources = invulnerableTypes.getOrDefault(event.player.getUniqueID(), Collections.emptySet());
                 sources.remove(DamageSource.FALL);

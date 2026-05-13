@@ -23,7 +23,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import net.neoforged.neoforge.event.tick.ClientTickEvent;
+import TickEvent.ClientTickEvent;
 import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nullable;
@@ -133,7 +133,7 @@ public class SyncDataHolder implements ITickHandler {
     }
 
     @Override
-    public void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
+    public void tick(TickEvent.ClientTickEvent type, Object... context) {
         if (dirtyData.isEmpty()) {
             return;
         }
@@ -154,13 +154,13 @@ public class SyncDataHolder implements ITickHandler {
     }
 
     @Override
-    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
-        return EnumSet.of(net.neoforged.neoforge.event.tick.ClientTickEvent.SERVER);
+    public EnumSet<TickEvent.ClientTickEvent> getHandledTypes() {
+        return EnumSet.of(TickEvent.ClientTickEvent.SERVER);
     }
 
     @Override
-    public boolean canFire(net.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
-        return phase == net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
+    public boolean canFire(TickEvent.ClientTickEvent.Phase phase) {
+        return phase == TickEvent.ClientTickEvent.Phase.END;
     }
 
     @Override

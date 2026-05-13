@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.client.util.camera;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import net.neoforged.neoforge.event.tick.ClientTickEvent;
+import TickEvent.ClientTickEvent;
 
 import javax.annotation.Nullable;
 import java.util.Comparator;
@@ -33,8 +33,8 @@ public class ClientCameraManager implements ITickHandler {
     private ICameraTransformer lastTransformer = null;
 
     @Override
-    public void tick(net.neoforged.neoforge.event.tick.ClientTickEvent type, Object... context) {
-        if (type == net.neoforged.neoforge.event.tick.ClientTickEvent.RENDER) {
+    public void tick(TickEvent.ClientTickEvent type, Object... context) {
+        if (type == TickEvent.ClientTickEvent.RENDER) {
             //Render Tick
             float pTicks = (float) context[0];
             if (this.hasActiveTransformer()) {
@@ -94,13 +94,13 @@ public class ClientCameraManager implements ITickHandler {
     }
 
     @Override
-    public EnumSet<net.neoforged.neoforge.event.tick.ClientTickEvent> getHandledTypes() {
-        return EnumSet.of(net.neoforged.neoforge.event.tick.ClientTickEvent.RENDER, net.neoforged.neoforge.event.tick.ClientTickEvent.CLIENT);
+    public EnumSet<TickEvent.ClientTickEvent> getHandledTypes() {
+        return EnumSet.of(TickEvent.ClientTickEvent.RENDER, TickEvent.ClientTickEvent.CLIENT);
     }
 
     @Override
-    public boolean canFire(net.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
-        return phase == net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.START;
+    public boolean canFire(TickEvent.ClientTickEvent.Phase phase) {
+        return phase == TickEvent.ClientTickEvent.Phase.START;
     }
 
     @Override
