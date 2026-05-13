@@ -222,7 +222,7 @@ public class GatewayInteractionHandler {
             return;
         }
 
-        if (event.phase == net.neoforged.neoforge.event.tick.net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.START) {
+        if (event.phase == net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.START) {
             fovPre = Minecraft.getInstance().gameSettings.fov;
             if(focusTicks < 80) {
                 return;

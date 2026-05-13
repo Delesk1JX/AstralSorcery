@@ -33,7 +33,7 @@ public abstract class TileEntityTick extends TileEntitySynchronized implements T
     private boolean doesSeeSky = false;
     private int lastUpdateTick = -1;
 
-    private ChangeSubscriber<ChangeObserverStructure> structureMatch;
+    private ChangeSubscriber structureMatch;
     private boolean hasMultiblock = false;
 
     protected int ticksExisted = 0;

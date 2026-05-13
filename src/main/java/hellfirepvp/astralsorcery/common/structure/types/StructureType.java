@@ -30,7 +30,7 @@ import java.util.function.Supplier;
  * Created by HellFirePvP
  * Date: 30.05.2019 / 15:07
  */
-public class StructureType implements RegistryObject<StructureType> {
+public class StructureType {
 
     private final ResourceLocation name;
     private final Supplier<BlockArray> structureSupplier;
@@ -48,23 +48,12 @@ public class StructureType implements RegistryObject<StructureType> {
         return Component.translatable(String.format("structure.%s.%s.name", name.getNamespace(), name.getPath()));
     }
 
-    public ChangeSubscriber<ChangeObserverStructure> observe(Level world, BlockPos pos) {
+    public ChangeSubscriber observe(Level world, BlockPos pos) {
         return ObserverHelper.getHelper().observeArea(world, pos, new ObserverProviderStructure(getRegistryName()));
     }
 
-    @Override
-    public final StructureType setRegistryName(ResourceLocation name) {
-        return this;
-    }
-
     @Nullable
-    @Override
     public ResourceLocation getRegistryName() {
         return this.name;
-    }
-
-    @Override
-    public Class<StructureType> getRegistryType() {
-        return StructureType.class;
     }
 }
