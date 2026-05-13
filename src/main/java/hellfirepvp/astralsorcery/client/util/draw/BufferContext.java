@@ -8,9 +8,9 @@
 
 package hellfirepvp.astralsorcery.client.util.draw;
 
-import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 
 /**
  * This class is part of the Astral Sorcery Mod

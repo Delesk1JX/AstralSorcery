@@ -24,10 +24,10 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.*;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.ChatFormatting;
 import static net.minecraft.network.chat.Component.translatable;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.RegistryObject;
 
 import javax.annotation.Nonnull;
 import java.util.*;
@@ -41,7 +41,7 @@ import java.util.stream.Collectors;
  * Created by HellFirePvP
  * Date: 01.05.2020 / 11:37
  */
-public class EngravingEffect extends DeferredHolder<net.neoforged.neoforge.registries.RegistryKey<EngravingEffect>, EngravingEffect> {
+public class EngravingEffect extends RegistryObject<EngravingEffect> {
 
     private final List<ApplicableEffect> effects = new ArrayList<>();
 

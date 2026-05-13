@@ -8,12 +8,13 @@
 
 package hellfirepvp.astralsorcery.client.resource;
 
+import com.mojang.blaze3d.platform.NativeImage;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.SimpleTexture;
-import net.minecraft.client.renderer.texture.Texture;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
@@ -29,7 +30,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class BindableResource extends AbstractRenderableTexture.Full implements ReloadableResource {
 
-    private Texture resource = null;
+    private Integer textureId = null;
     private String path = null;
 
     protected BindableResource(ResourceLocation key) {
@@ -52,20 +53,18 @@ public class BindableResource extends AbstractRenderableTexture.Full implements 
 
     public void invalidateAndReload() {
         Minecraft.getInstance().getTextureManager().deleteTexture(this.getKey());
-        this.resource = null;
+        this.textureId = null;
     }
 
-    protected Texture allocateGlId() {
+    protected Integer allocateGlId() {
         if (AssetLibrary.isReloading()) {
             return null;
         }
         TextureManager mgr = Minecraft.getInstance().getTextureManager();
-        Texture resource = mgr.getTexture(this.getKey());
-        if (resource != null) {
-            return resource;
-        }
-        mgr.loadTexture(this.getKey(), new SimpleTexture(new ResourceLocation(this.getPath())));
-        return mgr.getTexture(this.getKey());
+        SimpleTexture texture = new SimpleTexture(new ResourceLocation(this.getPath()));
+        mgr.loadTexture(this.getKey(), texture);
+        // Get the texture ID from the loaded texture
+        return texture.getId();
     }
 
     @Override
@@ -73,13 +72,13 @@ public class BindableResource extends AbstractRenderableTexture.Full implements 
         if (AssetLibrary.isReloading()) {
             return; //we do nothing but wait.
         }
-        if (this.resource == null) {
-            this.resource = allocateGlId();
+        if (this.textureId == null) {
+            this.textureId = allocateGlId();
         }
-        if (this.resource == null) {
+        if (this.textureId == null) {
             return;
         }
-        RenderSystem.bindTexture(this.resource.getGlTextureId());
+        RenderSystem.bindTexture(this.textureId);
     }
 
     @Override
@@ -89,7 +88,6 @@ public class BindableResource extends AbstractRenderableTexture.Full implements 
             public void setupRenderState() {
                 RenderSystem.enableTexture();
                 BindableResource.this.bindTexture();
-                BindableResource.this.resource.setBlurMipmap(false, false);
             }
         };
     }
