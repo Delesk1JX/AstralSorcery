@@ -9,8 +9,8 @@ package hellfirepvp.observerlib.common.util.tick;
 import com.google.common.collect.Lists;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import TickEvent.ClientTickEvent;
-import net.neoforged.bus.api.EventBus;
+import hellfirepvp.observerlib.common.util.tick.TickEvent.ClientTickEvent;
+import net.neoforged.bus.api.IEventBus;
 
 import java.util.EnumSet;
 import java.util.List;

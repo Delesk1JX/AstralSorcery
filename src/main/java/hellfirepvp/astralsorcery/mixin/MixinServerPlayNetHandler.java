@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.mixin;
 
 import hellfirepvp.astralsorcery.common.entity.InteractableEntity;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.level().ServerPlayer;
 import net.minecraft.network.play.ServerPlayNetHandler;
 import net.minecraft.network.play.client.CUseEntityPacket;
 import net.minecraft.world.server.ServerLevel;
@@ -38,7 +38,7 @@ public class MixinServerPlayNetHandler {
         ServerPlayNetHandler playNetHandler = (ServerPlayNetHandler)(Object) this;
         Player player = playNetHandler.player;
 
-        PlayerProgress prog = ResearchHelper.getProgress(player, player.level.isRemote() ? LogicalSide.CLIENT : LogicalSide.SERVER);
+        PlayerProgress prog = ResearchHelper.getProgress(player, player.level().isClientSide() ? LogicalSide.CLIENT : LogicalSide.SERVER);
         if (prog.isValid() && prog.getPerkData().hasPerkEffect(perk -> perk instanceof KeyEntityReach)) {
             return Double.MAX_VALUE;
         }

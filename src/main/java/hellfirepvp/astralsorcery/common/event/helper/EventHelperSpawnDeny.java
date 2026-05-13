@@ -17,10 +17,10 @@ import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.world.entity.EntityClassification;
 import net.minecraft.world.entity.LivingEntity;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import TickEvent.ClientTickEvent;
+import hellfirepvp.observerlib.common.util.tick.TickEvent.ClientTickEvent;
 import net.neoforged.neoforge.event.entity.living.LivingSpawnEvent;
 import net.neoforged.neoforge.eventbus.api.Event;
-import net.neoforged.bus.api.EventBus;
+import net.neoforged.bus.api.IEventBus;
 
 import java.util.Map;
 import java.util.function.Consumer;
@@ -63,7 +63,7 @@ public class EventHelperSpawnDeny {
         if (GeneralConfig.CONFIG.mobSpawningDenyAllTypes.get() || entity.getClassification(false) == EntityClassification.MONSTER) {
             Vector3 entityPos = Vector3.atEntityCorner(entity);
             for (Map.Entry<WorldBlockPos, TickTokenMap.SimpleTickToken<Double>> entry : spawnDenyRegions.entrySet()) {
-                if (!entry.getKey().getWorldKey().equals(entity.level.getDimensionKey())) {
+                if (!entry.getKey().getWorldKey().equals(entity.level().getDimensionKey())) {
                     continue;
                 }
 

@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchProgression;
 import hellfirepvp.astralsorcery.common.util.item.ItemComparator;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level().ItemLike;
 import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nullable;

@@ -1,4 +1,5 @@
 /*******************************************************************************
+import net.minecraft.network.chat.Component;
  * HellFirePvP / Astral Sorcery 2022
  *
  * All rights reserved.
@@ -15,8 +16,8 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.block.BlockStateHelper;
 import hellfirepvp.astralsorcery.common.util.data.JsonHelper;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level().block.state.BlockState;
+import net.minecraft.world.level().block.Blocks;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.world.entity.player.Player;
@@ -67,7 +68,7 @@ public class CommandSerialize {
     private static int serializeLook(CommandContext<CommandSource> context) throws CommandSyntaxException {
         Player player = context.getSource().asPlayer();
         BlockHitResult result = MiscUtils.rayTraceLookBlock(player);
-        BlockState state = result == null ? Blocks.AIR.getDefaultState() : player.level.getBlockState(result.getPos());
+        BlockState state = result == null ? Blocks.AIR.getDefaultState() : player.level().getBlockState(result.getPos());
         String serialized = BlockStateHelper.serialize(state);
 
         net.minecraft.network.chat.Component msg = Component.literal(serialized);

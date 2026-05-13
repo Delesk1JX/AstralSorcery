@@ -19,7 +19,7 @@ import net.minecraft.potion.EffectType;
 import net.minecraft.potion.Effects;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
-import net.neoforged.bus.api.EventBus;
+import net.neoforged.bus.api.IEventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,14 +50,14 @@ public class EffectCheatDeath extends EffectCustomTexture {
 
     private void onDeath(LivingDeathEvent event) {
         LivingEntity le = event.getEntityLiving();
-        if (!le.level.isRemote() && le.isPotionActive(EffectsAS.EFFECT_CHEAT_DEATH)) {
+        if (!le.level().isClientSide() && le.isPotionActive(EffectsAS.EFFECT_CHEAT_DEATH)) {
             event.setCanceled(true);
 
             int level = le.removeActivePotionEffect(EffectsAS.EFFECT_CHEAT_DEATH).getAmplifier();
             le.setHealth(Math.min(le.getMaxHealth(), 4 + level * 2));
             le.addPotionEffect(new EffectInstance(Effects.REGENERATION, 200, 2, false, false, true));
             le.addPotionEffect(new EffectInstance(Effects.FIRE_RESISTANCE, 500, 1, false, false, true));
-            List<LivingEntity> others = le.level.getEntitiesWithinAABB(LivingEntity.class,
+            List<LivingEntity> others = le.level().getEntitiesWithinAABB(LivingEntity.class,
                     le.getBoundingBox().grow(3), (e) -> e.isAlive() && e != le);
             for (LivingEntity lb : others) {
                 lb.setFire(10);

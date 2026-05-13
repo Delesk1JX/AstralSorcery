@@ -23,10 +23,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.dimension.DimensionType;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level().dimension.DimensionType;
+import net.minecraft.world.level().Level;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import TickEvent.ClientTickEvent;
+import hellfirepvp.observerlib.common.util.tick.TickEvent.ClientTickEvent;
 
 import java.awt.*;
 import java.util.EnumSet;
@@ -63,7 +63,7 @@ public class LightbeamRenderHelper implements ITickHandler {
             }
             if (rView != null) {
                 Entity renderView = rView;
-                net.minecraft.resources.ResourceKey<Level> dimKey = renderView.level.getDimensionKey();
+                net.minecraft.resources.ResourceKey<Level> dimKey = renderView.level().getDimensionKey();
 
                 SyncDataHolder.executeClient(SyncDataHolder.DATA_LIGHT_CONNECTIONS, ClientLightConnections.class, (data) -> {
                     for (Map.Entry<BlockPos, Set<BlockPos>> entry : data.getClientConnections(dimKey).entrySet()) {

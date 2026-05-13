@@ -10,9 +10,9 @@ package hellfirepvp.astralsorcery.common.network.channel;
 
 import hellfirepvp.astralsorcery.common.network.base.ASPacket;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.level().ServerPlayer;
 import net.minecraft.network.Connection;
-import net.minecraft.world.level.chunk.LevelChunk;
+import net.minecraft.world.level().chunk.LevelChunk;
 import net.neoforged.neoforge.fml.network.NetworkDirection;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.neoforged.neoforge.fml.network.PacketDistributor;

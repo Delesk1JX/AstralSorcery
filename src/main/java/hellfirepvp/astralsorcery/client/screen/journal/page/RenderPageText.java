@@ -1,4 +1,5 @@
 /*******************************************************************************
+import net.minecraft.network.chat.Component;
  * HellFirePvP / Astral Sorcery 2022
  *
  * All rights reserved.
@@ -13,7 +14,7 @@ import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.common.data.journal.JournalPage;
 import net.minecraft.client.gui.Font;
 import net.minecraft.network.chat.FormattedText;
-import net.minecraft.network.chat.*;
+import net.minecraft.network.chat.Component;
 
 import java.util.LinkedList;
 import java.util.List;

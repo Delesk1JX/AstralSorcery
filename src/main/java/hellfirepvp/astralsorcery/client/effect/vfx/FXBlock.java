@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.client.effect.context.base.BatchRenderContext;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level().block.state.BlockState;
 import net.minecraft.util.vector.Vector3f;
 
 import java.awt.*;

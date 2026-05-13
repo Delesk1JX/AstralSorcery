@@ -12,13 +12,13 @@ import hellfirepvp.astralsorcery.common.capability.ChunkFluidEntry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.chunk.LevelChunk;
+import net.minecraft.world.level().chunk.LevelChunk;
 
 import net.neoforged.neoforge.common.capabilities.ICapabilitySerializable;
 import net.neoforged.neoforge.common.util.TagSerializable;
 import net.neoforged.neoforge.common.util.Lazy;
 import net.neoforged.neoforge.event.AttachCapabilitiesEvent;
-import net.neoforged.bus.api.EventBus;
+import net.neoforged.bus.api.IEventBus;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

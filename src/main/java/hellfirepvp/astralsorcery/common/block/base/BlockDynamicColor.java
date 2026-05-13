@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.block.base;
 
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level().block.state.BlockState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.IBlockDisplayReader;
 import net.neoforged.api.distmarker.Dist;

@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.world.placement.ChancePlacement;
 import hellfirepvp.astralsorcery.common.world.placement.RiverbedPlacement;
 import hellfirepvp.astralsorcery.common.world.placement.WorldFilteredPlacement;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level().Level;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.IStructurePieceType;

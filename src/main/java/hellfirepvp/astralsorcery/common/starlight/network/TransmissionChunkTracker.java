@@ -8,11 +8,11 @@
 
 package hellfirepvp.astralsorcery.common.starlight.network;
 
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level().LevelAccessor;
+import net.minecraft.world.level().Level;
 import net.neoforged.neoforge.event.world.ChunkEvent;
 import net.neoforged.neoforge.event.world.WorldEvent;
-import net.neoforged.bus.api.EventBus;
+import net.neoforged.bus.api.IEventBus;
 
 /**
  * This class is part of the Astral Sorcery Mod

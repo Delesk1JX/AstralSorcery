@@ -12,8 +12,8 @@ import hellfirepvp.astralsorcery.common.data.sync.SyncDataHolder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.dimension.DimensionType;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level().dimension.DimensionType;
+import net.minecraft.world.level().Level;
 
 /**
  * This class is part of the Astral Sorcery Mod

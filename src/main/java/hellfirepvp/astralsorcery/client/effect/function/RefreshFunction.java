@@ -11,11 +11,11 @@ package hellfirepvp.astralsorcery.client.effect.function;
 import hellfirepvp.astralsorcery.client.effect.EntityComplexFX;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level().block.entity.BlockEntity;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.dimension.DimensionType;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level().dimension.DimensionType;
+import net.minecraft.world.level().Level;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

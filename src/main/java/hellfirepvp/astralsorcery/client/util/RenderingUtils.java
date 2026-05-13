@@ -1,4 +1,5 @@
 /*******************************************************************************
+import net.minecraft.network.chat.Component;
  * HellFirePvP / Astral Sorcery 2022
  *
  * All rights reserved.
@@ -18,8 +19,8 @@ import hellfirepvp.astralsorcery.client.effect.EntityComplexFX;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.reflection.ReflectionHelper;
 import hellfirepvp.observerlib.common.util.RegistryUtil;
-import net.minecraft.world.level.block.BlockRenderType;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level().block.BlockRenderType;
+import net.minecraft.world.level().block.state.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayer;
 import net.minecraft.client.gui.Font;
@@ -39,14 +40,14 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.CompassItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level().block.entity.BlockEntity;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.FormattedText;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.util.shapes.VoxelShape;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level().block.Blocks;
 import org.joml.Matrix4f;
 import net.minecraft.util.vector.Vector3f;
 import net.minecraft.util.registry.Registry;
@@ -54,7 +55,7 @@ import net.minecraft.network.chat.FormattedText;
 import net.minecraft.client.resources.language.LanguageManager;
 import static net.minecraft.network.chat.Component.literal;
 import net.minecraft.world.IBlockDisplayReader;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level().Level;
 import net.minecraft.world.biome.Biomes;
 import net.neoforged.neoforge.client.ForgeHooksClient;
 import net.neoforged.neoforge.client.model.data.EmptyModelData;

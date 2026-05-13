@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.container.factory;
 
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.IInventory;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.level().ServerPlayer;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.INamedContainerProvider;

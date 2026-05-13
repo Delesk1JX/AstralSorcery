@@ -20,7 +20,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
-import net.neoforged.bus.api.EventBus;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.LogicalSide;
 
 /**
@@ -64,7 +64,7 @@ public class MantleEffectHorologium extends MantleEffect {
     private void onHurt(LivingHurtEvent event) {
         if (ItemMantle.getEffect(event.getEntityLiving(), ConstellationsAS.horologium) != null &&
                 event.getEntityLiving() instanceof Player &&
-                !event.getEntityLiving().level.isRemote() &&
+                !event.getEntityLiving().level().isClientSide() &&
                 !event.getSource().isFireDamage()) {
             Player player = (Player) event.getEntityLiving();
 

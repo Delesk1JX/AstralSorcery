@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.client.util.camera;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import TickEvent.ClientTickEvent;
+import hellfirepvp.observerlib.common.util.tick.TickEvent.ClientTickEvent;
 
 import javax.annotation.Nullable;
 import java.util.Comparator;

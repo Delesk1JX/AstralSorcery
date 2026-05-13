@@ -21,7 +21,7 @@ import net.neoforged.neoforge.event.entity.EntityJoinWorldEvent;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 import net.neoforged.neoforge.eventbus.api.Event;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
-import net.neoforged.bus.api.EventBus;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;

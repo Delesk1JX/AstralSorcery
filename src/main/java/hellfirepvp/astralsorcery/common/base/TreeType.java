@@ -10,15 +10,15 @@ package hellfirepvp.astralsorcery.common.base;
 
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.TriFunction;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.SaplingBlock;
-import net.minecraft.world.level.block.VineBlock;
-import net.minecraft.world.level.block.trees.Tree;
+import net.minecraft.world.level().block.Block;
+import net.minecraft.world.level().block.state.BlockState;
+import net.minecraft.world.level().block.SaplingBlock;
+import net.minecraft.world.level().block.VineBlock;
+import net.minecraft.world.level().block.trees.Tree;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level().Level;
+import net.minecraft.server.level().ServerLevel;
 import net.neoforged.neoforge.common.util.BlockSnapshot;
 
 import javax.annotation.Nullable;

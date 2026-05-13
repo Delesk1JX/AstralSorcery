@@ -11,9 +11,9 @@ package hellfirepvp.astralsorcery.common.event.helper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.damagesource.DamageSource;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import TickEvent.ClientTickEvent;
+import hellfirepvp.observerlib.common.util.tick.TickEvent.ClientTickEvent;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
-import net.neoforged.bus.api.EventBus;
+import net.neoforged.bus.api.IEventBus;
 
 import java.util.*;
 
@@ -31,7 +31,7 @@ public class EventHelperDamageCancelling {
     private EventHelperDamageCancelling() {}
 
     public static void markInvulnerableToNextDamage(Player player, DamageSource source) {
-        if (player.level.isRemote()) {
+        if (player.level().isClientSide()) {
             return;
         }
         invulnerableTypes.computeIfAbsent(player.getUniqueID(), uuid -> new HashSet<>()).add(source);
@@ -44,7 +44,7 @@ public class EventHelperDamageCancelling {
 
     private static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         Player player = event.player;
-        if (event.phase == TickEvent.ClientTickEvent.Phase.END && !player.level.isRemote()) {
+        if (event.phase == TickEvent.ClientTickEvent.Phase.END && !player.level().isClientSide()) {
             if (player.isOnGround()) {
                 Set<DamageSource> sources = invulnerableTypes.getOrDefault(event.player.getUniqueID(), Collections.emptySet());
                 sources.remove(DamageSource.FALL);

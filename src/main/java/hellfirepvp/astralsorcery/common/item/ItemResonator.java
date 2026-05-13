@@ -35,7 +35,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.level().ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -51,10 +51,10 @@ import net.minecraft.util.Mth;
 import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 import static net.minecraft.network.chat.Component.translatable;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.chunk.LevelChunk;
-import net.minecraft.world.level.chunk.ChunkAccess;
-import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level().Level;
+import net.minecraft.world.level().chunk.LevelChunk;
+import net.minecraft.world.level().chunk.ChunkAccess;
+import net.minecraft.world.level().levelgen.Heightmap;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.Tags;
@@ -213,7 +213,7 @@ public class ItemResonator extends Item implements OverrideInteractItem {
     @Override
     public boolean doBlockInteract(LogicalSide side, Player player, Hand hand, BlockPos pos, Direction face) {
         ResonatorUpgrade upgrade = getCurrentUpgrade(player, player.getHeldItem(hand));
-        if (upgrade == ResonatorUpgrade.AREA_SIZE && player.level.isRemote()) {
+        if (upgrade == ResonatorUpgrade.AREA_SIZE && player.level().isClientSide()) {
             TileAreaOfInfluence aoeTile = MiscUtils.getTileAt(player.level, pos, TileAreaOfInfluence.class, false);
             if (aoeTile != null) {
                 playAreaOfInfluenceEffect(aoeTile);

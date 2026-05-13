@@ -27,11 +27,11 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level().block.entity.BlockEntityType;
+import net.minecraft.world.level().material.Fluid;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.enchantment.Enchantment;
-import net.neoforged.bus.api.EventBus;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 /**

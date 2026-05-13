@@ -10,8 +10,8 @@ package hellfirepvp.astralsorcery.common.block.tile.altar;
 
 import hellfirepvp.astralsorcery.common.block.tile.BlockAltar;
 import hellfirepvp.astralsorcery.common.util.VoxelUtils;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level().block.Block;
+import net.minecraft.world.level().block.state.BlockState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.shapes.IBooleanFunction;
 import net.minecraft.world.phys.shapes.CollisionContext;

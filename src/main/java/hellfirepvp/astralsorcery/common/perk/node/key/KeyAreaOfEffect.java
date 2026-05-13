@@ -28,7 +28,7 @@ import net.minecraft.util.IndirectEntityDamageSource;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
-import net.neoforged.bus.api.EventBus;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.LogicalSide;
 
 /**
@@ -81,7 +81,7 @@ public class KeyAreaOfEffect extends KeyAddEnchantment {
 
                     float range = 2.5F * PerkAttributeHelper.getOrCreateMap(player, side).getModifier(player, prog, PerkAttributeTypesAS.ATTR_TYPE_INC_PERK_EFFECT);
                     EventFlags.SWEEP_ATTACK.executeWithFlag(() -> {
-                        for (LivingEntity target : attacked.level.getEntitiesWithinAABB(LivingEntity.class,
+                        for (LivingEntity target : attacked.level().getEntitiesWithinAABB(LivingEntity.class,
                                 attacked.getBoundingBox().grow(range, range / 2F, range))) {
                             if (MiscUtils.canPlayerAttackServer(player, target) && !player.equals(target)) {
                                 DamageUtil.attackEntityFrom(target, source, toApply);

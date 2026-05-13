@@ -12,7 +12,7 @@ import com.google.gson.JsonObject;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.advancement.instance.AltarRecipeInstance;
 import hellfirepvp.astralsorcery.common.crafting.recipe.SimpleAltarRecipe;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.level().ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.loot.ConditionArrayParser;
 import net.minecraft.resources.ResourceLocation;

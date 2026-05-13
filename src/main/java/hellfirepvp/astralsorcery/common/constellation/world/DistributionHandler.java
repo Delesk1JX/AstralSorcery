@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.common.constellation.IConstellationSpecialShowu
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 import hellfirepvp.astralsorcery.common.lib.RegistriesAS;
 import net.minecraft.util.Mth;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level().Level;
 
 import java.util.HashMap;
 import java.util.Map;

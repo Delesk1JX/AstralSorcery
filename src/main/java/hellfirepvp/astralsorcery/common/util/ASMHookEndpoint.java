@@ -30,7 +30,7 @@ public class ASMHookEndpoint {
     //Kept as JS since mixins might clash if multiple mods are targeting the 36.0 constant
     public static double getOverriddenSeenEntityReachMaximum(ServerPlayNetHandler handler, double original) {
         Player player = handler.player;
-        PlayerProgress prog = ResearchHelper.getProgress(player, player.level.isRemote() ? LogicalSide.CLIENT : LogicalSide.SERVER);
+        PlayerProgress prog = ResearchHelper.getProgress(player, player.level().isClientSide() ? LogicalSide.CLIENT : LogicalSide.SERVER);
         if (prog.isValid() && prog.getPerkData().hasPerkEffect(perk -> perk instanceof KeyEntityReach)) {
             return 999_999_999.0;
         }

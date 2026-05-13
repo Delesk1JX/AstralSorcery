@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.lib;
 
 import hellfirepvp.astralsorcery.common.tile.*;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
-import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level().block.entity.BlockEntityType;
 
 /**
  * This class is part of the Astral Sorcery Mod

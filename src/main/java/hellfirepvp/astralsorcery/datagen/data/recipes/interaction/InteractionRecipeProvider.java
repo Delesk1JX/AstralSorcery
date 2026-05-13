@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.common.lib.FluidsAS;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level().material.Fluids;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.fluids.FluidStack;

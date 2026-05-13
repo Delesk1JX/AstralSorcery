@@ -1,4 +1,5 @@
 /*******************************************************************************
+import net.minecraft.network.chat.Component;
  * HellFirePvP / Astral Sorcery 2022
  *
  * All rights reserved.
@@ -20,7 +21,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.network.chat.*;
+import net.minecraft.network.chat.Component;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.Tags;
@@ -148,7 +149,7 @@ public final class CrystalAttributes {
                 if (!prop.canSee(progress) || !attr.isDiscovered()) {
                     missing = true;
                 } else {
-                    net.minecraft.network.chat.Component enchantmentLevel = Component.translatable(String.format("enchantment.level.%s", attr.getTier()))
+                    net.minecraft.network.chat.Component enchantmentLevel = Component.translatable(String.format("enchantment.level().%s", attr.getTier()))
                             .withStyle(ChatFormatting.GOLD);
                     net.minecraft.network.chat.Component propertyName = prop.getName(attr.getTier()).withStyle(ChatFormatting.GRAY);
 

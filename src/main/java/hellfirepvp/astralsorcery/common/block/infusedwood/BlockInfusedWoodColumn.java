@@ -10,12 +10,12 @@ package hellfirepvp.astralsorcery.common.block.infusedwood;
 
 import hellfirepvp.astralsorcery.common.block.base.template.BlockInfusedWoodTemplate;
 import hellfirepvp.astralsorcery.common.util.VoxelUtils;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.IWaterLoggable;
+import net.minecraft.world.level().block.Block;
+import net.minecraft.world.level().block.state.BlockState;
+import net.minecraft.world.level().block.IWaterLoggable;
 import net.minecraft.world.entity.MobEntity;
-import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level().material.FluidState;
+import net.minecraft.world.level().material.Fluids;
 import net.minecraft.world.item.BlockItemUseContext;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.state.BooleanProperty;
@@ -29,8 +29,8 @@ import net.minecraft.util.shapes.IBooleanFunction;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.util.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level().LevelAccessor;
+import net.minecraft.world.level().Level;
 
 import javax.annotation.Nullable;
 import java.util.Locale;

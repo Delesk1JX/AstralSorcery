@@ -24,7 +24,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.IntTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level().Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.ModConfigSpec;
@@ -32,7 +32,7 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.event.entity.living.LivingAttackEvent;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
-import net.neoforged.bus.api.EventBus;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.LogicalSide;
 
 import java.util.ArrayList;
@@ -106,7 +106,7 @@ public class MantleEffectBootes extends MantleEffect {
     private void onAttacked(LivingAttackEvent event) {
         LivingEntity attacked = event.getEntityLiving();
         DamageSource src = event.getSource();
-        if (!attacked.level.isRemote() && src.getTrueSource() instanceof LivingEntity) {
+        if (!attacked.level().isClientSide() && src.getTrueSource() instanceof LivingEntity) {
             LivingEntity attacker = (LivingEntity) src.getTrueSource();
             if (ItemMantle.getEffect(attacker, ConstellationsAS.bootes) != null && attacked.isAlive()) {
                 if (attacked instanceof Player && !MiscUtils.canPlayerAttackServer(attacker, attacked)) {
@@ -119,7 +119,7 @@ public class MantleEffectBootes extends MantleEffect {
 
     private void onHurt(LivingHurtEvent event) {
         LivingEntity hurt = event.getEntityLiving();
-        if (!hurt.level.isRemote() && ItemMantle.getEffect(hurt, ConstellationsAS.bootes) != null) {
+        if (!hurt.level().isClientSide() && ItemMantle.getEffect(hurt, ConstellationsAS.bootes) != null) {
             Entity source = event.getSource().getTrueSource();
             if (source instanceof LivingEntity) {
                 this.forEachFlare(hurt, flare -> flare.setAttackTarget((LivingEntity) source));

@@ -16,7 +16,7 @@ import com.blamejared.crafttweaker.impl.actions.recipes.*;
 import com.blamejared.crafttweaker.impl.item.MCItemStackMutable;
 import hellfirepvp.astralsorcery.common.crafting.recipe.LiquidInfusion;
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
-import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level().material.Fluid;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.IRecipeType;
 import net.minecraft.resources.ResourceLocation;

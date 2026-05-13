@@ -1,4 +1,5 @@
 /*******************************************************************************
+import net.minecraft.network.chat.Component;
  * HellFirePvP / Astral Sorcery 2022
  *
  * All rights reserved.
@@ -13,14 +14,14 @@ import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level().block.entity.BlockEntity;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.ChatFormatting;
 import static net.minecraft.network.chat.Component.translatable;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level().Level;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import TickEvent.ClientTickEvent;
+import hellfirepvp.observerlib.common.util.tick.TickEvent.ClientTickEvent;
 import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;
 
@@ -188,12 +189,12 @@ public class LinkHandler implements ITickHandler {
             switch (session.getType()) {
                 case ENTITY:
                     LivingEntity entity = session.getSelectedEntity();
-                    if (!entity.isAlive() || !entity.level.getDimensionKey().equals(player.level.getDimensionKey())) {
+                    if (!entity.isAlive() || !entity.level().getDimensionKey().equals(player.level().getDimensionKey())) {
                         needsRemoval = true;
                     }
                     break;
                 case BLOCK:
-                    if (!session.getSelectedTile().getLinkWorld().getDimensionKey().equals(player.level.getDimensionKey())) {
+                    if (!session.getSelectedTile().getLinkWorld().getDimensionKey().equals(player.level().getDimensionKey())) {
                         needsRemoval = true;
                     }
                     break;

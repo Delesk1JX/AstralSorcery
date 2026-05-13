@@ -17,8 +17,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.level.dimension.DimensionType;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level().dimension.DimensionType;
+import net.minecraft.world.level().Level;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.fml.LogicalSide;
 
