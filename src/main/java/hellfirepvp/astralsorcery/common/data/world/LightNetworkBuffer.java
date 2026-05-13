@@ -49,7 +49,7 @@ import java.util.*;
  * Created by HellFirePvP
  * Date: 03.08.2016 / 00:10
  */
-public class LightNetworkBuffer extends SectionWorldData<LightNetworkBuffer.ChunkNetworkData> {
+public class LightNetworkBuffer extends SectionWorldData {
 
     private final Map<BlockPos, IIndependentStarlightSource> starlightSources = new HashMap<>();
     private Collection<Tuple<BlockPos, IIndependentStarlightSource>> cachedSourceTuples = null;

@@ -134,8 +134,8 @@ public class SkyHandler implements ITickHandler {
     }
 
     @Override
-    public boolean canFire(net.neoforged.neoforge.event.tick.net.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
-        return phase == net.neoforged.neoforge.event.tick.net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
+    public boolean canFire(net.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
+        return phase == net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
     }
 
     @Override

@@ -58,25 +58,25 @@ public class TickManager {
     
     @SubscribeEvent
     public void onServerTick(ServerTickEvent.Pre event) {
-        fireTicks(net.neoforged.neoforge.event.tick.net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.START, serverTickHandlers, net.neoforged.neoforge.event.tick.ClientTickEvent.SERVER);
+        fireTicks(net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.START, serverTickHandlers, net.neoforged.neoforge.event.tick.ClientTickEvent.SERVER);
     }
     
     @SubscribeEvent
     public void onServerTickPost(ServerTickEvent.Post event) {
-        fireTicks(net.neoforged.neoforge.event.tick.net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END, serverTickHandlers, net.neoforged.neoforge.event.tick.ClientTickEvent.SERVER);
+        fireTicks(net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END, serverTickHandlers, net.neoforged.neoforge.event.tick.ClientTickEvent.SERVER);
     }
     
     @SubscribeEvent
     public void onClientTick(ClientTickEvent event) {
-        fireTicks(net.neoforged.neoforge.event.tick.net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.START, clientTickHandlers, net.neoforged.neoforge.event.tick.ClientTickEvent.CLIENT);
+        fireTicks(net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.START, clientTickHandlers, net.neoforged.neoforge.event.tick.ClientTickEvent.CLIENT);
     }
     
     @SubscribeEvent
     public void onClientTickPost(ClientTickEvent event) {
-        fireTicks(net.neoforged.neoforge.event.tick.net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END, clientTickHandlers, net.neoforged.neoforge.event.tick.ClientTickEvent.CLIENT);
+        fireTicks(net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END, clientTickHandlers, net.neoforged.neoforge.event.tick.ClientTickEvent.CLIENT);
     }
     
-    private void fireTicks(net.neoforged.neoforge.event.tick.net.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase, List<ITickHandler> handlers, net.neoforged.neoforge.event.tick.ClientTickEvent type) {
+    private void fireTicks(net.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase, List<ITickHandler> handlers, net.neoforged.neoforge.event.tick.ClientTickEvent type) {
         for (ITickHandler handler : handlers) {
             if (handler.canFire(phase)) {
                 try {

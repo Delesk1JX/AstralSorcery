@@ -31,7 +31,7 @@ import java.util.Set;
  * Created by HellFirePvP
  * Date: 17.08.2019 / 22:42
  */
-public class RockCrystalBuffer extends SectionWorldData<RockCrystalBuffer.BufferSection> {
+public class RockCrystalBuffer extends SectionWorldData {
 
     public RockCrystalBuffer(WorldCacheDomain.SaveKey<?> key) {
         super(key, 10);
