@@ -46,14 +46,11 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.entity.PlayerRenderer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.IReloadableResourceManager;
-import net.minecraft.util.Unit;
+import net.minecraft.server.packs.resources.ReloadableResourceManager;
 import net.neoforged.neoforge.eventbus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.LogicalSide;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.neoforge.resource.SelectiveReloadStateHandler;
-import net.neoforged.neoforge.resource.VanillaResourceType;
 
 import java.util.Map;
 import java.util.function.Consumer;
@@ -76,19 +73,14 @@ public class ClientProxy extends CommonProxy {
         this.clientScheduler = new ClientScheduler();
 
         if (!AstralSorcery.isDoingDataGeneration()) {
-            IReloadableResourceManager resMgr = (IReloadableResourceManager) Minecraft.getInstance().getResourceManager();
+            ReloadableResourceManager resMgr = (ReloadableResourceManager) Minecraft.getInstance().getResourceManager();
             resMgr.addReloadListener(AssetLibrary.INSTANCE);
             resMgr.addReloadListener(AssetPreLoader.INSTANCE);
             resMgr.addReloadListener(ColorizationHelper.onReload());
-            resMgr.addReloadListener((stage, resourceManager, preparationsProfiler, reloadProfiler, backgroundExecutor, gameExecutor) ->
-                    stage.markCompleteAwaitingOthers(Unit.INSTANCE).thenRunAsync(() -> {
-                        if (!SelectiveReloadStateHandler.INSTANCE.get().test(VanillaResourceType.LANGUAGES)) {
-                            return;
-                        }
-                        PerkTree.PERK_TREE.getPerkPoints(LogicalSide.CLIENT).stream()
-                                .map(PerkTreePoint::getPerk)
-                                .forEach(AbstractPerk::clearClientTextCaches);
-                    }));
+            // Removed SelectiveReloadStateHandler and VanillaResourceType - simplified reload logic
+            PerkTree.PERK_TREE.getPerkPoints(LogicalSide.CLIENT).stream()
+                    .map(PerkTreePoint::getPerk)
+                    .forEach(AbstractPerk::clearClientTextCaches);
         }
 
         this.clientConfig = new ClientConfig();
@@ -162,7 +154,7 @@ public class ClientProxy extends CommonProxy {
     public void openGuiClient(GuiType type, CompoundTag data) {
         Screen toOpen = type.deserialize(data);
         if (toOpen != null) {
-            Minecraft.getInstance().displayGuiScreen(toOpen);
+            Minecraft.getInstance().setScreen(toOpen);
         }
     }
 
@@ -184,7 +176,7 @@ public class ClientProxy extends CommonProxy {
         RegistryBlockRenderTypes.initFluids();
         RegistryItems.registerItemProperties();
 
-        Map<String, PlayerRenderer> playerRenderMap = Minecraft.getInstance().getRenderManager().getSkinMap();
+        Map<String, PlayerRenderer> playerRenderMap = Minecraft.getInstance().getEntityRenderDispatcher().getSkinMap();
         PlayerRenderer renderer = playerRenderMap.get("slim");
         renderer.addLayer(new StarryLayerRenderer<>(renderer, true));
         renderer = playerRenderMap.get("default");

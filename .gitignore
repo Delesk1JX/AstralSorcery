@@ -1,36 +1,14 @@
 ```
-# Compiled and build artifacts
-*.class
-*.o
-*.obj
-*.out
-build/
-target/
+# Gradle
+.gradle/
+!gradle/wrapper/
 
 # Dependencies
-.gradle/
 libs/
-lib/
 
-# Logs and temp files
-*.log
-*.tmp
-*.swp
+# Build artifacts
+*.jar
 
-# Editors
-.vscode/
-.idea/
-
-# Environment
-.env
-.env.local
-*.env.*
-
-# Coverage
-coverage/
-htmlcov/
-.coverage
-
-# Package manager
-node_modules/
+# Test runs
+runs/
 ```
