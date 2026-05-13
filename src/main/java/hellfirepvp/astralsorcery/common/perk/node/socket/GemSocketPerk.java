@@ -147,7 +147,7 @@ public interface GemSocketPerk {
     }
 
     @OnlyIn(Dist.CLIENT)
-    default public <T extends AbstractPerk & GemSocketPerk> void addTooltipInfo(Collection<IFormattableTextComponent> tooltip) {
+    default public <T extends AbstractPerk & GemSocketPerk> void addTooltipInfo(Collection<net.minecraft.network.chat.Component> tooltip) {
         if (!(this instanceof AbstractPerk)) {
             return;
         }
@@ -179,7 +179,7 @@ public interface GemSocketPerk {
         } else {
             if (contained.getItem() instanceof GemSocketItem) {
                 GemSocketItem item = (GemSocketItem) contained.getItem();
-                List<IFormattableTextComponent> additionalToolTip = new ArrayList<>();
+                List<net.minecraft.network.chat.Component> additionalToolTip = new ArrayList<>();
                 item.addTooltip(contained, thisPerk, additionalToolTip);
                 if (!additionalToolTip.isEmpty()) {
                     tooltip.addAll(additionalToolTip);

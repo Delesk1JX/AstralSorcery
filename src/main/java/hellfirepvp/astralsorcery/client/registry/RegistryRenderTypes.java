@@ -21,10 +21,9 @@ import hellfirepvp.astralsorcery.client.util.image.SkyImageGenerator;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.vertex.VertexFormat;
-import net.minecraft.client.renderer.vertex.VertexFormat;
-import net.minecraft.Util;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import com.mojang.blaze3d.vertex.VertexFormat;
+import net.minecraft.util.Util;
 import org.lwjgl.opengl.GL11;
 
 import static hellfirepvp.astralsorcery.client.lib.RenderTypesAS.*;

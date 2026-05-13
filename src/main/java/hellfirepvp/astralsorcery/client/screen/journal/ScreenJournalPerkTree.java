@@ -336,9 +336,9 @@ public class ScreenJournalPerkTree extends ScreenJournal {
                     if (Minecraft.getInstance().gameSettings.advancedItemTooltips && perk.getCategory() != AbstractPerk.CATEGORY_BASE) {
                         toolTip.add(perk.getCategory().getName().withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
                     }
-                    Collection<IFormattableTextComponent> modInfo = perk.getSource();
+                    Collection<net.minecraft.network.chat.Component> modInfo = perk.getSource();
                     if (modInfo != null) {
-                        for (IFormattableTextComponent cmp : modInfo) {
+                        for (net.minecraft.network.chat.Component cmp : modInfo) {
                             toolTip.add(cmp.withStyle(ChatFormatting.BLUE).withStyle(ChatFormatting.ITALIC));
                         }
                     }
@@ -823,7 +823,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
             if (perk.getCategory().getName().getString().toLowerCase(Locale.ROOT).contains(matchText)) {
                 this.searchMatches.add(perk);
             } else {
-                for (IFormattableTextComponent tooltip : perk.getLocalizedTooltip()) {
+                for (net.minecraft.network.chat.Component tooltip : perk.getLocalizedTooltip()) {
                     if (tooltip.getString().toLowerCase(Locale.ROOT).contains(matchText)) {
                         this.searchMatches.add(perk);
                         break;
@@ -831,7 +831,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
                 }
             }
         }
-        IFormattableTextComponent sealedInfo = new Component.translatable("perk.info.astralsorcery.sealed");
+        net.minecraft.network.chat.Component sealedInfo = new Component.translatable("perk.info.astralsorcery.sealed");
         if (sealedInfo.getString().toLowerCase(Locale.ROOT).contains(matchText)) {
             PlayerProgress prog = ResearchHelper.getClientProgress();
             for (AbstractPerk sealed : prog.getPerkData().getSealedPerks()) {

@@ -73,7 +73,7 @@ public class ItemKnowledgeShare extends Item {
         if (getKnowledge(stack) == null) {
             tooltip.add(new Component.translatable("astralsorcery.misc.knowledge.missing").withStyle(ChatFormatting.GRAY));
         } else {
-            IFormattableTextComponent name = getKnowledgeOwnerName(stack);
+            net.minecraft.network.chat.Component name = getKnowledgeOwnerName(stack);
             if (name != null) {
                 tooltip.add(new Component.translatable("astralsorcery.misc.knowledge.inscribed", name).withStyle(ChatFormatting.BLUE));
             }
@@ -147,7 +147,7 @@ public class ItemKnowledgeShare extends Item {
     }
 
     @Nullable
-    public static IFormattableTextComponent getKnowledgeOwnerName(ItemStack stack) {
+    public static net.minecraft.network.chat.Component getKnowledgeOwnerName(ItemStack stack) {
         if (isCreative(stack)) return null;
 
         CompoundTag compound = NBTHelper.getPersistentData(stack);

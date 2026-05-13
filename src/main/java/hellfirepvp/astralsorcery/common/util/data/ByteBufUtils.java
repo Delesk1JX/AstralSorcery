@@ -141,11 +141,11 @@ public class ByteBufUtils {
     }
 
     public static void writeTextComponent(FriendlyByteBuf buf, Component cmp) {
-        writeString(buf, IFormattableTextComponent.Serializer.toJson(cmp));
+        writeString(buf, net.minecraft.network.chat.Component.Serializer.toJson(cmp));
     }
 
-    public static IFormattableTextComponent readTextComponent(FriendlyByteBuf buf) {
-        return IFormattableTextComponent.Serializer.getComponentFromJson(readString(buf));
+    public static net.minecraft.network.chat.Component readTextComponent(FriendlyByteBuf buf) {
+        return net.minecraft.network.chat.Component.Serializer.getComponentFromJson(readString(buf));
     }
 
     public static void writeString(FriendlyByteBuf buf, String toWrite) {

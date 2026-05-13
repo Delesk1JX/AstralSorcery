@@ -42,7 +42,7 @@ import hellfirepvp.astralsorcery.common.registry.*;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.AbstractClientPlayer;
-import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.entity.PlayerRenderer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;

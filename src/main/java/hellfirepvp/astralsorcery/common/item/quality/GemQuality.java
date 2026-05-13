@@ -43,7 +43,7 @@ public enum GemQuality {
         return degree;
     }
 
-    public IFormattableTextComponent getDisplayName() {
+    public net.minecraft.network.chat.Component getDisplayName() {
         return new Component.translatable("item.astralsorcery.gem_quality.%s", this.name().toLowerCase(Locale.ROOT))
                 .withStyle(this.color);
     }

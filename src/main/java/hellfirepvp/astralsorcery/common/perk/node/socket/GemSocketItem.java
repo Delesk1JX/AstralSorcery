@@ -92,6 +92,6 @@ public interface GemSocketItem {
      * @param perk
      * @param toolTip
      */
-    default <T extends AbstractPerk & GemSocketPerk> void addTooltip(ItemStack stack, T perk, List<IFormattableTextComponent> toolTip) {}
+    default <T extends AbstractPerk & GemSocketPerk> void addTooltip(ItemStack stack, T perk, List<net.minecraft.network.chat.Component> toolTip) {}
 
 }

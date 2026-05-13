@@ -96,7 +96,7 @@ public abstract class CrystalProperty extends DeferredHolder<Item, CrystalProper
         return value;
     }
 
-    public IFormattableTextComponent getName(int currentTier) {
+    public net.minecraft.network.chat.Component getName(int currentTier) {
         return new Component.translatable(String.format("crystal.property.%s.%s.name", getRegistryName().getNamespace(), getRegistryName().getPath()));
     }
 

@@ -19,7 +19,6 @@ import hellfirepvp.astralsorcery.common.perk.source.ModifierManager;
 import hellfirepvp.astralsorcery.common.perk.source.ModifierSource;
 import hellfirepvp.astralsorcery.common.perk.tree.PerkTreePoint;
 import hellfirepvp.astralsorcery.common.util.CacheEventBus;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
@@ -70,7 +69,7 @@ public class AbstractPerk implements ModifierSource {
 
     private ResourceLocation customPerkType = null;
 
-    private List<IFormattableTextComponent> tooltipCache = null;
+    private List<net.minecraft.network.chat.Component> tooltipCache = null;
     private boolean cacheTooltip = true;
 
     public AbstractPerk(ResourceLocation name, float x, float y) {
@@ -216,18 +215,22 @@ public class AbstractPerk implements ModifierSource {
 
     @Nonnull
     @OnlyIn(Dist.CLIENT)
-    public Collection<IFormattableTextComponent> getDescription() {
-        List<IFormattableTextComponent> toolTip = new ArrayList<>();
-        if (I18n.hasKey(this.unlocalizedKey + ".desc.1")) { // Might have a indexed list there
-            int count = 1;
-            while (I18n.hasKey(this.unlocalizedKey + ".desc." + count)) {
-                toolTip.add(new Component.translatable(this.unlocalizedKey + ".desc." + count));
-                count++;
-            }
-            toolTip.add(new Component.literal(""));
-        } else if (I18n.hasKey(this.unlocalizedKey + ".desc")) {
-            toolTip.add(new Component.translatable(this.unlocalizedKey + ".desc"));
-            toolTip.add(new Component.literal(""));
+    public Collection<net.minecraft.network.chat.Component> getDescription() {
+        List<net.minecraft.network.chat.Component> toolTip = new ArrayList<>();
+        // Try to load indexed descriptions (desc.1, desc.2, etc.)
+        int count = 1;
+        while (count <= 100) { // Safety limit to prevent infinite loops
+            String key = this.unlocalizedKey + ".desc." + count;
+            toolTip.add(net.minecraft.network.chat.Component.translatable(key));
+            count++;
+        }
+        // If we only added one key and it looks like an untranslated key, try single desc
+        if (toolTip.size() == 1) {
+            toolTip.clear();
+            toolTip.add(net.minecraft.network.chat.Component.translatable(this.unlocalizedKey + ".desc"));
+        }
+        if (!toolTip.isEmpty()) {
+            toolTip.add(net.minecraft.network.chat.Component.literal(""));
         }
         return toolTip;
     }
@@ -238,7 +241,7 @@ public class AbstractPerk implements ModifierSource {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public final Collection<IFormattableTextComponent> getLocalizedTooltip() {
+    public final Collection<net.minecraft.network.chat.Component> getLocalizedTooltip() {
         if (cacheTooltip && tooltipCache != null) {
             return tooltipCache;
         }
@@ -261,7 +264,7 @@ public class AbstractPerk implements ModifierSource {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public boolean addLocalizedTooltip(Collection<IFormattableTextComponent> tooltip) {
+    public boolean addLocalizedTooltip(Collection<net.minecraft.network.chat.Component> tooltip) {
         return false;
     }
 
@@ -269,7 +272,7 @@ public class AbstractPerk implements ModifierSource {
     //Default: modname of added mod
     @Nullable
     @OnlyIn(Dist.CLIENT)
-    public Collection<IFormattableTextComponent> getSource() {
+    public Collection<net.minecraft.network.chat.Component> getSource() {
         String modid = getRegistryName().getNamespace();
         ModContainer mod = ModList.get().getModContainerById(modid).orElse(null);
         if (mod != null) {
@@ -365,7 +368,7 @@ public class AbstractPerk implements ModifierSource {
             return color;
         }
 
-        public IFormattableTextComponent getName() {
+        public net.minecraft.network.chat.Component getName() {
             return this.name;
         }
 

@@ -43,7 +43,7 @@ public class AmuletEnchantment extends DynamicEnchantment {
 
     //TODO nested translation components..?
     @OnlyIn(Dist.CLIENT)
-    public IFormattableTextComponent getDisplay() {
+    public net.minecraft.network.chat.Component getDisplay() {
         String typeStr = this.getType().getDisplayName();
         String levelsStr = I18n.format(String.format("astralsorcery.amulet.enchantment.level.%s", this.levelAddition > 1 ? "more" : "one"));
 

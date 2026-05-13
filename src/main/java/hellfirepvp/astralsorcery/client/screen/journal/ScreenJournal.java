@@ -113,7 +113,7 @@ public class ScreenJournal extends WidthHeightScreen {
 
     private Rectangle drawBookmark(PoseStack renderStack,
                                    float offsetX, float offsetY, int width, int height, int mouseOverWidth,
-                                   float zLevel, IFormattableTextComponent title, int titleRGBColor, int mouseX, int mouseY,
+                                   float zLevel, net.minecraft.network.chat.Component title, int titleRGBColor, int mouseX, int mouseY,
                                    AbstractRenderableTexture texture, AbstractRenderableTexture textureStretched) {
         texture.bindTexture();
 

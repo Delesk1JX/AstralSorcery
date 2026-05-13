@@ -65,11 +65,11 @@ public interface IConstellation extends Comparable<IConstellation> {
 
     public String getTranslationKey();
 
-    default public IFormattableTextComponent getConstellationName() {
-        return new Component.translatable(this.getTranslationKey());
+    default public net.minecraft.network.chat.Component getConstellationName() {
+        return net.minecraft.network.chat.Component.translatable(this.getTranslationKey());
     }
 
-    default public IFormattableTextComponent getConstellationTypeDescription() {
+    default public net.minecraft.network.chat.Component getConstellationTypeDescription() {
         String type = "unknown";
         if (this instanceof IMajorConstellation) {
             type = "major";
@@ -78,19 +78,19 @@ public interface IConstellation extends Comparable<IConstellation> {
         } else if (this instanceof IMinorConstellation) {
             type = "minor";
         }
-        return new Component.translatable(String.format("astralsorcery.journal.constellation.type.%s", type));
+        return net.minecraft.network.chat.Component.translatable(String.format("astralsorcery.journal.constellation.type.%s", type));
     }
 
-    default public IFormattableTextComponent getConstellationTag() {
-        return new Component.translatable(this.getTranslationKey() + ".tag");
+    default public net.minecraft.network.chat.Component getConstellationTag() {
+        return net.minecraft.network.chat.Component.translatable(this.getTranslationKey() + ".tag");
     }
 
-    default public IFormattableTextComponent getConstellationDescription() {
-        return new Component.translatable(this.getTranslationKey() + ".description");
+    default public net.minecraft.network.chat.Component getConstellationDescription() {
+        return net.minecraft.network.chat.Component.translatable(this.getTranslationKey() + ".description");
     }
 
-    default public IFormattableTextComponent getConstellationEnchantmentDescription() {
-        return new Component.translatable(this.getTranslationKey() + ".enchantments");
+    default public net.minecraft.network.chat.Component getConstellationEnchantmentDescription() {
+        return net.minecraft.network.chat.Component.translatable(this.getTranslationKey() + ".enchantments");
     }
 
     public static String getDefaultSaveKey() {

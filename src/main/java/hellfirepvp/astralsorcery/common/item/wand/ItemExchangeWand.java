@@ -332,11 +332,11 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
             return searchRadius;
         }
 
-        public IFormattableTextComponent getName() {
+        public net.minecraft.network.chat.Component getName() {
             return new Component.translatable("astralsorcery.misc.exchange.size." + this.searchRadius);
         }
 
-        public IFormattableTextComponent getDisplay() {
+        public net.minecraft.network.chat.Component getDisplay() {
             return new Component.translatable("astralsorcery.misc.exchange.size", this.getName());
         }
 
