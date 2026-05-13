@@ -74,17 +74,17 @@ public class CommandConstellation {
         Component targetName = target.getDisplayName();
         PlayerProgress progress = ResearchHelper.getProgress(target, LogicalSide.SERVER);
         if (!progress.isValid() || progress.hasSeenConstellation(cst)) {
-            source.sendMessage(new Component.literal("Failed! ").append(targetName).appendString(" has already seen ").append(cst.getConstellationName())
+            source.sendMessage(Component.literal("Failed! ").append(targetName).appendString(" has already seen ").append(cst.getConstellationName())
                     .withStyle(ChatFormatting.RED), Util.DUMMY_UUID);
             return 0;
         }
         if (ResearchManager.memorizeConstellation(cst, target)) {
             ResearchHelper.sendConstellationMemorizationMessage(target, progress, cst);
-            source.sendMessage(new Component.literal("Success! ")
+            source.sendMessage(Component.literal("Success! ")
                     .withStyle(ChatFormatting.GREEN), Util.DUMMY_UUID);
             return Command.SINGLE_SUCCESS;
         } else {
-            source.sendMessage(new Component.literal("Failed!").withStyle(ChatFormatting.RED), Util.DUMMY_UUID);
+            source.sendMessage(Component.literal("Failed!").withStyle(ChatFormatting.RED), Util.DUMMY_UUID);
             return 0;
         }
     }
@@ -95,16 +95,16 @@ public class CommandConstellation {
         Component targetName = target.getDisplayName();
         PlayerProgress progress = ResearchHelper.getProgress(target, LogicalSide.SERVER);
         if (!progress.isValid() || progress.hasConstellationDiscovered(cst)) {
-            source.sendMessage(new Component.literal("Failed! ").append(targetName).appendString(" has already discovered ").append(cst.getConstellationName())
+            source.sendMessage(Component.literal("Failed! ").append(targetName).appendString(" has already discovered ").append(cst.getConstellationName())
                     .withStyle(ChatFormatting.RED), Util.DUMMY_UUID);
             return 0;
         }
         if (ResearchManager.discoverConstellation(cst, target)) {
             ResearchHelper.sendConstellationDiscoveryMessage(target, cst);
-            source.sendMessage(new Component.literal("Success! ").withStyle(ChatFormatting.GREEN), Util.DUMMY_UUID);
+            source.sendMessage(Component.literal("Success! ").withStyle(ChatFormatting.GREEN), Util.DUMMY_UUID);
             return Command.SINGLE_SUCCESS;
         } else {
-            source.sendMessage(new Component.literal("Failed!").withStyle(ChatFormatting.RED), Util.DUMMY_UUID);
+            source.sendMessage(Component.literal("Failed!").withStyle(ChatFormatting.RED), Util.DUMMY_UUID);
             return 0;
         }
     }

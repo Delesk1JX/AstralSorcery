@@ -279,7 +279,7 @@ public class TileRefractionTable extends TileEntityTick implements NamedInventor
 
     @Override
     public Component getDisplayName() {
-        return new Component.translatable("screen.astralsorcery.refraction_table");
+        return Component.translatable("screen.astralsorcery.refraction_table");
     }
 
     @Override

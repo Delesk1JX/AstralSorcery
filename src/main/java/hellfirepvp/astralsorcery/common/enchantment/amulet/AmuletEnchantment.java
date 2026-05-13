@@ -48,10 +48,10 @@ public class AmuletEnchantment extends DynamicEnchantment {
         String levelsStr = I18n.format(String.format("astralsorcery.amulet.enchantment.level.%s", this.levelAddition > 1 ? "more" : "one"));
 
         if (this.getType().isEnchantmentSpecific()) {
-            return new Component.translatable(typeStr,
+            return Component.translatable(typeStr,
                     String.valueOf(this.getLevelAddition()), levelsStr, LanguageMap.getInstance().func_230503_a_(this.getEnchantment().getName()));
         } else {
-            return new Component.translatable(typeStr, String.valueOf(this.getLevelAddition()), levelsStr);
+            return Component.translatable(typeStr, String.valueOf(this.getLevelAddition()), levelsStr);
         }
     }
 

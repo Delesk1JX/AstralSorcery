@@ -14,7 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.util.MutableBoundingBox;
-import net.minecraft.world.ServerLevel;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.IServerLevel;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.structure.IStructurePieceType;

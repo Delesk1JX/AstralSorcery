@@ -38,7 +38,7 @@ import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.server.level.ServerPlayer;
@@ -144,7 +144,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
         RenderSystem.disableDepthTest();
         RenderSystem.disableAlphaTest();
 
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.BLOCK, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.BLOCK, buf -> {
             placeStates.forEach((pos, state) -> {
                 renderStack.push();
                 renderStack.translate(pos.getX() - offset.getX() + 0.1F, pos.getY() - offset.getY() + 0.1F, pos.getZ() - offset.getZ() + 0.1F);
@@ -333,11 +333,11 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
         }
 
         public net.minecraft.network.chat.Component getName() {
-            return new Component.translatable("astralsorcery.misc.exchange.size." + this.searchRadius);
+            return Component.translatable("astralsorcery.misc.exchange.size." + this.searchRadius);
         }
 
         public net.minecraft.network.chat.Component getDisplay() {
-            return new Component.translatable("astralsorcery.misc.exchange.size", this.getName());
+            return Component.translatable("astralsorcery.misc.exchange.size", this.getName());
         }
 
         @Nonnull

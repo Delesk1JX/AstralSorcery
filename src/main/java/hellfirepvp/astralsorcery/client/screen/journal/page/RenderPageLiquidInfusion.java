@@ -18,9 +18,9 @@ import hellfirepvp.astralsorcery.common.data.research.ProgressionTier;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.data.research.ResearchNode;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
-import net.minecraft.client.renderer.VertexConsumer;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.world.item.ItemStack;
 import static net.minecraft.network.chat.Component.translatable;
 import net.neoforged.neoforge.fluids.FluidAttributes;
@@ -60,7 +60,7 @@ public class RenderPageLiquidInfusion extends RenderPageRecipeTemplate {
 
         BlockAtlasTexture.getInstance().bindTexture();
         TextureAtlasSprite tas = RenderingUtils.getParticleTexture(new FluidStack(this.recipe.getLiquidInput(), FluidAttributes.BUCKET_VOLUME));
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             renderStack.push();
             renderStack.translate(x, y, z);
             this.renderLiquidInput(buf, renderStack, tas, 1, 0);
@@ -94,18 +94,18 @@ public class RenderPageLiquidInfusion extends RenderPageRecipeTemplate {
     public void postRender(PoseStack renderStack, float x, float y, float z, float pTicks, float mouseX, float mouseY) {
         this.renderHoverTooltips(renderStack, mouseX, mouseY, z, this.recipe.getId());
         this.renderInfoStarTooltips(renderStack, x, y, z, mouseX, mouseY, (toolTip) -> {
-            toolTip.add(new Component.translatable("astralsorcery.journal.recipe.infusion.liquid",
+            toolTip.add(Component.translatable("astralsorcery.journal.recipe.infusion.liquid",
                     this.recipe.getLiquidInput().getAttributes().getDisplayName(new FluidStack(this.recipe.getLiquidInput(), FluidAttributes.BUCKET_VOLUME))));
-            toolTip.add(new Component.translatable("astralsorcery.journal.recipe.infusion.chance.format",
+            toolTip.add(Component.translatable("astralsorcery.journal.recipe.infusion.chance.format",
                     this.getInfuserChanceDescription(this.recipe.getConsumptionChance())));
             if (this.recipe.doesConsumeMultipleFluids()) {
-                toolTip.add(new Component.translatable("astralsorcery.journal.recipe.infusion.multiple"));
+                toolTip.add(Component.translatable("astralsorcery.journal.recipe.infusion.multiple"));
             }
             if (!this.recipe.acceptsChaliceInput() && ResearchHelper.getClientProgress().getTierReached().isThisLaterOrEqual(ProgressionTier.TRAIT_CRAFT)) {
-                toolTip.add(new Component.translatable("astralsorcery.journal.recipe.infusion.no_chalice"));
+                toolTip.add(Component.translatable("astralsorcery.journal.recipe.infusion.no_chalice"));
             }
             if (this.recipe.doesCopyNBTToOutputs()) {
-                toolTip.add(new Component.translatable("astralsorcery.journal.recipe.infusion.copy_nbt"));
+                toolTip.add(Component.translatable("astralsorcery.journal.recipe.infusion.copy_nbt"));
             }
         });
     }

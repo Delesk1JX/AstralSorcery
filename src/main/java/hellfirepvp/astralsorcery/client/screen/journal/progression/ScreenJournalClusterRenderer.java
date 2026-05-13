@@ -27,7 +27,7 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchProgression;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.Mth;
 import org.joml.Matrix4f;
@@ -238,7 +238,7 @@ public class ScreenJournalClusterRenderer {
                 RenderSystem.enableBlend();
                 RenderSystem.defaultBlendFunc();
 
-                RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+                RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
                     Matrix4f matr = renderStack.getLast().getMatrix();
                     buf.pos(matr, pxWH, zoomedWH - pxWH, zLevel)
                             .color(r, g, b, a)
@@ -281,7 +281,7 @@ public class ScreenJournalClusterRenderer {
         int segments = (int) Math.ceil(line.length() / 1); //1 = max line segment length
         int activeSegment = (int) (clientTicks % segments);
         Vector3 segmentIter = line.divide(segments);
-        RenderingUtils.draw(GL11.GL_LINE_STRIP, DefaultVertexFormats.POSITION_COLOR, buf -> {
+        RenderingUtils.draw(GL11.GL_LINE_STRIP, DefaultVertexFormat.POSITION_COLOR, buf -> {
             for (int i = segments; i >= 0; i--) {
                 double lx = origin.getX();
                 double ly = origin.getY();
@@ -318,7 +318,7 @@ public class ScreenJournalClusterRenderer {
 
     private void drawResearchItemBackground(double zoomedWH, double xAdd, double yAdd, float zLevel) {
         RenderSystem.enableBlend();
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             buf.pos(xAdd,            yAdd + zoomedWH, zLevel).color(alpha, alpha, alpha, alpha).tex(0, 1).endVertex();
             buf.pos(xAdd + zoomedWH, yAdd + zoomedWH, zLevel).color(alpha, alpha, alpha, alpha).tex(1, 1).endVertex();
             buf.pos(xAdd + zoomedWH, yAdd,            zLevel).color(alpha, alpha, alpha, alpha).tex(1, 0).endVertex();

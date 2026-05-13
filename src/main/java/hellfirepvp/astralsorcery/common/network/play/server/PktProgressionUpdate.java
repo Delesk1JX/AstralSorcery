@@ -82,12 +82,12 @@ public class PktProgressionUpdate extends ASPacket<PktProgressionUpdate> {
                 context.enqueueWork(() -> {
                     if (packet.tier != null) {
                         Minecraft.getInstance().player.sendMessage(
-                                new Component.translatable("astralsorcery.progress.gain.progress.chat")
+                                Component.translatable("astralsorcery.progress.gain.progress.chat")
                                         .withStyle(ChatFormatting.BLUE), Util.DUMMY_UUID);
                     }
                     if (packet.prog != null) {
                         Minecraft.getInstance().player.sendMessage(
-                                new Component.translatable("astralsorcery.progress.gain.research.chat", packet.prog.getName())
+                                Component.translatable("astralsorcery.progress.gain.research.chat", packet.prog.getName())
                                         .withStyle(ChatFormatting.AQUA), Util.DUMMY_UUID);
                     }
                     packet.refreshJournal();

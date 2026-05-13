@@ -62,12 +62,12 @@ public class ItemInfusedGlass extends Item {
 
                     if (Minecraft.getInstance().player != null && Minecraft.getInstance().player.isCreative()) {
                         String percent = String.valueOf(Math.round(map.getDistribution(cst) * 100F));
-                        Component creativeHint = new Component.translatable("item.astralsorcery.infused_glass.ttip.creative", percent)
+                        Component creativeHint = Component.translatable("item.astralsorcery.infused_glass.ttip.creative", percent)
                                 .withStyle(ChatFormatting.LIGHT_PURPLE);
 
-                        tooltip.add(new Component.translatable(format, cstName, creativeHint).withStyle(ChatFormatting.GRAY));
+                        tooltip.add(Component.translatable(format, cstName, creativeHint).withStyle(ChatFormatting.GRAY));
                     } else {
-                        tooltip.add(new Component.translatable(format, cstName, "").withStyle(ChatFormatting.GRAY));
+                        tooltip.add(Component.translatable(format, cstName, "").withStyle(ChatFormatting.GRAY));
                     }
                 }
             }

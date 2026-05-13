@@ -28,7 +28,7 @@ import hellfirepvp.astralsorcery.common.network.play.client.PktRotateTelescope;
 import hellfirepvp.astralsorcery.common.tile.TileTelescope;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.util.Tuple;
 import org.lwjgl.opengl.GL11;
 
@@ -159,7 +159,7 @@ public class ScreenTelescope extends TileConstellationDiscoveryScreen<TileTelesc
             this.setBlitOffset(-9);
             float starSize = 5F;
             TexturesAS.TEX_STAR_1.bindTexture();
-            RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+            RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
                 for (int i = 0; i < 72 + gen.nextInt(108); i++) {
                     float innerOffsetX = starSize + gen.nextFloat() * (guiWidth  - starSize * 2) + this.getGuiLeft();
                     float innerOffsetY = starSize + gen.nextFloat() * (guiHeight - starSize * 2) + this.getGuiTop();

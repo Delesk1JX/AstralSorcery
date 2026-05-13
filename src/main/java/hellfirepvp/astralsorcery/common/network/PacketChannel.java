@@ -20,7 +20,7 @@ import hellfirepvp.astralsorcery.common.network.login.server.PktLoginSyncPerkInf
 import hellfirepvp.astralsorcery.common.network.play.client.*;
 import hellfirepvp.astralsorcery.common.network.play.server.*;
 import hellfirepvp.observerlib.common.util.RegistryUtil;
-import net.minecraft.util.net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.core.Vec3i;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.level.Level;

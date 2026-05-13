@@ -29,7 +29,7 @@ import hellfirepvp.astralsorcery.common.event.EventFlags;
 import hellfirepvp.astralsorcery.common.tile.TileObservatory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.IHasContainer;
-import net.minecraft.client.renderer.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.client.settings.PointOfView;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.Tuple;
@@ -191,7 +191,7 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
 
             this.setBlitOffset(-9);
             TexturesAS.TEX_STAR_1.bindTexture();
-            RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+            RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
                 for (Point.Float star : usedStars) {
                     float size = 3 + gen.nextFloat() * 3F;
                     float brightness = 0.4F + (RenderingConstellationUtils.stdFlicker(ClientScheduler.getClientTick(), pTicks, 10 + gen.nextInt(20))) * 0.5F;
@@ -258,7 +258,7 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
         this.setBlitOffset(10);
         TexturesAS.TEX_GUI_OBSERVATORY.bindTexture();
 
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             Matrix4f offset = renderStack.getLast().getMatrix();
             RenderingGuiUtils.rect(buf, renderStack, this)
                     .at(0, 0).dim(FRAME_TEXTURE_SIZE, FRAME_TEXTURE_SIZE)

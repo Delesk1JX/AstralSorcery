@@ -97,14 +97,14 @@ public class LinkHandler implements ITickHandler {
         switch (result.getType()) {
             case SELECT_START:
                 if (session.getType() == LinkType.ENTITY) {
-                    playerIn.sendMessage(new Component.translatable("astralsorcery.misc.link.start",
+                    playerIn.sendMessage(Component.translatable("astralsorcery.misc.link.start",
                             result.getLinkingSession().getSelectedEntity().getDisplayName()).withStyle(ChatFormatting.GREEN), Util.DUMMY_UUID);
                 } else {
                     String name = tile.getUnLocalizedDisplayName();
                     if (tile.onSelect(playerIn)) {
                         if (name != null) {
-                            playerIn.sendMessage(new Component.translatable("astralsorcery.misc.link.start",
-                                    new Component.translatable(name)).withStyle(ChatFormatting.GREEN), Util.DUMMY_UUID);
+                            playerIn.sendMessage(Component.translatable("astralsorcery.misc.link.start",
+                                    Component.translatable(name)).withStyle(ChatFormatting.GREEN), Util.DUMMY_UUID);
                         }
                     }
                 }
@@ -133,9 +133,9 @@ public class LinkHandler implements ITickHandler {
                         tile.onBlockLinkCreate(playerIn, pos);
                         String linkedFrom = tile.getUnLocalizedDisplayName();
                         if (linkedFrom != null) {
-                            playerIn.sendMessage(new Component.translatable("astralsorcery.misc.link.link",
-                                    new Component.translatable(linkedFrom),
-                                    new Component.translatable(linkedToName))
+                            playerIn.sendMessage(Component.translatable("astralsorcery.misc.link.link",
+                                    Component.translatable(linkedFrom),
+                                    Component.translatable(linkedToName))
                                     .withStyle(ChatFormatting.GREEN), Util.DUMMY_UUID);
                         }
                     }
@@ -153,9 +153,9 @@ public class LinkHandler implements ITickHandler {
                     }
                     String linkedFrom = tile.getUnLocalizedDisplayName();
                     if (linkedFrom != null) {
-                        playerIn.sendMessage(new Component.translatable("astralsorcery.misc.link.unlink",
-                                new Component.translatable(linkedFrom),
-                                new Component.translatable(linkedToName))
+                        playerIn.sendMessage(Component.translatable("astralsorcery.misc.link.unlink",
+                                Component.translatable(linkedFrom),
+                                Component.translatable(linkedToName))
                                 .withStyle(ChatFormatting.GREEN), Util.DUMMY_UUID);
                     }
                 }
@@ -200,7 +200,7 @@ public class LinkHandler implements ITickHandler {
             }
             if (needsRemoval) {
                 iterator.remove();
-                player.sendMessage(new Component.translatable("astralsorcery.misc.link.stop")
+                player.sendMessage(Component.translatable("astralsorcery.misc.link.stop")
                         .withStyle(ChatFormatting.RED), Util.DUMMY_UUID);
             }
         }

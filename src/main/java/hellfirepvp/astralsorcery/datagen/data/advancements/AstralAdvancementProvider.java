@@ -83,11 +83,11 @@ public class AstralAdvancementProvider extends AdvancementProvider {
     }
 
     private Component.translatable title(String key) {
-        return new Component.translatable(String.format("advancements.astralsorcery.%s.title", key));
+        return Component.translatable(String.format("advancements.astralsorcery.%s.title", key));
     }
 
     private Component.translatable description(String key) {
-        return new Component.translatable(String.format("advancements.astralsorcery.%s.desc", key));
+        return Component.translatable(String.format("advancements.astralsorcery.%s.desc", key));
     }
 
     private void registerAdvancements(Consumer<Advancement> registrar) {

@@ -12,7 +12,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.common.data.journal.JournalPage;
 import net.minecraft.client.gui.Font;
-import net.minecraft.util.FormattedText;
+import net.minecraft.network.chat.FormattedText;
 import net.minecraft.network.chat.*;
 
 import java.util.LinkedList;
@@ -44,7 +44,7 @@ public class RenderPageText extends RenderablePage {
         String text = LanguageMap.getInstance().func_230503_a_(unlocText);
         List<FormattedText> lines = new LinkedList<>();
         for (String segment : text.split("<NL>")) {
-            lines.addAll(fontRenderer.trimStringToWidth(new Component.literal(segment), JournalPage.DEFAULT_WIDTH));
+            lines.addAll(fontRenderer.trimStringToWidth(Component.literal(segment), JournalPage.DEFAULT_WIDTH));
             lines.add(FormattedText.field_242232_a);
         }
         return lines;

@@ -67,7 +67,7 @@ public class ItemShiftingStar extends Item implements PerkExperienceRevealer {
             if (ResearchHelper.getClientProgress().hasConstellationDiscovered(cst)) {
                 tooltip.add(cst.getConstellationName().withStyle(ChatFormatting.BLUE));
             } else {
-                tooltip.add(new Component.translatable("astralsorcery.misc.noinformation").withStyle(ChatFormatting.GRAY));
+                tooltip.add(Component.translatable("astralsorcery.misc.noinformation").withStyle(ChatFormatting.GRAY));
             }
         }
     }
@@ -92,12 +92,12 @@ public class ItemShiftingStar extends Item implements PerkExperienceRevealer {
                 double perkExp = prog.getPerkData().getPerkExp();
                 if (ResearchManager.setAttunedConstellation(player, cst)) {
                     ResearchManager.setExp(player, Mth.lfloor(perkExp));
-                    player.sendMessage(new Component.translatable("astralsorcery.progress.switch.attunement").withStyle(ChatFormatting.BLUE), Util.DUMMY_UUID);
+                    player.sendMessage(Component.translatable("astralsorcery.progress.switch.attunement").withStyle(ChatFormatting.BLUE), Util.DUMMY_UUID);
                     SoundHelper.playSoundAround(SoundEvents.BLOCK_GLASS_BREAK, worldIn, entityLiving.getPosition(), 1F, 1F);
                     return ItemStack.EMPTY;
                 }
             } else if (ResearchManager.setAttunedConstellation(player, null)) {
-                player.sendMessage(new Component.translatable("astralsorcery.progress.remove.attunement").withStyle(ChatFormatting.BLUE), Util.DUMMY_UUID);
+                player.sendMessage(Component.translatable("astralsorcery.progress.remove.attunement").withStyle(ChatFormatting.BLUE), Util.DUMMY_UUID);
                 SoundHelper.playSoundAround(SoundEvents.BLOCK_GLASS_BREAK, worldIn, entityLiving.getPosition(), 1F, 1F);
                 return ItemStack.EMPTY;
             }

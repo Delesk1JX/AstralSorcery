@@ -62,7 +62,7 @@ public abstract class ItemBlockCollectorCrystal extends ItemBlockCustom implemen
     public Component getDisplayName(ItemStack stack) {
         IWeakConstellation cst = this.getAttunedConstellation(stack);
         if (cst != null) {
-            return new Component.translatable(super.getTranslationKey(stack) + ".typed", cst.getConstellationName());
+            return Component.translatable(super.getTranslationKey(stack) + ".typed", cst.getConstellationName());
         }
         return super.getDisplayName(stack);
     }

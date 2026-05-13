@@ -31,7 +31,7 @@ import net.minecraft.client.renderer.model.BakedQuad;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.*;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.world.entity.Entity;
@@ -41,7 +41,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.Direction;
-import net.minecraft.util.FormattedText;
+import net.minecraft.network.chat.FormattedText;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
@@ -275,7 +275,7 @@ public class RenderingUtils {
 
         Matrix4f matr = renderStack.getLast().getMatrix();
         int length = fr.getStringPropertyWidth(text);
-        MultiBufferSource.Impl buffers = MultiBufferSource.getImpl(buffer);
+        MultiBufferSource buffers = MultiBufferSource.getImpl(buffer);
         FormattedText processedText = LanguageMap.getInstance().func_241870_a(text);
         int drawnLength = fr.func_238416_a_(processedText, -(length / 2F), 0, color.getRGB(), false, matr, buffers, true, 0, LightmapUtil.getPackedFullbrightCoords());
         buffers.finish();
@@ -331,7 +331,7 @@ public class RenderingUtils {
         textureManager.bindTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);
         textureManager.getTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE).setBlurMipmap(false, false);
 
-        MultiBufferSource.Impl buffer = Minecraft.getInstance().getRenderTypeBuffers().getBufferSource();
+        MultiBufferSource buffer = Minecraft.getInstance().getRenderTypeBuffers().getBufferSource();
         renderItemModelWithColor(stack, ItemCameraTransforms.TransformType.GROUND, bakedModel, renderStack, (renderType) -> {
             // TODO: Fix RenderTypeDecorator for 1.21+
             return buffer.getBuffer(renderType);
@@ -361,7 +361,7 @@ public class RenderingUtils {
             RenderHelper.setupGuiFlatDiffuseLighting();
         }
 
-        MultiBufferSource.Impl buffer = Minecraft.getInstance().getRenderTypeBuffers().getBufferSource();
+        MultiBufferSource buffer = Minecraft.getInstance().getRenderTypeBuffers().getBufferSource();
         renderItemModelWithColor(stack, ItemCameraTransforms.TransformType.GUI, bakedModel, renderStack, buffer,
                 LightmapUtil.getPackedFullbrightCoords(), OverlayTexture.NO_OVERLAY, overlayColor, Mth.clamp(alpha, 0, 255));
         buffer.finish();
@@ -390,7 +390,7 @@ public class RenderingUtils {
         renderStack.push();
         renderStack.translate(0, 0, 100F);
         if (stack.getCount() > 1 || text != null) {
-            Component display = new Component.literal(ObjectUtils.firstNonNull(text, String.valueOf(stack.getCount())));
+            Component display = Component.literal(ObjectUtils.firstNonNull(text, String.valueOf(stack.getCount())));
             int length = fr.getStringPropertyWidth(display);
 
             renderStack.push();
@@ -409,7 +409,7 @@ public class RenderingUtils {
             float durabilityPercent = 13F - health * 13F;
             int color = stack.getItem().getRGBDurabilityForDisplay(stack);
 
-            RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+            RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
                 RenderingGuiUtils.rect(buf, renderStack, 2, 13, 0, 13, 2)
                         .color(0, 0, 0, 255)
                         .draw();
@@ -432,7 +432,7 @@ public class RenderingUtils {
             RenderSystem.enableBlend();
             RenderSystem.defaultBlendFunc();
 
-            RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+            RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
                 RenderingGuiUtils.rect(buf, renderStack, 0, 16F * (1F - cooldownPercent), 0, 16, 16F * cooldownPercent)
                         .color(255, 255, 255, 127)
                         .draw();

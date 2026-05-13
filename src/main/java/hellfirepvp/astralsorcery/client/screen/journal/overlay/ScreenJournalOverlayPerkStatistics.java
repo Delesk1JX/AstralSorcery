@@ -28,7 +28,7 @@ import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import hellfirepvp.astralsorcery.common.perk.type.vanilla.VanillaPerkAttributeType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.util.FormattedText;
+import net.minecraft.network.chat.FormattedText;
 import net.minecraft.util.Mth;
 import net.minecraft.network.chat.FormattedText;
 import static net.minecraft.network.chat.Component.literal;
@@ -60,7 +60,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay {
     private int suffixStrWidth = -1;
 
     public ScreenJournalOverlayPerkStatistics(ScreenJournal origin) {
-        super(new Component.translatable("screen.astralsorcery.tome.perks.stats"), origin);
+        super(Component.translatable("screen.astralsorcery.tome.perks.stats"), origin);
     }
 
     @Override
@@ -110,7 +110,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay {
     }
 
     private void drawHeader(PoseStack renderStack) {
-        Component title = new Component.translatable("perk.reader.astralsorcery.gui");
+        Component title = Component.translatable("perk.reader.astralsorcery.gui");
         List<FormattedText> lines = font.trimStringToWidth(title, Mth.floor(HEADER_WIDTH / 1.4F));
         int step = 14;
         float offsetTop = guiTop + 15 - (lines.size() * step) / 2F;
@@ -141,7 +141,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay {
         int offsetX = guiLeft + guiWidth / 2 - DEFAULT_WIDTH / 2;
         int line = 0;
         for (PerkStatistic stat : statistics) {
-            Component statName = new Component.translatable(stat.getUnlocPerkTypeName());
+            Component statName = Component.translatable(stat.getUnlocPerkTypeName());
             List<FormattedText> statistics = font.trimStringToWidth(statName, Mth.floor(HEADER_WIDTH / 1.5F));
             for (int i = 0; i < statistics.size(); i++) {
                 FormattedText statistic = statistics.get(i);
@@ -158,7 +158,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay {
 
             renderStack.push();
             renderStack.translate(offsetX + nameStrWidth, offsetY + (line * 10), this.getGuiZLevel());
-            RenderingDrawUtils.renderStringAt(new Component.literal(stat.getPerkValue()), renderStack, font, 0xEE333333, false);
+            RenderingDrawUtils.renderStringAt(Component.literal(stat.getPerkValue()), renderStack, font, 0xEE333333, false);
             renderStack.pop();
 
             int strLength = font.getStringWidth(stat.getPerkValue());
@@ -169,7 +169,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay {
             if (!stat.getSuffix().isEmpty()) {
                 renderStack.push();
                 renderStack.translate(offsetX + 25, offsetY + (line * 10), this.getGuiZLevel());
-                RenderingDrawUtils.renderStringAt(new Component.literal(stat.getSuffix()), renderStack, font, 0xEE333333, false);
+                RenderingDrawUtils.renderStringAt(Component.literal(stat.getSuffix()), renderStack, font, 0xEE333333, false);
                 renderStack.pop();
 
                 line++;
@@ -195,15 +195,15 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay {
         PerkAttributeMap attrMap = PerkAttributeHelper.getOrCreateMap(player, LogicalSide.CLIENT);
 
         List<Component> information = Lists.newArrayList();
-        information.add(new Component.translatable("perk.reader.astralsorcery.description.head",
+        information.add(Component.translatable("perk.reader.astralsorcery.description.head",
                 PerkAttributeReader.formatDecimal(reader.getDefaultValue(attrMap, player, LogicalSide.CLIENT))));
-        information.add(new Component.translatable("perk.reader.astralsorcery.description.addition",
+        information.add(Component.translatable("perk.reader.astralsorcery.description.addition",
                 PerkAttributeReader.formatDecimal(reader.getModifierValueForMode(attrMap, player, LogicalSide.CLIENT,
                         ModifierType.ADDITION) - 1)));
-        information.add(new Component.translatable("perk.reader.astralsorcery.description.increase",
+        information.add(Component.translatable("perk.reader.astralsorcery.description.increase",
                 PerkAttributeReader.formatDecimal(reader.getModifierValueForMode(attrMap, player, LogicalSide.CLIENT,
                         ModifierType.ADDED_MULTIPLY))));
-        information.add(new Component.translatable("perk.reader.astralsorcery.description.moreless",
+        information.add(Component.translatable("perk.reader.astralsorcery.description.moreless",
                 PerkAttributeReader.formatDecimal(reader.getModifierValueForMode(attrMap, player, LogicalSide.CLIENT,
                         ModifierType.STACKING_MULTIPLY))));
 
@@ -211,10 +211,10 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay {
             information.add(Component.literal.EMPTY);
         }
         if (!stat.getSuffix().isEmpty()) {
-            information.add(new Component.literal(stat.getSuffix()));
+            information.add(Component.literal(stat.getSuffix()));
         }
         if (!stat.getPostProcessInfo().isEmpty()) {
-            information.add(new Component.literal(stat.getPostProcessInfo()));
+            information.add(Component.literal(stat.getPostProcessInfo()));
         }
 
         RenderingDrawUtils.renderBlueTooltipComponents(renderStack, x, y, this.getGuiZLevel(), information, this.font, false);
@@ -226,7 +226,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay {
         suffixStrWidth = -1;
 
         for (PerkStatistic stat : this.statistics) {
-            Component typeName = new Component.translatable(stat.getUnlocPerkTypeName());
+            Component typeName = Component.translatable(stat.getUnlocPerkTypeName());
             int nameWidth = Math.min(font.getStringPropertyWidth(typeName), ((int) (HEADER_WIDTH / 1.5F)));
             int valueWidth = font.getStringWidth(stat.getPerkValue());
             int suffixWidth = font.getStringWidth(stat.getSuffix());

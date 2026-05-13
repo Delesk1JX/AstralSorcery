@@ -29,7 +29,7 @@ import hellfirepvp.astralsorcery.common.tile.TileRefractionTable;
 import hellfirepvp.astralsorcery.common.util.world.WorldSeedCache;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.renderer.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.Tuple;
@@ -183,7 +183,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         renderStack.translate(guiWidth / 2F, guiHeight / 2F, 0);
         renderStack.scale(-scale / 2, -scale / 2, 1);
 
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             RenderingGuiUtils.rect(buf, renderStack, this)
                     .dim(scale, scale)
                     .color(1F, 1F, 1F, this.getTile().getRunProgress())
@@ -330,7 +330,7 @@ public class ScreenRefractionTable extends TileEntityScreen<TileRefractionTable>
         RenderSystem.disableTexture();
         RenderSystem.disableDepthTest();
 
-        RenderingUtils.draw(GL11.GL_LINES, DefaultVertexFormats.POSITION_COLOR, buf -> {
+        RenderingUtils.draw(GL11.GL_LINES, DefaultVertexFormat.POSITION_COLOR, buf -> {
             Matrix4f offset = renderStack.getLast().getMatrix();
             buf.pos(offset, offsetX, offsetY, 0).color(r, g, b, alpha.get()).endVertex();
             buf.pos(offset, offsetX +width, offsetY, 0).color(r, g, b, alpha.get()).endVertex();

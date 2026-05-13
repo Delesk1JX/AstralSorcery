@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.client.resource.BlockAtlasTexture;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.ItemRenderer;
-import net.minecraft.client.renderer.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.Tuple;
 import org.joml.Matrix4f;
@@ -57,7 +57,7 @@ public class RenderingOverlayUtils {
             if (first) {
                 //Draw upper half of the 1st slot
                 TexturesAS.TEX_OVERLAY_ITEM_FRAME.bindTexture();
-                RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX, buf -> {
+                RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_TEX, buf -> {
                     Matrix4f offset = renderStack.getLast().getMatrix();
                     buf.pos(offset, offsetX,            currentY + heightSplit, 10).tex(0, 0.5F).endVertex();
                     buf.pos(offset, offsetX + width, currentY + heightSplit, 10).tex(1, 0.5F).endVertex();
@@ -68,7 +68,7 @@ public class RenderingOverlayUtils {
             } else {
                 //Draw lower half and upper next half of the sequence
                 TexturesAS.TEX_OVERLAY_ITEM_FRAME_EXTENSION.bindTexture();
-                RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX, buf -> {
+                RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_TEX, buf -> {
                     Matrix4f offset = renderStack.getLast().getMatrix();
                     buf.pos(offset, offsetX,            currentY + heightNormal, 10).tex(0, 1).endVertex();
                     buf.pos(offset, offsetX + width, currentY + heightNormal, 10).tex(1, 1).endVertex();
@@ -81,7 +81,7 @@ public class RenderingOverlayUtils {
                 float drawY = tempY;
                 //Draw lower half of the slot
                 TexturesAS.TEX_OVERLAY_ITEM_FRAME.bindTexture();
-                RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX, buf -> {
+                RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_TEX, buf -> {
                     Matrix4f offset = renderStack.getLast().getMatrix();
                     buf.pos(offset, offsetX,            drawY + heightSplit, 10).tex(0, 1)  .endVertex();
                     buf.pos(offset, offsetX + width, drawY + heightSplit, 10).tex(1, 1)  .endVertex();
@@ -120,7 +120,7 @@ public class RenderingOverlayUtils {
             if (stackTpl.getB() == -1) {
                 amountStr = "\u221E"; //+Inf
             }
-            Component prop = new Component.literal(amountStr);
+            Component prop = Component.literal(amountStr);
             int length = fontRenderer.getStringPropertyWidth(prop);
 
             renderStack.push();

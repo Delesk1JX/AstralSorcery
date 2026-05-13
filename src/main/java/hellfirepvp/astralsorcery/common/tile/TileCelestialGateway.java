@@ -371,7 +371,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
 
     @Override
     public Component getName() {
-        return this.displayText != null ? this.displayText : new Component.translatable("block.astralsorcery.celestial_gateway");
+        return this.displayText != null ? this.displayText : Component.translatable("block.astralsorcery.celestial_gateway");
     }
 
     @Override
@@ -436,7 +436,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
         if (linked instanceof Player) {
             if (this.addAllowedUser((Player) linked)) {
 
-                Component accessGrantedMessage = new Component.translatable(
+                Component accessGrantedMessage = Component.translatable(
                         "astralsorcery.misc.link.gateway.link",
                         linked.getDisplayName())
                         .withStyle(ChatFormatting.GREEN);

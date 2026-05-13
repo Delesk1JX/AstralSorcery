@@ -21,9 +21,9 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
 import net.minecraft.world.item.*;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.PotionUtils;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.ChatFormatting;
 import static net.minecraft.network.chat.Component.translatable;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -245,7 +245,7 @@ public class EngravingEffect extends DeferredHolder<net.neoforged.neoforge.regis
             PotionUtils.appendEffects(stack, existing);
             stack.getTag().putInt("CustomPotionColor", ColorsAS.DYE_ORANGE.getRGB());
             //TODO meh.. they changed displayname stuff :V RIP
-            stack.setDisplayName(new Component.translatable("potion.astralsorcery.crafted.name").withStyle(ChatFormatting.GOLD));
+            stack.setDisplayName(Component.translatable("potion.astralsorcery.crafted.name").withStyle(ChatFormatting.GOLD));
             return stack;
         }
     }

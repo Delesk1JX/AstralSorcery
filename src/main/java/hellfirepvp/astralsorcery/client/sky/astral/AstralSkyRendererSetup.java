@@ -8,8 +8,8 @@
 
 package hellfirepvp.astralsorcery.client.sky.astral;
 
-import net.minecraft.client.renderer.VertexConsumer;
-import net.minecraft.client.renderer.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import org.lwjgl.opengl.GL11;
 
 import java.util.Random;
@@ -37,7 +37,7 @@ class AstralSkyRendererSetup {
         int scale = 64;
         int segments = 6;
         int width = segments * scale;
-        buf.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION);
+        buf.begin(GL11.GL_QUADS, DefaultVertexFormat.POSITION);
 
         for (int x = -width; x <= width; x += scale) {
             for (int z = -width; z <= width; z += scale) {
@@ -57,7 +57,7 @@ class AstralSkyRendererSetup {
     }
 
     static void generateStars(VertexConsumer starBuffer, int amount, float sizeMultiplier) {
-        starBuffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+        starBuffer.begin(GL11.GL_QUADS, DefaultVertexFormat.POSITION_TEX);
 
         for (int i = 0; i < amount; ++i) { //Amount of stars.
             double x = -1F + RAND.nextFloat() * 2F;

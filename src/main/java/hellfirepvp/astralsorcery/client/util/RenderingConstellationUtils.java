@@ -22,8 +22,8 @@ import hellfirepvp.astralsorcery.common.data.config.entry.GeneralConfig;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.Tesselator;
-import net.minecraft.client.renderer.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.Tesselator;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.util.Mth;
 import org.joml.Matrix4f;
 import org.lwjgl.opengl.GL11;
@@ -60,7 +60,7 @@ public class RenderingConstellationUtils {
         if (backgroundInfo != null) {
             backgroundInfo.getBackgroundTexture().bindTexture();
 
-            RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+            RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
                 int bgScale = IConstellation.STAR_GRID_WIDTH_HEIGHT;
                 Vector3 ofStar = renderOffset.clone().add(dirU.clone()).add(dirV.clone());
                 for (int i = 0; i < 4; i++) {
@@ -76,7 +76,7 @@ public class RenderingConstellationUtils {
         }
 
         TexturesAS.TEX_STAR_CONNECTION.bindTexture();
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             for (int j = 0; j < 2; j++) {
                 for (StarConnection con : c.getStarConnections()) {
                     Vector3 vecA = renderOffset.clone().add(dirU.clone().multiply(con.from.x + 1)).add(dirV.clone().multiply(con.from.y + 1));
@@ -99,7 +99,7 @@ public class RenderingConstellationUtils {
         });
 
         TexturesAS.TEX_STAR_1.bindTexture();
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             for (StarLocation star : c.getStars()) {
                 int x = star.x;
                 int y = star.y;
@@ -122,7 +122,7 @@ public class RenderingConstellationUtils {
     }
 
     public static void renderConstellationIntoWorldFlat(Color color, IConstellation c, PoseStack renderStack, Vector3 offset, double scale, double line, float brightness) {
-        MultiBufferSource.Impl drawBuffers = MultiBufferSource.getImpl(buffer);
+        MultiBufferSource drawBuffers = MultiBufferSource.getImpl(buffer);
         renderConstellationIntoWorldFlat(color, c, renderStack, drawBuffers, offset, scale, line, brightness);
         drawBuffers.finish();
     }
@@ -237,7 +237,7 @@ public class RenderingConstellationUtils {
             if (backgroundInfo != null) {
                 backgroundInfo.getBackgroundTexture().bindTexture();
 
-                RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+                RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
                     int alpha = Mth.clamp((int) (brightnessFn.get() * brightness * 0.5 * 255F), 0, 255);
                     Vector3 bgVec = new Vector3(offsetX, offsetY, zLevel);
                     for (int i = 0; i < 4; i++) {
@@ -254,7 +254,7 @@ public class RenderingConstellationUtils {
             }
 
             TexturesAS.TEX_STAR_CONNECTION.bindTexture();
-            RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+            RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
                 for (int j = 0; j < 2; j++) {
                     for (StarConnection sc : c.getStarConnections()) {
                         int alpha = Mth.clamp((int) (brightnessFn.get() * brightness * 255F), 0, 255);
@@ -286,7 +286,7 @@ public class RenderingConstellationUtils {
         Map<StarLocation, Rectangle.Float> starRectangles = new HashMap<>();
 
         TexturesAS.TEX_STAR_1.bindTexture();
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             for (StarLocation sl : c.getStars()) {
                 int alpha = Mth.clamp((int) (brightnessFn.get() * brightness * 255F), 0, 255);
 

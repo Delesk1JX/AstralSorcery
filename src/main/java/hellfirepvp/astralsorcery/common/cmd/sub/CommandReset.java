@@ -47,7 +47,7 @@ public class CommandReset implements Command<CommandSource> {
         ResearchHelper.wipeKnowledge(player);
 
         String name = player.getGameProfile().getName();
-        context.getSource().sendFeedback(new Component.literal("Wiped " + name + "'s data!").withStyle(ChatFormatting.GREEN), true);
+        context.getSource().sendFeedback(Component.literal("Wiped " + name + "'s data!").withStyle(ChatFormatting.GREEN), true);
         return 0;
     }
 }

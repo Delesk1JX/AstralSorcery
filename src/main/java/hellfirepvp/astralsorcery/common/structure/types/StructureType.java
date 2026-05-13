@@ -45,7 +45,7 @@ public class StructureType implements RegistryObject<StructureType> {
     }
 
     public Component getDisplayName() {
-        return new Component.translatable(String.format("structure.%s.%s.name", name.getNamespace(), name.getPath()));
+        return Component.translatable(String.format("structure.%s.%s.name", name.getNamespace(), name.getPath()));
     }
 
     public ChangeSubscriber<ChangeObserverStructure> observe(Level world, BlockPos pos) {

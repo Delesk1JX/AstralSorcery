@@ -54,11 +54,11 @@ public abstract class ItemAttunedCrystalBase extends ItemCrystalBase implements 
             IWeakConstellation c = getAttunedConstellation(stack);
             if (c != null) {
                 if (GatedKnowledge.CRYSTAL_TUNE.canSee(tier) && ResearchHelper.getClientProgress().hasConstellationDiscovered(c)) {
-                    toolTip.add(new Component.translatable("crystal.info.astralsorcery.attuned",
+                    toolTip.add(Component.translatable("crystal.info.astralsorcery.attuned",
                             c.getConstellationName().withStyle(ChatFormatting.BLUE))
                             .withStyle(ChatFormatting.GRAY));
                 } else if (!addedMissing) {
-                    toolTip.add(new Component.translatable("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY));
+                    toolTip.add(Component.translatable("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY));
                     addedMissing = true;
                 }
             }
@@ -66,11 +66,11 @@ public abstract class ItemAttunedCrystalBase extends ItemCrystalBase implements 
             IMinorConstellation tr = getTraitConstellation(stack);
             if (tr != null) {
                 if (GatedKnowledge.CRYSTAL_TUNE.canSee(tier) && ResearchHelper.getClientProgress().hasConstellationDiscovered(tr)) {
-                    toolTip.add(new Component.translatable("crystal.info.astralsorcery.trait",
+                    toolTip.add(Component.translatable("crystal.info.astralsorcery.trait",
                             tr.getConstellationName().withStyle(ChatFormatting.BLUE))
                             .withStyle(ChatFormatting.GRAY));
                 } else if (!addedMissing) {
-                    toolTip.add(new Component.translatable("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY));
+                    toolTip.add(Component.translatable("astralsorcery.progress.missing.knowledge").withStyle(ChatFormatting.GRAY));
                 }
             }
         }
@@ -80,7 +80,7 @@ public abstract class ItemAttunedCrystalBase extends ItemCrystalBase implements 
     public Component getDisplayName(ItemStack stack) {
         IWeakConstellation cst = this.getAttunedConstellation(stack);
         if (cst != null) {
-            return new Component.translatable(super.getTranslationKey(stack) + ".typed", cst.getConstellationName());
+            return Component.translatable(super.getTranslationKey(stack) + ".typed", cst.getConstellationName());
         }
         return super.getDisplayName(stack);
     }

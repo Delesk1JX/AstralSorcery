@@ -53,8 +53,8 @@ import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
 import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.renderer.VertexConsumer;
-import net.minecraft.client.renderer.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -119,7 +119,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
     private ItemStack foundSeals = ItemStack.EMPTY;
 
     public ScreenJournalPerkTree() {
-        super(new Component.translatable("screen.astralsorcery.tome.perks"), 30);
+        super(Component.translatable("screen.astralsorcery.tome.perks"), 30);
         this.closeWithInventoryKey = false;
         this.searchTextEntry.setChangeCallback(this::updateSearchHighlight);
 
@@ -294,7 +294,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
 
         if (rStatStar.contains(mouseX, mouseY)) {
             RenderingDrawUtils.renderBlueTooltipComponents(renderStack, rStatStar.x + rStatStar.width / 2F, rStatStar.y + rStatStar.height, this.getGuiZLevel(),
-                    Lists.newArrayList(new Component.translatable("perk.reader.astralsorcery.infostar")), font, false);
+                    Lists.newArrayList(Component.translatable("perk.reader.astralsorcery.infostar")), font, false);
             return;
         }
 
@@ -303,7 +303,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
             toolTip.addAll(this.foundSeals.getTooltip(Minecraft.getInstance().player,
                     Minecraft.getInstance().gameSettings.advancedItemTooltips ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL));
             toolTip.add(Component.literal.EMPTY);
-            toolTip.add(new Component.translatable("perk.info.astralsorcery.sealed.usage").withStyle(ChatFormatting.GRAY));
+            toolTip.add(Component.translatable("perk.info.astralsorcery.sealed.usage").withStyle(ChatFormatting.GRAY));
 
             RenderingDrawUtils.renderBlueTooltipComponents(renderStack, mouseX, mouseY, this.getGuiZLevel(), toolTip, font, false);
         } else {
@@ -323,14 +323,14 @@ public class ScreenJournalPerkTree extends ScreenJournal {
                     });
 
                     if (perkData.isPerkSealed(perk)) {
-                        toolTip.add(new Component.translatable("perk.info.astralsorcery.sealed").withStyle(ChatFormatting.RED));
-                        toolTip.add(new Component.translatable("perk.info.astralsorcery.sealed.break").withStyle(ChatFormatting.RED));
+                        toolTip.add(Component.translatable("perk.info.astralsorcery.sealed").withStyle(ChatFormatting.RED));
+                        toolTip.add(Component.translatable("perk.info.astralsorcery.sealed.break").withStyle(ChatFormatting.RED));
                     } else if (perkData.hasPerkEffect(perk)) {
-                        toolTip.add(new Component.translatable("perk.info.astralsorcery.active").withStyle(ChatFormatting.GREEN));
+                        toolTip.add(Component.translatable("perk.info.astralsorcery.active").withStyle(ChatFormatting.GREEN));
                     } else if (perk.mayUnlockPerk(prog, player)) {
-                        toolTip.add(new Component.translatable("perk.info.astralsorcery.available").withStyle(ChatFormatting.BLUE));
+                        toolTip.add(Component.translatable("perk.info.astralsorcery.available").withStyle(ChatFormatting.BLUE));
                     } else {
-                        toolTip.add(new Component.translatable("perk.info.astralsorcery.locked").withStyle(ChatFormatting.GRAY));
+                        toolTip.add(Component.translatable("perk.info.astralsorcery.locked").withStyle(ChatFormatting.GRAY));
                     }
 
                     if (Minecraft.getInstance().gameSettings.advancedItemTooltips && perk.getCategory() != AbstractPerk.CATEGORY_BASE) {
@@ -344,8 +344,8 @@ public class ScreenJournalPerkTree extends ScreenJournal {
                     }
                     if (Minecraft.getInstance().gameSettings.showDebugInfo) {
                         toolTip.add(Component.literal.EMPTY);
-                        toolTip.add(new Component.literal(perk.getRegistryName().toString()).withStyle(ChatFormatting.GRAY));
-                        toolTip.add(new Component.translatable("astralsorcery.misc.ctrlcopy").withStyle(ChatFormatting.GRAY));
+                        toolTip.add(Component.literal(perk.getRegistryName().toString()).withStyle(ChatFormatting.GRAY));
+                        toolTip.add(Component.translatable("astralsorcery.misc.ctrlcopy").withStyle(ChatFormatting.GRAY));
                     }
                     RenderingDrawUtils.renderBlueTooltipComponents(renderStack, mouseX, mouseY, this.getGuiZLevel(), toolTip, font, true);
                     break;
@@ -403,7 +403,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
             RenderSystem.enableBlend();
             RenderSystem.defaultBlendFunc();
             TexturesAS.TEX_GUI_MENU_SLOT_GEM_CONTEXT.bindTexture();
-            RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+            RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
                 for (int index = 0; index < found.size(); index++) {
                     float addedX = (index % 5) * scaledSlotSize;
                     float addedY = (index / 5) * scaledSlotSize;
@@ -442,7 +442,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
         if (prog.isAttuned() && (availablePerks = prog.getPerkData().getAvailablePerkPoints(player, LogicalSide.CLIENT)) > 0) {
             renderStack.push();
             renderStack.translate(guiLeft + 50, guiTop + 18, this.getGuiZLevel());
-            Component points = new Component.translatable("perk.info.astralsorcery.points", availablePerks);
+            Component points = Component.translatable("perk.info.astralsorcery.points", availablePerks);
             RenderingDrawUtils.renderStringAt(points, renderStack, font, 0xCCCCCC, true);
             renderStack.pop();
         }
@@ -458,7 +458,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
         TexturesAS.TEX_GUI_TEXT_FIELD.bindTexture();
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             RenderingGuiUtils.rect(buf, renderStack, guiLeft + 300, guiTop + 16, this.getGuiZLevel(), 88.5F, 15).draw();
         });
         RenderSystem.disableBlend();
@@ -481,7 +481,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
 
         renderStack.push();
         renderStack.translate(guiLeft + 304, guiTop + 20, this.getGuiZLevel());
-        RenderingDrawUtils.renderStringAt(font, renderStack, new Component.literal(text), 0xCCCCCC);
+        RenderingDrawUtils.renderStringAt(font, renderStack, Component.literal(text), 0xCCCCCC);
         renderStack.pop();
     }
 
@@ -494,7 +494,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
         RenderSystem.defaultBlendFunc();
 
         TexturesAS.TEX_GUI_LINE_CONNECTION.bindTexture();
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             for (Tuple<AbstractPerk, AbstractPerk> perkConnection : PerkTree.PERK_TREE.getConnections()) {
                 if (!perkConnection.getA().isVisible(progress, player) ||
                         !perkConnection.getB().isVisible(progress, player)) {
@@ -573,7 +573,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
         RenderSystem.defaultBlendFunc();
 
         SpritesAS.SPR_PERK_SEAL.bindTexture();
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             Point.Float pOffset = perk.getPoint().getOffset();
             drawSeal(buf, renderStack, sealWidth, offset.x, offset.y, ClientScheduler.getClientTick() + (int) pOffset.x + (int) pOffset.y, sealFade * 0.75F);
         });
@@ -583,7 +583,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
         Tuple<Float, Float> uv = sealBreakSprite.getUVOffset(count);
 
         sealBreakSprite.bindTexture();
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             RenderingGuiUtils.rect(buf, renderStack, offset.x - sealWidth, offset.y - sealWidth, this.getGuiZLevel(), sealWidth * 2, sealWidth * 2)
                     .color(1F, 1F, 1F, 0.85F)
                     .tex(uv.getA(), uv.getB(), uLength, vLength)
@@ -616,7 +616,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
         RenderSystem.defaultBlendFunc();
 
         spritePerkUnlock.bindTexture();
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             RenderingGuiUtils.rect(buf, renderStack, offset.x - unlockWidth, offset.y - unlockWidth, this.getGuiZLevel(), unlockWidth * 2, unlockWidth * 2)
                     .tex(uv.getA(), uv.getB(), uLength, vLength)
                     .draw();
@@ -802,7 +802,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
         RenderSystem.enableAlphaTest();
         RenderSystem.defaultAlphaFunc();
         TexturesAS.TEX_GUI_BACKGROUND_PERKS.bindTexture();
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             RenderingGuiUtils.rect(buf, renderStack, guiLeft - 10, guiTop - 10, this.getGuiZLevel(), guiWidth + 20, guiHeight + 20)
                     .color(0.5F ,0.5F, 0.5F, 1F)
                     .draw();
@@ -831,7 +831,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
                 }
             }
         }
-        net.minecraft.network.chat.Component sealedInfo = new Component.translatable("perk.info.astralsorcery.sealed");
+        net.minecraft.network.chat.Component sealedInfo = Component.translatable("perk.info.astralsorcery.sealed");
         if (sealedInfo.getString().toLowerCase(Locale.ROOT).contains(matchText)) {
             PlayerProgress prog = ResearchHelper.getClientProgress();
             for (AbstractPerk sealed : prog.getPerkData().getSealedPerks()) {
@@ -1004,7 +1004,7 @@ public class ScreenJournalPerkTree extends ScreenJournal {
                 if (mouseButton == 0 && mc.gameSettings.showDebugInfo && hasControlDown()) {
                     String perkKey = perk.getRegistryName().toString();
                     Minecraft.getInstance().keyboardListener.setClipboardString(perkKey);
-                    mc.player.sendMessage(new Component.translatable("astralsorcery.misc.ctrlcopy.copied", perkKey), Util.DUMMY_UUID);
+                    mc.player.sendMessage(Component.translatable("astralsorcery.misc.ctrlcopy.copied", perkKey), Util.DUMMY_UUID);
                     break;
                 }
                 if (mouseButton == 1) {

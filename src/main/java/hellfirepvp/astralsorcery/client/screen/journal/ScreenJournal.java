@@ -21,8 +21,8 @@ import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.vertex.VertexFormat;
-import net.minecraft.util.FormattedText;
+import com.mojang.blaze3d.vertex.VertexFormat;
+import net.minecraft.network.chat.FormattedText;
 import net.minecraft.util.Mth;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Component;
@@ -129,7 +129,7 @@ public class ScreenJournal extends WidthHeightScreen {
         RenderSystem.enableBlend();
         Blending.DEFAULT.apply();
         int actualWidth = width;
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_TEX, buf -> {
             RenderingGuiUtils.rect(buf, renderStack, offsetX, offsetY, zLevel, actualWidth, height).draw();
         });
         RenderSystem.disableBlend();

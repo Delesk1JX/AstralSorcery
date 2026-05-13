@@ -161,7 +161,7 @@ public class ResearchNode {
     }
 
     public Component getName() {
-        return new Component.translatable(String.format("astralsorcery.journal.node.%s.name", this.getKey()));
+        return Component.translatable(String.format("astralsorcery.journal.node.%s.name", this.getKey()));
     }
 
     public String getKey() {

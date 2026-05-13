@@ -28,7 +28,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.fml.LogicalSidedProvider;
-import net.neoforged.neoforge.fml.common.thread.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 import org.apache.commons.lang3.ObjectUtils;
 
 import javax.annotation.Nonnull;

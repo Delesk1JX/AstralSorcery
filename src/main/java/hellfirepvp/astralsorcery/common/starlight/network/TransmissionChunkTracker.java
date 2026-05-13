@@ -12,7 +12,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.event.world.ChunkEvent;
 import net.neoforged.neoforge.event.world.WorldEvent;
-import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.EventBus;
 
 /**
  * This class is part of the Astral Sorcery Mod

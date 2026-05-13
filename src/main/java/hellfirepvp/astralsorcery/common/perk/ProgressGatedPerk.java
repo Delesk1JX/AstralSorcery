@@ -86,7 +86,7 @@ public class ProgressGatedPerk extends AbstractPerk {
     @OnlyIn(Dist.CLIENT)
     public boolean addLocalizedTooltip(Collection<net.minecraft.network.chat.Component> tooltip) {
         if (!canSeeClient()) {
-            tooltip.add(new Component.translatable("perk.info.astralsorcery.missing_progress")
+            tooltip.add(Component.translatable("perk.info.astralsorcery.missing_progress")
                     .withStyle(ChatFormatting.RED));
             return false;
         }

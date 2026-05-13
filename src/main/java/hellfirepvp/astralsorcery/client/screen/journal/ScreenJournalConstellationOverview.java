@@ -22,7 +22,7 @@ import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import hellfirepvp.astralsorcery.common.data.research.PlayerProgress;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.util.Mth;
 import org.joml.Matrix4f;
 import net.minecraft.network.chat.FormattedText;
@@ -55,7 +55,7 @@ public class ScreenJournalConstellationOverview extends ScreenJournal implements
     private Rectangle rectPrev, rectNext;
 
     private ScreenJournalConstellationOverview(int pageId, List<IConstellation> constellations) {
-        super(new Component.translatable("screen.astralsorcery.tome.constellations"), 20);
+        super(Component.translatable("screen.astralsorcery.tome.constellations"), 20);
         this.constellations = constellations;
         this.pageId = pageId;
     }
@@ -86,7 +86,7 @@ public class ScreenJournalConstellationOverview extends ScreenJournal implements
 
     private void drawConstellationBackground(PoseStack renderStack) {
         TexturesAS.TEX_BLACK.bindTexture();
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             Matrix4f offset = renderStack.getLast().getMatrix();
             buf.pos(offset, guiLeft + 15,            guiTop + guiHeight - 10, this.getGuiZLevel()).color(1F, 1F, 1F, 1F).tex(0, 1).endVertex();
             buf.pos(offset, guiLeft + guiWidth - 15, guiTop + guiHeight - 10, this.getGuiZLevel()).color(1F, 1F, 1F, 1F).tex(1, 1).endVertex();
@@ -97,7 +97,7 @@ public class ScreenJournalConstellationOverview extends ScreenJournal implements
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         TexturesAS.TEX_GUI_BACKGROUND_CONSTELLATIONS.bindTexture();
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
             Matrix4f offset = renderStack.getLast().getMatrix();
             buf.pos(offset, guiLeft + 15,            guiTop + guiHeight - 10, this.getGuiZLevel()).color(0.8F, 0.8F, 1F, 0.7F).tex(0.1F, 0.9F).endVertex();
             buf.pos(offset, guiLeft + guiWidth - 15, guiTop + guiHeight - 10, this.getGuiZLevel()).color(0.8F, 0.8F, 1F, 0.7F).tex(0.9F, 0.9F).endVertex();

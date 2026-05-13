@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.client.util.Blending;
 import hellfirepvp.astralsorcery.common.event.EventFlags;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.DimensionRenderInfo;
-import net.minecraft.util.net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.vector.Vector3f;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.world.level.Level;

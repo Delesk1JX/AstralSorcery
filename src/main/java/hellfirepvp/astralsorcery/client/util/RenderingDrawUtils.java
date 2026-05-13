@@ -21,9 +21,9 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.*;
-import net.minecraft.client.renderer.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.FormattedText;
+import net.minecraft.network.chat.FormattedText;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.Mth;
 import net.minecraft.util.vector.Matrix3f;
@@ -107,7 +107,7 @@ public class RenderingDrawUtils {
         if (fr == null) {
             fr = Minecraft.getInstance().fontRenderer;
         }
-        MultiBufferSource.Impl buffer = MultiBufferSource.getImpl(buffer);
+        MultiBufferSource buffer = MultiBufferSource.getImpl(buffer);
         int length = fr.func_238416_a_(text, 0, 0, color, dropShadow, renderStack.getLast().getMatrix(), buffer, false, 0, LightmapUtil.getPackedFullbrightCoords());
         buffer.finish();
         return length;
@@ -311,7 +311,7 @@ public class RenderingDrawUtils {
         Blending.DEFAULT.apply();
         RenderSystem.shadeModel(GL11.GL_SMOOTH);
 
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR, buf -> {
             Matrix4f offset = renderStack.getLast().getMatrix();
             buf.pos(offset, right,    top, zLevel).color(startRed, startGreen, startBlue, startAlpha).endVertex();
             buf.pos(offset,  left,    top, zLevel).color(startRed, startGreen, startBlue, startAlpha).endVertex();

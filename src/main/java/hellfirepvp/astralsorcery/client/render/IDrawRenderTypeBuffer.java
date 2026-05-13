@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.client.render;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.Tesselator;
+import com.mojang.blaze3d.vertex.Tesselator;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -30,7 +30,7 @@ public interface IDrawRenderTypeBuffer extends MultiBufferSource {
         return of(MultiBufferSource.getImpl(buffer));
     }
 
-    public static IDrawRenderTypeBuffer of(MultiBufferSource.Impl drawBuffer) {
+    public static IDrawRenderTypeBuffer of(MultiBufferSource drawBuffer) {
         return new IDrawRenderTypeBuffer() {
             @Override
             public void draw() {

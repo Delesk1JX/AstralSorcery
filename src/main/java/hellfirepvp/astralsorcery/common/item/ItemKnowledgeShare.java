@@ -67,15 +67,15 @@ public class ItemKnowledgeShare extends Item {
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
         if (isCreative(stack)) {
-            tooltip.add(new Component.translatable("astralsorcery.misc.knowledge.inscribed.creative").withStyle(ChatFormatting.LIGHT_PURPLE));
+            tooltip.add(Component.translatable("astralsorcery.misc.knowledge.inscribed.creative").withStyle(ChatFormatting.LIGHT_PURPLE));
             return;
         }
         if (getKnowledge(stack) == null) {
-            tooltip.add(new Component.translatable("astralsorcery.misc.knowledge.missing").withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.translatable("astralsorcery.misc.knowledge.missing").withStyle(ChatFormatting.GRAY));
         } else {
             net.minecraft.network.chat.Component name = getKnowledgeOwnerName(stack);
             if (name != null) {
-                tooltip.add(new Component.translatable("astralsorcery.misc.knowledge.inscribed", name).withStyle(ChatFormatting.BLUE));
+                tooltip.add(Component.translatable("astralsorcery.misc.knowledge.inscribed", name).withStyle(ChatFormatting.BLUE));
             }
         }
     }

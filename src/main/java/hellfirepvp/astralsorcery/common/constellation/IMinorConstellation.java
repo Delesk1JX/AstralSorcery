@@ -27,7 +27,7 @@ public interface IMinorConstellation extends IConstellation {
     public List<MoonPhase> getShowupMoonPhases(long rSeed);
 
     default public Component getInfoTraitEffect() {
-        return new Component.translatable(this.getTranslationKey() + ".trait");
+        return Component.translatable(this.getTranslationKey() + ".trait");
     }
 
     default public void affectConstellationEffect(ConstellationEffectProperties properties) {}
