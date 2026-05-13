@@ -41,17 +41,18 @@ import hellfirepvp.astralsorcery.common.perk.tree.PerkTreePoint;
 import hellfirepvp.astralsorcery.common.registry.*;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.player.AbstractClientPlayer;
+import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.renderer.entity.PlayerRenderer;
+import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.IReloadableResourceManager;
+import net.minecraft.server.packs.resources.ReloadableResourceManager;
 import net.minecraft.util.Unit;
-import net.neoforged.neoforge.eventbus.api.EventPriority;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.LogicalSide;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.loading.NeoForgeClientLoader;
 import net.neoforged.neoforge.resource.SelectiveReloadStateHandler;
 import net.neoforged.neoforge.resource.VanillaResourceType;
 
@@ -76,11 +77,11 @@ public class ClientProxy extends CommonProxy {
         this.clientScheduler = new ClientScheduler();
 
         if (!AstralSorcery.isDoingDataGeneration()) {
-            IReloadableResourceManager resMgr = (IReloadableResourceManager) Minecraft.getInstance().getResourceManager();
-            resMgr.addReloadListener(AssetLibrary.INSTANCE);
-            resMgr.addReloadListener(AssetPreLoader.INSTANCE);
-            resMgr.addReloadListener(ColorizationHelper.onReload());
-            resMgr.addReloadListener((stage, resourceManager, preparationsProfiler, reloadProfiler, backgroundExecutor, gameExecutor) ->
+            ReloadableResourceManager resMgr = (ReloadableResourceManager) Minecraft.getInstance().getResourceManager();
+            resMgr.registerReloadListener(AssetLibrary.INSTANCE);
+            resMgr.registerReloadListener(AssetPreLoader.INSTANCE);
+            resMgr.registerReloadListener(ColorizationHelper.onReload());
+            resMgr.registerReloadListener((stage, resourceManager, preparationsProfiler, reloadProfiler, backgroundExecutor, gameExecutor) ->
                     stage.markCompleteAwaitingOthers(Unit.INSTANCE).thenRunAsync(() -> {
                         if (!SelectiveReloadStateHandler.INSTANCE.get().test(VanillaResourceType.LANGUAGES)) {
                             return;
@@ -162,7 +163,7 @@ public class ClientProxy extends CommonProxy {
     public void openGuiClient(GuiType type, CompoundTag data) {
         Screen toOpen = type.deserialize(data);
         if (toOpen != null) {
-            Minecraft.getInstance().displayGuiScreen(toOpen);
+            Minecraft.getInstance().setScreen(toOpen);
         }
     }
 
@@ -184,7 +185,7 @@ public class ClientProxy extends CommonProxy {
         RegistryBlockRenderTypes.initFluids();
         RegistryItems.registerItemProperties();
 
-        Map<String, PlayerRenderer> playerRenderMap = Minecraft.getInstance().getRenderManager().getSkinMap();
+        Map<String, PlayerRenderer> playerRenderMap = Minecraft.getInstance().getEntityRenderDispatcher().getSkinMap();
         PlayerRenderer renderer = playerRenderMap.get("slim");
         renderer.addLayer(new StarryLayerRenderer<>(renderer, true));
         renderer = playerRenderMap.get("default");

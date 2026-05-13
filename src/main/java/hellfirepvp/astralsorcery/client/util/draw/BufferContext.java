@@ -10,7 +10,6 @@ package hellfirepvp.astralsorcery.client.util.draw;
 
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.VertexFormat;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -19,11 +18,11 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
  * Created by HellFirePvP
  * Date: 08.07.2019 / 20:39
  */
-public class BufferContext extends VertexConsumer {
+public class BufferContext extends BufferBuilder {
 
     private boolean inDrawing = false;
 
-    BufferContext(int size) {
+    public BufferContext(int size) {
         super(size);
     }
 
