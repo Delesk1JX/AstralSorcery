@@ -77,7 +77,7 @@ public class MantleEffectPelotrio extends MantleEffect {
     }
 
     private void onBreak(BlockEvent.BreakEvent event) {
-        ILevel world = event.getWorld();
+        LevelAccessor world = event.getWorld();
         if (world.isRemote() || !(world instanceof Level)) {
             return;
         }

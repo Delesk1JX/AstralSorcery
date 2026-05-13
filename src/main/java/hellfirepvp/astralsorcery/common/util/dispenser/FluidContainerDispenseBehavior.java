@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.util.dispenser;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.dispenser.DefaultDispenseItemBehavior;
-import net.minecraft.core.dispenser.DispenseItemContext;
+import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;

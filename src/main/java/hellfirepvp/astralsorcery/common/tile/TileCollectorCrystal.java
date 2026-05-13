@@ -22,7 +22,7 @@ import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 import hellfirepvp.astralsorcery.common.crystal.CrystalAttributeTile;
 import hellfirepvp.astralsorcery.common.crystal.CrystalAttributes;
 import hellfirepvp.astralsorcery.common.lib.StructureTypesAS;
-import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import hellfirepvp.astralsorcery.common.starlight.IIndependentStarlightSource;
 import hellfirepvp.astralsorcery.common.starlight.transmission.base.SimpleTransmissionSourceNode;
 import hellfirepvp.astralsorcery.common.starlight.transmission.base.crystal.IndependentCrystalSource;
@@ -71,7 +71,7 @@ public class TileCollectorCrystal extends TileSourceBase<SimpleTransmissionSourc
     private Object[] effectOrbitals = new Object[4];
 
     public TileCollectorCrystal() {
-        super(BlockEntityTypesAS.COLLECTOR_CRYSTAL);
+        super(TileEntityTypesAS.COLLECTOR_CRYSTAL);
     }
 
     @Override

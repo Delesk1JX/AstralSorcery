@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.client.effect.EntityComplexFX;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.Level;
@@ -46,7 +46,7 @@ public interface RefreshFunction<T extends EntityComplexFX> {
 
     public static class TileExists<E extends BlockEntity, T extends EntityComplexFX> implements RefreshFunction<T> {
 
-        private final ResourceKey<Level> dimType;
+        private final net.minecraft.resources.ResourceKey<Level> dimType;
         private final BlockPos pos;
         private final Class<E> clazzExpected;
 

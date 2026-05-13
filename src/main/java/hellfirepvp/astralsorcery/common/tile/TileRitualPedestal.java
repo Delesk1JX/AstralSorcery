@@ -28,7 +28,7 @@ import hellfirepvp.astralsorcery.common.crystal.CrystalAttributes;
 import hellfirepvp.astralsorcery.common.crystal.CrystalCalculations;
 import hellfirepvp.astralsorcery.common.item.crystal.ItemAttunedCrystalBase;
 import hellfirepvp.astralsorcery.common.lib.StructureTypesAS;
-import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import hellfirepvp.astralsorcery.common.structure.types.StructureType;
 import hellfirepvp.astralsorcery.common.tile.base.TileAreaOfInfluence;
 import hellfirepvp.astralsorcery.common.tile.base.network.TileReceiverBase;
@@ -48,7 +48,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.core.Direction;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
@@ -94,7 +94,7 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
     private Object ritualHaloEffect = null;
 
     public TileRitualPedestal() {
-        super(BlockEntityTypesAS.RITUAL_PEDESTAL);
+        super(TileEntityTypesAS.RITUAL_PEDESTAL);
 
         this.inventory = new TileInventoryFiltered(this, () -> 1, Direction.DOWN);
         this.inventory.canExtract((slot, amount, existing) -> !existing.isEmpty());
@@ -237,7 +237,7 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
 
     @Nonnull
     @Override
-    public ResourceKey<Level> getDimension() {
+    public net.minecraft.resources.ResourceKey<Level> getDimension() {
         return this.getWorld().getDimensionKey();
     }
 

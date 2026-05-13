@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.util.world.WorldSeedCache;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.level.Level;
@@ -36,13 +36,13 @@ import javax.annotation.Nonnull;
  */
 public class PktRequestSeed extends ASPacket<PktRequestSeed> {
 
-    private ResourceKey<Level> dim;
+    private net.minecraft.resources.ResourceKey<Level> dim;
     private Integer session;
     private Long seed;
 
     public PktRequestSeed() {}
 
-    public PktRequestSeed(Integer session, ResourceKey<Level> dim) {
+    public PktRequestSeed(Integer session, net.minecraft.resources.ResourceKey<Level> dim) {
         this.dim = dim;
         this.session = session;
         this.seed = -1L;

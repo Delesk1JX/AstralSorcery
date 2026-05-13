@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.data.sync.base.ClientDataReader;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.level.Level;
@@ -30,14 +30,14 @@ import java.util.*;
  */
 public class ClientTimeFreezeEntities extends ClientData<ClientTimeFreezeEntities> {
 
-    private final Map<ResourceKey<Level>, Set<Integer>> clientActiveEntityFreeze = new HashMap<>();
+    private final Map<net.minecraft.resources.ResourceKey<Level>, Set<Integer>> clientActiveEntityFreeze = new HashMap<>();
 
     public boolean isFrozen(Entity e) {
         return this.clientActiveEntityFreeze.getOrDefault(e.level.getDimensionKey(), Collections.emptySet()).contains(e.getEntityId());
     }
 
     @Override
-    public void clear(ResourceKey<Level> dimType) {
+    public void clear(net.minecraft.resources.ResourceKey<Level> dimType) {
         this.clientActiveEntityFreeze.remove(dimType);
     }
 
@@ -61,7 +61,7 @@ public class ClientTimeFreezeEntities extends ClientData<ClientTimeFreezeEntitie
         private void readEntityInformation(ClientTimeFreezeEntities data, CompoundTag compound) {
             CompoundTag dimTypes = compound.getCompound("dimTypes");
             for (String key : dimTypes.keySet()) {
-                ResourceKey<Level> dim = ResourceKey.getOrCreateKey(Registry.WORLD_KEY, new ResourceLocation(key));
+                net.minecraft.resources.ResourceKey<Level> dim = net.minecraft.resources.ResourceKey.getOrCreateKey(Registry.WORLD_KEY, new ResourceLocation(key));
 
                 ListTag list = dimTypes.getList(key, net.neoforged.neoforge.common.util.FakePlayerFactory.NBT.TAG_INT);
                 Set<Integer> entities = new HashSet<>();

@@ -40,16 +40,16 @@ public class SimpleShapelessRecipeBuilder {
 
     private String subDirectory = null;
 
-    public SimpleShapelessRecipeBuilder(IItemProvider result, int count) {
+    public SimpleShapelessRecipeBuilder(ItemLike result, int count) {
         this.result = result.asItem();
         this.count = count;
     }
 
-    public static SimpleShapelessRecipeBuilder shapelessRecipe(IItemProvider result) {
+    public static SimpleShapelessRecipeBuilder shapelessRecipe(ItemLike result) {
         return shapelessRecipe(result, 1);
     }
 
-    public static SimpleShapelessRecipeBuilder shapelessRecipe(IItemProvider result, int count) {
+    public static SimpleShapelessRecipeBuilder shapelessRecipe(ItemLike result, int count) {
         return new SimpleShapelessRecipeBuilder(result, count);
     }
 
@@ -57,10 +57,10 @@ public class SimpleShapelessRecipeBuilder {
         return this.addIngredient(Ingredient.fromTag(tagIn));
     }
 
-    public SimpleShapelessRecipeBuilder addIngredient(IItemProvider itemIn) {
+    public SimpleShapelessRecipeBuilder addIngredient(ItemLike itemIn) {
         return this.addIngredient(itemIn, 1);
     }
-    public SimpleShapelessRecipeBuilder addIngredient(IItemProvider itemIn, int quantity) {
+    public SimpleShapelessRecipeBuilder addIngredient(ItemLike itemIn, int quantity) {
         for(int i = 0; i < quantity; ++i) {
             this.addIngredient(Ingredient.fromItems(itemIn));
         }

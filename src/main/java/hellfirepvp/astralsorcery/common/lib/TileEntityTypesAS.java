@@ -15,13 +15,13 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.
- * Class: BlockEntityTypesAS
+ * Class: TileEntityTypesAS
  * Created by HellFirePvP
  * Date: 01.06.2019 / 13:34
  */
-public class BlockEntityTypesAS {
+public class TileEntityTypesAS {
 
-    private BlockEntityTypesAS() {}
+    private TileEntityTypesAS() {}
 
     public static BlockEntityType<TileSpectralRelay> SPECTRAL_RELAY;
     public static BlockEntityType<TileAltar> ALTAR;

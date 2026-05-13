@@ -21,7 +21,7 @@ import net.minecraft.world.entity.AreaEffectCloudEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.LecternTileEntity;
-import net.minecraft.world.WorldGenLevel;
+import net.minecraft.world.ServerLevel;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.chunk.ChunkAccess;
@@ -79,8 +79,8 @@ public class EventHandlerMisc {
             ((Chunk) ch).getCapability(CapabilitiesAS.CHUNK_FLUID).ifPresent(entry -> {
                 if (!entry.isInitialized()) {
                     IWorld w = event.getWorld();
-                    if (w instanceof WorldGenLevel) {
-                        long seed = ((WorldGenLevel) w).getSeed();
+                    if (w instanceof ServerLevel) {
+                        long seed = ((ServerLevel) w).getSeed();
                         long chX = event.getChunk().getPos().x;
                         long chZ = event.getChunk().getPos().z;
                         seed ^= chX << 32;

@@ -26,7 +26,8 @@ import hellfirepvp.astralsorcery.common.lib.SoundsAS;
 import hellfirepvp.astralsorcery.common.util.sound.SoundHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.renderer.vertex.VertexFormat;
+import net.minecraft.util.FormattedText;
 import net.minecraft.util.Mth;
 import static net.minecraft.network.chat.Component.literal;
 import static net.minecraft.network.chat.Component.translatable;
@@ -187,7 +188,7 @@ public class ScreenJournalProgression extends ScreenJournal {
     }
 
     private void drawSearchResults(PoseStack renderStack, int mouseX, int mouseY, float pTicks) {
-        FontRenderer fr = Minecraft.getInstance().fontRenderer;
+        Font fr = Minecraft.getInstance().fontRenderer;
         int lineHeight = 12;
         int offsetX = this.getGuiLeft() + 35;
         int offsetY = this.getGuiTop() + 26;
@@ -201,10 +202,10 @@ public class ScreenJournalProgression extends ScreenJournal {
         for (ResearchNode node : entries) {
             int startOffsetY = offsetY;
 
-            List<IReorderingProcessor> nodeTitle = fr.trimStringToWidth(node.getName(), searchEntryDrawWidth);
+            List<FormattedText> nodeTitle = fr.trimStringToWidth(node.getName(), searchEntryDrawWidth);
             float maxLength = 0;
 
-            for (IReorderingProcessor line : nodeTitle) {
+            for (FormattedText line : nodeTitle) {
                 renderStack.push();
                 renderStack.translate(offsetX, offsetY, this.getGuiZLevel());
                 float length = RenderingDrawUtils.renderStringAt(line, renderStack, fr, 0x00D0D0D0, false);
@@ -231,10 +232,10 @@ public class ScreenJournalProgression extends ScreenJournal {
         for (ResearchNode node : entries) {
             int startOffsetY = offsetY;
 
-            List<IReorderingProcessor> nodeTitle = fr.trimStringToWidth(node.getName(), searchEntryDrawWidth);
+            List<FormattedText> nodeTitle = fr.trimStringToWidth(node.getName(), searchEntryDrawWidth);
             float maxLength = 0;
 
-            for (IReorderingProcessor line : nodeTitle) {
+            for (FormattedText line : nodeTitle) {
                 renderStack.push();
                 renderStack.translate(offsetX, offsetY, this.getGuiZLevel());
                 float length = RenderingDrawUtils.renderStringAt(line, renderStack, fr, 0x00D0D0D0, false);
@@ -373,7 +374,7 @@ public class ScreenJournalProgression extends ScreenJournal {
 
         this.searchResult.sort(Comparator.comparing(node -> node.getName().getString()));
 
-        FontRenderer fr = Minecraft.getInstance().fontRenderer;
+        Font fr = Minecraft.getInstance().fontRenderer;
         int addedPages = 0;
         int pageIndex = 0;
         while (addedPages < this.searchResult.size()) {

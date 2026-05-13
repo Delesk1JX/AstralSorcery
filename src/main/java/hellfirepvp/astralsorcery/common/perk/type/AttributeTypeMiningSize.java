@@ -54,7 +54,7 @@ public class AttributeTypeMiningSize extends PerkAttributeType {
     }
 
     private void onBreak(BlockEvent.BreakEvent event) {
-        ILevel world = event.getWorld();
+        LevelAccessor world = event.getWorld();
         Player player = event.getPlayer();
 
         if (!(world instanceof Level) || world.isRemote()) {

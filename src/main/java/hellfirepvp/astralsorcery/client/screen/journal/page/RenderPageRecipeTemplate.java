@@ -207,34 +207,34 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage {
         }
     }
 
-    public void renderInfoStarTooltips(PoseStack renderStack, float offsetX, float offsetY, float zLevel, float mouseX, float mouseY, Consumer<List<ITextProperties>> tooltipProvider) {
+    public void renderInfoStarTooltips(PoseStack renderStack, float offsetX, float offsetY, float zLevel, float mouseX, float mouseY, Consumer<List<Component>> tooltipProvider) {
         if (this.thisFrameInfoStar == null) {
             return;
         }
 
         if (this.thisFrameInfoStar.contains(mouseX, mouseY)) {
-            List<ITextProperties> toolTip = new ArrayList<>();
+            List<Component> toolTip = new ArrayList<>();
             tooltipProvider.accept(toolTip);
             if (!toolTip.isEmpty()) {
                 zLevel += 600;
-                RenderingDrawUtils.renderBlueTooltipComponents(renderStack, offsetX, offsetY, zLevel, toolTip, RenderablePage.getFontRenderer(), false);
+                RenderingDrawUtils.renderBlueTooltipComponents(renderStack, offsetX, offsetY, zLevel, toolTip, RenderablePage.getFont(), false);
                 zLevel -= 600;
             }
         }
     }
 
     public void renderHoverTooltips(PoseStack renderStack, float mouseX, float mouseY, float zLevel, ResourceLocation recipeName) {
-        List<ITextProperties> toolTip = new LinkedList<>();
+        List<Component> toolTip = new LinkedList<>();
         addStackTooltip(mouseX, mouseY, recipeName, toolTip);
 
         if (!toolTip.isEmpty()) {
             zLevel += 800;
-            RenderingDrawUtils.renderBlueTooltipComponents(renderStack, mouseX, mouseY, zLevel, toolTip, RenderablePage.getFontRenderer(), true);
+            RenderingDrawUtils.renderBlueTooltipComponents(renderStack, mouseX, mouseY, zLevel, toolTip, RenderablePage.getFont(), true);
             zLevel -= 800;
         }
     }
 
-    protected void addAltarRecipeTooltip(SimpleAltarRecipe altarRecipe, List<ITextProperties> toolTip) {
+    protected void addAltarRecipeTooltip(SimpleAltarRecipe altarRecipe, List<Component> toolTip) {
         if (altarRecipe.getStarlightRequirement() > 0) {
             AltarType highestPossible = null;
             ProgressionTier reached = ResearchHelper.getClientProgress().getTierReached();
@@ -247,9 +247,9 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage {
             if (highestPossible != null) {
                 long indexSel = (ClientScheduler.getClientTick() / 30) % (highestPossible.ordinal() + 1);
                 AltarType typeSelected = AltarType.values()[((int) indexSel)];
-                ITextProperties itemName = typeSelected.getAltarItemRepresentation().getDisplayName();
-                ITextProperties starlightRequired = getAltarStarlightAmountDescription(itemName, altarRecipe.getStarlightRequirement(), typeSelected.getStarlightCapacity());
-                ITextProperties starlightRequirementDescription = new Component.translatable("astralsorcery.journal.recipe.altar.starlight.desc");
+                Component itemName = typeSelected.getAltarItemRepresentation().getDisplayName();
+                Component starlightRequired = getAltarStarlightAmountDescription(itemName, altarRecipe.getStarlightRequirement(), typeSelected.getStarlightCapacity());
+                Component starlightRequirementDescription = new Component.translatable("astralsorcery.journal.recipe.altar.starlight.desc");
 
                 toolTip.add(starlightRequirementDescription);
                 toolTip.add(starlightRequired);
@@ -260,13 +260,13 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage {
         }
     }
 
-    protected void addConstellationInfoTooltip(@Nullable IConstellation cst, List<ITextProperties> toolTip) {
+    protected void addConstellationInfoTooltip(@Nullable IConstellation cst, List<Component> toolTip) {
         if (cst != null) {
             toolTip.add(new Component.translatable("astralsorcery.journal.recipe.constellation", cst.getConstellationName()));
         }
     }
 
-    protected ITextProperties getAltarStarlightAmountDescription(ITextProperties altarName, float amountRequired, float maxAmount) {
+    protected Component getAltarStarlightAmountDescription(Component altarName, float amountRequired, float maxAmount) {
         String base = "astralsorcery.journal.recipe.altar.starlight.";
         float perc = amountRequired / maxAmount;
         if (perc <= 0.1) {
@@ -289,7 +289,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage {
                 new Component.translatable(base));
     }
 
-    protected ITextProperties getInfuserChanceDescription(float chance) {
+    protected Component getInfuserChanceDescription(float chance) {
         String base = "astralsorcery.journal.recipe.infusion.chance.";
         if (chance <= 0.3) {
             base += "low";
@@ -303,7 +303,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage {
         return new Component.translatable(base);
     }
 
-    protected void addStackTooltip(float mouseX, float mouseY, ResourceLocation recipeName, List<ITextProperties> tooltip) {
+    protected void addStackTooltip(float mouseX, float mouseY, ResourceLocation recipeName, List<Component> tooltip) {
         for (Rectangle rect : thisFrameInputStacks.keySet()) {
             if (rect.contains(mouseX, mouseY)) {
                 Tuple<ItemStack, Ingredient> inputInfo = thisFrameInputStacks.get(rect);
@@ -323,7 +323,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage {
         }
     }
 
-    protected void addInputInformation(ItemStack stack, @Nullable Ingredient stackIngredient, List<ITextProperties> tooltip) {
+    protected void addInputInformation(ItemStack stack, @Nullable Ingredient stackIngredient, List<Component> tooltip) {
         try {
             tooltip.addAll(stack.getTooltip(Minecraft.getInstance().player, Minecraft.getInstance().gameSettings.advancedItemTooltips ? TooltipFlag.TooltipFlags.ADVANCED : TooltipFlag.TooltipFlags.NORMAL));
         } catch (Exception exc) {
@@ -347,7 +347,7 @@ public abstract class RenderPageRecipeTemplate extends RenderablePage {
                 List<FluidStack> fluids = ((FluidIngredient) stackIngredient).getFluids();
 
                 if (!fluids.isEmpty()) {
-                    ITextProperties cmp = null;
+                    Component cmp = null;
                     for (FluidStack f : fluids) {
                         if (cmp == null) {
                             cmp = f.getFluid().getAttributes().getDisplayName(f);

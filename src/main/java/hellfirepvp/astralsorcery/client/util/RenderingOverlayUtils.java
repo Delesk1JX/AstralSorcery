@@ -42,7 +42,7 @@ public class RenderingOverlayUtils {
         int offsetY =  15;
 
         ItemRenderer itemRender = Minecraft.getInstance().getItemRenderer();
-        FontRenderer fontRenderer = Minecraft.getInstance().fontRenderer;
+        Font fontRenderer = Minecraft.getInstance().fontRenderer;
 
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
@@ -112,15 +112,15 @@ public class RenderingOverlayUtils {
         int txtColor = 0x00DDDDDD;
         for (Tuple<ItemStack, Integer> stackTpl : itemStacks) {
             ItemStack stack = stackTpl.getA();
-            FontRenderer fr;
-            if ((fr = stack.getItem().getFontRenderer(stack)) == null) {
+            Font fr;
+            if ((fr = stack.getItem().getFont(stack)) == null) {
                 fr = fontRenderer;
             }
             String amountStr = String.valueOf(stackTpl.getB());
             if (stackTpl.getB() == -1) {
                 amountStr = "\u221E"; //+Inf
             }
-            ITextProperties prop = new Component.literal(amountStr);
+            Component prop = new Component.literal(amountStr);
             int length = fontRenderer.getStringPropertyWidth(prop);
 
             renderStack.push();

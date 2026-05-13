@@ -349,11 +349,11 @@ public class NBTHelper {
     }
 
     public static <T> void setRegistryEntry(CompoundTag compoundNBT, String tag, T entry, net.minecraft.core.Registry<T> registry) {
-        ResourceLocation registryKey = BuiltInRegistries.REGISTRY_REGISTRY.getResourceKey(registry).map(ResourceLocation::new).orElse(null);
+        ResourceLocation registryKey = BuiltInRegistries.REGISTRY_REGISTRY.getnet.minecraft.resources.ResourceKey(registry).map(ResourceLocation::new).orElse(null);
         if (registryKey != null) {
             setResourceLocation(compoundNBT, tag + "_registry", registryKey);
         }
-        ResourceLocation entryKey = registry.getResourceKey(entry).map(ResourceLocation::new).orElse(null);
+        ResourceLocation entryKey = registry.getnet.minecraft.resources.ResourceKey(entry).map(ResourceLocation::new).orElse(null);
         if (entryKey != null) {
             setResourceLocation(compoundNBT, tag, entryKey);
         }

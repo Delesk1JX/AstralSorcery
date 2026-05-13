@@ -42,7 +42,7 @@ public class ObjModelRender {
         }
         //if (vboCrystal == null) {
         //    int[] transparent = new int[] { 255, 255, 255, 65 };
-        //    VertexFormat.(r, g, b, a) -> transparent)
+        //    VertexConsumer (buffer) -> { int r = 0, g = 0, b = 0, a = 255; return new int[]{r, g, b, a}; } -> transparent)
         //            .decorate(buffer,
         //                    (VertexConsumer decorated) -> vboCrystal = crystalModel.batch(decorated));
         //}

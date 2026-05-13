@@ -18,7 +18,7 @@ import hellfirepvp.astralsorcery.common.block.tile.BlockSpectralRelay;
 import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
 import hellfirepvp.astralsorcery.common.item.ItemGlassLens;
 import hellfirepvp.astralsorcery.common.lib.StructureTypesAS;
-import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import hellfirepvp.astralsorcery.common.structure.types.StructureType;
 import hellfirepvp.astralsorcery.common.tile.altar.AltarCollectionCategory;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
@@ -64,7 +64,7 @@ public class TileSpectralRelay extends TileEntityTick {
     private float proximityMultiplier = 1F;
 
     public TileSpectralRelay() {
-        super(BlockEntityTypesAS.SPECTRAL_RELAY);
+        super(TileEntityTypesAS.SPECTRAL_RELAY);
 
         this.inventory = new TileInventory(this, () -> 1);
     }

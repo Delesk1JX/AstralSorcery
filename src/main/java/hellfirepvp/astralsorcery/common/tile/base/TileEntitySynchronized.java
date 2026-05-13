@@ -16,7 +16,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
-import net.minecraft.network.play.server.ClientboundBlockEntityDataPacket;
+import net.minecraft.network.play.server.BlockEntityDataPacket;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.phys.AABB;
@@ -81,12 +81,12 @@ public abstract class TileEntitySynchronized extends BlockEntity implements ILoc
     public void writeSaveNBT(CompoundTag compound) {}
 
     @Override
-    public final ClientboundBlockEntityDataPacket getUpdatePacket() {
+    public final BlockEntityDataPacket getUpdatePacket() {
         CompoundTag compound = new CompoundTag();
         super.write(compound);
         writeCustomNBT(compound);
         writeNetNBT(compound);
-        return new ClientboundBlockEntityDataPacket(getPos(), 255, compound);
+        return new BlockEntityDataPacket(getPos(), 255, compound);
     }
 
     @Override
@@ -97,7 +97,7 @@ public abstract class TileEntitySynchronized extends BlockEntity implements ILoc
         return compound;
     }
 
-    public final void onDataPacket(Connection manager, ClientboundBlockEntityDataPacket packet) {
+    public final void onDataPacket(Connection manager, BlockEntityDataPacket packet) {
         super.onDataPacket(manager, packet);
         readCustomNBT(packet.getNbtCompound());
         readNetNBT(packet.getNbtCompound());

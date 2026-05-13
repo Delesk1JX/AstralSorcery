@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.level.LevelAccessor;
@@ -45,7 +45,7 @@ public class PatreonPartialEntity {
     protected Vector3 motion = new Vector3();
     protected boolean removed = false, updatePos = false;
 
-    private ResourceKey<Level> lastTickedDimension = null;
+    private net.minecraft.resources.ResourceKey<Level> lastTickedDimension = null;
 
     public PatreonPartialEntity(UUID effectUUID, UUID ownerUUID) {
         this.effectUUID = effectUUID;
@@ -74,7 +74,7 @@ public class PatreonPartialEntity {
     }
 
     @Nullable
-    public ResourceKey<Level> getLastTickedDimension() {
+    public net.minecraft.resources.ResourceKey<Level> getLastTickedDimension() {
         return lastTickedDimension;
     }
 
@@ -103,7 +103,7 @@ public class PatreonPartialEntity {
         return changed;
     }
 
-    private boolean updateMotion(ILevel world) {
+    private boolean updateMotion(LevelAccessor world) {
         Vector3 prevMot = this.motion.clone();
 
         Player target = findOwner(world);
@@ -124,7 +124,7 @@ public class PatreonPartialEntity {
         return !this.motion.equals(prevMot);
     }
 
-    private boolean tryMoveEntity(ILevel world) {
+    private boolean tryMoveEntity(LevelAccessor world) {
         this.prevPos = this.pos.clone();
 
         Player owner = findOwner(world);
@@ -147,14 +147,14 @@ public class PatreonPartialEntity {
     }
 
     @Nullable
-    public Player findOwner(ILevel world) {
+    public Player findOwner(LevelAccessor world) {
         return world.getPlayerByUuid(this.ownerUUID);
     }
 
     public void readFromNBT(CompoundTag cmp) {
         if (cmp.contains("lastTickedDimension")) {
             ResourceLocation worldKey = new ResourceLocation(cmp.getString("lastTickedDimension"));
-            this.lastTickedDimension = ResourceKey.getOrCreateKey(Registry.WORLD_KEY, worldKey);
+            this.lastTickedDimension = net.minecraft.resources.ResourceKey.getOrCreateKey(Registry.WORLD_KEY, worldKey);
         } else {
             this.lastTickedDimension = null;
         }

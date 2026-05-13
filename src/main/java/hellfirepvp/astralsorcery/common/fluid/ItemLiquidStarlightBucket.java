@@ -15,7 +15,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.nbt.CompoundTag;
-import net.neoforged.neoforge.capabilities.Inet.neoforged.neoforge.capabilitiesProvider;
+import net.neoforged.neoforge.capabilities.ICapabilityProvider;
 import net.neoforged.neoforge.fluids.capability.wrappers.FluidBucketWrapper;
 
 import javax.annotation.Nullable;
@@ -38,7 +38,7 @@ public class ItemLiquidStarlightBucket extends BucketItem {
     }
 
     @Override
-    public Inet.neoforged.neoforge.capabilitiesProvider initCapabilities(ItemStack stack, @Nullable CompoundTag nbt) {
+    public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundTag nbt) {
         return new FluidBucketWrapper(stack);
     }
 }

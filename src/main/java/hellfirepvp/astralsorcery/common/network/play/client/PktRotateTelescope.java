@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.registry.Registry;
@@ -39,12 +39,12 @@ import java.util.Optional;
 public class PktRotateTelescope extends ASPacket<PktRotateTelescope> {
 
     private boolean isClockwise = false;
-    private ResourceKey<Level> dim = null;
+    private net.minecraft.resources.ResourceKey<Level> dim = null;
     private BlockPos pos = BlockPos.ZERO;
 
     public PktRotateTelescope() {}
 
-    public PktRotateTelescope(boolean isClockwise, ResourceKey<Level> dim, BlockPos pos) {
+    public PktRotateTelescope(boolean isClockwise, net.minecraft.resources.ResourceKey<Level> dim, BlockPos pos) {
         this.isClockwise = isClockwise;
         this.dim = dim;
         this.pos = pos;

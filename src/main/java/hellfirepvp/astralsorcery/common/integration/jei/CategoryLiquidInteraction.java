@@ -91,8 +91,8 @@ public class CategoryLiquidInteraction extends JEICategory<LiquidInteraction> {
             int totalWeight = sameInteractions.stream().mapToInt(LiquidInteraction::getWeight).sum();
             float perc = ((float) recipe.getWeight() / totalWeight) * 100;
 
-            FontRenderer fr = Minecraft.getInstance().fontRenderer;
-            net.minecraft.network.chat.Component txt = new Component.translatable("jei.astralsorcery.tip.chance", FORMAT_CHANCE.format(perc));
+            Font fr = Minecraft.getInstance().fontRenderer;
+            IFormattableTextComponent txt = new Component.translatable("jei.astralsorcery.tip.chance", FORMAT_CHANCE.format(perc));
             int width = fr.getStringPropertyWidth(txt);
             fr.func_243248_b(renderStack, txt, 74 - width, 44, 0x333333);
         }

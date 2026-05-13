@@ -92,7 +92,7 @@ public class TileAttunementAltar extends TileEntityTick {
     public boolean animate = false, tesrLocked = true;
 
     public TileAttunementAltar() {
-        super(BlockEntityTypesAS.ATTUNEMENT_ALTAR);
+        super(TileEntityTypesAS.ATTUNEMENT_ALTAR);
     }
 
     @Override

@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.tile;
 
 import hellfirepvp.astralsorcery.common.entity.technical.EntityObservatoryHelper;
 import hellfirepvp.astralsorcery.common.lib.EntityTypesAS;
-import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import hellfirepvp.astralsorcery.common.tile.base.TileEntityTick;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
@@ -43,7 +43,7 @@ public class TileObservatory extends TileEntityTick implements NamedInventoryTil
     public float observatoryPitch = -45, prevObservatoryPitch = -45;
 
     public TileObservatory() {
-        super(BlockEntityTypesAS.OBSERVATORY);
+        super(TileEntityTypesAS.OBSERVATORY);
     }
 
     @Override

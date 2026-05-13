@@ -22,7 +22,7 @@ import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
 import hellfirepvp.astralsorcery.common.item.ItemInfusedGlass;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
-import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import hellfirepvp.astralsorcery.common.tile.base.TileEntityTick;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
@@ -65,7 +65,7 @@ public class TileRefractionTable extends TileEntityTick implements NamedInventor
     private Object effectHalo;
 
     public TileRefractionTable() {
-        super(BlockEntityTypesAS.REFRACTION_TABLE);
+        super(TileEntityTypesAS.REFRACTION_TABLE);
     }
 
     @Override

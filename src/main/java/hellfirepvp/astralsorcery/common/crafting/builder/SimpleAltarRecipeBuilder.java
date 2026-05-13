@@ -68,7 +68,7 @@ public class SimpleAltarRecipeBuilder<T extends SimpleAltarRecipe> extends Custo
         return this.addRelayInput(Ingredient.fromTag(tag));
     }
 
-    public SimpleAltarRecipeBuilder<T> addRelayInput(IItemProvider item) {
+    public SimpleAltarRecipeBuilder<T> addRelayInput(ItemLike item) {
         return this.addRelayInput(Ingredient.fromItems(item));
     }
 
@@ -102,7 +102,7 @@ public class SimpleAltarRecipeBuilder<T extends SimpleAltarRecipe> extends Custo
         return this;
     }
 
-    public SimpleAltarRecipeBuilder<T> addOutput(IItemProvider output) {
+    public SimpleAltarRecipeBuilder<T> addOutput(ItemLike output) {
         this.addOutput(new ItemStack(output));
         return this;
     }

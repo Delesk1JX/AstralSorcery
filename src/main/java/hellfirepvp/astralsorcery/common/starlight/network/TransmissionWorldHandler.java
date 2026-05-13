@@ -21,7 +21,7 @@ import hellfirepvp.astralsorcery.common.starlight.transmission.ITransmissionRece
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.util.Tuple;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.ChunkPos;
@@ -56,9 +56,9 @@ public class TransmissionWorldHandler {
     //Contains a list of source positions whose sources currently calculate their network.
     private final Set<BlockPos> sourcePosBuilding = new HashSet<>();
 
-    private final ResourceKey<Level> dim;
+    private final net.minecraft.resources.ResourceKey<Level> dim;
 
-    public TransmissionWorldHandler(ResourceKey<Level> dimKey) {
+    public TransmissionWorldHandler(net.minecraft.resources.ResourceKey<Level> dimKey) {
         this.dim = dimKey;
     }
 

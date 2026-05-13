@@ -28,6 +28,7 @@ import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import hellfirepvp.astralsorcery.common.perk.type.vanilla.VanillaPerkAttributeType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.util.FormattedText;
 import net.minecraft.util.Mth;
 import net.minecraft.network.chat.FormattedText;
 import static net.minecraft.network.chat.Component.literal;
@@ -109,8 +110,8 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay {
     }
 
     private void drawHeader(PoseStack renderStack) {
-        ITextProperties title = new Component.translatable("perk.reader.astralsorcery.gui");
-        List<IReorderingProcessor> lines = font.trimStringToWidth(title, Mth.floor(HEADER_WIDTH / 1.4F));
+        Component title = new Component.translatable("perk.reader.astralsorcery.gui");
+        List<FormattedText> lines = font.trimStringToWidth(title, Mth.floor(HEADER_WIDTH / 1.4F));
         int step = 14;
         float offsetTop = guiTop + 15 - (lines.size() * step) / 2F;
 
@@ -118,7 +119,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay {
         renderStack.translate(0, offsetTop, 0);
 
         for (int i = 0; i < lines.size(); i++) {
-            IReorderingProcessor line = lines.get(i);
+            FormattedText line = lines.get(i);
             float offsetLeft = width / 2F - (font.func_243245_a(line) * 1.4F) / 2F;
 
             renderStack.push();
@@ -140,10 +141,10 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay {
         int offsetX = guiLeft + guiWidth / 2 - DEFAULT_WIDTH / 2;
         int line = 0;
         for (PerkStatistic stat : statistics) {
-            ITextProperties statName = new Component.translatable(stat.getUnlocPerkTypeName());
-            List<IReorderingProcessor> statistics = font.trimStringToWidth(statName, Mth.floor(HEADER_WIDTH / 1.5F));
+            Component statName = new Component.translatable(stat.getUnlocPerkTypeName());
+            List<FormattedText> statistics = font.trimStringToWidth(statName, Mth.floor(HEADER_WIDTH / 1.5F));
             for (int i = 0; i < statistics.size(); i++) {
-                IReorderingProcessor statistic = statistics.get(i);
+                FormattedText statistic = statistics.get(i);
 
                 int drawX = offsetX;
                 if (i > 0) {
@@ -193,7 +194,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay {
         Player player = Minecraft.getInstance().player;
         PerkAttributeMap attrMap = PerkAttributeHelper.getOrCreateMap(player, LogicalSide.CLIENT);
 
-        List<ITextProperties> information = Lists.newArrayList();
+        List<Component> information = Lists.newArrayList();
         information.add(new Component.translatable("perk.reader.astralsorcery.description.head",
                 PerkAttributeReader.formatDecimal(reader.getDefaultValue(attrMap, player, LogicalSide.CLIENT))));
         information.add(new Component.translatable("perk.reader.astralsorcery.description.addition",
@@ -225,7 +226,7 @@ public class ScreenJournalOverlayPerkStatistics extends ScreenJournalOverlay {
         suffixStrWidth = -1;
 
         for (PerkStatistic stat : this.statistics) {
-            ITextProperties typeName = new Component.translatable(stat.getUnlocPerkTypeName());
+            Component typeName = new Component.translatable(stat.getUnlocPerkTypeName());
             int nameWidth = Math.min(font.getStringPropertyWidth(typeName), ((int) (HEADER_WIDTH / 1.5F)));
             int valueWidth = font.getStringWidth(stat.getPerkValue());
             int suffixWidth = font.getStringWidth(stat.getSuffix());

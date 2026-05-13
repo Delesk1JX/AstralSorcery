@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 import hellfirepvp.astralsorcery.common.crystal.CrystalAttributeTile;
 import hellfirepvp.astralsorcery.common.crystal.CrystalAttributes;
 import hellfirepvp.astralsorcery.common.item.lens.LensColorType;
-import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import hellfirepvp.astralsorcery.common.starlight.transmission.IPrismTransmissionNode;
 import hellfirepvp.astralsorcery.common.tile.base.network.TileTransmissionBase;
 import hellfirepvp.astralsorcery.common.tile.network.StarlightTransmissionLens;
@@ -64,7 +64,7 @@ public class TileLens extends TileTransmissionBase<IPrismTransmissionNode> imple
     }
 
     public TileLens() {
-        super(BlockEntityTypesAS.LENS);
+        super(TileEntityTypesAS.LENS);
     }
 
     @Override

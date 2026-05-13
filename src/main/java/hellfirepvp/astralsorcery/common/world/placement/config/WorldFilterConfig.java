@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.world.placement.config;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.world.IServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.gen.placement.IPlacementConfig;
@@ -36,13 +36,13 @@ public class WorldFilterConfig implements IPlacementConfig {
     });
 
     private final Supplier<Boolean> ignoreFilter;
-    private final Supplier<List<ResourceKey<Level>>> worldFilter;
+    private final Supplier<List<net.minecraft.resources.ResourceKey<Level>>> worldFilter;
 
-    public WorldFilterConfig(boolean ignoreFilter, List<ResourceKey<Level>> worldFilter) {
+    public WorldFilterConfig(boolean ignoreFilter, List<net.minecraft.resources.ResourceKey<Level>> worldFilter) {
         this(() -> ignoreFilter, () -> worldFilter);
     }
 
-    public WorldFilterConfig(Supplier<Boolean> ignoreFilter, Supplier<List<ResourceKey<Level>>> worldFilter) {
+    public WorldFilterConfig(Supplier<Boolean> ignoreFilter, Supplier<List<net.minecraft.resources.ResourceKey<Level>>> worldFilter) {
         this.ignoreFilter = ignoreFilter;
         this.worldFilter = worldFilter;
     }

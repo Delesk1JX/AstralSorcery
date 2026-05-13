@@ -21,7 +21,7 @@ import hellfirepvp.astralsorcery.common.entity.EntityFlare;
 import hellfirepvp.astralsorcery.common.fluid.BlockLiquidStarlight;
 import hellfirepvp.astralsorcery.common.fluid.FluidLiquidStarlight;
 import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
-import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.network.play.server.PktPlayEffect;
 import hellfirepvp.astralsorcery.common.tile.base.network.TileReceiverBase;
@@ -39,7 +39,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.WorldGenLevel;
+import net.minecraft.world.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -71,7 +71,7 @@ public class TileWell extends TileReceiverBase<StarlightReceiverWell> {
     private float posDistribution = -1;
 
     public TileWell() {
-        super(BlockEntityTypesAS.WELL);
+        super(TileEntityTypesAS.WELL);
 
         this.tank = new PrecisionSingleFluidTank(TANK_SIZE);
         this.tank.setAllowInput(false);
@@ -224,8 +224,8 @@ public class TileWell extends TileReceiverBase<StarlightReceiverWell> {
             dstr = yLevel / 120F;
         }
         if (posDistribution == -1) {
-            if (world instanceof WorldGenLevel) {
-                posDistribution = SkyCollectionHelper.getSkyNoiseDistribution((WorldGenLevel) world, getPos());
+            if (world instanceof ServerLevel) {
+                posDistribution = SkyCollectionHelper.getSkyNoiseDistribution((ServerLevel) world, getPos());
             } else {
                 posDistribution = 0.3F;
             }

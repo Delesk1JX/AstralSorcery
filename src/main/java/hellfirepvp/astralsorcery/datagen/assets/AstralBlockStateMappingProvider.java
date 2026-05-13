@@ -234,7 +234,7 @@ public class AstralBlockStateMappingProvider extends BlockStateProvider {
         return model(AstralSorcery.key(name));
     }
 
-    private ModelFile model(IForgeRegistryEntry<?> entry) {
+    private ModelFile model(RegistryObject<?> entry) {
         return model(entry.getRegistryName());
     }
 

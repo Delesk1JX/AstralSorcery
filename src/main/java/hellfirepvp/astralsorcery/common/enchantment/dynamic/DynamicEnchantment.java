@@ -22,12 +22,12 @@ import javax.annotation.Nullable;
  */
 public class DynamicEnchantment {
 
-    protected final Dynamicnet.minecraft.world.item.enchantment.Enchantment type;
+    protected final DynamicEnchantmentType type;
     @Nullable
     protected final Enchantment enchantment;
     protected int levelAddition;
 
-    public DynamicEnchantment(Dynamicnet.minecraft.world.item.enchantment.Enchantment type, @Nonnull Enchantment enchantment, int levelAddition) {
+    public DynamicEnchantment(DynamicEnchantmentType type, @Nonnull Enchantment enchantment, int levelAddition) {
         if (!type.isEnchantmentSpecific()) {
             throw new IllegalArgumentException("Tried to create dynamic enchantment with a type that doesn\'t require an enchantment, but supplied an enchantment!");
         }
@@ -36,7 +36,7 @@ public class DynamicEnchantment {
         this.levelAddition = levelAddition;
     }
 
-    public DynamicEnchantment(Dynamicnet.minecraft.world.item.enchantment.Enchantment type, int levelAddition) {
+    public DynamicEnchantment(DynamicEnchantmentType type, int levelAddition) {
         if (type.isEnchantmentSpecific()) {
             throw new IllegalArgumentException("Tried to create dynamic enchantment with a type that requires an enchantment without specifying such an enchantment!");
         }
@@ -45,7 +45,7 @@ public class DynamicEnchantment {
         this.levelAddition = levelAddition;
     }
 
-    public Dynamicnet.minecraft.world.item.enchantment.Enchantment getType() {
+    public DynamicEnchantmentType getType() {
         return type;
     }
 

@@ -31,20 +31,20 @@ import java.util.function.Consumer;
 public class StoneCuttingRecipeBuilder {
 
     private final Ingredient input;
-    private final IItemProvider output;
+    private final ItemLike output;
     private final int count;
 
-    private StoneCuttingRecipeBuilder(Ingredient input, IItemProvider output, int count) {
+    private StoneCuttingRecipeBuilder(Ingredient input, ItemLike output, int count) {
         this.input = input;
         this.output = output;
         this.count = count;
     }
 
-    public static StoneCuttingRecipeBuilder stoneCuttingRecipe(Ingredient input, IItemProvider output) {
+    public static StoneCuttingRecipeBuilder stoneCuttingRecipe(Ingredient input, ItemLike output) {
         return stoneCuttingRecipe(input, output, 1);
     }
 
-    public static StoneCuttingRecipeBuilder stoneCuttingRecipe(Ingredient input, IItemProvider output, int count) {
+    public static StoneCuttingRecipeBuilder stoneCuttingRecipe(Ingredient input, ItemLike output, int count) {
         return new StoneCuttingRecipeBuilder(input, output, count);
     }
 

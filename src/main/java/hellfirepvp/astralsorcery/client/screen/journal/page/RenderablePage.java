@@ -45,7 +45,7 @@ public abstract class RenderablePage {
         return false;
     }
 
-    public static FontRenderer getFontRenderer() {
+    public static Font getFont() {
         return Minecraft.getInstance().fontRenderer;
     }
 

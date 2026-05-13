@@ -12,6 +12,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.common.data.journal.JournalPage;
 import net.minecraft.client.gui.Font;
+import net.minecraft.util.FormattedText;
 import net.minecraft.network.chat.*;
 
 import java.util.LinkedList;
@@ -26,25 +27,25 @@ import java.util.List;
  */
 public class RenderPageText extends RenderablePage {
 
-    private final FontRenderer fontRenderer;
-    private final List<IReorderingProcessor> localizedText;
+    private final Font fontRenderer;
+    private final List<FormattedText> localizedText;
 
     public RenderPageText(String unlocalized) {
-        this(RenderablePage.getFontRenderer(), unlocalized);
+        this(RenderablePage.getFont(), unlocalized);
     }
 
-    public RenderPageText(FontRenderer fontRenderer, String unlocalized) {
+    public RenderPageText(Font fontRenderer, String unlocalized) {
         super(null, -1);
         this.fontRenderer = fontRenderer;
         this.localizedText = buildLines(unlocalized);
     }
 
-    private List<IReorderingProcessor> buildLines(String unlocText) {
+    private List<FormattedText> buildLines(String unlocText) {
         String text = LanguageMap.getInstance().func_230503_a_(unlocText);
-        List<IReorderingProcessor> lines = new LinkedList<>();
+        List<FormattedText> lines = new LinkedList<>();
         for (String segment : text.split("<NL>")) {
             lines.addAll(fontRenderer.trimStringToWidth(new Component.literal(segment), JournalPage.DEFAULT_WIDTH));
-            lines.add(IReorderingProcessor.field_242232_a);
+            lines.add(FormattedText.field_242232_a);
         }
         return lines;
     }
@@ -53,7 +54,7 @@ public class RenderPageText extends RenderablePage {
     public void render(PoseStack renderStack, float x, float y, float z, float pTicks, float mouseX, float mouseY) {
         renderStack.push();
         renderStack.translate(x, y, z);
-        for (IReorderingProcessor text : this.localizedText) {
+        for (FormattedText text : this.localizedText) {
             RenderingDrawUtils.renderStringAt(text, renderStack, this.fontRenderer, 0x00CCCCCC, false);
             renderStack.translate(0, 10, 0);
         }

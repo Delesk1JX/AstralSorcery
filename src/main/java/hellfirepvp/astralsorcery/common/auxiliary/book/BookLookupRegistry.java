@@ -49,7 +49,7 @@ public class BookLookupRegistry {
         return null;
     }
 
-    public static void registerItemLookup(IItemProvider item, ResearchNode parentNode, int nodePage, ResearchProgression neededProgression) {
+    public static void registerItemLookup(ItemLike item, ResearchNode parentNode, int nodePage, ResearchProgression neededProgression) {
         registerItemLookup(new ItemStack(item), parentNode, nodePage, neededProgression);
     }
 

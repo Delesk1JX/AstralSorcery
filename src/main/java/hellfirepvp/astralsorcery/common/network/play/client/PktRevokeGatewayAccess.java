@@ -18,7 +18,7 @@ import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -40,13 +40,13 @@ import java.util.UUID;
  */
 public class PktRevokeGatewayAccess extends ASPacket<PktRevokeGatewayAccess> {
 
-    private ResourceKey<Level> dim = null;
+    private net.minecraft.resources.ResourceKey<Level> dim = null;
     private BlockPos pos = BlockPos.ZERO;
     private UUID revokeUUID = null;
 
     public PktRevokeGatewayAccess() {}
 
-    public PktRevokeGatewayAccess(ResourceKey<Level> dim, BlockPos pos, UUID revokeUUID) {
+    public PktRevokeGatewayAccess(net.minecraft.resources.ResourceKey<Level> dim, BlockPos pos, UUID revokeUUID) {
         this.dim = dim;
         this.pos = pos;
         this.revokeUUID = revokeUUID;

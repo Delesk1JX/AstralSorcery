@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
 import hellfirepvp.astralsorcery.common.block.tile.BlockGemCrystalCluster;
 import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
-import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import hellfirepvp.astralsorcery.common.tile.base.TileEntityTick;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
@@ -34,7 +34,7 @@ public class TileGemCrystals extends TileEntityTick {
     public static final int TICK_GROWTH_CHANCE = 10_000;
 
     public TileGemCrystals() {
-        super(BlockEntityTypesAS.GEM_CRYSTAL_CLUSTER);
+        super(TileEntityTypesAS.GEM_CRYSTAL_CLUSTER);
     }
 
     @Override

@@ -55,7 +55,7 @@ public class WellRecipeBuilder extends CustomRecipeBuilder<WellLiquefaction> {
         return new WellRecipeBuilder(id);
     }
 
-    public WellRecipeBuilder setItemInput(IItemProvider item) {
+    public WellRecipeBuilder setItemInput(ItemLike item) {
         this.input = Ingredient.fromItems(item);
         return this;
     }

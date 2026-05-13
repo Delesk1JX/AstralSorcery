@@ -30,7 +30,7 @@ import java.util.function.Supplier;
  * Created by HellFirePvP
  * Date: 30.05.2019 / 15:07
  */
-public class StructureType implements IForgeRegistryEntry<StructureType> {
+public class StructureType implements RegistryObject<StructureType> {
 
     private final ResourceLocation name;
     private final Supplier<BlockArray> structureSupplier;

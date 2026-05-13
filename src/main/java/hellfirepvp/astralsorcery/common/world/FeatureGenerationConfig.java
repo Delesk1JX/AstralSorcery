@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.world;
 
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigEntry;
 import hellfirepvp.astralsorcery.common.world.placement.config.WorldFilterConfig;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.level.Level;
@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
 public class FeatureGenerationConfig extends ConfigEntry {
 
     private List<Biome.Category> categories = new ArrayList<>();
-    private List<ResourceKey<Level>> worlds = new ArrayList<>();
+    private List<net.minecraft.resources.ResourceKey<Level>> worlds = new ArrayList<>();
     private boolean defaultEveryBiome = false, defaultEveryWorld = false;
 
     private ModConfigSpec.BooleanValue enabled;
@@ -54,7 +54,7 @@ public class FeatureGenerationConfig extends ConfigEntry {
         return (T) this;
     }
 
-    public <T extends FeatureGenerationConfig> T generatesInWorlds(List<ResourceKey<Level>> worlds) {
+    public <T extends FeatureGenerationConfig> T generatesInWorlds(List<net.minecraft.resources.ResourceKey<Level>> worlds) {
         this.worlds = worlds;
         return (T) this;
     }
@@ -97,7 +97,7 @@ public class FeatureGenerationConfig extends ConfigEntry {
 
         //TODO Structures..
         List<String> defaultWorlds = worlds.stream()
-                .map(ResourceKey::getLocation)
+                .map(net.minecraft.resources.ResourceKey::getLocation)
                 .map(ResourceLocation::getPath)
                 .collect(Collectors.toList());
         this.worldNames = cfgBuilder
@@ -121,7 +121,7 @@ public class FeatureGenerationConfig extends ConfigEntry {
         return new WorldFilterConfig(this.everyWorld::get, () -> {
             return this.worldNames.get().stream()
                     .map(ResourceLocation::new)
-                    .map(key -> ResourceKey.getOrCreateKey(Registry.WORLD_KEY, key))
+                    .map(key -> net.minecraft.resources.ResourceKey.getOrCreateKey(Registry.WORLD_KEY, key))
                     .collect(Collectors.toList());
         });
     }

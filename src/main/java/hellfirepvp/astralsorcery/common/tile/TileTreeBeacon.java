@@ -20,7 +20,7 @@ import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigEntry;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
-import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.network.play.server.PktPlayEffect;
 import hellfirepvp.astralsorcery.common.tile.base.TileAreaOfInfluence;
@@ -40,7 +40,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;
@@ -75,7 +75,7 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
     private float starlight = 0F;
 
     public TileTreeBeacon() {
-        super(BlockEntityTypesAS.TREE_BEACON);
+        super(TileEntityTypesAS.TREE_BEACON);
     }
 
     @Override
@@ -317,7 +317,7 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
 
     @Nonnull
     @Override
-    public ResourceKey<Level> getDimension() {
+    public net.minecraft.resources.ResourceKey<Level> getDimension() {
         return this.getWorld().getDimensionKey();
     }
 
@@ -444,7 +444,7 @@ public class TileTreeBeacon extends TileReceiverBase<StarlightReceiverTreeBeacon
 
     public static class TreeWatcher {
 
-        private static final Map<ResourceKey<Level>, Set<BlockPos>> WATCHERS = new HashMap<>();
+        private static final Map<net.minecraft.resources.ResourceKey<Level>, Set<BlockPos>> WATCHERS = new HashMap<>();
 
         public static void clearServerCache() {
             WATCHERS.clear();

@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.storage;
 
 import hellfirepvp.astralsorcery.common.data.world.StorageNetworkBuffer;
 import hellfirepvp.astralsorcery.common.lib.DataAS;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
@@ -29,7 +29,7 @@ import java.util.Map;
 public class StorageNetworkHandler {
 
     //private static final AABB box = new AABB(-3, 0, -3, 3, 0, 3);
-    private static final Map<ResourceKey<Level>, NetworkHelper> mappingHelpers = new HashMap<>();
+    private static final Map<net.minecraft.resources.ResourceKey<Level>, NetworkHelper> mappingHelpers = new HashMap<>();
 
     public static NetworkHelper getHandler(Level world) {
         return mappingHelpers.computeIfAbsent(world.getDimensionKey(), id -> new NetworkHelper(world));
@@ -39,7 +39,7 @@ public class StorageNetworkHandler {
         clearHandler(world.getDimensionKey());
     }
 
-    public static void clearHandler(ResourceKey<Level> dimKey) {
+    public static void clearHandler(net.minecraft.resources.ResourceKey<Level> dimKey) {
         mappingHelpers.remove(dimKey);
     }
 

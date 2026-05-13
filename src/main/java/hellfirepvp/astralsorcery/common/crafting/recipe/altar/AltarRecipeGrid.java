@@ -354,7 +354,7 @@ public class AltarRecipeGrid {
             return this.key(key, Ingredient.fromTag(tagIn));
         }
 
-        public Builder key(Character key, IItemProvider itemIn) {
+        public Builder key(Character key, ItemLike itemIn) {
             return this.key(key, Ingredient.fromItems(itemIn));
         }
 

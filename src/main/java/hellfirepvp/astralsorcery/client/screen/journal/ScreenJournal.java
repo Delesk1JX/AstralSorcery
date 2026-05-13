@@ -21,7 +21,8 @@ import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.renderer.vertex.VertexFormat;
+import net.minecraft.util.FormattedText;
 import net.minecraft.util.Mth;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Component;
@@ -68,7 +69,7 @@ public class ScreenJournal extends WidthHeightScreen {
         return true;
     }
 
-    protected IReorderingProcessor localize(ITextProperties txt) {
+    protected FormattedText localize(Component txt) {
         return LanguageMap.getInstance().func_241870_a(txt);
     }
 

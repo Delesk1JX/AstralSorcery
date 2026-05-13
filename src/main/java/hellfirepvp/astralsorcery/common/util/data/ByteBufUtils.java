@@ -23,7 +23,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.state.Property;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.MutableComponent;
@@ -176,14 +176,14 @@ public class ByteBufUtils {
         return (T) BuiltInRegistries.getRegistry(registryName).get(entryName);
     }
 
-    public static void writeVanillaRegistryEntry(FriendlyByteBuf buf, ResourceKey<?> key) {
+    public static void writeVanillaRegistryEntry(FriendlyByteBuf buf, net.minecraft.resources.ResourceKey<?> key) {
         writeResourceLocation(buf, key.getRegistryName());
         writeResourceLocation(buf, key.getLocation());
     }
 
-    public static <T> ResourceKey<T> readVanillaRegistryEntry(FriendlyByteBuf buf) {
+    public static <T> net.minecraft.resources.ResourceKey<T> readVanillaRegistryEntry(FriendlyByteBuf buf) {
         ResourceLocation registryName = readResourceLocation(buf);
-        return ResourceKey.getOrCreateKey(ResourceKey.getOrCreateRootKey(registryName), readResourceLocation(buf));
+        return net.minecraft.resources.ResourceKey.getOrCreateKey(net.minecraft.resources.ResourceKey.getOrCreateRootKey(registryName), readResourceLocation(buf));
     }
 
     public static void writeResourceLocation(FriendlyByteBuf buf, ResourceLocation key) {

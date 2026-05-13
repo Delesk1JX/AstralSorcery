@@ -21,7 +21,7 @@ import hellfirepvp.astralsorcery.common.data.world.GatewayCache;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.common.lib.DataAS;
 import hellfirepvp.astralsorcery.common.lib.StructureTypesAS;
-import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import hellfirepvp.astralsorcery.common.network.play.server.PktPlayEffect;
 import hellfirepvp.astralsorcery.common.structure.types.StructureType;
 import hellfirepvp.astralsorcery.common.tile.base.TileEntityTick;
@@ -100,7 +100,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
     private Object clientGatewaySphereEffect = null;
 
     public TileCelestialGateway() {
-        super(BlockEntityTypesAS.GATEWAY);
+        super(TileEntityTypesAS.GATEWAY);
     }
 
     @Override

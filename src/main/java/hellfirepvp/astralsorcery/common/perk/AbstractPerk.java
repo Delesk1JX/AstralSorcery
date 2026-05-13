@@ -208,9 +208,9 @@ public class AbstractPerk implements ModifierSource {
         return !this.hiddenUnlessAllocated || progress.getPerkData().hasPerkAllocation(this);
     }
 
-    public net.minecraft.network.chat.Component getName() {
-        return net.minecraft.network.chat.Component.translatable(this.unlocalizedKey + ".name")
-                .withStyle(this.getCategory().getTextFormatting());
+    public IFormattableTextComponent getName() {
+        return new Component.translatable(this.unlocalizedKey + ".name")
+                .withStyle(this.getCategory().getChatFormatting());
     }
 
     @Nonnull
@@ -356,15 +356,15 @@ public class AbstractPerk implements ModifierSource {
 
     public static class PerkCategory {
 
-        private final net.minecraft.network.chat.Component name;
-        private final TextFormatting color;
+        private final IFormattableTextComponent name;
+        private final ChatFormatting color;
 
-        public PerkCategory(@Nonnull String unlocName, @Nonnull TextFormatting color) {
-            this.name = net.minecraft.network.chat.Component.translatable("perk.category.astralsorcery." + unlocName + ".name");
+        public PerkCategory(@Nonnull String unlocName, @Nonnull ChatFormatting color) {
+            this.name = new Component.translatable("perk.category.astralsorcery." + unlocName + ".name");
             this.color = color;
         }
 
-        public TextFormatting getTextFormatting() {
+        public ChatFormatting getChatFormatting() {
             return color;
         }
 

@@ -29,7 +29,7 @@ import hellfirepvp.observerlib.api.structure.Structure;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.vector.Vector3f;
@@ -57,15 +57,15 @@ public class RenderPageStructure extends RenderablePage {
     private final StructureRenderer structureRenderer;
     private final Structure structure;
     private final Vector3 shift;
-    private final List<Tuple<ItemStack, ITextProperties>> contentStacks;
-    private final ITextProperties name;
+    private final List<Tuple<ItemStack, Component>> contentStacks;
+    private final Component name;
 
     private Optional<Integer> drawSlice = Optional.empty();
     private Rectangle.Float switchView = null, sliceUp = null, sliceDown = null, switchRequiredAir = null;
     private long totalRenderFrame = 0;
     private boolean showAirBlocks = false;
 
-    public RenderPageStructure(@Nullable ResearchNode node, int nodePage, Structure structure, @Nullable ITextProperties name, @Nonnull Vector3 shift) {
+    public RenderPageStructure(@Nullable ResearchNode node, int nodePage, Structure structure, @Nullable Component name, @Nonnull Vector3 shift) {
         super(node, nodePage);
         this.structure = structure;
         this.structureRenderer = new StructureRenderer(this.structure).setIsolateIndividualBlock(true);
@@ -74,7 +74,7 @@ public class RenderPageStructure extends RenderablePage {
         this.contentStacks = new ArrayList<>();
         structure.getAsStacks(this.structureRenderer.getRenderWorld(), Minecraft.getInstance().player).forEach(stack -> {
             ItemStack display = ItemUtils.copyStackWithSize(stack, 1);
-            ITextProperties description = new Component.literal(stack.getCount() + "x ").append(stack.getDisplayName());
+            Component description = new Component.literal(stack.getCount() + "x ").append(stack.getDisplayName());
             this.contentStacks.add(new Tuple<>(display, description));
         });
     }
@@ -206,7 +206,7 @@ public class RenderPageStructure extends RenderablePage {
         return maxSlice;
     }
 
-    private void renderHeadline(PoseStack renderStack, float offsetX, float offsetY, float zLevel, ITextProperties title) {
+    private void renderHeadline(PoseStack renderStack, float offsetX, float offsetY, float zLevel, Component title) {
         float scale = 1.3F;
         RenderSystem.disableDepthTest();
 
@@ -221,9 +221,9 @@ public class RenderPageStructure extends RenderablePage {
 
     private float renderSizeDescription(PoseStack renderStack, float offsetX, float offsetY, float zLevel) {
         Vector3 size = new Vector3(this.structure.getMaximumOffset()).subtract(this.structure.getMinimumOffset()).add(1, 1, 1);
-        FontRenderer fr = RenderablePage.getFontRenderer();
+        Font fr = RenderablePage.getFont();
         float scale = 1.3F;
-        ITextProperties description = new Component.literal(String.format("%s - %s - %s", size.getBlockX(), size.getBlockY(), size.getBlockZ()));
+        Component description = new Component.literal(String.format("%s - %s - %s", size.getBlockX(), size.getBlockY(), size.getBlockZ()));
         float length = fr.getStringPropertyWidth(description) * scale;
 
         RenderSystem.disableDepthTest();
@@ -239,7 +239,7 @@ public class RenderPageStructure extends RenderablePage {
             int max = this.getCurrentMaxSlice();
             int height = max - min;
             int level = yLevel - min;
-            ITextProperties slice = new Component.literal(String.format("%s / %s", level + 1, height + 1));
+            Component slice = new Component.literal(String.format("%s / %s", level + 1, height + 1));
 
             renderStack.push();
             renderStack.translate(offsetX, offsetY + 14, zLevel);
@@ -272,18 +272,18 @@ public class RenderPageStructure extends RenderablePage {
         renderStack.pop();
 
         if (rect.contains(mouseX, mouseY)) {
-            RenderingDrawUtils.renderBlueTooltip(renderStack, x + 160, y + 10, z + 650, this.contentStacks, RenderablePage.getFontRenderer(), false);
+            RenderingDrawUtils.renderBlueTooltip(renderStack, x + 160, y + 10, z + 650, this.contentStacks, RenderablePage.getFont(), false);
         }
 
         if (this.switchView != null && this.switchView.contains(mouseX, mouseY)) {
-            ITextProperties switchInfo = new Component.translatable("astralsorcery.journal.structure.switch_view");
+            Component switchInfo = new Component.translatable("astralsorcery.journal.structure.switch_view");
             RenderingDrawUtils.renderBlueTooltipComponents(renderStack, this.switchView.x + this.switchView.width / 2, this.switchView.y + this.switchView.height / 2, z + 500,
-                    Lists.newArrayList(switchInfo), RenderablePage.getFontRenderer(), false);
+                    Lists.newArrayList(switchInfo), RenderablePage.getFont(), false);
         }
         if (this.switchRequiredAir != null && this.switchRequiredAir.contains(mouseX, mouseY)) {
-            ITextProperties switchInfo = new Component.translatable("astralsorcery.journal.structure.required_air");
+            Component switchInfo = new Component.translatable("astralsorcery.journal.structure.required_air");
             RenderingDrawUtils.renderBlueTooltipComponents(renderStack, this.switchRequiredAir.x + this.switchRequiredAir.width / 2, this.switchRequiredAir.y + this.switchRequiredAir.height / 2, z + 500,
-                    Lists.newArrayList(switchInfo), RenderablePage.getFontRenderer(), false);
+                    Lists.newArrayList(switchInfo), RenderablePage.getFont(), false);
         }
     }
 

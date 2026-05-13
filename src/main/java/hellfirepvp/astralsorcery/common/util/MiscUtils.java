@@ -80,7 +80,7 @@ public class MiscUtils {
         return null;
     }
 
-    public static boolean canEntityTickAt(ILevel world, BlockPos pos) {
+    public static boolean canEntityTickAt(LevelAccessor world, BlockPos pos) {
         ChunkPos chPos = new ChunkPos(pos);
         if (!world.getChunkProvider().isChunkLoaded(chPos)) {
             return false;
@@ -372,7 +372,7 @@ public class MiscUtils {
         return player.connection != null && player.connection.netManager != null && player.connection.netManager.isChannelOpen();
     }
 
-    public static long getRandomWorldSeed(WorldGenLevel world) {
+    public static long getRandomWorldSeed(ServerLevel world) {
         return new Random(world.getSeed()).nextLong();
     }
 
@@ -403,12 +403,12 @@ public class MiscUtils {
     }
 
     @Nullable
-    public static <T extends Entity> T transferEntityTo(T entity, ResourceKey<Level> target, BlockPos targetPos) {
+    public static <T extends Entity> T transferEntityTo(T entity, net.minecraft.resources.ResourceKey<Level> target, BlockPos targetPos) {
         if (entity.level.isRemote) {
             return null; //No transfers on clientside.
         }
         entity.setSneaking(false);
-        ResourceKey<Level> src = entity.level.getDimensionKey();
+        net.minecraft.resources.ResourceKey<Level> src = entity.level.getDimensionKey();
         if (!src.equals(target)) {
             if (!ForgeHooks.onTravelToDimension(entity, target)) {
                 return null;

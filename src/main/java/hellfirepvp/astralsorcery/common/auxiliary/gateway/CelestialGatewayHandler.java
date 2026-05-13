@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.network.play.server.PktUpdateGateways;
 import hellfirepvp.astralsorcery.common.util.SidedReference;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelAccessor;
@@ -42,7 +42,7 @@ public class CelestialGatewayHandler {
     private CelestialGatewayFilter filter = null;
     private boolean startUp = false;
 
-    private final SidedReference<Map<ResourceKey<Level>, Collection<GatewayCache.GatewayNode>>> cache = new SidedReference<>();
+    private final SidedReference<Map<net.minecraft.resources.ResourceKey<Level>, Collection<GatewayCache.GatewayNode>>> cache = new SidedReference<>();
 
     private CelestialGatewayHandler() {}
 
@@ -58,7 +58,7 @@ public class CelestialGatewayHandler {
             return;
         }
 
-        ResourceKey<Level> dimKey = world.getDimensionKey();
+        net.minecraft.resources.ResourceKey<Level> dimKey = world.getDimensionKey();
         if (!cache.getData(LogicalSide.SERVER).map(map -> map.get(dimKey)).isPresent()) {
             forceLoad(world.getDimensionKey());
         }
@@ -82,7 +82,7 @@ public class CelestialGatewayHandler {
             return;
         }
 
-        ResourceKey<Level> dimKey = world.getDimensionKey();
+        net.minecraft.resources.ResourceKey<Level> dimKey = world.getDimensionKey();
         Optional<Collection<GatewayCache.GatewayNode>> worldData = cache.getData(LogicalSide.SERVER).map(map -> map.get(dimKey));
         if (!worldData.isPresent()) {
             return;
@@ -96,7 +96,7 @@ public class CelestialGatewayHandler {
         }
     }
 
-    private void forceLoad(ResourceKey<Level> world) {
+    private void forceLoad(net.minecraft.resources.ResourceKey<Level> world) {
         //TODO re-check once worlds aren't ALL statically loaded.
         MinecraftServer srv = LogicalSidedProvider.INSTANCE.get(LogicalSide.SERVER);
         srv.getWorld(world);
@@ -128,7 +128,7 @@ public class CelestialGatewayHandler {
             return; //We're already loading up there.
         }
 
-        ILevel world = event.getWorld();
+        LevelAccessor world = event.getWorld();
         if (world.isRemote() || !(world instanceof Level)) {
             return;
         }
@@ -148,7 +148,7 @@ public class CelestialGatewayHandler {
                 .orElse(Collections.emptyList());
     }
 
-    public Map<ResourceKey<Level>, Collection<GatewayCache.GatewayNode>> getGatewayCache(LogicalSide side) {
+    public Map<net.minecraft.resources.ResourceKey<Level>, Collection<GatewayCache.GatewayNode>> getGatewayCache(LogicalSide side) {
         return this.cache.getData(side).orElse(Collections.emptyMap());
     }
 
@@ -164,13 +164,13 @@ public class CelestialGatewayHandler {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void updateClientCache(@Nullable Map<ResourceKey<Level>, Collection<GatewayCache.GatewayNode>> positions) {
+    public void updateClientCache(@Nullable Map<net.minecraft.resources.ResourceKey<Level>, Collection<GatewayCache.GatewayNode>> positions) {
         this.cache.setData(LogicalSide.CLIENT, positions);
     }
 
     private void loadIntoCache(Level world) {
         GatewayCache cache = DataAS.DOMAIN_AS.getData(world, DataAS.KEY_GATEWAY_CACHE);
-        Map<ResourceKey<Level>, Collection<GatewayCache.GatewayNode>> gatewayCache = this.cache.getData(LogicalSide.SERVER).orElse(new HashMap<>());
+        Map<net.minecraft.resources.ResourceKey<Level>, Collection<GatewayCache.GatewayNode>> gatewayCache = this.cache.getData(LogicalSide.SERVER).orElse(new HashMap<>());
         gatewayCache.put(world.getDimensionKey(), new HashSet<>(cache.getGatewayPositions()));
         this.cache.setData(LogicalSide.SERVER, gatewayCache);
     }

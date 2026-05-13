@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.starlight.network;
 
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
@@ -30,7 +30,7 @@ import java.util.Map;
 public class StarlightTransmissionHandler implements ITickHandler {
 
     private static final StarlightTransmissionHandler instance = new StarlightTransmissionHandler();
-    private final Map<ResourceKey<Level>, TransmissionWorldHandler> worldHandlers = new HashMap<>();
+    private final Map<net.minecraft.resources.ResourceKey<Level>, TransmissionWorldHandler> worldHandlers = new HashMap<>();
 
     private StarlightTransmissionHandler() {}
 
@@ -54,7 +54,7 @@ public class StarlightTransmissionHandler implements ITickHandler {
     }
 
     public void informWorldUnload(Level world) {
-        ResourceKey<Level> dimKey = world.getDimensionKey();
+        net.minecraft.resources.ResourceKey<Level> dimKey = world.getDimensionKey();
         TransmissionWorldHandler handle = worldHandlers.get(dimKey);
         if (handle != null) {
             handle.clear();
@@ -76,8 +76,8 @@ public class StarlightTransmissionHandler implements ITickHandler {
     }
 
     @Override
-    public boolean canFire(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
-        return phase == net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.START;
+    public boolean canFire(net.neoforged.neoforge.event.tick.net.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
+        return phase == net.neoforged.neoforge.event.tick.net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.START;
     }
 
     @Override

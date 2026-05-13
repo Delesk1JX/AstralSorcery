@@ -118,7 +118,7 @@ public class ColorUtils {
     }
 
     @Nonnull
-    public static TextFormatting textFormattingForDye(DyeColor color) {
+    public static ChatFormatting textFormattingForDye(DyeColor color) {
         switch (color) {
             case WHITE:
                 return ChatFormatting.WHITE;

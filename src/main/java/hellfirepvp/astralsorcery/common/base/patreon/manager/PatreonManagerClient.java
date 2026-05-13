@@ -18,7 +18,7 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import net.neoforged.neoforge.event.tick.ClientTickEvent;
@@ -47,7 +47,7 @@ public class PatreonManagerClient implements ITickHandler {
         if (clWorld == null || thisPlayer == null) {
             return;
         }
-        ResourceKey<Level> clientWorld = clWorld.getDimensionKey();
+        net.minecraft.resources.ResourceKey<Level> clientWorld = clWorld.getDimensionKey();
         Vector3 thisPlayerPos = Vector3.atEntityCenter(thisPlayer);
 
         SyncDataHolder.executeClient(SyncDataHolder.DATA_PATREON_FLARES, ClientPatreonFlares.class, data -> {
@@ -79,8 +79,8 @@ public class PatreonManagerClient implements ITickHandler {
     }
 
     @Override
-    public boolean canFire(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
-        return phase == net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
+    public boolean canFire(net.neoforged.neoforge.event.tick.net.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
+        return phase == net.neoforged.neoforge.event.tick.net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
     }
 
     @Override

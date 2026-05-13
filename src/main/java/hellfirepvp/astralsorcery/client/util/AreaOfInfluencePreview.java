@@ -18,7 +18,7 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.util.ResourceKey;
+import net.minecraft.util.net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
@@ -45,7 +45,7 @@ public class AreaOfInfluencePreview implements ITickHandler {
     private static final float alphaTick = 1F / MAX_LIFE;
     private static final float sizeCube1 = 1.25F, sizeCube2 = 1.35F;
 
-    private ResourceKey<Level> tileDimension = null;
+    private net.minecraft.resources.ResourceKey<Level> tileDimension = null;
     private BlockPos tilePosition = null;
     private FXCube effect1 = null, effect2 = null;
 
@@ -84,7 +84,7 @@ public class AreaOfInfluencePreview implements ITickHandler {
             this.removeEffects();
             return;
         }
-        ResourceKey<Level> clientDimType = clientWorld.getDimensionKey();
+        net.minecraft.resources.ResourceKey<Level> clientDimType = clientWorld.getDimensionKey();
         if (!clientDimType.equals(this.tileDimension)) {
             this.clearClient();
             this.removeEffects();
@@ -190,8 +190,8 @@ public class AreaOfInfluencePreview implements ITickHandler {
     }
 
     @Override
-    public boolean canFire(net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
-        return phase == net.neoforged.neoforge.event.tick.Clientnet.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
+    public boolean canFire(net.neoforged.neoforge.event.tick.net.neoforged.neoforge.event.tick.ClientTickEvent.Phase phase) {
+        return phase == net.neoforged.neoforge.event.tick.net.neoforged.neoforge.event.tick.ClientTickEvent.Phase.END;
     }
 
     @Override

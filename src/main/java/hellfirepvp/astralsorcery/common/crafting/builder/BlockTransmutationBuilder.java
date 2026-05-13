@@ -89,7 +89,7 @@ public class BlockTransmutationBuilder extends CustomRecipeBuilder<BlockTransmut
         return this.addInputCheck(matchState, new ItemStack(matchState.getBlock()), matchExact);
     }
 
-    public BlockTransmutationBuilder addInputCheck(BlockState matchState, IItemProvider display, boolean matchExact) {
+    public BlockTransmutationBuilder addInputCheck(BlockState matchState, ItemLike display, boolean matchExact) {
         return this.addInputCheck(matchState, new ItemStack(display), matchExact);
     }
 
@@ -108,7 +108,7 @@ public class BlockTransmutationBuilder extends CustomRecipeBuilder<BlockTransmut
         return this;
     }
 
-    public BlockTransmutationBuilder setOutputDisplay(IItemProvider item) {
+    public BlockTransmutationBuilder setOutputDisplay(ItemLike item) {
         return this.setOutputDisplay(new ItemStack(item));
     }
 

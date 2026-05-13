@@ -117,7 +117,7 @@ public interface IPrismTransmissionNode extends ILocatable {
 
     //Called once after reading the node from NBT
     //Use this for post-load/place logic.
-    default public void postLoad(ILevel world) {}
+    default public void postLoad(LevelAccessor world) {}
 
     //Flags the world's LightNetworkBuffer as dirty,
     //which causes it to be recalculated and saved

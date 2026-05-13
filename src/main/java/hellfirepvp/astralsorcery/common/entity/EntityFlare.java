@@ -290,7 +290,7 @@ public class EntityFlare extends FlyingEntity {
     }
 
     @Override
-    public boolean canSpawn(ILevel worldIn, SpawnReason spawnReasonIn) {
+    public boolean canSpawn(LevelAccessor worldIn, SpawnReason spawnReasonIn) {
         return false;
     }
 

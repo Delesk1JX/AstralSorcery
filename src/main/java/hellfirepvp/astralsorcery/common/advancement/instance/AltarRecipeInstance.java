@@ -55,7 +55,7 @@ public class AltarRecipeInstance extends CriterionInstance {
         return instance;
     }
 
-    public static AltarRecipeInstance withOutput(IItemProvider... outputs) {
+    public static AltarRecipeInstance withOutput(ItemLike... outputs) {
         return withOutput(Ingredient.fromItems(outputs));
     }
 

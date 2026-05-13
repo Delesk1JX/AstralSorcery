@@ -7,30 +7,51 @@
 *.dll
 *.so
 *.a
-*.exe
+*.pyc
+__pycache__/
 
 # Dependencies
-.gradle/
+node_modules/
+venv/
+.venv/
 target/
+.gradle/
+.mypy_cache/
+.pytest_cache/
+julia-*/
+zig*/
 
-# Logs and temp files
-*.log
-*.tmp
-
-# Editors
+# Editor/IDE files
 .vscode/
 .idea/
+*.swp
+*.swo
+*.tmp
+
+# Logs
+*.log
+
+# Coverage
+coverage/
+htmlcov/
+.coverage
 
 # System files
 .DS_Store
 Thumbs.db
 
-# Coverage reports
-coverage/
-htmlcov/
-.coverage
+# Environment files
+.env
+.env.local
+*.env.*
 
-# Package distributions
-dist/
+# Build directories (common in Java projects)
 build/
+dist/
+
+# Minecraft/Forge specific
+.run/
+.gradle/
+!src/main/resources/META-INF/mods.toml
+!src/main/resources/assets/**
 ```

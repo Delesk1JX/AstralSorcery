@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.client.effect.handler.EffectHelper;
 import hellfirepvp.astralsorcery.client.effect.vfx.FXFacingParticle;
 import hellfirepvp.astralsorcery.client.lib.EffectTemplatesAS;
 import hellfirepvp.astralsorcery.common.auxiliary.link.LinkableTileEntity;
-import hellfirepvp.astralsorcery.common.lib.BlockEntityTypesAS;
+import hellfirepvp.astralsorcery.common.lib.TileEntityTypesAS;
 import hellfirepvp.astralsorcery.common.tile.base.TileEntityTick;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
@@ -42,7 +42,7 @@ public class TileRitualLink extends TileEntityTick implements LinkableTileEntity
     private BlockPos linkedTo = null;
 
     public TileRitualLink() {
-        super(BlockEntityTypesAS.RITUAL_LINK);
+        super(TileEntityTypesAS.RITUAL_LINK);
     }
 
     @Override
