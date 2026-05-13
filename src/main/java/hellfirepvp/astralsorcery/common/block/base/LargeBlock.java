@@ -12,7 +12,7 @@ import net.minecraft.world.item.BlockItemUseContext;
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level().Level;
+import net.minecraft.world.level.Level;
 
 /**
  * This class is part of the Astral Sorcery Mod

@@ -18,7 +18,7 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.command.arguments.EntitySelector;
-import net.minecraft.server.level().ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import static net.minecraft.network.chat.Component.literal;
 import net.minecraft.ChatFormatting;
 

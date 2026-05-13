@@ -17,7 +17,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import static net.minecraft.network.chat.Component.translatable;
-import net.minecraft.world.level().Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.core.Holder;
 
 import javax.annotation.Nullable;

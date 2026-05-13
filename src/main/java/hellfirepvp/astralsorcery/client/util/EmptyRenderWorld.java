@@ -9,11 +9,11 @@
 package hellfirepvp.astralsorcery.client.util;
 
 import hellfirepvp.observerlib.api.client.StructureRenderLightManager;
-import net.minecraft.world.level().block.state.BlockState;
-import net.minecraft.world.level().block.Blocks;
-import net.minecraft.world.level().material.Fluids;
-import net.minecraft.world.level().material.FluidState;
-import net.minecraft.world.level().block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.core.BlockPos;
@@ -21,7 +21,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.IBlockDisplayReader;
 import net.minecraft.world.LightType;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.level().ColorResolver;
+import net.minecraft.world.level.ColorResolver;
 import net.minecraft.world.lighting.WorldLightManager;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;

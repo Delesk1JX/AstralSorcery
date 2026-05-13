@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.client.data.config.entry;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Lists;
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigEntry;
-import net.minecraft.world.level().Level;
+import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
 import java.util.List;

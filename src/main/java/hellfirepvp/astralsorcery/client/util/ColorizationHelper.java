@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.client.util.color.ColorThief;
 import hellfirepvp.astralsorcery.common.util.ColorUtils;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.world.level().material.Fluid;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.resources.IFutureReloadListener;

@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.crafting.helper;
 
-import net.minecraft.world.level().Level;
+import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.items.IItemHandler;
 
 /**

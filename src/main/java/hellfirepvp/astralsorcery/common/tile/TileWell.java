@@ -33,13 +33,13 @@ import hellfirepvp.astralsorcery.common.util.tile.FluidTankAccess;
 import hellfirepvp.astralsorcery.common.util.tile.PrecisionSingleFluidTank;
 import hellfirepvp.astralsorcery.common.util.tile.TileInventoryFiltered;
 import hellfirepvp.astralsorcery.common.util.world.SkyCollectionHelper;
-import net.minecraft.world.level().material.Fluid;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level().ServerLevel;
+import net.minecraft.server.level.ServerLevel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 

@@ -32,10 +32,10 @@ import hellfirepvp.astralsorcery.common.starlight.network.StarlightTransmissionH
 import hellfirepvp.astralsorcery.common.starlight.network.StarlightUpdateHandler;
 import hellfirepvp.astralsorcery.common.util.time.TimeStopController;
 import hellfirepvp.astralsorcery.common.util.world.WorldSeedCache;
-import net.minecraft.server.level().ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level().LevelAccessor;
-import net.minecraft.world.level().Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;

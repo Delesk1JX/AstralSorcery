@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.mixin;
 
 import hellfirepvp.astralsorcery.common.util.collision.CollisionHelper;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level().Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;

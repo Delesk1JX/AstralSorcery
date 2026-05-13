@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.constellation.effect.ConstellationEffect
 import hellfirepvp.astralsorcery.common.util.block.ILocatable;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level().Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 
 import javax.annotation.Nonnull;

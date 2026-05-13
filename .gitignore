@@ -5,10 +5,12 @@
 *.obj
 *.out
 target/
+build/
 
 # Dependencies
 .gradle/
 libs/
+!libs/**
 
 # Logs and temp files
 *.log

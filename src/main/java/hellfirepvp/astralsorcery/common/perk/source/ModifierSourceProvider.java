@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.perk.source;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.network.play.server.PktSyncModifierSource;
 import hellfirepvp.astralsorcery.common.perk.PerkEffectHelper;
-import net.minecraft.server.level().ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.fml.LogicalSide;

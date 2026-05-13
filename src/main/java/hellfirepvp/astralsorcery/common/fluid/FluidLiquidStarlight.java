@@ -8,8 +8,8 @@
 
 package hellfirepvp.astralsorcery.common.fluid;
 
-import net.minecraft.world.level().material.Fluid;
-import net.minecraft.world.level().material.FluidState;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.state.StateContainer;
 import net.neoforged.neoforge.fluids.FluidAttributes;

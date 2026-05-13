@@ -23,7 +23,7 @@ import hellfirepvp.observerlib.common.util.RegistryUtil;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.core.Vec3i;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.level().Level;
+import net.minecraft.world.level.Level;
 import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.fml.network.FMLHandshakeHandler;
 import net.neoforged.neoforge.network.handling.IPayloadContext;

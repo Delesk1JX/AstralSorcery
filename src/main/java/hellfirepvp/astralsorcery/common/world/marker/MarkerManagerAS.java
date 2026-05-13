@@ -15,13 +15,13 @@ import hellfirepvp.astralsorcery.common.lib.CrystalPropertiesAS;
 import hellfirepvp.astralsorcery.common.lib.LootAS;
 import hellfirepvp.astralsorcery.common.tile.TileCollectorCrystal;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.world.level().block.state.BlockState;
-import net.minecraft.world.level().block.Blocks;
-import net.minecraft.world.level().block.entity.LockableLootTileEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.LockableLootTileEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.MutableBoundingBox;
-import net.minecraft.world.level().LevelAccessor;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
 import net.neoforged.neoforge.common.Tags;
 

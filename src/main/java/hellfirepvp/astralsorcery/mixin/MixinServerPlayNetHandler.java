@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.mixin;
 
 import hellfirepvp.astralsorcery.common.entity.InteractableEntity;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.server.level().ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.network.play.ServerPlayNetHandler;
 import net.minecraft.network.play.client.CUseEntityPacket;
 import net.minecraft.world.server.ServerLevel;

@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.util;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.Teleporter;
-import net.minecraft.server.level().ServerLevel;
+import net.minecraft.server.level.ServerLevel;
 
 import java.util.function.Function;
 

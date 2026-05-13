@@ -23,8 +23,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level().dimension.DimensionType;
-import net.minecraft.world.level().Level;
+import net.minecraft.world.level.dimension.DimensionType;
+import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import hellfirepvp.observerlib.common.util.tick.TickEvent.ClientTickEvent;
 

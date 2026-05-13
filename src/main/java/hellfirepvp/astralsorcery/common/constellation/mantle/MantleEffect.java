@@ -26,7 +26,7 @@ import hellfirepvp.astralsorcery.common.util.tick.TickEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.server.level().ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;

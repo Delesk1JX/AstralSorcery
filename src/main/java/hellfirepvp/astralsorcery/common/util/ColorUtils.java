@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.util;
 
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.common.util.item.ItemUtils;
-import net.minecraft.world.level().block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;

@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.common.lib;
 
-import net.minecraft.world.level().block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 
 /**
  * This class is part of the Astral Sorcery Mod

@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.common.crafting.recipe.WellLiquefaction;
 import hellfirepvp.astralsorcery.common.lib.RecipeSerializersAS;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.util.data.JsonHelper;
-import net.minecraft.world.level().material.Fluid;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.JSONUtils;

@@ -33,8 +33,8 @@ import hellfirepvp.astralsorcery.common.block.tile.fountain.BlockFountainPrimeLi
 import hellfirepvp.astralsorcery.common.block.tile.fountain.BlockFountainPrimeOre;
 import hellfirepvp.astralsorcery.common.block.tile.fountain.BlockFountainPrimeVortex;
 import hellfirepvp.astralsorcery.common.util.NameUtil;
-import net.minecraft.world.level().block.Block;
-import net.minecraft.world.level().block.state.BlockState;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;

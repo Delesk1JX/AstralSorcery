@@ -18,7 +18,7 @@ import hellfirepvp.astralsorcery.common.network.play.server.PktSyncKnowledge;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.command.ICommandSource;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.server.level().ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.server.MinecraftServer;

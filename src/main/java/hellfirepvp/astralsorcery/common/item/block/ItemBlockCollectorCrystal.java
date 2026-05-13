@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.common.crystal.CrystalAttributes;
 import hellfirepvp.astralsorcery.common.crystal.CrystalProperty;
 import hellfirepvp.astralsorcery.common.crystal.CrystalPropertyRegistry;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
-import net.minecraft.world.level().block.Block;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.NonNullList;

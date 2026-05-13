@@ -16,7 +16,7 @@ import net.minecraft.nbt.StringTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.level().Level;
+import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.Tags;
 
 import java.io.File;

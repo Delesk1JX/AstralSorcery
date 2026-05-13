@@ -12,7 +12,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
-import net.minecraft.world.level().material.Fluid;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.resources.ResourceLocation;

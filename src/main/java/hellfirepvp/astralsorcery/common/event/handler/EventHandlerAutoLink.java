@@ -11,12 +11,12 @@ package hellfirepvp.astralsorcery.common.event.handler;
 import hellfirepvp.astralsorcery.common.block.tile.BlockAltar;
 import hellfirepvp.astralsorcery.common.starlight.WorldNetworkHandler;
 import hellfirepvp.observerlib.common.event.BlockChangeNotifier;
-import net.minecraft.world.level().block.Block;
-import net.minecraft.world.level().block.state.BlockState;
-import net.minecraft.world.level().block.Blocks;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level().Level;
-import net.minecraft.world.level().chunk.LevelChunk;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.chunk.ChunkStatus;
 
 /**

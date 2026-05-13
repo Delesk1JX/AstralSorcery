@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.world.placement.config.WorldFilterConfig
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.level().Level;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.biome.Biome;
 import net.neoforged.neoforge.common.ModConfigSpec;
 

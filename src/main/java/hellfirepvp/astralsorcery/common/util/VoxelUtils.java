@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.common.util;
 
 import net.minecraft.util.shapes.IBooleanFunction;
 import net.minecraft.util.shapes.VoxelShape;
-import net.minecraft.world.level().block.Blocks;
+import net.minecraft.world.level.block.Blocks;
 
 import java.util.Arrays;
 import java.util.List;

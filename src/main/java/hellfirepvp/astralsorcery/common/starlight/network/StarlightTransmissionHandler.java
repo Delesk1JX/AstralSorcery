@@ -10,8 +10,8 @@ package hellfirepvp.astralsorcery.common.starlight.network;
 
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.level().Level;
-import net.minecraft.server.level().ServerLevel;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import hellfirepvp.observerlib.common.util.tick.TickEvent.ClientTickEvent;
 

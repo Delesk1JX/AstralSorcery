@@ -25,7 +25,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.tags.Tag;
-import net.minecraft.world.level().ItemLike;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.resources.ResourceLocation;
 

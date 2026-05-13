@@ -11,12 +11,12 @@ package hellfirepvp.astralsorcery.common.util;
 import hellfirepvp.astralsorcery.common.util.block.BlockPredicate;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.object.ObjectReference;
-import net.minecraft.world.level().block.state.BlockState;
-import net.minecraft.world.level().block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level().Level;
+import net.minecraft.world.level.Level;
 
 import java.util.*;
 import java.util.function.Predicate;

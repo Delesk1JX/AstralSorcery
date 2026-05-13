@@ -9,13 +9,13 @@
 package hellfirepvp.astralsorcery.common.block.base.template;
 
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
-import net.minecraft.world.level().block.Block;
-import net.minecraft.world.level().block.state.BlockState;
-import net.minecraft.world.level().block.Blocks;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.level().LevelAccessor;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.LevelAccessor;
 import net.neoforged.neoforge.common.IPlantable;
 

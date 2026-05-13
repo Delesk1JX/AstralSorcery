@@ -9,8 +9,8 @@
 package hellfirepvp.astralsorcery.common.block.base.template;
 
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
-import net.minecraft.world.level().block.state.BlockState;
-import net.minecraft.world.level().block.SlabBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.SlabBlock;
 
 import javax.annotation.Nullable;
 

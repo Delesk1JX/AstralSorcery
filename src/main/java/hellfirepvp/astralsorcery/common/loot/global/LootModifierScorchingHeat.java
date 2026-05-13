@@ -25,7 +25,7 @@ import net.minecraft.loot.conditions.ILootCondition;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.server.level().ServerLevel;
+import net.minecraft.server.level.ServerLevel;
 import net.neoforged.neoforge.common.loot.GlobalLootModifierSerializer;
 import net.neoforged.neoforge.common.loot.LootModifier;
 import net.neoforged.neoforge.fml.hooks.BasicEventHooks;
