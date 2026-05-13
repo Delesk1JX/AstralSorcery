@@ -410,11 +410,11 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
             this.placeCostMulitplier = placeCostMultiplier;
         }
 
-        public IFormattableTextComponent getName() {
+        public net.minecraft.network.chat.Component getName() {
             return new Component.translatable("astralsorcery.misc.architect.mode." + this.name);
         }
 
-        public IFormattableTextComponent getDisplay() {
+        public net.minecraft.network.chat.Component getDisplay() {
             return new Component.translatable("astralsorcery.misc.architect.mode", this.getName());
         }
 

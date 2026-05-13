@@ -22,7 +22,6 @@ import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.Mth;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Component;
@@ -113,7 +112,7 @@ public class ScreenJournal extends WidthHeightScreen {
 
     private Rectangle drawBookmark(PoseStack renderStack,
                                    float offsetX, float offsetY, int width, int height, int mouseOverWidth,
-                                   float zLevel, IFormattableTextComponent title, int titleRGBColor, int mouseX, int mouseY,
+                                   float zLevel, net.minecraft.network.chat.Component title, int titleRGBColor, int mouseX, int mouseY,
                                    AbstractRenderableTexture texture, AbstractRenderableTexture textureStretched) {
         texture.bindTexture();
 

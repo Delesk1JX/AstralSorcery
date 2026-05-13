@@ -11,8 +11,7 @@ package hellfirepvp.astralsorcery.client.screen.journal.page;
 import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.client.util.RenderingDrawUtils;
 import hellfirepvp.astralsorcery.common.data.journal.JournalPage;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.util.IReorderingProcessor;
+import net.minecraft.client.gui.Font;
 import net.minecraft.network.chat.*;
 
 import java.util.LinkedList;

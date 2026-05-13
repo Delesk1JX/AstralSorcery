@@ -23,7 +23,7 @@ import hellfirepvp.astralsorcery.common.lib.ConstellationsAS;
 import net.minecraft.client.renderer.RenderState;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.renderer.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.util.Util;
 import org.lwjgl.opengl.GL11;
 

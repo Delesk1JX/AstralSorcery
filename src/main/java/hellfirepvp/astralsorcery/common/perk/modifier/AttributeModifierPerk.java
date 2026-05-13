@@ -70,7 +70,7 @@ public class AttributeModifierPerk extends AttributeConverterPerk implements Att
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public boolean addLocalizedTooltip(Collection<IFormattableTextComponent> tooltip) {
+    public boolean addLocalizedTooltip(Collection<net.minecraft.network.chat.Component> tooltip) {
         Collection<PerkAttributeModifier> modifiers = this.getModifiers(Minecraft.getInstance().player, LogicalSide.CLIENT, true);
         boolean addEmptyLine = !modifiers.isEmpty();
 

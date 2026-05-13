@@ -89,7 +89,7 @@ public class ScreenConstellationPaper extends WidthHeightScreen {
     }
 
     private void drawHeader(PoseStack renderStack) {
-        IFormattableTextComponent name = this.constellation.getConstellationName();
+        net.minecraft.network.chat.Component name = this.constellation.getConstellationName();
         float length = font.getStringPropertyWidth(name) * 1.8F;
         double offsetLeft = (width >> 1) - (length / 2);
         int offsetTop = guiTop + 45;

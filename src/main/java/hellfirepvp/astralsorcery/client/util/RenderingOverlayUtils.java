@@ -13,7 +13,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import hellfirepvp.astralsorcery.client.resource.BlockAtlasTexture;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.world.item.ItemStack;

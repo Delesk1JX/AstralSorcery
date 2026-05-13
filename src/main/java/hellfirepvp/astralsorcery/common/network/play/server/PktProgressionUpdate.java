@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchProgression;
 import hellfirepvp.astralsorcery.common.network.base.ASPacket;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.util.Util;
 import net.minecraft.ChatFormatting;
 import static net.minecraft.network.chat.Component.translatable;

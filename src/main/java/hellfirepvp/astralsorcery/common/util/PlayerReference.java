@@ -34,17 +34,17 @@ import java.util.UUID;
 public class PlayerReference {
 
     private final UUID playerUUID;
-    private final IFormattableTextComponent playerName;
+    private final net.minecraft.network.chat.Component playerName;
 
-    public PlayerReference(UUID playerUUID, IFormattableTextComponent playerName) {
+    public PlayerReference(UUID playerUUID, net.minecraft.network.chat.Component playerName) {
         this.playerUUID = playerUUID;
         this.playerName = playerName;
     }
 
     public static PlayerReference of(Player player) {
         Component txt = player.getDisplayName();
-        if (txt instanceof IFormattableTextComponent) {
-            return new PlayerReference(player.getUniqueID(), (IFormattableTextComponent) txt);
+        if (txt instanceof net.minecraft.network.chat.Component) {
+            return new PlayerReference(player.getUniqueID(), (net.minecraft.network.chat.Component) txt);
         }
         return new PlayerReference(player.getUniqueID(), new Component.literal("").append(txt));
     }

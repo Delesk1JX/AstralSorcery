@@ -69,7 +69,7 @@ public class GemSocketMajorPerk extends MajorPerk implements GemSocketPerk {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public boolean addLocalizedTooltip(Collection<IFormattableTextComponent> tooltip) {
+    public boolean addLocalizedTooltip(Collection<net.minecraft.network.chat.Component> tooltip) {
         if (super.addLocalizedTooltip(tooltip)) {
             tooltip.add(new Component.literal(""));
         }

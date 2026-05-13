@@ -28,7 +28,7 @@ import hellfirepvp.observerlib.api.client.StructureRenderer;
 import hellfirepvp.observerlib.api.structure.Structure;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.Tuple;

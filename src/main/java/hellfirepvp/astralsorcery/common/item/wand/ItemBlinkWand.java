@@ -316,11 +316,11 @@ public class ItemBlinkWand extends Item implements AlignmentChargeConsumer {
             this.name = name;
         }
 
-        public IFormattableTextComponent getName() {
+        public net.minecraft.network.chat.Component getName() {
             return new Component.translatable("astralsorcery.misc.blink.mode." + this.name);
         }
 
-        public IFormattableTextComponent getDisplay() {
+        public net.minecraft.network.chat.Component getDisplay() {
             return new Component.translatable("astralsorcery.misc.blink.mode", this.getName());
         }
 

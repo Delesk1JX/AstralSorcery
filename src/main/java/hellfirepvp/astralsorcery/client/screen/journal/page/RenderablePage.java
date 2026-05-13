@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.client.screen.journal.page;
 import com.mojang.blaze3d.matrix.PoseStack;
 import hellfirepvp.astralsorcery.common.data.research.ResearchNode;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Font;
 
 import javax.annotation.Nullable;
 

@@ -10,7 +10,6 @@ package hellfirepvp.astralsorcery.common.enchantment.amulet;
 
 import hellfirepvp.astralsorcery.common.enchantment.dynamic.DynamicEnchantment;
 import hellfirepvp.astralsorcery.common.enchantment.dynamic.DynamicEnchantmentType;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -43,7 +42,7 @@ public class AmuletEnchantment extends DynamicEnchantment {
 
     //TODO nested translation components..?
     @OnlyIn(Dist.CLIENT)
-    public IFormattableTextComponent getDisplay() {
+    public net.minecraft.network.chat.Component getDisplay() {
         String typeStr = this.getType().getDisplayName();
         String levelsStr = I18n.format(String.format("astralsorcery.amulet.enchantment.level.%s", this.levelAddition > 1 ? "more" : "one"));
 

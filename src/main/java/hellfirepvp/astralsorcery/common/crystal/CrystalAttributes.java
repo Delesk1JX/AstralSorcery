@@ -148,9 +148,9 @@ public final class CrystalAttributes {
                 if (!prop.canSee(progress) || !attr.isDiscovered()) {
                     missing = true;
                 } else {
-                    IFormattableTextComponent enchantmentLevel = new Component.translatable(String.format("enchantment.level.%s", attr.getTier()))
+                    net.minecraft.network.chat.Component enchantmentLevel = new Component.translatable(String.format("enchantment.level.%s", attr.getTier()))
                             .withStyle(ChatFormatting.GOLD);
-                    IFormattableTextComponent propertyName = prop.getName(attr.getTier()).withStyle(ChatFormatting.GRAY);
+                    net.minecraft.network.chat.Component propertyName = prop.getName(attr.getTier()).withStyle(ChatFormatting.GRAY);
 
                     tooltip.add(propertyName
                             .append(new Component.literal(" "))

@@ -54,7 +54,7 @@ public class CommandSerialize {
         ItemStack held = player.getHeldItemMainhand();
         String serialized = JsonHelper.serializeItemStack(held).toString();
 
-        IFormattableTextComponent msg = new Component.literal(serialized);
+        net.minecraft.network.chat.Component msg = new Component.literal(serialized);
         Style s = Style.EMPTY.setFormatting(ChatFormatting.GREEN)
                 .setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Component.literal("Copy")))
                 .setClickEvent(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, serialized));
@@ -70,7 +70,7 @@ public class CommandSerialize {
         BlockState state = result == null ? Blocks.AIR.getDefaultState() : player.getEntityWorld().getBlockState(result.getPos());
         String serialized = BlockStateHelper.serialize(state);
 
-        IFormattableTextComponent msg = new Component.literal(serialized);
+        net.minecraft.network.chat.Component msg = new Component.literal(serialized);
         Style s = Style.EMPTY.setFormatting(ChatFormatting.GREEN)
                 .setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Component.literal("Copy")))
                 .setClickEvent(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, serialized));

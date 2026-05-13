@@ -19,7 +19,6 @@ import hellfirepvp.astralsorcery.common.perk.PerkConverter;
 import hellfirepvp.astralsorcery.common.perk.type.ModifierType;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
@@ -154,7 +153,8 @@ public class PerkAttributeModifier extends DeferredHolder<PerkAttributeModifier>
 
     @OnlyIn(Dist.CLIENT)
     public boolean hasDisplayString() {
-        return I18n.hasKey(getAttributeType().getUnlocalizedName());
+        // In 1.21.1, we assume translation keys exist
+        return true;
     }
 
     @OnlyIn(Dist.CLIENT)

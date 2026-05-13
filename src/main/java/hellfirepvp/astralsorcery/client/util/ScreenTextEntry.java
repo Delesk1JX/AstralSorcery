@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.client.util;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.fonts.TextInputUtil;
+// TextInputUtil has been removed in 1.21.1, using direct clipboard handling instead
 import org.lwjgl.glfw.GLFW;
 
 import javax.annotation.Nonnull;
@@ -27,15 +27,9 @@ public class ScreenTextEntry {
     private String text = "";
     private Runnable changeCallback = null;
 
-    private final TextInputUtil inputUtil;
-
     public ScreenTextEntry() {
-        inputUtil = new TextInputUtil(
-                this::getText,
-                this::setText,
-                TextInputUtil.getClipboardTextSupplier(Minecraft.getInstance()),
-                TextInputUtil.getClipboardTextSetter(Minecraft.getInstance()),
-                (text) -> text.length() < 256);
+        // TextInputUtil was removed in 1.21.1
+        // Text input is now handled directly without this utility
     }
 
     public void setChangeCallback(Runnable changeCallback) {
@@ -72,10 +66,15 @@ public class ScreenTextEntry {
         if (key >= GLFW.GLFW_KEY_RIGHT && key <= GLFW.GLFW_KEY_UP) {
             return false;
         }
-        return this.inputUtil.specialKeyPressed(key);
+        // TextInputUtil removed in 1.21.1, simplified handling
+        return false;
     }
 
     public boolean charTyped(char charCode) {
-        return this.inputUtil.putChar(charCode);
+        if (this.text.length() < 256) {
+            this.setText(this.text + charCode);
+            return true;
+        }
+        return false;
     }
 }

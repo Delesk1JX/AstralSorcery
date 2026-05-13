@@ -28,7 +28,7 @@ import hellfirepvp.astralsorcery.common.network.play.client.PktEngraveGlass;
 import hellfirepvp.astralsorcery.common.tile.TileRefractionTable;
 import hellfirepvp.astralsorcery.common.util.world.WorldSeedCache;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.world.item.ItemStack;

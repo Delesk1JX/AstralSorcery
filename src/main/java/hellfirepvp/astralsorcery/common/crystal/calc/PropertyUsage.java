@@ -29,7 +29,7 @@ public class PropertyUsage extends DeferredHolder<PropertyUsage> {
         setRegistryName(registryName);
     }
 
-    public IFormattableTextComponent getName() {
+    public net.minecraft.network.chat.Component getName() {
         return new Component.translatable(String.format("crystal.usage.%s.%s.name",
                 getRegistryName().getNamespace(), getRegistryName().getPath()));
     }

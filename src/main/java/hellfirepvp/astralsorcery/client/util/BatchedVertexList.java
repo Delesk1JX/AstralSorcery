@@ -12,7 +12,7 @@ import com.mojang.blaze3d.matrix.PoseStack;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.VertexBuffer;
-import net.minecraft.client.renderer.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import org.lwjgl.opengl.GL11;
 
 import java.util.function.Consumer;
