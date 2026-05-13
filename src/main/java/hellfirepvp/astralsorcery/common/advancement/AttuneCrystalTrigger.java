@@ -13,7 +13,7 @@ import com.google.gson.JsonObject;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.advancement.instance.ConstellationInstance;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
-import net.minecraft.server.level().ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.loot.ConditionArrayParser;
 import net.minecraft.resources.ResourceLocation;
 

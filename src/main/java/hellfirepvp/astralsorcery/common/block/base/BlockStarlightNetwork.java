@@ -10,10 +10,10 @@ package hellfirepvp.astralsorcery.common.block.base;
 
 import hellfirepvp.astralsorcery.common.tile.base.TileNetwork;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.world.level().block.Block;
-import net.minecraft.world.level().block.state.BlockState;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level().Level;
+import net.minecraft.world.level.Level;
 
 /**
  * This class is part of the Astral Sorcery Mod

@@ -1,8 +1,8 @@
 package hellfirepvp.observerlib.api.util;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level().LevelAccessor;
-import net.minecraft.world.level().block.state.BlockState;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.state.BlockState;
 
 /**
  * Stub class for PatternBlockArray from observerlib.

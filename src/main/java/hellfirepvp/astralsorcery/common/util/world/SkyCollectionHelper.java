@@ -12,8 +12,8 @@ import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
-import net.minecraft.server.level().ServerLevel;
-import net.minecraft.world.level().Level;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 

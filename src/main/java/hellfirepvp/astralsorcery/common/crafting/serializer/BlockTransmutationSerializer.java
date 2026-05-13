@@ -21,7 +21,7 @@ import hellfirepvp.astralsorcery.common.util.block.BlockMatchInformation;
 import hellfirepvp.astralsorcery.common.util.block.BlockStateHelper;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import hellfirepvp.astralsorcery.common.util.data.JsonHelper;
-import net.minecraft.world.level().block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.JSONUtils;

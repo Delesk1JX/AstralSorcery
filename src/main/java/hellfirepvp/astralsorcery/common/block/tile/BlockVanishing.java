@@ -9,22 +9,22 @@
 package hellfirepvp.astralsorcery.common.block.tile;
 
 import hellfirepvp.astralsorcery.common.tile.TileVanishing;
-import net.minecraft.world.level().block.state.BlockState;
-import net.minecraft.world.level().block.ContainerBlock;
-import net.minecraft.world.level().block.SoundType;
-import net.minecraft.world.level().block.state.BlockBehaviour;
-import net.minecraft.world.level().material.MaterialColor;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.ContainerBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level().block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.util.shapes.VoxelShape;
-import net.minecraft.world.level().block.Blocks;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.level().Level;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 

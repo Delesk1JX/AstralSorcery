@@ -10,8 +10,8 @@ package hellfirepvp.astralsorcery.common.block.base.template;
 
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesMisc;
-import net.minecraft.world.level().block.state.BlockState;
-import net.minecraft.world.level().block.FallingBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.FallingBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.neoforged.api.distmarker.Dist;

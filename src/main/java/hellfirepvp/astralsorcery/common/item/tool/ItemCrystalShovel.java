@@ -12,11 +12,11 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;
 import hellfirepvp.astralsorcery.common.item.base.TypeEnchantableItem;
 import hellfirepvp.astralsorcery.common.lib.CrystalPropertiesAS;
-import net.minecraft.world.level().block.Block;
-import net.minecraft.world.level().block.state.BlockState;
-import net.minecraft.world.level().block.Blocks;
-import net.minecraft.world.level().block.CampfireBlock;
-import net.minecraft.world.level().block.state.BlockBehaviour;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CampfireBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.item.enchantment.Enchantment;
 
 import net.minecraft.world.entity.player.Player;
@@ -25,7 +25,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.util.*;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level().Level;
+import net.minecraft.world.level.Level;
 
 import java.util.Map;
 

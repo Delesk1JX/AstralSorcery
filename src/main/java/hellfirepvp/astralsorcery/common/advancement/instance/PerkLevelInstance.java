@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.advancement.PerkLevelTrigger;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import net.minecraft.advancements.criterion.CriterionInstance;
 import net.minecraft.advancements.criterion.EntityPredicate;
-import net.minecraft.server.level().ServerPlayer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.loot.ConditionArraySerializer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.resources.ResourceLocation;

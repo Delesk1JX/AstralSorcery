@@ -19,7 +19,7 @@ import net.minecraft.client.world.DimensionRenderInfo;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.vector.Vector3f;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.world.level().Level;
+import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.client.ISkyRenderHandler;
 
 /**

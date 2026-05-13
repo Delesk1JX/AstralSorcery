@@ -1,6 +1,6 @@
 package hellfirepvp.observerlib.api.block;
 
-import net.minecraft.world.level().block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 
 /**
  * Stub interface for MatchableState from observerlib.

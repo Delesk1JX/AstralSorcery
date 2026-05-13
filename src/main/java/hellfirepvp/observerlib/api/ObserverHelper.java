@@ -1,7 +1,7 @@
 package hellfirepvp.observerlib.api;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level().LevelAccessor;
+import net.minecraft.world.level.LevelAccessor;
 
 /**
  * Stub class for ObserverHelper from observerlib.

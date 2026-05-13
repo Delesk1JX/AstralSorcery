@@ -8,9 +8,9 @@
 
 package hellfirepvp.astralsorcery.common.block.base;
 
-import net.minecraft.world.level().block.state.BlockBehaviour;
-import net.minecraft.world.level().material.MaterialColor;
-import net.minecraft.world.level().material.PushReaction;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.PushReaction;
 
 /**
  * This class is part of the Astral Sorcery Mod
