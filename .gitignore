@@ -4,29 +4,33 @@
 *.o
 *.obj
 *.out
-target/
 build/
+target/
 
 # Dependencies
 .gradle/
 libs/
-!libs/**
+lib/
 
 # Logs and temp files
 *.log
 *.tmp
+*.swp
 
 # Editors
 .vscode/
 .idea/
 
-# System files
-.DS_Store
-Thumbs.db
+# Environment
+.env
+.env.local
+*.env.*
 
-# Coverage reports
+# Coverage
 coverage/
 htmlcov/
 .coverage
 
+# Package manager
+node_modules/
 ```

@@ -11,13 +11,11 @@ package hellfirepvp.astralsorcery.common.enchantment.amulet;
 
 import hellfirepvp.astralsorcery.common.enchantment.dynamic.DynamicEnchantment;
 import hellfirepvp.astralsorcery.common.enchantment.dynamic.DynamicEnchantmentType;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.client.resources.language.LanguageManager;
-import static net.minecraft.network.chat.Component.translatable;
+import net.minecraft.network.chat.Component;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -46,11 +44,11 @@ public class AmuletEnchantment extends DynamicEnchantment {
     @OnlyIn(Dist.CLIENT)
     public net.minecraft.network.chat.Component getDisplay() {
         String typeStr = this.getType().getDisplayName();
-        String levelsStr = I18n.format(String.format("astralsorcery.amulet.enchantment.level().%s", this.levelAddition > 1 ? "more" : "one"));
+        String levelsStr = Component.translatable(String.format("astralsorcery.amulet.enchantment.level.%s", this.levelAddition > 1 ? "more" : "one")).getString();
 
         if (this.getType().isEnchantmentSpecific()) {
             return Component.translatable(typeStr,
-                    String.valueOf(this.getLevelAddition()), levelsStr, LanguageMap.getInstance().func_230503_a_(this.getEnchantment().getName()));
+                    String.valueOf(this.getLevelAddition()), levelsStr, this.getEnchantment().getDescription());
         } else {
             return Component.translatable(typeStr, String.valueOf(this.getLevelAddition()), levelsStr);
         }

@@ -10,9 +10,7 @@ package hellfirepvp.astralsorcery.common.util;
 
 import net.neoforged.bus.api.Event;
 import net.neoforged.bus.api.EventPriority;
-import net.neoforged.bus.api.GenericEvent;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.bus.api.IEventBusInvokeDispatcher;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,30 +72,6 @@ public class CacheEventBus implements IEventBus {
     }
 
     @Override
-    public <T extends GenericEvent<? extends F>, F> void addGenericListener(Class<F> genericClassFilter, Consumer<T> consumer) {
-        wrapped.addGenericListener(genericClassFilter, consumer);
-        registeredListeners.add(consumer);
-    }
-
-    @Override
-    public <T extends GenericEvent<? extends F>, F> void addGenericListener(Class<F> genericClassFilter, EventPriority priority, Consumer<T> consumer) {
-        wrapped.addGenericListener(genericClassFilter, priority, consumer);
-        registeredListeners.add(consumer);
-    }
-
-    @Override
-    public <T extends GenericEvent<? extends F>, F> void addGenericListener(Class<F> genericClassFilter, EventPriority priority, boolean receiveCancelled, Consumer<T> consumer) {
-        wrapped.addGenericListener(genericClassFilter, priority, receiveCancelled, consumer);
-        registeredListeners.add(consumer);
-    }
-
-    @Override
-    public <T extends GenericEvent<? extends F>, F> void addGenericListener(Class<F> genericClassFilter, EventPriority priority, boolean receiveCancelled, Class<T> eventType, Consumer<T> consumer) {
-        wrapped.addGenericListener(genericClassFilter, priority, receiveCancelled, eventType, consumer);
-        registeredListeners.add(consumer);
-    }
-
-    @Override
     public void unregister(Object object) {
         wrapped.unregister(object);
         registeredListeners.remove(object);
@@ -106,11 +80,6 @@ public class CacheEventBus implements IEventBus {
     @Override
     public boolean post(Event event) {
         return wrapped.post(event);
-    }
-
-    @Override
-    public boolean post(Event event, IEventBusInvokeDispatcher wrapper) {
-        return wrapped.post(event, wrapper);
     }
 
     @Override
