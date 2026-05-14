@@ -10,8 +10,6 @@ package hellfirepvp.astralsorcery.common.util.tick;
 
 import java.util.EnumSet;
 
-import net.neoforged.neoforge.event.tick.TickEvent;
-
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.

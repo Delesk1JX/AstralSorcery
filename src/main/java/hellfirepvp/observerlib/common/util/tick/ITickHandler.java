@@ -8,8 +8,6 @@ package hellfirepvp.observerlib.common.util.tick;
 
 import java.util.EnumSet;
 
-import net.neoforged.neoforge.event.tick.TickEvent;
-
 /**
  * Interface for tick handlers that need to be called every tick.
  * This is a stub for the observerlib library.
