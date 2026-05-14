@@ -19,18 +19,16 @@ import hellfirepvp.astralsorcery.common.item.base.AlignmentChargeConsumer;
 import hellfirepvp.astralsorcery.common.item.base.AlignmentChargeRevealer;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
-import net.minecraft.client.MainWindow;
 import net.minecraft.client.Minecraft;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.Tuple;
-import net.minecraft.world.GameType;
-import net.neoforged.neoforge.client.event.RenderGameOverlayEvent;
-import net.neoforged.neoforge.event.tick.ServerTickEvent;
+import net.minecraft.world.level.GameType;
+import net.neoforged.neoforge.client.gui.event.RenderGuiEvent;
 import hellfirepvp.observerlib.common.util.tick.TickEvent.ClientTickEvent;
-import net.neoforged.neoforge.eventbus.api.EventPriority;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.LogicalSide;
 import org.lwjgl.opengl.GL11;
@@ -61,10 +59,7 @@ public class AlignmentChargeRenderer implements ITickHandler {
         bus.addListener(EventPriority.HIGH, this::onRenderOverlay);
     }
 
-    private void onRenderOverlay(RenderGameOverlayEvent.Post event) {
-        if (event.getType() != RenderGameOverlayEvent.ElementType.ALL) {
-            return;
-        }
+    private void onRenderOverlay(RenderGuiEvent.Post event) {
         if (Minecraft.getInstance().playerController != null &&
                 Minecraft.getInstance().playerController.getCurrentGameType() == GameType.SPECTATOR) {
             return;
@@ -73,10 +68,9 @@ public class AlignmentChargeRenderer implements ITickHandler {
             return;
         }
 
-        PoseStack renderStack = event.getMatrixStack();
-        MainWindow window = event.getWindow();
-        int screenWidth = window.getScaledWidth();
-        int screenHeight = window.getScaledHeight();
+        PoseStack renderStack = event.getPoseStack();
+        int screenWidth = event.getGuiGraphics().guiWidth();
+        int screenHeight = event.getGuiGraphics().guiHeight();
         int barWidth = 194;
         int offsetLeft = screenWidth / 2 - barWidth / 2;
         int offsetTop = screenHeight + 3 - 81; //*sigh* vanilla
@@ -171,13 +165,13 @@ public class AlignmentChargeRenderer implements ITickHandler {
     }
 
     @Override
-    public EnumSet<TickEvent.ClientTickEvent> getHandledTypes() {
-        return EnumSet.of(TickEvent.ClientTickEvent.CLIENT);
+    public EnumSet<ClientTickEvent> getHandledTypes() {
+        return EnumSet.of(ClientTickEvent.CLIENT);
     }
 
     @Override
-    public boolean canFire(TickEvent.ClientTickEvent.Phase phase) {
-        return phase == TickEvent.ClientTickEvent.Phase.END;
+    public boolean canFire(TickEvent.Phase phase) {
+        return phase == TickEvent.Phase.END;
     }
 
     @Override
