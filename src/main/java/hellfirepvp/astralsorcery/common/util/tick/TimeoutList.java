@@ -30,14 +30,14 @@ import java.util.function.Predicate;
 public class TimeoutList<V> implements ITickHandler, Iterable<V> {
 
     private final TimeoutDelegate<V> delegate;
-    private final EnumSet<TickEvent.ClientTickEvent.Phase> tickTypes;
+    private final EnumSet<TickEvent.ClientTickEvent> tickTypes;
 
     private final List<TimeoutEntry<V>> tickEntries = new LinkedList<>();
 
-    public TimeoutList(@Nullable TimeoutDelegate<V> delegate, TickEvent.ClientTickEvent.Phase... types) {
+    public TimeoutList(@Nullable TimeoutDelegate<V> delegate, TickEvent.ClientTickEvent... types) {
         this.delegate = delegate;
-        this.tickTypes = EnumSet.noneOf(TickEvent.ClientTickEvent.Phase.class);
-        for (TickEvent.ClientTickEvent.Phase type : types) {
+        this.tickTypes = EnumSet.noneOf(TickEvent.ClientTickEvent.class);
+        for (TickEvent.ClientTickEvent type : types) {
             if (type != null) {
                 this.tickTypes.add(type);
             }
@@ -154,13 +154,13 @@ public class TimeoutList<V> implements ITickHandler, Iterable<V> {
     }
 
     @Override
-    public EnumSet<TickEvent.ClientTickEvent.Phase> getHandledTypes() {
+    public EnumSet<TickEvent.ClientTickEvent> getHandledTypes() {
         return tickTypes;
     }
 
     @Override
-    public boolean canFire(TickEvent.ClientTickEvent.Phase phase) {
-        return phase == TickEvent.ClientTickEvent.Phase.END;
+    public boolean canFire(TickEvent.Phase phase) {
+        return phase == TickEvent.Phase.END;
     }
 
     @Override

@@ -32,9 +32,9 @@ public interface ITickHandler {
     /**
      * Returns the set of tick types this handler wants to receive.
      * 
-     * @return EnumSet of TickEvent.ClientTickEvent.Phase that this handler handles
+     * @return EnumSet of TickEvent.ClientTickEvent that this handler handles
      */
-    EnumSet<TickEvent.ClientTickEvent.Phase> getHandledTypes();
+    EnumSet<TickEvent.ClientTickEvent> getHandledTypes();
     
     /**
      * Checks if this handler should fire for the given phase.
@@ -42,7 +42,7 @@ public interface ITickHandler {
      * @param phase the phase of the tick (START or END)
      * @return true if this handler should be called for this phase
      */
-    boolean canFire(TickEvent.ClientTickEvent.Phase phase);
+    boolean canFire(TickEvent.Phase phase);
     
     /**
      * Returns a name for this tick handler, useful for debugging.
