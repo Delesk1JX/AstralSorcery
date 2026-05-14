@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.common.entity.technical.EntityObservatoryHelper
 import hellfirepvp.astralsorcery.common.tile.TileObservatory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.util.vector.Vector3f;
+import org.joml.Vector3f;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -57,8 +57,8 @@ public class RenderObservatory extends CustomTileEntityRenderer<TileObservatory>
 
         renderStack.push();
         renderStack.translate(0.5F, 1.5F, 0.5F);
-        renderStack.rotate(Vector3f.XP.rotationDegrees(180F));
-        renderStack.rotate(Vector3f.YP.rotationDegrees(180F));
+        renderStack.mulPose(new org.joml.Quaternionf().rotationX((float) Math.toRadians(180F)));
+        renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians(180F)));
         //renderStack.scale(0.0625F, 0.0625F, 0.0625F);
 
         MODEL_OBSERVATORY.setupRotations(iYawDegree, iPitchDegree);

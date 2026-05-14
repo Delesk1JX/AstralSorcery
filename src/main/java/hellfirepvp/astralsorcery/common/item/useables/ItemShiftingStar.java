@@ -44,7 +44,7 @@ import net.neoforged.fml.LogicalSide;
 import javax.annotation.Nullable;
 import java.util.List;
 
-import net.minecraft.util.ActionResult;
+import net.minecraft.world.InteractionResult;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.

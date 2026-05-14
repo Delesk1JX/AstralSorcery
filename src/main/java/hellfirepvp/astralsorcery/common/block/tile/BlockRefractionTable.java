@@ -46,7 +46,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-import net.minecraft.util.ActionResultType;
+import net.minecraft.world.InteractionResult;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.
@@ -101,7 +101,7 @@ public class BlockRefractionTable extends ContainerBlock implements CustomItemBl
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public InteractionResult onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         ItemStack held = player.getHeldItem(hand);
         if (!world.isRemote()) {
             TileRefractionTable tft = MiscUtils.getTileAt(world, pos, TileRefractionTable.class, true);
@@ -112,14 +112,14 @@ public class BlockRefractionTable extends ContainerBlock implements CustomItemBl
                         if (!remaining.isEmpty()) {
                             ItemUtils.dropItemNaturally(world, player.getPosX(), player.getPosY(), player.getPosZ(), remaining);
                         }
-                        return ActionResultType.SUCCESS;
+                        return InteractionResult.SUCCESS;
                     }
                     if (!tft.getGlassStack().isEmpty()) {
                         ItemStack remaining = ItemUtils.dropItemToPlayer(player, tft.setGlassStack(ItemStack.EMPTY));
                         if (!remaining.isEmpty()) {
                             ItemUtils.dropItemNaturally(world, player.getPosX(), player.getPosY(), player.getPosZ(), remaining);
                         }
-                        return ActionResultType.SUCCESS;
+                        return InteractionResult.SUCCESS;
                     }
                 } else if (!held.isEmpty()) {
                     if (held.getItem() instanceof ItemParchment && tft.getParchmentCount() < 64) {
@@ -147,7 +147,7 @@ public class BlockRefractionTable extends ContainerBlock implements CustomItemBl
                                 player.setHeldItem(hand, held);
                             }
                         }
-                        return ActionResultType.PASS;
+                        return InteractionResult.PASS;
                     } else if (tft.getInputStack().isEmpty()) {
                         ItemStack previous = tft.setInputStack(ItemUtils.copyStackWithSize(held, 1));
                         if (!previous.isEmpty()) {
@@ -169,7 +169,7 @@ public class BlockRefractionTable extends ContainerBlock implements CustomItemBl
                 }
             }
         }
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
     @Override

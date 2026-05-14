@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.event.EventFlags;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.DimensionRenderInfo;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.util.vector.Vector3f;
+import org.joml.Vector3f;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.client.ISkyRenderHandler;
@@ -76,7 +76,7 @@ public class ChainingSkyRenderer implements ISkyRenderHandler {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, alphaSubRain);
 
         renderStack.push();
-        renderStack.rotate(Vector3f.XP.rotationDegrees(180));
+        renderStack.mulPose(new org.joml.Quaternionf().rotationX((float) Math.toRadians(180)));
         AstralSkyRenderer.renderConstellationsSky(world, renderStack, pTicks);
         renderStack.pop();
 

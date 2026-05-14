@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.client.model.builtin.ModelAttunementAltar;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import hellfirepvp.astralsorcery.common.tile.TileAttunementAltar;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.util.vector.Vector3f;
+import org.joml.Vector3f;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.util.Mth;
 
@@ -37,7 +37,7 @@ public class RenderAttunementAltar extends CustomTileEntityRenderer<TileAttuneme
     public void render(TileAttunementAltar tile, float pTicks, PoseStack renderStack, MultiBufferSource renderTypeBuffer, int combinedLight, int combinedOverlay) {
         renderStack.push();
         renderStack.translate(0.5, 0.5, 0.5);
-        renderStack.rotate(Vector3f.XP.rotationDegrees(180));
+        renderStack.mulPose(new org.joml.Quaternionf().rotationX((float) Math.toRadians(180)));
         MODEL_ATTUNEMENT_ALTAR.render(renderStack, renderTypeBuffer, combinedLight, combinedOverlay);
         renderStack.pop();
 
@@ -83,7 +83,7 @@ public class RenderAttunementAltar extends CustomTileEntityRenderer<TileAttuneme
 
             renderStack.push();
             renderStack.translate(0.5, framePosY, 0.5);
-            renderStack.rotate(Vector3f.XP.rotationDegrees(180));
+            renderStack.mulPose(new org.joml.Quaternionf().rotationX((float) Math.toRadians(180)));
             MODEL_ATTUNEMENT_ALTAR.renderHovering(renderStack, renderTypeBuffer.getBuffer(MODEL_ATTUNEMENT_ALTAR.getGeneralType()), combinedLight, combinedOverlay, 1F, 1F, 1F, 1F, xOffset, zOffset, rotation);
             renderStack.pop();
         }

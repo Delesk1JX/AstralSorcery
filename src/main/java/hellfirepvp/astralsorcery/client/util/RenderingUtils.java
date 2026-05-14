@@ -49,7 +49,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.shapes.VoxelShape;
 import net.minecraft.world.level.block.Blocks;
 import org.joml.Matrix4f;
-import net.minecraft.util.vector.Vector3f;
+import org.joml.Vector3f;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.network.chat.FormattedText;
 import net.minecraft.client.resources.language.LanguageManager;
@@ -271,7 +271,7 @@ public class RenderingUtils {
                 le = Minecraft.getInstance().player;
             }
             float iYaw = RenderingVectorUtils.interpolate(Mth.wrapDegrees(le.prevRotationYaw), Mth.wrapDegrees(le.rotationYaw), pTicks);
-            renderStack.rotate(Vector3f.YP.rotationDegrees(-iYaw + 180F));
+            renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians(-iYaw + 180F)));
         }
 
         Matrix4f matr = renderStack.getLast().getMatrix();
@@ -317,7 +317,7 @@ public class RenderingUtils {
         float sinBobY = Mth.sin((ClientScheduler.getClientTick() + pTicks) / 10.0F) * 0.1F + 0.1F;
         renderStack.translate(0, sinBobY, 0);
         float ageRotate = ((ClientScheduler.getClientTick() + pTicks) / 20.0F);
-        renderStack.rotate(Vector3f.YP.rotation(ageRotate));
+        renderStack.mulPose(new org.joml.Quaternionf().rotationY(ageRotate));
 
         renderTranslucentItemStackModelGround(stack, renderStack, overlayColor, Blending.PREALPHA, alpha);
 

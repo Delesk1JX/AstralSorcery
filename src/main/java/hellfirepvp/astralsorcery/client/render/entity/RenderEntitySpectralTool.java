@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.common.entity.EntitySpectralTool;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.util.vector.Vector3f;
+import org.joml.Vector3f;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.texture.AtlasTexture;
@@ -45,10 +45,10 @@ public class RenderEntitySpectralTool extends EntityRenderer<EntitySpectralTool>
 
         renderStack.push();
         renderStack.translate(0, entity.getHeight() / 2, 0);
-        renderStack.rotate(Vector3f.YP.rotationDegrees(-entityYaw - 90));
+        renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians(-entityYaw - 90)));
         if (stack.getItem() instanceof AxeItem) {
-            renderStack.rotate(Vector3f.XP.rotationDegrees(180));
-            renderStack.rotate(Vector3f.ZP.rotationDegrees(270));
+            renderStack.mulPose(new org.joml.Quaternionf().rotationX((float) Math.toRadians(180)));
+            renderStack.mulPose(new org.joml.Quaternionf().rotationZ((float) Math.toRadians(270)));
         }
 
         RenderingUtils.renderTranslucentItemStackModelGround(stack, renderStack, ColorsAS.SPECTRAL_TOOL, Blending.CONSTANT_ALPHA, 63);

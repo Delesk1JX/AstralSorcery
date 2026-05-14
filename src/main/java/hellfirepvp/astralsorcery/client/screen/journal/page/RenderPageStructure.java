@@ -33,7 +33,7 @@ import net.minecraft.client.gui.Font;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.vector.Vector3f;
+import org.joml.Vector3f;
 import net.minecraft.network.chat.FormattedText;
 import static net.minecraft.network.chat.Component.literal;
 import static net.minecraft.network.chat.Component.translatable;
@@ -166,8 +166,8 @@ public class RenderPageStructure extends RenderablePage {
                 renderStack.push();
                 renderStack.translate(switchRequiredAir.x + 13, switchRequiredAir.y + 11, zLevel + 60);
                 renderStack.scale(7, -7, 7);
-                renderStack.rotate(Vector3f.XP.rotationDegrees(30));
-                renderStack.rotate(Vector3f.YP.rotationDegrees(225));
+                renderStack.mulPose(new org.joml.Quaternionf().rotationX((float) Math.toRadians(30)));
+                renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians(225)));
 
                 RenderingUtils.renderSimpleBlockModel(Blocks.BLACK_STAINED_GLASS.getDefaultState(), renderStack, buf);
                 renderStack.pop();

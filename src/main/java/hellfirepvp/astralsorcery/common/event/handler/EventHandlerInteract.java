@@ -21,7 +21,7 @@ import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.world.BlockEvent;
 import net.neoforged.bus.api.IEventBus;
 
-import net.minecraft.util.ActionResultType;
+import net.minecraft.world.InteractionResult;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.
@@ -47,7 +47,7 @@ public class EventHandlerInteract {
             if (item.shouldInterceptEntityInteract(event.getSide(), event.getPlayer(), event.getHand(), event.getTarget()) &&
                     item.doEntityInteract(event.getSide(), event.getPlayer(), event.getHand(), event.getTarget())) {
                 event.setCanceled(true);
-                event.setCancellationResult(ActionResultType.SUCCESS);
+                event.setCancellationResult(InteractionResult.SUCCESS);
             }
         }
     }
@@ -59,7 +59,7 @@ public class EventHandlerInteract {
             if (item.shouldInterceptBlockInteract(event.getSide(), event.getPlayer(), event.getHand(), event.getPos(), event.getFace()) &&
                     item.doBlockInteract(event.getSide(), event.getPlayer(), event.getHand(), event.getPos(), event.getFace())) {
                 event.setCanceled(true);
-                event.setCancellationResult(ActionResultType.SUCCESS);
+                event.setCancellationResult(InteractionResult.SUCCESS);
             }
         }
     }

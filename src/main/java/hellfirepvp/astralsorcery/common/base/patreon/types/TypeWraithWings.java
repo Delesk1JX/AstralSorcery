@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.base.patreon.PatreonEffect;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.Mth;
-import net.minecraft.util.vector.Vector3f;
+import org.joml.Vector3f;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.RenderPlayerEvent;
@@ -79,13 +79,13 @@ public class TypeWraithWings extends PatreonEffect {
         if (swimAngle > 0) {
             float waterPitch = player.isInWater() ? -90.0F - player.rotationPitch : -90.0F;
             float bodySwimAngle = Mth.lerp(swimAngle, 0.0F, waterPitch);
-            renderStack.rotate(Vector3f.YP.rotationDegrees(180 - rot));
-            renderStack.rotate(Vector3f.XP.rotationDegrees(bodySwimAngle));
+            renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians(180 - rot)));
+            renderStack.mulPose(new org.joml.Quaternionf().rotationX((float) Math.toRadians(bodySwimAngle)));
             if (player.isActualySwimming()) {
                 renderStack.translate(0, -1, 0.3);
             }
         } else {
-            renderStack.rotate(Vector3f.YP.rotationDegrees(180 - rot));
+            renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians(180 - rot)));
         }
 
         renderStack.translate(0, yOffset, 0);
@@ -95,14 +95,14 @@ public class TypeWraithWings extends PatreonEffect {
 
         renderStack.push();
         renderStack.translate(-2.3, 0, 0.8);
-        renderStack.rotate(Vector3f.YP.rotationDegrees(10));
+        renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians(10)));
         ObjModelRender.renderWraithWings(renderStack);
         renderStack.pop();
 
         renderStack.push();
-        renderStack.rotate(Vector3f.YP.rotationDegrees(180));
+        renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians(180)));
         renderStack.translate(-2.3, 0, -0.8);
-        renderStack.rotate(Vector3f.YN.rotationDegrees(10));
+        renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians(-(10))));
         ObjModelRender.renderWraithWings(renderStack);
         renderStack.pop();
 

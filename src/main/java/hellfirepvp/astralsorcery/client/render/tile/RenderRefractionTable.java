@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.tile.TileRefractionTable;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.util.vector.Vector3f;
+import org.joml.Vector3f;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.world.item.ItemStack;
@@ -53,7 +53,7 @@ public class RenderRefractionTable extends CustomTileEntityRenderer<TileRefracti
 
         renderStack.push();
         renderStack.translate(0.5F, 1.5F, 0.5F);
-        renderStack.rotate(Vector3f.XP.rotationDegrees(180F));
+        renderStack.mulPose(new org.joml.Quaternionf().rotationX((float) Math.toRadians(180F)));
 
         RenderType type = MODEL_REFRACTION_TABLE.getGeneralType();
         VertexConsumer vb = renderTypeBuffer.getBuffer(type);

@@ -25,7 +25,7 @@ import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.potion.Effects;
-import net.minecraft.util.vector.Vector3f;
+import org.joml.Vector3f;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.RenderPlayerEvent;
@@ -157,14 +157,14 @@ public class TypeCelestialWings extends PatreonEffect implements ITickHandler {
 
         renderStack.push();
         renderStack.translate(0, yOffset + offset, 0);
-        renderStack.rotate(Vector3f.YP.rotationDegrees(180F - rot));
+        renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians(180F - rot)));
         renderStack.scale(0.02F, 0.02F, 0.02F);
 
         RenderTypesAS.MODEL_CELESTIAL_WINGS.setupRenderState();
 
         renderStack.translate(-25, 0, 0);
         ObjModelRender.renderCelestialWings(renderStack);
-        renderStack.rotate(Vector3f.YP.rotationDegrees(180F));
+        renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians(180F)));
         renderStack.translate(-50, 0, 0);
         ObjModelRender.renderCelestialWings(renderStack);
         renderStack.pop();

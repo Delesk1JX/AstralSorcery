@@ -58,7 +58,7 @@ public class BlockSpectralRelay extends BlockStarlightNetwork implements CustomI
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public InteractionResult onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (!world.isRemote()) {
             ItemStack held = player.getHeldItem(hand);
             TileSpectralRelay tar = MiscUtils.getTileAt(world, pos, TileSpectralRelay.class, true);
@@ -74,7 +74,7 @@ public class BlockSpectralRelay extends BlockStarlightNetwork implements CustomI
                     }
 
                     if (!world.isAirBlock(pos.up())) {
-                        return ActionResultType.PASS;
+                        return InteractionResult.PASS;
                     }
 
                     inv.setStackInSlot(0, ItemUtils.copyStackWithSize(held, 1));
@@ -96,7 +96,7 @@ public class BlockSpectralRelay extends BlockStarlightNetwork implements CustomI
                 }
             }
         }
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
     @Override
