@@ -113,7 +113,7 @@ public interface IConstellation extends Comparable<IConstellation> {
         return this.addSignatureItem(() -> Ingredient.fromItems(item));
     }
 
-    default public IConstellation addSignatureItem(ITag<Item> tag) {
+    default public IConstellation addSignatureItem(TagKey<Item> tag) {
         return this.addSignatureItem(() -> Ingredient.fromTag(tag));
     }
 

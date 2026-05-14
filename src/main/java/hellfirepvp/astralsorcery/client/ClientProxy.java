@@ -52,9 +52,6 @@ import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.LogicalSide;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.neoforge.client.loading.NeoForgeClientLoader;
-import net.neoforged.neoforge.resource.SelectiveReloadStateHandler;
-import net.neoforged.neoforge.resource.VanillaResourceType;
 
 import java.util.Map;
 import java.util.function.Consumer;
@@ -83,9 +80,6 @@ public class ClientProxy extends CommonProxy {
             resMgr.registerReloadListener(ColorizationHelper.onReload());
             resMgr.registerReloadListener((stage, resourceManager, preparationsProfiler, reloadProfiler, backgroundExecutor, gameExecutor) ->
                     stage.markCompleteAwaitingOthers(Unit.INSTANCE).thenRunAsync(() -> {
-                        if (!SelectiveReloadStateHandler.INSTANCE.get().test(VanillaResourceType.LANGUAGES)) {
-                            return;
-                        }
                         PerkTree.PERK_TREE.getPerkPoints(LogicalSide.CLIENT).stream()
                                 .map(PerkTreePoint::getPerk)
                                 .forEach(AbstractPerk::clearClientTextCaches);
