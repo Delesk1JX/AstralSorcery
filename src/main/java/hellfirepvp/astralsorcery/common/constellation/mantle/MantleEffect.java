@@ -174,13 +174,13 @@ public abstract class MantleEffect extends DeferredHolder<Item, MantleEffect> im
     }
 
     @Override
-    public EnumSet<TickEvent.ClientTickEvent.Phase> getHandledTypes() {
-        return EnumSet.of(TickEvent.ClientTickEvent.Phase.END);
+    public EnumSet<TickEvent.ClientTickEvent> getHandledTypes() {
+        return EnumSet.of(TickEvent.ClientTickEvent.CLIENT);
     }
 
     @Override
-    public boolean canFire(TickEvent.ClientTickEvent.Phase phase) {
-        return phase == TickEvent.ClientTickEvent.Phase.END;
+    public boolean canFire(TickEvent.Phase phase) {
+        return phase == TickEvent.Phase.END;
     }
 
     @Override
