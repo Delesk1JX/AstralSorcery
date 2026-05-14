@@ -34,7 +34,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import org.joml.Matrix4f;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.util.vector.Vector3f;
+import org.joml.Vector3f;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -145,8 +145,8 @@ public class AstralSkyRenderer implements ISkyRenderHandler {
         Blending.ADDITIVE_ALPHA.apply();
 
         renderStack.push();
-        renderStack.rotate(Vector3f.YP.rotationDegrees(-90.0F));
-        renderStack.rotate(Vector3f.XP.rotationDegrees(world.func_242415_f(pTicks) * 360.0F));
+        renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians(-90.0F)));
+        renderStack.mulPose(new org.joml.Quaternionf().rotationX((float) Math.toRadians(world.func_242415_f(pTicks)) * 360.0F));
 
         this.renderCelestials(world, renderStack, pTicks);
         this.renderStars(world, renderStack, pTicks);
@@ -155,7 +155,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler {
 
         //Constellations
         renderStack.push();
-        renderStack.rotate(Vector3f.XP.rotationDegrees(180));
+        renderStack.mulPose(new org.joml.Quaternionf().rotationX((float) Math.toRadians(180)));
 
         renderConstellationsSky(world, renderStack, pTicks);
 
@@ -320,7 +320,7 @@ public class AstralSkyRenderer implements ISkyRenderHandler {
 
         TexturesAS.TEX_SOLAR_ECLIPSE.bindTexture();
         renderStack.push();
-        renderStack.rotate(Vector3f.YP.rotationDegrees(-90F));
+        renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians(-90F)));
         Matrix4f matr = renderStack.getLast().getMatrix();
 
         RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_TEX, buf -> {
@@ -374,9 +374,9 @@ public class AstralSkyRenderer implements ISkyRenderHandler {
         float f3 = Mth.sin(world.getCelestialAngleRadians(pTicks)) < 0.0F ? 180.0F : 0.0F;
 
         renderStack.push();
-        renderStack.rotate(Vector3f.XP.rotationDegrees(90.0F));
-        renderStack.rotate(Vector3f.ZP.rotationDegrees(f3));
-        renderStack.rotate(Vector3f.ZP.rotationDegrees(90.0F));
+        renderStack.mulPose(new org.joml.Quaternionf().rotationX((float) Math.toRadians(90.0F)));
+        renderStack.mulPose(new org.joml.Quaternionf().rotationZ((float) Math.toRadians(f3)));
+        renderStack.mulPose(new org.joml.Quaternionf().rotationZ((float) Math.toRadians(90.0F)));
 
         float r = duskDawnColors[0];
         float g = duskDawnColors[1];

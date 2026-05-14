@@ -21,8 +21,8 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.level.Level;
 import net.neoforged.fml.LogicalSide;
 
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResult;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.

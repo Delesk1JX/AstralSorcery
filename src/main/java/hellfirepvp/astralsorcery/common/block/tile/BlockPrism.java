@@ -47,7 +47,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.util.ActionResultType;
+import net.minecraft.world.InteractionResult;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.
@@ -91,7 +91,7 @@ public class BlockPrism extends BlockStarlightNetwork implements CustomItemBlock
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public InteractionResult onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (!world.isRemote() && player.isSneaking()) {
             TilePrism lens = MiscUtils.getTileAt(world, pos, TilePrism.class, true);
             if (lens != null && lens.getColorType() != null) {
@@ -107,10 +107,10 @@ public class BlockPrism extends BlockStarlightNetwork implements CustomItemBlock
                 }
                 SoundHelper.playSoundAround(SoundsAS.BLOCK_COLOREDLENS_ATTACH, world, pos, 0.8F, 1.5F);
                 lens.setColorType(null);
-                return ActionResultType.SUCCESS;
+                return InteractionResult.SUCCESS;
             }
         }
-        return ActionResultType.PASS;
+        return InteractionResult.PASS;
     }
 
     @Override

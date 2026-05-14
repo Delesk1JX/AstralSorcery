@@ -21,7 +21,7 @@ import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.vector.Vector3f;
+import org.joml.Vector3f;
 
 import java.awt.*;
 
@@ -123,9 +123,7 @@ public class FXCube extends EntityVisualFX implements EntityDynamicFX {
 
         renderStack.push();
         renderStack.translate(translateTo.getX(), translateTo.getY(), translateTo.getZ());
-        renderStack.rotate(Vector3f.XP.rotationDegrees((float) rotation.getX()));
-        renderStack.rotate(Vector3f.YP.rotationDegrees((float) rotation.getY()));
-        renderStack.rotate(Vector3f.ZP.rotationDegrees((float) rotation.getZ()));
+        renderStack.mulPose(new org.joml.Quaternionf().rotationXYZ((float) Math.toRadians(rotation.getX()), (float) Math.toRadians(rotation.getY()), (float) Math.toRadians(rotation.getZ())));
         renderStack.scale(scale, scale, scale);
 
         VertexConsumer buf = drawBuffer.getBuffer(ctx.getRenderType());

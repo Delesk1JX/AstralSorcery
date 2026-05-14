@@ -47,7 +47,7 @@ import net.neoforged.neoforge.items.wrapper.InvWrapper;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.util.ActionResultType;
+import net.minecraft.world.InteractionResult;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.
@@ -85,23 +85,23 @@ public class BlockWell extends BlockStarlightNetwork implements CustomItemBlock 
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public InteractionResult onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (!world.isRemote()) {
             ItemStack heldItem = player.getHeldItem(hand);
             if (!heldItem.isEmpty()) {
                 TileWell tw = MiscUtils.getTileAt(world, pos, TileWell.class, false);
                 if (tw == null) {
-                    return ActionResultType.PASS;
+                    return InteractionResult.PASS;
                 }
 
                 WellLiquefaction entry = RecipeTypesAS.TYPE_WELL.findRecipe(new WellLiquefactionContext(heldItem));
                 if (entry != null) {
                     ItemStackHandler handle = tw.getInventory();
                     if (!handle.getStackInSlot(0).isEmpty()) {
-                        return ActionResultType.PASS;
+                        return InteractionResult.PASS;
                     }
                     if (!world.isAirBlock(pos.up())) {
-                        return ActionResultType.PASS;
+                        return InteractionResult.PASS;
                     }
 
                     handle.setStackInSlot(0, ItemUtils.copyStackWithSize(heldItem, 1));
@@ -129,7 +129,7 @@ public class BlockWell extends BlockStarlightNetwork implements CustomItemBlock 
                         });
             }
         }
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
     @Override

@@ -15,8 +15,7 @@ import hellfirepvp.astralsorcery.client.effect.context.base.BatchRenderContext;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.util.vector.Vector3f;
+import org.joml.Vector3f;
 
 import java.awt.*;
 
@@ -86,9 +85,7 @@ public class FXBlock extends EntityVisualFX {
 
         renderStack.translate(0.5, 0.5, 0.5);
         renderStack.scale(scale, scale, scale);
-        renderStack.rotate(Vector3f.XP.rotationDegrees((float) rotation.getX()));
-        renderStack.rotate(Vector3f.YP.rotationDegrees((float) rotation.getY()));
-        renderStack.rotate(Vector3f.ZP.rotationDegrees((float) rotation.getZ()));
+        renderStack.mulPose(new org.joml.Quaternionf().rotationXYZ((float) Math.toRadians(rotation.getX()), (float) Math.toRadians(rotation.getY()), (float) Math.toRadians(rotation.getZ())));
         renderStack.translate(-0.5, -0.5, -0.5);
 
         new BufferDecoratorBuilder()

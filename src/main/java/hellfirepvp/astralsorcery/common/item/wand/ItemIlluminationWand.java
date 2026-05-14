@@ -50,7 +50,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
-import net.minecraft.util.ActionResultType;
+import net.minecraft.world.InteractionResult;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.
@@ -88,7 +88,7 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
     }
 
     @Override
-    public ActionResultType onItemUse(UseOnContext context) {
+    public InteractionResult onItemUse(UseOnContext context) {
         Level world = context.getWorld();
         Direction dir = context.getFace();
         BlockPos pos = context.getPos();
@@ -96,7 +96,7 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
         ItemStack stack = context.getItem();
 
         if (world.isRemote() || player == null || stack.isEmpty() || !(stack.getItem() instanceof ItemIlluminationWand)) {
-            return ActionResultType.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
 
         BlockState state = world.getBlockState(pos);
@@ -131,14 +131,14 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
                     }
                 }
             }
-            return ActionResultType.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
 
         TileIlluminator illum = MiscUtils.getTileAt(world, pos, TileIlluminator.class, true);
         if (illum != null) {
             illum.onWandUsed(stack);
             SoundHelper.playSoundAround(SoundsAS.ILLUMINATION_WAND_LIGHT, SoundCategory.BLOCKS, world, pos, 0.6F, 1F);
-            return ActionResultType.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
 
         ISelectionContext selContext = ISelectionContext.forEntity(player);
@@ -149,7 +149,7 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
         }
 
         if (!BlockUtils.isReplaceable(world, placePos)) {
-            return ActionResultType.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
 
         if (player.canPlayerEdit(placePos, dir, stack)) {
@@ -167,7 +167,7 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
             }
         }
 
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
     @Override

@@ -20,8 +20,8 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.level.Level;
 
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResult;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.
@@ -42,7 +42,7 @@ public abstract class ItemUsableDust extends Item implements DispenseItemBehavio
     abstract boolean rightClickBlock(UseOnContext ctx);
 
     @Override
-    public ActionResultType onItemUse(UseOnContext ctx) {
+    public InteractionResult onItemUse(UseOnContext ctx) {
         if (!ctx.getWorld().isRemote()) {
             if (this.rightClickBlock(ctx)) {
                 if (!ctx.getPlayer().isCreative()) {
@@ -50,7 +50,7 @@ public abstract class ItemUsableDust extends Item implements DispenseItemBehavio
                 }
             }
         }
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
     @Override

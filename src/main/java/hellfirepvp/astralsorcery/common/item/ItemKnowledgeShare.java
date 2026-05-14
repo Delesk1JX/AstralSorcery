@@ -97,18 +97,18 @@ public class ItemKnowledgeShare extends Item {
     }
 
     @Override
-    public ActionResultType onItemUse(UseOnContext context) {
+    public InteractionResult onItemUse(UseOnContext context) {
         ItemStack stack = context.getItem();
         Player player = context.getPlayer();
         if (stack.isEmpty() || player == null || context.getWorld().isRemote() || !(stack.getItem() instanceof ItemKnowledgeShare)) {
-            return ActionResultType.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
         if (!isCreative(stack) && (player.isSneaking() || getKnowledge(stack) == null)) {
             tryInscribeKnowledge(stack, player);
         } else {
             tryGiveKnowledge(stack, player);
         }
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
     private void tryGiveKnowledge(ItemStack stack, Player player) {

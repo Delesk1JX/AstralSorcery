@@ -30,7 +30,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.vector.Matrix3f;
 import org.joml.Matrix4f;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.util.vector.Vector3f;
+import org.joml.Vector3f;
 import net.minecraft.network.chat.FormattedText;
 import net.minecraft.client.resources.language.LanguageManager;
 import static net.minecraft.network.chat.Component.literal;
@@ -336,12 +336,12 @@ public class RenderingDrawUtils {
         renderStack.push();
         for (int i = 0; i < count; i++) {
             renderStack.push();
-            renderStack.rotate(Vector3f.XP.rotationDegrees(rand.nextFloat() * 360.0F));
-            renderStack.rotate(Vector3f.YP.rotationDegrees(rand.nextFloat() * 360.0F));
-            renderStack.rotate(Vector3f.ZP.rotationDegrees(rand.nextFloat() * 360.0F));
-            renderStack.rotate(Vector3f.XP.rotationDegrees(rand.nextFloat() * 360.0F));
-            renderStack.rotate(Vector3f.YP.rotationDegrees(rand.nextFloat() * 360.0F));
-            renderStack.rotate(Vector3f.ZP.rotationDegrees(rand.nextFloat() * 360.0F + f1 * 360.0F));
+            renderStack.mulPose(new org.joml.Quaternionf().rotationX((float) Math.toRadians(rand.nextFloat()) * 360.0F));
+            renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians(rand.nextFloat()) * 360.0F));
+            renderStack.mulPose(new org.joml.Quaternionf().rotationZ((float) Math.toRadians(rand.nextFloat()) * 360.0F));
+            renderStack.mulPose(new org.joml.Quaternionf().rotationX((float) Math.toRadians(rand.nextFloat()) * 360.0F));
+            renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians(rand.nextFloat()) * 360.0F));
+            renderStack.mulPose(new org.joml.Quaternionf().rotationZ((float) Math.toRadians(rand.nextFloat()) * 360.0F + f1 * 360.0F));
             Matrix4f matr = renderStack.getLast().getMatrix();
 
             float fa = rand.nextFloat() * 20.0F + 5.0F + f2 * 10.0F;

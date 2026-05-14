@@ -20,7 +20,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import com.mojang.blaze3d.vertex.Tesselator;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.util.vector.Vector3f;
+import org.joml.Vector3f;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -59,8 +59,8 @@ public class JEIHandlerSpawnEntity extends JEIInteractionResultHandler {
         renderStack.push();
         renderStack.translate(55, 35, 500);
         renderStack.scale(15, 15, 15);
-        renderStack.rotate(Vector3f.XP.rotationDegrees(180));
-        renderStack.rotate(Vector3f.YP.rotationDegrees(145));
+        renderStack.mulPose(new org.joml.Quaternionf().rotationX((float) Math.toRadians(180)));
+        renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians(145)));
         MultiBufferSource buffer = MultiBufferSource.getImpl(buffer);
         Minecraft.getInstance().getRenderManager()
                 .renderEntityStatic(le, 0, 0, 0, 0, 0, renderStack, buffer, LightmapUtil.getPackedFullbrightCoords());

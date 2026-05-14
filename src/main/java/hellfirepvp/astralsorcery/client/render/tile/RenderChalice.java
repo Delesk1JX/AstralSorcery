@@ -18,7 +18,7 @@ import hellfirepvp.astralsorcery.common.tile.TileChalice;
 import hellfirepvp.astralsorcery.common.util.ColorUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.util.vector.Vector3f;
+import org.joml.Vector3f;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.neoforged.neoforge.fluids.FluidStack;
@@ -63,9 +63,9 @@ public class RenderChalice extends CustomTileEntityRenderer<TileChalice> {
 
         renderStack.push();
         renderStack.translate(0.5F, 1.4F, 0.5F);
-        renderStack.rotate(Vector3f.XP.rotationDegrees((float) rotation.getX()));
-        renderStack.rotate(Vector3f.YP.rotationDegrees((float) rotation.getY()));
-        renderStack.rotate(Vector3f.ZP.rotationDegrees((float) rotation.getZ()));
+        renderStack.mulPose(new org.joml.Quaternionf().rotationX((float) Math.toRadians((float)) rotation.getX()));
+        renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians((float)) rotation.getY()));
+        renderStack.mulPose(new org.joml.Quaternionf().rotationZ((float) Math.toRadians((float)) rotation.getZ()));
         renderStack.scale(percSize, percSize, percSize);
 
         VertexConsumer buf = renderTypeBuffer.getBuffer(RenderTypesAS.TER_CHALICE_LIQUID);

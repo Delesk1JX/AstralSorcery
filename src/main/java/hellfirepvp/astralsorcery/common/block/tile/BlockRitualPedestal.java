@@ -37,7 +37,7 @@ import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.util.ActionResultType;
+import net.minecraft.world.InteractionResult;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.
@@ -84,13 +84,13 @@ public class BlockRitualPedestal extends BlockStarlightNetwork implements Custom
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult rtr) {
+    public InteractionResult onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult rtr) {
         if (world.isRemote()) {
-            return ActionResultType.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
         TileRitualPedestal pedestal = MiscUtils.getTileAt(world, pos, TileRitualPedestal.class, true);
         if (pedestal == null) {
-            return ActionResultType.PASS;
+            return InteractionResult.PASS;
         }
 
         ItemStack heldItem = player.getHeldItem(hand);
@@ -106,7 +106,7 @@ public class BlockRitualPedestal extends BlockStarlightNetwork implements Custom
         } else {
             player.setHeldItem(hand, pedestal.tryPlaceCrystalInPedestal(heldItem));
         }
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
     @Override

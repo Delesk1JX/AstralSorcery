@@ -38,8 +38,8 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.fml.LogicalSide;
 
@@ -74,13 +74,13 @@ public class ItemTome extends Item implements PerkExperienceRevealer {
     }
 
     @Override
-    public ActionResultType onItemUse(UseOnContext context) {
+    public InteractionResult onItemUse(UseOnContext context) {
         Level world = context.getWorld();
         BlockState blockstate = world.getBlockState(context.getPos());
         if (blockstate.getBlock() instanceof LecternBlock) {
             return LecternBlock.tryPlaceBook(world, context.getPos(), blockstate, context.getItem()) ? ActionResultType.SUCCESS : ActionResultType.PASS;
         } else {
-            return ActionResultType.PASS;
+            return InteractionResult.PASS;
         }
     }
 

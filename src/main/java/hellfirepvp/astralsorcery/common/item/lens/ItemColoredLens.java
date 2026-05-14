@@ -23,7 +23,7 @@ import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-import net.minecraft.util.ActionResultType;
+import net.minecraft.world.InteractionResult;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.
@@ -45,7 +45,7 @@ public abstract class ItemColoredLens extends Item implements ItemDynamicColor {
     }
 
     @Override
-    public ActionResultType onItemUse(UseOnContext ctx) {
+    public InteractionResult onItemUse(UseOnContext ctx) {
         Player player = ctx.getPlayer();
         Level world = ctx.getWorld();
         if (!world.isRemote() && player != null) {
@@ -67,7 +67,7 @@ public abstract class ItemColoredLens extends Item implements ItemDynamicColor {
                 }
             }
         }
-        return ActionResultType.PASS;
+        return InteractionResult.PASS;
     }
 
     @Override

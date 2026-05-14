@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.common.tile.TileLens;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.util.vector.Vector3f;
+import org.joml.Vector3f;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.core.BlockPos;
 
@@ -64,12 +64,12 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens> {
 
                 renderStack.translate(0.5F, 1.5F, 0.5F);
 
-                renderStack.rotate(Vector3f.XP.rotationDegrees(180));
-                renderStack.rotate(Vector3f.YP.rotationDegrees(degYaw % 360));
+                renderStack.mulPose(new org.joml.Quaternionf().rotationX((float) Math.toRadians(180)));
+                renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians(degYaw % 360)));
 
                 if (tile.getColorType() != null) {
                     renderStack.push();
-                    renderStack.rotate(Vector3f.YP.rotationDegrees(180));
+                    renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians(180)));
                     renderLensColored(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, tile.getColorType().getColor(), -degPitch);
                     renderStack.pop();
                 }
@@ -91,11 +91,11 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens> {
 
                 renderStack.translate(0.5F, -0.5F, 0.5F);
 
-                renderStack.rotate(Vector3f.YP.rotationDegrees((-degYaw + 180) % 360));
+                renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians((-degYaw + 180)) % 360));
 
                 if (tile.getColorType() != null) {
                     renderStack.push();
-                    renderStack.rotate(Vector3f.YP.rotationDegrees(180));
+                    renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians(180)));
                     renderLensColored(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, tile.getColorType().getColor(), degPitch);
                     renderStack.pop();
                 }
@@ -117,12 +117,12 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens> {
 
                 renderStack.translate(0.5F, 0.5F, 1.5F);
 
-                renderStack.rotate(Vector3f.XP.rotationDegrees(270));
-                renderStack.rotate(Vector3f.YP.rotationDegrees((-degYaw + 180) % 360));
+                renderStack.mulPose(new org.joml.Quaternionf().rotationX((float) Math.toRadians(270)));
+                renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians((-degYaw + 180)) % 360));
 
                 if (tile.getColorType() != null) {
                     renderStack.push();
-                    renderStack.rotate(Vector3f.YP.rotationDegrees(180));
+                    renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians(180)));
                     renderLensColored(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, tile.getColorType().getColor(), -degPitch);
                     renderStack.pop();
                 }
@@ -144,12 +144,12 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens> {
 
                 renderStack.translate(0.5F, 0.5F, -0.5F);
 
-                renderStack.rotate(Vector3f.XP.rotationDegrees(90));
-                renderStack.rotate(Vector3f.YP.rotationDegrees(degYaw % 360));
+                renderStack.mulPose(new org.joml.Quaternionf().rotationX((float) Math.toRadians(90)));
+                renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians(degYaw % 360)));
 
                 if (tile.getColorType() != null) {
                     renderStack.push();
-                    renderStack.rotate(Vector3f.YP.rotationDegrees(180));
+                    renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians(180)));
                     renderLensColored(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, tile.getColorType().getColor(), degPitch);
                     renderStack.pop();
                 }
@@ -171,12 +171,12 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens> {
 
                 renderStack.translate(1.5F, 0.5F, 0.5F);
 
-                renderStack.rotate(Vector3f.ZP.rotationDegrees(90));
-                renderStack.rotate(Vector3f.YP.rotationDegrees((degYaw + 270 % 360)));
+                renderStack.mulPose(new org.joml.Quaternionf().rotationZ((float) Math.toRadians(90)));
+                renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians((degYaw + 270 % 360))));
 
                 if (tile.getColorType() != null) {
                     renderStack.push();
-                    renderStack.rotate(Vector3f.YP.rotationDegrees(180));
+                    renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians(180)));
                     renderLensColored(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, tile.getColorType().getColor(), -degPitch);
                     renderStack.pop();
                 }
@@ -198,12 +198,12 @@ public class RenderLens extends CustomTileEntityRenderer<TileLens> {
 
                 renderStack.translate(-0.5F, 0.5F, 0.5F);
 
-                renderStack.rotate(Vector3f.ZP.rotationDegrees(270));
-                renderStack.rotate(Vector3f.YP.rotationDegrees((-degYaw + 90 % 360)));
+                renderStack.mulPose(new org.joml.Quaternionf().rotationZ((float) Math.toRadians(270)));
+                renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians((-degYaw + 90 % 360))));
 
                 if (tile.getColorType() != null) {
                     renderStack.push();
-                    renderStack.rotate(Vector3f.YP.rotationDegrees(180));
+                    renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians(180)));
                     renderLensColored(renderStack, renderTypeBuffer, combinedLight, combinedOverlay, tile.getColorType().getColor(), degPitch);
                     renderStack.pop();
                 }
