@@ -63,9 +63,9 @@ public class RenderChalice extends CustomTileEntityRenderer<TileChalice> {
 
         renderStack.push();
         renderStack.translate(0.5F, 1.4F, 0.5F);
-        renderStack.mulPose(new org.joml.Quaternionf().rotationX((float) Math.toRadians((float)) rotation.getX()));
-        renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians((float)) rotation.getY()));
-        renderStack.mulPose(new org.joml.Quaternionf().rotationZ((float) Math.toRadians((float)) rotation.getZ()));
+        renderStack.mulPose(new org.joml.Quaternionf().rotationX((float) Math.toRadians((float) rotation.getX())));
+        renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians((float) rotation.getY())));
+        renderStack.mulPose(new org.joml.Quaternionf().rotationZ((float) Math.toRadians((float) rotation.getZ())));
         renderStack.scale(percSize, percSize, percSize);
 
         VertexConsumer buf = renderTypeBuffer.getBuffer(RenderTypesAS.TER_CHALICE_LIQUID);
