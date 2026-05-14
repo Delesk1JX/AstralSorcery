@@ -31,7 +31,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.client.event.RenderWorldLastEvent;
+import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import hellfirepvp.observerlib.common.util.tick.TickEvent.ClientTickEvent;
 import org.lwjgl.opengl.GL11;

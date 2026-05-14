@@ -15,12 +15,12 @@ import hellfirepvp.astralsorcery.client.sky.astral.AstralSkyRenderer;
 import hellfirepvp.astralsorcery.client.util.Blending;
 import hellfirepvp.astralsorcery.common.event.EventFlags;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.world.DimensionRenderInfo;
+import net.minecraft.client.renderer.DimensionSpecialEffects;
 import net.minecraft.resources.ResourceKey;
 import org.joml.Vector3f;
-import net.minecraft.client.world.ClientWorld;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.client.ISkyRenderHandler;
+import net.neoforged.neoforge.client.DimensionSpecialEffects;
 
 /**
  * This class is part of the Astral Sorcery Mod

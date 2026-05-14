@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.client.input;
 import hellfirepvp.astralsorcery.common.network.PacketChannel;
 import hellfirepvp.astralsorcery.common.network.play.client.PktToggleClientOption;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.client.KeyMapping;
 
 /**
  * This class is part of the Astral Sorcery Mod

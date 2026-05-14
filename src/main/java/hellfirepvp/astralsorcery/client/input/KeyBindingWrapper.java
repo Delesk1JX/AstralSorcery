@@ -8,7 +8,7 @@
 
 package hellfirepvp.astralsorcery.client.input;
 
-import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.client.KeyMapping;
 
 /**
  * This class is part of the Astral Sorcery Mod

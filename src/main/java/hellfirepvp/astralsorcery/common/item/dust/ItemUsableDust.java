@@ -35,7 +35,7 @@ public abstract class ItemUsableDust extends Item implements DispenseItemBehavio
         super(new Properties().group(CommonProxy.ITEM_GROUP_AS));
     }
 
-    abstract boolean dispense(net.minecraft.core.BlockSource dispenser);
+    abstract boolean dispense(net.minecraft.core.dispenser.BlockSource dispenser);
 
     abstract boolean rightClickAir(Level world, Player player, ItemStack dust);
 
@@ -68,7 +68,7 @@ public abstract class ItemUsableDust extends Item implements DispenseItemBehavio
     }
 
     @Override
-    public ItemStack execute(net.minecraft.core.BlockSource src, ItemStack stack) {
+    public ItemStack execute(net.minecraft.core.dispenser.BlockSource src, ItemStack stack) {
         if (this.dispense(src)) {
             stack.shrink(1);
         }

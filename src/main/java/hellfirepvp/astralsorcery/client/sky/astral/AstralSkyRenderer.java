@@ -29,7 +29,7 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.FogRenderer;
 import com.mojang.blaze3d.vertex.VertexFormat;
-import net.minecraft.client.world.ClientWorld;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import org.joml.Matrix4f;
@@ -38,7 +38,7 @@ import org.joml.Vector3f;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.client.ISkyRenderHandler;
+import net.neoforged.neoforge.client.DimensionSpecialEffects;
 import net.neoforged.fml.LogicalSide;
 import org.lwjgl.opengl.GL11;
 

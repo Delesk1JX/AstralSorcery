@@ -25,6 +25,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
+import com.mojang.math.Axis;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.RenderPlayerEvent;
@@ -82,13 +83,13 @@ public class ClientMiscEventHandler {
         if (swimAngle > 0) {
             float waterPitch = player.isInWater() ? -90.0F - player.rotationPitch : -90.0F;
             float bodySwimAngle = Mth.lerp(swimAngle, 0.0F, waterPitch);
-            renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians(180 - rot)));
-            renderStack.mulPose(new org.joml.Quaternionf().rotationX((float) Math.toRadians(bodySwimAngle)));
+            renderStack.rotate(Vector3f.YP.rotationDegrees(180 - rot));
+            renderStack.rotate(Vector3f.XP.rotationDegrees(bodySwimAngle));
             if (player.isActualySwimming()) {
                 renderStack.translate(0, -1, 0.3F);
             }
         } else {
-            renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians(180 - rot)));
+            renderStack.rotate(Vector3f.YP.rotationDegrees(180 - rot));
         }
 
         renderStack.scale(0.07F, 0.07F, 0.07F);
@@ -107,7 +108,7 @@ public class ClientMiscEventHandler {
         Minecraft.getInstance().getTextureManager().bindTexture(tex);
 
         renderStack.push();
-        renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians(20 + r)));
+        renderStack.rotate(Vector3f.YN.rotationDegrees(20 + r));
         vboR.bindBuffer();
         RenderTypesAS.POSITION_COLOR_TEX_NORMAL.setupBufferState(0);
         vboR.draw(renderStack.getLast().getMatrix(), GL11.GL_QUADS);
@@ -116,7 +117,7 @@ public class ClientMiscEventHandler {
         renderStack.pop();
 
         renderStack.push();
-        renderStack.mulPose(new org.joml.Quaternionf().rotationY((float) Math.toRadians(20 + r)));
+        renderStack.rotate(Vector3f.YP.rotationDegrees(20 + r));
         vboL.bindBuffer();
         RenderTypesAS.POSITION_COLOR_TEX_NORMAL.setupBufferState(0);
         vboL.draw(renderStack.getLast().getMatrix(), GL11.GL_QUADS);

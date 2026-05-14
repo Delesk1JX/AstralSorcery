@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.client.model.armor;
 
 import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ArmorStandEntity;
 

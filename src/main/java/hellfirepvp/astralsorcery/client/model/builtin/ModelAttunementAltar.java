@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.client.model.builtin;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import hellfirepvp.astralsorcery.client.lib.RenderTypesAS;
-import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.client.model.geom.ModelPart;
 
 /**
  * This class is part of the Astral Sorcery Mod

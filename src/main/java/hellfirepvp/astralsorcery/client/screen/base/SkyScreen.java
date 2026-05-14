@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.client.screen.base;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.world.ClientWorld;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.util.Tuple;
 
 import java.awt.*;

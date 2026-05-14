@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.block.ore;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
 import hellfirepvp.astralsorcery.common.block.properties.PropertiesMisc;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.block.state.BlockBehaviourColor;
 
 /**
  * This class is part of the Astral Sorcery Mod

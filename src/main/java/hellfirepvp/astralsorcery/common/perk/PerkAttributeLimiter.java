@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.perk;
 import hellfirepvp.astralsorcery.common.event.AttributeEvent;
 import hellfirepvp.astralsorcery.common.perk.type.PerkAttributeType;
 import net.minecraft.util.Mth;
-import net.neoforged.neoforge.eventbus.api.EventPriority;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import org.apache.commons.lang3.tuple.Pair;
 

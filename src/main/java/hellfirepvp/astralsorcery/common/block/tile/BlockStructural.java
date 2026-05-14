@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.common.event.EventFlags;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.block.state.BlockBehaviourColor;
 import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;

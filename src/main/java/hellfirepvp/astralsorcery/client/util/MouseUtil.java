@@ -10,7 +10,7 @@ package hellfirepvp.astralsorcery.client.util;
 
 import net.minecraft.client.Minecraft;
 import net.neoforged.neoforge.client.event.GuiOpenEvent;
-import net.neoforged.neoforge.eventbus.api.EventPriority;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 
 /**

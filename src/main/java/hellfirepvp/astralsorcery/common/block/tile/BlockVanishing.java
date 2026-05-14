@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.ContainerBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.block.state.BlockBehaviourColor;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.world.entity.EntityType;

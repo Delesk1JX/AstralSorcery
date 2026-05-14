@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.client.input.KeyBindingWrapper;
 import hellfirepvp.astralsorcery.client.input.KeyDisablePerkAbilities;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
-import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.client.KeyMapping;
 import net.minecraft.client.util.InputMappings;
 import net.neoforged.neoforge.client.event.InputEvent;
 import net.neoforged.neoforge.client.settings.KeyConflictContext;
