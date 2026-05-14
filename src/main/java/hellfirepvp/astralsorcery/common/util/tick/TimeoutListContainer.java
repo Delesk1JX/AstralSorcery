@@ -11,7 +11,6 @@ package hellfirepvp.astralsorcery.common.util.tick;
 import com.google.common.collect.Lists;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import net.neoforged.neoforge.event.tick.TickEvent;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
