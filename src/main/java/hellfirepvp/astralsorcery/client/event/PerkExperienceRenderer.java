@@ -123,14 +123,14 @@ public class PerkExperienceRenderer implements ITickHandler {
     public void tick(TickEvent.ClientTickEvent type, Object... context) {
         Player player = Minecraft.getInstance().player;
         if (player != null) {
-            ItemStack held = player.getHeldItem(Hand.MAIN_HAND);
+            ItemStack held = player.getHeldItem(InteractionHand.MAIN_HAND);
             if (!held.isEmpty() &&
                     held.getItem() instanceof PerkExperienceRevealer &&
                     ((PerkExperienceRevealer) held.getItem()).shouldReveal(held)) {
                 revealExperience(20);
             }
 
-            held = player.getHeldItem(Hand.OFF_HAND);
+            held = player.getHeldItem(InteractionHand.OFF_HAND);
             if (!held.isEmpty() &&
                     held.getItem() instanceof PerkExperienceRevealer &&
                     ((PerkExperienceRevealer) held.getItem()).shouldReveal(held)) {

@@ -38,6 +38,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.UUID;
 
+import net.minecraft.world.InteractionHand;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.
@@ -82,7 +83,7 @@ public class ItemKnowledgeShare extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(Level world, Player player, Hand hand) {
+    public ActionResult<ItemStack> onItemRightClick(Level world, Player player, InteractionHand hand) {
         ItemStack held = player.getHeldItem(hand);
         if (held.isEmpty() || world.isRemote() || !(held.getItem() instanceof ItemKnowledgeShare)) {
             return ActionResult.resultSuccess(held);
@@ -96,7 +97,7 @@ public class ItemKnowledgeShare extends Item {
     }
 
     @Override
-    public ActionResultType onItemUse(ItemUseContext context) {
+    public ActionResultType onItemUse(UseOnContext context) {
         ItemStack stack = context.getItem();
         Player player = context.getPlayer();
         if (stack.isEmpty() || player == null || context.getWorld().isRemote() || !(stack.getItem() instanceof ItemKnowledgeShare)) {

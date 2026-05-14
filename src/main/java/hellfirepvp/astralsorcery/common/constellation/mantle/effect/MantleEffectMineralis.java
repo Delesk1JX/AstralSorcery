@@ -79,11 +79,11 @@ public class MantleEffectMineralis extends MantleEffect {
     @OnlyIn(Dist.CLIENT)
     private void playBlockHighlight(Player player) {
         BlockState state = null;
-        if (!player.getHeldItem(Hand.MAIN_HAND).isEmpty()) {
-            state = ItemUtils.createBlockState(player.getHeldItem(Hand.MAIN_HAND));
+        if (!player.getHeldItem(InteractionHand.MAIN_HAND).isEmpty()) {
+            state = ItemUtils.createBlockState(player.getHeldItem(InteractionHand.MAIN_HAND));
         }
-        if (!player.getHeldItem(Hand.OFF_HAND).isEmpty()) {
-            state = ItemUtils.createBlockState(player.getHeldItem(Hand.OFF_HAND));
+        if (!player.getHeldItem(InteractionHand.OFF_HAND).isEmpty()) {
+            state = ItemUtils.createBlockState(player.getHeldItem(InteractionHand.OFF_HAND));
         }
         if (state == null || state.getBlock() instanceof AirBlock) {
             return;

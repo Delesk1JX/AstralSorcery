@@ -42,6 +42,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Locale;
 
+import net.minecraft.util.ActionResultType;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.
@@ -128,7 +129,7 @@ public class BlockStructural extends Block {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, Level world, BlockPos pos, Player entity, Hand hand, BlockHitResult rayTraceResult) {
+    public ActionResultType onBlockActivated(BlockState state, Level world, BlockPos pos, Player entity, InteractionHand hand, BlockHitResult rayTraceResult) {
         switch (state.get(BLOCK_TYPE)) {
             case TELESCOPE:
                 if (world.isRemote()) {

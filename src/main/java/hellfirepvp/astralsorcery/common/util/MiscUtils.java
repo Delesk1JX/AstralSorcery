@@ -57,6 +57,7 @@ import java.util.*;
 import java.util.function.*;
 import java.util.stream.Collectors;
 
+import net.minecraft.world.InteractionHand;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.
@@ -377,16 +378,16 @@ public class MiscUtils {
     }
 
     @Nullable
-    public static Tuple<Hand, ItemStack> getMainOrOffHand(LivingEntity entity, Item search) {
+    public static Tuple<InteractionHand, ItemStack> getMainOrOffHand(LivingEntity entity, Item search) {
         return getMainOrOffHand(entity, stack -> !stack.isEmpty() && stack.getItem().equals(search));
     }
 
     @Nullable
-    public static Tuple<Hand, ItemStack> getMainOrOffHand(LivingEntity entity, Predicate<ItemStack> acceptorFnc) {
-        Hand hand = Hand.MAIN_HAND;
+    public static Tuple<InteractionHand, ItemStack> getMainOrOffHand(LivingEntity entity, Predicate<ItemStack> acceptorFnc) {
+        InteractionHand hand = InteractionHand.MAIN_HAND;
         ItemStack held = entity.getHeldItem(hand);
         if (held.isEmpty() || !acceptorFnc.test(held)) {
-            hand = Hand.OFF_HAND;
+            hand = InteractionHand.OFF_HAND;
             held = entity.getHeldItem(hand);
         }
         if (held.isEmpty() || !acceptorFnc.test(held)) {

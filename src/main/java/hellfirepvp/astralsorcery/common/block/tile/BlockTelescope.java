@@ -38,6 +38,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.util.ActionResultType;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.
@@ -66,7 +67,7 @@ public class BlockTelescope extends ContainerBlock implements CustomItemBlock {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, Hand hand, BlockHitResult rayTraceResult) {
+    public ActionResultType onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult rayTraceResult) {
         if (world.isRemote()) {
             AstralSorcery.getProxy().openGui(player, GuiType.TELESCOPE, pos);
         }

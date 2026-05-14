@@ -45,6 +45,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.util.ActionResultType;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.
@@ -167,7 +168,7 @@ public abstract class BlockFakedState extends ContainerBlock {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, Hand handIn, BlockHitResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
         BlockState fakeState = this.getFakedState(world, pos);
         try {
             return fakeState.onBlockActivated(world, player, handIn, hit);

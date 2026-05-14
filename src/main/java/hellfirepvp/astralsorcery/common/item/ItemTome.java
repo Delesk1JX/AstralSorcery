@@ -27,17 +27,19 @@ import net.minecraft.world.level.block.LecternBlock;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
+import net.minecraft.world.Inventory;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.player.IInventory;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.ActionResultType;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.fml.LogicalSide;
 
@@ -61,10 +63,10 @@ public class ItemTome extends Item implements PerkExperienceRevealer {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(Level world, Player player, Hand hand) {
+    public ActionResult<ItemStack> onItemRightClick(Level world, Player player, InteractionHand hand) {
         if (world.isRemote() && !player.isSneaking()) {
             AstralSorcery.getProxy().openGui(player, GuiType.TOME);
-        } else if (!world.isRemote() && player.isSneaking() && hand == Hand.MAIN_HAND && player instanceof ServerPlayer) {
+        } else if (!world.isRemote() && player.isSneaking() && hand == InteractionHand.MAIN_HAND && player instanceof ServerPlayer) {
             new ContainerTomeProvider(player.getHeldItem(hand), player.inventory.currentItem)
                     .openFor((ServerPlayer) player);
         }
@@ -72,7 +74,7 @@ public class ItemTome extends Item implements PerkExperienceRevealer {
     }
 
     @Override
-    public ActionResultType onItemUse(ItemUseContext context) {
+    public ActionResultType onItemUse(UseOnContext context) {
         Level world = context.getWorld();
         BlockState blockstate = world.getBlockState(context.getPos());
         if (blockstate.getBlock() instanceof LecternBlock) {

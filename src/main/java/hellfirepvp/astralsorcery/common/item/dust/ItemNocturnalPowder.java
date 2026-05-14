@@ -42,7 +42,7 @@ public class ItemNocturnalPowder extends ItemUsableDust {
     }
 
     @Override
-    boolean rightClickBlock(ItemUseContext ctx) {
+    boolean rightClickBlock(UseOnContext ctx) {
         BlockPos pos = ctx.getPos().offset(ctx.getFace());
         EntityNocturnalSpark noc = new EntityNocturnalSpark(ctx.getPlayer(), ctx.getWorld());
         noc.setPosition(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);

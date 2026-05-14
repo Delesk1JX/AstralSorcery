@@ -68,7 +68,7 @@ public class EntityCrystal extends EntityItemExplosionResistant implements Inter
     @Override
     public boolean hitByEntity(Entity entity) {
         if (!this.level().isClientSide() && entity instanceof ServerPlayer) {
-            ItemStack held = ((ServerPlayer) entity).getHeldItem(Hand.MAIN_HAND);
+            ItemStack held = ((ServerPlayer) entity).getHeldItem(InteractionHand.MAIN_HAND);
             if (!held.isEmpty() && held.getItem() instanceof ItemChisel) {
 
                 ItemStack thisStack = this.getItem();
@@ -84,7 +84,7 @@ public class EntityCrystal extends EntityItemExplosionResistant implements Inter
                             doDamage = this.splitCrystal(thisAttributes, fortuneLevel);
                         }
                         if (doDamage || rand.nextFloat() < 0.35F) {
-                            held.damageItem(1, (Player) entity, (player) -> player.sendBreakAnimation(Hand.MAIN_HAND));
+                            held.damageItem(1, (Player) entity, (player) -> player.sendBreakAnimation(InteractionHand.MAIN_HAND));
                         }
                     }
                 }

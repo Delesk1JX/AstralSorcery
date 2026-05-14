@@ -64,6 +64,7 @@ import java.util.List;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import net.minecraft.world.Inventory;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.

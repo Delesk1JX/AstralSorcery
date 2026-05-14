@@ -129,7 +129,7 @@ public class EntityIlluminationSpark extends ThrowableEntity {
         Player player = (Player) this.func_234616_v_();
         BlockHitResult brtr = (BlockHitResult) result;
 
-        BlockItemUseContext bCtx = new BlockItemUseContext(new UseOnContext(player, Hand.MAIN_HAND, brtr));
+        BlockItemUseContext bCtx = new BlockItemUseContext(new UseOnContext(player, InteractionHand.MAIN_HAND, brtr));
 
         BlockPos pos = bCtx.getPos();
         if (!BlockUtils.isReplaceable(world, pos)) {

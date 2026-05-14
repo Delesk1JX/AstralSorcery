@@ -68,6 +68,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import net.minecraft.util.ActionResult;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.
@@ -205,13 +206,13 @@ public class ItemResonator extends Item implements OverrideInteractItem {
     }
 
     @Override
-    public boolean shouldInterceptBlockInteract(LogicalSide side, Player player, Hand hand, BlockPos pos, Direction face) {
+    public boolean shouldInterceptBlockInteract(LogicalSide side, Player player, InteractionHand hand, BlockPos pos, Direction face) {
         ResonatorUpgrade upgrade = getCurrentUpgrade(player, player.getHeldItem(hand));
         return upgrade == ResonatorUpgrade.AREA_SIZE && MiscUtils.getTileAt(player.level, pos, TileAreaOfInfluence.class, false) != null;
     }
 
     @Override
-    public boolean doBlockInteract(LogicalSide side, Player player, Hand hand, BlockPos pos, Direction face) {
+    public boolean doBlockInteract(LogicalSide side, Player player, InteractionHand hand, BlockPos pos, Direction face) {
         ResonatorUpgrade upgrade = getCurrentUpgrade(player, player.getHeldItem(hand));
         if (upgrade == ResonatorUpgrade.AREA_SIZE && player.level().isClientSide()) {
             TileAreaOfInfluence aoeTile = MiscUtils.getTileAt(player.level, pos, TileAreaOfInfluence.class, false);
@@ -228,7 +229,7 @@ public class ItemResonator extends Item implements OverrideInteractItem {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(Level world, Player player, Hand hand) {
+    public ActionResult<ItemStack> onItemRightClick(Level world, Player player, InteractionHand hand) {
         if (!world.isRemote() && player.isSneaking()) {
             if (cycleUpgrade(player, player.getHeldItem(hand))) {
                 return ActionResult.resultSuccess(player.getHeldItem(hand));

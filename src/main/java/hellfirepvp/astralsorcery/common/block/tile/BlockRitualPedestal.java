@@ -37,6 +37,7 @@ import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.util.ActionResultType;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.
@@ -83,7 +84,7 @@ public class BlockRitualPedestal extends BlockStarlightNetwork implements Custom
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, Hand hand, BlockHitResult rtr) {
+    public ActionResultType onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult rtr) {
         if (world.isRemote()) {
             return ActionResultType.SUCCESS;
         }

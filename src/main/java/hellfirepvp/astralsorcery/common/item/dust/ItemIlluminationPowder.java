@@ -46,7 +46,7 @@ public class ItemIlluminationPowder extends ItemUsableDust {
     }
 
     @Override
-    boolean rightClickBlock(ItemUseContext ctx) {
+    boolean rightClickBlock(UseOnContext ctx) {
         Level world = ctx.getWorld();
         BlockPos pos = ctx.getPos();
         Player player = ctx.getPlayer();

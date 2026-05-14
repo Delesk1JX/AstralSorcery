@@ -21,6 +21,7 @@ import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.world.BlockEvent;
 import net.neoforged.bus.api.IEventBus;
 
+import net.minecraft.util.ActionResultType;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.

@@ -24,17 +24,17 @@ import net.neoforged.fml.LogicalSide;
  */
 public interface OverrideInteractItem {
 
-    boolean shouldInterceptBlockInteract(LogicalSide side, Player player, Hand hand, BlockPos pos, Direction face);
+    boolean shouldInterceptBlockInteract(LogicalSide side, Player player, InteractionHand hand, BlockPos pos, Direction face);
 
-    default boolean shouldInterceptEntityInteract(LogicalSide side, Player player, Hand hand, Entity interacted) {
+    default boolean shouldInterceptEntityInteract(LogicalSide side, Player player, InteractionHand hand, Entity interacted) {
         return false;
     }
 
     //Returning true cancels the event
-    boolean doBlockInteract(LogicalSide side, Player player, Hand hand, BlockPos pos, Direction face);
+    boolean doBlockInteract(LogicalSide side, Player player, InteractionHand hand, BlockPos pos, Direction face);
 
     //Returning true cancels the event
-    default boolean doEntityInteract(LogicalSide side, Player player, Hand hand, Entity interacted) {
+    default boolean doEntityInteract(LogicalSide side, Player player, InteractionHand hand, Entity interacted) {
         return false;
     }
 

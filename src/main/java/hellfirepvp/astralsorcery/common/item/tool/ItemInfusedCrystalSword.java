@@ -47,7 +47,7 @@ public class ItemInfusedCrystalSword extends ItemCrystalSword implements Equipme
     public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
         if (!player.level().isClientSide() && player instanceof ServerPlayer) {
             ServerPlayer serverPlayer = (ServerPlayer) player;
-            ItemStack sword = serverPlayer.getHeldItem(Hand.MAIN_HAND);
+            ItemStack sword = serverPlayer.getHeldItem(InteractionHand.MAIN_HAND);
             if (!MiscUtils.isPlayerFakeMP(serverPlayer) &&
                     !sword.isEmpty() &&
                     sword.getItem() instanceof ItemInfusedCrystalSword &&

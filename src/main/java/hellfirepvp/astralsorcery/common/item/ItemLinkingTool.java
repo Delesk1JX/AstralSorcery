@@ -37,17 +37,17 @@ public class ItemLinkingTool extends Item implements IItemLinkingTool {
     }
 
     @Override
-    public boolean shouldInterceptBlockInteract(LogicalSide side, Player player, Hand hand, BlockPos pos, Direction face) {
+    public boolean shouldInterceptBlockInteract(LogicalSide side, Player player, InteractionHand hand, BlockPos pos, Direction face) {
         return true;
     }
 
     @Override
-    public boolean shouldInterceptEntityInteract(LogicalSide side, Player player, Hand hand, Entity interacted) {
+    public boolean shouldInterceptEntityInteract(LogicalSide side, Player player, InteractionHand hand, Entity interacted) {
         return interacted instanceof Player;
     }
 
     @Override
-    public boolean doBlockInteract(LogicalSide side, Player player, Hand hand, BlockPos pos, Direction face) {
+    public boolean doBlockInteract(LogicalSide side, Player player, InteractionHand hand, BlockPos pos, Direction face) {
         Level world = player.level;
         if (!world.isRemote()) {
             LinkHandler.LinkSession session = LinkHandler.getActiveSession(player);
@@ -69,7 +69,7 @@ public class ItemLinkingTool extends Item implements IItemLinkingTool {
     }
 
     @Override
-    public boolean doEntityInteract(LogicalSide side, Player player, Hand hand, Entity interacted) {
+    public boolean doEntityInteract(LogicalSide side, Player player, InteractionHand hand, Entity interacted) {
         if (!(interacted instanceof LivingEntity)) {
             return false;
         }

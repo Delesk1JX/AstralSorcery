@@ -38,6 +38,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.ActionResultType;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.
@@ -52,7 +54,7 @@ public class ItemInfusedCrystalPickaxe extends ItemCrystalPickaxe implements Equ
             new CacheReference<>(() -> new DynamicAttributeModifier(MODIFIER_ID, PerkAttributeTypesAS.ATTR_TYPE_MINING_SIZE, ModifierType.ADDITION, 1F));
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(Level world, Player player, Hand hand) {
+    public ActionResult<ItemStack> onItemRightClick(Level world, Player player, InteractionHand hand) {
         ItemStack held = player.getHeldItem(hand);
         if (this.doOreScan(world, player.getPosition(), player, held)) {
             return ActionResult.resultSuccess(held);
@@ -61,7 +63,7 @@ public class ItemInfusedCrystalPickaxe extends ItemCrystalPickaxe implements Equ
     }
 
     @Override
-    public ActionResultType onItemUse(ItemUseContext ctx) {
+    public ActionResultType onItemUse(UseOnContext ctx) {
         Player player = ctx.getPlayer();
         if (player != null) {
             if (this.doOreScan(ctx.getWorld(), ctx.getPos(), player, player.getHeldItem(ctx.getHand()))) {

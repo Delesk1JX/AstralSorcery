@@ -56,7 +56,7 @@ public interface ItemBlockStorage {
     }
 
     static void clearContainerFor(Player player) {
-        Tuple<Hand, ItemStack> held = MiscUtils.getMainOrOffHand(player, stack -> stack.getItem() instanceof ItemBlockStorage);
+        Tuple<InteractionHand, ItemStack> held = MiscUtils.getMainOrOffHand(player, stack -> stack.getItem() instanceof ItemBlockStorage);
         if (held != null) {
             NBTHelper.getPersistentData(held.getB()).remove("storedStates");
         }

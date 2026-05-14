@@ -50,6 +50,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import net.minecraft.util.ActionResultType;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.
@@ -87,7 +88,7 @@ public class ItemIlluminationWand extends Item implements ItemDynamicColor, Alig
     }
 
     @Override
-    public ActionResultType onItemUse(ItemUseContext context) {
+    public ActionResultType onItemUse(UseOnContext context) {
         Level world = context.getWorld();
         Direction dir = context.getFace();
         BlockPos pos = context.getPos();

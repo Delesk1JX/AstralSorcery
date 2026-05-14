@@ -98,7 +98,7 @@ public class FluidContainerDispenseBehavior extends DefaultDispenseItemBehavior 
         Direction dispenserFacing = source.getBlockState().get(DispenserBlock.FACING);
         BlockPos pos = source.getBlockPos().offset(dispenserFacing);
         Player player = AstralSorcery.getProxy().getASFakePlayerServer((ServerLevel) world);
-        FluidActionResult result = FluidUtil.tryPlaceFluid(player, source.getWorld(), Hand.MAIN_HAND, pos, stack, drained);
+        FluidActionResult result = FluidUtil.tryPlaceFluid(player, source.getWorld(), InteractionHand.MAIN_HAND, pos, stack, drained);
 
         if (result.isSuccess()) {
             ItemStack drainedStack = result.getResult();

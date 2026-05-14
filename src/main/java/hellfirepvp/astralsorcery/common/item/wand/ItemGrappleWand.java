@@ -21,6 +21,8 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.level.Level;
 import net.neoforged.fml.LogicalSide;
 
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.ActionResultType;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.
@@ -44,7 +46,7 @@ public class ItemGrappleWand extends Item implements AlignmentChargeConsumer {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(Level worldIn, Player playerIn, Hand handIn) {
+    public ActionResult<ItemStack> onItemRightClick(Level worldIn, Player playerIn, InteractionHand handIn) {
         ItemStack held = playerIn.getHeldItem(handIn);
         if (worldIn.isRemote() || held.isEmpty()) {
             return new ActionResult<>(ActionResultType.SUCCESS, held);

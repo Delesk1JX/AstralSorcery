@@ -37,6 +37,7 @@ import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.util.ActionResultType;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.
@@ -61,7 +62,7 @@ public abstract class BlockAltar extends BlockStarlightNetwork implements Custom
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, Hand hand, BlockHitResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (!world.isRemote() && player instanceof ServerPlayer) {
             TileAltar altar = MiscUtils.getTileAt(world, pos, TileAltar.class, true);
             if (altar != null) {

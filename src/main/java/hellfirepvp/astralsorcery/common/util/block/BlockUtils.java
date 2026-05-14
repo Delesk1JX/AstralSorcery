@@ -102,7 +102,7 @@ public class BlockUtils {
         if (world.isAirBlock(pos)) {
             return true;
         }
-        BlockItemUseContext ctx = TestBlockUseContext.getHandContext(world, null, Hand.MAIN_HAND, pos, Direction.UP);
+        BlockItemUseContext ctx = TestBlockUseContext.getHandContext(world, null, InteractionHand.MAIN_HAND, pos, Direction.UP);
         return state.isReplaceable(ctx);
     }
 

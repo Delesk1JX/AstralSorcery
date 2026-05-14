@@ -31,16 +31,16 @@ public class TestBlockUseContext extends BlockItemUseContext {
 
     private final Entity entity;
 
-    private TestBlockUseContext(Level worldIn, @Nullable Entity usingEntity, Hand hand, ItemStack stack, BlockPos at, Direction side) {
+    private TestBlockUseContext(Level worldIn, @Nullable Entity usingEntity, InteractionHand hand, ItemStack stack, BlockPos at, Direction side) {
         super(worldIn, null, hand, stack, new BlockHitResult(net.minecraft.world.phys.Vec3.copyCentered(at), side, at, false));
         this.entity = usingEntity;
     }
 
-    public static BlockItemUseContext getHandContext(Level worldIn, @Nullable Entity usingEntity, Hand usedHand, BlockPos at, Direction side) {
+    public static BlockItemUseContext getHandContext(Level worldIn, @Nullable Entity usingEntity, InteractionHand usedHand, BlockPos at, Direction side) {
         return getHandContextWithItem(worldIn, usingEntity, usedHand, ItemStack.EMPTY, at, side);
     }
 
-    public static BlockItemUseContext getHandContextWithItem(Level worldIn, @Nullable Entity usingEntity, Hand usedHand, ItemStack stack, BlockPos at, Direction side) {
+    public static BlockItemUseContext getHandContextWithItem(Level worldIn, @Nullable Entity usingEntity, InteractionHand usedHand, ItemStack stack, BlockPos at, Direction side) {
         return new TestBlockUseContext(worldIn, usingEntity, usedHand, stack, at, side);
     }
 

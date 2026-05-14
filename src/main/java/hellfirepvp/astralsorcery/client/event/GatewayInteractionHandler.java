@@ -69,7 +69,7 @@ public class GatewayInteractionHandler {
     private static void onAccessRevoke(PlayerInteractEvent.RightClickBlock event) {
         Player player = event.getPlayer();
         Level world = event.getWorld();
-        if (player == null || world == null || !world.isRemote() || event.getHand() != Hand.MAIN_HAND) {
+        if (player == null || world == null || !world.isRemote() || event.getHand() != InteractionHand.MAIN_HAND) {
             return;
         }
         GatewayUI ui = GatewayUIRenderHandler.getInstance().getCurrentUI();

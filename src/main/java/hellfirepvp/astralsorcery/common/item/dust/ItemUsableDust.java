@@ -20,6 +20,8 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.level.Level;
 
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.ActionResultType;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.
@@ -37,10 +39,10 @@ public abstract class ItemUsableDust extends Item implements DispenseItemBehavio
 
     abstract boolean rightClickAir(Level world, Player player, ItemStack dust);
 
-    abstract boolean rightClickBlock(ItemUseContext ctx);
+    abstract boolean rightClickBlock(UseOnContext ctx);
 
     @Override
-    public ActionResultType onItemUse(ItemUseContext ctx) {
+    public ActionResultType onItemUse(UseOnContext ctx) {
         if (!ctx.getWorld().isRemote()) {
             if (this.rightClickBlock(ctx)) {
                 if (!ctx.getPlayer().isCreative()) {
@@ -52,7 +54,7 @@ public abstract class ItemUsableDust extends Item implements DispenseItemBehavio
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(Level world, Player player, Hand hand) {
+    public ActionResult<ItemStack> onItemRightClick(Level world, Player player, InteractionHand hand) {
         ItemStack held = player.getHeldItem(hand);
         if (!held.isEmpty() && !world.isRemote()) {
             if (this.rightClickAir(world, player, held)) {

@@ -34,6 +34,7 @@ import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.util.ActionResultType;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.
@@ -57,7 +58,7 @@ public class BlockInfuser extends BlockInventory implements CustomItemBlock {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, Hand hand, BlockHitResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (!world.isRemote) {
             ItemStack held = player.getHeldItem(hand);
             TileInfuser ti = MiscUtils.getTileAt(world, pos, TileInfuser.class, true);
