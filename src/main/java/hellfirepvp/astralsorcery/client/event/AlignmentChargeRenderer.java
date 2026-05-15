@@ -18,7 +18,7 @@ import hellfirepvp.astralsorcery.common.auxiliary.charge.AlignmentChargeHandler;
 import hellfirepvp.astralsorcery.common.item.base.AlignmentChargeConsumer;
 import hellfirepvp.astralsorcery.common.item.base.AlignmentChargeRevealer;
 import hellfirepvp.astralsorcery.common.lib.ColorsAS;
-import hellfirepvp.observerlib.common.util.tick.ITickHandler;
+import hellfirepvp.astralsorcery.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.world.entity.player.Player;
@@ -27,7 +27,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.level.GameType;
 import net.neoforged.neoforge.client.gui.event.RenderGuiEvent;
-import hellfirepvp.observerlib.common.util.tick.TickEvent.ClientTickEvent;
+import hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientTickEvent;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.LogicalSide;
@@ -170,8 +170,8 @@ public class AlignmentChargeRenderer implements ITickHandler {
     }
 
     @Override
-    public boolean canFire(TickEvent.Phase phase) {
-        return phase == TickEvent.Phase.END;
+    public boolean canFire(ClientTickEvent.Phase phase) {
+        return phase == ClientTickEvent.Phase.END;
     }
 
     @Override

@@ -77,7 +77,7 @@ public class ItemMantle extends ArmorItem implements ItemDynamicColor, Constella
     }
 
     @Override
-    public void fillCreativeModeTab(CreativeModeTab group, NonNullList<ItemStack> items) {
+    public void fillCreativeModeTab(CreativeModeTab group, java.util.List<ItemStack> items) {
         if (this.isInGroup(group)) {
             items.add(new ItemStack(this));
             for (IConstellation cst : RegistriesAS.REGISTRY_CONSTELLATIONS.toList()) {
@@ -141,7 +141,7 @@ public class ItemMantle extends ArmorItem implements ItemDynamicColor, Constella
     @Override
     @Nullable
     @OnlyIn(Dist.CLIENT)
-    public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, A _default) {
+    public <A extends HumanoidModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, A _default) {
         if (modelArmor == null) {
             modelArmor = new ModelArmorMantle();
         }

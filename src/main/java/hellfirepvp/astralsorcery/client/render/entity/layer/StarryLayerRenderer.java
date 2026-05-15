@@ -34,14 +34,14 @@ import java.util.stream.IntStream;
  * Created by HellFirePvP
  * Date: 06.01.2021 / 16:00
  */
-public class StarryLayerRenderer<E extends LivingEntity, M extends BipedModel<E>> extends BipedArmorLayer<E, M, BipedModel<E>> {
+public class StarryLayerRenderer<E extends LivingEntity, M extends HumanoidModel<E>> extends BipedArmorLayer<E, M, HumanoidModel<E>> {
 
     private static final List<CacheReference<RenderType>> RENDER_TYPES = IntStream.range(0, 2)
             .mapToObj((i) -> new CacheReference<>(() -> RegistryRenderTypes.createDepthProjectionType(i)))
             .collect(Collectors.toList());
-    private static final BipedModel MODEL_HEAD = new PlayerModel<>(-0.5F, false);
-    private static final BipedModel MODEL_ARMOR = new PlayerModel<>(0F, false);
-    private static final BipedModel MODEL_ARMOR_SMALL = new PlayerModel<>(0F, true);
+    private static final HumanoidModel MODEL_HEAD = new PlayerModel<>(-0.5F, false);
+    private static final HumanoidModel MODEL_ARMOR = new PlayerModel<>(0F, false);
+    private static final HumanoidModel MODEL_ARMOR_SMALL = new PlayerModel<>(0F, true);
 
     private static BiPredicate<Player, EquipmentSlot> renderTest = (p, type) -> false;
 
@@ -65,14 +65,14 @@ public class StarryLayerRenderer<E extends LivingEntity, M extends BipedModel<E>
         for (EquipmentSlot slotType : EquipmentSlot.values()) {
             if (slotType.getSlotType() == EquipmentSlot.Group.ARMOR) {
                 if (renderTest.test((Player) entity, slotType)) {
-                    BipedModel<E> model = slotType == EquipmentSlot.HEAD ? MODEL_HEAD : this.slimRender ? MODEL_ARMOR_SMALL : MODEL_ARMOR;
+                    HumanoidModel<E> model = slotType == EquipmentSlot.HEAD ? MODEL_HEAD : this.slimRender ? MODEL_ARMOR_SMALL : MODEL_ARMOR;
                     this.renderArmorPart(renderStack, buffer, slotType, light, model);
                 }
             }
         }
     }
 
-    private void renderArmorPart(PoseStack renderStack, MultiBufferSource buffer, EquipmentSlot slotType, int light, BipedModel<E> model) {
+    private void renderArmorPart(PoseStack renderStack, MultiBufferSource buffer, EquipmentSlot slotType, int light, HumanoidModel<E> model) {
         this.getEntityModel().setModelAttributes(model);
         this.setModelSlotVisible(model, slotType);
         for (CacheReference<RenderType> renderType : RENDER_TYPES) {

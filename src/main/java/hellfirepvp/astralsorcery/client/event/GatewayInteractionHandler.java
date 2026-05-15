@@ -34,7 +34,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import hellfirepvp.observerlib.common.util.tick.TickEvent.ClientTickEvent;
+import hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientTickEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
@@ -222,7 +222,7 @@ public class GatewayInteractionHandler {
             return;
         }
 
-        if (event.phase == TickEvent.ClientTickEvent.Phase.START) {
+        if (event.phase == TickEvent.ClientClientTickEvent.Phase.START) {
             fovPre = Minecraft.getInstance().gameSettings.fov;
             if(focusTicks < 80) {
                 return;

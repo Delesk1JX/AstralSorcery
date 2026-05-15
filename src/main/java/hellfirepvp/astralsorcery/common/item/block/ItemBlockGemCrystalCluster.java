@@ -35,7 +35,7 @@ public class ItemBlockGemCrystalCluster extends ItemBlockCustom {
     }
 
     @Override
-    public void fillCreativeModeTab(CreativeModeTab group, NonNullList<ItemStack> items) {
+    public void fillCreativeModeTab(CreativeModeTab group, java.util.List<ItemStack> items) {
         if (isInGroup(group)) {
             for (BlockGemCrystalCluster.GrowthStageType stage : BlockGemCrystalCluster.STAGE.getAllowedValues()) {
                 ItemStack cluster = new ItemStack(this);

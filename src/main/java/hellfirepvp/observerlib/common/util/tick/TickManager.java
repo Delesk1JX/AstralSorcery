@@ -50,25 +50,25 @@ public class TickManager {
     
     @SubscribeEvent
     public void onServerTick(ServerTickEvent.Pre event) {
-        fireTicks(TickEvent.ClientTickEvent.Phase.START, serverTickHandlers, TickEvent.ClientTickEvent.SERVER, event.getServer());
+        fireTicks(TickEvent.ClientClientTickEvent.Phase.START, serverTickHandlers, TickEvent.ClientTickEvent.SERVER, event.getServer());
     }
     
     @SubscribeEvent
     public void onServerTickPost(ServerTickEvent.Post event) {
-        fireTicks(TickEvent.ClientTickEvent.Phase.END, serverTickHandlers, TickEvent.ClientTickEvent.SERVER, event.getServer());
+        fireTicks(TickEvent.ClientClientTickEvent.Phase.END, serverTickHandlers, TickEvent.ClientTickEvent.SERVER, event.getServer());
     }
     
     @SubscribeEvent
     public void onClientTick(ClientTickEvent event) {
-        fireTicks(TickEvent.ClientTickEvent.Phase.START, clientTickHandlers, TickEvent.ClientTickEvent.CLIENT, null);
+        fireTicks(TickEvent.ClientClientTickEvent.Phase.START, clientTickHandlers, TickEvent.ClientTickEvent.CLIENT, null);
     }
     
     @SubscribeEvent
     public void onClientTickPost(ClientTickEvent event) {
-        fireTicks(TickEvent.ClientTickEvent.Phase.END, clientTickHandlers, TickEvent.ClientTickEvent.CLIENT, null);
+        fireTicks(TickEvent.ClientClientTickEvent.Phase.END, clientTickHandlers, TickEvent.ClientTickEvent.CLIENT, null);
     }
     
-    private void fireTicks(TickEvent.ClientTickEvent.Phase phase, List<ITickHandler> handlers, TickEvent.ClientTickEvent type, Object context) {
+    private void fireTicks(TickEvent.ClientClientTickEvent.Phase phase, List<ITickHandler> handlers, TickEvent.ClientTickEvent type, Object context) {
         for (ITickHandler handler : handlers) {
             if (handler.canFire(phase)) {
                 try {

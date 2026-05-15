@@ -64,7 +64,7 @@ import java.util.List;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import net.minecraft.world.Inventory;
+import net.minecraft.world.SimpleContainer;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.
@@ -626,7 +626,7 @@ public class TileRitualPedestal extends TileReceiverBase<StarlightReceiverRitual
 
     @Nonnull
     @Override
-    public <T> Lazy<T> getCapability(@Nonnull net.neoforged.neoforge.common.capabilities.Capability<T> cap, @Nullable Direction side) {
+    public <T> Lazy<T> getCapability(@Nonnull net.neoforged.neoforge.capabilities.Capability<T> cap, @Nullable Direction side) {
         if (this.inventory.hasCapability(cap, side)) {
             return this.inventory.getCapability().cast();
         }

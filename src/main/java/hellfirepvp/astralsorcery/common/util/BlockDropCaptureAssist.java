@@ -27,7 +27,7 @@ public class BlockDropCaptureAssist {
 
     public static final BlockDropCaptureAssist INSTANCE = new BlockDropCaptureAssist();
 
-    private static final Stack<NonNullList<ItemStack>> capturing = new Stack<>();
+    private static final Stack<java.util.List<ItemStack>> capturing = new Stack<>();
 
     private BlockDropCaptureAssist() {}
 
@@ -51,7 +51,7 @@ public class BlockDropCaptureAssist {
         capturing.push(NonNullList.create());
     }
 
-    public static NonNullList<ItemStack> getCapturedStacksAndStop() {
+    public static java.util.List<ItemStack> getCapturedStacksAndStop() {
         return capturing.pop();
     }
 

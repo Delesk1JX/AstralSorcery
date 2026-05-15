@@ -36,11 +36,11 @@ public class TickManager {
      * @param handler the handler to register
      */
     public void register(ITickHandler handler) {
-        EnumSet<hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientTickEvent.Phase> types = handler.getHandledTypes();
-        if (types.contains(hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientTickEvent.Phase.START)) {
+        EnumSet<hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientClientTickEvent.Phase> types = handler.getHandledTypes();
+        if (types.contains(hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientClientTickEvent.Phase.START)) {
             serverTickHandlers.add(handler);
         }
-        if (types.contains(hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientTickEvent.Phase.END)) {
+        if (types.contains(hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientClientTickEvent.Phase.END)) {
             clientTickHandlers.add(handler);
         }
     }
@@ -56,25 +56,25 @@ public class TickManager {
     
     @net.neoforged.bus.api.SubscribeEvent
     public void onServerTick(ServerTickEvent.Pre event) {
-        fireTicks(hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientTickEvent.Phase.START, serverTickHandlers, hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientTickEvent.Phase.START);
+        fireTicks(hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientClientTickEvent.Phase.START, serverTickHandlers, hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientClientTickEvent.Phase.START);
     }
     
     @net.neoforged.bus.api.SubscribeEvent
     public void onServerTickPost(ServerTickEvent.Post event) {
-        fireTicks(hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientTickEvent.Phase.END, serverTickHandlers, hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientTickEvent.Phase.END);
+        fireTicks(hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientClientTickEvent.Phase.END, serverTickHandlers, hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientClientTickEvent.Phase.END);
     }
     
     @net.neoforged.bus.api.SubscribeEvent
     public void onClientTick(hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientTickEvent event) {
-        fireTicks(hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientTickEvent.Phase.START, clientTickHandlers, hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientTickEvent.Phase.START);
+        fireTicks(hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientClientTickEvent.Phase.START, clientTickHandlers, hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientClientTickEvent.Phase.START);
     }
     
     @net.neoforged.bus.api.SubscribeEvent
     public void onClientTickPost(hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientTickEvent event) {
-        fireTicks(hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientTickEvent.Phase.END, clientTickHandlers, hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientTickEvent.Phase.END);
+        fireTicks(hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientClientTickEvent.Phase.END, clientTickHandlers, hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientClientTickEvent.Phase.END);
     }
     
-    private void fireTicks(hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientTickEvent.Phase phase, List<ITickHandler> handlers, hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientTickEvent.Phase type) {
+    private void fireTicks(hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientClientTickEvent.Phase phase, List<ITickHandler> handlers, hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientClientTickEvent.Phase type) {
         for (ITickHandler handler : handlers) {
             if (handler.canFire(phase)) {
                 try {

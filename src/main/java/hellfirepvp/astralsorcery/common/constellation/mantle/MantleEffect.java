@@ -179,8 +179,8 @@ public abstract class MantleEffect extends DeferredHolder<Item, MantleEffect> im
     }
 
     @Override
-    public boolean canFire(TickEvent.Phase phase) {
-        return phase == TickEvent.Phase.END;
+    public boolean canFire(ClientTickEvent.Phase phase) {
+        return phase == ClientTickEvent.Phase.END;
     }
 
     @Override

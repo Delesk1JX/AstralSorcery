@@ -29,7 +29,7 @@ import static net.minecraft.network.chat.Component.translatable;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.fml.LogicalSidedProvider;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

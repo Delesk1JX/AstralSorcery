@@ -39,7 +39,7 @@ import hellfirepvp.astralsorcery.common.perk.AbstractPerk;
 import hellfirepvp.astralsorcery.common.perk.PerkTree;
 import hellfirepvp.astralsorcery.common.perk.tree.PerkTreePoint;
 import hellfirepvp.astralsorcery.common.registry.*;
-import hellfirepvp.observerlib.common.util.tick.ITickHandler;
+import hellfirepvp.astralsorcery.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.gui.screens.Screen;

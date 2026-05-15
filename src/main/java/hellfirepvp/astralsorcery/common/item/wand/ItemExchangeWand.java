@@ -178,11 +178,11 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
         Player player = context.getPlayer();
         BlockPos pos = context.getPos();
         if (world.isRemote() || !(player instanceof ServerPlayer) || stack.isEmpty()) {
-            return ActionResultType.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
         if (player.isSneaking()) {
             ItemBlockStorage.storeBlockState(stack, world, pos);
-            return ActionResultType.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
 
         // availableStacks should already contain enough to fill whatever placeStates has precalculated
@@ -225,7 +225,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
             }
         }
 
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
     @Override

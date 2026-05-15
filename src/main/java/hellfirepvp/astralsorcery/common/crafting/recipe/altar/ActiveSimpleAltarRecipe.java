@@ -37,7 +37,7 @@ import net.neoforged.neoforge.fluids.FluidAttributes;
 import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.templates.VoidFluidHandler;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.fml.LogicalSidedProvider;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

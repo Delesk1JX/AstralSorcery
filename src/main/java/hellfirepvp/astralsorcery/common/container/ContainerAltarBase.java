@@ -12,7 +12,7 @@ import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.tile.TileInventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.IInventory;
+import net.minecraft.world.Container;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.world.item.ItemStack;

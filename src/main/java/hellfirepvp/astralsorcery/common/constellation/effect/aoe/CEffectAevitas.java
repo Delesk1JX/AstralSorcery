@@ -93,7 +93,7 @@ public class CEffectAevitas extends CEffectAbstractList<CropHelper.GrowablePlant
                     if (world instanceof ServerLevel) {
                         CropHelper.HarvestablePlant harvestablePlant = CropHelper.wrapHarvestablePlant(world, plant.getPos());
                         if (harvestablePlant != null) {
-                            NonNullList<ItemStack> drops = harvestablePlant.harvestDropsAndReplant((ServerLevel) world, rand, 1);
+                            java.util.List<ItemStack> drops = harvestablePlant.harvestDropsAndReplant((ServerLevel) world, rand, 1);
                             drops.forEach(drop -> ItemUtils.dropItem(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, drop));
                             changedFlag = !drops.isEmpty();
                         } else if (BlockUtils.breakBlockWithoutPlayer(((ServerLevel) world), plant.getPos())) {

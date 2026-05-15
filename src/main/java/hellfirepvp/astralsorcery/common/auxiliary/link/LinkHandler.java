@@ -23,7 +23,7 @@ import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import hellfirepvp.observerlib.common.util.tick.TickEvent.ClientTickEvent;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.fml.LogicalSidedProvider;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -213,8 +213,8 @@ public class LinkHandler implements ITickHandler {
     }
 
     @Override
-    public boolean canFire(TickEvent.ClientTickEvent.Phase phase) {
-        return phase == TickEvent.ClientTickEvent.Phase.END;
+    public boolean canFire(TickEvent.ClientClientTickEvent.Phase phase) {
+        return phase == TickEvent.ClientClientTickEvent.Phase.END;
     }
 
     @Override

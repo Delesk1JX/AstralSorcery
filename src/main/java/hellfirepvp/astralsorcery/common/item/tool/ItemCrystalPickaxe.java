@@ -32,7 +32,7 @@ public class ItemCrystalPickaxe extends ItemCrystalTierItem implements TypeEncha
     }
 
     @Override
-    public void fillCreativeModeTab(CreativeModeTab group, NonNullList<ItemStack> stacks) {
+    public void fillCreativeModeTab(CreativeModeTab group, java.util.List<ItemStack> stacks) {
         if (this.isInGroup(group)) {
             ItemStack stack = new ItemStack(this);
             CrystalPropertiesAS.CREATIVE_CRYSTAL_TOOL_ATTRIBUTES.store(stack);

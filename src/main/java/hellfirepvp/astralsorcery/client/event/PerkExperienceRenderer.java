@@ -19,16 +19,16 @@ import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import hellfirepvp.astralsorcery.common.data.research.PlayerPerkData;
 import hellfirepvp.astralsorcery.common.data.research.ResearchHelper;
 import hellfirepvp.astralsorcery.common.item.base.PerkExperienceRevealer;
-import hellfirepvp.observerlib.common.util.tick.ITickHandler;
+import hellfirepvp.astralsorcery.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.InteractionHand;
 import static net.minecraft.network.chat.Component.literal;
-import net.neoforged.neoforge.client.gui.RenderGuiEvent;
+import net.neoforged.neoforge.client.gui.event.RenderGuiEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import hellfirepvp.observerlib.common.util.tick.TickEvent.ClientTickEvent;
+import hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientTickEvent;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.LogicalSide;
@@ -59,7 +59,7 @@ public class PerkExperienceRenderer implements ITickHandler {
         bus.addListener(EventPriority.HIGH, this::onRenderOverlay);
     }
 
-    private void onRenderOverlay(RenderGameOverlayEvent.Post event) {
+    private void onRenderOverlay(RenderGuiEvent.Post event) {
         if (event.getType() != RenderGameOverlayEvent.ElementType.ALL) {
             return;
         }
@@ -166,8 +166,8 @@ public class PerkExperienceRenderer implements ITickHandler {
     }
 
     @Override
-    public boolean canFire(TickEvent.ClientTickEvent.Phase phase) {
-        return phase == TickEvent.ClientTickEvent.Phase.END;
+    public boolean canFire(TickEvent.ClientClientTickEvent.Phase phase) {
+        return phase == TickEvent.ClientClientTickEvent.Phase.END;
     }
 
     @Override

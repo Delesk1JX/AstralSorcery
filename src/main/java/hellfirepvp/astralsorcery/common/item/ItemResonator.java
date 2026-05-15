@@ -85,7 +85,7 @@ public class ItemResonator extends Item implements OverrideInteractItem {
     }
 
     @Override
-    public void fillCreativeModeTab(CreativeModeTab group, NonNullList<ItemStack> items) {
+    public void fillCreativeModeTab(CreativeModeTab group, java.util.List<ItemStack> items) {
         if (this.isInGroup(group)) {
             ItemStack resonator = new ItemStack(this);
             setUpgradeUnlocked(resonator, ResonatorUpgrade.STARLIGHT);

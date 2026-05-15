@@ -27,9 +27,9 @@ import net.minecraft.world.level.block.LecternBlock;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
-import net.minecraft.world.Inventory;
 import net.minecraft.world.SimpleContainer;
-import net.minecraft.world.entity.player.IInventory;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.Container;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
@@ -78,7 +78,7 @@ public class ItemTome extends Item implements PerkExperienceRevealer {
         Level world = context.getWorld();
         BlockState blockstate = world.getBlockState(context.getPos());
         if (blockstate.getBlock() instanceof LecternBlock) {
-            return LecternBlock.tryPlaceBook(world, context.getPos(), blockstate, context.getItem()) ? ActionResultType.SUCCESS : ActionResultType.PASS;
+            return LecternBlock.tryPlaceBook(world, context.getPos(), blockstate, context.getItem()) ? InteractionResult.SUCCESS : InteractionResult.PASS;
         } else {
             return InteractionResult.PASS;
         }

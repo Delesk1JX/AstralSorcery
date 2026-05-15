@@ -41,7 +41,7 @@ public class EventHandlerInteract {
     }
 
     private static void onEntityInteract(PlayerInteractEvent.EntityInteract event) {
-        ItemStack held = event.getItemStack();
+        ItemStack held = event.getResult();
         if (held.getItem() instanceof OverrideInteractItem) {
             OverrideInteractItem item = (OverrideInteractItem) held.getItem();
             if (item.shouldInterceptEntityInteract(event.getSide(), event.getPlayer(), event.getHand(), event.getTarget()) &&
@@ -53,7 +53,7 @@ public class EventHandlerInteract {
     }
 
     private static void onBlockInteract(PlayerInteractEvent.RightClickBlock event) {
-        ItemStack held = event.getItemStack();
+        ItemStack held = event.getResult();
         if (held.getItem() instanceof OverrideInteractItem) {
             OverrideInteractItem item = (OverrideInteractItem) held.getItem();
             if (item.shouldInterceptBlockInteract(event.getSide(), event.getPlayer(), event.getHand(), event.getPos(), event.getFace()) &&

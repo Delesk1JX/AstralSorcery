@@ -64,7 +64,7 @@ public class BlockStructural extends Block {
     }
 
     @Override
-    public void fillCreativeModeTab(CreativeModeTab group, NonNullList<ItemStack> items) {}
+    public void fillCreativeModeTab(CreativeModeTab group, java.util.List<ItemStack> items) {}
 
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {

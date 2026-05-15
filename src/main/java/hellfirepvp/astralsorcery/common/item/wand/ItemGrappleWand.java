@@ -49,13 +49,13 @@ public class ItemGrappleWand extends Item implements AlignmentChargeConsumer {
     public ActionResult<ItemStack> onItemRightClick(Level worldIn, Player playerIn, InteractionHand handIn) {
         ItemStack held = playerIn.getHeldItem(handIn);
         if (worldIn.isRemote() || held.isEmpty()) {
-            return new ActionResult<>(ActionResultType.SUCCESS, held);
+            return new InteractionResultHolder<>( InteractionResult.SUCCESS, held);
         }
         if (!playerIn.getCooldownTracker().hasCooldown(this) &&
                 AlignmentChargeHandler.INSTANCE.drainCharge(playerIn, LogicalSide.SERVER, COST_PER_GRAPPLE, false)) {
             worldIn.addEntity(new EntityGrapplingHook(playerIn, worldIn));
             playerIn.getCooldownTracker().setCooldown(this, 40);
         }
-        return new ActionResult<>(ActionResultType.SUCCESS, held);
+        return new InteractionResultHolder<>( InteractionResult.SUCCESS, held);
     }
 }

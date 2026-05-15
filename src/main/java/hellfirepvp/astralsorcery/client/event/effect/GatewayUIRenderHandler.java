@@ -20,7 +20,7 @@ import hellfirepvp.astralsorcery.common.tile.TileCelestialGateway;
 import hellfirepvp.astralsorcery.common.util.ColorUtils;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import hellfirepvp.observerlib.common.util.tick.ITickHandler;
+import hellfirepvp.astralsorcery.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.world.entity.player.Player;
@@ -33,7 +33,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import hellfirepvp.observerlib.common.util.tick.TickEvent.ClientTickEvent;
+import hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientTickEvent;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL11C;
 
@@ -262,8 +262,8 @@ public class GatewayUIRenderHandler implements ITickHandler {
     }
 
     @Override
-    public boolean canFire(TickEvent.ClientTickEvent.Phase phase) {
-        return phase == TickEvent.ClientTickEvent.Phase.END;
+    public boolean canFire(TickEvent.ClientClientTickEvent.Phase phase) {
+        return phase == TickEvent.ClientClientTickEvent.Phase.END;
     }
 
     @Override

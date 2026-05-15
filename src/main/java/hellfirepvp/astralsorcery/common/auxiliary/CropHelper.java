@@ -144,7 +144,7 @@ public class CropHelper {
 
         public boolean canHarvest(LevelAccessor world);
 
-        public NonNullList<ItemStack> harvestDropsAndReplant(ServerLevel world, Random rand, int harvestFortune);
+        public java.util.List<ItemStack> harvestDropsAndReplant(ServerLevel world, Random rand, int harvestFortune);
 
     }
 
@@ -165,8 +165,8 @@ public class CropHelper {
         }
 
         @Override
-        public NonNullList<ItemStack> harvestDropsAndReplant(ServerLevel world, Random rand, int harvestFortune) {
-            NonNullList<ItemStack> drops = NonNullList.create();
+        public java.util.List<ItemStack> harvestDropsAndReplant(ServerLevel world, Random rand, int harvestFortune) {
+            java.util.List<ItemStack> drops = NonNullList.create();
             if (canHarvest(world)) {
                 BlockPos pos = getPos();
                 BlockState at = world.getBlockState(getPos());
@@ -262,8 +262,8 @@ public class CropHelper {
         }
 
         @Override
-        public NonNullList<ItemStack> harvestDropsAndReplant(ServerLevel world, Random rand, int harvestFortune) {
-            NonNullList<ItemStack> stacks = NonNullList.create();
+        public java.util.List<ItemStack> harvestDropsAndReplant(ServerLevel world, Random rand, int harvestFortune) {
+            java.util.List<ItemStack> stacks = NonNullList.create();
             stacks.addAll(BlockUtils.getDrops(world, pos, harvestFortune, rand));
             world.setBlockState(pos, Blocks.NETHER_WART.getDefaultState().with(NetherWartBlock.AGE, 0), net.neoforged.neoforge.common.util.FakePlayerFactory.BlockFlags.DEFAULT);
             return stacks;
@@ -300,8 +300,8 @@ public class CropHelper {
         }
 
         @Override
-        public NonNullList<ItemStack> harvestDropsAndReplant(ServerLevel world, Random rand, int harvestFortune) {
-            NonNullList<ItemStack> drops = NonNullList.create();
+        public java.util.List<ItemStack> harvestDropsAndReplant(ServerLevel world, Random rand, int harvestFortune) {
+            java.util.List<ItemStack> drops = NonNullList.create();
             for (int i = 2; i > 0; i--) {
                 BlockPos bp = pos.up(i);
                 BlockState at = world.getBlockState(bp);
@@ -372,8 +372,8 @@ public class CropHelper {
         }
 
         @Override
-        public NonNullList<ItemStack> harvestDropsAndReplant(ServerLevel world, Random rand, int harvestFortune) {
-            NonNullList<ItemStack> drops = NonNullList.create();
+        public java.util.List<ItemStack> harvestDropsAndReplant(ServerLevel world, Random rand, int harvestFortune) {
+            java.util.List<ItemStack> drops = NonNullList.create();
             for (int i = 2; i > 0; i--) {
                 BlockPos bp = pos.up(i);
                 BlockState at = world.getBlockState(bp);
@@ -482,8 +482,8 @@ public class CropHelper {
         }
 
         @Override
-        public NonNullList<ItemStack> harvestDropsAndReplant(ServerLevel world, Random rand, int harvestFortune) {
-            NonNullList<ItemStack> drops = NonNullList.create();
+        public java.util.List<ItemStack> harvestDropsAndReplant(ServerLevel world, Random rand, int harvestFortune) {
+            java.util.List<ItemStack> drops = NonNullList.create();
             BlockState state = world.getBlockState(this.pos);
             if (state.getBlock() instanceof CropsBlock) {
                 CropsBlock block = (CropsBlock) state.getBlock();

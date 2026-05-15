@@ -76,8 +76,8 @@ public class StarlightTransmissionHandler implements ITickHandler {
     }
 
     @Override
-    public boolean canFire(TickEvent.ClientTickEvent.Phase phase) {
-        return phase == TickEvent.ClientTickEvent.Phase.START;
+    public boolean canFire(TickEvent.ClientClientTickEvent.Phase phase) {
+        return phase == TickEvent.ClientClientTickEvent.Phase.START;
     }
 
     @Override

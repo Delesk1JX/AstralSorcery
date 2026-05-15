@@ -23,7 +23,7 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.fml.LogicalSidedProvider;
+import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import javax.annotation.Nonnull;

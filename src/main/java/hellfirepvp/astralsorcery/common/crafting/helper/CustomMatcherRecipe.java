@@ -14,7 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.items.IItemHandler;
 
-import net.minecraft.world.entity.player.IInventory;
+import net.minecraft.world.Container;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.

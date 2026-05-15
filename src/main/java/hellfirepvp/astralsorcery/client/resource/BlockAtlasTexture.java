@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.client.resource;
 import hellfirepvp.astralsorcery.AstralSorcery;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.texture.AtlasTexture;
+import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureManager;
 
 /**

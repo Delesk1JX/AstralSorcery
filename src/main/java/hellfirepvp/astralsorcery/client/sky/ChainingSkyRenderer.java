@@ -20,7 +20,7 @@ import net.minecraft.resources.ResourceKey;
 import org.joml.Vector3f;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.client.DimensionSpecialEffects;
+import net.minecraft.client.DimensionalSpecialEffects;
 
 /**
  * This class is part of the Astral Sorcery Mod

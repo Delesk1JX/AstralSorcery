@@ -12,7 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.Container;
 import net.minecraft.inventory.container.Slot;
 
-import net.minecraft.world.entity.player.IInventory;
+import net.minecraft.world.Container;
 /**
  * This class is part of the Astral Sorcery Mod
  * The complete source code for this mod can be found on github.

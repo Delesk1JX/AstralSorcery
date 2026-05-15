@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.client.lib.TexturesAS;
 import hellfirepvp.astralsorcery.client.resource.AbstractRenderableTexture;
 import hellfirepvp.astralsorcery.client.screen.base.ScreenCustomContainer;
 import hellfirepvp.astralsorcery.common.container.ContainerTome;
-import net.minecraft.world.entity.player.IInventory;
+import net.minecraft.world.Container;
 import net.minecraft.network.chat.Component;
 
 /**

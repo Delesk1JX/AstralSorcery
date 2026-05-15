@@ -51,8 +51,8 @@ public class TickTokenMap<K, V extends TickTokenMap.TickMapToken<?>> extends Tok
     }
 
     @Override
-    public boolean canFire(TickEvent.ClientTickEvent.Phase phase) {
-        return phase == TickEvent.ClientTickEvent.Phase.END;
+    public boolean canFire(TickEvent.ClientClientTickEvent.Phase phase) {
+        return phase == TickEvent.ClientClientTickEvent.Phase.END;
     }
 
     @Override

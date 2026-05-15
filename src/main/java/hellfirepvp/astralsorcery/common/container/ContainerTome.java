@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.item.ItemConstellationPaper;
 import hellfirepvp.astralsorcery.common.item.ItemTome;
 import hellfirepvp.astralsorcery.common.lib.ContainerTypesAS;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.IInventory;
+import net.minecraft.world.Container;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.world.item.ItemStack;

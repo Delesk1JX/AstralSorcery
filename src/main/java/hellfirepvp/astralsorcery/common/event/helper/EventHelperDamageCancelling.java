@@ -44,7 +44,7 @@ public class EventHelperDamageCancelling {
 
     private static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         Player player = event.player;
-        if (event.phase == TickEvent.ClientTickEvent.Phase.END && !player.level().isClientSide()) {
+        if (event.phase == TickEvent.ClientClientTickEvent.Phase.END && !player.level().isClientSide()) {
             if (player.isOnGround()) {
                 Set<DamageSource> sources = invulnerableTypes.getOrDefault(event.player.getUniqueID(), Collections.emptySet());
                 sources.remove(DamageSource.FALL);

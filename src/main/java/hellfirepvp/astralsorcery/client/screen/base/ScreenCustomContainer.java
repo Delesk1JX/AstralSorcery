@@ -16,7 +16,7 @@ import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import net.minecraft.client.gui.IHasContainer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import com.mojang.blaze3d.vertex.VertexFormat;
-import net.minecraft.world.entity.player.IInventory;
+import net.minecraft.world.Container;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.network.chat.Component;
 import org.lwjgl.opengl.GL11;

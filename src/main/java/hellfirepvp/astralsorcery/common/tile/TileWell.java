@@ -275,7 +275,7 @@ public class TileWell extends TileReceiverBase<StarlightReceiverWell> {
 
     @Nonnull
     @Override
-    public <T> Lazy<T> getCapability(@Nonnull net.neoforged.neoforge.common.capabilities.Capability<T> cap, @Nullable Direction side) {
+    public <T> Lazy<T> getCapability(@Nonnull net.neoforged.neoforge.capabilities.Capability<T> cap, @Nullable Direction side) {
         if (this.access.hasCapability(cap, side)) {
             return this.access.getCapability(side).cast();
         }

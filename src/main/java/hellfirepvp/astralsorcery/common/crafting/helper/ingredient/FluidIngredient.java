@@ -60,7 +60,7 @@ public class FluidIngredient extends Ingredient {
     @Override
     public ItemStack[] getMatchingStacks() {
         if (itemArray == null || this.cacheItemStacks != this.fluids.size()) {
-            NonNullList<ItemStack> lst = NonNullList.create();
+            java.util.List<ItemStack> lst = NonNullList.create();
 
             for (FluidStack fluid : this.fluids) {
                 lst.add(FluidUtil.getFilledBucket(fluid));

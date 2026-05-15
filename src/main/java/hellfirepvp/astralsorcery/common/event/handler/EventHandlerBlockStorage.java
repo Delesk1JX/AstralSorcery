@@ -30,7 +30,7 @@ public class EventHandlerBlockStorage {
     }
 
     private static void onClickBlockServer(PlayerInteractEvent.LeftClickBlock event) {
-        ItemStack held = event.getItemStack();
+        ItemStack held = event.getResult();
         if (!event.getWorld().isRemote() && !held.isEmpty() && held.getItem() instanceof ItemBlockStorage) {
             ItemBlockStorage.clearContainerFor(event.getPlayer());
         }
@@ -38,7 +38,7 @@ public class EventHandlerBlockStorage {
 
     //Only runs on clientside
     private static void onClickAir(PlayerInteractEvent.LeftClickEmpty event) {
-        ItemStack held = event.getItemStack();
+        ItemStack held = event.getResult();
         if (!held.isEmpty() && held.getItem() instanceof ItemBlockStorage) {
             PacketChannel.CHANNEL.sendToServer(new PktClearBlockStorageStack());
         }

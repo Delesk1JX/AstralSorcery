@@ -169,8 +169,8 @@ public class TimeStopController implements ITickHandler {
     }
 
     @Override
-    public boolean canFire(TickEvent.ClientTickEvent.Phase phase) {
-        return phase.equals(TickEvent.ClientTickEvent.Phase.START);
+    public boolean canFire(TickEvent.ClientClientTickEvent.Phase phase) {
+        return phase.equals(TickEvent.ClientClientTickEvent.Phase.START);
     }
 
     @Override

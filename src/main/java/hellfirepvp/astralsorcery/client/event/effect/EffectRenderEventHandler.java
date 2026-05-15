@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.client.event.effect;
 
 import hellfirepvp.astralsorcery.client.effect.handler.EffectHandler;
-import hellfirepvp.observerlib.common.util.tick.ITickHandler;
+import hellfirepvp.astralsorcery.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.ChatFormatting;
 import net.neoforged.neoforge.client.gui.event.RenderGuiEvent;

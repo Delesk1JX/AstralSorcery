@@ -20,7 +20,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.fml.LogicalSidedProvider;
+import net.neoforged.fml.LogicalSide;
 
 import java.util.Arrays;
 import java.util.HashSet;

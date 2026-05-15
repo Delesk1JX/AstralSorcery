@@ -29,12 +29,12 @@ public enum ModifierType {
 
     private static final DecimalFormat DISPLAY_NUMBER_FORMAT = new DecimalFormat("0.##");
 
-    public static ModifierType fromVanillaAttributeOperation(AttributeModifier.Type op) {
+    public static ModifierType fromVanillaAttributeOperation(AttributeModifier.Operation op) {
         return MiscUtils.getEnumEntry(ModifierType.class, op.getId());
     }
 
-    public AttributeModifier.Type getVanillaAttributeOperation() {
-        return AttributeModifier.Type.values()[ordinal()];
+    public AttributeModifier.Operation getVanillaAttributeOperation() {
+        return AttributeModifier.Operation.values()[ordinal()];
     }
 
     // We don't need the explicit + addition to positive percentages

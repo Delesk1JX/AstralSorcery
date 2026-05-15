@@ -22,7 +22,7 @@ import hellfirepvp.astralsorcery.common.lib.RecipeTypesAS;
 import hellfirepvp.astralsorcery.common.tile.altar.TileAltar;
 import net.minecraft.client.Minecraft;
 import com.mojang.blaze3d.vertex.VertexFormat;
-import net.minecraft.world.entity.player.IInventory;
+import net.minecraft.world.Container;
 import net.minecraft.util.Tuple;
 import net.minecraft.network.chat.Component;
 import net.neoforged.fml.LogicalSide;

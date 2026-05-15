@@ -145,11 +145,11 @@ public class ItemArchitectWand extends Item implements ItemBlockStorage, ItemOve
         ItemStack held = player.getHeldItem(context.getHand());
         BlockPos pos = context.getPos();
         if (world.isRemote() || !(player instanceof ServerPlayer) || held.isEmpty()) {
-            return ActionResultType.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
         if (player.isSneaking()) {
             ItemBlockStorage.storeBlockState(held, world, pos);
-            return ActionResultType.SUCCESS;
+            return InteractionResult.SUCCESS;
         } else {
             return attemptPlaceBlocks(world, player, held).getType();
         }

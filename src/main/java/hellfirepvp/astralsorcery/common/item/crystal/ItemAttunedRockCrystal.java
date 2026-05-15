@@ -31,7 +31,7 @@ public class ItemAttunedRockCrystal extends ItemAttunedCrystalBase {
     }
 
     @Override
-    public void fillCreativeModeTab(CreativeModeTab group, NonNullList<ItemStack> items) {
+    public void fillCreativeModeTab(CreativeModeTab group, java.util.List<ItemStack> items) {
         if (this.isInGroup(group)) {
             for (IWeakConstellation cst : ConstellationRegistry.getWeakConstellations()) {
                 ItemStack stack = new ItemStack(this);

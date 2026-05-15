@@ -44,7 +44,7 @@ import net.neoforged.neoforge.common.util.FakePlayer;
 import net.neoforged.neoforge.event.EventHooks;
 import net.neoforged.neoforge.event.world.BlockEvent;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.fml.LogicalSidedProvider;
+import net.neoforged.fml.LogicalSide;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.neoforge.fml.ModLoadingContext;
 import org.apache.logging.log4j.util.TriConsumer;

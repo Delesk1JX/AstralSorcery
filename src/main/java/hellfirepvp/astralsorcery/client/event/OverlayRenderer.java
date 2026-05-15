@@ -15,7 +15,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.client.gui.RenderGuiEvent;
+import net.neoforged.neoforge.client.gui.event.RenderGuiEvent;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 
@@ -36,7 +36,7 @@ public class OverlayRenderer {
         bus.addListener(EventPriority.LOW, this::onOverlayRender);
     }
 
-    private void onOverlayRender(RenderGameOverlayEvent.Post event) {
+    private void onOverlayRender(RenderGuiEvent.Post event) {
         float pTicks = event.getPartialTicks();
         if (event.getType() != RenderGameOverlayEvent.ElementType.ALL) {
             return;

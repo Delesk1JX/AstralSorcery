@@ -18,7 +18,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Component;
 import static net.minecraft.network.chat.Component.literal;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.fml.LogicalSidedProvider;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nullable;
 import java.util.Objects;

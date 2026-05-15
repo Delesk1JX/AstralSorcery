@@ -38,7 +38,7 @@ import org.joml.Vector3f;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.client.DimensionSpecialEffects;
+import net.minecraft.client.DimensionalSpecialEffects;
 import net.neoforged.fml.LogicalSide;
 import org.lwjgl.opengl.GL11;
 

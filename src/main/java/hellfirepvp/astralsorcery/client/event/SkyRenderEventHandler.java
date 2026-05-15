@@ -15,8 +15,8 @@ import hellfirepvp.astralsorcery.common.constellation.world.WorldContext;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.DimensionSpecialEffects;
-import net.neoforged.neoforge.client.DimensionSpecialEffects;
-import net.neoforged.neoforge.client.event.EntityViewRenderEvent;
+import net.minecraft.client.DimensionalSpecialEffects;
+import net.neoforged.neoforge.client.event.ViewportEvent;
 import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
 import net.neoforged.fml.LogicalSide;
 
@@ -42,7 +42,7 @@ public class SkyRenderEventHandler {
         }
     }
 
-    public static void onFog(EntityViewRenderEvent.FogColors event) {
+    public static void onFog(ViewportEvent.ComputeFogColor event) {
         ClientLevel world = Minecraft.getInstance().world;
         if (world != null) {
             String strDimKey = world.getDimensionKey().getLocation().toString();

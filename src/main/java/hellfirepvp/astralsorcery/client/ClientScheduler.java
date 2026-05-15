@@ -9,9 +9,9 @@
 package hellfirepvp.astralsorcery.client;
 
 import hellfirepvp.astralsorcery.common.util.Counter;
-import hellfirepvp.observerlib.common.util.tick.ITickHandler;
+import hellfirepvp.astralsorcery.common.util.tick.ITickHandler;
 import net.minecraft.util.Tuple;
-import hellfirepvp.observerlib.common.util.tick.TickEvent.ClientTickEvent;
+import hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientTickEvent;
 import hellfirepvp.observerlib.common.util.tick.TickEvent;
 
 import java.util.EnumSet;
@@ -72,8 +72,8 @@ public class ClientScheduler implements ITickHandler {
     }
 
     @Override
-    public boolean canFire(TickEvent.Phase phase) {
-        return phase == TickEvent.Phase.END;
+    public boolean canFire(ClientTickEvent.Phase phase) {
+        return phase == ClientTickEvent.Phase.END;
     }
 
     @Override

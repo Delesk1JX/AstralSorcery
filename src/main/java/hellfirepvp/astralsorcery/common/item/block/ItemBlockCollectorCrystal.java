@@ -41,7 +41,7 @@ public abstract class ItemBlockCollectorCrystal extends ItemBlockCustom implemen
     }
 
     @Override
-    public void fillCreativeModeTab(CreativeModeTab group, NonNullList<ItemStack> stacks) {
+    public void fillCreativeModeTab(CreativeModeTab group, java.util.List<ItemStack> stacks) {
         if (isInGroup(group)) {
             for (IWeakConstellation cst : ConstellationRegistry.getWeakConstellations()) {
                 ItemStack stack = new ItemStack(this);

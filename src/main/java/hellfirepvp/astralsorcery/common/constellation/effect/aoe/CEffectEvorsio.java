@@ -133,7 +133,7 @@ public class CEffectEvorsio extends CEffectAbstractList<ListEntries.PosEntry> {
                         BlockUtils.breakBlockWithoutPlayer((ServerLevel) world, at, state,
                                 ItemStack.EMPTY, true, true);
                     } finally {
-                        NonNullList<ItemStack> captured = BlockDropCaptureAssist.getCapturedStacksAndStop();
+                        java.util.List<ItemStack> captured = BlockDropCaptureAssist.getCapturedStacksAndStop();
                         captured.forEach((stack) -> ItemUtils.dropItemNaturally(world, pos.getX() + 0.5, pos.getY() + 1.5, pos.getZ() + 0.5, stack));
                     }
                     return true;

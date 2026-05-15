@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.item.ItemEnchantmentAmulet;
 import hellfirepvp.astralsorcery.common.util.item.ItemComparator;
 import hellfirepvp.astralsorcery.common.util.nbt.NBTHelper;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.IInventory;
+import net.minecraft.world.Container;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
@@ -24,7 +24,7 @@ import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.fml.LogicalSidedProvider;
+import net.neoforged.fml.LogicalSide;
 import net.neoforged.fml.LogicalSide;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 
@@ -52,7 +52,7 @@ public class AmuletEnchantmentHelper {
             }
             removeAmuletOwner(inv.mainInventory.get(i));
         }
-        removeAmuletOwner(inv.getItemStack());
+        removeAmuletOwner(inv.getResult());
         if (!keepEquipped) {
             for (int i = 0; i < inv.armorInventory.size(); i++) {
                 removeAmuletOwner(inv.armorInventory.get(i));

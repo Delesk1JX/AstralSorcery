@@ -28,17 +28,17 @@ import java.util.function.Predicate;
  */
 public class TimeoutListContainer<K, V> implements ITickHandler {
 
-    private final EnumSet<TickEvent.ClientTickEvent.Phase> tickTypes;
+    private final EnumSet<TickEvent.ClientClientTickEvent.Phase> tickTypes;
     private final ContainerTimeoutDelegate<K, V> delegate;
     private final Map<K, TimeoutList<V>> timeoutListMap = new HashMap<>();
 
-    public TimeoutListContainer(TickEvent.ClientTickEvent.Phase... restTypes) {
+    public TimeoutListContainer(TickEvent.ClientClientTickEvent.Phase... restTypes) {
         this(null, restTypes);
     }
 
-    public TimeoutListContainer(@Nullable ContainerTimeoutDelegate<K, V> delegate, TickEvent.ClientTickEvent.Phase... types) {
-        this.tickTypes = EnumSet.noneOf(TickEvent.ClientTickEvent.Phase.class);
-        for (TickEvent.ClientTickEvent.Phase type : types) {
+    public TimeoutListContainer(@Nullable ContainerTimeoutDelegate<K, V> delegate, TickEvent.ClientClientTickEvent.Phase... types) {
+        this.tickTypes = EnumSet.noneOf(TickEvent.ClientClientTickEvent.Phase.class);
+        for (TickEvent.ClientClientTickEvent.Phase type : types) {
             if (type != null) this.tickTypes.add(type);
         }
         this.delegate = delegate;
@@ -98,13 +98,13 @@ public class TimeoutListContainer<K, V> implements ITickHandler {
     }
 
     @Override
-    public EnumSet<TickEvent.ClientTickEvent.Phase> getHandledTypes() {
+    public EnumSet<TickEvent.ClientClientTickEvent.Phase> getHandledTypes() {
         return tickTypes;
     }
 
     @Override
-    public boolean canFire(TickEvent.ClientTickEvent.Phase phase) {
-        return phase == TickEvent.ClientTickEvent.Phase.END;
+    public boolean canFire(TickEvent.ClientClientTickEvent.Phase phase) {
+        return phase == TickEvent.ClientClientTickEvent.Phase.END;
     }
 
     @Override

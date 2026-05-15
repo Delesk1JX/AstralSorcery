@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.tile.TileObservatory;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.data.ByteBufUtils;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.IInventory;
+import net.minecraft.world.Container;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.core.BlockPos;
 import net.neoforged.neoforge.fml.network.IContainerFactory;

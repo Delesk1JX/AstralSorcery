@@ -63,7 +63,7 @@ public class ItemConstellationPaper extends Item implements ItemDynamicColor, Co
     }
 
     @Override
-    public void fillCreativeModeTab(CreativeModeTab group, NonNullList<ItemStack> items) {
+    public void fillCreativeModeTab(CreativeModeTab group, java.util.List<ItemStack> items) {
         if (this.isInGroup(group)) {
             items.add(new ItemStack(this, 1));
 

@@ -22,7 +22,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.Level;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.fml.LogicalSidedProvider;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 

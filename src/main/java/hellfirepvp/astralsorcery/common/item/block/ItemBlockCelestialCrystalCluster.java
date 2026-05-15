@@ -68,7 +68,7 @@ public class ItemBlockCelestialCrystalCluster extends ItemBlockCustom implements
     }
 
     @Override
-    public void fillCreativeModeTab(CreativeModeTab group, NonNullList<ItemStack> items) {
+    public void fillCreativeModeTab(CreativeModeTab group, java.util.List<ItemStack> items) {
         if (isInGroup(group)) {
             for (int stage : BlockCelestialCrystalCluster.STAGE.getAllowedValues()) {
                 ItemStack cluster = new ItemStack(this);

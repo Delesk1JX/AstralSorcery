@@ -26,7 +26,7 @@ import net.minecraft.ChatFormatting;
 import static net.minecraft.network.chat.Component.translatable;
 import net.minecraft.world.level.Level;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.fml.LogicalSidedProvider;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import java.util.UUID;

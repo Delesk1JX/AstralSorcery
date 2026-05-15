@@ -47,7 +47,7 @@ public class ItemCrystalShovel extends ItemCrystalTierItem implements TypeEnchan
     }
 
     @Override
-    public void fillCreativeModeTab(CreativeModeTab group, NonNullList<ItemStack> stacks) {
+    public void fillCreativeModeTab(CreativeModeTab group, java.util.List<ItemStack> stacks) {
         if (this.isInGroup(group)) {
             ItemStack stack = new ItemStack(this);
             CrystalPropertiesAS.CREATIVE_CRYSTAL_TOOL_ATTRIBUTES.store(stack);
@@ -82,7 +82,7 @@ public class ItemCrystalShovel extends ItemCrystalTierItem implements TypeEnchan
         BlockPos pos = context.getPos();
         BlockState state = world.getBlockState(pos);
         if (context.getFace() == Direction.DOWN) {
-            return ActionResultType.PASS;
+            return InteractionResult.PASS;
         } else {
             Player playerentity = context.getPlayer();
             BlockState modifiedState = state.getToolModifiedState(world, pos, playerentity, context.getItem(), ToolType.SHOVEL);
@@ -111,7 +111,7 @@ public class ItemCrystalShovel extends ItemCrystalTierItem implements TypeEnchan
 
                 return ActionResultType.func_233537_a_(world.isRemote());
             } else {
-                return ActionResultType.PASS;
+                return InteractionResult.PASS;
             }
         }
     }

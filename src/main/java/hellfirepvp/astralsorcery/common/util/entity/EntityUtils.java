@@ -42,7 +42,7 @@ import net.neoforged.neoforge.common.ForgeHooks;
 import net.neoforged.neoforge.event.EventHooks;
 import net.neoforged.neoforge.eventbus.api.Event;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.fml.LogicalSidedProvider;
+import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

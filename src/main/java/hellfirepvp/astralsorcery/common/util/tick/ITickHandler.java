@@ -42,7 +42,7 @@ public interface ITickHandler {
      * @param phase the phase of the tick (START or END)
      * @return true if this handler should be called for this phase
      */
-    boolean canFire(TickEvent.Phase phase);
+    boolean canFire(ClientTickEvent.Phase phase);
     
     /**
      * Returns a name for this tick handler, useful for debugging.

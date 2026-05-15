@@ -159,8 +159,8 @@ public class TimeoutList<V> implements ITickHandler, Iterable<V> {
     }
 
     @Override
-    public boolean canFire(TickEvent.Phase phase) {
-        return phase == TickEvent.Phase.END;
+    public boolean canFire(ClientTickEvent.Phase phase) {
+        return phase == ClientTickEvent.Phase.END;
     }
 
     @Override

@@ -8,8 +8,8 @@
 
 package hellfirepvp.astralsorcery.client.effect.handler;
 
-import hellfirepvp.observerlib.common.util.tick.ITickHandler;
-import hellfirepvp.observerlib.common.util.tick.TickEvent.ClientTickEvent;
+import hellfirepvp.astralsorcery.common.util.tick.ITickHandler;
+import hellfirepvp.astralsorcery.common.util.tick.TickEvent.ClientTickEvent;
 import hellfirepvp.observerlib.common.util.tick.TickEvent;
 
 import java.io.IOException;
@@ -43,8 +43,8 @@ public class EffectUpdater implements ITickHandler {
     }
 
     @Override
-    public boolean canFire(TickEvent.Phase phase) {
-        return phase == TickEvent.Phase.END;
+    public boolean canFire(ClientTickEvent.Phase phase) {
+        return phase == ClientTickEvent.Phase.END;
     }
 
     @Override

@@ -52,7 +52,7 @@ public class ItemBlockLens extends ItemBlockCustom implements CrystalAttributeIt
     }
 
     @Override
-    public void fillCreativeModeTab(CreativeModeTab group, NonNullList<ItemStack> items) {
+    public void fillCreativeModeTab(CreativeModeTab group, java.util.List<ItemStack> items) {
         if (isInGroup(group)) {
             ItemStack lens = new ItemStack(this);
             this.setAttributes(lens, CrystalPropertiesAS.LENS_PRISM_CREATIVE_ATTRIBUTES);

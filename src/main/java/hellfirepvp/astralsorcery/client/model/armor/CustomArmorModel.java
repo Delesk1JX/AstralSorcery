@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.client.model.armor;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.item.ArmorStandEntity;
+import net.minecraft.world.entity.decoration.ArmorStand;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -21,7 +21,7 @@ import net.minecraft.world.entity.item.ArmorStandEntity;
  * Date: 17.02.2020 / 21:22
  */
 //Again, another version, another ripoff of net.minecraft.client.renderer.entity.model.ArmorStandArmorModel
-public class CustomArmorModel<T extends LivingEntity> extends BipedModel<T> {
+public class CustomArmorModel<T extends LivingEntity> extends HumanoidModel<T> {
 
     public CustomArmorModel() {
         super(0F);
