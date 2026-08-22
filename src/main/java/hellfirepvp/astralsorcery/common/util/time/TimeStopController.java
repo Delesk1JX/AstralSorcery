@@ -105,14 +105,14 @@ public class TimeStopController implements ITickHandler {
             if (!e.isAlive() || e.getHealth() <= 0) {
                 shouldFreeze = false;
             }
-            if (e instanceof EnderDragonEntity && ((EnderDragonEntity) e).getPhaseManager().getCurrentPhase().getType() == PhaseType.DYING) {
+            if (e instanceof EnderDragon && ((EnderDragon) e).getPhaseManager().getCurrentPhase().getType() == PhaseType.DYING) {
                 shouldFreeze = false;
             }
             if (shouldFreeze) {
-                if (e.world.isRemote()) {
+                if (e.level().isClientSide()) {
                     int amt = (int) Mth.sqrt(e.getWidth() * e.getHeight());
                     for (int i = 0; i < amt; i++) {
-                        if (e.world.rand.nextInt(5) == 0) {
+                        if (e.random.nextInt(5) == 0) {
                             TimeStopEffectHelper.playEntityParticles(e);
                         }
                     }

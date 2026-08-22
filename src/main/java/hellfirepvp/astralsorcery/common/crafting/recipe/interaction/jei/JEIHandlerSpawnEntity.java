@@ -51,7 +51,7 @@ public class JEIHandlerSpawnEntity extends JEIInteractionResultHandler {
         if (!(result instanceof ResultSpawnEntity)) {
             return;
         }
-        Entity le = ((ResultSpawnEntity) result).getEntityType().create(Minecraft.getInstance().world);
+        Entity le = ((ResultSpawnEntity) result).getEntityType().create(Minecraft.getInstance().level);
         if (!(le instanceof LivingEntity)) {
             return;
         }

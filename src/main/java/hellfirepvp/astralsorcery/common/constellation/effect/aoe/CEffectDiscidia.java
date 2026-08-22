@@ -26,12 +26,12 @@ import hellfirepvp.astralsorcery.common.util.DamageSourceUtil;
 import hellfirepvp.astralsorcery.common.util.DamageUtil;
 import hellfirepvp.astralsorcery.common.util.block.ILocatable;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
-import net.minecraft.world.entity.EntityClassification;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.potion.Effects;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
@@ -94,9 +94,9 @@ public class CEffectDiscidia extends ConstellationEffectEntityCollect<LivingEnti
             if (rand.nextInt(6) != 0) {
                 continue;
             }
-            if (properties.isCorrupted() && entity instanceof MobEntity && entity.getClassification(false) == EntityClassification.MONSTER) {
+            if (properties.isCorrupted() && entity instanceof MobEntity && entity.getClassification() == MobCategory.MONSTER) {
                 entity.heal(damage);
-                entity.addPotionEffect(new EffectInstance(Effects.RESISTANCE, 30, 1));
+                entity.addEffect(new MobEffectInstance(MobEffects.RESISTANCE, 30, 1));
             } else {
                 if (entity instanceof Player) {
                     continue;

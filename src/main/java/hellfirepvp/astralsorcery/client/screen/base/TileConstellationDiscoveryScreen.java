@@ -38,7 +38,7 @@ public abstract class TileConstellationDiscoveryScreen<T extends BlockEntity & N
         super.tick();
 
 
-        Level clWorld = Minecraft.getInstance().world;
+        Level clWorld = Minecraft.getInstance().level;
         if (tile.isRemoved() ||
                 clWorld == null ||
                 !clWorld.getDimensionKey().equals(tile.getWorld().getDimensionKey())) {

@@ -105,7 +105,7 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<Constellat
             angleOpacity = 1F;
         } else if (pitch < -10F) {
             angleOpacity = (Math.abs(pitch) - 10F) / 50F;
-            if (DayTimeHelper.isNight(Minecraft.getInstance().world)) {
+            if (DayTimeHelper.isNight(Minecraft.getInstance().level)) {
                 angleOpacity *= angleOpacity;
             }
         }
@@ -127,7 +127,7 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<Constellat
             return;
         }
 
-        WorldContext ctx = SkyHandler.getContext(Minecraft.getInstance().world, LogicalSide.CLIENT);
+        WorldContext ctx = SkyHandler.getContext(Minecraft.getInstance().level, LogicalSide.CLIENT);
         if (ctx != null && canSeeSky) {
             Random gen = ctx.getDayRandom();
             double guiFactor = Minecraft.getInstance().getMainWindow().getGuiScaleFactor();
@@ -172,7 +172,7 @@ public class ScreenHandTelescope extends ConstellationDiscoveryScreen<Constellat
                     if ((Math.abs(diffYaw) <= maxDistance || Math.abs(playerYaw + 360F) <= maxDistance) &&
                             Math.abs(diffPitch) <= maxDistance) {
 
-                        float rainBr = 1F - Minecraft.getInstance().world.getRainStrength(pTicks);
+                        float rainBr = 1F - Minecraft.getInstance().level.getRainStrength(pTicks);
                         int wPart = Mth.floor(this.getGuiWidth() * 0.1F);
                         int hPart = Mth.floor(this.getGuiHeight() * 0.1F);
                         float xFactor = diffYaw   / 8F;

@@ -55,13 +55,13 @@ public class ItemColoredLensPush extends ItemColoredLens {
                 return;
             }
             Vector3 dir = target.clone().subtract(origin).normalize().multiply(0.4F);
-            net.minecraft.world.phys.Vec3 eMotion = entity.getMotion();
+            net.minecraft.world.phys.Vec3 eMotion = entity.getDeltaMovement();
             Vector3 motion = new Vector3(
                     Math.min(1F, eMotion.x + dir.getX()),
                     dir.getY() + 0.04F,
                     Math.min(1F, eMotion.z + dir.getZ())
             );
-            entity.setMotion(MiscUtils.limitVelocityToMinecraftLimit(motion).toVec3());
+            entity.setDeltaMovement(MiscUtils.limitVelocityToMinecraftLimit(motion).toVec3());
         }
 
         @Override

@@ -13,7 +13,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.potion.Effects;
+import net.minecraft.world.effect.MobEffects;
 import net.neoforged.fml.LogicalSide;
 
 /**
@@ -32,7 +32,7 @@ public class EnchantmentNightVision extends EnchantmentPlayerTick {
     @Override
     public void tick(Player player, LogicalSide side, int level) {
         if (side.isServer()) {
-            player.addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, 300, level - 1, true, false));
+            player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 300, level - 1, true, false));
         }
     }
 

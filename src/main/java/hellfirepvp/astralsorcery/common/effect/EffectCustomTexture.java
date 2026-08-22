@@ -15,12 +15,11 @@ import hellfirepvp.astralsorcery.client.resource.query.SpriteQuery;
 import hellfirepvp.astralsorcery.client.util.RenderingGuiUtils;
 import hellfirepvp.astralsorcery.client.util.RenderingUtils;
 import net.minecraft.client.gui.AbstractGui;
-import net.minecraft.client.gui.DisplayEffectsScreen;
+import net.minecraft.client.gui.GuiEffectInventory;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.potion.EffectType;
-import net.minecraft.util.Tuple;
+import net.minecraft.world.effect.MobEffectCategory;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.IEventBus;
@@ -41,7 +40,7 @@ public abstract class EffectCustomTexture extends Effect {
     protected static final Random rand = new Random();
     private final Color colorAsObj;
 
-    public EffectCustomTexture(EffectType type, Color color) {
+    public EffectCustomTexture(MobEffectCategory type, Color color) {
         super(type, color.getRGB());
         this.colorAsObj = color;
     }
@@ -52,7 +51,7 @@ public abstract class EffectCustomTexture extends Effect {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void renderInventoryEffect(EffectInstance effect, DisplayEffectsScreen<?> gui, PoseStack renderStack, int x, int y, float z) {
+    public void renderInventoryEffect(MobEffectInstance effect, GuiEffectInventory gui, PoseStack renderStack, int x, int y, float z) {
         float wh = 18;
         float offsetX = x + 6;
         float offsetY = y + 7;
@@ -63,18 +62,17 @@ public abstract class EffectCustomTexture extends Effect {
         SpriteSheetResource ssr = getSpriteQuery().resolveSprite();
         ssr.bindTexture();
 
-        Tuple<Float, Float> uvTpl = ssr.getUVOffset(ClientScheduler.getClientTick());
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, VertexFormat.Mode.QUADS, buf -> {
             RenderingGuiUtils.rect(buf, renderStack, offsetX, offsetY, z, wh, wh)
                     .color(red, green, blue, 1F)
-                    .tex(uvTpl.getA(), uvTpl.getB(), ssr.getUWidth(), ssr.getVWidth())
+                    .uv(ssr.getUOffset(ClientScheduler.getClientTick()), ssr.getVOffset(ClientScheduler.getClientTick()), ssr.getUWidth(), ssr.getVWidth())
                     .draw();
         });
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void renderHUDEffect(EffectInstance effect, AbstractGui gui, PoseStack renderStack, int x, int y, float z, float alpha) {
+    public void renderHUDEffect(MobEffectInstance effect, AbstractGui gui, PoseStack renderStack, int x, int y, float z, float alpha) {
         float wh = 18;
         float offsetX = x + 3;
         float offsetY = y + 3;
@@ -85,11 +83,10 @@ public abstract class EffectCustomTexture extends Effect {
         SpriteSheetResource ssr = getSpriteQuery().resolveSprite();
         ssr.bindTexture();
 
-        Tuple<Float, Float> uvTpl = ssr.getUVOffset(ClientScheduler.getClientTick());
-        RenderingUtils.draw(GL11.GL_QUADS, DefaultVertexFormat.POSITION_COLOR_TEX, buf -> {
+        RenderingUtils.draw(GL11.GL_QUADS, VertexFormat.Mode.QUADS, buf -> {
             RenderingGuiUtils.rect(buf, renderStack, offsetX, offsetY, z, wh, wh)
-                    .color(red, green, blue, 1F)
-                    .tex(uvTpl.getA(), uvTpl.getB(), ssr.getUWidth(), ssr.getVWidth())
+                    .color(red, green, blue, alpha)
+                    .uv(ssr.getUOffset(ClientScheduler.getClientTick()), ssr.getVOffset(ClientScheduler.getClientTick()), ssr.getUWidth(), ssr.getVWidth())
                     .draw();
         });
     }

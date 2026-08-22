@@ -11,7 +11,7 @@ package hellfirepvp.astralsorcery.common.block.base.template;
 import hellfirepvp.astralsorcery.common.block.base.CustomItemBlock;
 import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.effect.MobEffect;
-import net.minecraft.potion.Effects;
+import net.minecraft.world.effect.MobEffects;
 
 import javax.annotation.Nonnull;
 
@@ -25,7 +25,7 @@ import javax.annotation.Nonnull;
 public abstract class BlockFlowerTemplate extends FlowerBlock implements CustomItemBlock {
 
     public BlockFlowerTemplate(Properties properties) {
-        super(Effects.INSTANT_HEALTH, 0, properties);
+        super(MobEffects.INSTANT_HEALTH, 0, properties);
     }
 
     @Override

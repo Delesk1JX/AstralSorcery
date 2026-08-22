@@ -159,7 +159,7 @@ public class TileRefractionTable extends TileEntityTick implements NamedInventor
                     .setMaxAge(45);
 
             Vector3 mov = target.clone().subtract(offset).normalize().multiply(0.05 * rand.nextFloat());
-            p.setMotion(mov);
+            p.setDeltaMovement(mov);
         }
 
         if (rand.nextInt(3) == 0) {

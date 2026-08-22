@@ -78,7 +78,7 @@ public class BlockSpectralRelay extends BlockStarlightNetwork implements CustomI
                     }
 
                     inv.setStackInSlot(0, ItemUtils.copyStackWithSize(held, 1));
-                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((world.rand.nextFloat() - world.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
+                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((world.random.nextFloat() - world.random.nextFloat()) * 0.7F + 1.0F) * 2.0F);
                     if (!player.isCreative()) {
                         held.shrink(1);
                     }

@@ -208,7 +208,7 @@ public class ScreenJournalConstellationDetail extends ScreenJournal implements N
     }
 
     private void testActivePhases() {
-        WorldContext ctx = SkyHandler.getContext(Minecraft.getInstance().world, LogicalSide.CLIENT);
+        WorldContext ctx = SkyHandler.getContext(Minecraft.getInstance().level, LogicalSide.CLIENT);
         if (ctx == null) {
             return;
         }

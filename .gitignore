@@ -1,1 +1,20 @@
-(src/main/java/hellfirepvp/astralsorcery/client/render/tile/RenderChalice.java)
+```
+# Build artifacts
+build/
+.neoform/
+
+# Gradle
+.gradle/
+!gradle/
+!gradlew
+!gradlew.bat
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+```

@@ -153,7 +153,7 @@ public class ActiveCrystalAttunementRecipe extends AttunementRecipe.Active<Attun
         crystal.prevPosX = crystalHoverPos.getX();
         crystal.prevPosY = crystalHoverPos.getY();
         crystal.prevPosZ = crystalHoverPos.getZ();
-        crystal.setMotion(0, 0, 0);
+        crystal.setDeltaMovement(0, 0, 0);
 
         if (side.isClient()) {
             doClientTick(altar);

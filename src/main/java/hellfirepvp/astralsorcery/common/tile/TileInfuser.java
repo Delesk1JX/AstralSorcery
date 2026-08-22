@@ -151,7 +151,7 @@ public class TileInfuser extends TileEntityTick implements WandInteractable {
         ResourceLocation recipeName = ByteBufUtils.readResourceLocation(pkt.getExtraData());
         BlockPos at = ByteBufUtils.readPos(pkt.getExtraData());
 
-        Level world = Minecraft.getInstance().world;
+        Level world = Minecraft.getInstance().level;
         if (world == null) {
             return;
         }
@@ -252,7 +252,7 @@ public class TileInfuser extends TileEntityTick implements WandInteractable {
 
     @Override
     public boolean onInteract(Level world, BlockPos pos, Player player, Direction side, boolean sneak) {
-        if (!world.isRemote() && this.hasMultiblock() && !this.getItemInput().isEmpty()) {
+        if (!world.isClientSide() && this.hasMultiblock() && !this.getItemInput().isEmpty()) {
             if (this.getActiveRecipe() != null) {
                 if (this.getActiveRecipe().matches(this)) {
                     return true;

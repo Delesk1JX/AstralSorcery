@@ -138,7 +138,7 @@ public class RenderStateBuilder {
         private ParticleTarget() {
             super("as_particle_target", () -> {
                 if (Minecraft.isFabulousGraphicsEnabled()) {
-                    Minecraft.getInstance().worldRenderer.func_239230_s_().bindFramebuffer(false);
+                    Minecraft.getInstance().levelRenderer.func_239230_s_().bindFramebuffer(false);
                 }
             }, () -> {
                 if (Minecraft.isFabulousGraphicsEnabled()) {

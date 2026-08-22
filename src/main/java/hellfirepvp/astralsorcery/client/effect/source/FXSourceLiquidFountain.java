@@ -54,7 +54,7 @@ public class FXSourceLiquidFountain extends FXSource<FXCube, BatchRenderContext<
                 .setTextureAtlasSprite(this.sprite)
                 .setTextureSubSizePercentage(1F)
                 .tumble()
-                .setAlphaMultiplier(DayTimeHelper.getCurrentDaytimeDistribution(Minecraft.getInstance().world))
+                .setAlphaMultiplier(DayTimeHelper.getCurrentDaytimeDistribution(Minecraft.getInstance().level))
                 .setScaleMultiplier(0.1F + rand.nextFloat() * 0.05F)
                 .setMotion(motion)
                 .color((fx, pTicks) -> new Color(fluid.getFluid().getAttributes().getColor(fluid)))

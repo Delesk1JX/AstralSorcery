@@ -15,11 +15,9 @@ import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.common.util.DamageUtil;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.potion.EffectType;
-import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.server.level.ServerLevel;
-import net.neoforged.fml.LogicalSide;
-import net.neoforged.fml.LogicalSide;
+import net.neoforged.neoforge.server.ServerLifecycleHooks;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -31,7 +29,7 @@ import net.neoforged.fml.LogicalSide;
 public class EffectBleed extends EffectCustomTexture {
 
     public EffectBleed() {
-        super(EffectType.HARMFUL, ColorsAS.EFFECT_BLEED);
+        super(MobEffectCategory.HARMFUL, ColorsAS.EFFECT_BLEED);
     }
 
     @Override
@@ -43,8 +41,8 @@ public class EffectBleed extends EffectCustomTexture {
     public void performEffect(LivingEntity entity, int amplifier) {
         if (entity instanceof Player &&
                 !entity.level().isClientSide() &&
-                entity.level instanceof ServerLevel &&
-                !((MinecraftServer) LogicalSidedProvider.INSTANCE.get(LogicalSide.SERVER)).isPVPEnabled()) {
+                entity.level() instanceof ServerLevel &&
+                !ServerLifecycleHooks.getCurrentServer().isPvpEnabled()) {
             return;
         }
         DamageUtil.shotgunAttack(entity, e -> DamageUtil.attackEntityFrom(e, CommonProxy.DAMAGE_SOURCE_BLEED, 0.5F * (amplifier + 1)));

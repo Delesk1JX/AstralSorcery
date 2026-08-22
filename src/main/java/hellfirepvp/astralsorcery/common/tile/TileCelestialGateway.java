@@ -107,14 +107,14 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
     public void tick() {
         super.tick();
 
-        if (world.isRemote()) {
+        if (level.isClientSide()) {
             playEffects();
         } else {
             boolean complete = this.hasMultiblock() & this.doesSeeSky();
             if (complete) {
                 if (!networkRegistered) {
-                    GatewayCache cache = DataAS.DOMAIN_AS.getData(world, DataAS.KEY_GATEWAY_CACHE);
-                    if (cache.offerPosition(world, getPos())) {
+                    GatewayCache cache = DataAS.DOMAIN_AS.getData(level, DataAS.KEY_GATEWAY_CACHE);
+                    if (cache.offerPosition(level, getPos())) {
                         cache.updateGatewayNode(getPos(), node -> {
                             node.setDisplayName(this.displayText);
                             node.setColor(this.color);
@@ -125,7 +125,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
                     }
                 }
             } else if (networkRegistered) {
-                DataAS.DOMAIN_AS.getData(world, DataAS.KEY_GATEWAY_CACHE).removePosition(world, getPos());
+                DataAS.DOMAIN_AS.getData(level, DataAS.KEY_GATEWAY_CACHE).removePosition(level, getPos());
                 networkRegistered = false;
                 markForUpdate();
             }
@@ -333,7 +333,7 @@ public class TileCelestialGateway extends TileEntityTick implements INameable, T
     }
 
     private void updateAccessInformation() {
-        DataAS.DOMAIN_AS.getData(world, DataAS.KEY_GATEWAY_CACHE).updateGatewayNode(this.getPos(), node -> {
+        DataAS.DOMAIN_AS.getData(level, DataAS.KEY_GATEWAY_CACHE).updateGatewayNode(this.getPos(), node -> {
             node.setLocked(this.isLocked());
             node.setOwner(this.getOwner());
             node.setAllowedUsers(this.allowedUsers);

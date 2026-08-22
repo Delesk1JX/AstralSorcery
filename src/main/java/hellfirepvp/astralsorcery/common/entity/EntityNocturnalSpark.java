@@ -21,7 +21,7 @@ import hellfirepvp.astralsorcery.common.util.block.BlockUtils;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
 import net.minecraft.world.level.block.AirBlock;
-import net.minecraft.world.entity.EntityClassification;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.SpawnReason;
@@ -81,7 +81,7 @@ public class EntityNocturnalSpark extends ThrowableEntity {
     }
 
     public void setSpawning() {
-        this.setMotion(net.minecraft.world.phys.Vec3.ZERO);
+        this.setDeltaMovement(net.minecraft.world.phys.Vec3.ZERO);
         this.dataManager.set(SPAWNING, true);
     }
 
@@ -204,7 +204,7 @@ public class EntityNocturnalSpark extends ThrowableEntity {
             if (pos.distanceSq(this.getPosition()) >= 16) {
                 return;
             }
-            EntityUtils.performWorldSpawningAt((ServerLevel) world, pos, EntityClassification.MONSTER, SpawnReason.SPAWNER, true,
+            EntityUtils.performWorldSpawningAt((ServerLevel) world, pos, MobCategory.MONSTER, SpawnReason.SPAWNER, true,
                     EntityUtils.SpawnConditionFlags.IGNORE_SPAWN_CONDITIONS | EntityUtils.SpawnConditionFlags.IGNORE_ENTITY_COLLISION);
         }
     }

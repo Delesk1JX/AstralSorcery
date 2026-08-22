@@ -13,7 +13,7 @@ import hellfirepvp.astralsorcery.common.block.properties.PropertiesMisc;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.effect.MobEffect;
-import net.minecraft.potion.Effects;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
@@ -56,7 +56,7 @@ public class BlockGlowFlower extends BlockFlowerTemplate implements IPlantable {
     @Nonnull
     @Override
     public Effect getStewEffect() {
-        return Effects.LUCK;
+        return MobEffects.LUCK;
     }
 
     @Override

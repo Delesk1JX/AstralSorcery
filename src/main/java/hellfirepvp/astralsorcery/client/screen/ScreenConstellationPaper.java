@@ -53,7 +53,7 @@ public class ScreenConstellationPaper extends WidthHeightScreen {
     }
 
     private void resolvePhases() {
-        WorldContext ctx = SkyHandler.getContext(Minecraft.getInstance().world, LogicalSide.CLIENT);
+        WorldContext ctx = SkyHandler.getContext(Minecraft.getInstance().level, LogicalSide.CLIENT);
         if (ctx != null) {
             phases = new ArrayList<>();
             for (MoonPhase phase : MoonPhase.values()) {

@@ -72,7 +72,7 @@ public class SkyHandler implements ITickHandler {
 
     @OnlyIn(Dist.CLIENT)
     private void handleClientTick() {
-        Level w = Minecraft.getInstance().world;
+        Level w = Minecraft.getInstance().level;
         if (w != null) {
             net.minecraft.resources.ResourceKey<Level> dimKey = w.getDimensionKey();
             WorldContext ctx = worldHandlersClient.get(dimKey);

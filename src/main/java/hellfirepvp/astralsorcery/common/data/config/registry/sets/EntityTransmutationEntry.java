@@ -9,7 +9,7 @@
 package hellfirepvp.astralsorcery.common.data.config.registry.sets;
 
 import hellfirepvp.astralsorcery.common.data.config.base.ConfigDataSet;
-import net.minecraft.world.entity.EntityClassification;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -64,7 +64,7 @@ public class EntityTransmutationEntry implements ConfigDataSet {
         if (toType == null) {
             throw new IllegalArgumentException(split[0] + " is not a known EntityType.");
         }
-        if (!toType.isSummonable() || toType.getClassification() == EntityClassification.MISC) {
+        if (!toType.isSummonable() || toType.getCategory() == MobCategory.MISC) {
             throw new IllegalArgumentException("EntityType " + split[1] + " seems to be not summonable or isn't classified as creature.");
         }
         return new EntityTransmutationEntry(fromType, toType);

@@ -39,7 +39,7 @@ public class ItemHeldEffectRenderer {
         float pTicks = event.getPartialTicks();
         PoseStack renderStack = event.getMatrixStack();
 
-        if (Minecraft.getInstance().player == null || Minecraft.getInstance().world == null) {
+        if (Minecraft.getInstance().player == null || Minecraft.getInstance().level == null) {
             return;
         }
 

@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.lib.PerkAttributeTypesAS;
 import hellfirepvp.astralsorcery.common.perk.type.ModifierType;
 
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.potion.Effects;
+import net.minecraft.world.effect.MobEffects;
 
 import static hellfirepvp.astralsorcery.common.lib.EngravingEffectsAS.*;
 
@@ -34,7 +34,7 @@ public class RegistryEngravingEffects {
 
     public static void init() {
         AEVITAS = newEffect(ConstellationsAS.aevitas)
-                .addEffect(new EngravingEffect.PotionEffect(() -> Effects.REGENERATION, 0, 3))
+                .addEffect(new EngravingEffect.PotionEffect(() -> MobEffects.REGENERATION, 0, 3))
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.MENDING, 1, 1))
                 .addEffect(new EngravingEffect.ModifierEffect(() -> PerkAttributeTypesAS.ATTR_TYPE_HEALTH, ModifierType.ADDITION, 1F, 3F)
                         .addApplicableType(net.minecraft.world.item.enchantment.Enchantment.WEARABLE)
@@ -46,7 +46,7 @@ public class RegistryEngravingEffects {
                         .addApplicableType(net.minecraft.world.item.enchantment.Enchantment.TRIDENT)
                         .formatResultAsInteger());
         ARMARA = newEffect(ConstellationsAS.armara)
-                .addEffect(new EngravingEffect.PotionEffect(() -> Effects.RESISTANCE, 0, 0))
+                .addEffect(new EngravingEffect.PotionEffect(() -> MobEffects.RESISTANCE, 0, 0))
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.PROTECTION, 2, 5))
                 .addEffect(new EngravingEffect.ModifierEffect(() -> PerkAttributeTypesAS.ATTR_TYPE_ARMOR, ModifierType.STACKING_MULTIPLY, 1.05F, 1.1F)
                         .addApplicableType(net.minecraft.world.item.enchantment.Enchantment.WEARABLE))
@@ -57,7 +57,7 @@ public class RegistryEngravingEffects {
                         .addApplicableType(net.minecraft.world.item.enchantment.Enchantment.TRIDENT)
                         .formatResultAsInteger());
         DISCIDIA = newEffect(ConstellationsAS.discidia)
-                .addEffect(new EngravingEffect.PotionEffect(() -> Effects.STRENGTH, 0, 3))
+                .addEffect(new EngravingEffect.PotionEffect(() -> MobEffects.STRENGTH, 0, 3))
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.SHARPNESS, 3, 7))
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.POWER, 3, 7))
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.CHANNELING, 1, 1).setIgnoreCompatibility())
@@ -69,12 +69,12 @@ public class RegistryEngravingEffects {
                         .addApplicableType(net.minecraft.world.item.enchantment.Enchantment.BOW)
                         .addApplicableType(net.minecraft.world.item.enchantment.Enchantment.CROSSBOW));
         EVORSIO = newEffect(ConstellationsAS.evorsio)
-                .addEffect(new EngravingEffect.PotionEffect(() -> Effects.HASTE, 1, 3))
+                .addEffect(new EngravingEffect.PotionEffect(() -> MobEffects.HASTE, 1, 3))
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.EFFICIENCY, 3, 6))
                 .addEffect(new EngravingEffect.ModifierEffect(() -> PerkAttributeTypesAS.ATTR_TYPE_INC_HARVEST_SPEED, ModifierType.ADDED_MULTIPLY, 0.1F, 0.25F)
                         .addApplicableType(net.minecraft.world.item.enchantment.Enchantment.DIGGER));
         VICIO = newEffect(ConstellationsAS.vicio)
-                .addEffect(new EngravingEffect.PotionEffect(() -> Effects.SPEED, 1, 3))
+                .addEffect(new EngravingEffect.PotionEffect(() -> MobEffects.SPEED, 1, 3))
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.FEATHER_FALLING, 1, 4))
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.RIPTIDE, 1, 5))
                 .addEffect(new EngravingEffect.ModifierEffect(() -> PerkAttributeTypesAS.ATTR_TYPE_ATTACK_SPEED, ModifierType.ADDED_MULTIPLY, 0.15F, 0.25F)
@@ -88,7 +88,7 @@ public class RegistryEngravingEffects {
 
 
         BOOTES = newEffect(ConstellationsAS.bootes)
-                .addEffect(new EngravingEffect.PotionEffect(() -> Effects.SATURATION, 1, 5))
+                .addEffect(new EngravingEffect.PotionEffect(() -> MobEffects.SATURATION, 1, 5))
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.SILK_TOUCH, 1, 1))
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.LOYALTY, 2, 4))
                 .addEffect(new EngravingEffect.ModifierEffect(() -> PerkAttributeTypesAS.ATTR_TYPE_HEALTH, ModifierType.ADDITION, 1F, 2F)
@@ -99,7 +99,7 @@ public class RegistryEngravingEffects {
                         .addApplicableType(net.minecraft.world.item.enchantment.Enchantment.WEAPON)
                         .addApplicableType(net.minecraft.world.item.enchantment.Enchantment.TRIDENT));
         FORNAX = newEffect(ConstellationsAS.fornax)
-                .addEffect(new EngravingEffect.PotionEffect(() -> Effects.FIRE_RESISTANCE, 0, 0))
+                .addEffect(new EngravingEffect.PotionEffect(() -> MobEffects.FIRE_RESISTANCE, 0, 0))
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.FIRE_ASPECT, 1, 3))
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.FLAME, 1, 2))
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> EnchantmentsAS.SCORCHING_HEAT, 1, 1))
@@ -111,9 +111,9 @@ public class RegistryEngravingEffects {
                 .addEffect(new EngravingEffect.ModifierEffect(() -> PerkAttributeTypesAS.ATTR_TYPE_INC_CRIT_MULTIPLIER, ModifierType.ADDED_MULTIPLY, 0.1F, 0.2F)
                         .addApplicableType(net.minecraft.world.item.enchantment.Enchantment.WEARABLE));
         HOROLOGIUM = newEffect(ConstellationsAS.horologium)
-                .addEffect(new EngravingEffect.PotionEffect(() -> Effects.LUCK, 3, 5))
-                .addEffect(new EngravingEffect.PotionEffect(() -> Effects.SPEED, 1, 2))
-                .addEffect(new EngravingEffect.PotionEffect(() -> Effects.HASTE, 2, 3))
+                .addEffect(new EngravingEffect.PotionEffect(() -> MobEffects.LUCK, 3, 5))
+                .addEffect(new EngravingEffect.PotionEffect(() -> MobEffects.SPEED, 1, 2))
+                .addEffect(new EngravingEffect.PotionEffect(() -> MobEffects.HASTE, 2, 3))
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.FORTUNE, 4, 6))
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.LOOTING, 3, 6))
                 .addEffect(new EngravingEffect.ModifierEffect(() -> PerkAttributeTypesAS.ATTR_TYPE_COOLDOWN_REDUCTION, ModifierType.ADDED_MULTIPLY, 0.1F, 0.2F)
@@ -130,7 +130,7 @@ public class RegistryEngravingEffects {
                         .addApplicableType(net.minecraft.world.item.enchantment.Enchantment.ARMOR_CHEST)
                         .addApplicableType(net.minecraft.world.item.enchantment.Enchantment.ARMOR_LEGS));
         LUCERNA = newEffect(ConstellationsAS.lucerna)
-                .addEffect(new EngravingEffect.PotionEffect(() -> Effects.NIGHT_VISION, 0, 0))
+                .addEffect(new EngravingEffect.PotionEffect(() -> MobEffects.NIGHT_VISION, 0, 0))
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> EnchantmentsAS.NIGHT_VISION, 1, 1))
                 .addEffect(new EngravingEffect.ModifierEffect(() -> PerkAttributeTypesAS.ATTR_TYPE_ALIGNMENT_CHARGE_MAXIMUM, ModifierType.ADDED_MULTIPLY, 0.15F, 0.3F)
                         .addApplicableType(net.minecraft.world.item.enchantment.Enchantment.WEARABLE))
@@ -141,7 +141,7 @@ public class RegistryEngravingEffects {
                         .addApplicableType(net.minecraft.world.item.enchantment.Enchantment.CROSSBOW)
                         .addApplicableType(net.minecraft.world.item.enchantment.Enchantment.TRIDENT));
         MINERALIS = newEffect(ConstellationsAS.mineralis)
-                .addEffect(new EngravingEffect.PotionEffect(() -> Effects.HASTE, 0, 2))
+                .addEffect(new EngravingEffect.PotionEffect(() -> MobEffects.HASTE, 0, 2))
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.FORTUNE, 1, 3))
                 .addEffect(new EngravingEffect.ModifierEffect(() -> PerkAttributeTypesAS.ATTR_TYPE_INC_HARVEST_SPEED, ModifierType.ADDED_MULTIPLY, 0.1F, 0.2F)
                         .addApplicableType(net.minecraft.world.item.enchantment.Enchantment.WEARABLE))
@@ -149,13 +149,13 @@ public class RegistryEngravingEffects {
                         .addApplicableType(net.minecraft.world.item.enchantment.Enchantment.DIGGER)
                         .formatResultAsInteger());
         OCTANS = newEffect(ConstellationsAS.octans)
-                .addEffect(new EngravingEffect.PotionEffect(() -> Effects.WATER_BREATHING, 1, 3))
+                .addEffect(new EngravingEffect.PotionEffect(() -> MobEffects.WATER_BREATHING, 1, 3))
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.RESPIRATION, 2, 4))
                 .addEffect(new EngravingEffect.ModifierEffect(() -> PerkAttributeTypesAS.ATTR_TYPE_SWIMSPEED, ModifierType.ADDED_MULTIPLY, 0.05F, 0.08F)
                         .addApplicableType(net.minecraft.world.item.enchantment.Enchantment.WEARABLE));
         PELOTRIO = newEffect(ConstellationsAS.pelotrio)
-                .addEffect(new EngravingEffect.PotionEffect(() -> Effects.ABSORPTION, 1, 4))
-                .addEffect(new EngravingEffect.PotionEffect(() -> Effects.REGENERATION, 2, 4))
+                .addEffect(new EngravingEffect.PotionEffect(() -> MobEffects.ABSORPTION, 1, 4))
+                .addEffect(new EngravingEffect.PotionEffect(() -> MobEffects.REGENERATION, 2, 4))
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.LURE, 3, 5))
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.INFINITY, 1, 1))
                 .addEffect(new EngravingEffect.ModifierEffect(() -> PerkAttributeTypesAS.ATTR_TYPE_POTION_DURATION, ModifierType.ADDED_MULTIPLY, 0.15F, 0.2F)
@@ -164,9 +164,9 @@ public class RegistryEngravingEffects {
                         .addApplicableType(net.minecraft.world.item.enchantment.Enchantment.WEARABLE));
 
         ALCARA = newEffect(ConstellationsAS.alcara)
-                .addEffect(new EngravingEffect.PotionEffect(() -> Effects.LUCK, 3, 6))
-                .addEffect(new EngravingEffect.PotionEffect(() -> Effects.INVISIBILITY, 0, 1))
-                .addEffect(new EngravingEffect.PotionEffect(() -> Effects.SPEED, 1, 2))
+                .addEffect(new EngravingEffect.PotionEffect(() -> MobEffects.LUCK, 3, 6))
+                .addEffect(new EngravingEffect.PotionEffect(() -> MobEffects.INVISIBILITY, 0, 1))
+                .addEffect(new EngravingEffect.PotionEffect(() -> MobEffects.SPEED, 1, 2))
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.SWEEPING, 3, 6))
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.LURE, 2, 5).setIgnoreCompatibility())
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.LUCK_OF_THE_SEA, 3, 6).setIgnoreCompatibility())
@@ -181,9 +181,9 @@ public class RegistryEngravingEffects {
                         .addApplicableType(net.minecraft.world.item.enchantment.Enchantment.BOW)
                         .addApplicableType(net.minecraft.world.item.enchantment.Enchantment.CROSSBOW));
         GELU = newEffect(ConstellationsAS.gelu)
-                .addEffect(new EngravingEffect.PotionEffect(() -> Effects.RESISTANCE, 1, 2))
-                .addEffect(new EngravingEffect.PotionEffect(() -> Effects.FIRE_RESISTANCE, 0, 0))
-                .addEffect(new EngravingEffect.PotionEffect(() -> Effects.SLOWNESS, 0, 1))
+                .addEffect(new EngravingEffect.PotionEffect(() -> MobEffects.RESISTANCE, 1, 2))
+                .addEffect(new EngravingEffect.PotionEffect(() -> MobEffects.FIRE_RESISTANCE, 0, 0))
+                .addEffect(new EngravingEffect.PotionEffect(() -> MobEffects.SLOWNESS, 0, 1))
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.FROST_WALKER, 1, 1))
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.FEATHER_FALLING, 1, 1))
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.UNBREAKING, 2, 4))
@@ -198,9 +198,9 @@ public class RegistryEngravingEffects {
                         .addApplicableType(net.minecraft.world.item.enchantment.Enchantment.BOW)
                         .addApplicableType(net.minecraft.world.item.enchantment.Enchantment.CROSSBOW));
         ULTERIA = newEffect(ConstellationsAS.ulteria)
-                .addEffect(new EngravingEffect.PotionEffect(() -> Effects.ABSORPTION, 0, 4))
-                .addEffect(new EngravingEffect.PotionEffect(() -> Effects.REGENERATION, 1, 3))
-                .addEffect(new EngravingEffect.PotionEffect(() -> Effects.WEAKNESS, 1, 2))
+                .addEffect(new EngravingEffect.PotionEffect(() -> MobEffects.ABSORPTION, 0, 4))
+                .addEffect(new EngravingEffect.PotionEffect(() -> MobEffects.REGENERATION, 1, 3))
+                .addEffect(new EngravingEffect.PotionEffect(() -> MobEffects.WEAKNESS, 1, 2))
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.UNBREAKING, 2, 3).setIgnoreCompatibility())
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.FIRE_PROTECTION, 4, 6).setIgnoreCompatibility())
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.BLAST_PROTECTION, 4, 6).setIgnoreCompatibility())
@@ -217,9 +217,9 @@ public class RegistryEngravingEffects {
                         .addApplicableType(net.minecraft.world.item.enchantment.Enchantment.CROSSBOW)
                         .formatResultAsInteger());
         VORUX = newEffect(ConstellationsAS.vorux)
-                .addEffect(new EngravingEffect.PotionEffect(() -> Effects.STRENGTH, 2, 3))
-                .addEffect(new EngravingEffect.PotionEffect(() -> Effects.RESISTANCE, 0, 1))
-                .addEffect(new EngravingEffect.PotionEffect(() -> Effects.MINING_FATIGUE, 1, 3))
+                .addEffect(new EngravingEffect.PotionEffect(() -> MobEffects.STRENGTH, 2, 3))
+                .addEffect(new EngravingEffect.PotionEffect(() -> MobEffects.RESISTANCE, 0, 1))
+                .addEffect(new EngravingEffect.PotionEffect(() -> MobEffects.MINING_FATIGUE, 1, 3))
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.SMITE, 4, 7).setIgnoreCompatibility())
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.BANE_OF_ARTHROPODS, 4, 7).setIgnoreCompatibility())
                 .addEffect(new EngravingEffect.EnchantmentEffect(() -> Enchantments.SHARPNESS, 3, 4).setIgnoreCompatibility())

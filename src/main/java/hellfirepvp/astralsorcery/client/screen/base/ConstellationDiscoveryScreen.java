@@ -90,7 +90,7 @@ public abstract class ConstellationDiscoveryScreen<D extends ConstellationDiscov
     protected abstract void fillConstellations(WorldContext ctx, List<D> drawAreas);
 
     protected WorldContext getContext() {
-        return SkyHandler.getContext(Minecraft.getInstance().world, LogicalSide.CLIENT);
+        return SkyHandler.getContext(Minecraft.getInstance().level, LogicalSide.CLIENT);
     }
 
     protected boolean isInitialized() {
@@ -123,8 +123,8 @@ public abstract class ConstellationDiscoveryScreen<D extends ConstellationDiscov
     }
 
     protected float multiplyStarBrightness(float pTicks, float brightnessIn) {
-        brightnessIn *= Minecraft.getInstance().world.getStarBrightness(pTicks) * 2;
-        return Mth.clamp(brightnessIn * (1F - Minecraft.getInstance().world.getRainStrength(pTicks)), 0, 1);
+        brightnessIn *= Minecraft.getInstance().level.getStarBrightness(pTicks) * 2;
+        return Mth.clamp(brightnessIn * (1F - Minecraft.getInstance().level.getRainStrength(pTicks)), 0, 1);
     }
 
     @Override
@@ -257,8 +257,8 @@ public abstract class ConstellationDiscoveryScreen<D extends ConstellationDiscov
 
     protected boolean canDraw() {
         return !Minecraft.getInstance().mouseHelper.isMouseGrabbed() &&
-                DayTimeHelper.isNight(Minecraft.getInstance().world) &&
-                Minecraft.getInstance().world.getRainStrength(1.0F) <= 0.1F;
+                DayTimeHelper.isNight(Minecraft.getInstance().level) &&
+                Minecraft.getInstance().level.getRainStrength(1.0F) <= 0.1F;
     }
 
     protected void clearDrawing() {
@@ -331,7 +331,7 @@ public abstract class ConstellationDiscoveryScreen<D extends ConstellationDiscov
     }
 
     protected boolean canObserverSeeSky(BlockPos pos, int xzWidth) {
-        Level world = Minecraft.getInstance().world;
+        Level world = Minecraft.getInstance().level;
         if (world == null) {
             return false;
         }

@@ -183,9 +183,9 @@ public class ScreenObservatory extends TileConstellationDiscoveryScreen<TileObse
             playerYaw -= 360F;
         }
         float playerPitch = Minecraft.getInstance().player.rotationPitch;
-        float rainBr = 1F - Minecraft.getInstance().world.getRainStrength(pTicks);
+        float rainBr = 1F - Minecraft.getInstance().level.getRainStrength(pTicks);
 
-        WorldContext ctx = SkyHandler.getContext(Minecraft.getInstance().world, LogicalSide.CLIENT);
+        WorldContext ctx = SkyHandler.getContext(Minecraft.getInstance().level, LogicalSide.CLIENT);
         if (ctx != null && canSeeSky) {
             Random gen = ctx.getDayRandom();
 

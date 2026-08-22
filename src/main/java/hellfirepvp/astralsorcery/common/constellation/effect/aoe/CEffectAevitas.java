@@ -34,7 +34,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.potion.Effects;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
@@ -134,11 +134,11 @@ public class CEffectAevitas extends CEffectAbstractList<CropHelper.GrowablePlant
             if (entity.isAlive()) {
                 if (properties.isCorrupted()) {
                     EntityUtils.applyPotionEffectAtHalf(entity, new EffectInstance(EffectsAS.EFFECT_BLEED, 120, amplifier * 2));
-                    EntityUtils.applyPotionEffectAtHalf(entity, new EffectInstance(Effects.WEAKNESS, 120, amplifier * 3));
-                    EntityUtils.applyPotionEffectAtHalf(entity, new EffectInstance(Effects.HUNGER, 120, amplifier * 4));
-                    EntityUtils.applyPotionEffectAtHalf(entity, new EffectInstance(Effects.MINING_FATIGUE, 120, amplifier * 2));
+                    EntityUtils.applyPotionEffectAtHalf(entity, new EffectInstance(MobEffects.WEAKNESS, 120, amplifier * 3));
+                    EntityUtils.applyPotionEffectAtHalf(entity, new EffectInstance(MobEffects.HUNGER, 120, amplifier * 4));
+                    EntityUtils.applyPotionEffectAtHalf(entity, new EffectInstance(MobEffects.MINING_FATIGUE, 120, amplifier * 2));
                 } else {
-                    EntityUtils.applyPotionEffectAtHalf(entity, new EffectInstance(Effects.REGENERATION, 120, amplifier));
+                    EntityUtils.applyPotionEffectAtHalf(entity, new EffectInstance(MobEffects.REGENERATION, 120, amplifier));
                 }
                 if (entity instanceof Player) {
                     markPlayerAffected((Player) entity);

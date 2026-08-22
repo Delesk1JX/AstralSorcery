@@ -118,7 +118,7 @@ public class RenderingUtils {
 
     @Nullable
     public static TextureAtlasSprite getParticleTexture(BlockState state, @Nullable BlockPos positionHint) {
-        Level world = Minecraft.getInstance().world;
+        Level world = Minecraft.getInstance().level;
         if (world == null) {
             return null;
         }
@@ -135,7 +135,7 @@ public class RenderingUtils {
 
     //Straight up ripped off of MC code.
     public static void playBlockBreakParticles(BlockPos pos, @Nullable BlockState actualState, BlockState particleState) {
-        ClientLevel world = Minecraft.getInstance().world;
+        ClientLevel world = Minecraft.getInstance().level;
         ParticleManager mgr = Minecraft.getInstance().particles;
 
         VoxelShape voxelshape;
@@ -286,7 +286,7 @@ public class RenderingUtils {
     }
 
     public static void renderItemAsEntity(ItemStack stack, PoseStack renderStack, MultiBufferSource buffers, double x, double y, double z, int combinedLight, float pTicks, int age) {
-        ItemEntity ei = new ItemEntity(Minecraft.getInstance().world, x, y, z, stack);
+        ItemEntity ei = new ItemEntity(Minecraft.getInstance().level, x, y, z, stack);
         ei.age = age;
         ei.hoverStart = 0;
         ReflectionHelper.setSkipItemPhysicsRender(ei);
@@ -446,7 +446,7 @@ public class RenderingUtils {
     }
 
     private static IBakedModel getItemModel(ItemStack stack) {
-        return Minecraft.getInstance().getItemRenderer().getItemModelWithOverrides(stack, Minecraft.getInstance().world, Minecraft.getInstance().player);
+        return Minecraft.getInstance().getItemRenderer().getItemModelWithOverrides(stack, Minecraft.getInstance().level, Minecraft.getInstance().player);
     }
 
     private static void renderItemModelWithColor(ItemStack stack, ItemCameraTransforms.TransformType transformType, IBakedModel model, PoseStack renderStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay, Color c, int alpha) {
@@ -575,7 +575,7 @@ public class RenderingUtils {
         }
         if (brt == BlockRenderType.MODEL) {
             IBakedModel model = brd.getModelForState(state);
-            brd.getBlockModelRenderer().renderModel(Minecraft.getInstance().world, model, state, pos, renderStack, buf, checkRenderSide, rand, state.getPositionRandom(pos), combinedOverlayIn, data);
+            brd.getBlockModelRenderer().renderModel(Minecraft.getInstance().level, model, state, pos, renderStack, buf, checkRenderSide, rand, state.getPositionRandom(pos), combinedOverlayIn, data);
         }
     }
 }

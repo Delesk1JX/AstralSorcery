@@ -179,7 +179,7 @@ public class GatewayUI {
 
     @Nullable
     public GatewayCache.GatewayNode getThisGatewayNode() {
-        return CelestialGatewayHandler.INSTANCE.getGatewayNode(Minecraft.getInstance().world, LogicalSide.CLIENT, this.getPos());
+        return CelestialGatewayHandler.INSTANCE.getGatewayNode(Minecraft.getInstance().level, LogicalSide.CLIENT, this.getPos());
     }
 
     @Nullable
