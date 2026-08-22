@@ -14,17 +14,14 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.loot.LootContext;
-import net.minecraft.loot.LootParameterSets;
-import net.minecraft.loot.LootParameters;
-import net.minecraft.loot.LootTable;
+import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.SpawnReason;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.AABB;
@@ -32,16 +29,13 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.MobSpawnInfo;
-import net.minecraft.world.gen.feature.structure.StructureManager;
+import net.minecraft.world.biome.MobSpawnSettings;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.spawner.WorldEntitySpawner;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.ForgeHooks;
 import net.neoforged.neoforge.event.EventHooks;
 import net.neoforged.neoforge.eventbus.api.Event;
-import net.neoforged.fml.LogicalSide;
 import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nonnull;
@@ -79,21 +73,21 @@ public class EntityUtils {
     @Nullable
     @OnlyIn(Dist.CLIENT)
     public static Player getPlayerClient(UUID playerUUID) {
-        ClientWorld clWorld = Minecraft.getInstance().world;
+        ClientWorld clWorld = Minecraft.getInstance().level;
         if (clWorld == null) {
             return null;
         }
         return clWorld.getPlayerByUuid(playerUUID);
     }
 
-    public static void applyPotionEffectAtHalf(LivingEntity entity, EffectInstance effect) {
-        EffectInstance activeEffect = entity.getActivePotionEffect(effect.getPotion());
+    public static void applyPotionEffectAtHalf(LivingEntity entity, MobEffectInstance effect) {
+        MobEffectInstance activeEffect = entity.getEffect(effect.getEffect());
         if (activeEffect != null) {
-            if (activeEffect.duration <= effect.duration / 2) {
-                entity.addPotionEffect(effect);
+            if (activeEffect.getDuration() <= effect.getDuration() / 2) {
+                entity.addEffect(effect);
             }
         } else {
-            entity.addPotionEffect(effect);
+            entity.addEffect(effect);
         }
     }
 
@@ -114,17 +108,16 @@ public class EntityUtils {
     }
 
     @Nullable
-    public static LivingEntity performWorldSpawningAt(ServerLevel world, BlockPos pos, EntityClassification category, SpawnReason reason, boolean ignoreWeighting, int ignoreSpawnCheckFlags) {
-        Biome b = world.getBiome(pos);
-        StructureManager mgr = world.func_241112_a_();
-        List<MobSpawnInfo.Spawners> spawnList = world.getChunkProvider().getChunkGenerator().func_230353_a_(b, mgr, EntityClassification.MONSTER, pos);
+    public static LivingEntity performWorldSpawningAt(ServerLevel world, BlockPos pos, MobCategory category, SpawnReason reason, boolean ignoreWeighting, int ignoreSpawnCheckFlags) {
+        Biome b = world.getBiome(pos).value();
+        List<MobSpawnSettings.SpawnerData> spawnList = new LinkedList<>(b.getSpawners(category));
         spawnList = EventHooks.getPotentialSpawns(world, category, pos, spawnList);
         spawnList.removeIf(s -> !s.type.isSummonable());
-        MobSpawnInfo.Spawners entry;
+        MobSpawnSettings.SpawnerData entry;
         if (ignoreWeighting) {
             entry = MiscUtils.getRandomEntry(spawnList, rand);
         } else {
-            entry = MiscUtils.getWeightedRandomEntry(spawnList, rand, ee -> ee.itemWeight);
+            entry = MiscUtils.getWeightedRandomEntry(spawnList, rand, ee -> ee.weight);
         }
 
         if (entry != null) {
@@ -133,7 +126,7 @@ public class EntityUtils {
             float z = pos.getZ() + 0.5F;
 
             BlockState state = world.getBlockState(pos);
-            if (!state.isNormalCube(world, pos) && canEntitySpawnHere(world, pos, entry.type, reason, ignoreSpawnCheckFlags, null)) {
+            if (!state.isNormalCube() && canEntitySpawnHere(world, pos, entry.type, reason, ignoreSpawnCheckFlags, null)) {
                 MobEntity entity;
                 try {
                     entity = (MobEntity) entry.type.create(world);
@@ -144,17 +137,19 @@ public class EntityUtils {
                     return null;
                 }
 
-                entity.setLocationAndAngles(x, y, z, rand.nextFloat() * 360F, 0F);
+                entity.setPos(x, y, z);
+                entity.yRot = rand.nextFloat() * 360F;
+                entity.xRot = 0F;
                 int result = ForgeHooks.canEntitySpawn(entity, world, x, y, z, null, reason); //We already did the default test before.
                 if (result == -1) {
                     return null;
                 }
 
                 if (!EventHooks.doSpecialSpawn(entity, world, x, y, z, null, reason)) {
-                    entity.onInitialSpawn(world, world.getDifficultyForLocation(pos), reason, null, null);
+                    entity.finalizeSpawn(world, world.getCurrentDifficultyAt(pos), reason, null, null);
                 }
 
-                world.func_242417_l(entity);
+                world.addFreshEntity(entity);
                 return entity;
             }
         }
@@ -162,20 +157,17 @@ public class EntityUtils {
     }
 
     public static boolean canEntitySpawnHere(ServerLevel world, BlockPos at, EntityType<? extends Entity> type, SpawnReason spawnReason, int ignoreCheckFlags, @Nullable Consumer<Entity> preCheckEntity) {
-        if (type.getClassification() == EntityClassification.MISC || !type.isSummonable() || !world.getWorldBorder().contains(at)) {
+        if (type.getClassification() == MobCategory.MISC || !type.isSummonable() || !world.getWorldBorder().contains(at)) {
             return false;
         }
         if (!SpawnConditionFlags.isSet(ignoreCheckFlags, SpawnConditionFlags.IGNORE_PLACEMENT_RULES)) {
-            EntitySpawnPlacementRegistry.PlacementType placementType = EntitySpawnPlacementRegistry.getPlacementType(type);
-            if (!WorldEntitySpawner.canSpawnAtBody(placementType, world, at, type)) {
-                return false;
-            }
-            if (!EntitySpawnPlacementRegistry.canSpawnEntity(type, world, spawnReason, at, rand)) {
+            SpawnPlacements.Type placementType = SpawnPlacements.getPlacementType(type);
+            if (!SpawnPlacements.checkSpawnRules(type, world, spawnReason, at, world.getRandom())) {
                 return false;
             }
         }
         if (!SpawnConditionFlags.isSet(ignoreCheckFlags, SpawnConditionFlags.IGNORE_BLOCK_COLLISION)) {
-            if (!world.hasNoCollisions(type.getBoundingBoxWithSizeApplied(at.getX() + 0.5, at.getY(), at.getZ() + 0.5))) {
+            if (!world.noCollision(type.getBoundingBoxWithSizeApplied(at.getX() + 0.5, at.getY(), at.getZ() + 0.5))) {
                 return false;
             }
         }
@@ -184,7 +176,9 @@ public class EntityUtils {
         if (entity == null) {
             return false;
         }
-        entity.setLocationAndAngles(at.getX() + 0.5, at.getY() + 0.5, at.getZ() + 0.5, world.rand.nextFloat() * 360.0F, 0.0F);
+        entity.setPos(at.getX() + 0.5, at.getY() + 0.5, at.getZ() + 0.5);
+        entity.yRot = world.getRandom().nextFloat() * 360.0F;
+        entity.xRot = 0.0F;
         if (preCheckEntity != null) {
             preCheckEntity.accept(entity);
         }
@@ -192,17 +186,17 @@ public class EntityUtils {
         if (entity instanceof LivingEntity) {
             if (entity instanceof MobEntity) {
                 MobEntity mobEntity = (MobEntity) entity;
-                Event.Result canSpawn = EventHooks.canEntitySpawn(mobEntity, world, entity.getPosX(), entity.getPosY(), entity.getPosZ(), null, spawnReason);
+                Event.Result canSpawn = EventHooks.canEntitySpawn(mobEntity, world, entity.getX(), entity.getY(), entity.getZ(), null, spawnReason);
                 if (canSpawn == Event.Result.DENY) {
                     return false;
                 } else if (canSpawn == Event.Result.DEFAULT) {
                     if (!SpawnConditionFlags.isSet(ignoreCheckFlags, SpawnConditionFlags.IGNORE_ENTITY_SPAWN_CONDITIONS)) {
-                        if (!mobEntity.canSpawn(world, spawnReason)) {
+                        if (!mobEntity.checkSpawnRules(world, spawnReason)) {
                             return false;
                         }
                     }
                     if (!SpawnConditionFlags.isSet(ignoreCheckFlags, SpawnConditionFlags.IGNORE_ENTITY_COLLISION)) {
-                        if (!mobEntity.isNotColliding(world)) {
+                        if (!mobEntity.checkSpawnObstruction(world)) {
                             return false;
                         }
                     }

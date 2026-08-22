@@ -58,8 +58,8 @@ public class ResultSpawnEntity extends InteractionResult {
         if (!(e instanceof LivingEntity)) {
             return;
         }
-        e.setLocationAndAngles(at.getX(), at.getY(), at.getZ(), world.rand.nextFloat() * 360.0F, 0.0F);
-        world.addEntity(e);
+        e.moveTo(at.getX(), at.getY(), at.getZ(), world.random.nextFloat() * 360.0F, 0.0F);
+        world.addFreshEntity(e);
     }
 
     @Override

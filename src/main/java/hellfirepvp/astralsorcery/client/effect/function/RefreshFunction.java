@@ -63,7 +63,7 @@ public interface RefreshFunction<T extends EntityComplexFX> {
 
         @Nullable
         protected E getTileIfValid() {
-            Level clWorld = Minecraft.getInstance().world;
+            Level clWorld = Minecraft.getInstance().level;
             E tile;
             if (clWorld != null &&
                     clWorld.getDimensionKey().equals(dimType) &&

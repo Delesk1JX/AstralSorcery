@@ -74,7 +74,7 @@ public class PktOreScan extends ASPacket<PktOreScan> {
                     for (BlockPos at : packet.positions) {
                         Vector3 atPos = new Vector3(at).add(0.5, 0.5, 0.5);
                         atPos.add(rand.nextFloat() - rand.nextFloat(), rand.nextFloat() - rand.nextFloat(), rand.nextFloat() - rand.nextFloat());
-                        BlockState state = Minecraft.getInstance().world.getBlockState(at);
+                        BlockState state = Minecraft.getInstance().level.getBlockState(at);
                         //if (Mods.ORESTAGES.isPresent()) {
                         //    if(changed.contains(state) || !ModIntegrationOreStages.canSeeOreClient(state)) {
                         //        changed.add(state);

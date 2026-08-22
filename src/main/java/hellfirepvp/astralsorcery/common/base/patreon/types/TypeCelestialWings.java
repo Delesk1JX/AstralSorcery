@@ -24,7 +24,7 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.potion.Effects;
+import net.minecraft.world.effect.MobEffects;
 import org.joml.Vector3f;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -132,7 +132,7 @@ public class TypeCelestialWings extends PatreonEffect implements ITickHandler {
         return player.getUniqueID().equals(playerUUID) &&
                 !player.isPassenger() &&
                 !player.isElytraFlying() &&
-                !player.isPotionActive(Effects.INVISIBILITY);
+                !player.hasEffect(MobEffects.INVISIBILITY);
     }
 
     @SubscribeEvent

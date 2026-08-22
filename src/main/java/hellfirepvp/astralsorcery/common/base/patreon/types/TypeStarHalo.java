@@ -24,7 +24,7 @@ import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.potion.Effects;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -155,7 +155,7 @@ public class TypeStarHalo extends PatreonEffect implements ITickHandler {
     private boolean shouldDoEffect(Player player) {
         return player.getUniqueID().equals(playerUUID) &&
                 (player.getPose() == Pose.STANDING || player.getPose() == Pose.CROUCHING) &&
-                !player.isPotionActive(Effects.INVISIBILITY);
+                !player.hasEffect(MobEffects.INVISIBILITY);
     }
 
     @Override

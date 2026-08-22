@@ -34,7 +34,7 @@ public interface SkyScreen {
     static final float THRESHOLD_FROM_MAX_BLUEGRAD = 0.3F;
 
     public static Tuple<Color, Color> getSkyGradient(boolean canSeeSky, float angleTransparency, float partialTicks) {
-        ClientWorld renderWorld = Minecraft.getInstance().world;
+        ClientWorld renderWorld = Minecraft.getInstance().level;
         int rgbFrom, rgbTo;
         if (canSeeSky && angleTransparency > 1.0E-4) {
             float starBr = renderWorld.getStarBrightness(partialTicks) * 2;

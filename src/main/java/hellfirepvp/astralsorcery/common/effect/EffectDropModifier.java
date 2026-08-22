@@ -14,9 +14,9 @@ import hellfirepvp.astralsorcery.common.lib.ColorsAS;
 import hellfirepvp.astralsorcery.common.lib.EffectsAS;
 import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.potion.EffectType;
+import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.GameRules;
 import net.minecraft.server.level.ServerLevel;
@@ -26,6 +26,7 @@ import net.neoforged.bus.api.IEventBus;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -37,7 +38,7 @@ import java.util.List;
 public class EffectDropModifier extends EffectCustomTexture {
 
     public EffectDropModifier() {
-        super(EffectType.BENEFICIAL, ColorsAS.EFFECT_DROP_MODIFIER);
+        super(MobEffectCategory.BENEFICIAL, ColorsAS.EFFECT_DROP_MODIFIER);
     }
 
     @Override
@@ -52,28 +53,30 @@ public class EffectDropModifier extends EffectCustomTexture {
     }
 
     private void onDrops(LivingDropsEvent event) {
-        LivingEntity le = event.getEntityLiving();
+        LivingEntity le = event.getEntity();
         if (le.level().isClientSide() ||
-                !(le instanceof MobEntity) ||
-                !(le.level instanceof ServerLevel) ||
+                !(le instanceof Mob) ||
+                !(le.level() instanceof ServerLevel) ||
                 !le.level().getGameRules().getBoolean(GameRules.DO_MOB_LOOT)) {
             return;
         }
 
-        if (le.isPotionActive(EffectsAS.EFFECT_DROP_MODIFIER)) {
+        if (le.hasEffect(EffectsAS.EFFECT_DROP_MODIFIER)) {
             DamageSource src = event.getSource();
 
-            int amplifier = le.removeActivePotionEffect(EffectsAS.EFFECT_DROP_MODIFIER).getAmplifier();
+            net.minecraft.world.effect.MobEffectInstance effect = le.removeEffect(EffectsAS.EFFECT_DROP_MODIFIER);
+            int amplifier = effect != null ? effect.getAmplifier() : 0;
             if (amplifier == 0) {
                 event.getDrops().clear(); //Special case to void all items
             } else {
+                Random rand = new Random();
                 for (int i = 0; i < amplifier; i++) {
-                    List<ItemStack> loot = EntityUtils.generateLoot(le, rand, src, event.isRecentlyHit() ? le.getAttackingEntity() : null);
+                    List<ItemStack> loot = EntityUtils.generateLoot(le, rand, src, event.isRecentlyHit() ? le.getLastHurtByMob() : null);
                     for (ItemStack stack : loot) {
                         if (stack.isEmpty()) {
                             continue;
                         }
-                        event.getDrops().add(le.entityDropItem(stack));
+                        event.getDrops().add(le.spawnAtLocation(stack));
                     }
                 }
             }

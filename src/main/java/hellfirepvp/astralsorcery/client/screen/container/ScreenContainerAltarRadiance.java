@@ -95,7 +95,7 @@ public class ScreenContainerAltarRadiance extends ScreenContainerAltar<Container
             RenderingConstellationUtils.renderConstellationIntoGUI(c.getConstellationColor(), c, renderStack,
                     16, 41, this.getBlitOffset(),
                     58, 58,
-                    2, () -> 0.2F + 0.8F * RenderingConstellationUtils.conCFlicker(Minecraft.getInstance().world.getDayTime(), pTicks, 5 + rand.nextInt(5)),
+                    2, () -> 0.2F + 0.8F * RenderingConstellationUtils.conCFlicker(Minecraft.getInstance().level.getDayTime(), pTicks, 5 + rand.nextInt(5)),
                     true, false);
         }
 

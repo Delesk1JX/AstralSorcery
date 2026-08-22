@@ -30,7 +30,7 @@ import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.potion.Effects;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
@@ -67,7 +67,7 @@ public class BlockLiquidStarlight extends FlowingFluidBlock {
         }
 
         if (entity instanceof LivingEntity) {
-            ((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, 300, 0, true, true));
+            ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 300, 0, true, true));
         } else if (entity instanceof ItemEntity) {
             LiquidStarlightCraftingRegistry.tryCraft((ItemEntity) entity, pos);
 
@@ -104,18 +104,18 @@ public class BlockLiquidStarlight extends FlowingFluidBlock {
             boolean isHot = otherFluid.getAttributes().getTemperature(world, pos.offset(dir)) > 600;
             if (isHot) {
                 if (CraftingConfig.CONFIG.liquidStarlightInteractionSand.get()) {
-                    generate = Blocks.SAND.getDefaultState();
-                    if (CraftingConfig.CONFIG.liquidStarlightInteractionAquamarine.get() && world.rand.nextInt(800) == 0) {
-                        generate = BlocksAS.AQUAMARINE_SAND_ORE.getDefaultState();
+                    generate = Blocks.SAND.defaultBlockState();
+                    if (CraftingConfig.CONFIG.liquidStarlightInteractionAquamarine.get() && world.random.nextInt(800) == 0) {
+                        generate = BlocksAS.AQUAMARINE_SAND_ORE.defaultBlockState();
                     }
                 } else {
-                    generate = Blocks.COBBLESTONE.getDefaultState();
+                    generate = Blocks.COBBLESTONE.defaultBlockState();
                 }
             } else {
                 if (CraftingConfig.CONFIG.liquidStarlightInteractionIce.get()) {
-                    generate = Blocks.PACKED_ICE.getDefaultState();
+                    generate = Blocks.PACKED_ICE.defaultBlockState();
                 } else {
-                    generate = Blocks.COBBLESTONE.getDefaultState();
+                    generate = Blocks.COBBLESTONE.defaultBlockState();
                 }
             }
 

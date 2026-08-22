@@ -15,7 +15,7 @@ import hellfirepvp.astralsorcery.client.util.RenderingVectorUtils;
 import hellfirepvp.astralsorcery.common.base.patreon.FlareColor;
 import hellfirepvp.astralsorcery.common.base.patreon.PatreonEffect;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.potion.Effects;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.util.Mth;
 import org.joml.Vector3f;
 import net.neoforged.api.distmarker.Dist;
@@ -54,7 +54,7 @@ public class TypeWraithWings extends PatreonEffect {
         return player.getUniqueID().equals(playerUUID) &&
                 !player.isPassenger() &&
                 !player.isElytraFlying() &&
-                !player.isPotionActive(Effects.INVISIBILITY);
+                !player.hasEffect(MobEffects.INVISIBILITY);
     }
 
     @SubscribeEvent

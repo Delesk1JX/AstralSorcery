@@ -48,7 +48,7 @@ public class ChainingSkyRenderer implements ISkyRenderHandler {
                     } else {
                         ISkyRenderHandler existing = world.func_239132_a_().getSkyRenderHandler();
                         world.func_239132_a_().setSkyRenderHandler(null);
-                        Minecraft.getInstance().worldRenderer.renderSky(renderStack, partialTicks);
+                        Minecraft.getInstance().levelRenderer.renderSky(renderStack, partialTicks);
                         world.func_239132_a_().setSkyRenderHandler(existing);
                     }
 
@@ -60,7 +60,7 @@ public class ChainingSkyRenderer implements ISkyRenderHandler {
                 ISkyRenderHandler existing = world.func_239132_a_().getSkyRenderHandler();
                 world.func_239132_a_().setSkyRenderHandler(null);
                 //Actually ends up calling renderEndSky
-                Minecraft.getInstance().worldRenderer.renderSky(renderStack, partialTicks);
+                Minecraft.getInstance().levelRenderer.renderSky(renderStack, partialTicks);
                 world.func_239132_a_().setSkyRenderHandler(existing);
             }
         });

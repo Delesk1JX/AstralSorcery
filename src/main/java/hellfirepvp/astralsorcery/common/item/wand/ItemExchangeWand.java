@@ -128,7 +128,7 @@ public class ItemExchangeWand extends Item implements ItemBlockStorage, ItemOver
         if (hitResult == null) {
             return true;
         }
-        Level world = Minecraft.getInstance().world;
+        Level world = Minecraft.getInstance().level;
         BlockPos at = hitResult.getPos();
         Map<BlockPos, BlockState> placeStates = getPlaceStates(Minecraft.getInstance().player, world, at, stack);
         if (placeStates.isEmpty()) {

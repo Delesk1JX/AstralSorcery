@@ -20,10 +20,10 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.ThrowableEntity;
+import net.minecraft.world.entity.projectile.ThrowableProjectile;
 import net.minecraft.world.item.BlockItemUseContext;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.network.IPacket;
+import net.minecraft.network.protocol.Packet;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.BlockHitResult;
@@ -33,7 +33,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.util.BlockSnapshot;
 import net.neoforged.neoforge.event.EventHooks;
-import net.neoforged.neoforge.fml.network.NetworkHooks;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 /**
  * This class is part of the Astral Sorcery Mod
@@ -42,7 +42,7 @@ import net.neoforged.neoforge.fml.network.NetworkHooks;
  * Created by HellFirePvP
  * Date: 17.08.2019 / 10:45
  */
-public class EntityIlluminationSpark extends ThrowableEntity {
+public class EntityIlluminationSpark extends ThrowableProjectile {
 
     public EntityIlluminationSpark(Level world) {
         super(EntityTypesAS.ILLUMINATION_SPARK, world);
@@ -54,7 +54,7 @@ public class EntityIlluminationSpark extends ThrowableEntity {
 
     public EntityIlluminationSpark(LivingEntity thrower, Level world) {
         super(EntityTypesAS.ILLUMINATION_SPARK, thrower, world);
-        this.func_234612_a_(thrower, thrower.rotationPitch, thrower.rotationYaw, 0F, 0.7F, 0.9F);
+        this.shootFromRotation(thrower, thrower.getXRot(), thrower.getYRot(), 0F, 0.7F, 0.9F);
     }
 
     public static EntityType.IFactory<EntityIlluminationSpark> factory() {
@@ -80,9 +80,9 @@ public class EntityIlluminationSpark extends ThrowableEntity {
             p = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE)
                     .spawn(Vector3.atEntityCorner(this))
                     .setMotion(new Vector3(
-                            0.04F - rand.nextFloat() * 0.08F,
-                            0.04F - rand.nextFloat() * 0.08F,
-                            0.04F - rand.nextFloat() * 0.08F
+                            0.04F - this.random.nextFloat() * 0.08F,
+                            0.04F - this.random.nextFloat() * 0.08F,
+                            0.04F - this.random.nextFloat() * 0.08F
                     ))
                     .setScaleMultiplier(0.25F);
             randomizeColor(p);
@@ -94,7 +94,7 @@ public class EntityIlluminationSpark extends ThrowableEntity {
         randomizeColor(p);
 
         p = EffectHelper.of(EffectTemplatesAS.GENERIC_PARTICLE)
-                .spawn(Vector3.atEntityCorner(this).add(getMotion().mul(0.5, 0.5, 0.5)));
+                .spawn(Vector3.atEntityCorner(this).add(this.getDeltaMovement().mul(0.5, 0.5, 0.5)));
         p.setScaleMultiplier(0.6F);
         randomizeColor(p);
 
@@ -102,7 +102,7 @@ public class EntityIlluminationSpark extends ThrowableEntity {
 
     @OnlyIn(Dist.CLIENT)
     private void randomizeColor(FXFacingParticle p) {
-        switch (rand.nextInt(3)) {
+        switch (this.random.nextInt(3)) {
             case 0:
                 p.color(VFXColorFunction.constant(ColorsAS.ILLUMINATION_POWDER_1));
                 break;

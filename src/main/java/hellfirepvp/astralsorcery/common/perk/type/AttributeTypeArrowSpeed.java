@@ -51,12 +51,12 @@ public class AttributeTypeArrowSpeed extends PerkAttributeType {
                     return;
                 }
 
-                Vector3 motion = new Vector3(arrow.getMotion());
+                Vector3 motion = new Vector3(arrow.getDeltaMovement());
                 float mul = PerkAttributeHelper.getOrCreateMap(player, side)
                         .modifyValue(player, ResearchHelper.getProgress(player, side), this, 1F);
                 mul = AttributeEvent.postProcessModded(player, this, mul);
                 motion = MiscUtils.limitVelocityToMinecraftLimit(motion.multiply(mul));
-                arrow.setMotion(motion.toVec3());
+                arrow.setDeltaMovement(motion.toVec3());
             }
         }
     }

@@ -14,7 +14,7 @@ import hellfirepvp.astralsorcery.common.entity.EntitySpectralTool;
 import hellfirepvp.astralsorcery.common.util.DamageUtil;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
-import net.minecraft.world.entity.EntityClassification;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.controller.MovementController;
 import net.minecraft.world.phys.AABB;
@@ -40,7 +40,7 @@ public class SpectralToolMeleeAttackGoal extends SpectralToolGoal {
         List<LivingEntity> entities = this.getEntity().level().getEntitiesWithinAABB(
                 LivingEntity.class,
                 new AABB(0, 0, 0, 0, 0, 0).grow(8).offset(this.getEntity().getPosition()),
-                e -> e != null && e.isAlive() && e.getType().getClassification() == EntityClassification.MONSTER
+                e -> e != null && e.isAlive() && e.getType().getCategory() == MobCategory.MONSTER
         );
         return EntityUtils.selectClosest(entities, entity -> (double) entity.getDistance(this.getEntity()));
     }

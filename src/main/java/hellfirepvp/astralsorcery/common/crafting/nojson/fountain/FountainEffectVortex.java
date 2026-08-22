@@ -109,7 +109,7 @@ public class FountainEffectVortex extends FountainEffect<VortexContext> {
                     rules.get(GameRules.MOB_GRIEFING).set(prev, null);
                 }
             } else {
-                le.setMotion(net.minecraft.world.phys.Vec3.ZERO);
+                le.setDeltaMovement(net.minecraft.world.phys.Vec3.ZERO);
             }
 
             EventHelperEntityFreeze.freeze(le);
@@ -135,9 +135,9 @@ public class FountainEffectVortex extends FountainEffect<VortexContext> {
                     } else {
                         le.setPositionAndRotation(nextPos.getX(), nextPos.getY(), nextPos.getZ(), le.rotationYaw, le.rotationPitch);
                     }
-                    le.setMotion(net.minecraft.world.phys.Vec3.ZERO);
+                    le.setDeltaMovement(net.minecraft.world.phys.Vec3.ZERO);
                 } else {
-                    le.setMotion(le.getMotion().add(v.getX(), v.getY() * 2.5, v.getZ()));
+                    le.setDeltaMovement(le.getDeltaMovement().add(v.getX(), v.getY() * 2.5, v.getZ()));
                     le.velocityChanged = true;
                 }
             }, vortexAt, 48, 3);

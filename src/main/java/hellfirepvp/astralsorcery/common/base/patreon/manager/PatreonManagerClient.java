@@ -42,7 +42,7 @@ public class PatreonManagerClient implements ITickHandler {
 
     @Override
     public void tick(TickEvent.ClientTickEvent type, Object... context) {
-        Level clWorld = Minecraft.getInstance().world;
+        Level clWorld = Minecraft.getInstance().level;
         Player thisPlayer = Minecraft.getInstance().player;
         if (clWorld == null || thisPlayer == null) {
             return;

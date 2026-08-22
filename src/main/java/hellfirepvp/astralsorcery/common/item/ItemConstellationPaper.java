@@ -151,7 +151,7 @@ public class ItemConstellationPaper extends Item implements ItemDynamicColor, Co
                 }
             }
 
-            IConstellation constellation = MiscUtils.getRandomEntry(constellations, world.rand);
+            IConstellation constellation = MiscUtils.getRandomEntry(constellations, world.random);
             if (constellation != null) {
                 setConstellation(stack, constellation);
             }

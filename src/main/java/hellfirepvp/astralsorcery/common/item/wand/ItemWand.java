@@ -159,7 +159,7 @@ public class ItemWand extends Item implements OverrideInteractItem {
     public static void playUndergroundEffect(PktPlayEffect effect) {
         Vector3 at = ByteBufUtils.readVector(effect.getExtraData());
 
-        Level world = Minecraft.getInstance().world;
+        Level world = Minecraft.getInstance().level;
         if (world == null) {
             return;
         }
@@ -185,7 +185,7 @@ public class ItemWand extends Item implements OverrideInteractItem {
     public static void playEffect(PktPlayEffect effect) {
         Vector3 pos = ByteBufUtils.readVector(effect.getExtraData());
 
-        Level world = Minecraft.getInstance().world;
+        Level world = Minecraft.getInstance().level;
         if (world == null) {
             return;
         }

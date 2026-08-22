@@ -72,7 +72,7 @@ public class TileIlluminator extends TileEntityTick {
             return; //Don't do anything if it's not specifically made as player-placed
         }
 
-        if (!world.isRemote()) {
+        if (!level.isClientSide()) {
             if (layerPositions == null) {
                 recalculate();
             }
@@ -95,7 +95,7 @@ public class TileIlluminator extends TileEntityTick {
             }
         }
 
-        if (world.isRemote()) {
+        if (level.isClientSide()) {
             this.tickEffects();
         }
     }
@@ -183,12 +183,12 @@ public class TileIlluminator extends TileEntityTick {
                 recalc = true;
             }
             at = at.add(rand.nextInt(5) - 2, rand.nextInt(13) - 6, rand.nextInt(5) - 2);
-            MiscUtils.executeWithChunk(world, at, at, (pos) -> {
-                if (this.doesSeeSky() && TileIlluminator.ILLUMINATOR_CHECK.test(world, pos, world.getBlockState(pos))) {
+            MiscUtils.executeWithChunk(level, at, at, (pos) -> {
+                if (this.doesSeeSky() && TileIlluminator.ILLUMINATOR_CHECK.test(level, pos, level.getBlockState(pos))) {
                     DyeColor color = this.getColor();
-                    BlockState toPlace = BlocksAS.FLARE_LIGHT.getDefaultState().with(BlockFlareLight.COLOR, color);
-                    if (world.setBlockState(pos, toPlace)) {
-                        EntityFlare.spawnAmbientFlare(world, this.getPos());
+                    BlockState toPlace = BlocksAS.FLARE_LIGHT.defaultBlockState().with(BlockFlareLight.COLOR, color);
+                    if (level.setBlock(pos, toPlace)) {
+                        EntityFlare.spawnAmbientFlare(level, this.getPos());
                     }
                 }
             });
@@ -241,10 +241,10 @@ public class TileIlluminator extends TileEntityTick {
 
         @Override
         public boolean test(Level world, BlockPos pos, BlockState state) {
-            return world.isAirBlock(pos) &&
+            return state.isAir() &&
                     !MiscUtils.canSeeSky(world, pos, false, false) &&
-                    world.getLight(pos) < 8 &&
-                    world.getLightFor(LightType.SKY, pos) < 4;
+                    world.getLighting().getBrightness(pos) < 8 &&
+                    world.getBrightness(LightType.SKY, pos) < 4;
         }
 
     }

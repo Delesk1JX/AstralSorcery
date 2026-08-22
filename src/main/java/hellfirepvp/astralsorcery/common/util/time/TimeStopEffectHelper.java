@@ -102,7 +102,7 @@ public class TimeStopEffectHelper {
 
     @OnlyIn(Dist.CLIENT)
     public void playClientTickEffect() {
-        Level world = Minecraft.getInstance().world;
+        Level world = Minecraft.getInstance().level;
         if (world == null) {
             return;
         }

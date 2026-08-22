@@ -38,7 +38,7 @@ public class CameraTransformerPlayerFocus extends CameraTransformerSettingsCache
 
         EntityClientReplacement repl = new EntityClientReplacement();
         repl.read(Minecraft.getInstance().player.writeWithoutTypeId(new CompoundTag()));
-        Minecraft.getInstance().world.addPlayer(repl.getEntityId(), repl);
+        Minecraft.getInstance().level.addPlayer(repl.getEntityId(), repl);
         this.clientEntity = repl;
 
         entity.setAsRenderViewEntity();

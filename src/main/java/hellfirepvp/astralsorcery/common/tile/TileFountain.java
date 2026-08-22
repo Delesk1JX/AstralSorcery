@@ -125,7 +125,7 @@ public class TileFountain extends TileEntityTick {
         FountainEffect.OperationSegment segment = ByteBufUtils.readEnumValue(pktPlayEffect.getExtraData(), FountainEffect.OperationSegment.class);
         FountainEffect.OperationSegment nextSegment = ByteBufUtils.readEnumValue(pktPlayEffect.getExtraData(), FountainEffect.OperationSegment.class);
 
-        Level world = Minecraft.getInstance().world;
+        Level world = Minecraft.getInstance().level;
         if (world == null) {
             return;
         }
@@ -143,7 +143,7 @@ public class TileFountain extends TileEntityTick {
     @OnlyIn(Dist.CLIENT)
     public static void replaceEffect(PktPlayEffect pktPlayEffect) {
         BlockPos at = ByteBufUtils.readPos(pktPlayEffect.getExtraData());
-        Level world = Minecraft.getInstance().world;
+        Level world = Minecraft.getInstance().level;
         if (world == null) {
             return;
         }

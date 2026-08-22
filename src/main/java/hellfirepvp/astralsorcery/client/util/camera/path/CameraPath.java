@@ -80,7 +80,7 @@ public class CameraPath extends EntityCameraRenderView implements ICameraPersist
 
     @Override
     public void onStopTransforming() {
-        if (stopDelegate != null && Minecraft.getInstance().world != null) {
+        if (stopDelegate != null && Minecraft.getInstance().level != null) {
             stopDelegate.onCameraStop();
         }
     }

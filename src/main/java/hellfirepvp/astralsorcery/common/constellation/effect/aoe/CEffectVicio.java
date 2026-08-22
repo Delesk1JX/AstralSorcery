@@ -25,7 +25,7 @@ import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.potion.Effects;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
@@ -103,8 +103,8 @@ public class CEffectVicio extends ConstellationEffect implements ConstellationEf
                     markPlayerAffected(pl);
                 }
                 foundPlayer = true;
-                entity.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 200, 9));
-                entity.addPotionEffect(new EffectInstance(Effects.MINING_FATIGUE, 200, 9));
+                entity.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, 200, 9));
+                entity.addEffect(new MobEffectInstance(MobEffects.MINING_FATIGUE, 200, 9));
             }
         } else {
             List<ServerPlayer> entities = world.getEntitiesWithinAABB(ServerPlayer.class, BOX.offset(pos).grow(range));

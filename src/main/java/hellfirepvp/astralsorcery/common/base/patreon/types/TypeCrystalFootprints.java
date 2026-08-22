@@ -17,7 +17,7 @@ import hellfirepvp.astralsorcery.common.base.patreon.PatreonEffect;
 import hellfirepvp.astralsorcery.common.util.data.Vector3;
 import hellfirepvp.observerlib.common.util.tick.ITickHandler;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.potion.Effects;
+import net.minecraft.world.effect.MobEffects;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
@@ -70,7 +70,7 @@ public class TypeCrystalFootprints extends PatreonEffect implements ITickHandler
 
     private boolean shouldDoEffect(Player player) {
         return player.getUniqueID().equals(playerUUID) &&
-                !player.isPotionActive(Effects.INVISIBILITY) &&
+                !player.hasEffect(MobEffects.INVISIBILITY) &&
                 player.isOnGround();
     }
 

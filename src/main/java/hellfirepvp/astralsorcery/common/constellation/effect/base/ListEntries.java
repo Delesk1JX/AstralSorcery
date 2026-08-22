@@ -11,12 +11,13 @@ package hellfirepvp.astralsorcery.common.constellation.effect.base;
 import hellfirepvp.astralsorcery.common.constellation.effect.ConstellationEffectRegistry;
 import hellfirepvp.astralsorcery.common.constellation.world.DayTimeHelper;
 import hellfirepvp.astralsorcery.common.util.entity.EntityUtils;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.MobSpawnInfo;
+import net.minecraft.world.biome.MobSpawnSettings;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.core.registries.BuiltInRegistries;
 
@@ -61,18 +62,18 @@ public class ListEntries {
         }
 
         public static EntitySpawnEntry createEntry(ServerLevel world, BlockPos pos, SpawnReason reason) {
-            Biome b = world.getBiome(pos);
-            List<MobSpawnInfo.Spawners> applicable = new LinkedList<>();
+            Biome b = world.getBiome(pos).value();
+            List<MobSpawnSettings.SpawnerData> applicable = new LinkedList<>();
             if (DayTimeHelper.isNight(world)) {
-                applicable.addAll(b.getMobSpawnInfo().getSpawners(EntityClassification.MONSTER));
+                applicable.addAll(b.getSpawners(MobCategory.MONSTER));
             } else {
-                applicable.addAll(b.getMobSpawnInfo().getSpawners(EntityClassification.CREATURE));
+                applicable.addAll(b.getSpawners(MobCategory.CREATURE));
             }
             if (applicable.isEmpty()) {
                 return null; //Duh.
             }
             Collections.shuffle(applicable);
-            MobSpawnInfo.Spawners entry = applicable.get(world.rand.nextInt(applicable.size()));
+            MobSpawnSettings.SpawnerData entry = applicable.get(world.getRandom().nextInt(applicable.size()));
             EntityType<?> type = entry.type;
             if (type != null && EntityUtils.canEntitySpawnHere(world, pos, type, reason, EntityUtils.SpawnConditionFlags.IGNORE_SPAWN_CONDITIONS,
                     (e) -> e.addTag(ConstellationEffectRegistry.ENTITY_TAG_LUCERNA_SKIP_ENTITY))) {
@@ -91,21 +92,21 @@ public class ListEntries {
                 e.addTag(ConstellationEffectRegistry.ENTITY_TAG_LUCERNA_SKIP_ENTITY);
 
                 BlockPos at = getPos();
-                e.setLocationAndAngles(
+                e.moveTo(
                         at.getX() + 0.5,
                         at.getY() + 0.5,
                         at.getZ() + 0.5,
-                        world.rand.nextFloat() * 360.0F, 0.0F);
-                if (e instanceof MobEntity) {
-                    ((MobEntity) e).onInitialSpawn(world, world.getDifficultyForLocation(at), reason, null, null);
-                    if (!((MobEntity) e).isNotColliding(world)) {
-                        e.remove();
+                        world.random.nextFloat() * 360.0F, 0.0F);
+                if (e instanceof Mob) {
+                    ((Mob) e).finalizeSpawn(world, world.getCurrentDifficultyAt(at), reason, null, null);
+                    if (!((Mob) e).checkSpawnObstruction(world)) {
+                        e.remove(Entity.RemovalReason.DISCARDED);
                         return;
                     }
                 }
-                world.addEntity(e);
-                world.playEvent(2004, e.getPosition(), 0);
-                world.playEvent(2004, e.getPosition(), 0);
+                world.addFreshEntity(e);
+                world.levelEvent(2004, e.blockPosition(), 0);
+                world.levelEvent(2004, e.blockPosition(), 0);
             }
         }
     }

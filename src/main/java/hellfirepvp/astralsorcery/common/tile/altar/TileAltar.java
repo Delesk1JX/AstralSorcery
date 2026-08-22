@@ -177,7 +177,7 @@ public class TileAltar extends TileReceiverBase<StarlightReceiverAltar> implemen
         BlockPos at = ByteBufUtils.readPos(pkt.getExtraData());
         boolean isChaining = pkt.getExtraData().readBoolean();
 
-        Level world = Minecraft.getInstance().world;
+        Level world = Minecraft.getInstance().level;
         if (world == null) {
             return;
         }

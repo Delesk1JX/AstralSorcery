@@ -82,7 +82,7 @@ public class GatewayUIRenderHandler implements ITickHandler {
         if (this.currentUI == null) {
             return true;
         }
-        Level world = Minecraft.getInstance().world;
+        Level world = Minecraft.getInstance().level;
         TileCelestialGateway gateway;
         if (world == null ||
                 this.currentUI.getVisibleTicks() <= 0 ||

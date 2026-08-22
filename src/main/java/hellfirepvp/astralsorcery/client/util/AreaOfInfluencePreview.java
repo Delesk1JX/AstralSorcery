@@ -78,7 +78,7 @@ public class AreaOfInfluencePreview implements ITickHandler {
             this.removeEffects();
             return;
         }
-        Level clientWorld = Minecraft.getInstance().world;
+        Level clientWorld = Minecraft.getInstance().level;
         if (clientWorld == null) {
             this.clearClient();
             this.removeEffects();

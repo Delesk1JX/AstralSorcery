@@ -43,7 +43,7 @@ public class OverlayRenderer {
         }
 
         Player player = Minecraft.getInstance().player;
-        if (player == null || Minecraft.getInstance().world == null) {
+        if (player == null || Minecraft.getInstance().level == null) {
             return;
         }
 

@@ -101,7 +101,7 @@ public class GatewayInteractionHandler {
 
     private static void clientTick(TickEvent.ClientTickEvent event) {
         Player player = Minecraft.getInstance().player;
-        Level world = Minecraft.getInstance().world;
+        Level world = Minecraft.getInstance().level;
         if (player == null || world == null) {
             focusingEntry = null;
             focusTicks = 0;
@@ -170,7 +170,7 @@ public class GatewayInteractionHandler {
                 if (rand.nextInt(3) == 0) {
                     Vector3 to = pos.clone().subtract(at);
                     to.normalize().multiply(0.02);
-                    p.setMotion(to)
+                    p.setDeltaMovement(to)
                             .setAlphaMultiplier(0.1F);
                 }
             }
@@ -190,7 +190,7 @@ public class GatewayInteractionHandler {
                 if (rand.nextInt(3) == 0) {
                     Vector3 to = pos.clone().subtract(at);
                     to.normalize().multiply(0.02);
-                    p.setMotion(to)
+                    p.setDeltaMovement(to)
                             .setAlphaMultiplier(0.1F);
                 }
             }

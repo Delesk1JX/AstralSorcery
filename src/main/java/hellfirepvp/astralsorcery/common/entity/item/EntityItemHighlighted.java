@@ -45,9 +45,9 @@ public class EntityItemHighlighted extends EntityCustomItemReplacement {
 
     public EntityItemHighlighted(EntityType<? extends ItemEntity> type, Level world, double x, double y, double z) {
         this(type, world);
-        this.setPosition(x, y, z);
-        this.rotationYaw = this.rand.nextFloat() * 360.0F;
-        this.setMotion(this.rand.nextDouble() * 0.2D - 0.1D, 0.2D, this.rand.nextDouble() * 0.2D - 0.1D);
+        this.moveTo(x, y, z);
+        this.yRot = this.random.nextFloat() * 360.0F;
+        this.setDeltaMovement(this.random.nextDouble() * 0.2D - 0.1D, 0.2D, this.random.nextDouble() * 0.2D - 0.1D);
     }
 
     public EntityItemHighlighted(EntityType<? extends ItemEntity> type, Level world, double x, double y, double z, ItemStack stack) {

@@ -34,7 +34,7 @@ public abstract class EntityCameraRenderView extends ClientPlayer {
 
     public EntityCameraRenderView() {
         super(Minecraft.getInstance(),
-                Minecraft.getInstance().world,
+                Minecraft.getInstance().level,
                 Minecraft.getInstance().player.connection,
                 Minecraft.getInstance().player.getStats(),
                 Minecraft.getInstance().player.getRecipeBook(),

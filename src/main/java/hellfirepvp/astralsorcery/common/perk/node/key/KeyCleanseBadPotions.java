@@ -15,8 +15,8 @@ import hellfirepvp.astralsorcery.common.perk.PerkAttributeHelper;
 import hellfirepvp.astralsorcery.common.perk.node.KeyPerk;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.potion.EffectType;
+import net.minecraft.world.effect.MobMobEffectInstance;
+import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.neoforged.neoforge.event.entity.living.LivingHealEvent;
@@ -51,14 +51,14 @@ public class KeyCleanseBadPotions extends KeyPerk {
         LivingEntity entity = event.getEntityLiving();
         if (entity instanceof Player && !entity.world.isRemote()) {
             Player player = (Player) entity;
-            List<EffectInstance> badEffects = player.getActivePotionEffects()
+            List<MobEffectInstance> badEffects = player.getActivePotionEffects()
                     .stream()
-                    .filter(p -> p.getPotion().getEffectType() == EffectType.HARMFUL)
+                    .filter(p -> p.getPotion().getCategory() == MobEffectCategory.HARMFUL)
                     .collect(Collectors.toList());
             if (badEffects.isEmpty()) {
                 return;
             }
-            EffectInstance effect = badEffects.get(rand.nextInt(badEffects.size()));
+            MobEffectInstance effect = badEffects.get(rand.nextInt(badEffects.size()));
             PlayerProgress prog = ResearchHelper.getProgress(player, LogicalSide.SERVER);
             if (prog.getPerkData().hasPerkEffect(this)) {
                 float inclChance = 0.1F;

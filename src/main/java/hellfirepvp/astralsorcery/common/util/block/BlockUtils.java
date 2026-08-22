@@ -22,7 +22,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootParameters;
 import net.minecraft.potion.EffectUtils;
-import net.minecraft.potion.Effects;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.state.Property;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -120,9 +120,9 @@ public class BlockUtils {
             breakSpeed *= 1.0F + (EffectUtils.getMiningSpeedup(entity) + 1F) * 0.2F;
         }
 
-        if (entity.isPotionActive(Effects.MINING_FATIGUE)) {
+        if (entity.hasEffect(MobEffects.MINING_FATIGUE)) {
             float fatigueMultiplier;
-            switch (entity.getActivePotionEffect(Effects.MINING_FATIGUE).getAmplifier()) {
+            switch (entity.getEffect(MobEffects.MINING_FATIGUE).getAmplifier()) {
                 case 0:
                     fatigueMultiplier = (float) Math.pow(0.3F, 1);
                     break;

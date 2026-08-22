@@ -18,7 +18,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.loot.*;
-import net.minecraft.potion.Effects;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.loot.conditions.ILootCondition;
 
@@ -54,8 +54,8 @@ public class LinearLuckBonus extends LootFunction {
         if (tool != null) {
             int luck = 0;
             Entity e = lootContext.get(LootParameters.THIS_ENTITY);
-            if (e instanceof Player && ((Player) e).isPotionActive(Effects.LUCK)) {
-                luck += ((Player) e).getActivePotionEffect(Effects.LUCK).getAmplifier() + 1;
+            if (e instanceof Player && ((Player) e).hasEffect(MobEffects.LUCK)) {
+                luck += ((Player) e).getEffect(MobEffects.LUCK).getAmplifier() + 1;
             }
             luck += EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, tool);
             luck += EnchantmentHelper.getEnchantmentLevel(Enchantments.LOOTING, tool);

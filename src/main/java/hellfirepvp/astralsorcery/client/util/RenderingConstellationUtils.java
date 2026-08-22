@@ -223,8 +223,8 @@ public class RenderingConstellationUtils {
         int b = col.getBlue();
 
         float starBrightness = 1F;
-        if (applyStarBrightness && Minecraft.getInstance().world != null) {
-            starBrightness = Minecraft.getInstance().world.getStarBrightness(1.0F);
+        if (applyStarBrightness && Minecraft.getInstance().level != null) {
+            starBrightness = Minecraft.getInstance().level.getStarBrightness(1.0F);
             if (starBrightness <= 0.23F) {
                 return new HashMap<>();
             }

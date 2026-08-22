@@ -103,7 +103,7 @@ public class CEffectBootes extends ConstellationEffectEntityCollect<LivingEntity
 
             if (properties.isCorrupted()) {
                 entity.hurtResistantTime = 0;
-                entity.addPotionEffect(new EffectInstance(EffectsAS.EFFECT_DROP_MODIFIER, 1000, 5));
+                entity.addEffect(new MobEffectInstance(EffectsAS.EFFECT_DROP_MODIFIER, 1000, 5));
                 if (DamageUtil.attackEntityFrom(entity, CommonProxy.DAMAGE_SOURCE_STELLAR, 5_000)) {
                     didEffect = true;
                 }

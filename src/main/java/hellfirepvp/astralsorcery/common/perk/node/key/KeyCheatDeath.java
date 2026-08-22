@@ -60,7 +60,7 @@ public class KeyCheatDeath extends KeyPerk implements CooldownPerk {
                 if (!PerkCooldownHelper.isCooldownActiveForPlayer(player, this) &&
                         AlignmentChargeHandler.INSTANCE.drainCharge(player, side, CONFIG.chargeCost.get(), false)) {
                     PerkCooldownHelper.setCooldownActiveForPlayer(player, this, CONFIG.cooldownPotionApplication.get());
-                    player.addPotionEffect(new EffectInstance(EffectsAS.EFFECT_CHEAT_DEATH,
+                    player.addEffect(new MobEffectInstance(EffectsAS.EFFECT_CHEAT_DEATH,
                             CONFIG.potionDuration.get(),
                             CONFIG.potionAmplifier.get(),
                             true, false, true));
