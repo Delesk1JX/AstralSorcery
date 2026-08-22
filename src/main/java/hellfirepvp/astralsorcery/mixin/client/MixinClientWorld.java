@@ -34,14 +34,14 @@ public class MixinClientWorld {
         Level world = (Level)(Object) this;
 
         WorldContext ctx = SkyHandler.getContext(world, LogicalSide.CLIENT);
-        String strDimKey = world.getDimensionKey().getLocation().toString();
+        String strDimKey = world.dimension().location().toString();
         if (ctx != null &&
                 RenderingConfig.CONFIG.dimensionsWithSkyRendering.get().contains(strDimKey) &&
                 ctx.getCelestialEventHandler().getSolarEclipse().isActiveNow()) {
             float perc = ctx.getCelestialEventHandler().getSolarEclipsePercent();
             perc = 0.05F + (perc * 0.95F);
 
-            cir.setReturnValue(cir.getReturnValueF() * perc);
+            cir.setReturnValue(cir.getReturnValue() * perc);
         }
     }
 

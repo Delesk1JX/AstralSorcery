@@ -47,14 +47,14 @@ public class MixinServerPlayNetHandler {
 
     @Inject(
             method = "processUseEntity",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/network/play/ServerPlayNetHandler;disconnect(Lnet/minecraft/util/text/Component;)V"),
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/network/PacketListener;disconnect(Lnet/minecraft/network/chat/Component;)V"),
             cancellable = true
     )
     public void allowInteractableEntity(CUseEntityPacket packet, CallbackInfo ci) {
         ServerLevel world = this.player.level();
-        Entity interacted = packet.getEntityFromWorld(world);
+        Entity interacted = packet.getTarget(world);
         if (interacted instanceof InteractableEntity) {
-            this.player.attackTargetEntityWithCurrentItem(interacted);
+            this.player.attack(interacted);
             ci.cancel();
         }
     }

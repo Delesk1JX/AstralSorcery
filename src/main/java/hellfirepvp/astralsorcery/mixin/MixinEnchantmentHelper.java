@@ -38,10 +38,12 @@ public class MixinEnchantmentHelper {
 
     @Redirect(
             method = "applyEnchantmentModifier",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;getEnchantmentTagList()Lnet/minecraft/nbt/ListTag;")
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;getTag()Lnet/minecraft/nbt/CompoundTag;")
     )
     private static ListTag applyEnhancedEnchantmentsTag(ItemStack stack) {
-        return DynamicEnchantmentHelper.modifyEnchantmentTags(stack.getEnchantmentTagList(), stack);
+        var tag = stack.getTag();
+        if (tag == null) return new ListTag();
+        return DynamicEnchantmentHelper.modifyEnchantmentTags(tag.getList("ench", 10), stack);
     }
 
     @Inject(method = "getEnchantments", at = @At("RETURN"))

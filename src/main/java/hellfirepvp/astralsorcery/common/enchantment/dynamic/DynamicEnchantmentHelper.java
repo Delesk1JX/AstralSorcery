@@ -124,7 +124,7 @@ public class DynamicEnchantmentHelper {
                 if (!stack.canApplyAtEnchantingTable(ench)) {
                     continue;
                 }
-                String enchName = ench.getRegistryName().toString();
+                String enchName = BuiltInRegistries.ENCHANTMENT.getKey(ench).toString();
                 if (!enchantments.contains(enchName)) { //Means we didn't add the levels on the other iteration
                     CompoundTag newEnchTag = new CompoundTag();
                     newEnchTag.putString("id", enchName);
@@ -174,7 +174,7 @@ public class DynamicEnchantmentHelper {
                     return;
                 }
                 Item i = stack.getItem();
-                if (i.getRegistryName() == null) {
+                if (BuiltInRegistries.ITEM.getKey(i) == null) {
                     return;
                 }
                 try {

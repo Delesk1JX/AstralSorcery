@@ -1,0 +1,8 @@
+JVM Args:          "-Xmx4g"
+Run Args:          "-log=error", "--decompile-inner", "--remove-bridge", "--decompile-generics", "--ascii-strings", "--remove-synthetic", "--include-classpath", "--variable-renaming=jad", "--ignore-invalid-bytecode", "--bytecode-source-mapping", "--dump-code-lines", "--indent-string=    ", "-cfg", "/workspace/build/neoForm/neoFormJoined1.21.1-20240808.144430/steps/listLibraries/libraries.txt", "/workspace/build/neoForm/neoFormJoined1.21.1-20240808.144430/steps/rename/output.jar", "/workspace/build/neoForm/neoFormJoined1.21.1-20240808.144430/steps/decompile/output.jar"
+JVM:               /root/.gradle/jdks/eclipse_adoptium-21-amd64-linux.2/bin/java
+Classpath:         /root/.gradle/caches/modules-2/files-2.1/org.vineflower/vineflower/1.10.1/4f48c5947b21f9ebc743e7c80215ee839d3dc668/vineflower-1.10.1.jar
+Working Dir:       /workspace/build/neoForm/neoFormJoined1.21.1-20240808.144430/steps/decompile
+Main Class:        org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler
+Program log file:  /workspace/build/neoForm/neoFormJoined1.21.1-20240808.144430/steps/decompile/log.log
+Output file:       /workspace/build/neoForm/neoFormJoined1.21.1-20240808.144430/steps/decompile/output.jar
