@@ -42,10 +42,10 @@ public class MixinParticleManager {
 
         //Setup GL states again
         //Seriously, keep a clean GL state for once mojang.
-        RenderSystem.enableAlphaTest();
+        RenderSystem.enableBlend();
         RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA,
                 GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-        GlStateManager.enableDepthTest();
-        GlStateManager.enableTexture();
+        GlStateManager._enableDepthTest();
+        GlStateManager._enableTexture();
     }
 }

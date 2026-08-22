@@ -34,7 +34,7 @@ public class MixinWorld {
         Level world = (Level)(Object) this;
 
         WorldContext ctx = SkyHandler.getContext(world);
-        String strDimKey = world.getDimensionKey().getLocation().toString();
+        String strDimKey = world.dimension().location().toString();
         if (ctx != null &&
                 ctx.getCelestialEventHandler().getSolarEclipse().isActiveNow()) {
             this.skylightSubtracted = 11 - Math.round(ctx.getCelestialEventHandler().getSolarEclipsePercent() * 11F);

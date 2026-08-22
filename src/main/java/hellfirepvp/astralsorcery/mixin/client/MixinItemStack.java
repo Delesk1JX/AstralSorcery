@@ -63,8 +63,8 @@ public class MixinItemStack {
         tooltip.addAll(addition);
     }
 
-    @Redirect(method = "getTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;getEnchantmentTagList()Lnet/minecraft/nbt/ListTag;"))
+    @Redirect(method = "getTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;getEnchantmentList()Lnet/minecraft/nbt/ListTag;"))
     public ListTag enhanceEnchantmentTooltip(ItemStack stack) {
-        return DynamicEnchantmentHelper.modifyEnchantmentTags(stack.getEnchantmentTagList(), stack);
+        return DynamicEnchantmentHelper.modifyEnchantmentTags(stack.getEnchantmentList(), stack);
     }
 }

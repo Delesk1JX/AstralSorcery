@@ -1,20 +1,19 @@
 ```
-# Build artifacts
-build/
-.neoform/
+# Compiled and build artifacts
+*.jar
+*.class
+*.o
+*.obj
+*.out
 
-# Gradle
+# Dependencies
 .gradle/
-!gradle/
-!gradlew
-!gradlew.bat
 
-# Temporary files
-*.tmp
-*.temp
+# Logs and temp files
 *.log
+*.tmp
+*.swp
 
-# OS generated files
-.DS_Store
-Thumbs.db
+# Build directories
+build/
 ```

@@ -66,7 +66,7 @@ public class MixinForgeHooks {
 
         //Means we're in the 2nd run of loot manipulation, re-run by top.theillusivec4.curios.common.objects.FortuneBonusMultiplier
         ItemStack tool = context.get(LootContextParams.TOOL);
-        if (tool != null && tool.hasTag() && tool.getTag().contains("HasCuriosFortuneBonus")) {
+        if (tool != null && tool.hasTag() && tool.getTag().hasTag("HasCuriosFortuneBonus")) {
             loot.removeIf(result -> ItemUtils.dropItemToPlayer(player, result).isEmpty());
         }
         int curiosFortuneBonus = CuriosApi.getCuriosHelper().getCuriosHandler(player)
